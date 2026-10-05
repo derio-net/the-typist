@@ -227,3 +227,6 @@ Both committed on the branch (1569f7e); CLAUDE.md update added to layout/scope.
 
 <!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-05-vocab-typer-p7 created=2026-10-05T06:55:15+00:00 -->
 ### phase-split-2026-10-05-vocab-typer-p7 · decision · ask: R15 enrich skill
+
+<!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-05-vocab-typer-p8 created=2026-10-05T06:55:18+00:00 -->
+### phase-split-2026-10-05-vocab-typer-p8 · decision · ask: R16 seed content, first half (context and review size)
