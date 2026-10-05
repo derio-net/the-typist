@@ -14290,12 +14290,16 @@ records:
       - lead role
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 962
     noun:
       gender: f
       plural: Hauptrollen
+    examples:
+      - { de: "Wer spielt die Hauptrolle in dem neuen Film?", en: "Who plays the lead role in the new film?", tags: [singular, Präsens] }
+      - { de: "Für ihre erste Hauptrolle bekam sie gleich einen Preis.", en: "She immediately won a prize for her first lead role.", tags: [singular, Präteritum] }
+      - { de: "Er hat schon in mehreren Serien Hauptrollen gespielt.", en: "He has already played lead roles in several series.", tags: [plural, Perfekt] }
   - id: noun-nebenrolle
     type: noun
     lemma: Nebenrolle
@@ -14303,12 +14307,16 @@ records:
       - supporting role
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 962
     noun:
       gender: f
       plural: Nebenrollen
+    examples:
+      - { de: "In dem Krimi hat sie nur eine kleine Nebenrolle.", en: "She only has a small supporting role in the crime drama.", tags: [singular, Präsens] }
+      - { de: "Für seine Nebenrolle wurde er für einen Oscar nominiert.", en: "He was nominated for an Oscar for his supporting role.", tags: [singular, Passiv] }
+      - { de: "Am Anfang ihrer Karriere spielte sie fast nur Nebenrollen.", en: "At the beginning of her career she played almost only supporting roles.", tags: [plural, Präteritum] }
   - id: noun-soziale-netzwerk
     type: noun
     lemma: soziale Netzwerk
