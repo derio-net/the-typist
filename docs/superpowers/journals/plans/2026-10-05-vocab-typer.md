@@ -162,3 +162,62 @@ the parse subcommand is one small function beside validate; nothing duplicated.
 ### no-refactor-p2-t4 · discovery · no-refactor-because P2.T4 (phase 2)
 
 the deliverable is a prose skill; no code to clean.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r1 created=2026-10-05T07:57:12+00:00 phase=2 state=open review_scope=in -->
+### p2-r1 · finding [open] (reviewer: in scope) · verbShape types -en adjectives as verbs, freezing a verb- id prefix (phase 2)
+
+<!-- fr:journal kind=finding scope=plan id=p2-r2 created=2026-10-05T07:57:12+00:00 phase=2 state=open review_scope=in -->
+### p2-r2 · finding [open] (reviewer: in scope) · Skill plural example teaches "die soziale Netzwerke" (phase 2)
+
+<!-- fr:journal kind=finding scope=plan id=p2-r3 created=2026-10-05T07:57:12+00:00 phase=2 state=open review_scope=in -->
+### p2-r3 · finding [open] (reviewer: in scope) · Reflexive id from bare verb collides with the plain verb (phase 2)
+
+<!-- fr:journal kind=finding scope=plan id=p2-r4 created=2026-10-05T07:57:12+00:00 phase=2 state=open review_scope=out -->
+### p2-r4 · finding [open] (reviewer: out of scope) · 368 nouns get plural: null when the source omitted the plural (phase 2)
+
+<!-- fr:journal kind=finding scope=plan id=p2-r5 created=2026-10-05T07:57:12+00:00 phase=2 state=open review_scope=in -->
+### p2-r5 · finding [open] (reviewer: in scope) · Skill phrase rule keeps trailing (UN)/(für) in the lemma (phase 2)
+
+<!-- fr:journal kind=finding scope=plan id=p2-r6 created=2026-10-05T07:57:12+00:00 phase=2 state=open review_scope=in -->
+### p2-r6 · finding [open] (reviewer: in scope) · Skill maps a direct object into government (phase 2)
+
+<!-- fr:journal kind=finding scope=plan id=p2-r7 created=2026-10-05T07:57:12+00:00 phase=2 state=open review_scope=in -->
+### p2-r7 · finding [open] (reviewer: in scope) · Unresolved entries drop the section category (phase 2)
+
+<!-- fr:journal kind=review scope=plan id=p2-review created=2026-10-05T07:57:12+00:00 phase=2 -->
+### p2-review · review · phase 2 code review (retry on opus after a safeguard false-positive killed the first reviewer): with fixes; 6 fixed, 1 out-of-scope deferred to phase 4 (phase 2)
+
+<!-- fr:journal kind=finding scope=plan id=p2-r1-resolved created=2026-10-05T07:57:12+00:00 phase=2 state=fixed resolves=p2-r1 -->
+### p2-r1-resolved · finding [fixed] · resolves p2-r1: verbShape types -en adjectives as verbs, freezing a verb- id prefix (phase 2)
+
+Verb result now also requires a gloss starting with "to "; zufrieden etc. go to unresolved word; fixture test from seed line 763.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r2-resolved created=2026-10-05T07:57:12+00:00 phase=2 state=fixed resolves=p2-r2 -->
+### p2-r2-resolved · finding [fixed] · resolves p2-r2: Skill plural example teaches "die soziale Netzwerke" (phase 2)
+
+Example corrected to plural: sozialen Netzwerke with the weak-plural rule stated.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r3-resolved created=2026-10-05T07:57:12+00:00 phase=2 state=fixed resolves=p2-r3 -->
+### p2-r3-resolved · finding [fixed] · resolves p2-r3: Reflexive id from bare verb collides with the plain verb (phase 2)
+
+Ids derive from the full lemma: verb-sich-vorstellen vs verb-vorstellen; test updated; seed suffixed ids 57 → 54.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r4-resolved created=2026-10-05T07:57:12+00:00 phase=2 state=open resolves=p2-r4 out_of_scope=true -->
+### p2-r4-resolved · finding [out-of-scope] · resolves p2-r4: 368 nouns get plural: null when the source omitted the plural (phase 2)
+
+Plan phase 4 (typist-enrich) step now requires re-checking every plural: null; the parser cannot know the plural.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r5-resolved created=2026-10-05T07:57:12+00:00 phase=2 state=fixed resolves=p2-r5 -->
+### p2-r5-resolved · finding [fixed] · resolves p2-r5: Skill phrase rule keeps trailing (UN)/(für) in the lemma (phase 2)
+
+Skill moves trailing abbreviation/preposition to abbreviation/government and types capitalised-adjective proper names as nouns.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r6-resolved created=2026-10-05T07:57:12+00:00 phase=2 state=fixed resolves=p2-r6 -->
+### p2-r6-resolved · finding [fixed] · resolves p2-r6: Skill maps a direct object into government (phase 2)
+
+government is a preposition (+case) only; object hints go to gloss/source_note.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r7-resolved created=2026-10-05T07:57:12+00:00 phase=2 state=fixed resolves=p2-r7 -->
+### p2-r7-resolved · finding [fixed] · resolves p2-r7: Unresolved entries drop the section category (phase 2)
+
+Unresolved now carries category; skill applies it; CLI test updated.
