@@ -695,3 +695,69 @@ Nine.
 ### p5-r11-resolved · finding [out-of-scope] · resolves p5-r11: Journal overstates source_note coverage (197 filled plurals, noun-burnout have none) (phase 5)
 
 Filling a null plural is not a correction of the source; journal wording only.
+
+<!-- fr:journal kind=discovery scope=plan id=p6-seed-test created=2026-10-05T19:59:49+00:00 phase=6 -->
+### p6-seed-test · discovery · Seed test added RED (481 raw), GREEN after enrichment (phase 6)
+
+tests/seed.test.ts checks: lists/de-b2-1000.yaml parses with parseList; its category ids equal the
+20 header slugs that tools/parse/headers.ts derives from wordlist.raw.txt (order 10 is absent in the
+source, so 20 not 21); every record is enriched; the union of source_lines equals the 1000 line numbers
+containing ' – '. First run: 3 passed, 1 failed (481 raw ids). After enrichment 4/4 pass. One follow-up
+commit made it satisfy strict tsc (`categories` is optional in the schema), which `npm run build` caught.
+
+<!-- fr:journal kind=discovery scope=plan id=p6-enrich created=2026-10-05T19:59:49+00:00 phase=6 -->
+### p6-enrich · discovery · Enrichment: 20 batches, 481 records enriched; 0 raw left in all 20 categories; 0 flagged (phase 6)
+
+`next-batch` (no --category, so primary-category order) gave 19 batches of 25 and one of 6; each was
+validated, checked (stats total unchanged at 968; only the batch's records changed against HEAD) and
+committed as "content(de-b2-1000): enrich <ids>". The run ended when next-batch printed nothing (exit 0).
+Final stats: total 968, enriched 968, raw 0; orders 12-21 all raw 0 (46, 54, 48, 46, 48, 43, 36, 53, 60,
+47). The 481 records: 403 nouns, 38 verbs, 20 adjectives, 20 phrases; 1446 examples. Tense spread:
+Präsens 832, Präteritum 260, Perfekt 236, Plusquamperfekt 44, Futur I 25, Konjunktiv II 14, Passiv 97,
+Imperativ 30. No needs-operator-attention record, no skipped raw id, no merges (no duplicates among the
+remaining records; Symptom/Symptome had already been merged in phase 5). A final commit replaced 2 example
+sentences that repeated phase-5 sentences word for word (noun-pressefreiheit, noun-verspaetung) and
+shortened one 89-character sentence.
+
+<!-- fr:journal kind=discovery scope=plan id=p6-corrections created=2026-10-05T19:59:49+00:00 phase=6 -->
+### p6-corrections · discovery · Source corrections: 54 glosses widened/corrected, 1 plural-only dropped, 5 plurals removed, 1 phrase lemma, 8 plural-only notes (phase 6)
+
+Glosses widened where the natural example needs another sense, or corrected (54), e.g. Zusammenhang
++connection/context, wählen +to elect/to choose, Botschaft +message, Kredit +credit, Arbeitsplatz +job,
+gerecht/ungerecht +fair/unfair, Fluchtursache "cause of flight" → reason for fleeing / root cause of
+displacement, Reklame "(dated/formal)" → dated. Lemma: noun-ausgaben Ausgaben → Ausgabe (plural Ausgaben,
+plural_only dropped: the singular is natural for 'expense'); phrase-das-angebot-und-die-nachfrage →
+"Angebot und Nachfrage" (articles dropped, the usual citation form). Plurals removed as practically
+unused (5): Immunsysteme, Missbräuche, Umtausche, Klimabewegungen, and Kritiken on noun-kritik-2
+(criticism; Kritiken = reviews belongs to noun-kritik). Plural-only kept with a source_note (8): Daten,
+Schulden (noun-schuld is guilt, a separate sense), Einnahmen, Unterlagen, Außenbeziehungen, Nebenkosten,
+erneuerbaren Energien, Vereinten Nationen. 4 reflexive verbs converted the standard way (ids unchanged).
+No genders changed. Every correction carries a source_note, except gloss widenings, which follow the
+phase-5 practice.
+
+<!-- fr:journal kind=decision scope=plan id=p6-splice-helper created=2026-10-05T19:59:49+00:00 phase=6 -->
+### p6-splice-helper · decision · Edits made through a scratch text-splice helper (not committed), never a load-and-dump (phase 6)
+
+To keep 481 records consistent, each batch was written as a compact spec and applied by a scratch
+script (outside the repo) that edits only the named records' text blocks. It flips status, adds the
+type block and examples in the house style, and refuses any change to id, source_lines or categories,
+or to a record that is not raw. All other bytes in the file stay identical. A commit helper also checked
+that every changed record block belonged to the batch. This respects the skill's edit discipline: targeted
+edits, no load/dump, no reformatting. Two batches were amended before moving on, to fix a calque and to
+widen two glosses.
+
+<!-- fr:journal kind=discovery scope=plan id=p6-review-pointers created=2026-10-05T19:59:49+00:00 phase=6 -->
+### p6-review-pointers · discovery · Records worth a reviewer's look (none flagged) (phase 6)
+
+Judgement calls: noun-einnahmen kept plural_only (singular Einnahme is rare in the revenue sense);
+noun-ausgaben retyped to the singular Ausgabe; noun-soziale-ungleichheit and noun-ungleichheit are
+separate source records with overlapping senses (kept apart, with different examples); noun-kritik-2
+plural removed; noun-geisteswissenschaft gloss now "discipline in the humanities / humanities (pl.)".
+Checked or avoided time-sensitive facts: no euro-member count, no "next" COP (the 2025 summit was in
+Brazil), Merkel 16 years, Mietpreisbremse 2015, renewables over half of German electricity, wind the
+largest source.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p6-t2 created=2026-10-05T19:59:49+00:00 phase=6 -->
+### no-refactor-p6-t2 · discovery · no-refactor-because P6.T2 (phase 6)
+
+content-only task: enrichment is targeted per-record YAML edits committed per batch; no code was written, so nothing to clean
