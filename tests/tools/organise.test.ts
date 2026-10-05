@@ -212,7 +212,7 @@ describe('cli', () => {
     expect(tsx('next-batch', f, '--n=1').stdout.trim().split('\n')).toEqual(['noun-test']);
   });
   it('dupes reports a conflicting group', () => {
-    const f = write([enrichedNoun('n1', { noun: { gender: 'm', plural: 'Verträge' } }), enrichedNoun('n2', { noun: { gender: 'm', plural: 'Verträge' } })]);
+    const f = write([enrichedNoun('n1', { noun: { gender: 'm', plural: 'Verträge' } }), enrichedNoun('n2', { noun: { gender: 'm', plural: 'Vertraege' } })]);
     expect(tsx('dupes', f).stdout).toMatch(/CONFLICT.*noun\.plural/);
   });
   it('merge-dupes merges a raw+enriched pair in place and the result validates', () => {
@@ -227,7 +227,7 @@ describe('cli', () => {
   it('merge-dupes skips conflicting groups (reporting them) and --skip ids', () => {
     const f = write([
       enrichedNoun('n1', { noun: { gender: 'm', plural: 'Verträge' } }),
-      enrichedNoun('n2', { noun: { gender: 'm', plural: 'Verträge' } }),
+      enrichedNoun('n2', { noun: { gender: 'm', plural: 'Vertraege' } }),
       phrase('p1', 'zum Beispiel'),
       phrase('p2', 'zum Beispiel'),
     ]);
