@@ -6364,12 +6364,16 @@ records:
       - platform
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 986
     noun:
       gender: f
       plural: Plattformen
+    examples:
+      - { de: "Auf welcher Plattform hast du das Video gesehen?", en: "On which platform did you see the video?", tags: [singular, Perfekt] }
+      - { de: "Die Plattform hat über eine Milliarde Nutzer.", en: "The platform has over a billion users.", tags: [singular, Präsens] }
+      - { de: "Viele Künstler verkaufen ihre Musik über digitale Plattformen.", en: "Many artists sell their music through digital platforms.", tags: [plural, Präsens] }
   - id: noun-beitrag-2
     type: noun
     lemma: Beitrag
@@ -6377,12 +6381,16 @@ records:
       - post (social media)
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 988
     noun:
       gender: m
       plural: Beiträge
+    examples:
+      - { de: "Ihr letzter Beitrag hat tausende Likes bekommen.", en: "Her last post got thousands of likes.", tags: [singular, Perfekt] }
+      - { de: "Ich lese die Beiträge in diesem Forum regelmäßig.", en: "I read the posts in this forum regularly.", tags: [plural, Präsens] }
+      - { de: "Der Beitrag wurde wegen Hassrede gelöscht.", en: "The post was deleted because of hate speech.", tags: [singular, Passiv] }
   - id: noun-kommentar
     type: noun
     lemma: Kommentar
@@ -6390,12 +6398,16 @@ records:
       - comment
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 990
     noun:
       gender: m
       plural: Kommentare
+    examples:
+      - { de: "Unter dem Video stehen hunderte Kommentare.", en: "There are hundreds of comments under the video.", tags: [plural, Präsens] }
+      - { de: "Sie hat einen langen Kommentar zu meinem Foto geschrieben.", en: "She wrote a long comment on my photo.", tags: [singular, Perfekt] }
+      - { de: "Lies besser nicht die Kommentare!", en: "Better not read the comments!", tags: [plural, Imperativ] }
   - id: verb-kommentieren
     type: verb
     lemma: kommentieren
@@ -6403,9 +6415,20 @@ records:
       - to comment
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 992
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "kommentiert"
+        praeteritum: "kommentierte"
+        partizip2: "kommentiert"
+    examples:
+      - { de: "Er kommentiert jedes Foto, das ich poste.", en: "He comments on every photo I post.", tags: [Präsens] }
+      - { de: "Der Minister wollte den Bericht nicht kommentieren.", en: "The minister didn't want to comment on the report.", tags: [Präteritum] }
+      - { de: "Tausende Nutzer haben den Beitrag kommentiert.", en: "Thousands of users commented on the post.", tags: [Perfekt] }
   - id: verb-liken
     type: verb
     lemma: liken
@@ -6413,9 +6436,20 @@ records:
       - to like (a post)
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 994
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "likt"
+        praeteritum: "likte"
+        partizip2: "gelikt"
+    examples:
+      - { de: "Sie likt fast alles, was ihre Freunde posten.", en: "She likes almost everything her friends post.", tags: [Präsens] }
+      - { de: "Hast du mein neues Profilbild schon gelikt?", en: "Have you liked my new profile picture yet?", tags: [Perfekt] }
+      - { de: "Über zehntausend Menschen likten das Video an einem Tag.", en: "Over ten thousand people liked the video in one day.", tags: [Präteritum] }
   - id: verb-teilen
     type: verb
     lemma: teilen
@@ -6423,9 +6457,21 @@ records:
       - to share
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 996
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "teilt"
+        praeteritum: "teilte"
+        partizip2: "geteilt"
+    examples:
+      - { de: "Bitte teilt den Aufruf mit euren Freunden!", en: "Please share the appeal with your friends!", tags: [Imperativ] }
+      - { de: "Der Artikel wurde über fünftausend Mal geteilt.", en: "The article was shared over five thousand times.", tags: [Passiv, Präteritum] }
+      - { de: "Ich habe das Video in meiner Story geteilt.", en: "I shared the video in my story.", tags: [Perfekt] }
+      - { de: "Wir teilen uns eine Wohnung.", en: "We share a flat.", tags: [Präsens] }
   - id: verb-verlinken
     type: verb
     lemma: verlinken
@@ -6433,9 +6479,20 @@ records:
       - to link
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 998
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "verlinkt"
+        praeteritum: "verlinkte"
+        partizip2: "verlinkt"
+    examples:
+      - { de: "Ich verlinke dir den Artikel in der Nachricht.", en: "I'll link the article for you in the message.", tags: [Präsens] }
+      - { de: "Sie hat mich auf dem Foto verlinkt.", en: "She tagged me in the photo.", tags: [Perfekt] }
+      - { de: "Der Blogger verlinkte auf mehrere Studien.", en: "The blogger linked to several studies.", tags: [Präteritum] }
   - id: noun-follower
     type: noun
     lemma: Follower
@@ -6443,7 +6500,7 @@ records:
       - follower
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1000
     noun:
@@ -6453,6 +6510,10 @@ records:
         - lemma: Followerin
           gender: f
           plural: Followerinnen
+    examples:
+      - { de: "Sie hat über eine Million Follower.", en: "She has over a million followers.", tags: [plural, Präsens] }
+      - { de: "Jeder neue Follower bringt mehr Reichweite.", en: "Every new follower brings more reach.", tags: [singular, Präsens] }
+      - { de: "Eine Followerin hat mich auf den Fehler hingewiesen.", en: "A follower pointed out the mistake to me.", tags: [singular, Perfekt] }
   - id: noun-profil
     type: noun
     lemma: Profil
@@ -6460,12 +6521,16 @@ records:
       - profile
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1002
     noun:
       gender: n
       plural: Profile
+    examples:
+      - { de: "Ich habe mein Profil auf privat gestellt.", en: "I've set my profile to private.", tags: [singular, Perfekt] }
+      - { de: "Viele Profile auf der Plattform sind gefälscht.", en: "Many profiles on the platform are fake.", tags: [plural, Präsens] }
+      - { de: "Ein vollständiges Profil erhöht die Chancen bei der Jobsuche.", en: "A complete profile increases your chances when looking for a job.", tags: [singular, Präsens] }
   - id: noun-timeline
     type: noun
     lemma: Timeline
@@ -6473,12 +6538,16 @@ records:
       - timeline
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1004
     noun:
       gender: f
       plural: Timelines
+    examples:
+      - { de: "In meiner Timeline sehe ich nur noch Werbung.", en: "All I see in my timeline is advertising.", tags: [singular, Präsens] }
+      - { de: "Das Foto erschien plötzlich in allen Timelines.", en: "The photo suddenly appeared in all timelines.", tags: [plural, Präteritum] }
+      - { de: "Ich habe den ganzen Abend durch die Timeline gescrollt.", en: "I scrolled through the timeline all evening.", tags: [singular, Perfekt] }
   - id: noun-update
     type: noun
     lemma: Update
@@ -6487,13 +6556,17 @@ records:
     categories:
       - social-media-and-internet
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1006
       - 1177
     noun:
       gender: n
       plural: Updates
+    examples:
+      - { de: "Das Update behebt mehrere Sicherheitslücken.", en: "The update fixes several security vulnerabilities.", tags: [singular, Präsens] }
+      - { de: "Hast du das neueste Update schon installiert?", en: "Have you installed the latest update yet?", tags: [singular, Perfekt] }
+      - { de: "Die App bekommt jeden Monat neue Updates.", en: "The app gets new updates every month.", tags: [plural, Präsens] }
   - id: noun-story
     type: noun
     lemma: Story
@@ -6501,12 +6574,16 @@ records:
       - story
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1008
     noun:
       gender: f
       plural: Storys
+    examples:
+      - { de: "Sie postet jeden Tag eine Story.", en: "She posts a story every day.", tags: [singular, Präsens] }
+      - { de: "Die Storys verschwinden nach vierundzwanzig Stunden.", en: "The stories disappear after twenty-four hours.", tags: [plural, Präsens] }
+      - { de: "In seiner Story zeigte er Fotos vom Urlaub.", en: "In his story he showed photos from his holiday.", tags: [singular, Präteritum] }
   - id: noun-nachricht
     type: noun
     lemma: Nachricht
@@ -6515,13 +6592,17 @@ records:
     categories:
       - social-media-and-internet
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1010
       - 1702
     noun:
       gender: f
       plural: Nachrichten
+    examples:
+      - { de: "Ich habe dir eine Nachricht geschickt.", en: "I've sent you a message.", tags: [singular, Perfekt] }
+      - { de: "Sie hat zwanzig ungelesene Nachrichten.", en: "She has twenty unread messages.", tags: [plural, Präsens] }
+      - { de: "Hast du die Nachricht von deiner Mutter gelesen?", en: "Have you read the message from your mother?", tags: [singular, Perfekt] }
   - id: noun-chat
     type: noun
     lemma: Chat
@@ -6529,12 +6610,16 @@ records:
       - chat
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1012
     noun:
       gender: m
       plural: Chats
+    examples:
+      - { de: "Wir besprechen das später im Chat.", en: "We'll discuss that later in the chat.", tags: [singular, Präsens] }
+      - { de: "Der Chat der Klasse war voller Nachrichten.", en: "The class chat was full of messages.", tags: [singular, Präteritum] }
+      - { de: "Ich habe die alten Chats gelöscht.", en: "I deleted the old chats.", tags: [plural, Perfekt] }
   - id: noun-posteingang
     type: noun
     lemma: Posteingang
@@ -6542,12 +6627,16 @@ records:
       - inbox
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1014
     noun:
       gender: m
       plural: Posteingänge
+    examples:
+      - { de: "Mein Posteingang ist nach dem Urlaub voll.", en: "My inbox is full after the holiday.", tags: [singular, Präsens] }
+      - { de: "Die E-Mail ist nicht in meinem Posteingang angekommen.", en: "The email didn't arrive in my inbox.", tags: [singular, Perfekt] }
+      - { de: "Ich habe zwei Posteingänge, einen privaten und einen beruflichen.", en: "I have two inboxes, a private one and a work one.", tags: [plural, Präsens] }
   - id: verb-blockieren
     type: verb
     lemma: blockieren
@@ -6555,9 +6644,20 @@ records:
       - to block
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1016
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "blockiert"
+        praeteritum: "blockierte"
+        partizip2: "blockiert"
+    examples:
+      - { de: "Wenn er weiter nervt, blockiere ich ihn.", en: "If he keeps annoying me, I'll block him.", tags: [Präsens] }
+      - { de: "Sie hat ihren Ex-Freund auf allen Plattformen blockiert.", en: "She blocked her ex-boyfriend on all platforms.", tags: [Perfekt] }
+      - { de: "Ein Lkw blockierte stundenlang die Straße.", en: "A lorry blocked the road for hours.", tags: [Präteritum] }
   - id: verb-melden
     type: verb
     lemma: melden
@@ -6565,9 +6665,20 @@ records:
       - to report (abuse, post)
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1018
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "meldet"
+        praeteritum: "meldete"
+        partizip2: "gemeldet"
+    examples:
+      - { de: "Ich melde den Kommentar wegen Beleidigung.", en: "I'm reporting the comment for being insulting.", tags: [Präsens] }
+      - { de: "Mehrere Nutzer haben das Profil gemeldet.", en: "Several users reported the profile.", tags: [Perfekt] }
+      - { de: "Ein Zeuge meldete den Unfall der Polizei.", en: "A witness reported the accident to the police.", tags: [Präteritum] }
   - id: noun-freundschaftsanfrage
     type: noun
     lemma: Freundschaftsanfrage
@@ -6575,12 +6686,16 @@ records:
       - friend request
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1020
     noun:
       gender: f
       plural: Freundschaftsanfragen
+    examples:
+      - { de: "Ich habe eine Freundschaftsanfrage von meinem Chef bekommen.", en: "I got a friend request from my boss.", tags: [singular, Perfekt] }
+      - { de: "Sie nimmt keine Freundschaftsanfragen von Fremden an.", en: "She doesn't accept friend requests from strangers.", tags: [plural, Präsens] }
+      - { de: "Soll ich die Freundschaftsanfrage ablehnen?", en: "Should I decline the friend request?", tags: [singular, Präsens] }
   - id: noun-direktnachricht
     type: noun
     lemma: Direktnachricht
@@ -6588,13 +6703,17 @@ records:
       - direct message
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1022
     noun:
       gender: f
       plural: Direktnachrichten
     abbreviation: DM
+    examples:
+      - { de: "Schick mir die Adresse einfach per Direktnachricht.", en: "Just send me the address by direct message.", tags: [singular, Imperativ] }
+      - { de: "Sie bekommt täglich hunderte Direktnachrichten.", en: "She gets hundreds of direct messages every day.", tags: [plural, Präsens] }
+      - { de: "In einer Direktnachricht entschuldigte er sich bei ihr.", en: "He apologised to her in a direct message.", tags: [singular, Präteritum] }
   - id: noun-hashtag
     type: noun
     lemma: Hashtag
@@ -6602,12 +6721,16 @@ records:
       - hashtag
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1026
     noun:
       gender: m
       plural: Hashtags
+    examples:
+      - { de: "Unter dem Hashtag findet man tausende Fotos.", en: "You can find thousands of photos under the hashtag.", tags: [singular, Präsens] }
+      - { de: "Der Hashtag wurde innerhalb weniger Stunden zum Trend.", en: "The hashtag became a trend within a few hours.", tags: [singular, Präteritum] }
+      - { de: "Zu viele Hashtags wirken unprofessionell.", en: "Too many hashtags look unprofessional.", tags: [plural, Präsens] }
   - id: noun-reichweite
     type: noun
     lemma: Reichweite
@@ -6615,12 +6738,16 @@ records:
       - reach
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1028
     noun:
       gender: f
       plural: Reichweiten
+    examples:
+      - { de: "Mit dem Video hat sie ihre Reichweite verdoppelt.", en: "With the video she doubled her reach.", tags: [singular, Perfekt] }
+      - { de: "Influencer mit großer Reichweite verdienen viel Geld.", en: "Influencers with a large reach earn a lot of money.", tags: [singular, Präsens] }
+      - { de: "Die Reichweiten der Zeitungen sinken seit Jahren.", en: "Newspapers' reach has been falling for years.", tags: [plural, Präsens] }
   - id: noun-algorithmus
     type: noun
     lemma: Algorithmus
@@ -6629,13 +6756,17 @@ records:
     categories:
       - social-media-and-internet
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1030
       - 1189
     noun:
       gender: m
       plural: Algorithmen
+    examples:
+      - { de: "Der Algorithmus zeigt mir nur Videos über Katzen.", en: "The algorithm only shows me videos about cats.", tags: [singular, Präsens] }
+      - { de: "Niemand weiß genau, wie der Algorithmus funktioniert.", en: "Nobody knows exactly how the algorithm works.", tags: [singular, Präsens] }
+      - { de: "Moderne Algorithmen erkennen Gesichter in Sekunden.", en: "Modern algorithms recognise faces in seconds.", tags: [plural, Präsens] }
   - id: noun-datenschutzbestimmung
     type: noun
     lemma: Datenschutzbestimmung
@@ -6643,12 +6774,16 @@ records:
       - data protection rule
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1032
     noun:
       gender: f
       plural: Datenschutzbestimmungen
+    examples:
+      - { de: "Hast du die Datenschutzbestimmungen gelesen?", en: "Have you read the data protection rules?", tags: [plural, Perfekt] }
+      - { de: "Die neue Datenschutzbestimmung tritt im Mai in Kraft.", en: "The new data protection rule comes into force in May.", tags: [singular, Präsens] }
+      - { de: "Die App verstößt gegen mehrere Datenschutzbestimmungen.", en: "The app violates several data protection rules.", tags: [plural, Präsens] }
   - id: noun-privatsphaere
     type: noun
     lemma: Privatsphäre
@@ -6656,12 +6791,16 @@ records:
       - privacy
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1034
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Er legt großen Wert auf seine Privatsphäre.", en: "He places great value on his privacy.", tags: [singular, Präsens] }
+      - { de: "Die Kamera verletzt die Privatsphäre der Nachbarn.", en: "The camera violates the neighbours' privacy.", tags: [singular, Präsens] }
+      - { de: "In den Einstellungen kannst du deine Privatsphäre besser schützen.", en: "In the settings you can protect your privacy better.", tags: [singular, Präsens] }
   - id: noun-datensicherheit
     type: noun
     lemma: Datensicherheit
@@ -6669,12 +6808,16 @@ records:
       - data security
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1036
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Datensicherheit hat für unsere Firma höchste Priorität.", en: "Data security is our company's top priority.", tags: [singular, Präsens] }
+      - { de: "Nach dem Hackerangriff wurde die Datensicherheit verbessert.", en: "After the hacker attack data security was improved.", tags: [singular, Passiv] }
+      - { de: "Viele Kunden machen sich Sorgen um die Datensicherheit.", en: "Many customers are worried about data security.", tags: [singular, Präsens] }
   - id: noun-echtheit
     type: noun
     lemma: Echtheit
