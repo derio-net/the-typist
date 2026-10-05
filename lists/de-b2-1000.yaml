@@ -12608,12 +12608,16 @@ records:
       - suburb
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1928
     noun:
       gender: f
       plural: Vorstädte
+    examples:
+      - { de: "Viele Familien ziehen in die Vorstadt, weil die Mieten dort niedriger sind.", en: "Many families move to the suburbs because rents are lower there.", tags: [singular, Präsens] }
+      - { de: "Er wuchs in einer ruhigen Vorstadt von Hamburg auf.", en: "He grew up in a quiet suburb of Hamburg.", tags: [singular, Präteritum] }
+      - { de: "Die Vorstädte sind schlecht an den Nahverkehr angebunden.", en: "The suburbs are poorly connected to public transport.", tags: [plural, Präsens] }
   - id: noun-wohngegend
     type: noun
     lemma: Wohngegend
@@ -12621,12 +12625,16 @@ records:
       - residential area
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1930
     noun:
       gender: f
       plural: Wohngegenden
+    examples:
+      - { de: "Wir wohnen in einer ruhigen Wohngegend.", en: "We live in a quiet residential area.", tags: [singular, Präsens] }
+      - { de: "Die Wohngegend hat sich in den letzten Jahren stark verändert.", en: "The area has changed a lot in recent years.", tags: [singular, Perfekt] }
+      - { de: "In teuren Wohngegenden findet man kaum noch kleine Läden.", en: "In expensive residential areas you hardly find any small shops any more.", tags: [plural, Präsens] }
   - id: noun-wohnhaus
     type: noun
     lemma: Wohnhaus
@@ -12634,12 +12642,16 @@ records:
       - residential building
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1932
     noun:
       gender: n
       plural: Wohnhäuser
+    examples:
+      - { de: "Das Wohnhaus hat sechs Stockwerke und keinen Aufzug.", en: "The residential building has six floors and no lift.", tags: [singular, Präsens] }
+      - { de: "Neben der Schule werden drei neue Wohnhäuser gebaut.", en: "Three new residential buildings are being built next to the school.", tags: [plural, Passiv, Präsens] }
+      - { de: "In dem alten Wohnhaus hatte früher ein Arzt gewohnt.", en: "A doctor had once lived in the old house.", tags: [singular, Plusquamperfekt] }
   - id: noun-hochhaus
     type: noun
     lemma: Hochhaus
@@ -12647,12 +12659,16 @@ records:
       - high-rise
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1934
     noun:
       gender: n
       plural: Hochhäuser
+    examples:
+      - { de: "Sie wohnt im zwanzigsten Stock eines Hochhauses.", en: "She lives on the twentieth floor of a high-rise.", tags: [singular, Präsens] }
+      - { de: "Frankfurt ist für seine Hochhäuser bekannt.", en: "Frankfurt is known for its high-rise buildings.", tags: [plural, Präsens] }
+      - { de: "Das Hochhaus wurde in den Siebzigerjahren gebaut.", en: "The high-rise was built in the seventies.", tags: [singular, Passiv, Präteritum] }
   - id: noun-mietwohnung
     type: noun
     lemma: Mietwohnung
@@ -12660,12 +12676,16 @@ records:
       - rental apartment
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1936
     noun:
       gender: f
       plural: Mietwohnungen
+    examples:
+      - { de: "Wir suchen eine Mietwohnung mit drei Zimmern.", en: "We are looking for a three-room rented flat.", tags: [singular, Präsens] }
+      - { de: "In Deutschland leben mehr Menschen in Mietwohnungen als im Eigentum.", en: "In Germany, more people live in rented flats than in homes they own.", tags: [plural, Präsens] }
+      - { de: "Ihre erste Mietwohnung war winzig, aber gemütlich.", en: "Her first rented flat was tiny but cosy.", tags: [singular, Präteritum] }
   - id: noun-eigentumswohnung
     type: noun
     lemma: Eigentumswohnung
@@ -12673,12 +12693,16 @@ records:
       - owner-occupied flat
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1938
     noun:
       gender: f
       plural: Eigentumswohnungen
+    examples:
+      - { de: "Sie haben sich eine Eigentumswohnung in Leipzig gekauft.", en: "They bought a flat of their own in Leipzig.", tags: [singular, Perfekt] }
+      - { de: "Eine Eigentumswohnung ist in München kaum noch bezahlbar.", en: "Owning a flat is hardly affordable in Munich any more.", tags: [singular, Präsens] }
+      - { de: "Viele Altbauten wurden in Eigentumswohnungen umgewandelt.", en: "Many old buildings have been converted into owner-occupied flats.", tags: [plural, Passiv, Präteritum] }
   - id: noun-miete
     type: noun
     lemma: Miete
@@ -12686,26 +12710,36 @@ records:
       - rent
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1940
     noun:
       gender: f
       plural: Mieten
+    examples:
+      - { de: "Die Miete ist jeden Monat am Ersten fällig.", en: "The rent is due on the first of every month.", tags: [singular, Präsens] }
+      - { de: "Wir zahlen 900 Euro Miete ohne Nebenkosten.", en: "We pay 900 euros rent excluding utilities.", tags: [singular, Präsens] }
+      - { de: "Die Mieten in den Großstädten sind stark gestiegen.", en: "Rents in the big cities have risen sharply.", tags: [plural, Perfekt] }
   - id: noun-nebenkosten
     type: noun
     lemma: Nebenkosten
     gloss:
-      - additional costs
+      - additional costs (heating, water etc.)
+      - service charges
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1942
+    source_note: "kept plural-only: no singular in this sense"
     noun:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "Die Nebenkosten sind in der Miete nicht enthalten.", en: "The service charges are not included in the rent.", tags: [plural, Präsens] }
+      - { de: "Wegen der hohen Energiepreise sind die Nebenkosten gestiegen.", en: "The additional costs have risen because of high energy prices.", tags: [plural, Perfekt] }
+      - { de: "Der Vermieter wird die Nebenkosten am Jahresende abrechnen.", en: "The landlord will settle the service charges at the end of the year.", tags: [plural, Futur I] }
   - id: noun-mietvertrag
     type: noun
     lemma: Mietvertrag
@@ -12713,12 +12747,16 @@ records:
       - rental contract
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1946
     noun:
       gender: m
       plural: Mietverträge
+    examples:
+      - { de: "Lesen Sie den Mietvertrag genau, bevor Sie unterschreiben.", en: "Read the tenancy agreement carefully before you sign.", tags: [singular, Imperativ] }
+      - { de: "Der Mietvertrag ist auf zwei Jahre befristet.", en: "The rental contract is limited to two years.", tags: [singular, Präsens] }
+      - { de: "Viele Mietverträge enthalten unwirksame Klauseln.", en: "Many rental contracts contain invalid clauses.", tags: [plural, Präsens] }
   - id: noun-vermieter
     type: noun
     lemma: Vermieter
@@ -12726,7 +12764,7 @@ records:
       - landlord / landlady
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1948
     noun:
@@ -12736,6 +12774,10 @@ records:
         - lemma: Vermieterin
           gender: f
           plural: Vermieterinnen
+    examples:
+      - { de: "Der Vermieter will die Miete erhöhen.", en: "The landlord wants to raise the rent.", tags: [singular, Präsens] }
+      - { de: "Meine Vermieterin hat die Heizung sofort reparieren lassen.", en: "My landlady had the heating repaired immediately.", tags: [singular, Perfekt] }
+      - { de: "Manche Vermieter verlangen eine Kaution von drei Monatsmieten.", en: "Some landlords demand a deposit of three months' rent.", tags: [plural, Präsens] }
   - id: noun-mieter
     type: noun
     lemma: Mieter
@@ -12743,7 +12785,7 @@ records:
       - tenant
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1950
     noun:
@@ -12753,6 +12795,10 @@ records:
         - lemma: Mieterin
           gender: f
           plural: Mieterinnen
+    examples:
+      - { de: "Der Mieter hat sich über den Lärm beschwert.", en: "The tenant complained about the noise.", tags: [singular, Perfekt] }
+      - { de: "Die Mieter wehren sich gegen die Sanierung.", en: "The tenants are fighting the renovation.", tags: [plural, Präsens] }
+      - { de: "Die neue Mieterin war im März eingezogen.", en: "The new tenant had moved in in March.", tags: [singular, Plusquamperfekt] }
   - id: noun-bauprojekt
     type: noun
     lemma: Bauprojekt
@@ -12760,12 +12806,16 @@ records:
       - construction project
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1952
     noun:
       gender: n
       plural: Bauprojekte
+    examples:
+      - { de: "Das Bauprojekt kostet doppelt so viel wie geplant.", en: "The construction project costs twice as much as planned.", tags: [singular, Präsens] }
+      - { de: "Die Bürger protestierten gegen das neue Bauprojekt.", en: "The residents protested against the new construction project.", tags: [singular, Präteritum] }
+      - { de: "Wegen fehlender Fachkräfte verzögern sich viele Bauprojekte.", en: "Many construction projects are delayed because of a shortage of skilled workers.", tags: [plural, Präsens] }
   - id: noun-baustelle
     type: noun
     lemma: Baustelle
@@ -12773,12 +12823,16 @@ records:
       - construction site
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1954
     noun:
       gender: f
       plural: Baustellen
+    examples:
+      - { de: "Vor unserem Haus ist seit Monaten eine Baustelle.", en: "There has been a building site in front of our house for months.", tags: [singular, Präsens] }
+      - { de: "Betreten der Baustelle verboten!", en: "No entry to the building site!", tags: [singular] }
+      - { de: "Auf der Autobahn gibt es im Sommer viele Baustellen.", en: "There are lots of roadworks on the motorway in summer.", tags: [plural, Präsens] }
   - id: noun-oeffentliche-nahverkehr
     type: noun
     lemma: öffentliche Nahverkehr
@@ -12786,13 +12840,17 @@ records:
       - public transport
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1956
     noun:
       gender: m
       plural: null
     abbreviation: ÖPNV
+    examples:
+      - { de: "Der öffentliche Nahverkehr in Wien ist sehr gut ausgebaut.", en: "Public transport in Vienna is very well developed.", tags: [singular, Präsens] }
+      - { de: "Die Stadt will den öffentlichen Nahverkehr kostenlos machen.", en: "The city wants to make public transport free.", tags: [singular, Präsens] }
+      - { de: "Mit dem öffentlichen Nahverkehr dauert die Fahrt eine Stunde.", en: "The journey takes an hour by public transport.", tags: [singular, Präsens] }
   - id: noun-haltestelle
     type: noun
     lemma: Haltestelle
@@ -12800,12 +12858,16 @@ records:
       - (bus/train) stop
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1958
     noun:
       gender: f
       plural: Haltestellen
+    examples:
+      - { de: "An der nächsten Haltestelle müssen wir aussteigen.", en: "We have to get off at the next stop.", tags: [singular, Präsens] }
+      - { de: "Die Haltestelle wurde wegen Bauarbeiten verlegt.", en: "The stop has been moved because of construction work.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Zwischen den beiden Haltestellen liegen nur 300 Meter.", en: "There are only 300 metres between the two stops.", tags: [plural, Präsens] }
   - id: noun-u-bahn
     type: noun
     lemma: U-Bahn
@@ -12813,12 +12875,16 @@ records:
       - underground
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1960
     noun:
       gender: f
       plural: U-Bahnen
+    examples:
+      - { de: "Ich fahre jeden Tag mit der U-Bahn zur Arbeit.", en: "I take the underground to work every day.", tags: [singular, Präsens] }
+      - { de: "Die U-Bahn war heute Morgen total überfüllt.", en: "The underground was completely packed this morning.", tags: [singular, Präteritum] }
+      - { de: "Nachts fahren die U-Bahnen nur alle zwanzig Minuten.", en: "At night the underground trains only run every twenty minutes.", tags: [plural, Präsens] }
   - id: noun-strassenbahn
     type: noun
     lemma: Straßenbahn
@@ -12826,12 +12892,16 @@ records:
       - tram
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1962
     noun:
       gender: f
       plural: Straßenbahnen
+    examples:
+      - { de: "Die Straßenbahn hält direkt vor dem Bahnhof.", en: "The tram stops right in front of the station.", tags: [singular, Präsens] }
+      - { de: "In vielen westdeutschen Städten wurden die Straßenbahnen nach dem Krieg abgeschafft.", en: "In many West German cities the trams were abolished after the war.", tags: [plural, Passiv, Präteritum] }
+      - { de: "Wir haben die letzte Straßenbahn verpasst.", en: "We missed the last tram.", tags: [singular, Perfekt] }
   - id: noun-bus
     type: noun
     lemma: Bus
@@ -12839,12 +12909,16 @@ records:
       - bus
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1964
     noun:
       gender: m
       plural: Busse
+    examples:
+      - { de: "Der Bus kommt alle zehn Minuten.", en: "The bus comes every ten minutes.", tags: [singular, Präsens] }
+      - { de: "Wegen des Streiks fahren heute keine Busse.", en: "Because of the strike, no buses are running today.", tags: [plural, Präsens] }
+      - { de: "Ich hatte den Bus knapp verpasst und musste laufen.", en: "I had just missed the bus and had to walk.", tags: [singular, Plusquamperfekt] }
   - id: noun-verkehrsnetz
     type: noun
     lemma: Verkehrsnetz
@@ -12852,12 +12926,16 @@ records:
       - transport network
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1966
     noun:
       gender: n
       plural: Verkehrsnetze
+    examples:
+      - { de: "Das Verkehrsnetz in der Region wird ausgebaut.", en: "The transport network in the region is being expanded.", tags: [singular, Passiv, Präsens] }
+      - { de: "Die Verkehrsnetze großer Städte sind oft überlastet.", en: "The transport networks of big cities are often overloaded.", tags: [plural, Präsens] }
+      - { de: "Ein gutes Verkehrsnetz macht das Leben auf dem Land attraktiver.", en: "A good transport network makes life in the countryside more attractive.", tags: [singular, Präsens] }
   - id: noun-fahrplan
     type: noun
     lemma: Fahrplan
@@ -12865,12 +12943,16 @@ records:
       - timetable
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1968
     noun:
       gender: m
       plural: Fahrpläne
+    examples:
+      - { de: "Ab Dezember gilt ein neuer Fahrplan.", en: "A new timetable comes into effect in December.", tags: [singular, Präsens] }
+      - { de: "Laut Fahrplan sollte der Zug um acht ankommen.", en: "According to the timetable, the train was supposed to arrive at eight.", tags: [singular, Präteritum] }
+      - { de: "Die Fahrpläne hängen an jeder Haltestelle aus.", en: "The timetables are posted at every stop.", tags: [plural, Präsens] }
   - id: noun-verspaetung
     type: noun
     lemma: Verspätung
@@ -12878,12 +12960,16 @@ records:
       - delay
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1970
     noun:
       gender: f
       plural: Verspätungen
+    examples:
+      - { de: "Der Zug hat zwanzig Minuten Verspätung.", en: "The train is twenty minutes late.", tags: [singular, Präsens] }
+      - { de: "Entschuldigen Sie bitte die Verspätung!", en: "Please excuse the delay!", tags: [singular, Imperativ] }
+      - { de: "Ständige Verspätungen ärgern die Pendler.", en: "Constant delays annoy commuters.", tags: [plural, Präsens] }
   - id: noun-stau
     type: noun
     lemma: Stau
@@ -12891,12 +12977,16 @@ records:
       - traffic jam
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1972
     noun:
       gender: m
       plural: Staus
+    examples:
+      - { de: "Ich stand eine Stunde im Stau.", en: "I was stuck in a traffic jam for an hour.", tags: [singular, Präteritum] }
+      - { de: "Auf der A8 gibt es einen langen Stau.", en: "There is a long traffic jam on the A8.", tags: [singular, Präsens] }
+      - { de: "Zu Ferienbeginn wird es auf den Autobahnen wieder Staus geben.", en: "At the start of the holidays there will be traffic jams on the motorways again.", tags: [plural, Futur I] }
   - id: noun-umweltzone
     type: noun
     lemma: Umweltzone
@@ -12904,12 +12994,16 @@ records:
       - low-emission zone
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1974
     noun:
       gender: f
       plural: Umweltzonen
+    examples:
+      - { de: "In die Umweltzone dürfen nur Autos mit grüner Plakette fahren.", en: "Only cars with a green sticker may enter the low-emission zone.", tags: [singular, Präsens] }
+      - { de: "Die Stadt hat die Umweltzone vergrößert.", en: "The city has enlarged the low-emission zone.", tags: [singular, Perfekt] }
+      - { de: "Einige Städte haben ihre Umweltzonen wieder abgeschafft.", en: "Some cities have abolished their low-emission zones again.", tags: [plural, Perfekt] }
   - id: noun-fahrrad
     type: noun
     lemma: Fahrrad
@@ -12917,12 +13011,16 @@ records:
       - bicycle
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1976
     noun:
       gender: n
       plural: Fahrräder
+    examples:
+      - { de: "Ich fahre bei jedem Wetter mit dem Fahrrad.", en: "I ride my bike in all weathers.", tags: [singular, Präsens] }
+      - { de: "Mein Fahrrad wurde vor dem Bahnhof gestohlen.", en: "My bicycle was stolen outside the station.", tags: [singular, Passiv, Präteritum] }
+      - { de: "In den Niederlanden gibt es mehr Fahrräder als Einwohner.", en: "There are more bicycles than inhabitants in the Netherlands.", tags: [plural, Präsens] }
   - id: noun-fahrspur
     type: noun
     lemma: Fahrspur
@@ -12930,12 +13028,16 @@ records:
       - lane
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1978
     noun:
       gender: f
       plural: Fahrspuren
+    examples:
+      - { de: "Die linke Fahrspur ist wegen eines Unfalls gesperrt.", en: "The left lane is closed because of an accident.", tags: [singular, Präsens] }
+      - { de: "Die Straße wird auf vier Fahrspuren erweitert.", en: "The road is being widened to four lanes.", tags: [plural, Passiv, Präsens] }
+      - { de: "Er wechselte die Fahrspur, ohne zu blinken.", en: "He changed lanes without indicating.", tags: [singular, Präteritum] }
   - id: noun-fussgaenger
     type: noun
     lemma: Fußgänger
