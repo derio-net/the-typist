@@ -15,7 +15,7 @@ describe('seed list de-b2-1000', () => {
     if (!parsed.ok) throw new Error('list does not parse');
     const headerIds = rawLines.map(parseHeader).flatMap((c) => (c ? [c.id] : []));
     expect(headerIds).toHaveLength(20);
-    expect(parsed.list.categories.map((c) => c.id)).toEqual(headerIds);
+    expect((parsed.list.categories ?? []).map((c) => c.id)).toEqual(headerIds);
   });
 
   it('has every record enriched', () => {
