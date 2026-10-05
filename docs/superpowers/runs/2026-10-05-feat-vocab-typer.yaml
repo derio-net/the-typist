@@ -233,5 +233,13 @@ steps:
     stdout: "12 out-of-scope finding(s): p1-r9, p2-r4, p3-r6, p3-r8, p3-r9, p3-r12,\
       \ p3-r14, \np3-r15, p3-r16, p3-r17, p5-r11, p6-r11\n"
   deliver:
-    state: pending
+    state: running
+    at: '2026-10-05T20:09:34+00:00'
+    units:
+      step/deliver:
+        attempts:
+        - dispatched: '2026-10-05T20:09:34+00:00'
+          harness: claude-code
+          model: claude-opus-5-5
+          session: d5b2df96-f96a-4fde-8d39-796f394bda21
 driver: standalone
