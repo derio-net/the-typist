@@ -9323,12 +9323,16 @@ records:
       - operation
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1387
     noun:
       gender: f
       plural: Operationen
+    examples:
+      - { de: "Die Operation ist gut verlaufen.", en: "The operation went well.", tags: [singular, Perfekt] }
+      - { de: "Vor der Operation darf der Patient nichts essen.", en: "The patient must not eat anything before the operation.", tags: [singular, Präsens] }
+      - { de: "Der Chirurg führt jeden Tag mehrere Operationen durch.", en: "The surgeon performs several operations every day.", tags: [plural, Präsens] }
   - id: verb-operieren
     type: verb
     lemma: operieren
@@ -9336,9 +9340,20 @@ records:
       - to operate
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1389
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "operiert"
+        praeteritum: "operierte"
+        partizip2: "operiert"
+    examples:
+      - { de: "Der Arzt operiert das Knie morgen früh.", en: "The doctor will operate on the knee tomorrow morning.", tags: [Präsens] }
+      - { de: "Sie ist letzte Woche am Herzen operiert worden.", en: "She had heart surgery last week.", tags: [Passiv, Perfekt] }
+      - { de: "Das Team operierte zwölf Stunden lang ohne Pause.", en: "The team operated for twelve hours without a break.", tags: [Präteritum] }
   - id: noun-chirurg
     type: noun
     lemma: Chirurg
@@ -9346,7 +9361,7 @@ records:
       - surgeon
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1391
     noun:
@@ -9356,6 +9371,10 @@ records:
         - lemma: Chirurgin
           gender: f
           plural: Chirurginnen
+    examples:
+      - { de: "Der Chirurg erklärte uns den Ablauf der Operation.", en: "The surgeon explained the procedure of the operation to us.", tags: [singular, Präteritum] }
+      - { de: "Sie ist eine der besten Chirurginnen des Landes.", en: "She is one of the best surgeons in the country.", tags: [plural, Präsens] }
+      - { de: "In vielen Kliniken fehlen erfahrene Chirurgen.", en: "Many hospitals lack experienced surgeons.", tags: [plural, Präsens] }
   - id: noun-notaufnahme
     type: noun
     lemma: Notaufnahme
@@ -9363,12 +9382,16 @@ records:
       - emergency room
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1393
     noun:
       gender: f
       plural: Notaufnahmen
+    examples:
+      - { de: "Nach dem Unfall wurde er sofort in die Notaufnahme gebracht.", en: "After the accident he was taken straight to the emergency room.", tags: [singular, Passiv, Präteritum] }
+      - { de: "In der Notaufnahme mussten wir vier Stunden warten.", en: "We had to wait four hours in the emergency room.", tags: [singular, Präteritum] }
+      - { de: "Viele Notaufnahmen sind am Wochenende völlig überlastet.", en: "Many emergency departments are completely overloaded at weekends.", tags: [plural, Präsens] }
   - id: noun-notfall
     type: noun
     lemma: Notfall
@@ -9376,20 +9399,25 @@ records:
       - emergency
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1395
     noun:
       gender: m
       plural: Notfälle
+    examples:
+      - { de: "Im Notfall wählen Sie die 112.", en: "In an emergency, dial 112.", tags: [singular, Imperativ] }
+      - { de: "Das ist ein Notfall, bitte kommen Sie sofort!", en: "This is an emergency, please come immediately!", tags: [singular, Imperativ] }
+      - { de: "Nachts behandelt die Klinik nur Notfälle.", en: "At night the clinic only treats emergencies.", tags: [plural, Präsens] }
   - id: noun-hausarzt
     type: noun
     lemma: Hausarzt
     gloss:
       - general practitioner
+      - family doctor
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1399
     noun:
@@ -9399,6 +9427,10 @@ records:
         - lemma: Hausärztin
           gender: f
           plural: Hausärztinnen
+    examples:
+      - { de: "Mit dieser Überweisung vom Hausarzt können Sie zum Facharzt gehen.", en: "With this referral from your GP, you can see a specialist.", tags: [singular, Präsens] }
+      - { de: "Meine Hausärztin hat mich zum Röntgen geschickt.", en: "My family doctor sent me for an X-ray.", tags: [singular, Perfekt] }
+      - { de: "Auf dem Land gibt es immer weniger Hausärzte.", en: "There are fewer and fewer GPs in the countryside.", tags: [plural, Präsens] }
   - id: noun-facharzt
     type: noun
     lemma: Facharzt
@@ -9406,7 +9438,7 @@ records:
       - specialist
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1401
     noun:
@@ -9416,6 +9448,10 @@ records:
         - lemma: Fachärztin
           gender: f
           plural: Fachärztinnen
+    examples:
+      - { de: "Auf einen Termin beim Facharzt wartet man oft Monate.", en: "You often wait months for an appointment with a specialist.", tags: [singular, Präsens] }
+      - { de: "Die Fachärztin für Hautkrankheiten hat sich den Fleck angesehen.", en: "The dermatologist looked at the spot.", tags: [singular, Perfekt] }
+      - { de: "In der Klinik arbeiten Fachärzte aus vielen Bereichen.", en: "Specialists from many fields work at the clinic.", tags: [plural, Präsens] }
   - id: noun-sprechstunde
     type: noun
     lemma: Sprechstunde
@@ -9423,12 +9459,16 @@ records:
       - consultation hours
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1403
     noun:
       gender: f
       plural: Sprechstunden
+    examples:
+      - { de: "Die Sprechstunde beginnt um acht Uhr.", en: "Consultation hours begin at eight o'clock.", tags: [singular, Präsens] }
+      - { de: "Der Professor bietet dienstags eine Sprechstunde an.", en: "The professor offers office hours on Tuesdays.", tags: [singular, Präsens] }
+      - { de: "Die Sprechstunden haben sich wegen der Ferien geändert.", en: "The consultation hours have changed because of the holidays.", tags: [plural, Perfekt] }
   - id: noun-termin
     type: noun
     lemma: Termin
@@ -9438,13 +9478,18 @@ records:
     categories:
       - health-and-medicine
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1405
       - 1726
     noun:
       gender: m
       plural: Termine
+    examples:
+      - { de: "Ich hätte gern einen Termin beim Zahnarzt.", en: "I would like an appointment with the dentist.", tags: [singular, Konjunktiv II] }
+      - { de: "Den Termin für die Abgabe dürfen wir nicht verpassen.", en: "We mustn't miss the deadline for submission.", tags: [singular, Präsens] }
+      - { de: "Heute habe ich drei Termine hintereinander.", en: "I have three appointments in a row today.", tags: [plural, Präsens] }
+      - { de: "Sie hatte den Termin völlig vergessen.", en: "She had completely forgotten the appointment.", tags: [singular, Plusquamperfekt] }
   - id: noun-wartezimmer
     type: noun
     lemma: Wartezimmer
@@ -9452,12 +9497,16 @@ records:
       - waiting room
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1407
     noun:
       gender: n
       plural: Wartezimmer
+    examples:
+      - { de: "Bitte nehmen Sie noch kurz im Wartezimmer Platz.", en: "Please take a seat in the waiting room for a moment.", tags: [singular, Imperativ] }
+      - { de: "Das Wartezimmer war voller hustender Kinder.", en: "The waiting room was full of coughing children.", tags: [singular, Präteritum] }
+      - { de: "Die Wartezimmer der Kinderärzte sind im Winter überfüllt.", en: "Paediatricians' waiting rooms are overcrowded in winter.", tags: [plural, Präsens] }
   - id: noun-krankenversicherung
     type: noun
     lemma: Krankenversicherung
@@ -9465,12 +9514,16 @@ records:
       - health insurance
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1409
     noun:
       gender: f
       plural: Krankenversicherungen
+    examples:
+      - { de: "In Deutschland ist eine Krankenversicherung Pflicht.", en: "In Germany, health insurance is compulsory.", tags: [singular, Präsens] }
+      - { de: "Die Krankenversicherung hat die Kosten für die Brille nicht übernommen.", en: "The health insurance didn't cover the cost of the glasses.", tags: [singular, Perfekt] }
+      - { de: "Private Krankenversicherungen sind für junge Leute oft günstiger.", en: "Private health insurance plans are often cheaper for young people.", tags: [plural, Präsens] }
   - id: noun-vorsorgeuntersuchung
     type: noun
     lemma: Vorsorgeuntersuchung
@@ -9478,12 +9531,16 @@ records:
       - preventative check-up
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1413
     noun:
       gender: f
       plural: Vorsorgeuntersuchungen
+    examples:
+      - { de: "Ab 35 kann man alle drei Jahre eine Vorsorgeuntersuchung machen.", en: "From age 35 you can have a preventive check-up every three years.", tags: [singular, Präsens] }
+      - { de: "Bei der Vorsorgeuntersuchung wurde zum Glück nichts gefunden.", en: "Fortunately, nothing was found at the check-up.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Regelmäßige Vorsorgeuntersuchungen können Leben retten.", en: "Regular check-ups can save lives.", tags: [plural, Präsens] }
   - id: noun-rehabilitation
     type: noun
     lemma: Rehabilitation
@@ -9491,12 +9548,16 @@ records:
       - rehabilitation
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1415
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Nach dem Unfall folgte eine lange Rehabilitation.", en: "A long rehabilitation followed the accident.", tags: [singular, Präteritum] }
+      - { de: "Die Rehabilitation von Schlaganfallpatienten dauert oft Monate.", en: "The rehabilitation of stroke patients often takes months.", tags: [singular, Präsens] }
+      - { de: "Die Kosten der Rehabilitation übernimmt oft die Rentenversicherung.", en: "The costs of rehabilitation are often covered by the pension insurance.", tags: [singular, Präsens] }
   - id: noun-immunsystem
     type: noun
     lemma: Immunsystem
@@ -9504,25 +9565,35 @@ records:
       - immune system
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1417
+    source_note: "plural Immunsysteme removed: almost always used in the singular"
     noun:
       gender: n
-      plural: Immunsysteme
+      plural: null
+    examples:
+      - { de: "Das Immunsystem schützt den Körper vor Krankheiten.", en: "The immune system protects the body from disease.", tags: [singular, Präsens] }
+      - { de: "Schlafmangel schwächt das Immunsystem.", en: "Lack of sleep weakens the immune system.", tags: [singular, Präsens] }
+      - { de: "Bei Babys ist das Immunsystem noch nicht vollständig entwickelt.", en: "In babies, the immune system is not yet fully developed.", tags: [singular, Präsens] }
   - id: noun-ansteckung
     type: noun
     lemma: Ansteckung
     gloss:
       - infection
+      - contagion
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1419
     noun:
       gender: f
       plural: Ansteckungen
+    examples:
+      - { de: "Die Ansteckung erfolgt meist über die Luft.", en: "Infection usually occurs through the air.", tags: [singular, Präsens] }
+      - { de: "Masken sollten das Risiko einer Ansteckung verringern.", en: "Masks were meant to reduce the risk of infection.", tags: [singular, Präteritum] }
+      - { de: "Die Zahl der Ansteckungen ist wieder gestiegen.", en: "The number of infections has risen again.", tags: [plural, Perfekt] }
   - id: noun-pandemie
     type: noun
     lemma: Pandemie
@@ -9530,12 +9601,16 @@ records:
       - pandemic
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1423
     noun:
       gender: f
       plural: Pandemien
+    examples:
+      - { de: "Die Pandemie hat unser Leben stark verändert.", en: "The pandemic changed our lives dramatically.", tags: [singular, Perfekt] }
+      - { de: "Während der Pandemie arbeiteten viele im Homeoffice.", en: "During the pandemic many people worked from home.", tags: [singular, Präteritum] }
+      - { de: "Experten warnen, dass es auch in Zukunft Pandemien geben wird.", en: "Experts warn that there will be pandemics in the future too.", tags: [plural, Futur I] }
   - id: noun-oeffentliche-gesundheit
     type: noun
     lemma: öffentliche Gesundheit
@@ -9543,12 +9618,16 @@ records:
       - public health
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1425
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Rauchverbote dienen der öffentlichen Gesundheit.", en: "Smoking bans serve public health.", tags: [singular, Präsens] }
+      - { de: "Die öffentliche Gesundheit hat für die Regierung Vorrang.", en: "Public health has priority for the government.", tags: [singular, Präsens] }
+      - { de: "Die Pandemie hatte gezeigt, wie wichtig die öffentliche Gesundheit ist.", en: "The pandemic had shown how important public health is.", tags: [singular, Plusquamperfekt] }
   - id: noun-gesundheitspolitik
     type: noun
     lemma: Gesundheitspolitik
@@ -9556,12 +9635,16 @@ records:
       - health policy
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1427
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Gesundheitspolitik muss den Mangel an Pflegekräften lösen.", en: "Health policy must solve the shortage of nursing staff.", tags: [singular, Präsens] }
+      - { de: "Über die Gesundheitspolitik wird im Wahlkampf heftig gestritten.", en: "Health policy is hotly debated in the election campaign.", tags: [singular, Passiv, Präsens] }
+      - { de: "Sie hat lange als Expertin für Gesundheitspolitik gearbeitet.", en: "She worked for a long time as a health policy expert.", tags: [singular, Perfekt] }
   - id: noun-lebenserwartung
     type: noun
     lemma: Lebenserwartung
@@ -9569,12 +9652,16 @@ records:
       - life expectancy
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1429
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Lebenserwartung in Deutschland liegt bei etwa 81 Jahren.", en: "Life expectancy in Germany is around 81 years.", tags: [singular, Präsens] }
+      - { de: "Frauen haben eine höhere Lebenserwartung als Männer.", en: "Women have a higher life expectancy than men.", tags: [singular, Präsens] }
+      - { de: "Im 20. Jahrhundert stieg die Lebenserwartung deutlich an.", en: "Life expectancy rose significantly in the 20th century.", tags: [singular, Präteritum] }
   - id: noun-lebensstil
     type: noun
     lemma: Lebensstil
@@ -9582,12 +9669,16 @@ records:
       - lifestyle
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1431
     noun:
       gender: m
       plural: Lebensstile
+    examples:
+      - { de: "Ein gesunder Lebensstil senkt das Risiko für viele Krankheiten.", en: "A healthy lifestyle lowers the risk of many diseases.", tags: [singular, Präsens] }
+      - { de: "Nach dem Herzinfarkt hat er seinen Lebensstil komplett geändert.", en: "After the heart attack he completely changed his lifestyle.", tags: [singular, Perfekt] }
+      - { de: "In der Großstadt treffen sehr unterschiedliche Lebensstile aufeinander.", en: "Very different lifestyles meet in the big city.", tags: [plural, Präsens] }
   - id: noun-ethik
     type: noun
     lemma: Ethik
@@ -9595,25 +9686,35 @@ records:
       - ethics
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1446
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Ethik beschäftigt sich mit der Frage, wie wir handeln sollen.", en: "Ethics deals with the question of how we should act.", tags: [singular, Präsens] }
+      - { de: "In der Schule hatte ich Ethik statt Religion.", en: "At school I had ethics instead of religious education.", tags: [singular, Präteritum] }
+      - { de: "Die Medizin braucht klare Regeln der Ethik.", en: "Medicine needs clear ethical rules.", tags: [singular, Präsens] }
   - id: noun-moral
     type: noun
     lemma: Moral
     gloss:
       - morals
+      - morality
+      - moral (of a story)
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1448
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Moral der Geschichte ist: Lügen haben kurze Beine.", en: "The moral of the story is: lies don't get you far.", tags: [singular, Präsens] }
+      - { de: "Sie handelt nach ihrer eigenen Moral.", en: "She acts according to her own morals.", tags: [singular, Präsens] }
+      - { de: "Viele werfen der Firma vor, keine Moral zu haben.", en: "Many accuse the company of having no morals.", tags: [singular, Präsens] }
   - id: noun-gerechtigkeit
     type: noun
     lemma: Gerechtigkeit
@@ -15386,12 +15487,16 @@ records:
       - first aid
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1397
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Jeder sollte wissen, wie man Erste Hilfe leistet.", en: "Everyone should know how to give first aid.", tags: [singular, Konjunktiv II] }
+      - { de: "Für den Führerschein muss man einen Kurs in Erster Hilfe machen.", en: "For a driving licence you have to do a first aid course.", tags: [singular, Präsens] }
+      - { de: "Ein Passant hatte sofort Erste Hilfe geleistet.", en: "A passer-by had given first aid immediately.", tags: [singular, Plusquamperfekt] }
   - id: phrase-versichert-sein
     type: phrase
     lemma: versichert sein
@@ -15399,9 +15504,15 @@ records:
       - to be insured
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1411
+    phrase:
+      register: neutral
+    examples:
+      - { de: "Sind Sie gegen Diebstahl versichert?", en: "Are you insured against theft?", tags: [Präsens] }
+      - { de: "Zum Glück war das Fahrrad versichert.", en: "Luckily, the bike was insured.", tags: [Präteritum] }
+      - { de: "Als Student ist man oft über die Eltern versichert.", en: "As a student you are often insured through your parents.", tags: [Präsens] }
   - id: adjective-ansteckend
     type: adjective
     lemma: ansteckend
@@ -15409,9 +15520,18 @@ records:
       - contagious
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1421
+    adjective:
+      gradable: true
+      comparative: "ansteckender"
+      superlative: "am ansteckendsten"
+    examples:
+      - { de: "Die Krankheit ist sehr ansteckend.", en: "The disease is very contagious.", tags: [Präsens] }
+      - { de: "Die neue Variante ist ansteckender als die alte.", en: "The new variant is more contagious than the old one.", tags: [comparative, Präsens] }
+      - { de: "Masern sind eine besonders ansteckende Krankheit.", en: "Measles is a particularly contagious disease.", tags: [attributive, Präsens] }
+      - { de: "Ihr Lachen war ansteckend.", en: "Her laughter was infectious.", tags: [Präteritum] }
   - id: adjective-moralisch
     type: adjective
     lemma: moralisch
