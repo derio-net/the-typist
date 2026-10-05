@@ -902,3 +902,8 @@ Filed at closeout as #5.
 ### p5-r11-resolved-2 · finding [deferred → #5] · resolves p5-r11: Journal overstates source_note coverage (197 filled plurals, noun-burnout have none)
 
 Filed at closeout as #5.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r4-resolved-2 created=2026-10-05T21:12:35+00:00 state=open resolves=p2-r4 tracked_by=#5 -->
+### p2-r4-resolved-2 · finding [deferred → #5] · resolves p2-r4: 368 nouns get plural: null when the source omitted the plural
+
+Filed at closeout as #5.
