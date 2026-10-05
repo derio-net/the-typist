@@ -53,10 +53,20 @@ steps:
       \ nothing.\n[warn] orphan phase-split decision phase-split-2026-10-05-vocab-typer-p9\
       \ names \nno agentic phase; it waives nothing.\n"
   implement:
-    state: pending
+    state: running
+    at: '2026-10-05T07:27:15+00:00'
     members:
     - implement-phase
     - review-phase
+    units:
+      phase/1/implement-phase:
+        state: running
+        attempts:
+        - dispatched: '2026-10-05T07:27:15+00:00'
+          agent_type: super-fr:fr-phase-executor
+          harness: claude-code
+          model: sonnet
+          session: d5b2df96-f96a-4fde-8d39-796f394bda21
   journal-check:
     state: pending
   deliver:
