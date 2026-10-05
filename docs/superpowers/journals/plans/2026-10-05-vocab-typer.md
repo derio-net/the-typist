@@ -872,3 +872,8 @@ Filed at closeout as #2.
 ### p3-r16-resolved-2 · finding [deferred → #2] · resolves p3-r16: Child boxes may touch exactly; no-slot fallback untested
 
 Filed at closeout as #2.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r6-resolved-2 created=2026-10-05T21:12:13+00:00 state=open resolves=p3-r6 tracked_by=#3 -->
+### p3-r6-resolved-2 · finding [deferred → #3] · resolves p3-r6: Pending o then precomposed ö stays a typo until e
+
+Filed at closeout as #3.
