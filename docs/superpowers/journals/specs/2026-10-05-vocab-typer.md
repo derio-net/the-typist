@@ -212,3 +212,6 @@ Both committed on the branch (1569f7e); CLAUDE.md update added to layout/scope.
 
 <!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-05-vocab-typer-p2 created=2026-10-05T06:55:03+00:00 -->
 ### phase-split-2026-10-05-vocab-typer-p2 · decision · ask: R14 parser and structure skill
+
+<!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-05-vocab-typer-p3 created=2026-10-05T06:55:05+00:00 -->
+### phase-split-2026-10-05-vocab-typer-p3 · decision · ask: R4-R6 typing core and ships
