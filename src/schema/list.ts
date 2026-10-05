@@ -23,7 +23,7 @@ export const ListHeader = z.strictObject({
 });
 
 export const ListSchema = z
-  .object({
+  .strictObject({
     schema: z.literal(1),
     list: ListHeader,
     categories: z.array(Category).optional(),

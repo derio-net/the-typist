@@ -12,6 +12,10 @@ const listMessages = (l: unknown) => {
 };
 
 describe('unknown keys are rejected (p1-r1)', () => {
+  it('rejects an unknown top-level key such as the parser\'s leftover unresolved:', () => {
+    const l = { ...clone(fixture), unresolved: [] };
+    expect(ListSchema.safeParse(l).success).toBe(false);
+  });
   it('rejects a misspelled key on a record', () => {
     const r = { ...clone(fixture.records[0]), plurl_only: true };
     expect(RecordSchema.safeParse(r).success).toBe(false);
