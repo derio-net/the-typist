@@ -897,3 +897,8 @@ Filed at closeout as #4.
 ### p6-r11-resolved-2 · finding [deferred → #5] · resolves p6-r11: Seed test requires status enriched; fails once a record is marked reviewed
 
 Filed at closeout as #5.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r11-resolved-2 created=2026-10-05T21:12:32+00:00 state=open resolves=p5-r11 tracked_by=#5 -->
+### p5-r11-resolved-2 · finding [deferred → #5] · resolves p5-r11: Journal overstates source_note coverage (197 filled plurals, noun-burnout have none)
+
+Filed at closeout as #5.
