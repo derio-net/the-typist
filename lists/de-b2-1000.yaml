@@ -8528,10 +8528,22 @@ records:
       - to invest (in)
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1280
     government: in
+    verb:
+      separable: an
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "legt an"
+        praeteritum: "legte an"
+        partizip2: "angelegt"
+    examples:
+      - { de: "Sie legt ihr Geld lieber in Immobilien an.", en: "She prefers to invest her money in property.", tags: [separated, Präsens] }
+      - { de: "Wir haben einen Teil unserer Ersparnisse in Aktien angelegt.", en: "We have invested part of our savings in shares.", tags: [Perfekt] }
+      - { de: "Früher legten viele ihr Geld einfach auf dem Sparbuch an.", en: "In the past, many people simply put their money in a savings account.", tags: [separated, Präteritum] }
   - id: noun-rendite
     type: noun
     lemma: Rendite
@@ -8539,12 +8551,16 @@ records:
       - return on investment
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1282
     noun:
       gender: f
       plural: Renditen
+    examples:
+      - { de: "Die Rendite liegt bei etwa vier Prozent pro Jahr.", en: "The return is about four percent a year.", tags: [singular, Präsens] }
+      - { de: "Hohe Renditen sind meist mit hohem Risiko verbunden.", en: "High returns usually come with high risk.", tags: [plural, Präsens] }
+      - { de: "Der Fonds hat im letzten Jahr eine gute Rendite erzielt.", en: "The fund achieved a good return last year.", tags: [singular, Perfekt] }
   - id: noun-dividende
     type: noun
     lemma: Dividende
@@ -8552,12 +8568,16 @@ records:
       - dividend
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1284
     noun:
       gender: f
       plural: Dividenden
+    examples:
+      - { de: "Das Unternehmen zahlt dieses Jahr keine Dividende.", en: "The company is not paying a dividend this year.", tags: [singular, Präsens] }
+      - { de: "Die Aktionäre freuten sich über eine höhere Dividende.", en: "The shareholders were pleased about a higher dividend.", tags: [singular, Präteritum] }
+      - { de: "Viele Rentner leben teilweise von Dividenden.", en: "Many pensioners live partly on dividends.", tags: [plural, Präsens] }
   - id: noun-verlust
     type: noun
     lemma: Verlust
@@ -8566,13 +8586,17 @@ records:
     categories:
       - economics-and-finance
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 171
       - 1286
     noun:
       gender: m
       plural: Verluste
+    examples:
+      - { de: "Die Firma hat im ersten Quartal einen Verlust gemacht.", en: "The company made a loss in the first quarter.", tags: [singular, Perfekt] }
+      - { de: "Der Verlust seines Jobs traf ihn schwer.", en: "The loss of his job hit him hard.", tags: [singular, Präteritum] }
+      - { de: "Die Bank musste hohe Verluste hinnehmen.", en: "The bank had to accept heavy losses.", tags: [plural, Präteritum] }
   - id: noun-einnahmen
     type: noun
     lemma: Einnahmen
@@ -8581,27 +8605,37 @@ records:
       - revenue
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1288
+    source_note: "kept plural-only: in the sense 'income, revenue' the singular Einnahme is rare (die Einnahme also means 'intake' of medicine)"
     noun:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "Die Einnahmen aus dem Tourismus sind stark gesunken.", en: "Revenue from tourism has fallen sharply.", tags: [plural, Perfekt] }
+      - { de: "Der Verein finanziert sich durch die Einnahmen aus Konzerten.", en: "The club finances itself through income from concerts.", tags: [plural, Präsens] }
+      - { de: "Die Stadt wird höhere Einnahmen brauchen, um die Schulen zu sanieren.", en: "The city will need more revenue to renovate the schools.", tags: [plural, Futur I] }
   - id: noun-ausgaben
     type: noun
-    lemma: Ausgaben
+    lemma: Ausgabe
     gloss:
-      - expenses
+      - expense
+      - expenditure
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1290
+    source_note: "lemma changed from plural-only Ausgaben to Ausgabe: the singular is natural in the sense 'expense'"
     noun:
       gender: f
-      plural: null
-      plural_only: true
+      plural: Ausgaben
+    examples:
+      - { de: "Ein neues Auto ist eine große Ausgabe.", en: "A new car is a big expense.", tags: [singular, Präsens] }
+      - { de: "Wir müssen unsere Ausgaben senken.", en: "We have to cut our expenses.", tags: [plural, Präsens] }
+      - { de: "Die Ausgaben für Energie hatten sich im Winter verdoppelt.", en: "Spending on energy had doubled in the winter.", tags: [plural, Plusquamperfekt] }
   - id: noun-budget
     type: noun
     lemma: Budget
@@ -8609,12 +8643,16 @@ records:
       - budget
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1292
     noun:
       gender: n
       plural: Budgets
+    examples:
+      - { de: "Unser Budget für das Projekt ist sehr knapp.", en: "Our budget for the project is very tight.", tags: [singular, Präsens] }
+      - { de: "Die Abteilung hat ihr Budget schon im Sommer überschritten.", en: "The department already exceeded its budget in the summer.", tags: [singular, Perfekt] }
+      - { de: "Die Budgets der Schulen wurden erneut gekürzt.", en: "The schools' budgets were cut again.", tags: [plural, Passiv, Präteritum] }
   - id: noun-gewinn
     type: noun
     lemma: Gewinn
@@ -8623,13 +8661,17 @@ records:
     categories:
       - economics-and-finance
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 171
       - 1294
     noun:
       gender: m
       plural: Gewinne
+    examples:
+      - { de: "Der Konzern hat einen Rekordgewinn gemeldet.", en: "The group has reported a record profit.", tags: [singular, Perfekt] }
+      - { de: "Die Gewinne sollen in neue Technik investiert werden.", en: "The profits are to be invested in new technology.", tags: [plural, Passiv, Präsens] }
+      - { de: "Sie verkaufte die Wohnung mit großem Gewinn.", en: "She sold the flat at a large profit.", tags: [singular, Präteritum] }
   - id: noun-vermoegen
     type: noun
     lemma: Vermögen
@@ -8637,25 +8679,34 @@ records:
       - wealth
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1296
     noun:
       gender: n
       plural: Vermögen
+    examples:
+      - { de: "Er hat sein Vermögen mit Immobilien gemacht.", en: "He made his fortune in property.", tags: [singular, Perfekt] }
+      - { de: "Das Vermögen in Deutschland ist sehr ungleich verteilt.", en: "Wealth in Germany is very unequally distributed.", tags: [singular, Präsens] }
+      - { de: "Große Vermögen sollen stärker besteuert werden.", en: "Large fortunes are to be taxed more heavily.", tags: [plural, Passiv, Präsens] }
   - id: noun-kreditwuerdigkeit
     type: noun
     lemma: Kreditwürdigkeit
     gloss:
+      - creditworthiness
       - credit rating
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1298
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Vor dem Kredit prüft die Bank Ihre Kreditwürdigkeit.", en: "Before granting the loan, the bank checks your creditworthiness.", tags: [singular, Präsens] }
+      - { de: "Durch die unbezahlten Rechnungen hat seine Kreditwürdigkeit gelitten.", en: "His credit rating has suffered because of the unpaid bills.", tags: [singular, Perfekt] }
+      - { de: "Die Kreditwürdigkeit des Landes wurde herabgestuft.", en: "The country's credit rating was downgraded.", tags: [singular, Passiv, Präteritum] }
   - id: noun-kontoauszug
     type: noun
     lemma: Kontoauszug
@@ -8663,12 +8714,16 @@ records:
       - bank statement
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1300
     noun:
       gender: m
       plural: Kontoauszüge
+    examples:
+      - { de: "Auf dem Kontoauszug sehe ich alle Abbuchungen.", en: "I can see all the debits on the bank statement.", tags: [singular, Präsens] }
+      - { de: "Für den Antrag brauchen wir Ihre Kontoauszüge der letzten drei Monate.", en: "For the application we need your bank statements for the last three months.", tags: [plural, Präsens] }
+      - { de: "Ich habe den Kontoauszug online heruntergeladen.", en: "I downloaded the bank statement online.", tags: [singular, Perfekt] }
   - id: noun-ueberweisung
     type: noun
     lemma: Überweisung
@@ -8676,12 +8731,16 @@ records:
       - transfer
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1302
     noun:
       gender: f
       plural: Überweisungen
+    examples:
+      - { de: "Die Überweisung dauert in der Regel einen Tag.", en: "The transfer usually takes one day.", tags: [singular, Präsens] }
+      - { de: "Bitte bezahlen Sie die Rechnung per Überweisung.", en: "Please pay the invoice by bank transfer.", tags: [singular, Imperativ] }
+      - { de: "Sie hat die Überweisungen schon gestern gemacht.", en: "She already made the transfers yesterday.", tags: [plural, Perfekt] }
   - id: noun-sparkonto
     type: noun
     lemma: Sparkonto
@@ -8689,12 +8748,16 @@ records:
       - savings account
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1304
     noun:
       gender: n
       plural: Sparkonten
+    examples:
+      - { de: "Auf dem Sparkonto bekommt man kaum noch Zinsen.", en: "You hardly get any interest on a savings account any more.", tags: [singular, Präsens] }
+      - { de: "Die Großeltern haben für jedes Enkelkind ein Sparkonto eröffnet.", en: "The grandparents opened a savings account for each grandchild.", tags: [singular, Perfekt] }
+      - { de: "Viele Deutsche haben ihr Geld auf Sparkonten liegen.", en: "Many Germans keep their money in savings accounts.", tags: [plural, Präsens] }
   - id: noun-girokonto
     type: noun
     lemma: Girokonto
@@ -8702,12 +8765,16 @@ records:
       - current account
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1306
     noun:
       gender: n
       plural: Girokonten
+    examples:
+      - { de: "Ihr Gehalt wird auf das Girokonto überwiesen.", en: "Her salary is transferred to her current account.", tags: [singular, Passiv, Präsens] }
+      - { de: "Für ein Girokonto zahlt man bei vielen Banken Gebühren.", en: "Many banks charge fees for a current account.", tags: [singular, Präsens] }
+      - { de: "Er hatte zwei Girokonten bei verschiedenen Banken.", en: "He had two current accounts with different banks.", tags: [plural, Präteritum] }
   - id: noun-bankverbindung
     type: noun
     lemma: Bankverbindung
@@ -8715,12 +8782,16 @@ records:
       - bank details
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1308
     noun:
       gender: f
       plural: Bankverbindungen
+    examples:
+      - { de: "Bitte geben Sie Ihre Bankverbindung im Formular an.", en: "Please enter your bank details in the form.", tags: [singular, Imperativ] }
+      - { de: "Meine Bankverbindung hat sich geändert.", en: "My bank details have changed.", tags: [singular, Perfekt] }
+      - { de: "Er nutzt zwei Bankverbindungen: eine private und eine geschäftliche.", en: "He uses two bank accounts: a private one and a business one.", tags: [plural, Präsens] }
   - id: noun-online-banking
     type: noun
     lemma: Online-Banking
@@ -8728,12 +8799,16 @@ records:
       - online banking
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1310
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Online-Banking ist praktisch, aber man muss vorsichtig sein.", en: "Online banking is practical, but you have to be careful.", tags: [singular, Präsens] }
+      - { de: "Meine Eltern haben erst spät mit dem Online-Banking angefangen.", en: "My parents only started online banking late.", tags: [singular, Perfekt] }
+      - { de: "Für das Online-Banking braucht man eine sichere Verbindung.", en: "You need a secure connection for online banking.", tags: [singular, Präsens] }
   - id: noun-wechselkurs
     type: noun
     lemma: Wechselkurs
@@ -8741,12 +8816,16 @@ records:
       - exchange rate
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1312
     noun:
       gender: m
       plural: Wechselkurse
+    examples:
+      - { de: "Der Wechselkurs ist im Moment sehr günstig.", en: "The exchange rate is very favourable at the moment.", tags: [singular, Präsens] }
+      - { de: "Am Flughafen bekommt man oft einen schlechten Wechselkurs.", en: "At the airport you often get a poor exchange rate.", tags: [singular, Präsens] }
+      - { de: "Schwankende Wechselkurse machen den Export schwierig.", en: "Fluctuating exchange rates make exporting difficult.", tags: [plural, Präsens] }
   - id: noun-bargeldzahlung
     type: noun
     lemma: Bargeldzahlung
@@ -8754,12 +8833,16 @@ records:
       - cash payment
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1314
     noun:
       gender: f
       plural: Bargeldzahlungen
+    examples:
+      - { de: "In diesem Geschäft ist nur Bargeldzahlung möglich.", en: "Only cash payment is possible in this shop.", tags: [singular, Präsens] }
+      - { de: "Bargeldzahlungen über 10000 Euro sind in manchen Ländern verboten.", en: "Cash payments over 10,000 euros are banned in some countries.", tags: [plural, Präsens] }
+      - { de: "Er bestand auf einer Bargeldzahlung.", en: "He insisted on a cash payment.", tags: [singular, Präteritum] }
   - id: noun-kartenzahlung
     type: noun
     lemma: Kartenzahlung
@@ -8767,12 +8850,16 @@ records:
       - card payment
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1316
     noun:
       gender: f
       plural: Kartenzahlungen
+    examples:
+      - { de: "Ist Kartenzahlung hier möglich?", en: "Can I pay by card here?", tags: [singular, Präsens] }
+      - { de: "Seit der Pandemie haben Kartenzahlungen stark zugenommen.", en: "Card payments have increased sharply since the pandemic.", tags: [plural, Perfekt] }
+      - { de: "Der Kiosk akzeptiert leider keine Kartenzahlung.", en: "Unfortunately, the kiosk doesn't accept card payment.", tags: [singular, Präsens] }
   - id: noun-gesundheit
     type: noun
     lemma: Gesundheit
@@ -15045,14 +15132,21 @@ records:
       - { de: "Das Land ist technologisch weit entwickelt.", en: "The country is technologically highly developed.", tags: [Präsens] }
   - id: phrase-das-angebot-und-die-nachfrage
     type: phrase
-    lemma: das Angebot und die Nachfrage
+    lemma: Angebot und Nachfrage
     gloss:
       - supply and demand
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1222
+    source_note: "lemma: articles dropped, the usual citation form"
+    phrase:
+      register: neutral
+    examples:
+      - { de: "Der Preis richtet sich nach Angebot und Nachfrage.", en: "The price depends on supply and demand.", tags: [Präsens] }
+      - { de: "Auf dem Wohnungsmarkt passen Angebot und Nachfrage nicht zusammen.", en: "On the housing market, supply and demand do not match.", tags: [Präsens] }
+      - { de: "Wir haben im Kurs das Gesetz von Angebot und Nachfrage besprochen.", en: "In the course we discussed the law of supply and demand.", tags: [Perfekt] }
   - id: noun-import
     type: noun
     lemma: Import
@@ -15060,12 +15154,16 @@ records:
       - import
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1258
     noun:
       gender: m
       plural: Importe
+    examples:
+      - { de: "Der Import von Waffen ist streng geregelt.", en: "The import of weapons is strictly regulated.", tags: [singular, Präsens] }
+      - { de: "Deutschland ist stark von Importen aus China abhängig.", en: "Germany is heavily dependent on imports from China.", tags: [plural, Präsens] }
+      - { de: "Die Importe sind im letzten Monat gesunken.", en: "Imports fell last month.", tags: [plural, Perfekt] }
   - id: noun-export
     type: noun
     lemma: Export
@@ -15073,12 +15171,16 @@ records:
       - export
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1258
     noun:
       gender: m
       plural: Exporte
+    examples:
+      - { de: "Der Export ist für die deutsche Wirtschaft sehr wichtig.", en: "Exports are very important for the German economy.", tags: [singular, Präsens] }
+      - { de: "Die Regierung will den Export von Waffen strenger kontrollieren.", en: "The government wants to control the export of weapons more strictly.", tags: [singular, Präsens] }
+      - { de: "Die Exporte nach Russland brachen 2022 stark ein.", en: "Exports to Russia collapsed in 2022.", tags: [plural, Präteritum] }
   - id: noun-darlehen
     type: noun
     lemma: Darlehen
@@ -15086,25 +15188,34 @@ records:
       - loan
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1264
     noun:
       gender: n
       plural: Darlehen
+    examples:
+      - { de: "Für das Haus haben wir ein Darlehen aufgenommen.", en: "We took out a loan for the house.", tags: [singular, Perfekt] }
+      - { de: "Das Darlehen muss in zwanzig Jahren zurückgezahlt werden.", en: "The loan has to be repaid within twenty years.", tags: [singular, Passiv, Präsens] }
+      - { de: "Studierende können zinslose Darlehen beantragen.", en: "Students can apply for interest-free loans.", tags: [plural, Präsens] }
   - id: noun-kredit
     type: noun
     lemma: Kredit
     gloss:
       - loan
+      - credit
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1264
     noun:
       gender: m
       plural: Kredite
+    examples:
+      - { de: "Die Bank hat ihm keinen Kredit gegeben.", en: "The bank didn't give him a loan.", tags: [singular, Perfekt] }
+      - { de: "Viele Familien kaufen ihr Auto auf Kredit.", en: "Many families buy their car on credit.", tags: [singular, Präsens] }
+      - { de: "Wegen der hohen Zinsen nehmen weniger Firmen Kredite auf.", en: "Because of the high interest rates, fewer companies are taking out loans.", tags: [plural, Präsens] }
   - id: phrase-verschuldet-sein
     type: phrase
     lemma: verschuldet sein
@@ -15112,9 +15223,15 @@ records:
       - to be in debt
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1268
+    phrase:
+      register: neutral
+    examples:
+      - { de: "Viele junge Leute sind schon hoch verschuldet.", en: "Many young people are already deeply in debt.", tags: [Präsens] }
+      - { de: "Nach dem Hauskauf waren wir lange verschuldet.", en: "After buying the house we were in debt for a long time.", tags: [Präteritum] }
+      - { de: "Die Stadt ist so verschuldet, dass sie das Schwimmbad schließen muss.", en: "The town is so much in debt that it has to close the swimming pool.", tags: [Präsens] }
   - id: noun-erste-hilfe
     type: noun
     lemma: Erste Hilfe
