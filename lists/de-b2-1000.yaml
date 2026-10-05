@@ -7657,12 +7657,16 @@ records:
       - technology
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1155
     noun:
       gender: f
       plural: Technologien
+    examples:
+      - { de: "Diese Technologie ist noch sehr teuer.", en: "This technology is still very expensive.", tags: [singular, Präsens] }
+      - { de: "Das Unternehmen investiert stark in neue Technologien.", en: "The company is investing heavily in new technologies.", tags: [plural, Präsens] }
+      - { de: "Ohne moderne Technologie wäre diese Operation unmöglich gewesen.", en: "Without modern technology, this operation would have been impossible.", tags: [singular, Konjunktiv II] }
   - id: noun-geraet
     type: noun
     lemma: Gerät
@@ -7670,25 +7674,34 @@ records:
       - device
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1159
     noun:
       gender: n
       plural: Geräte
+    examples:
+      - { de: "Das Gerät lässt sich mit dem Handy steuern.", en: "The device can be controlled with a mobile phone.", tags: [singular, Präsens] }
+      - { de: "Schalten Sie bitte alle elektronischen Geräte aus.", en: "Please switch off all electronic devices.", tags: [plural, Imperativ] }
+      - { de: "Ich habe das alte Gerät zum Recycling gebracht.", en: "I took the old device to be recycled.", tags: [singular, Perfekt] }
   - id: noun-anwendung
     type: noun
     lemma: Anwendung
     gloss:
       - application
+      - use
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1161
     noun:
       gender: f
       plural: Anwendungen
+    examples:
+      - { de: "Die Anwendung stürzt jedes Mal beim Start ab.", en: "The application crashes every time it starts.", tags: [singular, Präsens] }
+      - { de: "Die neue Technik findet in der Medizin breite Anwendung.", en: "The new technology is widely used in medicine.", tags: [singular, Präsens] }
+      - { de: "Auf meinem Laptop laufen zu viele Anwendungen gleichzeitig.", en: "Too many applications are running on my laptop at the same time.", tags: [plural, Präsens] }
   - id: noun-kuenstliche-intelligenz
     type: noun
     lemma: künstliche Intelligenz
@@ -7696,13 +7709,17 @@ records:
       - artificial intelligence
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1163
     noun:
       gender: f
       plural: null
     abbreviation: KI
+    examples:
+      - { de: "Künstliche Intelligenz verändert die Arbeitswelt.", en: "Artificial intelligence is changing the world of work.", tags: [singular, Präsens] }
+      - { de: "Viele Firmen setzen inzwischen auf künstliche Intelligenz.", en: "Many companies now rely on artificial intelligence.", tags: [singular, Präsens] }
+      - { de: "Die Risiken der künstlichen Intelligenz werden oft unterschätzt.", en: "The risks of artificial intelligence are often underestimated.", tags: [singular, Passiv, Präsens] }
   - id: noun-system
     type: noun
     lemma: System
@@ -7710,12 +7727,16 @@ records:
       - system
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1165
     noun:
       gender: n
       plural: Systeme
+    examples:
+      - { de: "Das System hat den Fehler automatisch erkannt.", en: "The system detected the error automatically.", tags: [singular, Perfekt] }
+      - { de: "Das deutsche Schulsystem unterscheidet sich von Bundesland zu Bundesland.", en: "The German school system differs from state to state.", tags: [singular, Präsens] }
+      - { de: "Die beiden Systeme sind nicht miteinander kompatibel.", en: "The two systems are not compatible with each other.", tags: [plural, Präsens] }
   - id: noun-netzwerk
     type: noun
     lemma: Netzwerk
@@ -7723,25 +7744,34 @@ records:
       - network
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1167
     noun:
       gender: n
       plural: Netzwerke
+    examples:
+      - { de: "Das Netzwerk ist heute Morgen ausgefallen.", en: "The network went down this morning.", tags: [singular, Perfekt] }
+      - { de: "Über ihr berufliches Netzwerk hat sie die Stelle gefunden.", en: "She found the job through her professional network.", tags: [singular, Perfekt] }
+      - { de: "Große Netzwerke sind besonders anfällig für Angriffe.", en: "Large networks are particularly vulnerable to attacks.", tags: [plural, Präsens] }
   - id: noun-programm
     type: noun
     lemma: Programm
     gloss:
       - program
+      - programme
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1169
     noun:
       gender: n
       plural: Programme
+    examples:
+      - { de: "Mit diesem Programm kann man Videos schneiden.", en: "You can edit videos with this program.", tags: [singular, Präsens] }
+      - { de: "Das Programm des Festivals wird morgen veröffentlicht.", en: "The festival programme will be published tomorrow.", tags: [singular, Passiv, Präsens] }
+      - { de: "Für die Arbeit brauche ich drei verschiedene Programme.", en: "I need three different programs for work.", tags: [plural, Präsens] }
   - id: noun-software
     type: noun
     lemma: Software
@@ -7749,12 +7779,16 @@ records:
       - software
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1171
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Software muss regelmäßig aktualisiert werden.", en: "The software has to be updated regularly.", tags: [singular, Passiv, Präsens] }
+      - { de: "Wir haben eine neue Software für die Buchhaltung gekauft.", en: "We bought new accounting software.", tags: [singular, Perfekt] }
+      - { de: "Ohne die richtige Software funktioniert der Drucker nicht.", en: "The printer doesn't work without the right software.", tags: [singular, Präsens] }
   - id: noun-hardware
     type: noun
     lemma: Hardware
@@ -7762,12 +7796,16 @@ records:
       - hardware
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1173
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Hardware ist schon fünf Jahre alt.", en: "The hardware is already five years old.", tags: [singular, Präsens] }
+      - { de: "Das Problem lag nicht an der Software, sondern an der Hardware.", en: "The problem was not the software but the hardware.", tags: [singular, Präteritum] }
+      - { de: "Für das Spiel braucht man leistungsstarke Hardware.", en: "You need powerful hardware for the game.", tags: [singular, Präsens] }
   - id: noun-cloud
     type: noun
     lemma: Cloud
@@ -7775,12 +7813,16 @@ records:
       - the cloud
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1175
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Alle Fotos werden automatisch in der Cloud gespeichert.", en: "All photos are automatically saved in the cloud.", tags: [singular, Passiv, Präsens] }
+      - { de: "Hast du die Dateien schon in die Cloud hochgeladen?", en: "Have you uploaded the files to the cloud yet?", tags: [singular, Perfekt] }
+      - { de: "Manche Firmen trauen der Cloud nicht.", en: "Some companies don't trust the cloud.", tags: [singular, Präsens] }
   - id: noun-schnittstelle
     type: noun
     lemma: Schnittstelle
@@ -7788,12 +7830,16 @@ records:
       - interface
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1179
     noun:
       gender: f
       plural: Schnittstellen
+    examples:
+      - { de: "Die Schnittstelle zwischen den beiden Programmen funktioniert nicht.", en: "The interface between the two programs doesn't work.", tags: [singular, Präsens] }
+      - { de: "Der Laptop hat leider keine USB-Schnittstelle mehr.", en: "Unfortunately, the laptop no longer has a USB port.", tags: [singular, Präsens] }
+      - { de: "Wir haben neue Schnittstellen für externe Partner entwickelt.", en: "We have developed new interfaces for external partners.", tags: [plural, Perfekt] }
   - id: noun-automatisierung
     type: noun
     lemma: Automatisierung
@@ -7801,12 +7847,16 @@ records:
       - automation
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1181
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Automatisierung hat viele Arbeitsplätze verändert.", en: "Automation has changed many jobs.", tags: [singular, Perfekt] }
+      - { de: "Durch die Automatisierung der Produktion sanken die Kosten.", en: "Thanks to the automation of production, costs fell.", tags: [singular, Präteritum] }
+      - { de: "Viele fürchten, dass die Automatisierung Jobs kosten wird.", en: "Many fear that automation will cost jobs.", tags: [singular, Futur I] }
   - id: noun-digitalisierung
     type: noun
     lemma: Digitalisierung
@@ -7814,12 +7864,16 @@ records:
       - digitalisation
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1183
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Digitalisierung der Schulen kommt nur langsam voran.", en: "The digitalisation of schools is progressing only slowly.", tags: [singular, Präsens] }
+      - { de: "Die Pandemie hat die Digitalisierung beschleunigt.", en: "The pandemic accelerated digitalisation.", tags: [singular, Perfekt] }
+      - { de: "Für die Digitalisierung der Verwaltung fehlt oft das Personal.", en: "There is often a lack of staff to digitalise the administration.", tags: [singular, Präsens] }
   - id: noun-fortschritt
     type: noun
     lemma: Fortschritt
@@ -7827,12 +7881,16 @@ records:
       - progress
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1185
     noun:
       gender: m
       plural: Fortschritte
+    examples:
+      - { de: "Der technische Fortschritt bringt nicht nur Vorteile.", en: "Technological progress does not only bring advantages.", tags: [singular, Präsens] }
+      - { de: "Du hast in Deutsch große Fortschritte gemacht!", en: "You've made great progress in German!", tags: [plural, Perfekt] }
+      - { de: "Die Verhandlungen machen kaum Fortschritte.", en: "The negotiations are making hardly any progress.", tags: [plural, Präsens] }
   - id: noun-robotik
     type: noun
     lemma: Robotik
@@ -7840,12 +7898,16 @@ records:
       - robotics
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1187
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Robotik ist ein wachsender Forschungsbereich.", en: "Robotics is a growing field of research.", tags: [singular, Präsens] }
+      - { de: "Sie hat sich auf Robotik spezialisiert.", en: "She has specialised in robotics.", tags: [singular, Perfekt] }
+      - { de: "Fortschritte in der Robotik verändern die Pflege.", en: "Advances in robotics are changing nursing care.", tags: [singular, Präsens] }
   - id: noun-gen
     type: noun
     lemma: Gen
@@ -7853,12 +7915,16 @@ records:
       - gene
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1191
     noun:
       gender: n
       plural: Gene
+    examples:
+      - { de: "Dieses Gen erhöht das Risiko für Diabetes.", en: "This gene increases the risk of diabetes.", tags: [singular, Präsens] }
+      - { de: "Die Augenfarbe wird von mehreren Genen bestimmt.", en: "Eye colour is determined by several genes.", tags: [plural, Passiv, Präsens] }
+      - { de: "Die Forscher hatten das Gen schon 2010 entdeckt.", en: "The researchers had already discovered the gene in 2010.", tags: [singular, Plusquamperfekt] }
   - id: noun-genetik
     type: noun
     lemma: Genetik
@@ -7866,12 +7932,16 @@ records:
       - genetics
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1193
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Genetik erklärt, warum Kinder ihren Eltern ähnlich sehen.", en: "Genetics explains why children look like their parents.", tags: [singular, Präsens] }
+      - { de: "In der Genetik hat es in den letzten Jahren große Fortschritte gegeben.", en: "There has been great progress in genetics in recent years.", tags: [singular, Perfekt] }
+      - { de: "Sie interessiert sich vor allem für die Genetik von Pflanzen.", en: "She is interested above all in plant genetics.", tags: [singular, Präsens] }
   - id: noun-klimawandel
     type: noun
     lemma: Klimawandel
@@ -7880,13 +7950,17 @@ records:
     categories:
       - science-and-technology
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 1195
       - 2166
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der Klimawandel ist eine der größten Herausforderungen unserer Zeit.", en: "Climate change is one of the greatest challenges of our time.", tags: [singular, Präsens] }
+      - { de: "Die Folgen des Klimawandels sind schon heute spürbar.", en: "The consequences of climate change can already be felt today.", tags: [singular, Präsens] }
+      - { de: "Wir müssen den Klimawandel gemeinsam bekämpfen.", en: "We must fight climate change together.", tags: [singular, Präsens] }
   - id: noun-nachhaltigkeit
     type: noun
     lemma: Nachhaltigkeit
@@ -7897,7 +7971,7 @@ records:
       - ethics-and-society
       - consumer-culture-and-advertising
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 1197
       - 1526
@@ -7906,6 +7980,10 @@ records:
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Nachhaltigkeit spielt beim Einkaufen eine immer größere Rolle.", en: "Sustainability plays an ever greater role in shopping.", tags: [singular, Präsens] }
+      - { de: "Das Unternehmen wirbt mit Nachhaltigkeit, aber die Realität sieht anders aus.", en: "The company uses sustainability in its advertising, but the reality is different.", tags: [singular, Präsens] }
+      - { de: "Bei der Planung wurde auf Nachhaltigkeit geachtet.", en: "Attention was paid to sustainability in the planning.", tags: [singular, Passiv, Präteritum] }
   - id: noun-weltraumforschung
     type: noun
     lemma: Weltraumforschung
@@ -7913,12 +7991,16 @@ records:
       - space research
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1199
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Weltraumforschung kostet jedes Jahr Milliarden.", en: "Space research costs billions every year.", tags: [singular, Präsens] }
+      - { de: "Europa wird künftig mehr in die Weltraumforschung investieren.", en: "In future, Europe will invest more in space research.", tags: [singular, Futur I] }
+      - { de: "Viele Erfindungen aus der Weltraumforschung nutzen wir heute im Alltag.", en: "Today we use many inventions from space research in everyday life.", tags: [singular, Präsens] }
   - id: noun-wirtschaft
     type: noun
     lemma: Wirtschaft
@@ -7926,25 +8008,34 @@ records:
       - economy
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1214
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Wirtschaft ist im letzten Quartal leicht gewachsen.", en: "The economy grew slightly in the last quarter.", tags: [singular, Perfekt] }
+      - { de: "Die Regierung will die Wirtschaft stärken.", en: "The government wants to strengthen the economy.", tags: [singular, Präsens] }
+      - { de: "Experten erwarten, dass sich die Wirtschaft bald erholen wird.", en: "Experts expect the economy to recover soon.", tags: [singular, Futur I] }
   - id: noun-volkswirtschaft
     type: noun
     lemma: Volkswirtschaft
     gloss:
-      - macroeconomy
+      - national economy
+      - economics (subject)
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1216
     noun:
       gender: f
       plural: Volkswirtschaften
+    examples:
+      - { de: "Deutschland ist die größte Volkswirtschaft Europas.", en: "Germany is the largest national economy in Europe.", tags: [singular, Präsens] }
+      - { de: "Er hat Volkswirtschaft in Mannheim studiert.", en: "He studied economics in Mannheim.", tags: [singular, Perfekt] }
+      - { de: "Die großen Volkswirtschaften trafen sich zum G20-Gipfel.", en: "The major economies met for the G20 summit.", tags: [plural, Präteritum] }
   - id: noun-betriebswirtschaft
     type: noun
     lemma: Betriebswirtschaft
@@ -7952,13 +8043,17 @@ records:
       - business administration
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1218
     noun:
       gender: f
       plural: null
     abbreviation: BWL
+    examples:
+      - { de: "Sie studiert Betriebswirtschaft an der Fachhochschule.", en: "She is studying business administration at the university of applied sciences.", tags: [singular, Präsens] }
+      - { de: "Kenntnisse in Betriebswirtschaft sind für diese Stelle wichtig.", en: "Knowledge of business administration is important for this position.", tags: [singular, Präsens] }
+      - { de: "Nach seinem Abschluss in Betriebswirtschaft fand er schnell eine Stelle.", en: "After his degree in business administration, he quickly found a job.", tags: [singular, Präteritum] }
   - id: noun-markt
     type: noun
     lemma: Markt
@@ -7967,13 +8062,18 @@ records:
     categories:
       - economics-and-finance
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1220
       - 1575
     noun:
       gender: m
       plural: Märkte
+    examples:
+      - { de: "Der Markt für Elektroautos wächst schnell.", en: "The market for electric cars is growing fast.", tags: [singular, Präsens] }
+      - { de: "Die Firma brachte das Produkt zu früh auf den Markt.", en: "The company brought the product to market too early.", tags: [singular, Präteritum] }
+      - { de: "Samstags kaufe ich Obst und Gemüse auf dem Markt.", en: "On Saturdays I buy fruit and vegetables at the market.", tags: [singular, Präsens] }
+      - { de: "Asiatische Märkte werden für deutsche Firmen immer wichtiger.", en: "Asian markets are becoming more and more important for German companies.", tags: [plural, Präsens] }
   - id: noun-wettbewerb
     type: noun
     lemma: Wettbewerb
@@ -14831,9 +14931,14 @@ records:
       - technological
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1157
+    adjective:
+      gradable: false
+    examples:
+      - { de: "Der technologische Wandel verläuft immer schneller.", en: "Technological change is happening ever faster.", tags: [attributive, Präsens] }
+      - { de: "Das Land ist technologisch weit entwickelt.", en: "The country is technologically highly developed.", tags: [Präsens] }
   - id: phrase-das-angebot-und-die-nachfrage
     type: phrase
     lemma: das Angebot und die Nachfrage
