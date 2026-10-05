@@ -3,7 +3,7 @@ run: 2026-10-05-feat-vocab-typer
 workflow: fr-goal@1
 branch: feat/vocab-typer
 started: '2026-10-05T06:08:27+00:00'
-cursor: plan-review
+cursor: implement
 steps:
   brainstorm:
     state: done
@@ -44,7 +44,14 @@ steps:
           returned: '2026-10-05T07:27:11+00:00'
           outcome: done
   plan-review:
-    state: pending
+    state: done
+    at: '2026-10-05T07:27:14+00:00'
+    exit: 0
+    stdout: "[warn] orphan phase-split decision phase-split-2026-10-05-vocab-typer-p7\
+      \ names \nno agentic phase; it waives nothing.\n[warn] orphan phase-split decision\
+      \ phase-split-2026-10-05-vocab-typer-p8 names \nno agentic phase; it waives\
+      \ nothing.\n[warn] orphan phase-split decision phase-split-2026-10-05-vocab-typer-p9\
+      \ names \nno agentic phase; it waives nothing.\n"
   implement:
     state: pending
     members:
