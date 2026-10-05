@@ -12271,9 +12271,16 @@ records:
       - to have something on one’s radar
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 551
+    phrase:
+      register: informal
+      literal: "to have something on the screen"
+    examples:
+      - { de: "Den Termin mit dem Kunden habe ich auf dem Schirm.", en: "I've got the meeting with the client on my radar.", tags: [Präsens] }
+      - { de: "Hast du die Frist für die Steuererklärung auf dem Schirm?", en: "Do you have the tax return deadline on your radar?", tags: [Präsens] }
+      - { de: "Das Problem hatte leider niemand auf dem Schirm.", en: "Unfortunately nobody had the problem on their radar.", tags: [Präteritum] }
   - id: phrase-aus-einer-muecke-einen-elefanten-machen
     type: phrase
     lemma: aus einer Mücke einen Elefanten machen
@@ -12281,9 +12288,16 @@ records:
       - to make a mountain out of a molehill
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 553
+    phrase:
+      register: informal
+      literal: "to make an elephant out of a mosquito"
+    examples:
+      - { de: "Jetzt mach doch nicht aus einer Mücke einen Elefanten!", en: "Don't make a mountain out of a molehill!", tags: [Imperativ] }
+      - { de: "Die Presse hat aus einer Mücke einen Elefanten gemacht.", en: "The press made a mountain out of a molehill.", tags: [Perfekt] }
+      - { de: "Er macht immer aus einer Mücke einen Elefanten.", en: "He always makes a mountain out of a molehill.", tags: [Präsens] }
   - id: phrase-ins-kalte-wasser-springen
     type: phrase
     lemma: ins kalte Wasser springen
@@ -12291,9 +12305,16 @@ records:
       - to dive in at the deep end
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 555
+    phrase:
+      register: informal
+      literal: "to jump into cold water"
+    examples:
+      - { de: "Im neuen Job musste ich ins kalte Wasser springen.", en: "In the new job I had to dive in at the deep end.", tags: [Präteritum] }
+      - { de: "Manchmal muss man einfach ins kalte Wasser springen.", en: "Sometimes you just have to dive in at the deep end.", tags: [Präsens] }
+      - { de: "Sie ist ins kalte Wasser gesprungen und hat eine Firma gegründet.", en: "She took the plunge and founded a company.", tags: [Perfekt] }
   - id: phrase-das-ist-nicht-mein-bier
     type: phrase
     lemma: das ist nicht mein Bier
@@ -12301,9 +12322,16 @@ records:
       - that’s not my problem
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 557
+    phrase:
+      register: informal
+      literal: "that is not my beer"
+    examples:
+      - { de: "Wie die anderen das lösen, ist nicht mein Bier.", en: "How the others solve it is not my problem.", tags: [Präsens] }
+      - { de: "Tut mir leid, aber das ist nicht mein Bier.", en: "Sorry, but that's not my problem.", tags: [Präsens] }
+      - { de: "Der Streit zwischen den beiden war nicht mein Bier.", en: "The argument between the two of them was none of my business.", tags: [Präteritum] }
   - id: phrase-tomaten-auf-den-augen-haben
     type: phrase
     lemma: Tomaten auf den Augen haben
@@ -12311,9 +12339,16 @@ records:
       - to be oblivious
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 559
+    phrase:
+      register: informal
+      literal: "to have tomatoes on one's eyes"
+    examples:
+      - { de: "Hast du Tomaten auf den Augen? Da ist doch das Schild!", en: "Are you blind? The sign is right there!", tags: [Präsens] }
+      - { de: "Ich hatte wohl Tomaten auf den Augen, ich habe dich gar nicht gesehen.", en: "I must have been blind, I didn't see you at all.", tags: [Präteritum] }
+      - { de: "Der Schiedsrichter hat heute Tomaten auf den Augen.", en: "The referee is blind today.", tags: [Präsens] }
   - id: phrase-zwei-fliegen-mit-einer-klappe-schlagen
     type: phrase
     lemma: zwei Fliegen mit einer Klappe schlagen
@@ -12321,9 +12356,16 @@ records:
       - to kill two birds with one stone
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 561
+    phrase:
+      register: informal
+      literal: "to swat two flies with one swatter"
+    examples:
+      - { de: "Mit dem Rad zur Arbeit schlage ich zwei Fliegen mit einer Klappe.", en: "Cycling to work, I kill two birds with one stone.", tags: [Präsens] }
+      - { de: "So haben wir zwei Fliegen mit einer Klappe geschlagen.", en: "That way we killed two birds with one stone.", tags: [Perfekt] }
+      - { de: "Wenn wir beide Termine zusammenlegen, schlagen wir zwei Fliegen mit einer Klappe.", en: "If we combine both appointments, we'll kill two birds with one stone.", tags: [Präsens] }
   - id: phrase-da-ist-der-wurm-drin
     type: phrase
     lemma: da ist der Wurm drin
@@ -12331,9 +12373,16 @@ records:
       - something is going wrong
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 563
+    phrase:
+      register: informal
+      literal: "the worm is in there"
+    examples:
+      - { de: "Bei diesem Projekt ist der Wurm drin.", en: "Something keeps going wrong with this project.", tags: [Präsens] }
+      - { de: "Seit dem Umzug ist irgendwie der Wurm drin.", en: "Since the move, something has been going wrong somehow.", tags: [Präsens] }
+      - { de: "In der Saison war von Anfang an der Wurm drin.", en: "Things went wrong in the season from the very start.", tags: [Präteritum] }
   - id: phrase-einen-frosch-im-hals-haben
     type: phrase
     lemma: einen Frosch im Hals haben
@@ -12341,9 +12390,16 @@ records:
       - to have a frog in one’s throat
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 565
+    phrase:
+      register: informal
+      literal: "to have a frog in one's throat"
+    examples:
+      - { de: "Entschuldigung, ich habe einen Frosch im Hals.", en: "Sorry, I've got a frog in my throat.", tags: [Präsens] }
+      - { de: "Vor der Rede hatte sie einen Frosch im Hals.", en: "Before the speech she had a frog in her throat.", tags: [Präteritum] }
+      - { de: "Der Sänger hatte plötzlich einen Frosch im Hals.", en: "The singer suddenly had a frog in his throat.", tags: [Präteritum] }
   - id: phrase-den-nagel-auf-den-kopf-treffen
     type: phrase
     lemma: den Nagel auf den Kopf treffen
@@ -12351,9 +12407,16 @@ records:
       - to hit the nail on the head
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 567
+    phrase:
+      register: neutral
+      literal: "to hit the nail on the head"
+    examples:
+      - { de: "Mit deiner Analyse hast du den Nagel auf den Kopf getroffen.", en: "You hit the nail on the head with your analysis.", tags: [Perfekt] }
+      - { de: "Sie trifft mit ihren Kommentaren oft den Nagel auf den Kopf.", en: "She often hits the nail on the head with her comments.", tags: [Präsens] }
+      - { de: "Der Journalist traf mit seiner Frage den Nagel auf den Kopf.", en: "The journalist hit the nail on the head with his question.", tags: [Präteritum] }
   - id: phrase-aus-dem-haeuschen-sein
     type: phrase
     lemma: aus dem Häuschen sein
@@ -12361,9 +12424,16 @@ records:
       - to be over the moon
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 569
+    phrase:
+      register: informal
+      literal: "to be out of the little house"
+    examples:
+      - { de: "Als sie die Zusage bekam, war sie völlig aus dem Häuschen.", en: "When she got the acceptance, she was over the moon.", tags: [Präteritum] }
+      - { de: "Die Fans sind nach dem Sieg ganz aus dem Häuschen.", en: "The fans are over the moon after the win.", tags: [Präsens] }
+      - { de: "Die Kinder waren wegen des Schnees aus dem Häuschen.", en: "The children were beside themselves because of the snow.", tags: [Präteritum] }
   - id: phrase-etwas-unter-vier-augen-besprechen
     type: phrase
     lemma: etwas unter vier Augen besprechen
@@ -12371,9 +12441,16 @@ records:
       - to discuss privately
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 571
+    phrase:
+      register: neutral
+      literal: "to discuss something under four eyes"
+    examples:
+      - { de: "Können wir das unter vier Augen besprechen?", en: "Can we discuss this in private?", tags: [Präsens] }
+      - { de: "Die Chefin wollte die Sache unter vier Augen besprechen.", en: "The boss wanted to discuss the matter in private.", tags: [Präteritum] }
+      - { de: "Wir haben das Problem unter vier Augen besprochen.", en: "We discussed the problem privately.", tags: [Perfekt] }
   - id: phrase-durch-die-blume-sagen
     type: phrase
     lemma: durch die Blume sagen
@@ -12381,9 +12458,16 @@ records:
       - to say something indirectly
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 573
+    phrase:
+      register: neutral
+      literal: "to say through the flower"
+    examples:
+      - { de: "Er hat mir durch die Blume gesagt, dass ich zu laut bin.", en: "He hinted to me that I'm too loud.", tags: [Perfekt] }
+      - { de: "Sag es mir lieber direkt und nicht durch die Blume.", en: "Rather tell me directly and not in a roundabout way.", tags: [Imperativ] }
+      - { de: "Sie sagte ihm durch die Blume, dass er gehen sollte.", en: "She told him indirectly that he should leave.", tags: [Präteritum] }
   - id: phrase-naegel-mit-koepfen-machen
     type: phrase
     lemma: Nägel mit Köpfen machen
@@ -12391,9 +12475,16 @@ records:
       - to get things done properly
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 575
+    phrase:
+      register: informal
+      literal: "to make nails with heads"
+    examples:
+      - { de: "Jetzt lass uns endlich Nägel mit Köpfen machen!", en: "Now let's finally get things done properly!", tags: [Imperativ] }
+      - { de: "Die neue Regierung will Nägel mit Köpfen machen.", en: "The new government wants to do things properly.", tags: [Präsens] }
+      - { de: "Sie haben Nägel mit Köpfen gemacht und sofort geheiratet.", en: "They didn't do things by halves and got married right away.", tags: [Perfekt] }
   - id: phrase-auf-die-lange-bank-schieben
     type: phrase
     lemma: auf die lange Bank schieben
@@ -12401,9 +12492,16 @@ records:
       - to procrastinate
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 577
+    phrase:
+      register: informal
+      literal: "to push onto the long bench"
+    examples:
+      - { de: "Schieb die Steuererklärung nicht wieder auf die lange Bank!", en: "Don't put off the tax return again!", tags: [Imperativ] }
+      - { de: "Das Thema wurde jahrelang auf die lange Bank geschoben.", en: "The issue was put off for years.", tags: [Passiv, Präteritum] }
+      - { de: "Ich schiebe unangenehme Aufgaben gern auf die lange Bank.", en: "I tend to put off unpleasant tasks.", tags: [Präsens] }
   - id: phrase-mit-dem-linken-fuss-aufstehen
     type: phrase
     lemma: mit dem linken Fuß aufstehen
@@ -12411,9 +12509,16 @@ records:
       - to get up on the wrong side of the bed
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 579
+    phrase:
+      register: informal
+      literal: "to get up with the left foot"
+    examples:
+      - { de: "Du bist wohl heute mit dem linken Fuß aufgestanden.", en: "You must have got out of bed on the wrong side today.", tags: [Perfekt] }
+      - { de: "Der Chef ist heute mit dem linken Fuß aufgestanden.", en: "The boss got out of bed on the wrong side today.", tags: [Perfekt] }
+      - { de: "Wenn ich mit dem linken Fuß aufstehe, geht alles schief.", en: "When I get up on the wrong side of the bed, everything goes wrong.", tags: [Präsens] }
   - id: phrase-ueber-den-eigenen-schatten-springen
     type: phrase
     lemma: über den eigenen Schatten springen
@@ -12421,9 +12526,16 @@ records:
       - to overcome oneself
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 581
+    phrase:
+      register: neutral
+      literal: "to jump over one's own shadow"
+    examples:
+      - { de: "Er ist über seinen Schatten gesprungen und hat sich entschuldigt.", en: "He overcame his pride and apologised.", tags: [Perfekt] }
+      - { de: "Manchmal muss man über den eigenen Schatten springen.", en: "Sometimes you have to overcome yourself.", tags: [Präsens] }
+      - { de: "Für den Kompromiss sprangen beide Parteien über ihren Schatten.", en: "Both parties overcame their reservations for the compromise.", tags: [Präteritum] }
   - id: phrase-einen-zahn-zulegen
     type: phrase
     lemma: einen Zahn zulegen
@@ -12431,9 +12543,16 @@ records:
       - to hurry up
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 583
+    phrase:
+      register: informal
+      literal: "to add a tooth"
+    examples:
+      - { de: "Wir müssen einen Zahn zulegen, sonst verpassen wir den Zug.", en: "We have to hurry up, otherwise we'll miss the train.", tags: [Präsens] }
+      - { de: "Leg mal einen Zahn zu!", en: "Get a move on!", tags: [Imperativ] }
+      - { de: "In der zweiten Hälfte legte die Mannschaft einen Zahn zu.", en: "In the second half the team stepped up the pace.", tags: [Präteritum] }
   - id: phrase-etwas-aus-dem-effeff-koennen
     type: phrase
     lemma: etwas aus dem Effeff können
@@ -12441,9 +12560,16 @@ records:
       - to know something inside out
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 585
+    phrase:
+      register: informal
+      literal: "to be able to do something from the ff"
+    examples:
+      - { de: "Die Grammatik kann sie aus dem Effeff.", en: "She knows the grammar inside out.", tags: [Präsens] }
+      - { de: "Nach zwanzig Jahren konnte er das Programm aus dem Effeff.", en: "After twenty years he knew the programme inside out.", tags: [Präteritum] }
+      - { de: "Diese Regeln musst du aus dem Effeff können.", en: "You need to know these rules inside out.", tags: [Präsens] }
   - id: phrase-auf-dem-holzweg-sein
     type: phrase
     lemma: auf dem Holzweg sein
@@ -12451,9 +12577,16 @@ records:
       - to be barking up the wrong tree
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 587
+    phrase:
+      register: informal
+      literal: "to be on the logging path"
+    examples:
+      - { de: "Wenn du das glaubst, bist du auf dem Holzweg.", en: "If you believe that, you're barking up the wrong tree.", tags: [Präsens] }
+      - { de: "Die Ermittler waren lange auf dem Holzweg.", en: "The investigators were on the wrong track for a long time.", tags: [Präteritum] }
+      - { de: "Mit dieser Strategie sind wir auf dem Holzweg.", en: "With this strategy we're on the wrong track.", tags: [Präsens] }
   - id: phrase-kein-blatt-vor-den-mund-nehmen
     type: phrase
     lemma: kein Blatt vor den Mund nehmen
@@ -12461,9 +12594,16 @@ records:
       - to speak frankly
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 589
+    phrase:
+      register: informal
+      literal: "to take no leaf before one's mouth"
+    examples:
+      - { de: "Meine Oma nimmt kein Blatt vor den Mund.", en: "My grandma doesn't mince her words.", tags: [Präsens] }
+      - { de: "In der Diskussion nahm er kein Blatt vor den Mund.", en: "In the discussion he spoke his mind frankly.", tags: [Präteritum] }
+      - { de: "Sie hat kein Blatt vor den Mund genommen und alles kritisiert.", en: "She didn't mince her words and criticised everything.", tags: [Perfekt] }
   - id: phrase-etwas-in-den-griff-bekommen
     type: phrase
     lemma: etwas in den Griff bekommen
@@ -12471,9 +12611,16 @@ records:
       - to get something under control
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 591
+    phrase:
+      register: neutral
+      literal: "to get something into one's grip"
+    examples:
+      - { de: "Die Regierung muss die Inflation in den Griff bekommen.", en: "The government has to get inflation under control.", tags: [Präsens] }
+      - { de: "Nach ein paar Wochen hatte ich die neue Software im Griff.", en: "After a few weeks I had the new software under control.", tags: [Präteritum] }
+      - { de: "Die Feuerwehr hat den Brand schnell in den Griff bekommen.", en: "The fire brigade quickly got the fire under control.", tags: [Perfekt] }
   - id: phrase-den-kopf-verlieren
     type: phrase
     lemma: den Kopf verlieren
@@ -12481,9 +12628,16 @@ records:
       - to lose one’s head
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 593
+    phrase:
+      register: neutral
+      literal: "to lose one's head"
+    examples:
+      - { de: "Bleib ruhig und verlier nicht den Kopf!", en: "Stay calm and don't lose your head!", tags: [Imperativ] }
+      - { de: "In der Prüfung habe ich völlig den Kopf verloren.", en: "I completely lost my head in the exam.", tags: [Perfekt] }
+      - { de: "Er verlor den Kopf und schrie alle an.", en: "He lost his head and shouted at everyone.", tags: [Präteritum] }
   - id: phrase-mit-jemandem-nicht-gut-kirschen-essen-sein
     type: phrase
     lemma: mit jemandem nicht gut Kirschen essen sein
@@ -12491,9 +12645,16 @@ records:
       - someone is difficult to deal with
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 595
+    phrase:
+      register: informal
+      literal: "it is not good to eat cherries with someone"
+    examples:
+      - { de: "Mit dem neuen Chef ist nicht gut Kirschen essen.", en: "The new boss is difficult to deal with.", tags: [Präsens] }
+      - { de: "Wenn sie schlechte Laune hat, ist mit ihr nicht gut Kirschen essen.", en: "When she's in a bad mood, she's hard to get along with.", tags: [Präsens] }
+      - { de: "Mit dem Vermieter war nicht gut Kirschen essen.", en: "The landlord was difficult to deal with.", tags: [Präteritum] }
   - id: phrase-auf-wolke-sieben-schweben
     type: phrase
     lemma: auf Wolke sieben schweben
@@ -12501,9 +12662,16 @@ records:
       - to be on cloud nine
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 597
+    phrase:
+      register: informal
+      literal: "to float on cloud seven"
+    examples:
+      - { de: "Seit sie verliebt ist, schwebt sie auf Wolke sieben.", en: "Since she fell in love, she's been on cloud nine.", tags: [Präsens] }
+      - { de: "Nach der Hochzeit schwebten die beiden auf Wolke sieben.", en: "After the wedding the two of them were on cloud nine.", tags: [Präteritum] }
+      - { de: "Ich bin wochenlang auf Wolke sieben geschwebt.", en: "I was on cloud nine for weeks.", tags: [Perfekt] }
   - id: phrase-einen-korb-geben
     type: phrase
     lemma: einen Korb geben
@@ -12511,9 +12679,16 @@ records:
       - to turn someone down
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 599
+    phrase:
+      register: informal
+      literal: "to give someone a basket"
+    examples:
+      - { de: "Sie hat ihm einen Korb gegeben.", en: "She turned him down.", tags: [Perfekt] }
+      - { de: "Wenn er mich einlädt, gebe ich ihm einen Korb.", en: "If he asks me out, I'll turn him down.", tags: [Präsens] }
+      - { de: "Die Firma gab dem Investor einen Korb.", en: "The company turned the investor down.", tags: [Präteritum] }
   - id: phrase-unter-die-lupe-nehmen
     type: phrase
     lemma: unter die Lupe nehmen
