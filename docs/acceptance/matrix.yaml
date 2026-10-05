@@ -38,9 +38,17 @@ rows:
     - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R1
     - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R2
     - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R3
-    levels: {}
-    status: not-implemented
-    notes: ''
+    levels:
+      unit:
+      - the-typist:tests/schema/record.test.ts
+      - the-typist:tests/schema/list.test.ts
+      - the-typist:tests/schema/typeable.test.ts
+      - the-typist:tests/schema/strictness.test.ts
+      - the-typist:tests/tools/validate.test.ts
+    status: skipped
+    notes: Built in plan 1 (phases 1, 5); unit tests run locally via npm test, no CI
+      configured. Build-time half of R11 (vite plugin) covered; runtime file-picker
+      half is plan 2.
   - id: list-loading
     capability: Lists
     acceptance: Repo lists are validated at build and playable on the hosted site, and
