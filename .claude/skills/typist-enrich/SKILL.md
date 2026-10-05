@@ -40,9 +40,8 @@ Records use exactly the schema's keys (strict: unknown keys fail). A list's
   `examples[].de` must be typeable: letters (incl. äöüß), digits, space and
   `. , ; : ! ? ' " ( ) - / % & +`. **No** `...` or `…`, no `(r)`/`(e)`, no `·`, no
   emoji. Typographic double quotes (`„ “ ”`), `’` and dashes (`– —`) are fine.
-  Do **not** use `‚…‘` (U+201A / U+2018 single low-9 / left quotes for quoting): the
-  typeability table only knows `’` (U+2019) and `‘` is mapped but easy to
-  confuse; use `„…“` or plain `"…"` instead. End each sentence with normal
+  Do **not** use `‚…‘` for quoting: `‚` (U+201A, low-9 single quote) is not in the
+  typeability table, so the sentence fails validation; use `„…“` or plain `"…"`. End each sentence with normal
   punctuation.
 - `en` is a natural English translation of that sentence.
 
