@@ -8867,12 +8867,16 @@ records:
       - health
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1331
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Rauchen schadet der Gesundheit.", en: "Smoking damages your health.", tags: [singular, Präsens] }
+      - { de: "Die Gesundheit der Mitarbeiter hat für uns Priorität.", en: "The health of our employees is our priority.", tags: [singular, Präsens] }
+      - { de: "Seit sie Sport treibt, hat sich ihre Gesundheit verbessert.", en: "Her health has improved since she started doing sport.", tags: [singular, Perfekt] }
   - id: noun-krankheit
     type: noun
     lemma: Krankheit
@@ -8880,22 +8884,37 @@ records:
       - illness
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1333
     noun:
       gender: f
       plural: Krankheiten
+    examples:
+      - { de: "Diese Krankheit ist leider nicht heilbar.", en: "Unfortunately, this illness cannot be cured.", tags: [singular, Präsens] }
+      - { de: "Wegen einer schweren Krankheit konnte er nicht arbeiten.", en: "He could not work because of a serious illness.", tags: [singular, Präteritum] }
+      - { de: "Viele Krankheiten lassen sich durch Impfungen verhindern.", en: "Many diseases can be prevented by vaccination.", tags: [plural, Präsens] }
   - id: verb-sich-erkaelten
     type: verb
-    lemma: sich erkälten
+    lemma: erkälten
     gloss:
       - to catch a cold
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1335
+    verb:
+      auxiliary: haben
+      reflexive: true
+      parts:
+        praesens_3sg: "erkältet"
+        praeteritum: "erkältete"
+        partizip2: "erkältet"
+    examples:
+      - { de: "Zieh dich warm an, sonst erkältest du dich!", en: "Dress warmly, or you'll catch a cold!", tags: [Präsens] }
+      - { de: "Ich habe mich beim Joggen im Regen erkältet.", en: "I caught a cold jogging in the rain.", tags: [Perfekt] }
+      - { de: "Im letzten Winter erkältete sie sich ständig.", en: "Last winter she kept catching colds.", tags: [Präteritum] }
   - id: noun-erkaeltung
     type: noun
     lemma: Erkältung
@@ -8903,12 +8922,16 @@ records:
       - cold (illness)
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1337
     noun:
       gender: f
       plural: Erkältungen
+    examples:
+      - { de: "Ich habe eine leichte Erkältung.", en: "I have a slight cold.", tags: [singular, Präsens] }
+      - { de: "Gegen eine Erkältung hilft vor allem Ruhe.", en: "Rest is the best thing for a cold.", tags: [singular, Präsens] }
+      - { de: "Kinder bekommen im Jahr oft mehrere Erkältungen.", en: "Children often get several colds a year.", tags: [plural, Präsens] }
   - id: noun-grippe
     type: noun
     lemma: Grippe
@@ -8916,12 +8939,16 @@ records:
       - flu
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1339
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die halbe Abteilung liegt mit Grippe im Bett.", en: "Half the department is in bed with flu.", tags: [singular, Präsens] }
+      - { de: "Eine echte Grippe ist viel gefährlicher als eine Erkältung.", en: "Real flu is much more dangerous than a cold.", tags: [singular, Präsens] }
+      - { de: "Letzten Winter hatte ich zum ersten Mal eine richtige Grippe.", en: "Last winter I had proper flu for the first time.", tags: [singular, Präteritum] }
   - id: noun-husten
     type: noun
     lemma: Husten
@@ -8929,12 +8956,16 @@ records:
       - cough
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1341
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der Husten will einfach nicht weggehen.", en: "The cough just won't go away.", tags: [singular, Präsens] }
+      - { de: "Gegen den Husten hat mir der Arzt Tropfen verschrieben.", en: "The doctor prescribed me drops for the cough.", tags: [singular, Perfekt] }
+      - { de: "Sie hatte drei Wochen lang einen trockenen Husten.", en: "She had a dry cough for three weeks.", tags: [singular, Präteritum] }
   - id: noun-fieber
     type: noun
     lemma: Fieber
@@ -8942,12 +8973,16 @@ records:
       - fever
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1343
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Das Kind hat seit gestern hohes Fieber.", en: "The child has had a high temperature since yesterday.", tags: [singular, Präsens] }
+      - { de: "Bei Fieber sollte man viel trinken.", en: "When you have a fever, you should drink a lot.", tags: [singular, Konjunktiv II] }
+      - { de: "Hast du schon Fieber gemessen?", en: "Have you taken your temperature yet?", tags: [singular, Perfekt] }
   - id: noun-diagnose
     type: noun
     lemma: Diagnose
@@ -8955,12 +8990,16 @@ records:
       - diagnosis
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1347
     noun:
       gender: f
       plural: Diagnosen
+    examples:
+      - { de: "Die Diagnose war ein Schock für die ganze Familie.", en: "The diagnosis was a shock for the whole family.", tags: [singular, Präteritum] }
+      - { de: "Die Ärztin kann erst nach dem Bluttest eine Diagnose stellen.", en: "The doctor can only make a diagnosis after the blood test.", tags: [singular, Präsens] }
+      - { de: "Falsche Diagnosen kommen häufiger vor, als man denkt.", en: "Wrong diagnoses happen more often than you think.", tags: [plural, Präsens] }
   - id: noun-symptom
     type: noun
     lemma: Symptom
@@ -8968,7 +9007,7 @@ records:
       - symptom
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1345
       - 1349
@@ -8976,16 +9015,32 @@ records:
     noun:
       gender: n
       plural: Symptome
+    examples:
+      - { de: "Die ersten Symptome zeigen sich nach zwei Tagen.", en: "The first symptoms appear after two days.", tags: [plural, Präsens] }
+      - { de: "Müdigkeit ist ein typisches Symptom von Eisenmangel.", en: "Tiredness is a typical symptom of iron deficiency.", tags: [singular, Präsens] }
+      - { de: "Welche Symptome hatten Sie, bevor Sie zu uns kamen?", en: "What symptoms did you have before you came to us?", tags: [plural, Präteritum] }
   - id: verb-untersuchen
     type: verb
     lemma: untersuchen
     gloss:
       - to examine (a patient)
+      - to investigate
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1351
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "untersucht"
+        praeteritum: "untersuchte"
+        partizip2: "untersucht"
+    examples:
+      - { de: "Die Ärztin untersucht den Patienten gründlich.", en: "The doctor examines the patient thoroughly.", tags: [Präsens] }
+      - { de: "Hat man Sie schon untersucht?", en: "Have you been examined yet?", tags: [Perfekt] }
+      - { de: "Die Polizei untersuchte den Unfall mehrere Wochen lang.", en: "The police investigated the accident for several weeks.", tags: [Präteritum] }
   - id: noun-behandlung
     type: noun
     lemma: Behandlung
@@ -8993,12 +9048,16 @@ records:
       - treatment
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1355
     noun:
       gender: f
       plural: Behandlungen
+    examples:
+      - { de: "Die Behandlung dauert etwa drei Monate.", en: "The treatment takes about three months.", tags: [singular, Präsens] }
+      - { de: "Nach der Behandlung ging es ihm viel besser.", en: "After the treatment he felt much better.", tags: [singular, Präteritum] }
+      - { de: "Die Krankenkasse übernimmt nicht alle Behandlungen.", en: "Health insurance doesn't cover all treatments.", tags: [plural, Präsens] }
   - id: verb-behandeln
     type: verb
     lemma: behandeln
@@ -9006,22 +9065,39 @@ records:
       - to treat
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1357
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "behandelt"
+        praeteritum: "behandelte"
+        partizip2: "behandelt"
+    examples:
+      - { de: "Der Arzt hat die Wunde sofort behandelt.", en: "The doctor treated the wound immediately.", tags: [Perfekt] }
+      - { de: "Diese Krankheit behandelt man heute mit Antibiotika.", en: "Today this disease is treated with antibiotics.", tags: [Präsens] }
+      - { de: "Sie fühlte sich vom Personal unfair behandelt.", en: "She felt she had been treated unfairly by the staff.", tags: [Präteritum] }
   - id: noun-medikament
     type: noun
     lemma: Medikament
     gloss:
       - medicine
+      - medication
+      - drug
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1361
     noun:
       gender: n
       plural: Medikamente
+    examples:
+      - { de: "Nehmen Sie das Medikament dreimal täglich nach dem Essen.", en: "Take the medicine three times a day after meals.", tags: [singular, Imperativ] }
+      - { de: "Dieses Medikament gibt es nur in der Apotheke.", en: "This medication is only available at the pharmacy.", tags: [singular, Präsens] }
+      - { de: "Neue Medikamente werden lange getestet, bevor sie auf den Markt kommen.", en: "New drugs are tested for a long time before they come onto the market.", tags: [plural, Passiv, Präsens] }
   - id: noun-rezept
     type: noun
     lemma: Rezept
@@ -9029,12 +9105,16 @@ records:
       - prescription
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1363
     noun:
       gender: n
       plural: Rezepte
+    examples:
+      - { de: "Für dieses Medikament brauchen Sie ein Rezept.", en: "You need a prescription for this medicine.", tags: [singular, Präsens] }
+      - { de: "Die Ärztin hat mir ein Rezept für Antibiotika ausgestellt.", en: "The doctor wrote me a prescription for antibiotics.", tags: [singular, Perfekt] }
+      - { de: "Rezepte kann man inzwischen auch digital einlösen.", en: "Prescriptions can now also be redeemed digitally.", tags: [plural, Präsens] }
   - id: verb-verschreiben
     type: verb
     lemma: verschreiben
@@ -9042,22 +9122,38 @@ records:
       - to prescribe
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1365
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "verschreibt"
+        praeteritum: "verschrieb"
+        partizip2: "verschrieben"
+    examples:
+      - { de: "Der Arzt verschreibt ihm eine Salbe gegen den Ausschlag.", en: "The doctor prescribes him an ointment for the rash.", tags: [Präsens] }
+      - { de: "Man hat mir Physiotherapie verschrieben.", en: "I have been prescribed physiotherapy.", tags: [Perfekt] }
+      - { de: "Früher verschrieben Ärzte viel häufiger Antibiotika.", en: "In the past, doctors prescribed antibiotics much more often.", tags: [Präteritum] }
   - id: noun-tablette
     type: noun
     lemma: Tablette
     gloss:
       - tablet
+      - pill
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1367
     noun:
       gender: f
       plural: Tabletten
+    examples:
+      - { de: "Nehmen Sie eine Tablette vor dem Schlafengehen.", en: "Take one tablet before going to bed.", tags: [singular, Imperativ] }
+      - { de: "Die Tabletten müssen kühl gelagert werden.", en: "The tablets must be stored in a cool place.", tags: [plural, Passiv, Präsens] }
+      - { de: "Er hatte die Tabletten vergessen und bekam Kopfschmerzen.", en: "He had forgotten his pills and got a headache.", tags: [plural, Plusquamperfekt] }
   - id: noun-salbe
     type: noun
     lemma: Salbe
@@ -9065,12 +9161,16 @@ records:
       - ointment
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1369
     noun:
       gender: f
       plural: Salben
+    examples:
+      - { de: "Tragen Sie die Salbe zweimal täglich auf.", en: "Apply the ointment twice a day.", tags: [singular, Imperativ] }
+      - { de: "Die Salbe hat gegen den Juckreiz gut geholfen.", en: "The ointment helped well against the itching.", tags: [singular, Perfekt] }
+      - { de: "In der Apotheke gibt es viele Salben gegen Sonnenbrand.", en: "There are many ointments for sunburn at the pharmacy.", tags: [plural, Präsens] }
   - id: noun-spritze
     type: noun
     lemma: Spritze
@@ -9078,12 +9178,16 @@ records:
       - injection
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1371
     noun:
       gender: f
       plural: Spritzen
+    examples:
+      - { de: "Die Krankenschwester gab mir eine Spritze gegen die Schmerzen.", en: "The nurse gave me an injection for the pain.", tags: [singular, Präteritum] }
+      - { de: "Viele Kinder haben Angst vor Spritzen.", en: "Many children are afraid of injections.", tags: [plural, Präsens] }
+      - { de: "Er bekommt jeden Morgen eine Spritze Insulin.", en: "He gets an insulin injection every morning.", tags: [singular, Präsens] }
   - id: noun-impfung
     type: noun
     lemma: Impfung
@@ -9091,12 +9195,16 @@ records:
       - vaccination
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1373
     noun:
       gender: f
       plural: Impfungen
+    examples:
+      - { de: "Die Impfung schützt etwa zehn Jahre lang.", en: "The vaccination protects for about ten years.", tags: [singular, Präsens] }
+      - { de: "Nach der Impfung hatte ich einen leicht schmerzenden Arm.", en: "After the vaccination my arm was a little sore.", tags: [singular, Präteritum] }
+      - { de: "Für Reisen in die Tropen braucht man oft mehrere Impfungen.", en: "You often need several vaccinations for trips to the tropics.", tags: [plural, Präsens] }
   - id: verb-impfen
     type: verb
     lemma: impfen
@@ -9104,9 +9212,21 @@ records:
       - to vaccinate
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1375
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "impft"
+        praeteritum: "impfte"
+        partizip2: "geimpft"
+    examples:
+      - { de: "Der Hausarzt impft auch gegen Grippe.", en: "The family doctor also vaccinates against flu.", tags: [Präsens] }
+      - { de: "Bist du schon gegen Tetanus geimpft worden?", en: "Have you been vaccinated against tetanus yet?", tags: [Passiv, Perfekt] }
+      - { de: "Im Herbst impfte die Schule alle Kinder gegen Masern.", en: "In the autumn the school vaccinated all the children against measles.", tags: [Präteritum] }
+      - { de: "Wir haben unseren Hund letzte Woche impfen lassen.", en: "We had our dog vaccinated last week.", tags: [Perfekt] }
   - id: noun-nebenwirkung
     type: noun
     lemma: Nebenwirkung
@@ -9114,12 +9234,16 @@ records:
       - side effect
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1377
     noun:
       gender: f
       plural: Nebenwirkungen
+    examples:
+      - { de: "Das Medikament hat kaum Nebenwirkungen.", en: "The medicine has hardly any side effects.", tags: [plural, Präsens] }
+      - { de: "Eine häufige Nebenwirkung ist Müdigkeit.", en: "A common side effect is tiredness.", tags: [singular, Präsens] }
+      - { de: "Über die Nebenwirkungen hatte niemand sie informiert.", en: "Nobody had informed her about the side effects.", tags: [plural, Plusquamperfekt] }
   - id: noun-allergie
     type: noun
     lemma: Allergie
@@ -9127,12 +9251,16 @@ records:
       - allergy
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1379
     noun:
       gender: f
       plural: Allergien
+    examples:
+      - { de: "Ich habe eine Allergie gegen Nüsse.", en: "I have an allergy to nuts.", tags: [singular, Präsens] }
+      - { de: "Allergien werden in Industrieländern immer häufiger.", en: "Allergies are becoming more and more common in industrialised countries.", tags: [plural, Präsens] }
+      - { de: "Die Allergie trat erst im Erwachsenenalter auf.", en: "The allergy only appeared in adulthood.", tags: [singular, Präteritum] }
   - id: noun-verletzung
     type: noun
     lemma: Verletzung
@@ -9140,22 +9268,37 @@ records:
       - injury
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1381
     noun:
       gender: f
       plural: Verletzungen
+    examples:
+      - { de: "Der Spieler musste mit einer Verletzung vom Platz.", en: "The player had to leave the pitch with an injury.", tags: [singular, Präteritum] }
+      - { de: "Zum Glück hat der Fahrer nur leichte Verletzungen.", en: "Luckily, the driver only has minor injuries.", tags: [plural, Präsens] }
+      - { de: "Nach seiner Verletzung wird er drei Monate pausieren müssen.", en: "After his injury he will have to sit out for three months.", tags: [singular, Futur I] }
   - id: verb-sich-verletzen
     type: verb
-    lemma: sich verletzen
+    lemma: verletzen
     gloss:
       - to injure oneself
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1383
+    verb:
+      auxiliary: haben
+      reflexive: true
+      parts:
+        praesens_3sg: "verletzt"
+        praeteritum: "verletzte"
+        partizip2: "verletzt"
+    examples:
+      - { de: "Pass auf, dass du dich nicht verletzt!", en: "Be careful not to hurt yourself!", tags: [Präsens] }
+      - { de: "Sie hat sich beim Skifahren am Knie verletzt.", en: "She injured her knee skiing.", tags: [Perfekt] }
+      - { de: "Bei dem Unfall verletzten sich zwei Personen schwer.", en: "Two people were seriously injured in the accident.", tags: [Präteritum] }
   - id: noun-wunde
     type: noun
     lemma: Wunde
@@ -9163,12 +9306,16 @@ records:
       - wound
     categories:
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1385
     noun:
       gender: f
       plural: Wunden
+    examples:
+      - { de: "Die Wunde muss genäht werden.", en: "The wound needs stitches.", tags: [singular, Passiv, Präsens] }
+      - { de: "Die Wunde ist gut verheilt.", en: "The wound has healed well.", tags: [singular, Perfekt] }
+      - { de: "Er hatte tiefe Wunden an beiden Händen.", en: "He had deep wounds on both hands.", tags: [plural, Präteritum] }
   - id: noun-operation
     type: noun
     lemma: Operation
