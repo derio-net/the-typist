@@ -1,0 +1,26 @@
+{
+  "name": "the-typist — dev",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/jsburckhardt/devcontainer-features/uv:1": {},
+    "ghcr.io/devcontainers/features/python:1": {}
+  },
+  "postCreateCommand": "git config --global --add safe.directory \"$PWD\" || true; pipx install uv 2>/dev/null || true; uv tool install --with 'git+https://github.com/derio-net/super-fr#subdirectory=packages/fr-cncd' --with 'git+https://github.com/derio-net/super-fr#subdirectory=packages/fr-herdr' --with 'git+https://github.com/derio-net/super-fr#subdirectory=packages/fr-vk' 'git+https://github.com/derio-net/super-fr#subdirectory=packages/fr' || true",
+  "workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind",
+  "workspaceFolder": "${localWorkspaceFolder}",
+  "runArgs": [
+    "--env-file",
+    "${localEnv:HOME}/.config/fr/secrets/the-typist/dev.env"
+  ],
+  "customizations": {
+    "fr": {
+      "profile": "dev",
+      "purpose": "day-to-day development of the vocab typing game (node) and list tooling (uv/python)"
+    }
+  },
+  "containerEnv": {
+    "UV_PROJECT_ENVIRONMENT": ".venv-container"
+  }
+}
