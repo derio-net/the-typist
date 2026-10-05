@@ -91,6 +91,9 @@ describe('resolved shapes', () => {
       lemma: 'künstliche Intelligenz', abbreviation: 'KI', noun: { gender: 'f' },
     });
   });
+  it('mixed-case abbreviations', () => {
+    expect(rec('die Mehrwertsteuer (MwSt)')).toMatchObject({ lemma: 'Mehrwertsteuer', abbreviation: 'MwSt' });
+  });
   it('splits the gloss on top-level commas', () => {
     expect(rec('der Vorgesetzte / die Vorgesetzte').gloss).toEqual(['superior', 'manager']);
     expect(rec('der Zustand, -stände').gloss).toEqual(['state', 'condition']);

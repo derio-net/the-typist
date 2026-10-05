@@ -124,7 +124,7 @@ function undShape(c: Ctx): Outcome | null {
 }
 
 const GOVERNMENT = /^(?:an|auf|aus|bei|durch|für|gegen|in|mit|nach|über|um|von|vor|zu|unter)(?: \+ [AD])?$/;
-const ABBREVIATION = /^[A-ZÄÖÜ]{2,}$/;
+const ABBREVIATION = /^(?=(?:.*[A-ZÄÖÜ]){2})[A-Za-zÄÖÜäöü]+$/; // at least two capitals, no spaces: KI, DM, MwSt
 
 interface Paren {
   plural_only?: boolean;
