@@ -1,0 +1,46 @@
+schema_version: 2
+phase:
+  number: 4
+  title: '[manual] UX direction, aesthetic and assets'
+  tag: manual
+  depends_on:
+  - 3
+  tracking_issue: null
+  files:
+  - docs/style-guide.md
+  - src/render/theme.ts
+  - public/assets/**
+tasks:
+- number: 1
+  title: Decide the look on the playable build
+  steps:
+  - id: P4.T1.S1
+    text: |-
+      Operator: run `npm run dev` in the worktree, open `/?dev=fixture`, play the fixture wave. Decide art direction: palette (light/dark), typography (a font with full German glyph coverage, legible for sentences on small ships), mothership/forms/escort visuals, background, bullet and explosion effects, whether to add sound effects.
+  - id: P4.T1.S2
+    text: |-
+      Operator: decide layouts for screens the later phases build — main menu (list picker, Study / Free play, Load list…), category picker, settings with four toggles, between-wave recap card, session summary, storage-warning banner, empty-study prompt. Sketches or reference images are enough.
+- number: 2
+  title: Commit assets and the style guide
+  steps:
+  - id: P4.T2.S1
+    text: |-
+      Operator: put licensed assets in `public/assets/` (sprites as SVG/PNG, fonts as woff2 with their licence files, optional sfx), set the real values in `src/render/theme.ts` and the sprite hook, and write `docs/style-guide.md` (tokens, per-screen layout notes, asset inventory with licences). Commit on feat/vocab-typer. Phase 5 builds the UI from this guide and does not start until it exists.
+state:
+  steps:
+    P4.T1.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P4.T1.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P4.T2.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+  completion:
+    at: null
+    note: null
+    observed_prs: []

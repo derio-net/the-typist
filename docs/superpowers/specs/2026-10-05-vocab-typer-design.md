@@ -366,3 +366,9 @@ deploying.
 Accounts or sync; any server; recall/cloze modes (copy-typing only); in-game
 LLM calls; audio other than browser TTS; mobile/touch play; other languages'
 grammar rules. The schema is German-shaped, and `lang` is recorded for later.
+
+## Implementation Plans
+
+| Plan | Repo | File | Depends on |
+|------|------|------|------------|
+| 2026-10-05-vocab-typer | `derio-net/the-typist` | `2026-10-05-vocab-typer` | — |

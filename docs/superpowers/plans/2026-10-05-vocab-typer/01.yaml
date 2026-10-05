@@ -1,0 +1,118 @@
+schema_version: 2
+phase:
+  number: 1
+  title: List format and validation (walking skeleton)
+  tag: agentic
+  depends_on: []
+  tracking_issue: null
+  acceptance:
+  - list-schema
+  skeleton: true
+  tier: standard
+  files:
+  - package.json
+  - package-lock.json
+  - tsconfig.json
+  - vite.config.ts
+  - vitest.config.ts
+  - index.html
+  - .gitignore
+  - src/main.ts
+  - src/schema/**
+  - tools/cli.ts
+  - tools/vite-plugin-lists.ts
+  - tests/schema/**
+  - tests/tools/**
+  - tests/smoke.test.ts
+  - tests/fixtures/lists/**
+  - lists/.gitkeep
+  estimate_lines: 1100
+tasks:
+- number: 1
+  title: Smoke — scaffold and a green trivial test
+  steps:
+  - id: P1.T1.S1
+    text: |-
+      Scaffold a Vite + TypeScript (strict) project in the repo root: package.json with scripts `dev` (vite), `build` (tsc --noEmit && vite build), `test` (vitest run), `typist` (tsx tools/cli.ts); devDependencies vite, typescript, vitest, jsdom, tsx; dependencies zod, yaml. index.html mounts `src/main.ts` which writes 'the-typist' into a <canvas>-free placeholder div. `vite.config.ts` sets `base: '/the-typist/'`. Add node_modules and dist to .gitignore.
+  - id: P1.T1.S2
+    text: |-
+      Write `tests/smoke.test.ts` asserting `1 + 1 === 2`; run `npm test` → 1 passed. Run `npm run build` → exits 0. Commit.
+- number: 2
+  title: Record schema (R2) with per-type rules (R3)
+  steps:
+  - id: P1.T2.S1
+    text: |-
+      RED: in `tests/schema/record.test.ts`, capture fixtures from the spec's Schema example (noun-boerse, verb-anlegen) as YAML under `tests/fixtures/lists/`; write table-driven tests: a valid `raw` record with only id/type/lemma/gloss/source_lines passes; valid enriched noun/verb/adjective/phrase pass; failures for noun with 2 examples, noun with no `plural`-tagged example (and passes when plural:null or plural_only), verb with examples in only one tense, separable verb with no `separated` example, gradable adjective without comparative/superlative example, adjective without `attributive`, phrase with 1 example, list header `rules.noun_examples: 4` raising the minimum. Run `npm test` → fail (module missing).
+  - id: P1.T2.S2
+    text: |-
+      GREEN: implement `src/schema/record.ts` — zod schemas for Gender, NounBlock (gender, plural: string|null, plural_only?, variants?), VerbBlock (separable?, auxiliary haben|sein, reflexive, parts{praesens_3sg,praeteritum,partizip2}), AdjectiveBlock (gradable, comparative?, superlative?), PhraseBlock (register?, literal?), Example {de,en,tags[]}, Record (id, type, lemma, gloss[≥1], categories?: string[], status raw|enriched|reviewed, source_lines: int[≥1], government?, abbreviation?, source_note?, type block keyed by type, examples?). Export `RECOGNISED_TAGS` and a `checkRecordRules(record, rules)` used in a `superRefine` that only runs for enriched/reviewed. Export inferred TS types. `npm test` → pass.
+  - id: P1.T2.S3
+    text: |-
+      REFACTOR: keep each per-type rule a small named function in `src/schema/rules.ts` with its error message; tests stay green.
+- number: 3
+  title: Typeability and list-level checks (R1, R3)
+  steps:
+  - id: P1.T3.S1
+    text: |-
+      RED: `tests/schema/typeable.test.ts` — `normaliseTyped` maps ’‘→', „“”«»→", –—→-, ₂→2; `isTypeable` accepts 'Die Börse schloss gestern.' and 'CO₂-Ausstoß', rejects 'Sehr geehrte(r)...', 'dass…', a string with '·' and with an emoji. Enriched record whose example contains '·' fails validation naming the example index. `tests/schema/list.test.ts` — duplicate ids fail; record naming an undeclared category fails; list declaring categories with an uncategorised record fails; list without categories and records without categories passes.
+  - id: P1.T3.S2
+    text: |-
+      GREEN: implement `src/schema/typeable.ts` (EQUIVALENCES table exported for reuse by the engine; allowed charset `[A-Za-zÄÖÜäöüß0-9 .,;:!?'"()\-/%&+]`; reject `(r)`, `(e)`, `...`, `…`) and `src/schema/list.ts` (List = {schema:1, list{id,title,lang,gloss_lang,rules?}, categories?[{id,title,order}], records[]} with list-level superRefine). Typeability applies to enriched/reviewed display text, forms text and examples[].de (display/forms derivation lives in `src/schema/display.ts`: `displayForm(record)`, `formsText(record)|null` per the spec's Display forms table, separator ', '). Add display tests: noun variant 'der Anleger / die Anlegerin', reflexive 'sich anmelden', verb forms 'legte an, hat angelegt', adjective forms only when gradable, no forms for plural_only/plural:null/phrase. `npm test` → pass.
+  - id: P1.T3.S3
+    text: |-
+      REFACTOR: export a single `parseList(text: string): {ok:true,list}|{ok:false,errors:string[]}` from `src/schema/index.ts` formatting errors as `records[12] (verb-anlegen): <message>`; tests green.
+- number: 4
+  title: validate CLI and Vite list plugin (R1, R11 build half)
+  steps:
+  - id: P1.T4.S1
+    text: |-
+      RED: `tests/tools/validate.test.ts` runs `validate` on a valid fixture (exit 0, prints 'ok <file> (N records)') and an invalid fixture (exit 1, each error line prefixed with the file name). `tests/tools/vite-plugin.test.ts` calls the plugin's `transform` on a valid YAML (returns `export default {...}` JSON) and on an invalid one (throws an error naming file and record).
+  - id: P1.T4.S2
+    text: |-
+      GREEN: implement `tools/cli.ts` with a `validate <files…>` subcommand (plain argv parsing, no framework) and `tools/vite-plugin-lists.ts` (transform for `/lists/*.yaml` using `parseList`); register the plugin in vite.config.ts. Add `lists/.gitkeep`. `npm test` and `npm run build` → pass. Commit.
+state:
+  steps:
+    P1.T1.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T1.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T2.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T2.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T2.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T3.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T3.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T3.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T4.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T4.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+  completion:
+    at: null
+    note: null
+    observed_prs: []

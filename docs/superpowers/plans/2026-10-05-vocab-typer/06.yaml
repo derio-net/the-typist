@@ -1,0 +1,73 @@
+schema_version: 2
+phase:
+  number: 6
+  title: List loading, Pages deploy, smoke test, CLAUDE.md
+  tag: agentic
+  depends_on:
+  - 5
+  tracking_issue: null
+  acceptance:
+  - list-loading
+  tier: standard
+  files:
+  - src/content/**
+  - src/ui/**
+  - tests/content/**
+  - e2e/**
+  - playwright.config.ts
+  - package.json
+  - package-lock.json
+  - .github/workflows/pages.yml
+  - CLAUDE.md
+  estimate_lines: 600
+tasks:
+- number: 1
+  title: File-picker loader (R11)
+  steps:
+  - id: P6.T1.S1
+    text: |-
+      RED: `tests/content/loader.test.ts` — `loadFromFile(file)` returns the list for a valid YAML; for invalid YAML syntax returns one error with the parse message; for a schema-invalid list returns per-record lines `records[n] (<id>): <msg>`.
+  - id: P6.T1.S2
+    text: |-
+      GREEN: implement `src/content/loader.ts` using `parseList`; add 'Load list…' to the main menu (hidden `<input type=file accept=.yaml,.yml>`), an error panel listing the messages, and on success the list joins the menu for this session with SRS keyed by its `list.id`. Tests pass.
+- number: 2
+  title: Playwright smoke
+  steps:
+  - id: P6.T2.S1
+    text: |-
+      Add `@playwright/test` (chromium only), `playwright.config.ts` running `vite preview` on the built site, script `e2e`. `e2e/smoke.spec.ts`: open the app, load `tests/fixtures/lists/two-records.yaml` with `setInputFiles`, start Free play, type every ship's text via `page.keyboard.type` (using 'ae' for one 'ä'), assert the summary shows 2 records, and read IndexedDB `typist/cards` via `page.evaluate` to assert two cards exist. Also load an invalid fixture and assert the error panel lists a `records[` line. `npm run build && npm run e2e` → pass.
+- number: 3
+  title: Pages workflow and docs (R12)
+  steps:
+  - id: P6.T3.S1
+    text: |-
+      Add `.github/workflows/pages.yml`: on push to main and workflow_dispatch; jobs: checkout, setup-node (lts, npm cache), `npm ci`, `npm test`, `npm run build`, upload-pages-artifact `dist`, deploy-pages; permissions pages:write, id-token:write. Validate the YAML parses (e.g. `npx yaml-lint` or node yaml parse).
+  - id: P6.T3.S2
+    text: |-
+      Update CLAUDE.md: replace 'Development has not begun' with the stack, npm scripts (dev, build, test, e2e, typist parse/validate), how to run one test (`npx vitest run tests/engine/typing.test.ts -t '<name>'`), the architecture layout from the spec, the skills, and correct the seed description to 20 sections numbered 1–21 (10 missing). Commit.
+state:
+  steps:
+    P6.T1.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P6.T1.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P6.T2.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P6.T3.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P6.T3.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+  completion:
+    at: null
+    note: null
+    observed_prs: []

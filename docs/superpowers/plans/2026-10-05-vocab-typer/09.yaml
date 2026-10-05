@@ -1,0 +1,49 @@
+schema_version: 2
+phase:
+  number: 9
+  title: Seed list II — enrich sections 12–21 and seed test
+  tag: agentic
+  depends_on:
+  - 8
+  tracking_issue: null
+  acceptance:
+  - seed-list
+  tier: standard
+  files:
+  - lists/de-b2-1000.yaml
+  - tests/seed.test.ts
+  estimate_lines: 9000
+tasks:
+- number: 1
+  title: Seed test (red first)
+  steps:
+  - id: P9.T1.S1
+    text: |-
+      RED: `tests/seed.test.ts` — parses `lists/de-b2-1000.yaml` with `parseList` (valid); category ids equal the 20 header slugs derived from `wordlist.raw.txt` by `tools/parse/headers.ts`; every record has status enriched; the union of records' source_lines equals the set of the 1000 line numbers in `wordlist.raw.txt` containing ' – '. Run → fails (sections 12–21 still raw).
+- number: 2
+  title: Enrich categories with order 12–21
+  steps:
+  - id: P9.T2.S1
+    text: |-
+      Following the enrich loop, enrich every remaining raw record, batch by batch, validating and committing per batch.
+  - id: P9.T2.S2
+    text: |-
+      GREEN: `npm test` (seed test included) and `npm run build` pass. Commit.
+state:
+  steps:
+    P9.T1.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P9.T2.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P9.T2.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+  completion:
+    at: null
+    note: null
+    observed_prs: []
