@@ -4973,12 +4973,16 @@ records:
       - mood
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 749
     noun:
       gender: f
       plural: Stimmungen
+    examples:
+      - { de: "Die Stimmung auf der Party war super.", en: "The atmosphere at the party was great.", tags: [singular, Präteritum] }
+      - { de: "Nach der Nachricht kippte die Stimmung im Team.", en: "After the news the mood in the team turned.", tags: [singular, Präteritum] }
+      - { de: "Musik kann unsere Stimmungen stark beeinflussen.", en: "Music can strongly influence our moods.", tags: [plural, Präsens] }
   - id: noun-laune
     type: noun
     lemma: Laune
@@ -4986,12 +4990,16 @@ records:
       - mood (casual, emotional state)
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 751
     noun:
       gender: f
       plural: Launen
+    examples:
+      - { de: "Heute hat der Chef gute Laune.", en: "The boss is in a good mood today.", tags: [singular, Präsens] }
+      - { de: "Lass deine schlechte Laune nicht an mir aus!", en: "Don't take your bad mood out on me!", tags: [singular, Imperativ] }
+      - { de: "Ich habe keine Lust mehr auf seine Launen.", en: "I've had enough of his moods.", tags: [plural, Präsens] }
   - id: noun-emotion
     type: noun
     lemma: Emotion
@@ -4999,12 +5007,16 @@ records:
       - emotion
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 755
     noun:
       gender: f
       plural: Emotionen
+    examples:
+      - { de: "Er zeigt seine Emotionen selten in der Öffentlichkeit.", en: "He rarely shows his emotions in public.", tags: [plural, Präsens] }
+      - { de: "Wut ist eine starke Emotion.", en: "Anger is a strong emotion.", tags: [singular, Präsens] }
+      - { de: "Die Debatte wurde von Emotionen bestimmt.", en: "The debate was dominated by emotions.", tags: [plural, Passiv] }
   - id: noun-gefuehl
     type: noun
     lemma: Gefühl
@@ -5012,12 +5024,16 @@ records:
       - feeling
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 757
     noun:
       gender: n
       plural: Gefühle
+    examples:
+      - { de: "Ich habe ein gutes Gefühl bei dieser Entscheidung.", en: "I have a good feeling about this decision.", tags: [singular, Präsens] }
+      - { de: "Es fällt ihm schwer, über seine Gefühle zu sprechen.", en: "He finds it hard to talk about his feelings.", tags: [plural, Präsens] }
+      - { de: "Nach dem Gespräch hatte sie ein komisches Gefühl.", en: "After the conversation she had a strange feeling.", tags: [singular, Präteritum] }
   - id: verb-empfinden
     type: verb
     lemma: empfinden
@@ -5026,9 +5042,20 @@ records:
       - perceive
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 759
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "empfindet"
+        praeteritum: "empfand"
+        partizip2: "empfunden"
+    examples:
+      - { de: "Viele Menschen empfinden den Winter als anstrengend.", en: "Many people find winter exhausting.", tags: [Präsens] }
+      - { de: "Ich habe die Bemerkung als unhöflich empfunden.", en: "I perceived the remark as rude.", tags: [Perfekt] }
+      - { de: "Sie empfand große Dankbarkeit für die Hilfe.", en: "She felt great gratitude for the help.", tags: [Präteritum] }
   - id: noun-zustand
     type: noun
     lemma: Zustand
@@ -5037,12 +5064,16 @@ records:
       - condition
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 761
     noun:
       gender: m
       plural: Zustände
+    examples:
+      - { de: "Der Zustand des Patienten ist stabil.", en: "The patient's condition is stable.", tags: [singular, Präsens] }
+      - { de: "In diesem Zustand solltest du nicht Auto fahren.", en: "You shouldn't drive in this state.", tags: [singular, Präsens] }
+      - { de: "In dem Viertel herrschten chaotische Zustände.", en: "Chaotic conditions prevailed in the neighbourhood.", tags: [plural, Präteritum] }
   - id: noun-stress
     type: noun
     lemma: Stress
@@ -5050,12 +5081,16 @@ records:
       - stress
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 775
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Vor den Prüfungen habe ich immer viel Stress.", en: "Before exams I'm always very stressed.", tags: [singular, Präsens] }
+      - { de: "Der Stress bei der Arbeit hat ihn krank gemacht.", en: "The stress at work made him ill.", tags: [singular, Perfekt] }
+      - { de: "Sport hilft mir, Stress abzubauen.", en: "Sport helps me to reduce stress.", tags: [singular, Präsens] }
   - id: noun-anspannung
     type: noun
     lemma: Anspannung
@@ -5063,12 +5098,16 @@ records:
       - tension
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 781
     noun:
       gender: f
       plural: Anspannungen
+    examples:
+      - { de: "Vor dem Elfmeter war die Anspannung im Stadion riesig.", en: "Before the penalty the tension in the stadium was enormous.", tags: [singular, Präteritum] }
+      - { de: "Yoga hilft gegen innere Anspannung.", en: "Yoga helps against inner tension.", tags: [singular, Präsens] }
+      - { de: "Nach Wochen voller Anspannungen brauchte sie Urlaub.", en: "After weeks full of tension she needed a holiday.", tags: [plural, Präteritum] }
   - id: noun-angst
     type: noun
     lemma: Angst
@@ -5076,12 +5115,16 @@ records:
       - fear
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 783
     noun:
       gender: f
       plural: Ängste
+    examples:
+      - { de: "Hast du Angst vor Spinnen?", en: "Are you afraid of spiders?", tags: [singular, Präsens] }
+      - { de: "Aus Angst vor Kritik sagte er nichts.", en: "For fear of criticism he said nothing.", tags: [singular, Präteritum] }
+      - { de: "Viele Menschen haben Ängste vor der Zukunft.", en: "Many people have fears about the future.", tags: [plural, Präsens] }
   - id: noun-panik
     type: noun
     lemma: Panik
@@ -5089,12 +5132,16 @@ records:
       - panic
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 789
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Als das Feuer ausbrach, brach Panik aus.", en: "When the fire broke out, panic broke out.", tags: [singular, Präteritum] }
+      - { de: "Keine Panik, wir schaffen das schon!", en: "Don't panic, we'll manage!", tags: [singular] }
+      - { de: "Sie geriet in Panik, weil sie ihren Pass nicht fand.", en: "She panicked because she couldn't find her passport.", tags: [singular, Präteritum] }
   - id: noun-unsicherheit
     type: noun
     lemma: Unsicherheit
@@ -5102,12 +5149,16 @@ records:
       - insecurity
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 791
     noun:
       gender: f
       plural: Unsicherheiten
+    examples:
+      - { de: "Die Unsicherheit auf den Märkten ist groß.", en: "Uncertainty on the markets is high.", tags: [singular, Präsens] }
+      - { de: "Seine Unsicherheit merkt man ihm sofort an.", en: "You notice his insecurity immediately.", tags: [singular, Präsens] }
+      - { de: "Es gibt noch einige Unsicherheiten bei der Planung.", en: "There are still some uncertainties in the planning.", tags: [plural, Präsens] }
   - id: noun-selbstzweifel
     type: noun
     lemma: Selbstzweifel
@@ -5115,12 +5166,16 @@ records:
       - self-doubt
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 797
     noun:
       gender: m
       plural: Selbstzweifel
+    examples:
+      - { de: "Trotz ihres Erfolgs leidet sie unter Selbstzweifeln.", en: "Despite her success she suffers from self-doubt.", tags: [plural, Präsens] }
+      - { de: "Ein gewisser Selbstzweifel kann auch gesund sein.", en: "A certain amount of self-doubt can also be healthy.", tags: [singular, Präsens] }
+      - { de: "Nach der Absage kamen die Selbstzweifel zurück.", en: "After the rejection the self-doubt came back.", tags: [plural, Präteritum] }
   - id: verb-verunsichern
     type: verb
     lemma: verunsichern
@@ -5128,9 +5183,20 @@ records:
       - to unsettle
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 799
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "verunsichert"
+        praeteritum: "verunsicherte"
+        partizip2: "verunsichert"
+    examples:
+      - { de: "Die widersprüchlichen Nachrichten verunsichern die Bevölkerung.", en: "The contradictory news unsettles the population.", tags: [Präsens] }
+      - { de: "Seine Kritik hat mich ziemlich verunsichert.", en: "His criticism unsettled me quite a bit.", tags: [Perfekt] }
+      - { de: "Die Frage des Prüfers verunsicherte den Studenten.", en: "The examiner's question unsettled the student.", tags: [Präteritum] }
   - id: noun-schock
     type: noun
     lemma: Schock
@@ -5138,12 +5204,16 @@ records:
       - shock
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 801
     noun:
       gender: m
       plural: Schocks
+    examples:
+      - { de: "Die Nachricht war ein Schock für die ganze Familie.", en: "The news was a shock for the whole family.", tags: [singular, Präteritum] }
+      - { de: "Nach dem Unfall stand sie unter Schock.", en: "After the accident she was in shock.", tags: [singular, Präteritum] }
+      - { de: "Die Wirtschaft hat mehrere Schocks hintereinander erlebt.", en: "The economy has experienced several shocks in a row.", tags: [plural, Perfekt] }
   - id: noun-depression
     type: noun
     lemma: Depression
@@ -5151,12 +5221,16 @@ records:
       - depression
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 809
     noun:
       gender: f
       plural: Depressionen
+    examples:
+      - { de: "Sie leidet seit Jahren an einer Depression.", en: "She has been suffering from depression for years.", tags: [singular, Präsens] }
+      - { de: "Depressionen werden oft zu spät erkannt.", en: "Depression is often recognised too late.", tags: [plural, Passiv] }
+      - { de: "Mit Therapie hat er die Depression überwunden.", en: "With therapy he overcame his depression.", tags: [singular, Perfekt] }
   - id: noun-therapie
     type: noun
     lemma: Therapie
@@ -5165,13 +5239,17 @@ records:
     categories:
       - emotions-and-psychology
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 811
       - 1359
     noun:
       gender: f
       plural: Therapien
+    examples:
+      - { de: "Die Therapie hat mir sehr geholfen.", en: "The therapy helped me a lot.", tags: [singular, Perfekt] }
+      - { de: "Er macht seit einem Jahr eine Therapie.", en: "He has been in therapy for a year.", tags: [singular, Präsens] }
+      - { de: "Die Kosten für die Therapien übernimmt die Krankenkasse.", en: "The health insurance covers the costs of the therapies.", tags: [plural, Präsens] }
   - id: noun-therapeut
     type: noun
     lemma: Therapeut
@@ -5179,7 +5257,7 @@ records:
       - therapist
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 813
     noun:
@@ -5189,6 +5267,10 @@ records:
         - lemma: Therapeutin
           gender: f
           plural: Therapeutinnen
+    examples:
+      - { de: "Mein Therapeut hat mir eine Übung gegen Stress gezeigt.", en: "My therapist showed me an exercise against stress.", tags: [singular, Perfekt] }
+      - { de: "Auf dem Land gibt es zu wenige Therapeuten.", en: "There are too few therapists in rural areas.", tags: [plural, Präsens] }
+      - { de: "Sie arbeitet als Therapeutin in einer Klinik.", en: "She works as a therapist in a clinic.", tags: [singular, Präsens] }
   - id: noun-psychologe
     type: noun
     lemma: Psychologe
@@ -5196,7 +5278,7 @@ records:
       - psychologist
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 815
     noun:
@@ -5206,6 +5288,10 @@ records:
         - lemma: Psychologin
           gender: f
           plural: Psychologinnen
+    examples:
+      - { de: "Der Psychologe erklärte, warum wir Angst haben.", en: "The psychologist explained why we feel fear.", tags: [singular, Präteritum] }
+      - { de: "Nach dem Unfall sprach sie mit einer Psychologin.", en: "After the accident she talked to a psychologist.", tags: [singular, Präteritum] }
+      - { de: "Psychologen untersuchen, wie Menschen Entscheidungen treffen.", en: "Psychologists study how people make decisions.", tags: [plural, Präsens] }
   - id: noun-beratung
     type: noun
     lemma: Beratung
@@ -5213,12 +5299,16 @@ records:
       - counselling
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 817
     noun:
       gender: f
       plural: Beratungen
+    examples:
+      - { de: "Die Beratung ist kostenlos und anonym.", en: "The counselling is free and anonymous.", tags: [singular, Präsens] }
+      - { de: "Nach der Trennung hat sie eine Beratung gemacht.", en: "After the break-up she went to counselling.", tags: [singular, Perfekt] }
+      - { de: "Die Stadt bietet Beratungen für Familien an.", en: "The city offers counselling for families.", tags: [plural, Präsens] }
   - id: noun-rueckzug
     type: noun
     lemma: Rückzug
@@ -5226,22 +5316,38 @@ records:
       - withdrawal
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 819
     noun:
       gender: m
       plural: Rückzüge
+    examples:
+      - { de: "Sozialer Rückzug kann ein Zeichen für eine Depression sein.", en: "Social withdrawal can be a sign of depression.", tags: [singular, Präsens] }
+      - { de: "Der Rückzug der Truppen begann im Herbst.", en: "The withdrawal of the troops began in the autumn.", tags: [singular, Präteritum] }
+      - { de: "Nach mehreren Rückzügen aus der Politik kam er doch zurück.", en: "After several withdrawals from politics he came back after all.", tags: [plural, Präteritum] }
   - id: verb-sich-zurueckziehen
     type: verb
-    lemma: sich zurückziehen
+    lemma: zurückziehen
     gloss:
       - to withdraw
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 821
+    verb:
+      separable: zurück
+      auxiliary: haben
+      reflexive: true
+      parts:
+        praesens_3sg: "zieht zurück"
+        praeteritum: "zog zurück"
+        partizip2: "zurückgezogen"
+    examples:
+      - { de: "Wenn er traurig ist, zieht er sich zurück.", en: "When he's sad, he withdraws.", tags: [separated, Präsens] }
+      - { de: "Nach der Niederlage hat sie sich aus der Politik zurückgezogen.", en: "After the defeat she withdrew from politics.", tags: [Perfekt] }
+      - { de: "Die Kinder zogen sich in ihre Zimmer zurück.", en: "The children withdrew to their rooms.", tags: [separated, Präteritum] }
   - id: noun-neid
     type: noun
     lemma: Neid
@@ -5249,12 +5355,16 @@ records:
       - envy
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 833
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Aus Neid erzählte sie Lügen über ihre Kollegin.", en: "Out of envy she told lies about her colleague.", tags: [singular, Präteritum] }
+      - { de: "Sein Erfolg hat viel Neid geweckt.", en: "His success has aroused a lot of envy.", tags: [singular, Perfekt] }
+      - { de: "Neid ist ein schlechter Ratgeber.", en: "Envy is a bad adviser.", tags: [singular, Präsens] }
   - id: noun-eifersucht
     type: noun
     lemma: Eifersucht
@@ -5262,12 +5372,16 @@ records:
       - jealousy
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 835
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Seine Eifersucht macht die Beziehung kaputt.", en: "His jealousy is ruining the relationship.", tags: [singular, Präsens] }
+      - { de: "Sie konnte ihre Eifersucht kaum verbergen.", en: "She could hardly hide her jealousy.", tags: [singular, Präteritum] }
+      - { de: "Aus Eifersucht hat er ihr Handy kontrolliert.", en: "Out of jealousy he checked her phone.", tags: [singular, Perfekt] }
   - id: noun-empathie
     type: noun
     lemma: Empathie
@@ -5275,12 +5389,16 @@ records:
       - empathy
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 837
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Ärzte brauchen viel Empathie im Umgang mit Patienten.", en: "Doctors need a lot of empathy in dealing with patients.", tags: [singular, Präsens] }
+      - { de: "Mit großer Empathie hörte sie ihm zu.", en: "She listened to him with great empathy.", tags: [singular, Präteritum] }
+      - { de: "Empathie kann man bis zu einem gewissen Grad lernen.", en: "Empathy can be learned to a certain extent.", tags: [singular, Präsens] }
   - id: noun-reizbarkeit
     type: noun
     lemma: Reizbarkeit
@@ -5288,12 +5406,16 @@ records:
       - irritability
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 841
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Schlafmangel führt oft zu Reizbarkeit.", en: "Lack of sleep often leads to irritability.", tags: [singular, Präsens] }
+      - { de: "Seine Reizbarkeit fiel allen Kollegen auf.", en: "All his colleagues noticed his irritability.", tags: [singular, Präteritum] }
+      - { de: "Erhöhte Reizbarkeit kann ein Symptom von Stress sein.", en: "Increased irritability can be a symptom of stress.", tags: [singular, Präsens] }
   - id: noun-burnout
     type: noun
     lemma: Burnout
