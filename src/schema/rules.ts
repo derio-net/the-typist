@@ -1,4 +1,6 @@
 import type { VocabRecord } from './record';
+import { displayForm, formsText } from './display';
+import { isTypeable } from './typeable';
 
 export const RECOGNISED_TAGS = [
   'singular', 'plural', 'separated', 'attributive', 'comparative', 'superlative',
@@ -66,10 +68,21 @@ export function checkRecordRules(r: VocabRecord, rules: RuleOptions = {}): strin
   return BY_TYPE[r.type](r, { ...DEFAULTS, ...rules });
 }
 
+/** Typeability messages (R3) for an enriched/reviewed record. */
+export function checkTypeable(r: VocabRecord): string[] {
+  const out: string[] = [];
+  const check = (where: string, text: string | null) => {
+    if (text !== null && !isTypeable(text)) out.push(`${where} is not typeable: '${text}'`);
+  };
+  check('display form', displayForm(r));
+  check('forms', formsText(r));
+  (r.examples ?? []).forEach((e, i) => check(`examples[${i}].de`, e.de));
+  return out;
+}
+
 /** Checks that apply only to enriched/reviewed records. */
 export function checkEnriched(r: VocabRecord, rules: RuleOptions = {}): string[] {
   if (r.status === 'raw') return [];
   if (r.type !== 'phrase' && !r[r.type]) return [`${r.type} record needs a '${r.type}' block`];
-  return checkRecordRules(r, rules);
+  return [...checkRecordRules(r, rules), ...checkTypeable(r)];
 }
-
