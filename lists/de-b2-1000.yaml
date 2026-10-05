@@ -10165,15 +10165,20 @@ records:
     type: noun
     lemma: soziale Aufstieg
     gloss:
-      - social mobility
+      - upward social mobility
+      - social advancement
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1518
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Bildung gilt als Schlüssel zum sozialen Aufstieg.", en: "Education is seen as the key to upward social mobility.", tags: [singular, Präsens] }
+      - { de: "Der soziale Aufstieg ist für Arbeiterkinder oft schwer.", en: "Upward mobility is often difficult for working-class children.", tags: [singular, Präsens] }
+      - { de: "Ihr Vater hatte den sozialen Aufstieg aus eigener Kraft geschafft.", en: "Her father had moved up in society by his own efforts.", tags: [singular, Plusquamperfekt] }
   - id: noun-soziale-gerechtigkeit
     type: noun
     lemma: soziale Gerechtigkeit
@@ -10181,12 +10186,16 @@ records:
       - social justice
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1520
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Partei setzt sich für mehr soziale Gerechtigkeit ein.", en: "The party campaigns for more social justice.", tags: [singular, Präsens] }
+      - { de: "Über soziale Gerechtigkeit wird im Wahlkampf viel gesprochen.", en: "Social justice is talked about a lot during the election campaign.", tags: [singular, Passiv, Präsens] }
+      - { de: "Viele junge Leute gingen für soziale Gerechtigkeit auf die Straße.", en: "Many young people took to the streets for social justice.", tags: [singular, Präteritum] }
   - id: noun-wohlstand
     type: noun
     lemma: Wohlstand
@@ -10194,12 +10203,16 @@ records:
       - prosperity
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1522
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der Wohlstand in Deutschland ist nach dem Krieg schnell gewachsen.", en: "Prosperity in Germany grew rapidly after the war.", tags: [singular, Perfekt] }
+      - { de: "Nicht alle profitieren gleichermaßen vom Wohlstand.", en: "Not everyone benefits equally from prosperity.", tags: [singular, Präsens] }
+      - { de: "Viele fürchten, dass ihre Kinder in weniger Wohlstand leben werden.", en: "Many fear that their children will live with less prosperity.", tags: [singular, Futur I] }
   - id: noun-umweltethik
     type: noun
     lemma: Umweltethik
@@ -10207,12 +10220,16 @@ records:
       - environmental ethics
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1528
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Umweltethik fragt, welche Pflichten wir gegenüber der Natur haben.", en: "Environmental ethics asks what duties we have towards nature.", tags: [singular, Präsens] }
+      - { de: "Im Seminar haben wir Texte zur Umweltethik gelesen.", en: "In the seminar we read texts on environmental ethics.", tags: [singular, Perfekt] }
+      - { de: "Fragen der Umweltethik werden in der Politik immer wichtiger.", en: "Questions of environmental ethics are becoming more and more important in politics.", tags: [singular, Präsens] }
   - id: noun-klimaschutz
     type: noun
     lemma: Klimaschutz
@@ -10220,12 +10237,16 @@ records:
       - climate protection
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1530
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der Klimaschutz muss schneller vorankommen.", en: "Climate protection has to make faster progress.", tags: [singular, Präsens] }
+      - { de: "Die Stadt investiert Millionen in den Klimaschutz.", en: "The city is investing millions in climate protection.", tags: [singular, Präsens] }
+      - { de: "Für mehr Klimaschutz demonstrierten Tausende Schüler.", en: "Thousands of pupils demonstrated for more climate action.", tags: [singular, Präteritum] }
   - id: noun-generationengerechtigkeit
     type: noun
     lemma: Generationengerechtigkeit
@@ -10233,12 +10254,16 @@ records:
       - intergenerational justice
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1532
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Bei der Rentenreform geht es auch um Generationengerechtigkeit.", en: "The pension reform is also about intergenerational fairness.", tags: [singular, Präsens] }
+      - { de: "Hohe Staatsschulden gefährden die Generationengerechtigkeit.", en: "High national debt threatens intergenerational justice.", tags: [singular, Präsens] }
+      - { de: "Die Jugendorganisation hat mehr Generationengerechtigkeit gefordert.", en: "The youth organisation has called for more intergenerational justice.", tags: [singular, Perfekt] }
   - id: noun-tierethik
     type: noun
     lemma: Tierethik
@@ -10246,12 +10271,16 @@ records:
       - animal ethics
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1534
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Tierethik fragt, ob wir Tiere essen dürfen.", en: "Animal ethics asks whether we are allowed to eat animals.", tags: [singular, Präsens] }
+      - { de: "Sie schrieb ihre Doktorarbeit über Tierethik.", en: "She wrote her doctoral thesis on animal ethics.", tags: [singular, Präteritum] }
+      - { de: "In der Tierethik gibt es sehr unterschiedliche Positionen.", en: "There are very different positions in animal ethics.", tags: [singular, Präsens] }
   - id: noun-mitgefuehl
     type: noun
     lemma: Mitgefühl
@@ -10259,12 +10288,16 @@ records:
       - compassion
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1536
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Ich möchte Ihnen mein tiefes Mitgefühl aussprechen.", en: "I would like to express my deepest sympathy.", tags: [singular, Präsens] }
+      - { de: "Die Ärztin behandelte die Patienten mit viel Mitgefühl.", en: "The doctor treated the patients with great compassion.", tags: [singular, Präteritum] }
+      - { de: "Mitgefühl kann man nicht vorschreiben.", en: "You cannot prescribe compassion.", tags: [singular, Präsens] }
   - id: noun-spende
     type: noun
     lemma: Spende
@@ -10272,12 +10305,16 @@ records:
       - donation
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1540
     noun:
       gender: f
       plural: Spenden
+    examples:
+      - { de: "Jede Spende hilft den Kindern in der Region.", en: "Every donation helps the children in the region.", tags: [singular, Präsens] }
+      - { de: "Der Verein finanziert sich ausschließlich durch Spenden.", en: "The association is financed solely by donations.", tags: [plural, Präsens] }
+      - { de: "Nach dem Erdbeben gingen Spenden in Millionenhöhe ein.", en: "After the earthquake, donations worth millions came in.", tags: [plural, Präteritum] }
   - id: verb-spenden
     type: verb
     lemma: spenden
@@ -10285,9 +10322,20 @@ records:
       - to donate
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1542
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "spendet"
+        praeteritum: "spendete"
+        partizip2: "gespendet"
+    examples:
+      - { de: "Sie spendet jeden Monat an eine Hilfsorganisation.", en: "She donates to an aid organisation every month.", tags: [Präsens] }
+      - { de: "Ich habe letztes Jahr zum ersten Mal Blut gespendet.", en: "Last year I gave blood for the first time.", tags: [Perfekt] }
+      - { de: "Die Firma spendete den Gewinn des Abends einem Kinderheim.", en: "The company donated the evening's proceeds to a children's home.", tags: [Präteritum] }
   - id: noun-konsum
     type: noun
     lemma: Konsum
@@ -10295,12 +10343,16 @@ records:
       - consumption
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1557
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der Konsum von Fleisch ist in Deutschland gesunken.", en: "Meat consumption in Germany has fallen.", tags: [singular, Perfekt] }
+      - { de: "Übermäßiger Konsum schadet der Umwelt.", en: "Excessive consumption harms the environment.", tags: [singular, Präsens] }
+      - { de: "Die Regierung will den privaten Konsum ankurbeln.", en: "The government wants to boost private consumption.", tags: [singular, Präsens] }
   - id: noun-verbraucher
     type: noun
     lemma: Verbraucher
@@ -10308,7 +10360,7 @@ records:
       - consumer
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1559
     noun:
@@ -10318,6 +10370,10 @@ records:
         - lemma: Verbraucherin
           gender: f
           plural: Verbraucherinnen
+    examples:
+      - { de: "Der Verbraucher hat ein Recht auf klare Informationen.", en: "The consumer has a right to clear information.", tags: [singular, Präsens] }
+      - { de: "Die Verbraucher müssen für Strom bald mehr bezahlen.", en: "Consumers will soon have to pay more for electricity.", tags: [plural, Präsens] }
+      - { de: "Eine Verbraucherin hatte sich über die Verpackung beschwert.", en: "A consumer had complained about the packaging.", tags: [singular, Plusquamperfekt] }
   - id: noun-konsument
     type: noun
     lemma: Konsument
@@ -10325,7 +10381,7 @@ records:
       - consumer (alternative term)
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1561
     noun:
@@ -10335,6 +10391,10 @@ records:
         - lemma: Konsumentin
           gender: f
           plural: Konsumentinnen
+    examples:
+      - { de: "Der Konsument entscheidet am Ende, was gekauft wird.", en: "In the end, the consumer decides what is bought.", tags: [singular, Präsens] }
+      - { de: "Junge Konsumenten achten stärker auf Nachhaltigkeit.", en: "Young consumers pay more attention to sustainability.", tags: [plural, Präsens] }
+      - { de: "Die Werbung richtet sich vor allem an Konsumentinnen über 50.", en: "The advertising is aimed mainly at female consumers over 50.", tags: [plural, Präsens] }
   - id: noun-konsumverhalten
     type: noun
     lemma: Konsumverhalten
@@ -10342,12 +10402,16 @@ records:
       - consumer behaviour
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1563
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Das Konsumverhalten der Deutschen hat sich verändert.", en: "The consumer behaviour of Germans has changed.", tags: [singular, Perfekt] }
+      - { de: "Unternehmen analysieren genau unser Konsumverhalten im Internet.", en: "Companies closely analyse our consumer behaviour online.", tags: [singular, Präsens] }
+      - { de: "Durch die Inflation änderte sich das Konsumverhalten vieler Familien.", en: "Because of inflation, the spending habits of many families changed.", tags: [singular, Präteritum] }
   - id: noun-konsumgesellschaft
     type: noun
     lemma: Konsumgesellschaft
@@ -10355,12 +10419,16 @@ records:
       - consumer society
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1565
     noun:
       gender: f
       plural: Konsumgesellschaften
+    examples:
+      - { de: "Wir leben in einer Konsumgesellschaft.", en: "We live in a consumer society.", tags: [singular, Präsens] }
+      - { de: "Der Film kritisiert die moderne Konsumgesellschaft.", en: "The film criticises modern consumer society.", tags: [singular, Präsens] }
+      - { de: "Westliche Konsumgesellschaften produzieren enorme Mengen Müll.", en: "Western consumer societies produce enormous amounts of waste.", tags: [plural, Präsens] }
   - id: noun-bedarf
     type: noun
     lemma: Bedarf
@@ -10369,13 +10437,17 @@ records:
       - demand (for)
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1567
     noun:
       gender: m
       plural: null
     government: an + D
+    examples:
+      - { de: "Der Bedarf an Pflegekräften steigt jedes Jahr.", en: "The need for nursing staff increases every year.", tags: [singular, Präsens] }
+      - { de: "Bei Bedarf können Sie uns jederzeit anrufen.", en: "If necessary, you can call us at any time.", tags: [singular, Präsens] }
+      - { de: "Die Firma hatte den Bedarf an Masken völlig unterschätzt.", en: "The company had completely underestimated the demand for masks.", tags: [singular, Plusquamperfekt] }
   - id: noun-beduerfnis
     type: noun
     lemma: Bedürfnis
@@ -15656,9 +15728,14 @@ records:
       - moral
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1450
+    adjective:
+      gradable: false
+    examples:
+      - { de: "Wir haben eine moralische Pflicht, den Flüchtlingen zu helfen.", en: "We have a moral duty to help the refugees.", tags: [attributive, Präsens] }
+      - { de: "Rechtlich ist das erlaubt, aber moralisch ist es fragwürdig.", en: "Legally it's allowed, but morally it's questionable.", tags: [Präsens] }
   - id: phrase-ethisch-vertretbar
     type: phrase
     lemma: ethisch vertretbar
@@ -15666,29 +15743,54 @@ records:
       - ethically acceptable
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1452
+    phrase:
+      register: formal
+    examples:
+      - { de: "Ist es ethisch vertretbar, Tiere für Kosmetik zu testen?", en: "Is it ethically acceptable to test cosmetics on animals?", tags: [Präsens] }
+      - { de: "Die Kommission hielt die Studie für ethisch nicht vertretbar.", en: "The committee considered the study ethically unacceptable.", tags: [Präteritum] }
+      - { de: "Nur ethisch vertretbare Projekte werden gefördert.", en: "Only ethically justifiable projects receive funding.", tags: [Passiv, Präsens] }
   - id: adjective-gerecht
     type: adjective
     lemma: gerecht
     gloss:
       - just
+      - fair
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1456
+    adjective:
+      gradable: true
+      comparative: "gerechter"
+      superlative: "am gerechtesten"
+    examples:
+      - { de: "Das Urteil war hart, aber gerecht.", en: "The verdict was harsh but fair.", tags: [Präsens] }
+      - { de: "Viele wünschen sich eine gerechte Verteilung des Wohlstands.", en: "Many people want a fair distribution of wealth.", tags: [attributive, Präsens] }
+      - { de: "Das neue Steuersystem soll gerechter sein als das alte.", en: "The new tax system is supposed to be fairer than the old one.", tags: [comparative, Präsens] }
   - id: adjective-ungerecht
     type: adjective
     lemma: ungerecht
     gloss:
       - unjust
+      - unfair
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1456
+    adjective:
+      gradable: true
+      comparative: "ungerechter"
+      superlative: "am ungerechtesten"
+    examples:
+      - { de: "Ich finde die Entscheidung total ungerecht.", en: "I think the decision is totally unfair.", tags: [Präsens] }
+      - { de: "Er fühlte sich von seinem Chef ungerecht behandelt.", en: "He felt he had been treated unfairly by his boss.", tags: [Präteritum] }
+      - { de: "Gegen das ungerechte Urteil legte sie Berufung ein.", en: "She appealed against the unjust verdict.", tags: [attributive, Präteritum] }
+      - { de: "Am ungerechtesten fand ich, dass niemand uns gefragt hat.", en: "What I found most unfair was that nobody asked us.", tags: [superlative, Präteritum] }
   - id: phrase-verantwortlich-sein
     type: phrase
     lemma: verantwortlich sein
@@ -15696,10 +15798,16 @@ records:
       - to be responsible (for)
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1462
     government: für
+    phrase:
+      register: neutral
+    examples:
+      - { de: "Wer ist für dieses Projekt verantwortlich?", en: "Who is responsible for this project?", tags: [Präsens] }
+      - { de: "Die Eltern sind für die Sicherheit ihrer Kinder verantwortlich.", en: "Parents are responsible for their children's safety.", tags: [Präsens] }
+      - { de: "Damals war sie für die Finanzen der Firma verantwortlich.", en: "At that time she was responsible for the company's finances.", tags: [Präteritum] }
   - id: adjective-tolerant
     type: adjective
     lemma: tolerant
@@ -15707,9 +15815,16 @@ records:
       - tolerant
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1484
+    adjective:
+      gradable: true
+      comparative: "toleranter"
+      superlative: "am tolerantesten"
+    examples:
+      - { de: "Sie ist ein sehr toleranter Mensch.", en: "She is a very tolerant person.", tags: [attributive, Präsens] }
+      - { de: "Die Gesellschaft ist in den letzten Jahrzehnten toleranter geworden.", en: "Society has become more tolerant in recent decades.", tags: [comparative, Perfekt] }
   - id: adjective-intolerant
     type: adjective
     lemma: intolerant
@@ -15717,31 +15832,54 @@ records:
       - intolerant
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1484
+    adjective:
+      gradable: true
+      comparative: "intoleranter"
+      superlative: "am intolerantesten"
+    examples:
+      - { de: "Er reagiert sehr intolerant auf Kritik.", en: "He reacts very intolerantly to criticism.", tags: [Präsens] }
+      - { de: "Intolerante Äußerungen haben in der Schule keinen Platz.", en: "Intolerant remarks have no place at school.", tags: [attributive, Präsens] }
+      - { de: "Mit dem Alter wurde er immer intoleranter.", en: "As he got older he became more and more intolerant.", tags: [comparative, Präteritum] }
   - id: adjective-ehrenamtlich
     type: adjective
     lemma: ehrenamtlich
     gloss:
       - voluntary
+      - unpaid
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1494
+    adjective:
+      gradable: false
+    examples:
+      - { de: "Sie arbeitet ehrenamtlich in einer Suppenküche.", en: "She works as a volunteer in a soup kitchen.", tags: [Präsens] }
+      - { de: "Ohne ehrenamtliche Helfer gäbe es das Festival nicht.", en: "Without volunteer helpers there would be no festival.", tags: [attributive, Konjunktiv II] }
   - id: adjective-nachhaltig
     type: adjective
     lemma: nachhaltig
     gloss:
       - sustainable
+      - lasting
     categories:
       - ethics-and-society
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 1524
       - 2160
+    adjective:
+      gradable: true
+      comparative: "nachhaltiger"
+      superlative: "am nachhaltigsten"
+    examples:
+      - { de: "Wir setzen auf nachhaltige Produkte aus der Region.", en: "We focus on sustainable products from the region.", tags: [attributive, Präsens] }
+      - { de: "Die Firma will in Zukunft nachhaltiger produzieren.", en: "In future, the company wants to produce more sustainably.", tags: [comparative, Präsens] }
+      - { de: "Der Skandal hat das Vertrauen nachhaltig beschädigt.", en: "The scandal has done lasting damage to trust.", tags: [Perfekt] }
   - id: phrase-die-verantwortung-uebernehmen
     type: phrase
     lemma: die Verantwortung übernehmen
