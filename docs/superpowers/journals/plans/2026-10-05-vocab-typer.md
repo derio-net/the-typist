@@ -256,3 +256,150 @@ world.ts was written in one pass with shared helpers (spawn, shipDone, finish); 
 ### no-refactor-p3-t4 · discovery · no-refactor-because P3.T4 (phase 3)
 
 renderer/theme/dev page are new code with no repetition; purity test already guards the theme boundary
+
+<!-- fr:journal kind=finding scope=plan id=p3-r1 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=in -->
+### p3-r1 · finding [open] (reviewer: in scope) · Escort x-clamp used a 9px/char estimate; ships spawned off the left edge (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r2 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=in -->
+### p3-r2 · finding [open] (reviewer: in scope) · Child placement had no collision handling (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r3 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=in -->
+### p3-r3 · finding [open] (reviewer: in scope) · Forms ship spawned near the player line escaped unavoidably (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r4 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=in -->
+### p3-r4 · finding [open] (reviewer: in scope) · advance() dropped intermediate ticks' events (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r5 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=in -->
+### p3-r5 · finding [open] (reviewer: in scope) · Keyboard cleared input.value mid-composition (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r6 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=out -->
+### p3-r6 · finding [open] (reviewer: out of scope) · Pending o then precomposed ö stays a typo until e (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r7 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=in -->
+### p3-r7 · finding [open] (reviewer: in scope) · Renderer magic numbers; unused theme tokens (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r8 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=out -->
+### p3-r8 · finding [open] (reviewer: out of scope) · No typo / pending-digraph feedback (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r9 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=out -->
+### p3-r9 · finding [open] (reviewer: out of scope) · No devicePixelRatio scaling / responsive fit (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r10 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=in -->
+### p3-r10 · finding [open] (reviewer: in scope) · Synchronous refocus in blur ignored by Firefox (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r11 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=in -->
+### p3-r11 · finding [open] (reviewer: in scope) · favicon 404 (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r12 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=out -->
+### p3-r12 · finding [open] (reviewer: out of scope) · ‘ ’ ) not pre-typed (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r13 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=in -->
+### p3-r13 · finding [open] (reviewer: in scope) · Missing tests (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r18 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=in -->
+### p3-r18 · finding [open] (reviewer: in scope) · Short sibling ships overtook long ones after spawn (seen in browser re-check) (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r14 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=out -->
+### p3-r14 · finding [open] (reviewer: out of scope) · world.ts imports layout metrics from render/theme (engine→render dependency) (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r15 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=out -->
+### p3-r15 · finding [open] (reviewer: out of scope) · findSlot ignores the HUD rectangle (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r16 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=out -->
+### p3-r16 · finding [open] (reviewer: out of scope) · Child boxes may touch exactly; no-slot fallback untested (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r17 created=2026-10-05T08:17:52+00:00 phase=3 state=open review_scope=out -->
+### p3-r17 · finding [open] (reviewer: out of scope) · Siblings share the slowest speed, deviating from per-text speed (phase 3)
+
+<!-- fr:journal kind=review scope=plan id=p3-review created=2026-10-05T08:17:52+00:00 phase=3 -->
+### p3-review · review · phase 3 code review: with fixes; 10 fixed (incl. p3-r18 found in the post-fix browser check), 8 out of scope; reviewer re-verified fixes visually (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r1-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=fixed resolves=p3-r1 -->
+### p3-r1-resolved · finding [fixed] · resolves p3-r1: Escort x-clamp used a 9px/char estimate; ships spawned off the left edge (phase 3)
+
+Measured width injected into World (ctx.measureText in the renderer); wider-than-canvas text centred; browser re-check shows no clipping.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r2-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=fixed resolves=p3-r2 -->
+### p3-r2-resolved · finding [fixed] · resolves p3-r2: Child placement had no collision handling (phase 3)
+
+Full bounding boxes + nearest-free-slot search; tests at three mothership heights.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r3-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=fixed resolves=p3-r3 -->
+### p3-r3-resolved · finding [fixed] · resolves p3-r3: Forms ship spawned near the player line escaped unavoidably (phase 3)
+
+All children capped at playerY - speed*minReactionS; test destroys a mothership 5px above the line.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r4-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=fixed resolves=p3-r4 -->
+### p3-r4-resolved · finding [fixed] · resolves p3-r4: advance() dropped intermediate ticks' events (phase 3)
+
+Events accumulated across steps; multi-step escape test.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r5-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=fixed resolves=p3-r5 -->
+### p3-r5-resolved · finding [fixed] · resolves p3-r5: Keyboard cleared input.value mid-composition (phase 3)
+
+Early return on composing events, clear only on compositionend/non-composing reads, WebKit echo dedupe; jsdom tests; real Chromium IME composition (CDP imeSetComposition ¨ + insertText ö) verified in the capture script.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r6-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=open resolves=p3-r6 out_of_scope=true -->
+### p3-r6-resolved · finding [out-of-scope] · resolves p3-r6: Pending o then precomposed ö stays a typo until e (phase 3)
+
+Spec-conformant ("accepts only e"); candidate for plan 2 UX polish.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r7-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=fixed resolves=p3-r7 -->
+### p3-r7-resolved · finding [fixed] · resolves p3-r7: Renderer magic numbers; unused theme tokens (phase 3)
+
+Moved into theme sizes; unused tokens removed; purity test rejects numeric literals other than 0/1/2.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r8-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=open resolves=p3-r8 out_of_scope=true -->
+### p3-r8-resolved · finding [out-of-scope] · resolves p3-r8: No typo / pending-digraph feedback (phase 3)
+
+UX feedback belongs to the plan-2 UX direction phase.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r9-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=open resolves=p3-r9 out_of_scope=true -->
+### p3-r9-resolved · finding [out-of-scope] · resolves p3-r9: No devicePixelRatio scaling / responsive fit (phase 3)
+
+Belongs to the plan-2 UX direction phase.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r10-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=fixed resolves=p3-r10 -->
+### p3-r10-resolved · finding [fixed] · resolves p3-r10: Synchronous refocus in blur ignored by Firefox (phase 3)
+
+Deferred with setTimeout, skipped after dispose; async test.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r11-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=fixed resolves=p3-r11 -->
+### p3-r11-resolved · finding [fixed] · resolves p3-r11: favicon 404 (phase 3)
+
+<link rel="icon" href="data:,">; browser capture shows no console errors.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r12-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=open resolves=p3-r12 out_of_scope=true -->
+### p3-r12-resolved · finding [out-of-scope] · resolves p3-r12: ‘ ’ ) not pre-typed (phase 3)
+
+Not in the spec list; trivial follow-up when real content shows the need.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r13-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=fixed resolves=p3-r13 -->
+### p3-r13-resolved · finding [fixed] · resolves p3-r13: Missing tests (phase 3)
+
+Placement/bounds, multi-tick events, lock release on escape, escaped-child stats, WebKit order, pre-typed » « ” added.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r18-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=fixed resolves=p3-r18 -->
+### p3-r18-resolved · finding [fixed] · resolves p3-r18: Short sibling ships overtook long ones after spawn (seen in browser re-check) (phase 3)
+
+Children of one mothership share the group's slowest speed; test advances 2s and asserts no sibling overlap.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r14-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=open resolves=p3-r14 out_of_scope=true -->
+### p3-r14-resolved · finding [out-of-scope] · resolves p3-r14: world.ts imports layout metrics from render/theme (engine→render dependency) (phase 3)
+
+Refactor candidate for plan 2; theme.ts is DOM-free so the engine stays pure today.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r15-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=open resolves=p3-r15 out_of_scope=true -->
+### p3-r15-resolved · finding [out-of-scope] · resolves p3-r15: findSlot ignores the HUD rectangle (phase 3)
+
+Plan 2 UX phase defines the HUD layout; add it as an obstacle then.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r16-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=open resolves=p3-r16 out_of_scope=true -->
+### p3-r16-resolved · finding [out-of-scope] · resolves p3-r16: Child boxes may touch exactly; no-slot fallback untested (phase 3)
+
+Cosmetic; revisit with real assets in plan 2.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r17-resolved created=2026-10-05T08:17:52+00:00 phase=3 state=open resolves=p3-r17 out_of_scope=true -->
+### p3-r17-resolved · finding [out-of-scope] · resolves p3-r17: Siblings share the slowest speed, deviating from per-text speed (phase 3)
+
+Deliberate (p3-r18); spec wording to be amended with plan 2 spec updates.
