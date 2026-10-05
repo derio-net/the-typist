@@ -852,3 +852,8 @@ Lohn and Meeting examples rewritten.
 ### p6-r11-resolved · finding [out-of-scope] · resolves p6-r11: Seed test requires status enriched; fails once a record is marked reviewed (phase 6)
 
 Surfaced to the operator; R16 literally requires enriched. Follow-up if the operator wants reviewed accepted.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r8-resolved-2 created=2026-10-05T21:11:58+00:00 state=open resolves=p3-r8 tracked_by=#2 -->
+### p3-r8-resolved-2 · finding [deferred → #2] · resolves p3-r8: No typo / pending-digraph feedback
+
+Filed at closeout as #2.
