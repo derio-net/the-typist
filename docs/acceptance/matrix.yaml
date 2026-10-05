@@ -137,7 +137,10 @@ rows:
     - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R10
     levels: {}
     status: not-implemented
-    notes: ''
+    notes: Owed by plan 2 (same spec, built after the manual UX pass); marked post-merge
+      so plan 1's deliver does not demand screenshots of screens that do not exist yet.
+      Operator decision 2026-10-05.
+    verify: post-merge
     visual:
       states:
       - settings-four-toggles
