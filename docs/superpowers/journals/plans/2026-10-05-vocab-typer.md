@@ -887,3 +887,8 @@ Filed at closeout as #3.
 ### p3-r14-resolved-2 · finding [deferred → #4] · resolves p3-r14: world.ts imports layout metrics from render/theme (engine→render dependency)
 
 Filed at closeout as #4.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r17-resolved-2 created=2026-10-05T21:12:24+00:00 state=open resolves=p3-r17 tracked_by=#4 -->
+### p3-r17-resolved-2 · finding [deferred → #4] · resolves p3-r17: Siblings share the slowest speed, deviating from per-text speed
+
+Filed at closeout as #4.
