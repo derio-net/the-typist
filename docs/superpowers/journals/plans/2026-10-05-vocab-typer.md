@@ -29,3 +29,78 @@ Scaffold plus a trivial smoke test; nothing to clean.
 ### no-refactor-p1-t4 · discovery · no-refactor-because P1.T4 (phase 1)
 
 CLI and plugin are each a thin wrapper over parseList; nothing duplicated to extract.
+
+<!-- fr:journal kind=finding scope=plan id=p1-r1 created=2026-10-05T07:40:15+00:00 phase=1 state=open review_scope=in -->
+### p1-r1 · finding [open] (reviewer: in scope) · Non-strict zod objects silently strip unknown keys (phase 1)
+
+<!-- fr:journal kind=finding scope=plan id=p1-r2 created=2026-10-05T07:40:15+00:00 phase=1 state=open review_scope=in -->
+### p1-r2 · finding [open] (reviewer: in scope) · Gradable adjective with one missing form validates; forms ship vanishes (phase 1)
+
+<!-- fr:journal kind=finding scope=plan id=p1-r3 created=2026-10-05T07:40:15+00:00 phase=1 state=open review_scope=in -->
+### p1-r3 · finding [open] (reviewer: in scope) · Header rules can lower example minimums (phase 1)
+
+<!-- fr:journal kind=finding scope=plan id=p1-r4 created=2026-10-05T07:40:15+00:00 phase=1 state=open review_scope=in -->
+### p1-r4 · finding [open] (reviewer: in scope) · source_lines accepts 0 and negatives (phase 1)
+
+<!-- fr:journal kind=finding scope=plan id=p1-r5 created=2026-10-05T07:40:15+00:00 phase=1 state=open review_scope=in -->
+### p1-r5 · finding [open] (reviewer: in scope) · Duplicate category ids not rejected (phase 1)
+
+<!-- fr:journal kind=finding scope=plan id=p1-r6 created=2026-10-05T07:40:15+00:00 phase=1 state=open review_scope=in -->
+### p1-r6 · finding [open] (reviewer: in scope) · Vite plugin transforms ?raw/?url imports (phase 1)
+
+<!-- fr:journal kind=finding scope=plan id=p1-r7 created=2026-10-05T07:40:15+00:00 phase=1 state=open review_scope=in -->
+### p1-r7 · finding [open] (reviewer: in scope) · No test runs the plugin through a real Vite build (phase 1)
+
+<!-- fr:journal kind=finding scope=plan id=p1-r8 created=2026-10-05T07:40:15+00:00 phase=1 state=open review_scope=in -->
+### p1-r8 · finding [open] (reviewer: in scope) · tsconfig puts Node types on browser src/ (phase 1)
+
+<!-- fr:journal kind=finding scope=plan id=p1-r9 created=2026-10-05T07:40:15+00:00 phase=1 state=open review_scope=out -->
+### p1-r9 · finding [open] (reviewer: out of scope) · List-level errors masked until record shape errors fixed (zod abort) (phase 1)
+
+<!-- fr:journal kind=review scope=plan id=p1-review created=2026-10-05T07:40:15+00:00 phase=1 -->
+### p1-review · review · phase 1 code review: with fixes; 8 in-scope findings fixed, 1 out of scope (phase 1)
+
+<!-- fr:journal kind=finding scope=plan id=p1-r1-resolved created=2026-10-05T07:40:15+00:00 phase=1 state=fixed resolves=p1-r1 -->
+### p1-r1-resolved · finding [fixed] · resolves p1-r1: Non-strict zod objects silently strip unknown keys (phase 1)
+
+All schema objects are z.strictObject; tests/schema/strictness.test.ts covers record, block, header rules and category typos.
+
+<!-- fr:journal kind=finding scope=plan id=p1-r2-resolved created=2026-10-05T07:40:15+00:00 phase=1 state=fixed resolves=p1-r2 -->
+### p1-r2-resolved · finding [fixed] · resolves p1-r2: Gradable adjective with one missing form validates; forms ship vanishes (phase 1)
+
+adjectiveRules requires both comparative and superlative when gradable; test added.
+
+<!-- fr:journal kind=finding scope=plan id=p1-r3-resolved created=2026-10-05T07:40:15+00:00 phase=1 state=fixed resolves=p1-r3 -->
+### p1-r3-resolved · finding [fixed] · resolves p1-r3: Header rules can lower example minimums (phase 1)
+
+Rules floor at the R3 defaults (3/3/2/2); test added.
+
+<!-- fr:journal kind=finding scope=plan id=p1-r4-resolved created=2026-10-05T07:40:15+00:00 phase=1 state=fixed resolves=p1-r4 -->
+### p1-r4-resolved · finding [fixed] · resolves p1-r4: source_lines accepts 0 and negatives (phase 1)
+
+int().min(1); test added.
+
+<!-- fr:journal kind=finding scope=plan id=p1-r5-resolved created=2026-10-05T07:40:15+00:00 phase=1 state=fixed resolves=p1-r5 -->
+### p1-r5-resolved · finding [fixed] · resolves p1-r5: Duplicate category ids not rejected (phase 1)
+
+List-level check reports duplicate category id; test added.
+
+<!-- fr:journal kind=finding scope=plan id=p1-r6-resolved created=2026-10-05T07:40:15+00:00 phase=1 state=fixed resolves=p1-r6 -->
+### p1-r6-resolved · finding [fixed] · resolves p1-r6: Vite plugin transforms ?raw/?url imports (phase 1)
+
+Plugin returns null for any id with a query; test added.
+
+<!-- fr:journal kind=finding scope=plan id=p1-r7-resolved created=2026-10-05T07:40:15+00:00 phase=1 state=fixed resolves=p1-r7 -->
+### p1-r7-resolved · finding [fixed] · resolves p1-r7: No test runs the plugin through a real Vite build (phase 1)
+
+tests/tools/vite-plugin.test.ts builds a temp project with valid and invalid lists via vite build().
+
+<!-- fr:journal kind=finding scope=plan id=p1-r8-resolved created=2026-10-05T07:40:15+00:00 phase=1 state=fixed resolves=p1-r8 -->
+### p1-r8-resolved · finding [fixed] · resolves p1-r8: tsconfig puts Node types on browser src/ (phase 1)
+
+tsconfig.json (src, vite/client only) + tsconfig.node.json (tests/tools/config); build runs both; probe confirmed process is rejected in src.
+
+<!-- fr:journal kind=finding scope=plan id=p1-r9-resolved created=2026-10-05T07:40:15+00:00 phase=1 state=open resolves=p1-r9 out_of_scope=true -->
+### p1-r9-resolved · finding [out-of-scope] · resolves p1-r9: List-level errors masked until record shape errors fixed (zod abort) (phase 1)
+
+Inherent to zod superRefine ordering; errors surface on the next validate run; acceptable per reviewer.
