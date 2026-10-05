@@ -1737,13 +1737,17 @@ records:
     categories:
       - government-and-politics
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 224
       - 1803
     noun:
       gender: f
       plural: Regierungen
+    examples:
+      - { de: "Die Regierung hat neue Maßnahmen gegen die Inflation beschlossen.", en: "The government has decided on new measures against inflation.", tags: [singular, Perfekt] }
+      - { de: "Die Kritik an der Regierung wird immer lauter.", en: "Criticism of the government is getting louder and louder.", tags: [singular, Präsens] }
+      - { de: "Mehrere Regierungen verurteilten den Angriff.", en: "Several governments condemned the attack.", tags: [plural, Präteritum] }
   - id: verb-regieren
     type: verb
     lemma: regieren
@@ -1751,9 +1755,20 @@ records:
       - to govern
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 226
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "regiert"
+        praeteritum: "regierte"
+        partizip2: "regiert"
+    examples:
+      - { de: "Die Partei regiert das Land seit acht Jahren.", en: "The party has been governing the country for eight years.", tags: [Präsens] }
+      - { de: "Der König regierte fast vierzig Jahre lang.", en: "The king reigned for almost forty years.", tags: [Präteritum] }
+      - { de: "Sie hat mit einer knappen Mehrheit regiert.", en: "She governed with a narrow majority.", tags: [Perfekt] }
   - id: noun-opposition
     type: noun
     lemma: Opposition
@@ -1762,13 +1777,17 @@ records:
     categories:
       - government-and-politics
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 228
       - 1805
     noun:
       gender: f
       plural: Oppositionen
+    examples:
+      - { de: "Die Opposition kritisiert den Haushaltsplan scharf.", en: "The opposition sharply criticises the budget plan.", tags: [singular, Präsens] }
+      - { de: "Nach der Wahl ging die Partei in die Opposition.", en: "After the election the party went into opposition.", tags: [singular, Präteritum] }
+      - { de: "In manchen Ländern werden Oppositionen systematisch unterdrückt.", en: "In some countries oppositions are systematically suppressed.", tags: [plural, Passiv] }
   - id: noun-parlament
     type: noun
     lemma: Parlament
@@ -1777,13 +1796,17 @@ records:
     categories:
       - government-and-politics
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 230
       - 1809
     noun:
       gender: n
       plural: Parlamente
+    examples:
+      - { de: "Das Parlament stimmt morgen über das Gesetz ab.", en: "Parliament votes on the law tomorrow.", tags: [singular, Präsens] }
+      - { de: "Sie sitzt seit 2017 im Parlament.", en: "She has been sitting in parliament since 2017.", tags: [singular, Präsens] }
+      - { de: "Die Parlamente der Nachbarländer haben ähnliche Gesetze verabschiedet.", en: "The parliaments of the neighbouring countries have passed similar laws.", tags: [plural, Perfekt] }
   - id: noun-abgeordnete
     type: noun
     lemma: Abgeordnete
@@ -1791,7 +1814,7 @@ records:
       - member of parliament
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 232
     noun:
@@ -1801,6 +1824,10 @@ records:
         - lemma: Abgeordnete
           gender: f
           plural: Abgeordneten
+    examples:
+      - { de: "Der Abgeordnete beantwortete die Fragen der Bürger.", en: "The member of parliament answered the citizens' questions.", tags: [singular, Präteritum] }
+      - { de: "Die Abgeordneten haben über den Antrag abgestimmt.", en: "The members of parliament voted on the motion.", tags: [plural, Perfekt] }
+      - { de: "Eine Abgeordnete der Grünen hielt die erste Rede.", en: "A Green member of parliament gave the first speech.", tags: [singular, Präteritum] }
   - id: noun-kabinett
     type: noun
     lemma: Kabinett
@@ -1808,12 +1835,16 @@ records:
       - cabinet
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 234
     noun:
       gender: n
       plural: Kabinette
+    examples:
+      - { de: "Das Kabinett trifft sich jeden Mittwoch.", en: "The cabinet meets every Wednesday.", tags: [singular, Präsens] }
+      - { de: "Der Kanzler hat sein Kabinett umgebildet.", en: "The chancellor has reshuffled his cabinet.", tags: [singular, Perfekt] }
+      - { de: "Frühere Kabinette hatten deutlich weniger Ministerinnen.", en: "Previous cabinets had considerably fewer female ministers.", tags: [plural, Präteritum] }
   - id: noun-minister
     type: noun
     lemma: Minister
@@ -1821,7 +1852,7 @@ records:
       - minister
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 236
     noun:
@@ -1831,6 +1862,10 @@ records:
         - lemma: Ministerin
           gender: f
           plural: Ministerinnen
+    examples:
+      - { de: "Der Minister ist nach dem Skandal zurückgetreten.", en: "The minister resigned after the scandal.", tags: [singular, Perfekt] }
+      - { de: "Die Ministerin stellte gestern ihren Plan vor.", en: "The minister presented her plan yesterday.", tags: [singular, Präteritum] }
+      - { de: "Alle Minister müssen ihre Einkünfte offenlegen.", en: "All ministers have to disclose their income.", tags: [plural, Präsens] }
   - id: noun-ministerium
     type: noun
     lemma: Ministerium
@@ -1838,12 +1873,16 @@ records:
       - ministry
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 238
     noun:
       gender: n
       plural: Ministerien
+    examples:
+      - { de: "Das Ministerium hat die Zahlen noch nicht veröffentlicht.", en: "The ministry has not yet published the figures.", tags: [singular, Perfekt] }
+      - { de: "Sie arbeitet als Juristin im Ministerium für Umwelt.", en: "She works as a lawyer at the Ministry of the Environment.", tags: [singular, Präsens] }
+      - { de: "Die beiden Ministerien streiten über die Zuständigkeit.", en: "The two ministries are arguing about responsibility.", tags: [plural, Präsens] }
   - id: noun-kanzler
     type: noun
     lemma: Kanzler
@@ -1851,7 +1890,7 @@ records:
       - chancellor
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 240
     noun:
@@ -1861,6 +1900,10 @@ records:
         - lemma: Kanzlerin
           gender: f
           plural: Kanzlerinnen
+    examples:
+      - { de: "Der Kanzler gab eine Pressekonferenz.", en: "The chancellor gave a press conference.", tags: [singular, Präteritum] }
+      - { de: "Angela Merkel war sechzehn Jahre lang Kanzlerin.", en: "Angela Merkel was chancellor for sixteen years.", tags: [singular, Präteritum] }
+      - { de: "Die früheren Kanzler trafen sich zu einem Festakt.", en: "The former chancellors met for a ceremony.", tags: [plural, Präteritum] }
   - id: noun-praesident
     type: noun
     lemma: Präsident
@@ -1868,7 +1911,7 @@ records:
       - president
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 242
     noun:
@@ -1878,6 +1921,10 @@ records:
         - lemma: Präsidentin
           gender: f
           plural: Präsidentinnen
+    examples:
+      - { de: "Der Präsident wird alle vier Jahre gewählt.", en: "The president is elected every four years.", tags: [singular, Passiv] }
+      - { de: "Die Präsidentin hat die Gäste persönlich begrüßt.", en: "The president greeted the guests personally.", tags: [singular, Perfekt] }
+      - { de: "Die Präsidenten beider Länder unterzeichneten ein Abkommen.", en: "The presidents of both countries signed an agreement.", tags: [plural, Präteritum] }
   - id: noun-demokratie
     type: noun
     lemma: Demokratie
@@ -1886,13 +1933,17 @@ records:
     categories:
       - government-and-politics
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 244
       - 1819
     noun:
       gender: f
       plural: Demokratien
+    examples:
+      - { de: "In einer Demokratie entscheidet das Volk.", en: "In a democracy the people decide.", tags: [singular, Präsens] }
+      - { de: "Die Pressefreiheit ist ein Grundpfeiler der Demokratie.", en: "Freedom of the press is a cornerstone of democracy.", tags: [singular, Präsens] }
+      - { de: "Viele junge Demokratien entstanden nach 1990.", en: "Many young democracies emerged after 1990.", tags: [plural, Präteritum] }
   - id: noun-diktatur
     type: noun
     lemma: Diktatur
@@ -1901,13 +1952,17 @@ records:
     categories:
       - government-and-politics
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 246
       - 1821
     noun:
       gender: f
       plural: Diktaturen
+    examples:
+      - { de: "Das Land war jahrzehntelang eine Diktatur.", en: "The country was a dictatorship for decades.", tags: [singular, Präteritum] }
+      - { de: "Nach dem Ende der Diktatur gab es freie Wahlen.", en: "After the end of the dictatorship there were free elections.", tags: [singular, Präteritum] }
+      - { de: "Diktaturen unterdrücken die Meinungsfreiheit.", en: "Dictatorships suppress freedom of opinion.", tags: [plural, Präsens] }
   - id: noun-monarchie
     type: noun
     lemma: Monarchie
@@ -1915,12 +1970,16 @@ records:
       - monarchy
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 248
     noun:
       gender: f
       plural: Monarchien
+    examples:
+      - { de: "Großbritannien ist eine konstitutionelle Monarchie.", en: "Britain is a constitutional monarchy.", tags: [singular, Präsens] }
+      - { de: "In Europa gibt es heute noch mehrere Monarchien.", en: "There are still several monarchies in Europe today.", tags: [plural, Präsens] }
+      - { de: "Die Monarchie wurde 1918 abgeschafft.", en: "The monarchy was abolished in 1918.", tags: [singular, Passiv] }
   - id: noun-verfassung
     type: noun
     lemma: Verfassung
@@ -1930,7 +1989,7 @@ records:
       - government-and-politics
       - law-and-justice
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 250
       - 425
@@ -1938,6 +1997,10 @@ records:
     noun:
       gender: f
       plural: Verfassungen
+    examples:
+      - { de: "Die Verfassung garantiert die Würde des Menschen.", en: "The constitution guarantees human dignity.", tags: [singular, Präsens] }
+      - { de: "Das Gericht prüft, ob das Gesetz gegen die Verfassung verstößt.", en: "The court is examining whether the law violates the constitution.", tags: [singular, Präsens] }
+      - { de: "Viele Verfassungen wurden nach dem Krieg neu geschrieben.", en: "Many constitutions were rewritten after the war.", tags: [plural, Passiv] }
   - id: noun-grundgesetz
     type: noun
     lemma: Grundgesetz
@@ -1946,13 +2009,17 @@ records:
     categories:
       - government-and-politics
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 252
       - 1845
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Das Grundgesetz trat 1949 in Kraft.", en: "The Basic Law came into force in 1949.", tags: [singular, Präteritum] }
+      - { de: "Im Grundgesetz ist die Meinungsfreiheit verankert.", en: "Freedom of opinion is enshrined in the Basic Law.", tags: [singular, Präsens] }
+      - { de: "Eine Änderung des Grundgesetzes braucht eine Zweidrittelmehrheit.", en: "An amendment to the Basic Law requires a two-thirds majority.", tags: [singular, Präsens] }
   - id: noun-gewaltenteilung
     type: noun
     lemma: Gewaltenteilung
@@ -1960,12 +2027,16 @@ records:
       - separation of powers
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 254
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Gewaltenteilung schützt vor Machtmissbrauch.", en: "The separation of powers protects against abuse of power.", tags: [singular, Präsens] }
+      - { de: "Ohne Gewaltenteilung gibt es keinen Rechtsstaat.", en: "Without separation of powers there is no rule of law.", tags: [singular, Präsens] }
+      - { de: "Die Reform wurde als Angriff auf die Gewaltenteilung kritisiert.", en: "The reform was criticised as an attack on the separation of powers.", tags: [singular, Passiv] }
   - id: noun-bundesland
     type: noun
     lemma: Bundesland
@@ -1973,12 +2044,16 @@ records:
       - federal state
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 256
     noun:
       gender: n
       plural: Bundesländer
+    examples:
+      - { de: "Bayern ist das größte Bundesland Deutschlands.", en: "Bavaria is the largest federal state in Germany.", tags: [singular, Präsens] }
+      - { de: "Deutschland besteht aus sechzehn Bundesländern.", en: "Germany consists of sixteen federal states.", tags: [plural, Präsens] }
+      - { de: "Die Schulferien sind in jedem Bundesland anders.", en: "The school holidays are different in each federal state.", tags: [singular, Präsens] }
   - id: noun-bundestag
     type: noun
     lemma: Bundestag
@@ -1987,13 +2062,17 @@ records:
     categories:
       - government-and-politics
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 258
       - 1811
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der Bundestag hat das Gesetz mit großer Mehrheit beschlossen.", en: "The Bundestag passed the law by a large majority.", tags: [singular, Perfekt] }
+      - { de: "Seit 1999 tagt der Bundestag im Reichstagsgebäude.", en: "Since 1999 the Bundestag has met in the Reichstag building.", tags: [singular, Präsens] }
+      - { de: "Sie wurde zum ersten Mal in den Bundestag gewählt.", en: "She was elected to the Bundestag for the first time.", tags: [singular, Passiv] }
   - id: noun-landtagswahl
     type: noun
     lemma: Landtagswahl
@@ -2001,12 +2080,16 @@ records:
       - state election
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 260
     noun:
       gender: f
       plural: Landtagswahlen
+    examples:
+      - { de: "Die Landtagswahl in Hessen findet im Herbst statt.", en: "The state election in Hesse takes place in the autumn.", tags: [singular, Präsens] }
+      - { de: "Bei der letzten Landtagswahl verlor die Partei viele Stimmen.", en: "In the last state election the party lost many votes.", tags: [singular, Präteritum] }
+      - { de: "Dieses Jahr gibt es drei Landtagswahlen.", en: "There are three state elections this year.", tags: [plural, Präsens] }
   - id: noun-bundestagswahl
     type: noun
     lemma: Bundestagswahl
@@ -2014,12 +2097,16 @@ records:
       - federal election
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 262
     noun:
       gender: f
       plural: Bundestagswahlen
+    examples:
+      - { de: "Die nächste Bundestagswahl ist in zwei Jahren.", en: "The next federal election is in two years.", tags: [singular, Präsens] }
+      - { de: "Vor der Bundestagswahl wurden viele Umfragen veröffentlicht.", en: "Many polls were published before the federal election.", tags: [singular, Passiv] }
+      - { de: "Bei den letzten Bundestagswahlen ist die Wahlbeteiligung gestiegen.", en: "Voter turnout has risen in the last federal elections.", tags: [plural, Perfekt] }
   - id: noun-wahlbeteiligung
     type: noun
     lemma: Wahlbeteiligung
@@ -2027,12 +2114,16 @@ records:
       - voter turnout
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 264
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Wahlbeteiligung lag bei 76 Prozent.", en: "Voter turnout was 76 percent.", tags: [singular, Präteritum] }
+      - { de: "Eine hohe Wahlbeteiligung stärkt die Demokratie.", en: "A high voter turnout strengthens democracy.", tags: [singular, Präsens] }
+      - { de: "Bei jungen Menschen ist die Wahlbeteiligung oft niedrig.", en: "Voter turnout among young people is often low.", tags: [singular, Präsens] }
   - id: noun-stimme
     type: noun
     lemma: Stimme
@@ -2041,12 +2132,16 @@ records:
       - voice
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 266
     noun:
       gender: f
       plural: Stimmen
+    examples:
+      - { de: "Jede Stimme zählt.", en: "Every vote counts.", tags: [singular, Präsens] }
+      - { de: "Die Partei hat fast zwei Millionen Stimmen verloren.", en: "The party lost almost two million votes.", tags: [plural, Perfekt] }
+      - { de: "Er gab seine Stimme per Briefwahl ab.", en: "He cast his vote by postal ballot.", tags: [singular, Präteritum] }
   - id: verb-abstimmen
     type: verb
     lemma: abstimmen
@@ -2054,9 +2149,21 @@ records:
       - to vote
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 268
+    verb:
+      separable: ab
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "stimmt ab"
+        praeteritum: "stimmte ab"
+        partizip2: "abgestimmt"
+    examples:
+      - { de: "Morgen stimmt der Stadtrat über das neue Stadion ab.", en: "Tomorrow the city council votes on the new stadium.", tags: [separated, Präsens] }
+      - { de: "Die Mitglieder haben per Handzeichen abgestimmt.", en: "The members voted by a show of hands.", tags: [Perfekt] }
+      - { de: "Über den Vorschlag stimmten nur zwölf Personen ab.", en: "Only twelve people voted on the proposal.", tags: [separated, Präteritum] }
   - id: noun-abstimmung
     type: noun
     lemma: Abstimmung
@@ -2066,7 +2173,7 @@ records:
     categories:
       - government-and-politics
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 270
       - 294
@@ -2074,6 +2181,10 @@ records:
     noun:
       gender: f
       plural: Abstimmungen
+    examples:
+      - { de: "Die Abstimmung findet geheim statt.", en: "The vote takes place by secret ballot.", tags: [singular, Präsens] }
+      - { de: "Das Ergebnis der Abstimmung war sehr knapp.", en: "The result of the vote was very close.", tags: [singular, Präteritum] }
+      - { de: "In der Schweiz gibt es regelmäßig Abstimmungen über wichtige Themen.", en: "In Switzerland there are regular votes on important issues.", tags: [plural, Präsens] }
   - id: noun-wahlkampf
     type: noun
     lemma: Wahlkampf
@@ -2081,12 +2192,16 @@ records:
       - election campaign
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 272
     noun:
       gender: m
       plural: Wahlkämpfe
+    examples:
+      - { de: "Der Wahlkampf beginnt offiziell sechs Wochen vor der Wahl.", en: "The election campaign officially begins six weeks before the election.", tags: [singular, Präsens] }
+      - { de: "Im Wahlkampf versprach er niedrigere Steuern.", en: "During the election campaign he promised lower taxes.", tags: [singular, Präteritum] }
+      - { de: "Wahlkämpfe werden immer stärker in sozialen Medien geführt.", en: "Election campaigns are increasingly fought on social media.", tags: [plural, Passiv] }
   - id: noun-partei
     type: noun
     lemma: Partei
