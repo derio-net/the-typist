@@ -163,9 +163,12 @@ rows:
       in resumable batches, without ever marking them reviewed.
     origin:
     - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R15
-    levels: {}
-    status: not-implemented
-    notes: ''
+    levels:
+      unit:
+      - the-typist:tests/tools/organise.test.ts
+    status: skipped
+    notes: Built in plan 1 phase 4; organise helper tests run locally; skill exercised
+      on all 968 seed records in phases 5-6. No CI configured.
   - id: seed-list
     capability: Content
     acceptance: The game ships a validated, fully enriched list of the 1000 German B2
