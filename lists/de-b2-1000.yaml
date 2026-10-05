@@ -10456,12 +10456,16 @@ records:
       - desire
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1569
     noun:
       gender: n
       plural: Bedürfnisse
+    examples:
+      - { de: "Jeder Mensch hat ein Bedürfnis nach Sicherheit.", en: "Everyone has a need for security.", tags: [singular, Präsens] }
+      - { de: "Die Werbung weckt Bedürfnisse, die wir vorher nicht hatten.", en: "Advertising creates needs we didn't have before.", tags: [plural, Präsens] }
+      - { de: "Wir haben das Programm an die Bedürfnisse älterer Menschen angepasst.", en: "We have adapted the programme to the needs of older people.", tags: [plural, Perfekt] }
   - id: noun-nachfrage
     type: noun
     lemma: Nachfrage
@@ -10469,13 +10473,17 @@ records:
       - demand (for)
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1571
     noun:
       gender: f
       plural: null
     government: nach
+    examples:
+      - { de: "Die Nachfrage nach Elektroautos ist stark gestiegen.", en: "Demand for electric cars has risen sharply.", tags: [singular, Perfekt] }
+      - { de: "Wegen der großen Nachfrage ist das Produkt ausverkauft.", en: "Because of the high demand, the product is sold out.", tags: [singular, Präsens] }
+      - { de: "Die Firma konnte die Nachfrage kaum befriedigen.", en: "The company could hardly meet the demand.", tags: [singular, Präteritum] }
   - id: noun-angebot
     type: noun
     lemma: Angebot
@@ -10484,12 +10492,17 @@ records:
       - offer
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1573
     noun:
       gender: n
       plural: Angebote
+    examples:
+      - { de: "Das Angebot gilt nur bis Samstag.", en: "The offer is only valid until Saturday.", tags: [singular, Präsens] }
+      - { de: "Sie hat das Angebot der Konkurrenz abgelehnt.", en: "She turned down the competitor's offer.", tags: [singular, Perfekt] }
+      - { de: "Das Angebot an Wohnungen ist in München sehr knapp.", en: "The supply of flats in Munich is very limited.", tags: [singular, Präsens] }
+      - { de: "Wir haben drei Angebote eingeholt und das günstigste genommen.", en: "We got three quotes and took the cheapest.", tags: [plural, Perfekt] }
   - id: noun-werbung
     type: noun
     lemma: Werbung
@@ -10497,24 +10510,40 @@ records:
       - advertising
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1579
     source_note: "plural Werbungen removed: uncountable in the sense advertising"
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Im Fernsehen gibt es zu viel Werbung.", en: "There is too much advertising on television.", tags: [singular, Präsens] }
+      - { de: "Die Firma gibt jedes Jahr Millionen für Werbung aus.", en: "The company spends millions on advertising every year.", tags: [singular, Präsens] }
+      - { de: "Ich habe die Werbung für das neue Handy gesehen.", en: "I saw the advertising for the new phone.", tags: [singular, Perfekt] }
   - id: verb-werben
     type: verb
     lemma: werben
     gloss:
       - to advertise (for)
+      - to court (voters, customers)
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1581
     government: für
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "wirbt"
+        praeteritum: "warb"
+        partizip2: "geworben"
+    examples:
+      - { de: "Die Firma wirbt mit niedrigen Preisen.", en: "The company advertises low prices.", tags: [Präsens] }
+      - { de: "Der Sportler hat jahrelang für eine Uhrenmarke geworben.", en: "The athlete advertised a watch brand for years.", tags: [Perfekt] }
+      - { de: "Die Partei warb im Wahlkampf um junge Wähler.", en: "The party courted young voters during the election campaign.", tags: [Präteritum] }
   - id: noun-werbekampagne
     type: noun
     lemma: Werbekampagne
@@ -10522,12 +10551,16 @@ records:
       - advertising campaign
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1583
     noun:
       gender: f
       plural: Werbekampagnen
+    examples:
+      - { de: "Die neue Werbekampagne richtet sich an Jugendliche.", en: "The new advertising campaign is aimed at young people.", tags: [singular, Präsens] }
+      - { de: "Die Werbekampagne hat viel Aufmerksamkeit bekommen.", en: "The advertising campaign got a lot of attention.", tags: [singular, Perfekt] }
+      - { de: "Erfolgreiche Werbekampagnen erzählen oft eine Geschichte.", en: "Successful advertising campaigns often tell a story.", tags: [plural, Präsens] }
   - id: noun-werbespot
     type: noun
     lemma: Werbespot
@@ -10535,12 +10568,16 @@ records:
       - commercial
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1585
     noun:
       gender: m
       plural: Werbespots
+    examples:
+      - { de: "Der Werbespot läuft vor jedem Film im Kino.", en: "The commercial is shown before every film at the cinema.", tags: [singular, Präsens] }
+      - { de: "Während der Werbespots hole ich mir immer etwas zu trinken.", en: "During the commercials I always get myself something to drink.", tags: [plural, Präsens] }
+      - { de: "Der Werbespot wurde nach heftiger Kritik zurückgezogen.", en: "The commercial was withdrawn after fierce criticism.", tags: [singular, Passiv, Präteritum] }
   - id: noun-werbeplakat
     type: noun
     lemma: Werbeplakat
@@ -10548,25 +10585,35 @@ records:
       - billboard
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1587
     noun:
       gender: n
       plural: Werbeplakate
+    examples:
+      - { de: "An der Haltestelle hängt ein riesiges Werbeplakat.", en: "There is a huge advertising poster at the bus stop.", tags: [singular, Präsens] }
+      - { de: "Die Stadt will die Werbeplakate an den Straßen reduzieren.", en: "The city wants to reduce the number of billboards along the roads.", tags: [plural, Präsens] }
+      - { de: "Jemand hatte das Werbeplakat mit Farbe besprüht.", en: "Somebody had sprayed the advertising poster with paint.", tags: [singular, Plusquamperfekt] }
   - id: noun-reklame
     type: noun
     lemma: Reklame
     gloss:
-      - advertisement (dated/formal)
+      - advertising (dated)
+      - advertisement (dated)
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1589
+    source_note: "gloss corrected: Reklame is dated or colloquial, not formal"
     noun:
       gender: f
       plural: Reklamen
+    examples:
+      - { de: "Meine Oma sagt immer noch Reklame statt Werbung.", en: "My grandma still says Reklame instead of Werbung.", tags: [singular, Präsens] }
+      - { de: "Früher machte man für Zigaretten überall Reklame.", en: "In the past, cigarettes were advertised everywhere.", tags: [singular, Präteritum] }
+      - { de: "Die alten Reklamen aus den Fünfzigerjahren hängen jetzt im Museum.", en: "The old advertisements from the fifties now hang in the museum.", tags: [plural, Präsens] }
   - id: noun-produkt
     type: noun
     lemma: Produkt
@@ -10574,25 +10621,34 @@ records:
       - product
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1591
     noun:
       gender: n
       plural: Produkte
+    examples:
+      - { de: "Das Produkt ist seit Montag im Handel erhältlich.", en: "The product has been available in shops since Monday.", tags: [singular, Präsens] }
+      - { de: "Wir verkaufen nur Produkte aus der Region.", en: "We only sell products from the region.", tags: [plural, Präsens] }
+      - { de: "Der Hersteller hat das fehlerhafte Produkt zurückgerufen.", en: "The manufacturer has recalled the faulty product.", tags: [singular, Perfekt] }
   - id: noun-marke
     type: noun
     lemma: Marke
     gloss:
       - brand
+      - make
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1593
     noun:
       gender: f
       plural: Marken
+    examples:
+      - { de: "Von welcher Marke ist dein Handy?", en: "What make is your phone?", tags: [singular, Präsens] }
+      - { de: "Viele Jugendliche tragen nur teure Marken.", en: "Many young people only wear expensive brands.", tags: [plural, Präsens] }
+      - { de: "Die Marke hatte ihr Image komplett verändert.", en: "The brand had completely changed its image.", tags: [singular, Plusquamperfekt] }
   - id: noun-markenbindung
     type: noun
     lemma: Markenbindung
@@ -10600,12 +10656,16 @@ records:
       - brand loyalty
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1595
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Treueprogramme sollen die Markenbindung stärken.", en: "Loyalty programmes are meant to strengthen brand loyalty.", tags: [singular, Präsens] }
+      - { de: "Bei jungen Kunden ist die Markenbindung oft schwach.", en: "Brand loyalty is often weak among young customers.", tags: [singular, Präsens] }
+      - { de: "Durch den Skandal hat die Markenbindung stark gelitten.", en: "Brand loyalty has suffered badly because of the scandal.", tags: [singular, Perfekt] }
   - id: noun-markenbewusstsein
     type: noun
     lemma: Markenbewusstsein
@@ -10613,25 +10673,34 @@ records:
       - brand awareness
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1597
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Das Markenbewusstsein beginnt schon im Kindergarten.", en: "Brand awareness starts as early as nursery school.", tags: [singular, Präsens] }
+      - { de: "Die Kampagne soll das Markenbewusstsein in Asien erhöhen.", en: "The campaign is meant to raise brand awareness in Asia.", tags: [singular, Präsens] }
+      - { de: "Mit der Zeit entwickelte sie ein starkes Markenbewusstsein.", en: "Over time she became very brand-conscious.", tags: [singular, Präteritum] }
   - id: noun-preisgestaltung
     type: noun
     lemma: Preisgestaltung
     gloss:
+      - pricing
       - pricing strategy
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1599
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Preisgestaltung der Fluggesellschaften ist oft undurchsichtig.", en: "Airline pricing is often opaque.", tags: [singular, Präsens] }
+      - { de: "Bei der Preisgestaltung müssen wir die Konkurrenz beobachten.", en: "When setting prices, we have to keep an eye on the competition.", tags: [singular, Präsens] }
+      - { de: "Die Kunden kritisierten die Preisgestaltung des Anbieters.", en: "Customers criticised the provider's pricing.", tags: [singular, Präteritum] }
   - id: noun-preisvergleich
     type: noun
     lemma: Preisvergleich
@@ -10639,12 +10708,16 @@ records:
       - price comparison
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1601
     noun:
       gender: m
       plural: Preisvergleiche
+    examples:
+      - { de: "Ein Preisvergleich im Internet lohnt sich fast immer.", en: "An online price comparison is almost always worth it.", tags: [singular, Präsens] }
+      - { de: "Nach einem kurzen Preisvergleich habe ich den Fernseher online bestellt.", en: "After a quick price comparison I ordered the TV online.", tags: [singular, Perfekt] }
+      - { de: "Preisvergleiche zeigen große Unterschiede zwischen den Supermärkten.", en: "Price comparisons show big differences between the supermarkets.", tags: [plural, Präsens] }
   - id: verb-reduzieren
     type: verb
     lemma: reduzieren
@@ -10652,9 +10725,20 @@ records:
       - to reduce (e.g., price)
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1603
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "reduziert"
+        praeteritum: "reduzierte"
+        partizip2: "reduziert"
+    examples:
+      - { de: "Das Geschäft reduziert alle Wintermäntel um 30 Prozent.", en: "The shop is reducing all winter coats by 30 percent.", tags: [Präsens] }
+      - { de: "Wir haben unseren Fleischkonsum deutlich reduziert.", en: "We have significantly reduced our meat consumption.", tags: [Perfekt] }
+      - { de: "Die Firma reduzierte die Zahl der Mitarbeiter.", en: "The company reduced the number of employees.", tags: [Präteritum] }
   - id: noun-rabatt
     type: noun
     lemma: Rabatt
@@ -10662,12 +10746,16 @@ records:
       - discount
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1605
     noun:
       gender: m
       plural: Rabatte
+    examples:
+      - { de: "Studenten bekommen zehn Prozent Rabatt.", en: "Students get a ten percent discount.", tags: [singular, Präsens] }
+      - { de: "Können Sie mir einen Rabatt geben, wenn ich zwei kaufe?", en: "Can you give me a discount if I buy two?", tags: [singular, Präsens] }
+      - { de: "Im Januar gab es auf alle Möbel hohe Rabatte.", en: "In January there were big discounts on all furniture.", tags: [plural, Präteritum] }
   - id: noun-sonderangebot
     type: noun
     lemma: Sonderangebot
@@ -10675,12 +10763,16 @@ records:
       - special offer
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1607
     noun:
       gender: n
       plural: Sonderangebote
+    examples:
+      - { de: "Die Erdbeeren sind diese Woche im Sonderangebot.", en: "The strawberries are on special offer this week.", tags: [singular, Präsens] }
+      - { de: "Ich habe die Schuhe als Sonderangebot gekauft.", en: "I bought the shoes on special offer.", tags: [singular, Perfekt] }
+      - { de: "Die Sonderangebote stehen jeden Montag im Prospekt.", en: "The special offers are in the brochure every Monday.", tags: [plural, Präsens] }
   - id: noun-schnaeppchen
     type: noun
     lemma: Schnäppchen
@@ -10688,12 +10780,16 @@ records:
       - bargain
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1609
     noun:
       gender: n
       plural: Schnäppchen
+    examples:
+      - { de: "Die Jacke war ein echtes Schnäppchen!", en: "The jacket was a real bargain!", tags: [singular, Präteritum] }
+      - { de: "Auf dem Flohmarkt kann man tolle Schnäppchen machen.", en: "You can find great bargains at the flea market.", tags: [plural, Präsens] }
+      - { de: "Viele Leute warten auf den Schlussverkauf, um Schnäppchen zu machen.", en: "Many people wait for the sales to pick up bargains.", tags: [plural, Präsens] }
   - id: noun-kauf
     type: noun
     lemma: Kauf
@@ -10701,12 +10797,16 @@ records:
       - purchase
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1611
     noun:
       gender: m
       plural: Käufe
+    examples:
+      - { de: "Der Kauf einer Wohnung will gut überlegt sein.", en: "Buying a flat needs careful thought.", tags: [singular, Präsens] }
+      - { de: "Bewahren Sie den Kassenbon als Nachweis des Kaufs auf.", en: "Keep the receipt as proof of purchase.", tags: [singular, Imperativ] }
+      - { de: "Größere Käufe planen wir immer gemeinsam.", en: "We always plan larger purchases together.", tags: [plural, Präsens] }
   - id: noun-kaufrausch
     type: noun
     lemma: Kaufrausch
@@ -10714,12 +10814,16 @@ records:
       - shopping spree
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1613
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Am Black Friday geraten viele Menschen in einen Kaufrausch.", en: "On Black Friday many people go on a shopping spree.", tags: [singular, Präsens] }
+      - { de: "Im Kaufrausch hatte sie Dinge gekauft, die sie nie brauchte.", en: "On a shopping spree she had bought things she never needed.", tags: [singular, Plusquamperfekt] }
+      - { de: "Nach dem Kaufrausch kam die hohe Kreditkartenrechnung.", en: "After the shopping spree came the big credit card bill.", tags: [singular, Präteritum] }
   - id: noun-einkaufsverhalten
     type: noun
     lemma: Einkaufsverhalten
@@ -10727,12 +10831,16 @@ records:
       - buying behaviour
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1615
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Die Pandemie hat unser Einkaufsverhalten verändert.", en: "The pandemic has changed our shopping habits.", tags: [singular, Perfekt] }
+      - { de: "Supermärkte analysieren das Einkaufsverhalten ihrer Kunden genau.", en: "Supermarkets closely analyse their customers' buying behaviour.", tags: [singular, Präsens] }
+      - { de: "Das Einkaufsverhalten junger Menschen unterscheidet sich stark von dem ihrer Eltern.", en: "The shopping habits of young people differ greatly from their parents'.", tags: [singular, Präsens] }
   - id: noun-online-handel
     type: noun
     lemma: Online-Handel
@@ -10740,12 +10848,16 @@ records:
       - online retail
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1617
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der Online-Handel wächst seit Jahren.", en: "Online retail has been growing for years.", tags: [singular, Präsens] }
+      - { de: "Viele kleine Geschäfte leiden unter dem Online-Handel.", en: "Many small shops are suffering because of online retail.", tags: [singular, Präsens] }
+      - { de: "Während der Pandemie boomte der Online-Handel.", en: "Online retail boomed during the pandemic.", tags: [singular, Präteritum] }
   - id: noun-produktbewertung
     type: noun
     lemma: Produktbewertung
@@ -10753,12 +10865,16 @@ records:
       - product review
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1619
     noun:
       gender: f
       plural: Produktbewertungen
+    examples:
+      - { de: "Vor dem Kauf lese ich immer die Produktbewertungen.", en: "I always read the product reviews before buying.", tags: [plural, Präsens] }
+      - { de: "Eine schlechte Produktbewertung kann den Verkauf stark beeinflussen.", en: "A bad product review can strongly affect sales.", tags: [singular, Präsens] }
+      - { de: "Viele Produktbewertungen im Internet sind gefälscht.", en: "Many product reviews on the internet are fake.", tags: [plural, Präsens] }
   - id: noun-kaufentscheidung
     type: noun
     lemma: Kaufentscheidung
@@ -10766,12 +10882,16 @@ records:
       - purchasing decision
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1621
     noun:
       gender: f
       plural: Kaufentscheidungen
+    examples:
+      - { de: "Der Preis ist für meine Kaufentscheidung am wichtigsten.", en: "Price is the most important factor in my purchasing decision.", tags: [singular, Präsens] }
+      - { de: "Bewertungen beeinflussen viele Kaufentscheidungen.", en: "Reviews influence many purchasing decisions.", tags: [plural, Präsens] }
+      - { de: "Die Beratung im Laden hat meine Kaufentscheidung erleichtert.", en: "The advice in the shop made my purchasing decision easier.", tags: [singular, Perfekt] }
   - id: noun-rueckgabe
     type: noun
     lemma: Rückgabe
