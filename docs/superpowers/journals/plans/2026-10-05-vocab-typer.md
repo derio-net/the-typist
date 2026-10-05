@@ -104,3 +104,61 @@ tsconfig.json (src, vite/client only) + tsconfig.node.json (tests/tools/config);
 ### p1-r9-resolved · finding [out-of-scope] · resolves p1-r9: List-level errors masked until record shape errors fixed (zod abort) (phase 1)
 
 Inherent to zod superRefine ordering; errors surface on the next validate run; acceptable per reviewer.
+
+<!-- fr:journal kind=discovery scope=plan id=p2-seed-dry-run created=2026-10-05T07:48:45+00:00 phase=2 -->
+### p2-seed-dry-run · discovery · Seed dry run: 1000 entry lines covered exactly once; 861 records, 20 categories, 139 unresolved (phase 2)
+
+`typist parse wordlist.raw.txt` (scratch output outside the repo). 1000 lines containing ' – ';
+every one is in exactly one of records[].source_lines or unresolved (checked: no gaps, no overlaps).
+861 records (735 noun, 126 verb, all status raw, 861 unique ids, 57 of them -2/-3 suffixed: repeats
+of the same word across sections, e.g. noun-gesetz, noun-nachhaltigkeit-4; typist-enrich's organise
+pass merges these). 20 categories (headers numbered 1-9, 11-21; there is no section 10).
+139 unresolved by reason: phrase 56, word 38, slash 28, template 8, und 3, parenthetical 2,
+list 2, plural 2 (gloss 0). With unresolved: removed the output validates (861 records).
+No seed line hits the plural reason except two adjective+noun lines (das soziale Netzwerk, -e;
+der rhetorische Mittel, -): every stem/umlaut plural (-schläge, -stände, -hälter ...) is built
+by the tail-replacement rule. Every reason has an instruction in the typist-structure skill.
+
+<!-- fr:journal kind=decision scope=plan id=p2-reflexive-lemma created=2026-10-05T07:48:45+00:00 phase=2 -->
+### p2-reflexive-lemma · decision · Raw reflexive verbs keep 'sich' in the lemma; id uses the bare verb (phase 2)
+
+VerbBlock needs auxiliary and parts, so a raw record has nowhere to say reflexive. The parser
+emits lemma 'sich vorstellen' with id verb-vorstellen; typist-enrich converts to
+lemma vorstellen + verb.reflexive true. Likewise a raw noun with no plural in the source gets
+noun {gender, plural: null}, which enrich verifies.
+
+<!-- fr:journal kind=decision scope=plan id=p2-list-schema-strict created=2026-10-05T07:48:45+00:00 phase=2 -->
+### p2-list-schema-strict · decision · ListSchema made z.strictObject so a leftover top-level 'unresolved:' fails validate (phase 2)
+
+Phase 1 left the top-level object non-strict (unknown keys were stripped silently), so validate
+did not reject 'unresolved:'. Changed src/schema/list.ts to strictObject and added a strictness
+test; the skill's 'remove unresolved, run validate' step now has teeth.
+
+<!-- fr:journal kind=discovery scope=plan id=p2-category-slug-and created=2026-10-05T07:48:45+00:00 phase=2 -->
+### p2-category-slug-and · discovery · Header slug maps & to 'and' (plan), differing from the spec's economics-finance example (phase 2)
+
+Per P2.T1.S2, '&' becomes 'and', so 'Economics & Finance' is economics-and-finance, while the
+spec schema example and tests/fixtures/lists/valid.yaml say economics-finance. The seed test
+derives ids from headers, so it is consistent; the example in the spec is only illustrative.
+
+<!-- fr:journal kind=discovery scope=plan id=p2-container-node-modules created=2026-10-05T07:48:45+00:00 phase=2 -->
+### p2-container-node-modules · discovery · fr isolation exec npm test fails: node_modules has host (darwin) rolldown bindings (phase 2)
+
+Inside the devcontainer (linux) vitest dies with 'Cannot find native binding'; node_modules in
+the worktree was installed on the host. The phase suite was therefore run on the host. Needs an
+in-container npm install (or a per-platform node_modules) before the exec-bridge can run tests.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t1 created=2026-10-05T07:48:45+00:00 phase=2 -->
+### no-refactor-p2-t1 · discovery · no-refactor-because P2.T1 (phase 2)
+
+lines.ts and headers.ts are two tiny single-purpose functions written clean; nothing to extract.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t3 created=2026-10-05T07:48:45+00:00 phase=2 -->
+### no-refactor-p2-t3 · discovery · no-refactor-because P2.T3 (phase 2)
+
+the parse subcommand is one small function beside validate; nothing duplicated.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t4 created=2026-10-05T07:48:45+00:00 phase=2 -->
+### no-refactor-p2-t4 · discovery · no-refactor-because P2.T4 (phase 2)
+
+the deliverable is a prose skill; no code to clean.
