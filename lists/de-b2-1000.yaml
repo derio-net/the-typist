@@ -10899,12 +10899,16 @@ records:
       - return
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1623
     noun:
       gender: f
       plural: Rückgaben
+    examples:
+      - { de: "Die Rückgabe ist innerhalb von 30 Tagen möglich.", en: "Returns are possible within 30 days.", tags: [singular, Präsens] }
+      - { de: "Bei der Rückgabe brauchen Sie den Kassenbon.", en: "You need the receipt when returning the item.", tags: [singular, Präsens] }
+      - { de: "Kostenlose Rückgaben sind für Onlinehändler sehr teuer.", en: "Free returns are very expensive for online retailers.", tags: [plural, Präsens] }
   - id: verb-zurueckgeben
     type: verb
     lemma: zurückgeben
@@ -10912,9 +10916,21 @@ records:
       - to return
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1625
+    verb:
+      separable: zurück
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "gibt zurück"
+        praeteritum: "gab zurück"
+        partizip2: "zurückgegeben"
+    examples:
+      - { de: "Ich gebe dir das Buch morgen zurück.", en: "I'll give you the book back tomorrow.", tags: [separated, Präsens] }
+      - { de: "Hast du die Schuhe schon zurückgegeben?", en: "Have you returned the shoes yet?", tags: [Perfekt] }
+      - { de: "Sie gab den Schlüssel beim Auszug zurück.", en: "She handed back the key when she moved out.", tags: [separated, Präteritum] }
   - id: noun-umtausch
     type: noun
     lemma: Umtausch
@@ -10922,12 +10938,17 @@ records:
       - exchange (of goods)
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1627
+    source_note: "plural Umtausche removed: practically never used"
     noun:
       gender: m
-      plural: Umtausche
+      plural: null
+    examples:
+      - { de: "Reduzierte Ware ist vom Umtausch ausgeschlossen.", en: "Reduced items cannot be exchanged.", tags: [singular, Präsens] }
+      - { de: "Der Umtausch war ganz unkompliziert.", en: "The exchange was very straightforward.", tags: [singular, Präteritum] }
+      - { de: "Für einen Umtausch brauchen wir die Originalverpackung.", en: "For an exchange we need the original packaging.", tags: [singular, Präsens] }
   - id: verb-umtauschen
     type: verb
     lemma: umtauschen
@@ -10935,9 +10956,21 @@ records:
       - to exchange
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1629
+    verb:
+      separable: um
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "tauscht um"
+        praeteritum: "tauschte um"
+        partizip2: "umgetauscht"
+    examples:
+      - { de: "Kann ich den Pullover in einer anderen Größe umtauschen?", en: "Can I exchange the jumper for a different size?", tags: [Präsens] }
+      - { de: "Ich tausche das Geschenk morgen um.", en: "I'm going to exchange the present tomorrow.", tags: [separated, Präsens] }
+      - { de: "Vor der Reise hatte sie Euro in Dollar umgetauscht.", en: "Before the trip she had changed euros into dollars.", tags: [Plusquamperfekt] }
   - id: noun-kaufkraft
     type: noun
     lemma: Kaufkraft
@@ -10945,12 +10978,16 @@ records:
       - purchasing power
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1631
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Durch die Inflation sinkt die Kaufkraft der Bürger.", en: "Inflation reduces the purchasing power of citizens.", tags: [singular, Präsens] }
+      - { de: "Die Kaufkraft ist in Süddeutschland höher als im Osten.", en: "Purchasing power is higher in southern Germany than in the east.", tags: [singular, Präsens] }
+      - { de: "Die Löhne stiegen, aber die Kaufkraft blieb gleich.", en: "Wages rose, but purchasing power stayed the same.", tags: [singular, Präteritum] }
   - id: noun-zahlungsmittel
     type: noun
     lemma: Zahlungsmittel
@@ -10958,12 +10995,16 @@ records:
       - means of payment
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1633
     noun:
       gender: n
       plural: Zahlungsmittel
+    examples:
+      - { de: "Der Euro ist in vielen EU-Ländern offizielles Zahlungsmittel.", en: "The euro is legal tender in many EU countries.", tags: [singular, Präsens] }
+      - { de: "Für viele Deutsche ist Bargeld noch das wichtigste Zahlungsmittel.", en: "For many Germans, cash is still the most important means of payment.", tags: [singular, Präsens] }
+      - { de: "Wir akzeptieren alle gängigen Zahlungsmittel.", en: "We accept all common methods of payment.", tags: [plural, Präsens] }
   - id: noun-ratenzahlung
     type: noun
     lemma: Ratenzahlung
@@ -10971,12 +11012,16 @@ records:
       - payment in instalments
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1635
     noun:
       gender: f
       plural: Ratenzahlungen
+    examples:
+      - { de: "Das Sofa kann man auch per Ratenzahlung kaufen.", en: "You can also buy the sofa in instalments.", tags: [singular, Präsens] }
+      - { de: "Die Ratenzahlung läuft über zwei Jahre.", en: "The instalment plan runs for two years.", tags: [singular, Präsens] }
+      - { de: "Nach dem Jobverlust konnte er die Ratenzahlungen nicht mehr leisten.", en: "After losing his job he could no longer make the instalment payments.", tags: [plural, Präteritum] }
   - id: noun-kreditkarte
     type: noun
     lemma: Kreditkarte
@@ -10984,12 +11029,16 @@ records:
       - credit card
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1637
     noun:
       gender: f
       plural: Kreditkarten
+    examples:
+      - { de: "Kann ich mit Kreditkarte bezahlen?", en: "Can I pay by credit card?", tags: [singular, Präsens] }
+      - { de: "Meine Kreditkarte ist abgelaufen.", en: "My credit card has expired.", tags: [singular, Perfekt] }
+      - { de: "In Deutschland werden Kreditkarten seltener benutzt als in den USA.", en: "Credit cards are used less often in Germany than in the USA.", tags: [plural, Passiv, Präsens] }
   - id: noun-quittung
     type: noun
     lemma: Quittung
@@ -10997,25 +11046,34 @@ records:
       - receipt
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1639
     noun:
       gender: f
       plural: Quittungen
+    examples:
+      - { de: "Könnte ich bitte eine Quittung bekommen?", en: "Could I have a receipt, please?", tags: [singular, Konjunktiv II] }
+      - { de: "Heben Sie die Quittung für die Steuererklärung auf.", en: "Keep the receipt for your tax return.", tags: [singular, Imperativ] }
+      - { de: "Ich habe alle Quittungen in einem Ordner gesammelt.", en: "I've collected all the receipts in a folder.", tags: [plural, Perfekt] }
   - id: noun-rechnung
     type: noun
     lemma: Rechnung
     gloss:
       - invoice
+      - bill
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1641
     noun:
       gender: f
       plural: Rechnungen
+    examples:
+      - { de: "Die Rechnung ist innerhalb von 14 Tagen zu bezahlen.", en: "The invoice is payable within 14 days.", tags: [singular, Präsens] }
+      - { de: "Wir hätten gern die Rechnung, bitte.", en: "We'd like the bill, please.", tags: [singular, Konjunktiv II] }
+      - { de: "Er hatte die Rechnungen monatelang nicht bezahlt.", en: "He hadn't paid the bills for months.", tags: [plural, Plusquamperfekt] }
   - id: noun-kundenbindung
     type: noun
     lemma: Kundenbindung
@@ -11023,12 +11081,16 @@ records:
       - customer loyalty
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1643
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Rabattkarten dienen vor allem der Kundenbindung.", en: "Discount cards are mainly used to build customer loyalty.", tags: [singular, Präsens] }
+      - { de: "Guter Service ist das Wichtigste für die Kundenbindung.", en: "Good service is the most important thing for customer loyalty.", tags: [singular, Präsens] }
+      - { de: "Die Firma hat viel in die Kundenbindung investiert.", en: "The company has invested a lot in customer loyalty.", tags: [singular, Perfekt] }
   - id: noun-verbraucherzentrale
     type: noun
     lemma: Verbraucherzentrale
@@ -11036,12 +11098,16 @@ records:
       - consumer advice centre
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1645
     noun:
       gender: f
       plural: Verbraucherzentralen
+    examples:
+      - { de: "Die Verbraucherzentrale warnt vor falschen Gewinnspielen.", en: "The consumer advice centre warns against fake competitions.", tags: [singular, Präsens] }
+      - { de: "Ich habe mich bei der Verbraucherzentrale beraten lassen.", en: "I got advice from the consumer advice centre.", tags: [singular, Perfekt] }
+      - { de: "Die Verbraucherzentralen bieten auch Beratung zum Energiesparen.", en: "The consumer advice centres also offer advice on saving energy.", tags: [plural, Präsens] }
   - id: noun-konsumzwang
     type: noun
     lemma: Konsumzwang
@@ -11049,12 +11115,16 @@ records:
       - pressure to consume
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1647
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Viele Jugendliche spüren einen starken Konsumzwang.", en: "Many young people feel strong pressure to consume.", tags: [singular, Präsens] }
+      - { de: "In der Weihnachtszeit ist der Konsumzwang besonders groß.", en: "The pressure to consume is particularly strong at Christmas time.", tags: [singular, Präsens] }
+      - { de: "Sie wollte sich dem Konsumzwang entziehen und kaufte nur noch gebraucht.", en: "She wanted to escape the pressure to consume and only bought second-hand.", tags: [singular, Präteritum] }
   - id: noun-bewusste-konsum
     type: noun
     lemma: bewusste Konsum
@@ -11062,12 +11132,16 @@ records:
       - conscious consumption
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1651
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der bewusste Konsum liegt bei jungen Leuten im Trend.", en: "Conscious consumption is trendy among young people.", tags: [singular, Präsens] }
+      - { de: "Die Kampagne wirbt für einen bewussten Konsum.", en: "The campaign promotes conscious consumption.", tags: [singular, Präsens] }
+      - { de: "Mit bewusstem Konsum kann jeder etwas für die Umwelt tun.", en: "Everyone can do something for the environment through conscious consumption.", tags: [singular, Präsens] }
   - id: noun-produktverpackung
     type: noun
     lemma: Produktverpackung
@@ -11075,12 +11149,16 @@ records:
       - packaging
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1653
     noun:
       gender: f
       plural: Produktverpackungen
+    examples:
+      - { de: "Die Produktverpackung besteht aus recyceltem Papier.", en: "The packaging is made of recycled paper.", tags: [singular, Präsens] }
+      - { de: "Auf der Produktverpackung stehen alle Inhaltsstoffe.", en: "All the ingredients are listed on the packaging.", tags: [singular, Präsens] }
+      - { de: "Viele Produktverpackungen landen nach Sekunden im Müll.", en: "Much product packaging ends up in the bin after a few seconds.", tags: [plural, Präsens] }
   - id: noun-werbeslogan
     type: noun
     lemma: Werbeslogan
@@ -11088,12 +11166,16 @@ records:
       - advertising slogan
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1655
     noun:
       gender: m
       plural: Werbeslogans
+    examples:
+      - { de: "Den Werbeslogan kennt in Deutschland fast jeder.", en: "Almost everyone in Germany knows the advertising slogan.", tags: [singular, Präsens] }
+      - { de: "Die Agentur hat einen neuen Werbeslogan entwickelt.", en: "The agency has developed a new advertising slogan.", tags: [singular, Perfekt] }
+      - { de: "Gute Werbeslogans sind kurz und leicht zu merken.", en: "Good advertising slogans are short and easy to remember.", tags: [plural, Präsens] }
   - id: noun-kaufempfehlung
     type: noun
     lemma: Kaufempfehlung
@@ -11101,12 +11183,16 @@ records:
       - product recommendation
     categories:
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1657
     noun:
       gender: f
       plural: Kaufempfehlungen
+    examples:
+      - { de: "Der Test endet mit einer klaren Kaufempfehlung.", en: "The test ends with a clear recommendation to buy.", tags: [singular, Präsens] }
+      - { de: "Die Verkäuferin gab mir eine ehrliche Kaufempfehlung.", en: "The saleswoman gave me an honest product recommendation.", tags: [singular, Präteritum] }
+      - { de: "Viele Influencer verdienen Geld mit Kaufempfehlungen.", en: "Many influencers earn money with product recommendations.", tags: [plural, Präsens] }
   - id: noun-arbeitswelt
     type: noun
     lemma: Arbeitswelt
@@ -11114,25 +11200,34 @@ records:
       - world of work
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1672
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Digitalisierung verändert die Arbeitswelt grundlegend.", en: "Digitalisation is fundamentally changing the world of work.", tags: [singular, Präsens] }
+      - { de: "Der Übergang von der Schule in die Arbeitswelt fiel ihm schwer.", en: "He found the transition from school to working life difficult.", tags: [singular, Präteritum] }
+      - { de: "In der Arbeitswelt der Zukunft wird Homeoffice normal sein.", en: "In the world of work of the future, working from home will be normal.", tags: [singular, Futur I] }
   - id: noun-arbeitsplatz
     type: noun
     lemma: Arbeitsplatz
     gloss:
       - workplace
+      - job
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1676
     noun:
       gender: m
       plural: Arbeitsplätze
+    examples:
+      - { de: "Am Arbeitsplatz ist Rauchen verboten.", en: "Smoking is prohibited in the workplace.", tags: [singular, Präsens] }
+      - { de: "Ich habe meinen Arbeitsplatz neu eingerichtet.", en: "I have rearranged my workspace.", tags: [singular, Perfekt] }
+      - { de: "Die Fabrik hat 500 neue Arbeitsplätze geschaffen.", en: "The factory has created 500 new jobs.", tags: [plural, Perfekt] }
   - id: noun-arbeitgeber
     type: noun
     lemma: Arbeitgeber
@@ -11140,7 +11235,7 @@ records:
       - employer
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1678
     noun:
@@ -11150,6 +11245,10 @@ records:
         - lemma: Arbeitgeberin
           gender: f
           plural: Arbeitgeberinnen
+    examples:
+      - { de: "Mein Arbeitgeber bezahlt mir das Deutschlandticket.", en: "My employer pays for my Deutschlandticket.", tags: [singular, Präsens] }
+      - { de: "Die Arbeitgeber lehnen höhere Löhne ab.", en: "Employers reject higher wages.", tags: [plural, Präsens] }
+      - { de: "Die Stadt ist der größte Arbeitgeber in der Region.", en: "The city is the largest employer in the region.", tags: [singular, Präsens] }
   - id: noun-arbeitnehmer
     type: noun
     lemma: Arbeitnehmer
@@ -11157,7 +11256,7 @@ records:
       - employee
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1680
     noun:
@@ -11167,6 +11266,10 @@ records:
         - lemma: Arbeitnehmerin
           gender: f
           plural: Arbeitnehmerinnen
+    examples:
+      - { de: "Jeder Arbeitnehmer hat Anspruch auf bezahlten Urlaub.", en: "Every employee is entitled to paid holiday.", tags: [singular, Präsens] }
+      - { de: "Die Arbeitnehmer streiken für bessere Bedingungen.", en: "The employees are striking for better conditions.", tags: [plural, Präsens] }
+      - { de: "Die Arbeitnehmerin hatte ihre Kündigung schriftlich erhalten.", en: "The employee had received her notice in writing.", tags: [singular, Plusquamperfekt] }
   - id: noun-team
     type: noun
     lemma: Team
@@ -11174,12 +11277,16 @@ records:
       - team
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1686
     noun:
       gender: n
       plural: Teams
+    examples:
+      - { de: "Unser Team besteht aus zwölf Personen.", en: "Our team consists of twelve people.", tags: [singular, Präsens] }
+      - { de: "Im Team arbeitet sie am liebsten.", en: "She likes working in a team best.", tags: [singular, Präsens] }
+      - { de: "Die beiden Teams haben das Projekt gemeinsam abgeschlossen.", en: "The two teams completed the project together.", tags: [plural, Perfekt] }
   - id: noun-besprechung
     type: noun
     lemma: Besprechung
@@ -11187,12 +11294,16 @@ records:
       - meeting
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1688
     noun:
       gender: f
       plural: Besprechungen
+    examples:
+      - { de: "Frau Weber ist gerade in einer Besprechung.", en: "Ms Weber is in a meeting at the moment.", tags: [singular, Präsens] }
+      - { de: "Die Besprechung wurde auf Donnerstag verschoben.", en: "The meeting has been postponed to Thursday.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Zu viele Besprechungen kosten Zeit.", en: "Too many meetings waste time.", tags: [plural, Präsens] }
   - id: noun-meeting
     type: noun
     lemma: Meeting
@@ -11200,12 +11311,16 @@ records:
       - meeting
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1690
     noun:
       gender: n
       plural: Meetings
+    examples:
+      - { de: "Das Meeting fängt in fünf Minuten an.", en: "The meeting starts in five minutes.", tags: [singular, Präsens] }
+      - { de: "Ich hatte heute drei Meetings hintereinander.", en: "I had three meetings in a row today.", tags: [plural, Präteritum] }
+      - { de: "Wir werden das Meeting online durchführen.", en: "We will hold the meeting online.", tags: [singular, Futur I] }
   - id: noun-konferenz
     type: noun
     lemma: Konferenz
@@ -11213,12 +11328,16 @@ records:
       - conference
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1692
     noun:
       gender: f
       plural: Konferenzen
+    examples:
+      - { de: "Die Konferenz findet in Wien statt.", en: "The conference is taking place in Vienna.", tags: [singular, Präsens] }
+      - { de: "Auf der Konferenz hat sie einen Vortrag gehalten.", en: "She gave a talk at the conference.", tags: [singular, Perfekt] }
+      - { de: "Er reist jedes Jahr zu mehreren internationalen Konferenzen.", en: "He travels to several international conferences every year.", tags: [plural, Präsens] }
   - id: noun-praesentation
     type: noun
     lemma: Präsentation
