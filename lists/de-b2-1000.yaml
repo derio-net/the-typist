@@ -1371,12 +1371,16 @@ records:
       - revenue
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 169
     noun:
       gender: m
       plural: Umsätze
+    examples:
+      - { de: "Der Umsatz ist im dritten Quartal um zehn Prozent gestiegen.", en: "Turnover rose by ten percent in the third quarter.", tags: [singular, Perfekt] }
+      - { de: "Mit dem neuen Produkt wollen wir höhere Umsätze erzielen.", en: "We want to achieve higher sales with the new product.", tags: [plural, Präsens] }
+      - { de: "Der Laden machte im Dezember den größten Umsatz.", en: "The shop had its highest turnover in December.", tags: [singular, Präteritum] }
   - id: noun-bilanz
     type: noun
     lemma: Bilanz
@@ -1384,12 +1388,16 @@ records:
       - financial statement
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 173
     noun:
       gender: f
       plural: Bilanzen
+    examples:
+      - { de: "Die Bilanz wird jedes Jahr von einem Prüfer kontrolliert.", en: "The financial statement is checked by an auditor every year.", tags: [singular, Passiv] }
+      - { de: "Am Ende des Projekts zogen wir eine positive Bilanz.", en: "At the end of the project we took stock positively.", tags: [singular, Präteritum] }
+      - { de: "Die Bilanzen der letzten drei Jahre liegen vor.", en: "The financial statements for the last three years are available.", tags: [plural, Präsens] }
   - id: noun-buchhaltung
     type: noun
     lemma: Buchhaltung
@@ -1397,12 +1405,16 @@ records:
       - accounting
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 175
     noun:
       gender: f
       plural: Buchhaltungen
+    examples:
+      - { de: "Die Rechnung habe ich schon an die Buchhaltung weitergeleitet.", en: "I have already forwarded the invoice to accounting.", tags: [singular, Perfekt] }
+      - { de: "Frau Schulz arbeitet seit zwanzig Jahren in der Buchhaltung.", en: "Ms Schulz has been working in accounting for twenty years.", tags: [singular, Präsens] }
+      - { de: "Viele kleine Firmen lassen ihre Buchhaltungen von externen Büros erledigen.", en: "Many small companies have their accounting done by external offices.", tags: [plural, Präsens] }
   - id: noun-steuerberater
     type: noun
     lemma: Steuerberater
@@ -1410,12 +1422,16 @@ records:
       - tax advisor
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 177
     noun:
       gender: m
       plural: Steuerberater
+    examples:
+      - { de: "Mein Steuerberater macht jedes Jahr meine Steuererklärung.", en: "My tax advisor does my tax return every year.", tags: [singular, Präsens] }
+      - { de: "Für diese Frage sollten Sie einen Steuerberater fragen.", en: "You should ask a tax advisor about this question.", tags: [singular, Präsens] }
+      - { de: "Im Frühjahr haben die Steuerberater besonders viel zu tun.", en: "Tax advisors are especially busy in the spring.", tags: [plural, Präsens] }
   - id: noun-arbeitszeitregelung
     type: noun
     lemma: Arbeitszeitregelung
@@ -1423,12 +1439,16 @@ records:
       - working time arrangement
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 179
     noun:
       gender: f
       plural: Arbeitszeitregelungen
+    examples:
+      - { de: "Die neue Arbeitszeitregelung erlaubt mehr Homeoffice.", en: "The new working-time arrangement allows more working from home.", tags: [singular, Präsens] }
+      - { de: "Über die Arbeitszeitregelung wurde lange diskutiert.", en: "The working-time arrangement was discussed for a long time.", tags: [singular, Passiv] }
+      - { de: "Flexible Arbeitszeitregelungen sind bei Eltern sehr beliebt.", en: "Flexible working-time arrangements are very popular with parents.", tags: [plural, Präsens] }
   - id: noun-betriebsrat
     type: noun
     lemma: Betriebsrat
@@ -1436,12 +1456,16 @@ records:
       - works council
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 181
     noun:
       gender: m
       plural: Betriebsräte
+    examples:
+      - { de: "Der Betriebsrat hat dem Plan nicht zugestimmt.", en: "The works council did not agree to the plan.", tags: [singular, Perfekt] }
+      - { de: "Sie wurde letztes Jahr in den Betriebsrat gewählt.", en: "She was elected to the works council last year.", tags: [singular, Passiv] }
+      - { de: "Die Betriebsräte mehrerer Werke trafen sich in München.", en: "The works councils of several plants met in Munich.", tags: [plural, Präteritum] }
   - id: noun-tarifverhandlung
     type: noun
     lemma: Tarifverhandlung
@@ -1449,12 +1473,16 @@ records:
       - collective bargaining
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 183
     noun:
       gender: f
       plural: Tarifverhandlungen
+    examples:
+      - { de: "Die Tarifverhandlung ist ohne Ergebnis zu Ende gegangen.", en: "The collective bargaining ended without a result.", tags: [singular, Perfekt] }
+      - { de: "Die Tarifverhandlungen werden nächste Woche fortgesetzt.", en: "The wage negotiations will be continued next week.", tags: [plural, Passiv] }
+      - { de: "In der Tarifverhandlung forderte die Gewerkschaft mehr Urlaub.", en: "In the collective bargaining the union demanded more holiday.", tags: [singular, Präteritum] }
   - id: noun-gewerkschaft
     type: noun
     lemma: Gewerkschaft
@@ -1462,12 +1490,16 @@ records:
       - trade union
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 185
     noun:
       gender: f
       plural: Gewerkschaften
+    examples:
+      - { de: "Die Gewerkschaft ruft zu einem Streik auf.", en: "The union is calling a strike.", tags: [singular, Präsens] }
+      - { de: "Ich bin vor drei Jahren in die Gewerkschaft eingetreten.", en: "I joined the union three years ago.", tags: [singular, Perfekt] }
+      - { de: "Die Gewerkschaften verloren in den letzten Jahrzehnten viele Mitglieder.", en: "The unions lost many members in recent decades.", tags: [plural, Präteritum] }
   - id: verb-streiken
     type: verb
     lemma: streiken
@@ -1475,9 +1507,20 @@ records:
       - to go on strike
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 187
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "streikt"
+        praeteritum: "streikte"
+        partizip2: "gestreikt"
+    examples:
+      - { de: "Heute streiken die Lokführer, deshalb fahren kaum Züge.", en: "The train drivers are on strike today, so hardly any trains are running.", tags: [Präsens] }
+      - { de: "Das Personal hat drei Tage lang gestreikt.", en: "The staff went on strike for three days.", tags: [Perfekt] }
+      - { de: "Im Herbst streikten auch die Piloten.", en: "In the autumn the pilots went on strike too.", tags: [Präteritum] }
   - id: noun-lieferant
     type: noun
     lemma: Lieferant
@@ -1485,7 +1528,7 @@ records:
       - supplier
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 189
     noun:
@@ -1495,6 +1538,10 @@ records:
         - lemma: Lieferantin
           gender: f
           plural: Lieferantinnen
+    examples:
+      - { de: "Unser Lieferant hat die Preise erhöht.", en: "Our supplier has raised its prices.", tags: [singular, Perfekt] }
+      - { de: "Wir arbeiten mit Lieferanten aus ganz Europa zusammen.", en: "We work with suppliers from all over Europe.", tags: [plural, Präsens] }
+      - { de: "Die neue Lieferantin liefert schneller und günstiger.", en: "The new supplier delivers faster and more cheaply.", tags: [singular, Präsens] }
   - id: noun-lager
     type: noun
     lemma: Lager
@@ -1502,12 +1549,16 @@ records:
       - warehouse
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 191
     noun:
       gender: n
       plural: Lager
+    examples:
+      - { de: "Die Ware liegt noch im Lager.", en: "The goods are still in the warehouse.", tags: [singular, Präsens] }
+      - { de: "Das Lager wurde nach dem Umzug neu organisiert.", en: "The warehouse was reorganised after the move.", tags: [singular, Passiv] }
+      - { de: "Die Firma hat zwei Lager in der Nähe von Hamburg.", en: "The company has two warehouses near Hamburg.", tags: [plural, Präsens] }
   - id: noun-logistik
     type: noun
     lemma: Logistik
@@ -1515,12 +1566,16 @@ records:
       - logistics
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 193
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Logistik ist der wichtigste Teil des Onlinehandels.", en: "Logistics is the most important part of online retail.", tags: [singular, Präsens] }
+      - { de: "Er hat zehn Jahre in der Logistik gearbeitet.", en: "He worked in logistics for ten years.", tags: [singular, Perfekt] }
+      - { de: "Wegen der Probleme in der Logistik kamen die Pakete zu spät.", en: "Because of problems in logistics the parcels arrived late.", tags: [singular, Präteritum] }
   - id: noun-abteilung
     type: noun
     lemma: Abteilung
@@ -1529,13 +1584,17 @@ records:
     categories:
       - workplace-and-business
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 195
       - 1684
     noun:
       gender: f
       plural: Abteilungen
+    examples:
+      - { de: "In welcher Abteilung arbeiten Sie?", en: "Which department do you work in?", tags: [singular, Präsens] }
+      - { de: "Die beiden Abteilungen sollen im Frühjahr zusammengelegt werden.", en: "The two departments are to be merged in the spring.", tags: [plural, Passiv] }
+      - { de: "Der Leiter der Abteilung war gestern krank.", en: "The head of the department was ill yesterday.", tags: [singular, Präteritum] }
   - id: noun-zustaendigkeit
     type: noun
     lemma: Zuständigkeit
@@ -1547,7 +1606,7 @@ records:
       - workplace-and-business
       - government-and-politics
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 197
       - 318
@@ -1555,6 +1614,10 @@ records:
     noun:
       gender: f
       plural: Zuständigkeiten
+    examples:
+      - { de: "Das fällt nicht in meine Zuständigkeit.", en: "That's not my area of responsibility.", tags: [singular, Präsens] }
+      - { de: "Die Zuständigkeiten im Team müssen klarer verteilt werden.", en: "Responsibilities in the team need to be distributed more clearly.", tags: [plural, Passiv] }
+      - { de: "Über die Zuständigkeit des Gerichts wurde lange gestritten.", en: "The court's jurisdiction was argued about for a long time.", tags: [singular, Passiv] }
   - id: noun-hierarchie
     type: noun
     lemma: Hierarchie
@@ -1564,7 +1627,7 @@ records:
       - workplace-and-business
       - formal-and-informal-address
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 199
       - 524
@@ -1572,6 +1635,10 @@ records:
     noun:
       gender: f
       plural: Hierarchien
+    examples:
+      - { de: "In unserer Firma ist die Hierarchie sehr flach.", en: "In our company the hierarchy is very flat.", tags: [singular, Präsens] }
+      - { de: "Start-ups haben oft weniger Hierarchien als Konzerne.", en: "Start-ups often have fewer hierarchies than corporations.", tags: [plural, Präsens] }
+      - { de: "Sie stieg in der Hierarchie schnell nach oben.", en: "She quickly rose up the hierarchy.", tags: [singular, Präteritum] }
   - id: noun-kundenstamm
     type: noun
     lemma: Kundenstamm
@@ -1579,12 +1646,16 @@ records:
       - client base
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 201
     noun:
       gender: m
       plural: Kundenstämme
+    examples:
+      - { de: "Wir haben einen treuen Kundenstamm.", en: "We have a loyal client base.", tags: [singular, Präsens] }
+      - { de: "In fünf Jahren hat sie einen großen Kundenstamm aufgebaut.", en: "In five years she built up a large client base.", tags: [singular, Perfekt] }
+      - { de: "Durch die Fusion wurden die Kundenstämme beider Firmen zusammengeführt.", en: "Through the merger the client bases of both companies were combined.", tags: [plural, Passiv] }
   - id: noun-akquise
     type: noun
     lemma: Akquise
@@ -1592,12 +1663,17 @@ records:
       - acquisition (of clients)
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 203
     noun:
       gender: f
-      plural: Akquisen
+      plural: null
+    source_note: "plural Akquisen removed: activity noun, plural rarely used"
+    examples:
+      - { de: "Er ist für die Akquise neuer Kunden zuständig.", en: "He is responsible for acquiring new clients.", tags: [singular, Präsens] }
+      - { de: "Die Akquise hat dieses Jahr viel Zeit gekostet.", en: "Client acquisition took a lot of time this year.", tags: [singular, Perfekt] }
+      - { de: "Für die Akquise nutzen wir vor allem soziale Medien.", en: "For client acquisition we mainly use social media.", tags: [singular, Präsens] }
   - id: noun-vertragspartner
     type: noun
     lemma: Vertragspartner
@@ -1605,12 +1681,16 @@ records:
       - contract partner
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 205
     noun:
       gender: m
       plural: Vertragspartner
+    examples:
+      - { de: "Unser Vertragspartner hat die Lieferung abgesagt.", en: "Our contract partner has cancelled the delivery.", tags: [singular, Perfekt] }
+      - { de: "Beide Vertragspartner müssen die Änderung unterschreiben.", en: "Both contract partners have to sign the change.", tags: [plural, Präsens] }
+      - { de: "Mit dem neuen Vertragspartner gab es von Anfang an Probleme.", en: "There were problems with the new contract partner from the start.", tags: [singular, Präteritum] }
   - id: noun-selbststaendigkeit
     type: noun
     lemma: Selbstständigkeit
@@ -1618,12 +1698,16 @@ records:
       - self-employment
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 207
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Der Schritt in die Selbstständigkeit war nicht leicht.", en: "The step into self-employment was not easy.", tags: [singular, Präteritum] }
+      - { de: "Die Selbstständigkeit bringt viel Freiheit, aber auch Risiko.", en: "Self-employment brings a lot of freedom, but also risk.", tags: [singular, Präsens] }
+      - { de: "Nach zehn Jahren in der Selbstständigkeit sucht er wieder eine feste Stelle.", en: "After ten years of self-employment he is looking for a permanent job again.", tags: [singular, Präsens] }
   - id: noun-freiberufler
     type: noun
     lemma: Freiberufler
@@ -1631,7 +1715,7 @@ records:
       - freelancer
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 209
     noun:
@@ -1641,6 +1725,10 @@ records:
         - lemma: Freiberuflerin
           gender: f
           plural: Freiberuflerinnen
+    examples:
+      - { de: "Als Freiberufler muss man sich selbst krankenversichern.", en: "As a freelancer you have to arrange your own health insurance.", tags: [singular, Präsens] }
+      - { de: "Die Agentur arbeitet fast nur mit Freiberuflern.", en: "The agency works almost exclusively with freelancers.", tags: [plural, Präsens] }
+      - { de: "Sie hat jahrelang als Freiberuflerin übersetzt.", en: "She worked as a freelance translator for years.", tags: [singular, Perfekt] }
   - id: noun-regierung
     type: noun
     lemma: Regierung
@@ -11004,9 +11092,14 @@ records:
       - fixed-term
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 139
+    adjective:
+      gradable: false
+    examples:
+      - { de: "Sie hat nur einen befristeten Vertrag bekommen.", en: "She only got a fixed-term contract.", tags: [attributive, Perfekt] }
+      - { de: "Die Stelle ist auf zwei Jahre befristet.", en: "The position is limited to two years.", tags: [Präsens] }
   - id: adjective-unbefristet
     type: adjective
     lemma: unbefristet
@@ -11014,9 +11107,14 @@ records:
       - permanent
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 139
+    adjective:
+      gradable: false
+    examples:
+      - { de: "Nach der Probezeit bekam er eine unbefristete Stelle.", en: "After the probationary period he got a permanent position.", tags: [attributive, Präteritum] }
+      - { de: "Mein Vertrag ist jetzt unbefristet.", en: "My contract is now permanent.", tags: [Präsens] }
   - id: noun-nettogehalt
     type: noun
     lemma: Nettogehalt
@@ -11024,12 +11122,16 @@ records:
       - net salary
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 157
     noun:
       gender: n
       plural: Nettogehälter
+    examples:
+      - { de: "Mein Nettogehalt liegt bei etwa 2500 Euro.", en: "My net salary is about 2,500 euros.", tags: [singular, Präsens] }
+      - { de: "Nach Abzug der Steuern bleibt das Nettogehalt übrig.", en: "After taxes are deducted, the net salary is left.", tags: [singular, Präsens] }
+      - { de: "Die Nettogehälter sind dieses Jahr kaum gestiegen.", en: "Net salaries have hardly risen this year.", tags: [plural, Perfekt] }
   - id: noun-bruttogehalt
     type: noun
     lemma: Bruttogehalt
@@ -11037,12 +11139,16 @@ records:
       - gross salary
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 157
     noun:
       gender: n
       plural: Bruttogehälter
+    examples:
+      - { de: "Das Bruttogehalt steht oben in der Stellenanzeige.", en: "The gross salary is stated at the top of the job advert.", tags: [singular, Präsens] }
+      - { de: "Wie hoch war dein Bruttogehalt im letzten Job?", en: "How high was your gross salary in your last job?", tags: [singular, Präteritum] }
+      - { de: "In der Branche sind die Bruttogehälter vergleichsweise hoch.", en: "Gross salaries in the industry are comparatively high.", tags: [plural, Präsens] }
   - id: noun-mehrheit
     type: noun
     lemma: Mehrheit
