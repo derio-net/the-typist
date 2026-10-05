@@ -230,3 +230,6 @@ Both committed on the branch (1569f7e); CLAUDE.md update added to layout/scope.
 
 <!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-05-vocab-typer-p8 created=2026-10-05T06:55:18+00:00 -->
 ### phase-split-2026-10-05-vocab-typer-p8 · decision · ask: R16 seed content, first half (context and review size)
+
+<!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-05-vocab-typer-p9 created=2026-10-05T06:55:21+00:00 -->
+### phase-split-2026-10-05-vocab-typer-p9 · decision · review-size: R16 seed content second half; one executor context cannot hold 1000 enrichments
