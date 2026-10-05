@@ -5474,12 +5474,16 @@ records:
       - culture
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 866
     noun:
       gender: f
       plural: Kulturen
+    examples:
+      - { de: "Ich interessiere mich sehr für die japanische Kultur.", en: "I'm very interested in Japanese culture.", tags: [singular, Präsens] }
+      - { de: "Im Ausland lernt man andere Kulturen kennen.", en: "Abroad you get to know other cultures.", tags: [plural, Präsens] }
+      - { de: "Die Stadt gibt viel Geld für Kultur aus.", en: "The city spends a lot of money on culture.", tags: [singular, Präsens] }
   - id: noun-kulturelle-angebot
     type: noun
     lemma: kulturelle Angebot
@@ -5487,12 +5491,16 @@ records:
       - cultural offerings
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 868
     noun:
       gender: n
       plural: kulturellen Angebote
+    examples:
+      - { de: "Das kulturelle Angebot in Berlin ist riesig.", en: "The cultural offering in Berlin is huge.", tags: [singular, Präsens] }
+      - { de: "Auf dem Land fehlt oft ein kulturelles Angebot für junge Leute.", en: "In the countryside there is often a lack of cultural offerings for young people.", tags: [singular, Präsens] }
+      - { de: "Die kulturellen Angebote der Stadt wurden während der Krise gekürzt.", en: "The city's cultural offerings were cut during the crisis.", tags: [plural, Passiv] }
   - id: noun-veranstaltung
     type: noun
     lemma: Veranstaltung
@@ -5500,12 +5508,16 @@ records:
       - event
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 870
     noun:
       gender: f
       plural: Veranstaltungen
+    examples:
+      - { de: "Die Veranstaltung beginnt um 19 Uhr.", en: "The event begins at 7 p.m.", tags: [singular, Präsens] }
+      - { de: "Wegen des Regens wurde die Veranstaltung abgesagt.", en: "The event was cancelled because of the rain.", tags: [singular, Passiv] }
+      - { de: "Im Sommer gibt es viele Veranstaltungen im Park.", en: "In summer there are many events in the park.", tags: [plural, Präsens] }
   - id: noun-auftritt
     type: noun
     lemma: Auftritt
@@ -5514,12 +5526,16 @@ records:
       - appearance
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 872
     noun:
       gender: m
       plural: Auftritte
+    examples:
+      - { de: "Der Auftritt der Band war der Höhepunkt des Festivals.", en: "The band's performance was the highlight of the festival.", tags: [singular, Präteritum] }
+      - { de: "Vor ihrem ersten Auftritt war sie sehr aufgeregt.", en: "Before her first appearance she was very nervous.", tags: [singular, Präteritum] }
+      - { de: "Der Comedian hat dieses Jahr über hundert Auftritte.", en: "The comedian has over a hundred performances this year.", tags: [plural, Präsens] }
   - id: noun-buehne
     type: noun
     lemma: Bühne
@@ -5527,12 +5543,16 @@ records:
       - stage
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 874
     noun:
       gender: f
       plural: Bühnen
+    examples:
+      - { de: "Die Schauspieler stehen schon auf der Bühne.", en: "The actors are already on stage.", tags: [singular, Präsens] }
+      - { de: "Mit sechzehn stand er zum ersten Mal auf der Bühne.", en: "At sixteen he was on stage for the first time.", tags: [singular, Präteritum] }
+      - { de: "Das Festival hat drei Bühnen.", en: "The festival has three stages.", tags: [plural, Präsens] }
   - id: noun-theaterstueck
     type: noun
     lemma: Theaterstück
@@ -5540,12 +5560,16 @@ records:
       - play
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 876
     noun:
       gender: n
       plural: Theaterstücke
+    examples:
+      - { de: "Das Theaterstück handelt von einer zerstrittenen Familie.", en: "The play is about a family at odds.", tags: [singular, Präsens] }
+      - { de: "Brecht hat viele berühmte Theaterstücke geschrieben.", en: "Brecht wrote many famous plays.", tags: [plural, Perfekt] }
+      - { de: "Wir haben uns gestern ein Theaterstück von Schiller angesehen.", en: "Yesterday we went to see a play by Schiller.", tags: [singular, Perfekt] }
   - id: noun-auffuehrung
     type: noun
     lemma: Aufführung
@@ -5553,12 +5577,16 @@ records:
       - performance
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 878
     noun:
       gender: f
       plural: Aufführungen
+    examples:
+      - { de: "Die Aufführung dauerte fast drei Stunden.", en: "The performance lasted almost three hours.", tags: [singular, Präteritum] }
+      - { de: "Nach der Aufführung gab es langen Applaus.", en: "After the performance there was long applause.", tags: [singular, Präteritum] }
+      - { de: "Alle Aufführungen im Dezember sind ausverkauft.", en: "All performances in December are sold out.", tags: [plural, Präsens] }
   - id: verb-inszenieren
     type: verb
     lemma: inszenieren
@@ -5566,9 +5594,20 @@ records:
       - to stage (a play)
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 880
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "inszeniert"
+        praeteritum: "inszenierte"
+        partizip2: "inszeniert"
+    examples:
+      - { de: "Die junge Regisseurin inszeniert zum ersten Mal eine Oper.", en: "The young director is staging an opera for the first time.", tags: [Präsens] }
+      - { de: "Er hat den „Faust“ ganz modern inszeniert.", en: "He staged \"Faust\" in a very modern way.", tags: [Perfekt] }
+      - { de: "Das Stück wurde 1928 in Berlin zum ersten Mal inszeniert.", en: "The play was first staged in Berlin in 1928.", tags: [Passiv, Präteritum] }
   - id: noun-regisseur
     type: noun
     lemma: Regisseur
@@ -5576,7 +5615,7 @@ records:
       - director (film/theatre)
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 882
     noun:
@@ -5586,6 +5625,10 @@ records:
         - lemma: Regisseurin
           gender: f
           plural: Regisseurinnen
+    examples:
+      - { de: "Der Regisseur hat für den Film einen Preis gewonnen.", en: "The director won a prize for the film.", tags: [singular, Perfekt] }
+      - { de: "Die Regisseurin arbeitet gern mit Laien.", en: "The director likes working with amateurs.", tags: [singular, Präsens] }
+      - { de: "Viele junge Regisseure drehen heute für Streamingdienste.", en: "Many young directors make films for streaming services today.", tags: [plural, Präsens] }
   - id: noun-drehbuch
     type: noun
     lemma: Drehbuch
@@ -5593,12 +5636,16 @@ records:
       - screenplay
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 884
     noun:
       gender: n
       plural: Drehbücher
+    examples:
+      - { de: "Sie schreibt gerade das Drehbuch für eine Serie.", en: "She is currently writing the screenplay for a series.", tags: [singular, Präsens] }
+      - { de: "Das Drehbuch wurde mehrfach umgeschrieben.", en: "The screenplay was rewritten several times.", tags: [singular, Passiv] }
+      - { de: "Er hat schon zehn Drehbücher verkauft.", en: "He has already sold ten screenplays.", tags: [plural, Perfekt] }
   - id: noun-kulisse
     type: noun
     lemma: Kulisse
@@ -5607,25 +5654,34 @@ records:
       - backdrop
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 886
     noun:
       gender: f
       plural: Kulissen
+    examples:
+      - { de: "Die Kulisse sah aus wie ein echtes Schloss.", en: "The set looked like a real castle.", tags: [singular, Präteritum] }
+      - { de: "Vor der Kulisse der Alpen fand das Konzert statt.", en: "The concert took place against the backdrop of the Alps.", tags: [singular, Präteritum] }
+      - { de: "Die Kulissen werden in einer eigenen Werkstatt gebaut.", en: "The sets are built in a separate workshop.", tags: [plural, Passiv] }
   - id: noun-requisite
     type: noun
-    lemma: Requisite
+    lemma: Requisit
     gloss:
       - prop
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 888
     noun:
-      gender: f
+      gender: n
       plural: Requisiten
+    source_note: "lemma corrected from die Requisite (props department) to das Requisit (prop)"
+    examples:
+      - { de: "Das wichtigste Requisit im Stück ist ein alter Koffer.", en: "The most important prop in the play is an old suitcase.", tags: [singular, Präsens] }
+      - { de: "Nach der Vorstellung räumen wir die Requisiten weg.", en: "After the performance we put the props away.", tags: [plural, Präsens] }
+      - { de: "Der Schauspieler hat ein Requisit auf der Bühne vergessen.", en: "The actor forgot a prop on the stage.", tags: [singular, Perfekt] }
   - id: noun-premiere
     type: noun
     lemma: Premiere
@@ -5633,12 +5689,16 @@ records:
       - premiere
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 890
     noun:
       gender: f
       plural: Premieren
+    examples:
+      - { de: "Die Premiere des Films findet in Cannes statt.", en: "The film's premiere takes place in Cannes.", tags: [singular, Präsens] }
+      - { de: "Zur Premiere kamen viele Prominente.", en: "Many celebrities came to the premiere.", tags: [singular, Präteritum] }
+      - { de: "Wegen der Pandemie mussten mehrere Premieren verschoben werden.", en: "Several premieres had to be postponed because of the pandemic.", tags: [plural, Präteritum] }
   - id: noun-kritik
     type: noun
     lemma: Kritik
@@ -5646,12 +5706,16 @@ records:
       - review
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 892
     noun:
       gender: f
       plural: Kritiken
+    examples:
+      - { de: "Die Kritik in der Zeitung war vernichtend.", en: "The review in the newspaper was devastating.", tags: [singular, Präteritum] }
+      - { de: "Der Film hat hervorragende Kritiken bekommen.", en: "The film got excellent reviews.", tags: [plural, Perfekt] }
+      - { de: "Bevor ich ins Kino gehe, lese ich gern eine Kritik.", en: "Before I go to the cinema, I like to read a review.", tags: [singular, Präsens] }
   - id: noun-kritiker
     type: noun
     lemma: Kritiker
@@ -5659,7 +5723,7 @@ records:
       - critic
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 894
     noun:
@@ -5669,6 +5733,10 @@ records:
         - lemma: Kritikerin
           gender: f
           plural: Kritikerinnen
+    examples:
+      - { de: "Der Kritiker lobte vor allem die Musik.", en: "The critic praised the music above all.", tags: [singular, Präteritum] }
+      - { de: "Die Kritiker waren von dem Roman begeistert.", en: "The critics were thrilled with the novel.", tags: [plural, Präteritum] }
+      - { de: "Sie schreibt als Kritikerin für ein Musikmagazin.", en: "She writes as a critic for a music magazine.", tags: [singular, Präsens] }
   - id: noun-gemaelde
     type: noun
     lemma: Gemälde
@@ -5676,12 +5744,16 @@ records:
       - painting
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 896
     noun:
       gender: n
       plural: Gemälde
+    examples:
+      - { de: "Das Gemälde hängt im Louvre.", en: "The painting hangs in the Louvre.", tags: [singular, Präsens] }
+      - { de: "Das Gemälde wurde für zwei Millionen Euro versteigert.", en: "The painting was auctioned for two million euros.", tags: [singular, Passiv] }
+      - { de: "Im Museum sind über dreihundert Gemälde zu sehen.", en: "Over three hundred paintings can be seen in the museum.", tags: [plural, Präsens] }
   - id: noun-skulptur
     type: noun
     lemma: Skulptur
@@ -5689,12 +5761,16 @@ records:
       - sculpture
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 898
     noun:
       gender: f
       plural: Skulpturen
+    examples:
+      - { de: "Vor dem Rathaus steht eine moderne Skulptur.", en: "A modern sculpture stands in front of the town hall.", tags: [singular, Präsens] }
+      - { de: "Die Künstlerin hat die Skulptur aus Holz geschaffen.", en: "The artist created the sculpture from wood.", tags: [singular, Perfekt] }
+      - { de: "Im Park sind zwölf Skulpturen ausgestellt.", en: "Twelve sculptures are on display in the park.", tags: [plural, Präsens] }
   - id: noun-ausstellung
     type: noun
     lemma: Ausstellung
@@ -5702,12 +5778,16 @@ records:
       - exhibition
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 900
     noun:
       gender: f
       plural: Ausstellungen
+    examples:
+      - { de: "Die Ausstellung ist noch bis Ende Mai geöffnet.", en: "The exhibition is open until the end of May.", tags: [singular, Präsens] }
+      - { de: "Wir haben eine Ausstellung über Klimt besucht.", en: "We visited an exhibition about Klimt.", tags: [singular, Perfekt] }
+      - { de: "Das Museum zeigt jedes Jahr vier neue Ausstellungen.", en: "The museum shows four new exhibitions every year.", tags: [plural, Präsens] }
   - id: noun-museum
     type: noun
     lemma: Museum
@@ -5715,12 +5795,16 @@ records:
       - museum
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 902
     noun:
       gender: n
       plural: Museen
+    examples:
+      - { de: "Am Sonntag ist der Eintritt ins Museum frei.", en: "Admission to the museum is free on Sunday.", tags: [singular, Präsens] }
+      - { de: "Wien hat viele berühmte Museen.", en: "Vienna has many famous museums.", tags: [plural, Präsens] }
+      - { de: "Das Museum wurde 1880 eröffnet.", en: "The museum was opened in 1880.", tags: [singular, Passiv] }
   - id: noun-galerie
     type: noun
     lemma: Galerie
@@ -5728,12 +5812,16 @@ records:
       - gallery
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 904
     noun:
       gender: f
       plural: Galerien
+    examples:
+      - { de: "Die Galerie zeigt Werke junger Künstler.", en: "The gallery shows works by young artists.", tags: [singular, Präsens] }
+      - { de: "In dieser Straße gibt es viele kleine Galerien.", en: "There are many small galleries in this street.", tags: [plural, Präsens] }
+      - { de: "Ihr erstes Bild hat sie an eine Galerie verkauft.", en: "She sold her first picture to a gallery.", tags: [singular, Perfekt] }
   - id: noun-kuenstler
     type: noun
     lemma: Künstler
@@ -5741,7 +5829,7 @@ records:
       - artist
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 906
     noun:
@@ -5751,6 +5839,10 @@ records:
         - lemma: Künstlerin
           gender: f
           plural: Künstlerinnen
+    examples:
+      - { de: "Der Künstler malt nur mit natürlichen Farben.", en: "The artist paints only with natural paints.", tags: [singular, Präsens] }
+      - { de: "Viele Künstler können von ihrer Arbeit nicht leben.", en: "Many artists cannot live from their work.", tags: [plural, Präsens] }
+      - { de: "Die Künstlerin stellte ihre Bilder in Paris aus.", en: "The artist exhibited her pictures in Paris.", tags: [singular, Präteritum] }
   - id: noun-kunstbewegung
     type: noun
     lemma: Kunstbewegung
@@ -5758,12 +5850,16 @@ records:
       - art movement
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 908
     noun:
       gender: f
       plural: Kunstbewegungen
+    examples:
+      - { de: "Der Expressionismus war eine wichtige Kunstbewegung.", en: "Expressionism was an important art movement.", tags: [singular, Präteritum] }
+      - { de: "Die Ausstellung zeigt verschiedene Kunstbewegungen des 20. Jahrhunderts.", en: "The exhibition shows various art movements of the 20th century.", tags: [plural, Präsens] }
+      - { de: "Der Kubismus war eine Kunstbewegung, die in Paris entstand.", en: "Cubism was an art movement that emerged in Paris.", tags: [singular, Präteritum] }
   - id: noun-stil
     type: noun
     lemma: Stil
@@ -5771,12 +5867,16 @@ records:
       - style
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 910
     noun:
       gender: m
       plural: Stile
+    examples:
+      - { de: "Ihr Stil ist sofort zu erkennen.", en: "Her style is instantly recognisable.", tags: [singular, Präsens] }
+      - { de: "Das Gebäude ist im Stil des Barock gebaut.", en: "The building is built in the Baroque style.", tags: [singular, Passiv] }
+      - { de: "Der Künstler hat im Laufe seines Lebens mehrere Stile ausprobiert.", en: "The artist tried out several styles over the course of his life.", tags: [plural, Perfekt] }
   - id: noun-moderne
     type: noun
     lemma: Moderne
@@ -5784,12 +5884,16 @@ records:
       - modernism
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 912
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Moderne veränderte Kunst und Architektur grundlegend.", en: "Modernism fundamentally changed art and architecture.", tags: [singular, Präteritum] }
+      - { de: "Das Museum zeigt Werke der Moderne.", en: "The museum shows works of modernism.", tags: [singular, Präsens] }
+      - { de: "Mit dem Bauhaus hat die Moderne Einzug in den Alltag gehalten.", en: "With the Bauhaus, modernism made its way into everyday life.", tags: [singular, Perfekt] }
   - id: noun-klassik
     type: noun
     lemma: Klassik
@@ -5797,12 +5901,16 @@ records:
       - classical period
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 914
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Goethe und Schiller sind die bekanntesten Autoren der Klassik.", en: "Goethe and Schiller are the best-known authors of the classical period.", tags: [singular, Präsens] }
+      - { de: "Ich höre am liebsten Musik aus der Klassik.", en: "I like listening to music from the classical period best.", tags: [singular, Präsens] }
+      - { de: "Die Weimarer Klassik endete mit Schillers Tod.", en: "Weimar Classicism ended with Schiller's death.", tags: [singular, Präteritum] }
   - id: noun-oper
     type: noun
     lemma: Oper
