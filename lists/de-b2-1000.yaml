@@ -6825,12 +6825,16 @@ records:
       - authenticity
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1040
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Experten haben die Echtheit des Fotos bestätigt.", en: "Experts have confirmed the authenticity of the photo.", tags: [singular, Perfekt] }
+      - { de: "An der Echtheit des Dokuments gibt es Zweifel.", en: "There are doubts about the authenticity of the document.", tags: [singular, Präsens] }
+      - { de: "Ihre Fans schätzen die Echtheit ihrer Videos.", en: "Her fans appreciate the authenticity of her videos.", tags: [singular, Präsens] }
   - id: noun-passwort
     type: noun
     lemma: Passwort
@@ -6838,12 +6842,16 @@ records:
       - password
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1042
     noun:
       gender: n
       plural: Passwörter
+    examples:
+      - { de: "Ich habe mein Passwort vergessen.", en: "I've forgotten my password.", tags: [singular, Perfekt] }
+      - { de: "Benutze nie dasselbe Passwort für mehrere Konten!", en: "Never use the same password for several accounts!", tags: [singular, Imperativ] }
+      - { de: "Sichere Passwörter enthalten Zahlen und Sonderzeichen.", en: "Secure passwords contain numbers and special characters.", tags: [plural, Präsens] }
   - id: noun-nutzer
     type: noun
     lemma: Nutzer
@@ -6851,7 +6859,7 @@ records:
       - user
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1046
     noun:
@@ -6861,6 +6869,10 @@ records:
         - lemma: Nutzerin
           gender: f
           plural: Nutzerinnen
+    examples:
+      - { de: "Jeder Nutzer kann ein eigenes Profil anlegen.", en: "Every user can create their own profile.", tags: [singular, Präsens] }
+      - { de: "Die App hat inzwischen zwei Millionen Nutzer.", en: "The app now has two million users.", tags: [plural, Präsens] }
+      - { de: "Eine Nutzerin hat den Fehler entdeckt.", en: "A user discovered the bug.", tags: [singular, Perfekt] }
   - id: noun-inhalt
     type: noun
     lemma: Inhalt
@@ -6868,12 +6880,16 @@ records:
       - content
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1048
     noun:
       gender: m
       plural: Inhalte
+    examples:
+      - { de: "Der Inhalt des Videos war nicht für Kinder geeignet.", en: "The content of the video was not suitable for children.", tags: [singular, Präteritum] }
+      - { de: "Die Plattform muss illegale Inhalte schnell löschen.", en: "The platform has to delete illegal content quickly.", tags: [plural, Präsens] }
+      - { de: "Sie produziert Inhalte für mehrere Marken.", en: "She produces content for several brands.", tags: [plural, Präsens] }
   - id: noun-influencer
     type: noun
     lemma: Influencer
@@ -6881,7 +6897,7 @@ records:
       - influencer
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1050
     noun:
@@ -6891,6 +6907,10 @@ records:
         - lemma: Influencerin
           gender: f
           plural: Influencerinnen
+    examples:
+      - { de: "Der Influencer wirbt für eine Modemarke.", en: "The influencer advertises for a fashion brand.", tags: [singular, Präsens] }
+      - { de: "Viele Jugendliche möchten später Influencer werden.", en: "Many young people want to become influencers later.", tags: [plural, Konjunktiv II] }
+      - { de: "Die Influencerin hat ihr eigenes Kochbuch veröffentlicht.", en: "The influencer has published her own cookbook.", tags: [singular, Perfekt] }
   - id: noun-werbepartner
     type: noun
     lemma: Werbepartner
@@ -6898,7 +6918,7 @@ records:
       - advertising partner
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1052
     noun:
@@ -6908,6 +6928,10 @@ records:
         - lemma: Werbepartnerin
           gender: f
           plural: Werbepartnerinnen
+    examples:
+      - { de: "Unser neuer Werbepartner ist eine Sportmarke.", en: "Our new advertising partner is a sports brand.", tags: [singular, Präsens] }
+      - { de: "Nach dem Skandal verlor er mehrere Werbepartner.", en: "After the scandal he lost several advertising partners.", tags: [plural, Präteritum] }
+      - { de: "Die Werbepartnerin wollte das Video vor der Veröffentlichung sehen.", en: "The advertising partner wanted to see the video before publication.", tags: [singular, Präteritum] }
   - id: noun-kooperation
     type: noun
     lemma: Kooperation
@@ -6915,12 +6939,16 @@ records:
       - collaboration
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1054
     noun:
       gender: f
       plural: Kooperationen
+    examples:
+      - { de: "Die Kooperation mit der Universität läuft seit drei Jahren.", en: "The collaboration with the university has been running for three years.", tags: [singular, Präsens] }
+      - { de: "Bezahlte Kooperationen müssen als Werbung gekennzeichnet werden.", en: "Paid collaborations have to be labelled as advertising.", tags: [plural, Passiv] }
+      - { de: "In Kooperation mit einer Bank hat sie eine App entwickelt.", en: "She developed an app in collaboration with a bank.", tags: [singular, Perfekt] }
   - id: verb-sponsern
     type: verb
     lemma: sponsern
@@ -6928,9 +6956,20 @@ records:
       - to sponsor
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1056
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "sponsert"
+        praeteritum: "sponserte"
+        partizip2: "gesponsert"
+    examples:
+      - { de: "Eine Brauerei sponsert das Stadtfest.", en: "A brewery is sponsoring the town festival.", tags: [Präsens] }
+      - { de: "Der Beitrag wurde von einer Modefirma gesponsert.", en: "The post was sponsored by a fashion company.", tags: [Passiv, Präteritum] }
+      - { de: "Früher hat die Bank viele Sportvereine gesponsert.", en: "In the past the bank sponsored many sports clubs.", tags: [Perfekt] }
   - id: noun-zielgruppe
     type: noun
     lemma: Zielgruppe
@@ -6939,13 +6978,17 @@ records:
     categories:
       - social-media-and-internet
       - consumer-culture-and-advertising
-    status: raw
+    status: enriched
     source_lines:
       - 1058
       - 1577
     noun:
       gender: f
       plural: Zielgruppen
+    examples:
+      - { de: "Unsere Zielgruppe sind junge Familien.", en: "Our target group is young families.", tags: [singular, Präsens] }
+      - { de: "Die Kampagne erreichte die Zielgruppe nicht.", en: "The campaign didn't reach the target group.", tags: [singular, Präteritum] }
+      - { de: "Für verschiedene Zielgruppen braucht man verschiedene Botschaften.", en: "Different target groups need different messages.", tags: [plural, Präsens] }
   - id: noun-online-shop
     type: noun
     lemma: Online-Shop
@@ -6953,12 +6996,16 @@ records:
       - online store
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1060
     noun:
       gender: m
       plural: Online-Shops
+    examples:
+      - { de: "Ich habe die Schuhe in einem Online-Shop bestellt.", en: "I ordered the shoes from an online store.", tags: [singular, Perfekt] }
+      - { de: "Der Online-Shop ist rund um die Uhr geöffnet.", en: "The online store is open around the clock.", tags: [singular, Präsens] }
+      - { de: "Viele kleine Läden haben inzwischen eigene Online-Shops.", en: "Many small shops now have their own online stores.", tags: [plural, Präsens] }
   - id: noun-rezension
     type: noun
     lemma: Rezension
@@ -6966,12 +7013,16 @@ records:
       - detailed review
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1064
     noun:
       gender: f
       plural: Rezensionen
+    examples:
+      - { de: "Bevor ich etwas kaufe, lese ich die Rezensionen.", en: "Before I buy something, I read the reviews.", tags: [plural, Präsens] }
+      - { de: "Sie hat eine ausführliche Rezension über das Buch geschrieben.", en: "She wrote a detailed review of the book.", tags: [singular, Perfekt] }
+      - { de: "Eine einzige negative Rezension kann einem Hotel schaden.", en: "A single negative review can damage a hotel.", tags: [singular, Präsens] }
   - id: noun-plattformrichtlinien
     type: noun
     lemma: Plattformrichtlinien
@@ -6979,13 +7030,17 @@ records:
       - platform guidelines
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1066
     noun:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "Der Beitrag verstößt gegen die Plattformrichtlinien.", en: "The post violates the platform guidelines.", tags: [plural, Präsens] }
+      - { de: "Die Plattformrichtlinien wurden letztes Jahr verschärft.", en: "The platform guidelines were tightened last year.", tags: [plural, Passiv] }
+      - { de: "Wer die Plattformrichtlinien ignoriert, wird gesperrt.", en: "Anyone who ignores the platform guidelines gets banned.", tags: [plural, Passiv] }
   - id: noun-troll
     type: noun
     lemma: Troll
@@ -6993,12 +7048,16 @@ records:
       - troll
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1068
     noun:
       gender: m
       plural: Trolle
+    examples:
+      - { de: "Ein Troll hat unter jedem Beitrag Beleidigungen gepostet.", en: "A troll posted insults under every post.", tags: [singular, Perfekt] }
+      - { de: "Ignorier die Trolle einfach!", en: "Just ignore the trolls!", tags: [plural, Imperativ] }
+      - { de: "Viele Trolle arbeiten mit falschen Profilen.", en: "Many trolls work with fake profiles.", tags: [plural, Präsens] }
   - id: verb-haten
     type: verb
     lemma: haten
@@ -7006,9 +7065,20 @@ records:
       - to hate (online slur/abuse)
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1070
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "hatet"
+        praeteritum: "hatete"
+        partizip2: "gehatet"
+    examples:
+      - { de: "Im Netz hatet man schnell, ohne nachzudenken.", en: "Online people hate quickly without thinking.", tags: [Präsens] }
+      - { de: "Nach dem Auftritt wurde die Sängerin massiv gehatet.", en: "After the performance the singer received massive online hate.", tags: [Passiv, Präteritum] }
+      - { de: "Viele haben ihn für seine Meinung gehatet.", en: "Many people hated on him for his opinion.", tags: [Perfekt] }
   - id: noun-cybermobbing
     type: noun
     lemma: Cybermobbing
@@ -7016,13 +7086,17 @@ records:
       - cyberbullying
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1072
     source_note: "gender corrected from die to das"
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Cybermobbing ist an vielen Schulen ein großes Problem.", en: "Cyberbullying is a big problem at many schools.", tags: [singular, Präsens] }
+      - { de: "Das Mädchen wurde Opfer von Cybermobbing.", en: "The girl became a victim of cyberbullying.", tags: [singular, Präteritum] }
+      - { de: "Die Schule hat ein Projekt gegen Cybermobbing gestartet.", en: "The school has started a project against cyberbullying.", tags: [singular, Perfekt] }
   - id: verb-hochladen
     type: verb
     lemma: hochladen
@@ -7030,9 +7104,22 @@ records:
       - to upload
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1076
+    verb:
+      separable: hoch
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "lädt hoch"
+        praeteritum: "lud hoch"
+        partizip2: "hochgeladen"
+    examples:
+      - { de: "Ich lade die Fotos heute Abend hoch.", en: "I'll upload the photos this evening.", tags: [separated, Präsens] }
+      - { de: "Hast du die Datei schon hochgeladen?", en: "Have you uploaded the file yet?", tags: [Perfekt] }
+      - { de: "Jede Minute werden hunderte Stunden Video hochgeladen.", en: "Hundreds of hours of video are uploaded every minute.", tags: [Passiv, Präsens] }
+      - { de: "Sie lud das Video um Mitternacht hoch.", en: "She uploaded the video at midnight.", tags: [separated, Präteritum] }
   - id: verb-herunterladen
     type: verb
     lemma: herunterladen
@@ -7040,9 +7127,21 @@ records:
       - to download
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1078
+    verb:
+      separable: herunter
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "lädt herunter"
+        praeteritum: "lud herunter"
+        partizip2: "heruntergeladen"
+    examples:
+      - { de: "Sie können das Formular auf unserer Website herunterladen.", en: "You can download the form on our website.", tags: [Präsens] }
+      - { de: "Ich habe die App gestern heruntergeladen.", en: "I downloaded the app yesterday.", tags: [Perfekt] }
+      - { de: "Er lud illegal Filme herunter und bekam eine Strafe.", en: "He illegally downloaded films and got a fine.", tags: [separated, Präteritum] }
   - id: noun-wlan
     type: noun
     lemma: WLAN
@@ -7050,12 +7149,16 @@ records:
       - Wi-Fi
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1080
     noun:
       gender: n
       plural: WLANs
+    examples:
+      - { de: "Wie ist das Passwort für das WLAN?", en: "What's the password for the Wi-Fi?", tags: [singular, Präsens] }
+      - { de: "Im Hotel war das WLAN extrem langsam.", en: "The Wi-Fi in the hotel was extremely slow.", tags: [singular, Präteritum] }
+      - { de: "Mein Laptop findet mehrere WLANs in der Nähe.", en: "My laptop finds several Wi-Fi networks nearby.", tags: [plural, Präsens] }
   - id: noun-verbindung
     type: noun
     lemma: Verbindung
@@ -7063,12 +7166,16 @@ records:
       - connection
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1082
     noun:
       gender: f
       plural: Verbindungen
+    examples:
+      - { de: "Die Verbindung ist leider sehr schlecht.", en: "Unfortunately the connection is very bad.", tags: [singular, Präsens] }
+      - { de: "Während des Gesprächs brach die Verbindung ab.", en: "During the call the connection dropped.", tags: [singular, Präteritum] }
+      - { de: "Die Stadt hat gute Verbindungen nach Berlin und Hamburg.", en: "The city has good connections to Berlin and Hamburg.", tags: [plural, Präsens] }
   - id: noun-app
     type: noun
     lemma: App
@@ -7076,12 +7183,16 @@ records:
       - app
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1084
     noun:
       gender: f
       plural: Apps
+    examples:
+      - { de: "Mit dieser App kann man Bustickets kaufen.", en: "You can buy bus tickets with this app.", tags: [singular, Präsens] }
+      - { de: "Ich habe alle unnötigen Apps gelöscht.", en: "I've deleted all unnecessary apps.", tags: [plural, Perfekt] }
+      - { de: "Die App stürzt ständig ab.", en: "The app keeps crashing.", tags: [singular, Präsens] }
   - id: noun-bildschirm
     type: noun
     lemma: Bildschirm
@@ -7089,12 +7200,16 @@ records:
       - screen
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1086
     noun:
       gender: m
       plural: Bildschirme
+    examples:
+      - { de: "Mein Bildschirm ist kaputt.", en: "My screen is broken.", tags: [singular, Präsens] }
+      - { de: "Kinder verbringen zu viel Zeit vor Bildschirmen.", en: "Children spend too much time in front of screens.", tags: [plural, Präsens] }
+      - { de: "Er starrte stundenlang auf den Bildschirm.", en: "He stared at the screen for hours.", tags: [singular, Präteritum] }
   - id: noun-naturwissenschaft
     type: noun
     lemma: Naturwissenschaft
@@ -14467,12 +14582,16 @@ records:
       - social network
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 984
     noun:
       gender: n
       plural: sozialen Netzwerke
+    examples:
+      - { de: "Sie ist in keinem sozialen Netzwerk aktiv.", en: "She isn't active on any social network.", tags: [singular, Präsens] }
+      - { de: "Die sozialen Netzwerke haben die Politik verändert.", en: "Social networks have changed politics.", tags: [plural, Perfekt] }
+      - { de: "Über ein soziales Netzwerk hat er seine alte Schulfreundin wiedergefunden.", en: "He found his old school friend again through a social network.", tags: [singular, Perfekt] }
   - id: phrase-viral-gehen
     type: phrase
     lemma: viral gehen
@@ -14480,9 +14599,15 @@ records:
       - to go viral
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1024
+    phrase:
+      register: informal
+    examples:
+      - { de: "Das Video ist innerhalb weniger Stunden viral gegangen.", en: "The video went viral within a few hours.", tags: [Perfekt] }
+      - { de: "Wenn der Beitrag viral geht, wird sie berühmt.", en: "If the post goes viral, she'll become famous.", tags: [Präsens] }
+      - { de: "Sein Tweet ging über Nacht viral.", en: "His tweet went viral overnight.", tags: [Präteritum] }
   - id: noun-fake-news
     type: noun
     lemma: Fake News
@@ -14490,13 +14615,17 @@ records:
       - fake news
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1038
     noun:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "Fake News verbreiten sich schneller als echte Nachrichten.", en: "Fake news spreads faster than real news.", tags: [plural, Präsens] }
+      - { de: "Die Plattform will stärker gegen Fake News vorgehen.", en: "The platform wants to take stronger action against fake news.", tags: [plural, Präsens] }
+      - { de: "Im Wahlkampf wurden viele Fake News verbreitet.", en: "A lot of fake news was spread during the election campaign.", tags: [plural, Passiv] }
   - id: noun-anmeldung
     type: noun
     lemma: Anmeldung
@@ -14504,12 +14633,16 @@ records:
       - login
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1044
     noun:
       gender: f
       plural: Anmeldungen
+    examples:
+      - { de: "Die Anmeldung funktioniert nur mit einer E-Mail-Adresse.", en: "Logging in only works with an email address.", tags: [singular, Präsens] }
+      - { de: "Bei der Anmeldung ist ein Fehler aufgetreten.", en: "An error occurred during login.", tags: [singular, Perfekt] }
+      - { de: "Nach drei falschen Anmeldungen wird das Konto gesperrt.", en: "After three failed logins the account is locked.", tags: [plural, Passiv] }
   - id: noun-login
     type: noun
     lemma: Login
