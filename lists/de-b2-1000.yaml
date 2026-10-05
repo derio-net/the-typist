@@ -7205,12 +7205,16 @@ records:
       - natural science
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1103
     noun:
       gender: f
       plural: Naturwissenschaften
+    examples:
+      - { de: "Physik, Chemie und Biologie sind Naturwissenschaften.", en: "Physics, chemistry and biology are natural sciences.", tags: [plural, Präsens] }
+      - { de: "Mein Bruder hat sich schon immer für Naturwissenschaften interessiert.", en: "My brother has always been interested in the natural sciences.", tags: [plural, Perfekt] }
+      - { de: "Die Mathematik ist die Grundlage jeder Naturwissenschaft.", en: "Mathematics is the foundation of every natural science.", tags: [singular, Präsens] }
   - id: noun-sozialwissenschaft
     type: noun
     lemma: Sozialwissenschaft
@@ -7218,25 +7222,34 @@ records:
       - social science
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1105
     noun:
       gender: f
       plural: Sozialwissenschaften
+    examples:
+      - { de: "Soziologie ist eine Sozialwissenschaft.", en: "Sociology is a social science.", tags: [singular, Präsens] }
+      - { de: "Sie studierte Sozialwissenschaften in Bremen.", en: "She studied social sciences in Bremen.", tags: [plural, Präteritum] }
+      - { de: "In den Sozialwissenschaften arbeitet man oft mit Umfragen.", en: "In the social sciences, people often work with surveys.", tags: [plural, Präsens] }
   - id: noun-geisteswissenschaft
     type: noun
     lemma: Geisteswissenschaft
     gloss:
-      - humanities
+      - discipline in the humanities
+      - humanities (pl.)
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1107
     noun:
       gender: f
       plural: Geisteswissenschaften
+    examples:
+      - { de: "Philosophie gilt als klassische Geisteswissenschaft.", en: "Philosophy is regarded as a classic discipline of the humanities.", tags: [singular, Präsens] }
+      - { de: "Viele Studierende der Geisteswissenschaften sorgen sich um ihre Berufschancen.", en: "Many humanities students worry about their job prospects.", tags: [plural, Präsens] }
+      - { de: "Er hatte Geisteswissenschaften studiert, bevor er Journalist wurde.", en: "He had studied the humanities before he became a journalist.", tags: [plural, Plusquamperfekt] }
   - id: noun-forschung
     type: noun
     lemma: Forschung
@@ -7244,12 +7257,16 @@ records:
       - research
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1109
     noun:
       gender: f
       plural: Forschungen
+    examples:
+      - { de: "Die Forschung auf diesem Gebiet steht noch am Anfang.", en: "Research in this field is still in its early stages.", tags: [singular, Präsens] }
+      - { de: "Der Staat investiert viel Geld in die Forschung.", en: "The state invests a lot of money in research.", tags: [singular, Präsens] }
+      - { de: "Frühere Forschungen hatten diesen Effekt übersehen.", en: "Earlier research had overlooked this effect.", tags: [plural, Plusquamperfekt] }
   - id: verb-forschen
     type: verb
     lemma: forschen
@@ -7257,10 +7274,21 @@ records:
       - to conduct research (on)
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1111
     government: an + D
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "forscht"
+        praeteritum: "forschte"
+        partizip2: "geforscht"
+    examples:
+      - { de: "Das Team forscht an einem neuen Impfstoff.", en: "The team is doing research on a new vaccine.", tags: [Präsens] }
+      - { de: "Sie hat zehn Jahre an diesem Thema geforscht.", en: "She has researched this topic for ten years.", tags: [Perfekt] }
+      - { de: "Damals forschte er noch an der Universität Wien.", en: "At that time he was still doing research at the University of Vienna.", tags: [Präteritum] }
   - id: noun-erkenntnis
     type: noun
     lemma: Erkenntnis
@@ -7269,12 +7297,16 @@ records:
       - finding
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1113
     noun:
       gender: f
       plural: Erkenntnisse
+    examples:
+      - { de: "Diese Erkenntnis hat die Medizin verändert.", en: "This insight has changed medicine.", tags: [singular, Perfekt] }
+      - { de: "Die Studie liefert neue Erkenntnisse über den Schlaf.", en: "The study provides new findings about sleep.", tags: [plural, Präsens] }
+      - { de: "Zu dieser Erkenntnis kam sie erst nach vielen Versuchen.", en: "She only arrived at this insight after many attempts.", tags: [singular, Präteritum] }
   - id: noun-studie
     type: noun
     lemma: Studie
@@ -7282,12 +7314,16 @@ records:
       - study
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1115
     noun:
       gender: f
       plural: Studien
+    examples:
+      - { de: "Eine neue Studie zeigt, dass Bewegung gegen Stress hilft.", en: "A new study shows that exercise helps against stress.", tags: [singular, Präsens] }
+      - { de: "Für die Studie wurden 2000 Personen befragt.", en: "2,000 people were surveyed for the study.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Mehrere Studien kommen zu ähnlichen Ergebnissen.", en: "Several studies come to similar conclusions.", tags: [plural, Präsens] }
   - id: noun-hypothese
     type: noun
     lemma: Hypothese
@@ -7295,12 +7331,16 @@ records:
       - hypothesis
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1117
     noun:
       gender: f
       plural: Hypothesen
+    examples:
+      - { de: "Die Forscher stellten eine kühne Hypothese auf.", en: "The researchers put forward a bold hypothesis.", tags: [singular, Präteritum] }
+      - { de: "Das Experiment hat die Hypothese bestätigt.", en: "The experiment confirmed the hypothesis.", tags: [singular, Perfekt] }
+      - { de: "Beide Hypothesen müssen noch überprüft werden.", en: "Both hypotheses still need to be tested.", tags: [plural, Passiv, Präsens] }
   - id: noun-experiment
     type: noun
     lemma: Experiment
@@ -7308,12 +7348,16 @@ records:
       - experiment
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1119
     noun:
       gender: n
       plural: Experimente
+    examples:
+      - { de: "Das Experiment ist leider gescheitert.", en: "Unfortunately, the experiment failed.", tags: [singular, Perfekt] }
+      - { de: "Für dieses Experiment braucht man ein spezielles Mikroskop.", en: "You need a special microscope for this experiment.", tags: [singular, Präsens] }
+      - { de: "Die Experimente werden nächste Woche wiederholt.", en: "The experiments will be repeated next week.", tags: [plural, Passiv, Präsens] }
   - id: noun-auswertung
     type: noun
     lemma: Auswertung
@@ -7321,12 +7365,16 @@ records:
       - analysis
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1121
     noun:
       gender: f
       plural: Auswertungen
+    examples:
+      - { de: "Die Auswertung der Daten dauert noch einige Wochen.", en: "The analysis of the data will take a few more weeks.", tags: [singular, Präsens] }
+      - { de: "Nach der Auswertung der Fragebögen schrieb sie den Bericht.", en: "After analysing the questionnaires, she wrote the report.", tags: [singular, Präteritum] }
+      - { de: "Statistische Auswertungen werden heute meist mit Software gemacht.", en: "Statistical analyses are usually done with software today.", tags: [plural, Passiv, Präsens] }
   - id: noun-methode
     type: noun
     lemma: Methode
@@ -7334,12 +7382,16 @@ records:
       - method
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1123
     noun:
       gender: f
       plural: Methoden
+    examples:
+      - { de: "Diese Methode ist schnell, aber nicht sehr genau.", en: "This method is fast but not very accurate.", tags: [singular, Präsens] }
+      - { de: "Mit welcher Methode haben Sie die Proben untersucht?", en: "Which method did you use to examine the samples?", tags: [singular, Perfekt] }
+      - { de: "Die beiden Methoden liefern unterschiedliche Ergebnisse.", en: "The two methods produce different results.", tags: [plural, Präsens] }
   - id: noun-theorie
     type: noun
     lemma: Theorie
@@ -7347,12 +7399,16 @@ records:
       - theory
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1125
     noun:
       gender: f
       plural: Theorien
+    examples:
+      - { de: "Einsteins Theorie veränderte unser Bild vom Universum.", en: "Einstein's theory changed our picture of the universe.", tags: [singular, Präteritum] }
+      - { de: "In der Theorie klingt das gut, in der Praxis nicht.", en: "In theory that sounds good, but not in practice.", tags: [singular, Präsens] }
+      - { de: "Es gibt mehrere Theorien über die Entstehung des Mondes.", en: "There are several theories about the origin of the moon.", tags: [plural, Präsens] }
   - id: noun-labor
     type: noun
     lemma: Labor
@@ -7360,12 +7416,16 @@ records:
       - laboratory
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1127
     noun:
       gender: n
       plural: Labore
+    examples:
+      - { de: "Die Proben werden im Labor untersucht.", en: "The samples are examined in the laboratory.", tags: [singular, Passiv, Präsens] }
+      - { de: "Sie arbeitet seit drei Jahren in einem Labor für Genetik.", en: "She has been working in a genetics laboratory for three years.", tags: [singular, Präsens] }
+      - { de: "Viele Labore haben ihre Arbeit während der Pandemie umgestellt.", en: "Many laboratories changed the way they worked during the pandemic.", tags: [plural, Perfekt] }
   - id: noun-probe
     type: noun
     lemma: Probe
@@ -7373,12 +7433,16 @@ records:
       - sample
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1129
     noun:
       gender: f
       plural: Proben
+    examples:
+      - { de: "Der Arzt hat eine Probe ins Labor geschickt.", en: "The doctor sent a sample to the laboratory.", tags: [singular, Perfekt] }
+      - { de: "Die Ergebnisse der Probe liegen morgen vor.", en: "The results of the sample will be available tomorrow.", tags: [singular, Präsens] }
+      - { de: "Alle Proben werden bei minus 80 Grad gelagert.", en: "All samples are stored at minus 80 degrees.", tags: [plural, Passiv, Präsens] }
   - id: noun-untersuchung
     type: noun
     lemma: Untersuchung
@@ -7388,13 +7452,18 @@ records:
     categories:
       - science-and-technology
       - health-and-medicine
-    status: raw
+    status: enriched
     source_lines:
       - 1131
       - 1353
     noun:
       gender: f
       plural: Untersuchungen
+    examples:
+      - { de: "Eine genauere Untersuchung ist notwendig.", en: "A more thorough examination is necessary.", tags: [singular, Präsens] }
+      - { de: "Nach der Untersuchung schickte die Ärztin ihn zum Röntgen.", en: "After the examination, the doctor sent him for an X-ray.", tags: [singular, Präteritum] }
+      - { de: "Regelmäßige Untersuchungen beim Zahnarzt sind wichtig.", en: "Regular check-ups at the dentist are important.", tags: [plural, Präsens] }
+      - { de: "Die Untersuchungen der Forscher haben das Risiko bestätigt.", en: "The researchers' investigations have confirmed the risk.", tags: [plural, Perfekt] }
   - id: verb-belegen
     type: verb
     lemma: belegen
@@ -7403,9 +7472,20 @@ records:
       - demonstrate
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1135
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "belegt"
+        praeteritum: "belegte"
+        partizip2: "belegt"
+    examples:
+      - { de: "Zahlreiche Studien belegen den Nutzen von Sport.", en: "Numerous studies demonstrate the benefits of exercise.", tags: [Präsens] }
+      - { de: "Können Sie diese Behauptung mit Daten belegen?", en: "Can you substantiate this claim with data?", tags: [Präsens] }
+      - { de: "Die Forscher haben den Zusammenhang eindeutig belegt.", en: "The researchers have clearly demonstrated the connection.", tags: [Perfekt] }
   - id: noun-daten
     type: noun
     lemma: Daten
@@ -7413,13 +7493,18 @@ records:
       - data
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1137
+    source_note: "plural-only in the sense 'data' (das Datum means 'date')"
     noun:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "Die Daten werden anonym gespeichert.", en: "The data is stored anonymously.", tags: [plural, Passiv, Präsens] }
+      - { de: "Wir haben nicht genug Daten für eine sichere Aussage.", en: "We don't have enough data for a reliable statement.", tags: [plural, Präsens] }
+      - { de: "Die Firma hatte die Daten ohne Erlaubnis weitergegeben.", en: "The company had passed on the data without permission.", tags: [plural, Plusquamperfekt] }
   - id: noun-datenanalyse
     type: noun
     lemma: Datenanalyse
@@ -7427,38 +7512,54 @@ records:
       - data analysis
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1139
     noun:
       gender: f
       plural: Datenanalysen
+    examples:
+      - { de: "Die Datenanalyse hat einen klaren Trend gezeigt.", en: "The data analysis showed a clear trend.", tags: [singular, Perfekt] }
+      - { de: "Für die Datenanalyse nutzen wir eine spezielle Software.", en: "We use special software for the data analysis.", tags: [singular, Präsens] }
+      - { de: "Wöchentliche Datenanalysen helfen dem Team bei Entscheidungen.", en: "Weekly data analyses help the team make decisions.", tags: [plural, Präsens] }
   - id: noun-statistik
     type: noun
     lemma: Statistik
     gloss:
       - statistics
+      - statistic
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1141
     noun:
       gender: f
       plural: Statistiken
+    examples:
+      - { de: "Laut Statistik leben in Berlin rund 3,8 Millionen Menschen.", en: "According to statistics, around 3.8 million people live in Berlin.", tags: [singular, Präsens] }
+      - { de: "Im Studium musste ich auch Statistik lernen.", en: "At university I also had to learn statistics.", tags: [singular, Präteritum] }
+      - { de: "Die neuesten Statistiken zeigen einen Anstieg der Arbeitslosigkeit.", en: "The latest statistics show a rise in unemployment.", tags: [plural, Präsens] }
   - id: noun-zusammenhang
     type: noun
     lemma: Zusammenhang
     gloss:
+      - connection
       - correlation
+      - context
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1143
     noun:
       gender: m
       plural: Zusammenhänge
+    examples:
+      - { de: "Gibt es einen Zusammenhang zwischen Schlaf und Gewicht?", en: "Is there a correlation between sleep and weight?", tags: [singular, Präsens] }
+      - { de: "Der Forscher wies auf den Zusammenhang zwischen Armut und Krankheit hin.", en: "The researcher pointed out the connection between poverty and illness.", tags: [singular, Präteritum] }
+      - { de: "Man muss das Zitat im Zusammenhang lesen.", en: "You have to read the quotation in context.", tags: [singular, Präsens] }
+      - { de: "Die Zusammenhänge sind komplizierter, als man denkt.", en: "The connections are more complicated than you think.", tags: [plural, Präsens] }
   - id: noun-variable
     type: noun
     lemma: Variable
@@ -7466,12 +7567,16 @@ records:
       - variable
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1145
     noun:
       gender: f
       plural: Variablen
+    examples:
+      - { de: "In diesem Modell ist das Alter die wichtigste Variable.", en: "In this model, age is the most important variable.", tags: [singular, Präsens] }
+      - { de: "Wir haben jede Variable einzeln getestet.", en: "We tested each variable separately.", tags: [singular, Perfekt] }
+      - { de: "Die Forscher berücksichtigten mehrere Variablen gleichzeitig.", en: "The researchers took several variables into account at the same time.", tags: [plural, Präteritum] }
   - id: noun-innovation
     type: noun
     lemma: Innovation
@@ -7479,12 +7584,16 @@ records:
       - innovation
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1147
     noun:
       gender: f
       plural: Innovationen
+    examples:
+      - { de: "Diese Innovation hat den Markt völlig verändert.", en: "This innovation has completely changed the market.", tags: [singular, Perfekt] }
+      - { de: "Ohne Innovationen wird das Unternehmen nicht überleben.", en: "Without innovations, the company will not survive.", tags: [plural, Futur I] }
+      - { de: "Das Land fördert technische Innovationen mit Steuervorteilen.", en: "The country promotes technical innovation with tax breaks.", tags: [plural, Präsens] }
   - id: noun-entwicklung
     type: noun
     lemma: Entwicklung
@@ -7492,12 +7601,16 @@ records:
       - development
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1149
     noun:
       gender: f
       plural: Entwicklungen
+    examples:
+      - { de: "Die Entwicklung eines neuen Medikaments dauert oft zehn Jahre.", en: "The development of a new drug often takes ten years.", tags: [singular, Präsens] }
+      - { de: "Diese Entwicklung hatte niemand vorhergesehen.", en: "Nobody had foreseen this development.", tags: [singular, Plusquamperfekt] }
+      - { de: "Wir beobachten die aktuellen Entwicklungen sehr genau.", en: "We are watching current developments very closely.", tags: [plural, Präsens] }
   - id: noun-erfindung
     type: noun
     lemma: Erfindung
@@ -7505,22 +7618,38 @@ records:
       - invention
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1151
     noun:
       gender: f
       plural: Erfindungen
+    examples:
+      - { de: "Die Erfindung des Buchdrucks veränderte Europa.", en: "The invention of printing changed Europe.", tags: [singular, Präteritum] }
+      - { de: "Seine Erfindung hat ihn reich gemacht.", en: "His invention made him rich.", tags: [singular, Perfekt] }
+      - { de: "Viele Erfindungen entstehen durch Zufall.", en: "Many inventions come about by chance.", tags: [plural, Präsens] }
   - id: verb-erfinden
     type: verb
     lemma: erfinden
     gloss:
       - to invent
+      - to make up
     categories:
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 1153
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "erfindet"
+        praeteritum: "erfand"
+        partizip2: "erfunden"
+    examples:
+      - { de: "Wer hat das Telefon erfunden?", en: "Who invented the telephone?", tags: [Perfekt] }
+      - { de: "Johannes Gutenberg erfand um 1450 den Buchdruck mit beweglichen Lettern.", en: "Johannes Gutenberg invented printing with movable type around 1450.", tags: [Präteritum] }
+      - { de: "Er erfindet immer neue Ausreden.", en: "He keeps making up new excuses.", tags: [Präsens] }
   - id: noun-technologie
     type: noun
     lemma: Technologie
