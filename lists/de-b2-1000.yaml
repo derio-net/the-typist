@@ -897,7 +897,7 @@ records:
     categories:
       - workplace-and-business
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 115
       - 1738
@@ -908,6 +908,10 @@ records:
         - lemma: Geschäftsführerin
           gender: f
           plural: Geschäftsführerinnen
+    examples:
+      - { de: "Der Geschäftsführer hat die neue Strategie vorgestellt.", en: "The managing director presented the new strategy.", tags: [singular, Perfekt] }
+      - { de: "Die Geschäftsführer der beiden Firmen trafen sich in Berlin.", en: "The CEOs of the two companies met in Berlin.", tags: [plural, Präteritum] }
+      - { de: "Sie ist seit fünf Jahren Geschäftsführerin eines Start-ups.", en: "She has been CEO of a start-up for five years.", tags: [singular, Präsens] }
   - id: noun-personalabteilung
     type: noun
     lemma: Personalabteilung
@@ -915,12 +919,16 @@ records:
       - HR department
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 117
     noun:
       gender: f
       plural: Personalabteilungen
+    examples:
+      - { de: "Schicken Sie Ihre Bewerbung bitte an die Personalabteilung.", en: "Please send your application to the HR department.", tags: [singular, Imperativ] }
+      - { de: "Die Personalabteilung organisiert auch die Weiterbildungen.", en: "The HR department also organises further training.", tags: [singular, Präsens] }
+      - { de: "In großen Konzernen sind die Personalabteilungen oft sehr groß.", en: "In large corporations HR departments are often very large.", tags: [plural, Präsens] }
   - id: noun-betrieb
     type: noun
     lemma: Betrieb
@@ -931,13 +939,17 @@ records:
     categories:
       - workplace-and-business
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 119
       - 1742
     noun:
       gender: m
       plural: Betriebe
+    examples:
+      - { de: "Unser Betrieb hat rund achtzig Mitarbeiter.", en: "Our company has around eighty employees.", tags: [singular, Präsens] }
+      - { de: "Viele kleine Betriebe mussten während der Krise schließen.", en: "Many small businesses had to close during the crisis.", tags: [plural, Präteritum] }
+      - { de: "Die neue Anlage wurde letzte Woche in Betrieb genommen.", en: "The new plant was put into operation last week.", tags: [singular, Passiv] }
   - id: noun-belegschaft
     type: noun
     lemma: Belegschaft
@@ -946,12 +958,16 @@ records:
       - workforce
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 121
     noun:
       gender: f
       plural: Belegschaften
+    examples:
+      - { de: "Die Belegschaft wurde über die Fusion informiert.", en: "The staff were informed about the merger.", tags: [singular, Passiv] }
+      - { de: "Der Chef bedankte sich bei der gesamten Belegschaft.", en: "The boss thanked the entire staff.", tags: [singular, Präteritum] }
+      - { de: "Die Belegschaften beider Werke streiken heute gemeinsam.", en: "The workforces of both plants are on strike together today.", tags: [plural, Präsens] }
   - id: noun-vorgesetzte
     type: noun
     lemma: Vorgesetzte
@@ -962,7 +978,7 @@ records:
     categories:
       - workplace-and-business
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 123
       - 1736
@@ -973,6 +989,10 @@ records:
         - lemma: Vorgesetzte
           gender: f
           plural: Vorgesetzten
+    examples:
+      - { de: "Mein Vorgesetzter hat mir mehr Verantwortung übertragen.", en: "My superior has given me more responsibility.", tags: [singular, Perfekt] }
+      - { de: "Sprich am besten zuerst mit deiner Vorgesetzten.", en: "It's best to talk to your manager first.", tags: [singular, Imperativ] }
+      - { de: "Die Vorgesetzten treffen sich jeden Montag zu einer Besprechung.", en: "The managers meet for a meeting every Monday.", tags: [plural, Präsens] }
   - id: noun-mitarbeiter
     type: noun
     lemma: Mitarbeiter
@@ -980,7 +1000,7 @@ records:
       - employee
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 125
     noun:
@@ -990,6 +1010,10 @@ records:
         - lemma: Mitarbeiterin
           gender: f
           plural: Mitarbeiterinnen
+    examples:
+      - { de: "Jeder Mitarbeiter bekommt einen eigenen Laptop.", en: "Every employee gets their own laptop.", tags: [singular, Präsens] }
+      - { de: "Die Firma sucht dringend neue Mitarbeiter.", en: "The company urgently needs new employees.", tags: [plural, Präsens] }
+      - { de: "Eine Mitarbeiterin aus dem Vertrieb hat den Preis gewonnen.", en: "An employee from sales won the prize.", tags: [singular, Perfekt] }
   - id: noun-vertrag
     type: noun
     lemma: Vertrag
@@ -999,13 +1023,17 @@ records:
     categories:
       - workplace-and-business
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 127
       - 1877
     noun:
       gender: m
       plural: Verträge
+    examples:
+      - { de: "Bitte lesen Sie den Vertrag sorgfältig durch.", en: "Please read the contract carefully.", tags: [singular, Imperativ] }
+      - { de: "Mein Vertrag läuft Ende des Jahres aus.", en: "My contract expires at the end of the year.", tags: [singular, Präsens] }
+      - { de: "Die beiden Staaten haben mehrere Verträge unterzeichnet.", en: "The two states have signed several treaties.", tags: [plural, Perfekt] }
   - id: verb-unterzeichnen
     type: verb
     lemma: unterzeichnen
@@ -1013,9 +1041,20 @@ records:
       - to sign (a contract)
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 129
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "unterzeichnet"
+        praeteritum: "unterzeichnete"
+        partizip2: "unterzeichnet"
+    examples:
+      - { de: "Die Ministerin unterzeichnet heute das Abkommen.", en: "The minister is signing the agreement today.", tags: [Präsens] }
+      - { de: "Haben Sie den Arbeitsvertrag schon unterzeichnet?", en: "Have you already signed the employment contract?", tags: [Perfekt] }
+      - { de: "Beide Seiten unterzeichneten den Vertrag im Mai.", en: "Both sides signed the contract in May.", tags: [Präteritum] }
   - id: verb-kuendigen
     type: verb
     lemma: kündigen
@@ -1026,10 +1065,21 @@ records:
     categories:
       - workplace-and-business
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 131
       - 1766
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "kündigt"
+        praeteritum: "kündigte"
+        partizip2: "gekündigt"
+    examples:
+      - { de: "Er hat nach zehn Jahren gekündigt.", en: "He resigned after ten years.", tags: [Perfekt] }
+      - { de: "Der Vermieter kündigte uns die Wohnung.", en: "The landlord terminated our tenancy.", tags: [Präteritum] }
+      - { de: "Wenn ich mehr Geld verdienen will, kündige ich.", en: "If I want to earn more money, I'll resign.", tags: [Präsens] }
   - id: noun-kuendigungsfrist
     type: noun
     lemma: Kündigungsfrist
@@ -1037,12 +1087,16 @@ records:
       - notice period
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 133
     noun:
       gender: f
       plural: Kündigungsfristen
+    examples:
+      - { de: "Die Kündigungsfrist beträgt drei Monate.", en: "The notice period is three months.", tags: [singular, Präsens] }
+      - { de: "Sie hat die Kündigungsfrist nicht eingehalten.", en: "She did not observe the notice period.", tags: [singular, Perfekt] }
+      - { de: "In der Probezeit gelten kürzere Kündigungsfristen.", en: "Shorter notice periods apply during the probationary period.", tags: [plural, Präsens] }
   - id: noun-arbeitsverhaeltnis
     type: noun
     lemma: Arbeitsverhältnis
@@ -1050,12 +1104,16 @@ records:
       - employment relationship
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 135
     noun:
       gender: n
       plural: Arbeitsverhältnisse
+    examples:
+      - { de: "Das Arbeitsverhältnis endet am 31. März.", en: "The employment relationship ends on 31 March.", tags: [singular, Präsens] }
+      - { de: "Befristete Arbeitsverhältnisse sind bei jungen Leuten häufig.", en: "Fixed-term employment relationships are common among young people.", tags: [plural, Präsens] }
+      - { de: "Nach drei Jahren wurde das Arbeitsverhältnis beendet.", en: "After three years the employment relationship was ended.", tags: [singular, Passiv] }
   - id: noun-festanstellung
     type: noun
     lemma: Festanstellung
@@ -1063,12 +1121,16 @@ records:
       - permanent position
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 137
     noun:
       gender: f
       plural: Festanstellungen
+    examples:
+      - { de: "Nach dem Praktikum bekam sie eine Festanstellung.", en: "After the internship she got a permanent position.", tags: [singular, Präteritum] }
+      - { de: "Viele Journalisten träumen von einer Festanstellung.", en: "Many journalists dream of a permanent position.", tags: [singular, Präsens] }
+      - { de: "Festanstellungen sind in dieser Branche selten geworden.", en: "Permanent positions have become rare in this industry.", tags: [plural, Perfekt] }
   - id: noun-arbeitszeugnis
     type: noun
     lemma: Arbeitszeugnis
@@ -1078,13 +1140,17 @@ records:
     categories:
       - workplace-and-business
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 141
       - 1778
     noun:
       gender: n
       plural: Arbeitszeugnisse
+    examples:
+      - { de: "Ein gutes Arbeitszeugnis ist bei Bewerbungen sehr wichtig.", en: "A good employment reference is very important when applying.", tags: [singular, Präsens] }
+      - { de: "Bitte legen Sie alle Arbeitszeugnisse Ihrer Bewerbung bei.", en: "Please enclose all your references with your application.", tags: [plural, Imperativ] }
+      - { de: "Mein alter Chef hat mir ein hervorragendes Arbeitszeugnis geschrieben.", en: "My old boss wrote me an excellent reference.", tags: [singular, Perfekt] }
   - id: noun-einarbeitung
     type: noun
     lemma: Einarbeitung
@@ -1092,12 +1158,16 @@ records:
       - onboarding
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 143
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Einarbeitung dauert ungefähr zwei Wochen.", en: "The onboarding takes about two weeks.", tags: [singular, Präsens] }
+      - { de: "Während der Einarbeitung hatte ich eine feste Ansprechpartnerin.", en: "During onboarding I had a dedicated contact person.", tags: [singular, Präteritum] }
+      - { de: "Für die Einarbeitung neuer Kollegen ist Herr Lang zuständig.", en: "Mr Lang is responsible for onboarding new colleagues.", tags: [singular, Präsens] }
   - id: noun-schichtarbeit
     type: noun
     lemma: Schichtarbeit
@@ -1105,12 +1175,16 @@ records:
       - shift work
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 145
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Schichtarbeit kann auf Dauer die Gesundheit belasten.", en: "Shift work can harm your health in the long run.", tags: [singular, Präsens] }
+      - { de: "In der Klinik habe ich jahrelang in Schichtarbeit gearbeitet.", en: "I worked shifts in the hospital for years.", tags: [singular, Perfekt] }
+      - { de: "Für Schichtarbeit gibt es einen Zuschlag.", en: "There is a bonus for shift work.", tags: [singular, Präsens] }
   - id: noun-schichtplan
     type: noun
     lemma: Schichtplan
@@ -1118,12 +1192,16 @@ records:
       - shift schedule
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 147
     noun:
       gender: m
       plural: Schichtpläne
+    examples:
+      - { de: "Der Schichtplan für nächste Woche hängt in der Küche.", en: "The shift schedule for next week is hanging in the kitchen.", tags: [singular, Präsens] }
+      - { de: "Kannst du mir den Schichtplan schicken?", en: "Can you send me the shift schedule?", tags: [singular, Präsens] }
+      - { de: "Die Schichtpläne wurden kurzfristig geändert.", en: "The shift schedules were changed at short notice.", tags: [plural, Passiv] }
   - id: noun-arbeitsumfeld
     type: noun
     lemma: Arbeitsumfeld
@@ -1132,13 +1210,17 @@ records:
     categories:
       - workplace-and-business
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 149
       - 1674
     noun:
       gender: n
       plural: Arbeitsumfelder
+    examples:
+      - { de: "Ein angenehmes Arbeitsumfeld ist mir wichtiger als das Gehalt.", en: "A pleasant work environment matters more to me than the salary.", tags: [singular, Präsens] }
+      - { de: "In einem neuen Arbeitsumfeld braucht man Zeit.", en: "In a new work environment you need time.", tags: [singular, Präsens] }
+      - { de: "Moderne Arbeitsumfelder sollen Kreativität fördern.", en: "Modern work environments are supposed to encourage creativity.", tags: [plural, Präsens] }
   - id: noun-fuehrungskraft
     type: noun
     lemma: Führungskraft
@@ -1147,12 +1229,16 @@ records:
       - senior staff
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 151
     noun:
       gender: f
       plural: Führungskräfte
+    examples:
+      - { de: "Als Führungskraft muss man auch unangenehme Entscheidungen treffen.", en: "As an executive you also have to make unpleasant decisions.", tags: [singular, Präsens] }
+      - { de: "Das Seminar richtet sich an junge Führungskräfte.", en: "The seminar is aimed at young executives.", tags: [plural, Präsens] }
+      - { de: "Sie wurde zur besten Führungskraft des Jahres gewählt.", en: "She was voted best executive of the year.", tags: [singular, Passiv] }
   - id: noun-gehaltsverhandlung
     type: noun
     lemma: Gehaltsverhandlung
@@ -1160,12 +1246,16 @@ records:
       - salary negotiation
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 153
     noun:
       gender: f
       plural: Gehaltsverhandlungen
+    examples:
+      - { de: "Vor der Gehaltsverhandlung war ich sehr nervös.", en: "I was very nervous before the salary negotiation.", tags: [singular, Präteritum] }
+      - { de: "Auf eine Gehaltsverhandlung sollte man sich gut vorbereiten.", en: "You should prepare well for a salary negotiation.", tags: [singular, Präsens] }
+      - { de: "Frauen führen Gehaltsverhandlungen oft vorsichtiger als Männer.", en: "Women often conduct salary negotiations more cautiously than men.", tags: [plural, Präsens] }
   - id: noun-gehaltserhoehung
     type: noun
     lemma: Gehaltserhöhung
@@ -1175,13 +1265,17 @@ records:
     categories:
       - workplace-and-business
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 155
       - 1774
     noun:
       gender: f
       plural: Gehaltserhöhungen
+    examples:
+      - { de: "Nach zwei Jahren habe ich endlich eine Gehaltserhöhung bekommen.", en: "After two years I finally got a pay rise.", tags: [singular, Perfekt] }
+      - { de: "Die Gewerkschaft fordert eine Gehaltserhöhung von fünf Prozent.", en: "The union is demanding a salary increase of five percent.", tags: [singular, Präsens] }
+      - { de: "Dieses Jahr wird es keine Gehaltserhöhungen geben.", en: "There will be no pay rises this year.", tags: [plural, Futur I] }
   - id: noun-lohnsteuer
     type: noun
     lemma: Lohnsteuer
@@ -1189,12 +1283,16 @@ records:
       - income tax
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 159
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Lohnsteuer wird direkt vom Gehalt abgezogen.", en: "Income tax is deducted directly from the salary.", tags: [singular, Passiv] }
+      - { de: "Wie viel Lohnsteuer zahlst du im Monat?", en: "How much income tax do you pay a month?", tags: [singular, Präsens] }
+      - { de: "Durch die Reform sank die Lohnsteuer für Geringverdiener.", en: "The reform reduced income tax for low earners.", tags: [singular, Präteritum] }
   - id: noun-sozialversicherung
     type: noun
     lemma: Sozialversicherung
@@ -1202,12 +1300,16 @@ records:
       - social security
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 161
     noun:
       gender: f
       plural: Sozialversicherungen
+    examples:
+      - { de: "Die Sozialversicherung umfasst unter anderem die Kranken- und Rentenversicherung.", en: "Social security includes health and pension insurance, among other things.", tags: [singular, Präsens] }
+      - { de: "Arbeitgeber und Arbeitnehmer zahlen in die Sozialversicherung ein.", en: "Employers and employees pay into social security.", tags: [singular, Präsens] }
+      - { de: "Die Sozialversicherungen der EU-Staaten arbeiten zusammen.", en: "The social security systems of the EU states work together.", tags: [plural, Präsens] }
   - id: noun-rentenversicherung
     type: noun
     lemma: Rentenversicherung
@@ -1215,12 +1317,16 @@ records:
       - pension insurance
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 163
     noun:
       gender: f
       plural: Rentenversicherungen
+    examples:
+      - { de: "Die Beiträge zur Rentenversicherung steigen nächstes Jahr.", en: "Contributions to pension insurance will rise next year.", tags: [singular, Präsens] }
+      - { de: "Ich habe einen Brief von der Rentenversicherung bekommen.", en: "I got a letter from the pension insurance.", tags: [singular, Perfekt] }
+      - { de: "Private Rentenversicherungen werden immer beliebter.", en: "Private pension plans are becoming more and more popular.", tags: [plural, Präsens] }
   - id: noun-beitrag
     type: noun
     lemma: Beitrag
@@ -1228,12 +1334,16 @@ records:
       - contribution (financial)
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 165
     noun:
       gender: m
       plural: Beiträge
+    examples:
+      - { de: "Jedes Mitglied zahlt einen monatlichen Beitrag von zehn Euro.", en: "Every member pays a monthly contribution of ten euros.", tags: [singular, Präsens] }
+      - { de: "Die Beiträge zur Krankenversicherung sind gestiegen.", en: "Health insurance contributions have risen.", tags: [plural, Perfekt] }
+      - { de: "Mit ihrem Beitrag unterstützte die Firma das Projekt.", en: "The company supported the project with its contribution.", tags: [singular, Präteritum] }
   - id: noun-betriebskosten
     type: noun
     lemma: Betriebskosten
@@ -1241,7 +1351,7 @@ records:
       - operational costs
     categories:
       - workplace-and-business
-    status: raw
+    status: enriched
     source_lines:
       - 167
     source_note: "plural-only noun (plural_only set)"
@@ -1249,6 +1359,10 @@ records:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "Die Betriebskosten sind im letzten Jahr stark gestiegen.", en: "Operating costs rose sharply last year.", tags: [plural, Perfekt] }
+      - { de: "Wir müssen die Betriebskosten senken.", en: "We have to reduce operating costs.", tags: [plural, Präsens] }
+      - { de: "Zu den Betriebskosten gehören auch Strom und Heizung.", en: "Operating costs also include electricity and heating.", tags: [plural, Präsens] }
   - id: noun-umsatz
     type: noun
     lemma: Umsatz
