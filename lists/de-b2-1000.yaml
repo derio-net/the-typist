@@ -8079,27 +8079,37 @@ records:
     lemma: Wettbewerb
     gloss:
       - competition
+      - contest
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1224
     noun:
       gender: m
       plural: Wettbewerbe
+    examples:
+      - { de: "Der Wettbewerb zwischen den Anbietern senkt die Preise.", en: "Competition between the providers lowers prices.", tags: [singular, Präsens] }
+      - { de: "Kleine Läden können im Wettbewerb mit Onlinehändlern kaum bestehen.", en: "Small shops can hardly survive in competition with online retailers.", tags: [singular, Präsens] }
+      - { de: "Sie hat schon mehrere Wettbewerbe für junge Architekten gewonnen.", en: "She has already won several competitions for young architects.", tags: [plural, Perfekt] }
   - id: noun-konjunktur
     type: noun
     lemma: Konjunktur
     gloss:
       - economic cycle
+      - state of the economy
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1226
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Konjunktur hat sich im Frühjahr abgeschwächt.", en: "The economy weakened in the spring.", tags: [singular, Perfekt] }
+      - { de: "Niedrige Zinsen sollen die Konjunktur ankurbeln.", en: "Low interest rates are meant to boost the economy.", tags: [singular, Präsens] }
+      - { de: "Die Exporte hängen stark von der weltweiten Konjunktur ab.", en: "Exports depend heavily on the global economic situation.", tags: [singular, Präsens] }
   - id: noun-rezession
     type: noun
     lemma: Rezession
@@ -8107,12 +8117,16 @@ records:
       - recession
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1228
     noun:
       gender: f
       plural: Rezessionen
+    examples:
+      - { de: "Das Land steckt seit Monaten in einer Rezession.", en: "The country has been in a recession for months.", tags: [singular, Präsens] }
+      - { de: "Viele Ökonomen hatten die Rezession nicht kommen sehen.", en: "Many economists had not seen the recession coming.", tags: [singular, Plusquamperfekt] }
+      - { de: "Nach zwei Rezessionen in Folge stieg die Arbeitslosigkeit stark an.", en: "After two recessions in a row, unemployment rose sharply.", tags: [plural, Präteritum] }
   - id: noun-aufschwung
     type: noun
     lemma: Aufschwung
@@ -8120,12 +8134,16 @@ records:
       - economic upturn
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1230
     noun:
       gender: m
       plural: Aufschwünge
+    examples:
+      - { de: "Nach der Krise kam endlich der Aufschwung.", en: "After the crisis, the upturn finally came.", tags: [singular, Präteritum] }
+      - { de: "Die Regierung hofft auf einen schnellen Aufschwung.", en: "The government is hoping for a quick upturn.", tags: [singular, Präsens] }
+      - { de: "Kurze Aufschwünge reichen nicht, um die Arbeitslosigkeit zu senken.", en: "Short upturns are not enough to reduce unemployment.", tags: [plural, Präsens] }
   - id: noun-wachstum
     type: noun
     lemma: Wachstum
@@ -8133,12 +8151,16 @@ records:
       - growth
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1232
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Das Wachstum der Wirtschaft lag bei zwei Prozent.", en: "Economic growth was two percent.", tags: [singular, Präteritum] }
+      - { de: "Viele Experten fragen, ob unbegrenztes Wachstum möglich ist.", en: "Many experts ask whether unlimited growth is possible.", tags: [singular, Präsens] }
+      - { de: "Die Firma wird ihr Wachstum vor allem im Ausland erzielen.", en: "The company will achieve its growth mainly abroad.", tags: [singular, Futur I] }
   - id: noun-inflation
     type: noun
     lemma: Inflation
@@ -8146,12 +8168,16 @@ records:
       - inflation
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1234
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Inflation ist im letzten Jahr deutlich gestiegen.", en: "Inflation rose significantly last year.", tags: [singular, Perfekt] }
+      - { de: "Wegen der hohen Inflation können sich viele weniger leisten.", en: "Because of high inflation, many people can afford less.", tags: [singular, Präsens] }
+      - { de: "Die Zentralbank versucht, die Inflation zu bekämpfen.", en: "The central bank is trying to fight inflation.", tags: [singular, Präsens] }
   - id: noun-deflation
     type: noun
     lemma: Deflation
@@ -8159,12 +8185,16 @@ records:
       - deflation
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1236
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Eine Deflation kann für die Wirtschaft gefährlich sein.", en: "Deflation can be dangerous for the economy.", tags: [singular, Präsens] }
+      - { de: "Japan kämpfte jahrelang mit einer Deflation.", en: "Japan struggled with deflation for years.", tags: [singular, Präteritum] }
+      - { de: "Bei einer Deflation warten die Verbraucher auf noch niedrigere Preise.", en: "In a deflation, consumers wait for even lower prices.", tags: [singular, Präsens] }
   - id: noun-krise
     type: noun
     lemma: Krise
@@ -8173,13 +8203,17 @@ records:
     categories:
       - economics-and-finance
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1238
       - 1899
     noun:
       gender: f
       plural: Krisen
+    examples:
+      - { de: "Die Krise hat viele kleine Firmen in den Ruin getrieben.", en: "The crisis drove many small companies into ruin.", tags: [singular, Perfekt] }
+      - { de: "In der Krise zeigt sich, wer wirklich zu einem hält.", en: "In a crisis you find out who really stands by you.", tags: [singular, Präsens] }
+      - { de: "Die Regierung musste mehrere Krisen gleichzeitig bewältigen.", en: "The government had to deal with several crises at the same time.", tags: [plural, Präteritum] }
   - id: noun-globalisierung
     type: noun
     lemma: Globalisierung
@@ -8188,13 +8222,17 @@ records:
     categories:
       - economics-and-finance
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 1240
       - 2156
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Globalisierung hat den Welthandel stark verändert.", en: "Globalisation has greatly changed world trade.", tags: [singular, Perfekt] }
+      - { de: "Nicht alle Länder profitieren von der Globalisierung.", en: "Not all countries benefit from globalisation.", tags: [singular, Präsens] }
+      - { de: "Kritiker der Globalisierung fordern mehr Schutz für Arbeitnehmer.", en: "Critics of globalisation demand more protection for workers.", tags: [singular, Präsens] }
   - id: noun-bruttoinlandsprodukt
     type: noun
     lemma: Bruttoinlandsprodukt
@@ -8202,13 +8240,17 @@ records:
       - GDP
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1242
     noun:
       gender: n
       plural: null
     abbreviation: BIP
+    examples:
+      - { de: "Das Bruttoinlandsprodukt ist um ein Prozent gesunken.", en: "Gross domestic product fell by one percent.", tags: [singular, Perfekt] }
+      - { de: "Der Anteil der Industrie am Bruttoinlandsprodukt ist hoch.", en: "Industry's share of gross domestic product is high.", tags: [singular, Präsens] }
+      - { de: "Man misst die Wirtschaftsleistung mit dem Bruttoinlandsprodukt.", en: "Economic output is measured by gross domestic product.", tags: [singular, Präsens] }
   - id: noun-haushaltsdefizit
     type: noun
     lemma: Haushaltsdefizit
@@ -8216,12 +8258,16 @@ records:
       - budget deficit
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1244
     noun:
       gender: n
       plural: Haushaltsdefizite
+    examples:
+      - { de: "Das Haushaltsdefizit ist größer als erwartet.", en: "The budget deficit is larger than expected.", tags: [singular, Präsens] }
+      - { de: "Die Regierung will das Haushaltsdefizit bis 2030 senken.", en: "The government wants to reduce the budget deficit by 2030.", tags: [singular, Präsens] }
+      - { de: "Hohe Haushaltsdefizite belasten künftige Generationen.", en: "High budget deficits are a burden on future generations.", tags: [plural, Präsens] }
   - id: noun-steuer
     type: noun
     lemma: Steuer
@@ -8229,12 +8275,16 @@ records:
       - tax
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1246
     noun:
       gender: f
       plural: Steuern
+    examples:
+      - { de: "Auf Zigaretten wird eine hohe Steuer erhoben.", en: "A high tax is levied on cigarettes.", tags: [singular, Passiv, Präsens] }
+      - { de: "Die Partei hat im Wahlkampf niedrigere Steuern versprochen.", en: "The party promised lower taxes during the election campaign.", tags: [plural, Perfekt] }
+      - { de: "Wie viel Steuern zahlst du im Monat?", en: "How much tax do you pay per month?", tags: [plural, Präsens] }
   - id: noun-einkommenssteuer
     type: noun
     lemma: Einkommenssteuer
@@ -8242,12 +8292,16 @@ records:
       - income tax
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1248
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Einkommenssteuer wird direkt vom Gehalt abgezogen.", en: "Income tax is deducted directly from the salary.", tags: [singular, Passiv, Präsens] }
+      - { de: "Wer mehr verdient, zahlt mehr Einkommenssteuer.", en: "Those who earn more pay more income tax.", tags: [singular, Präsens] }
+      - { de: "Die Reform der Einkommenssteuer ist gescheitert.", en: "The income tax reform has failed.", tags: [singular, Perfekt] }
   - id: noun-mehrwertsteuer
     type: noun
     lemma: Mehrwertsteuer
@@ -8255,13 +8309,17 @@ records:
       - VAT
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1250
     noun:
       gender: f
       plural: null
     abbreviation: MwSt
+    examples:
+      - { de: "Im Preis ist die Mehrwertsteuer bereits enthalten.", en: "VAT is already included in the price.", tags: [singular, Präsens] }
+      - { de: "Auf Lebensmittel zahlt man in Deutschland weniger Mehrwertsteuer.", en: "In Germany you pay less VAT on food.", tags: [singular, Präsens] }
+      - { de: "Die Regierung senkte 2020 vorübergehend die Mehrwertsteuer.", en: "In 2020 the government temporarily lowered VAT.", tags: [singular, Präteritum] }
   - id: noun-staatshaushalt
     type: noun
     lemma: Staatshaushalt
@@ -8269,12 +8327,16 @@ records:
       - state budget
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1252
     noun:
       gender: m
       plural: Staatshaushalte
+    examples:
+      - { de: "Der Staatshaushalt für das nächste Jahr wurde gestern beschlossen.", en: "The state budget for next year was passed yesterday.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Die Zinsen belasten den Staatshaushalt stark.", en: "Interest payments put a heavy strain on the state budget.", tags: [singular, Präsens] }
+      - { de: "Viele Staatshaushalte in Europa sind hoch verschuldet.", en: "Many state budgets in Europe are heavily in debt.", tags: [plural, Präsens] }
   - id: noun-finanzminister
     type: noun
     lemma: Finanzminister
@@ -8282,7 +8344,7 @@ records:
       - finance minister
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1254
     noun:
@@ -8292,6 +8354,10 @@ records:
         - lemma: Finanzministerin
           gender: f
           plural: Finanzministerinnen
+    examples:
+      - { de: "Der Finanzminister hat einen strengen Sparkurs angekündigt.", en: "The finance minister has announced a strict austerity course.", tags: [singular, Perfekt] }
+      - { de: "Die Finanzministerin stellte gestern den Haushalt vor.", en: "The finance minister presented the budget yesterday.", tags: [singular, Präteritum] }
+      - { de: "Die Finanzminister der EU treffen sich in Brüssel.", en: "The EU finance ministers are meeting in Brussels.", tags: [plural, Präsens] }
   - id: noun-subvention
     type: noun
     lemma: Subvention
@@ -8299,12 +8365,16 @@ records:
       - subsidy
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1256
     noun:
       gender: f
       plural: Subventionen
+    examples:
+      - { de: "Ohne Subventionen könnten viele Bauern nicht überleben.", en: "Without subsidies, many farmers could not survive.", tags: [plural, Konjunktiv II] }
+      - { de: "Die Regierung hat die Subventionen für Kohle gestrichen.", en: "The government has cut the subsidies for coal.", tags: [plural, Perfekt] }
+      - { de: "Eine Subvention für E-Autos soll den Verkauf ankurbeln.", en: "A subsidy for electric cars is meant to boost sales.", tags: [singular, Präsens] }
   - id: noun-handelsabkommen
     type: noun
     lemma: Handelsabkommen
@@ -8313,13 +8383,17 @@ records:
     categories:
       - economics-and-finance
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1260
       - 1891
     noun:
       gender: n
       plural: Handelsabkommen
+    examples:
+      - { de: "Das Handelsabkommen tritt im Januar in Kraft.", en: "The trade agreement comes into force in January.", tags: [singular, Präsens] }
+      - { de: "Über das Handelsabkommen wurde jahrelang verhandelt.", en: "The trade agreement was negotiated for years.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Die EU hat Handelsabkommen mit vielen Ländern geschlossen.", en: "The EU has concluded trade agreements with many countries.", tags: [plural, Perfekt] }
   - id: noun-zinssatz
     type: noun
     lemma: Zinssatz
@@ -8327,12 +8401,16 @@ records:
       - interest rate
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1262
     noun:
       gender: m
       plural: Zinssätze
+    examples:
+      - { de: "Der Zinssatz für Kredite ist stark gestiegen.", en: "The interest rate for loans has risen sharply.", tags: [singular, Perfekt] }
+      - { de: "Die Bank bietet einen festen Zinssatz für zehn Jahre.", en: "The bank offers a fixed interest rate for ten years.", tags: [singular, Präsens] }
+      - { de: "Niedrige Zinssätze machen das Sparen unattraktiv.", en: "Low interest rates make saving unattractive.", tags: [plural, Präsens] }
   - id: noun-schulden
     type: noun
     lemma: Schulden
@@ -8340,13 +8418,18 @@ records:
       - debt
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1266
+    source_note: "plural-only in the sense 'debt'; die Schuld (guilt) is the separate record noun-schuld"
     noun:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "Er hat hohe Schulden bei der Bank.", en: "He has large debts with the bank.", tags: [plural, Präsens] }
+      - { de: "Nach zehn Jahren hatte sie endlich alle Schulden bezahlt.", en: "After ten years she had finally paid off all her debts.", tags: [plural, Plusquamperfekt] }
+      - { de: "Der Staat darf nur begrenzt neue Schulden machen.", en: "The state may only take on new debt to a limited extent.", tags: [plural, Präsens] }
   - id: noun-aktie
     type: noun
     lemma: Aktie
@@ -8355,12 +8438,16 @@ records:
       - stock
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1270
     noun:
       gender: f
       plural: Aktien
+    examples:
+      - { de: "Die Aktie hat heute fünf Prozent verloren.", en: "The share lost five percent today.", tags: [singular, Perfekt] }
+      - { de: "Sie hat ihr Erspartes in Aktien angelegt.", en: "She invested her savings in shares.", tags: [plural, Perfekt] }
+      - { de: "Der Wert der Aktien hängt von vielen Faktoren ab.", en: "The value of shares depends on many factors.", tags: [plural, Präsens] }
   - id: noun-boerse
     type: noun
     lemma: Börse
@@ -8368,25 +8455,34 @@ records:
       - stock exchange
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1272
     noun:
       gender: f
       plural: Börsen
+    examples:
+      - { de: "Die Frankfurter Börse ist die größte in Deutschland.", en: "The Frankfurt Stock Exchange is the largest in Germany.", tags: [singular, Präsens] }
+      - { de: "Das Unternehmen will im nächsten Jahr an die Börse gehen.", en: "The company wants to go public next year.", tags: [singular, Präsens] }
+      - { de: "Die Börsen in Asien reagierten nervös auf die Nachricht.", en: "The stock exchanges in Asia reacted nervously to the news.", tags: [plural, Präteritum] }
   - id: noun-kurs
     type: noun
     lemma: Kurs
     gloss:
       - stock price
+      - exchange rate
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1274
     noun:
       gender: m
       plural: Kurse
+    examples:
+      - { de: "Der Kurs der Aktie ist stark gefallen.", en: "The share price has fallen sharply.", tags: [singular, Perfekt] }
+      - { de: "Zu welchem Kurs hast du die Dollar gekauft?", en: "At what exchange rate did you buy the dollars?", tags: [singular, Perfekt] }
+      - { de: "Die Kurse an der Börse schwanken heute stark.", en: "Prices on the stock exchange are fluctuating strongly today.", tags: [plural, Präsens] }
   - id: noun-anleger
     type: noun
     lemma: Anleger
@@ -8394,7 +8490,7 @@ records:
       - investor
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1276
     noun:
@@ -8404,6 +8500,10 @@ records:
         - lemma: Anlegerin
           gender: f
           plural: Anlegerinnen
+    examples:
+      - { de: "Ein vorsichtiger Anleger verteilt sein Geld auf mehrere Fonds.", en: "A cautious investor spreads his money across several funds.", tags: [singular, Präsens] }
+      - { de: "Die Anleger verloren durch den Absturz viel Geld.", en: "Investors lost a lot of money in the crash.", tags: [plural, Präteritum] }
+      - { de: "Die Anlegerin hatte ihre Aktien rechtzeitig verkauft.", en: "The investor had sold her shares in time.", tags: [singular, Plusquamperfekt] }
   - id: noun-investment
     type: noun
     lemma: Investment
@@ -8411,12 +8511,16 @@ records:
       - investment
     categories:
       - economics-and-finance
-    status: raw
+    status: enriched
     source_lines:
       - 1278
     noun:
       gender: n
       plural: Investments
+    examples:
+      - { de: "Das Investment hat sich langfristig gelohnt.", en: "The investment paid off in the long term.", tags: [singular, Perfekt] }
+      - { de: "Eine Wohnung ist für viele das sicherste Investment.", en: "For many, a flat is the safest investment.", tags: [singular, Präsens] }
+      - { de: "Riskante Investments können hohe Gewinne bringen.", en: "Risky investments can bring high profits.", tags: [plural, Präsens] }
   - id: verb-anlegen
     type: verb
     lemma: anlegen
