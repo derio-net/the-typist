@@ -272,3 +272,8 @@ Operator generated public/assets/sprites/sheet.png from docs/ux/sprite-prompts.m
 ### seed-model-opus · decision · Seed enrichment phases (5, 6) run on Opus instead of the plan's standard tier
 
 The enriched Records are the learning content itself; operator chose Opus for German correctness over cost.
+
+<!-- fr:journal kind=decision scope=spec id=plan2-rows-post-merge created=2026-10-05T20:34:00+00:00 -->
+### plan2-rows-post-merge · decision · degraded-states and learning-aids marked verify: post-merge until plan 2 builds them
+
+fr's deliver check owes visual evidence for every visual row citing the spec; plan 2's rows cite the same spec and cannot be captured yet. Operator chose to mark them post-merge with a note (a stretch of the flag); a super-fr issue about multi-plan specs is drafted for the operator to file.
