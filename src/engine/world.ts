@@ -202,17 +202,21 @@ function findSlot(w: Draft, child: WorldShip, px: number, py: number): { x: numb
 function spawnChildren(w: Draft, m: WorldShip) {
   const record = w.records[m.recordId].record;
   const forms = formsText(record);
-  const make = (child: WorldShip) => {
-    spawn(w, { ...child, ...findSlot(w, child, m.x, m.y) });
-  };
-  if (forms !== null) make(makeShip(w.measure, `${record.id}:f`, record.id, 'forms', forms, m.x, m.y, w.wave));
+  const children: WorldShip[] = [];
+  if (forms !== null) children.push(makeShip(w.measure, `${record.id}:f`, record.id, 'forms', forms, m.x, m.y, w.wave));
   (record.examples ?? []).forEach((e, k) => {
     const chip = e.tags.filter((t) => (RECOGNISED_TAGS as readonly string[]).includes(t)).join(', ');
-    make(makeShip(w.measure, `${record.id}:e${k}`, record.id, 'escort', e.de, m.x, m.y, w.wave, {
+    children.push(makeShip(w.measure, `${record.id}:e${k}`, record.id, 'escort', e.de, m.x, m.y, w.wave, {
       translation: e.en,
       ...(chip ? { chip } : {}),
     }));
   });
+  // Siblings descend together at the group's slowest speed, so a short ship never overtakes a long one.
+  const speed = Math.min(...children.map((c) => c.speed));
+  for (const child of children) {
+    const same = { ...child, speed };
+    spawn(w, { ...same, ...findSlot(w, same, m.x, m.y) });
+  }
 }
 
 /** Marks one of the record's ships as done; resolves the record when it was the last. */

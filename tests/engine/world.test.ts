@@ -191,6 +191,17 @@ describe('child placement (r1, r2, r3)', () => {
       for (let j = i + 1; j < boxes.length; j++) expect(intersects(boxes[i], boxes[j])).toBe(false);
   });
 
+  it('siblings descend together, so a short forms ship never overtakes a long sentence', () => {
+    let w = createWorld([boerse]);
+    w = destroyFirst(w);
+    const kids = w.ships.filter((s) => s.recordId === boerse.id);
+    expect(new Set(kids.map((k) => k.speed)).size).toBe(1);
+    w = advance(w, 2000);
+    const boxes = w.ships.filter((s) => s.recordId === boerse.id).map(shipBounds);
+    for (let i = 0; i < boxes.length; i++)
+      for (let j = i + 1; j < boxes.length; j++) expect(intersects(boxes[i], boxes[j])).toBe(false);
+  });
+
   it('keeps children a reaction distance above the player line even when the mothership dies low', () => {
     let w = createWorld([boerse]);
     w = lowered(w, WORLD.playerY - 5);
