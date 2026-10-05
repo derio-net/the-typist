@@ -144,13 +144,18 @@ steps:
           visual: record-ships:3:6409b4826391
           findings: p3-r1,p3-r2,p3-r3,p3-r4,p3-r5,p3-r6,p3-r7,p3-r8,p3-r9,p3-r10,p3-r11,p3-r12,p3-r13,p3-r18,p3-r14,p3-r15,p3-r16,p3-r17
       phase/4/implement-phase:
-        state: running
+        state: done
         attempts:
         - dispatched: '2026-10-05T08:17:54+00:00'
+          agent: adb2d0f83e02ce772
           agent_type: super-fr:fr-phase-executor
           harness: claude-code
-          model: sonnet
+          model: claude-sonnet-5-5
           session: d5b2df96-f96a-4fde-8d39-796f394bda21
+          returned: '2026-10-05T18:27:59+00:00'
+          outcome: done
+        evidence:
+          visual: none
   journal-check:
     state: pending
   deliver:

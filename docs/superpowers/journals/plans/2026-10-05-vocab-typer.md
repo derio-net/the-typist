@@ -403,3 +403,23 @@ Cosmetic; revisit with real assets in plan 2.
 ### p3-r17-resolved · finding [out-of-scope] · resolves p3-r17: Siblings share the slowest speed, deviating from per-text speed (phase 3)
 
 Deliberate (p3-r18); spec wording to be amended with plan 2 spec updates.
+
+<!-- fr:journal kind=discovery scope=plan id=p4-dry-run created=2026-10-05T18:27:56+00:00 phase=4 -->
+### p4-dry-run · discovery · Dry run of typist-enrich on a 3-record scratch list (phase 4)
+
+Parse, next-batch, enrich by hand, validate and stats worked as written; next-batch prints nothing with exit 0 when no raw is left. Unclear spots fixed in SKILL.md: non-gradable adjectives, muddled superlative wording, precondition of no unresolved key, commit subject uses the record id (reflexive keeps verb-sich-). Scratch list not committed.
+
+<!-- fr:journal kind=discovery scope=plan id=p4-tsx-timeouts created=2026-10-05T18:27:56+00:00 phase=4 -->
+### p4-tsx-timeouts · discovery · CLI tests spawning tsx exceed vitest's 5s default under parallel load (phase 4)
+
+Each tsx spawn takes seconds on this machine; when the tools tests run together the older CLI tests (validate, parse) time out at 5000ms, while the full-suite run with --testTimeout 60000 passes. New organise CLI tests set a 60s timeout in the file. Existing tests were not changed.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p4-t1 created=2026-10-05T18:27:56+00:00 phase=4 -->
+### no-refactor-p4-t1 · discovery · no-refactor-because P4.T1 (phase 4)
+
+organise helpers are small pure functions with one CLI dispatcher; nothing to clean
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p4-t2 created=2026-10-05T18:27:56+00:00 phase=4 -->
+### no-refactor-p4-t2 · discovery · no-refactor-because P4.T2 (phase 4)
+
+skill is prose, reworded once already during the dry run (T2.S2)
