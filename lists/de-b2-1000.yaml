@@ -12200,7 +12200,7 @@ records:
       - asylum seeker
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1859
     noun:
@@ -12210,6 +12210,10 @@ records:
         - lemma: Asylbewerberin
           gender: f
           plural: Asylbewerberinnen
+    examples:
+      - { de: "Jeder Asylbewerber hat das Recht auf ein faires Verfahren.", en: "Every asylum seeker has the right to a fair procedure.", tags: [singular, Präsens] }
+      - { de: "Die Asylbewerber warten oft monatelang auf eine Entscheidung.", en: "Asylum seekers often wait months for a decision.", tags: [plural, Präsens] }
+      - { de: "Die Asylbewerberin hatte vorher als Lehrerin gearbeitet.", en: "The asylum seeker had previously worked as a teacher.", tags: [singular, Plusquamperfekt] }
   - id: noun-buergerrecht
     type: noun
     lemma: Bürgerrecht
@@ -12217,12 +12221,16 @@ records:
       - civil right
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1861
     noun:
       gender: n
       plural: Bürgerrechte
+    examples:
+      - { de: "Martin Luther King kämpfte für die Bürgerrechte der Afroamerikaner.", en: "Martin Luther King fought for the civil rights of African Americans.", tags: [plural, Präteritum] }
+      - { de: "Das Recht auf freie Meinungsäußerung ist ein wichtiges Bürgerrecht.", en: "The right to free expression is an important civil right.", tags: [singular, Präsens] }
+      - { de: "Kritiker warnen, dass das Gesetz die Bürgerrechte einschränkt.", en: "Critics warn that the law restricts civil rights.", tags: [plural, Präsens] }
   - id: noun-staatsbuergerschaft
     type: noun
     lemma: Staatsbürgerschaft
@@ -12230,12 +12238,16 @@ records:
       - citizenship
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1863
     noun:
       gender: f
       plural: Staatsbürgerschaften
+    examples:
+      - { de: "Sie hat die deutsche Staatsbürgerschaft beantragt.", en: "She has applied for German citizenship.", tags: [singular, Perfekt] }
+      - { de: "Viele Menschen in Deutschland haben zwei Staatsbürgerschaften.", en: "Many people in Germany have two citizenships.", tags: [plural, Präsens] }
+      - { de: "Für die Staatsbürgerschaft braucht man gute Deutschkenntnisse.", en: "You need a good knowledge of German for citizenship.", tags: [singular, Präsens] }
   - id: noun-innenpolitik
     type: noun
     lemma: Innenpolitik
@@ -12243,12 +12255,16 @@ records:
       - domestic policy
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1865
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "In der Innenpolitik geht es vor allem um Migration und Sicherheit.", en: "Domestic policy is mainly about migration and security.", tags: [singular, Präsens] }
+      - { de: "Der Minister ist für die Innenpolitik zuständig.", en: "The minister is responsible for domestic policy.", tags: [singular, Präsens] }
+      - { de: "Nach der Wahl konzentrierte sich die Regierung auf die Innenpolitik.", en: "After the election the government concentrated on domestic policy.", tags: [singular, Präteritum] }
   - id: noun-aussenpolitik
     type: noun
     lemma: Außenpolitik
@@ -12256,12 +12272,16 @@ records:
       - foreign policy
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1867
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Außenpolitik des Landes hat sich stark verändert.", en: "The country's foreign policy has changed considerably.", tags: [singular, Perfekt] }
+      - { de: "In der Außenpolitik setzt Deutschland auf Zusammenarbeit.", en: "In foreign policy, Germany relies on cooperation.", tags: [singular, Präsens] }
+      - { de: "Sie ist Expertin für europäische Außenpolitik.", en: "She is an expert in European foreign policy.", tags: [singular, Präsens] }
   - id: noun-diplomatie
     type: noun
     lemma: Diplomatie
@@ -12269,12 +12289,16 @@ records:
       - diplomacy
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1869
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Der Konflikt lässt sich nur durch Diplomatie lösen.", en: "The conflict can only be resolved through diplomacy.", tags: [singular, Präsens] }
+      - { de: "Mit viel Diplomatie gelang es ihr, den Streit zu beenden.", en: "With a lot of diplomacy she managed to end the argument.", tags: [singular, Präteritum] }
+      - { de: "Die Diplomatie hatte versagt, und es kam zum Krieg.", en: "Diplomacy had failed, and war broke out.", tags: [singular, Plusquamperfekt] }
   - id: noun-diplomat
     type: noun
     lemma: Diplomat
@@ -12282,7 +12306,7 @@ records:
       - diplomat
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1871
     noun:
@@ -12292,19 +12316,29 @@ records:
         - lemma: Diplomatin
           gender: f
           plural: Diplomatinnen
+    examples:
+      - { de: "Der Diplomat wurde zur Persona non grata erklärt.", en: "The diplomat was declared persona non grata.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Mehrere Diplomaten mussten das Land verlassen.", en: "Several diplomats had to leave the country.", tags: [plural, Präteritum] }
+      - { de: "Die Diplomatin spricht sechs Sprachen.", en: "The diplomat speaks six languages.", tags: [singular, Präsens] }
   - id: noun-botschaft
     type: noun
     lemma: Botschaft
     gloss:
       - embassy
+      - message
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1873
     noun:
       gender: f
       plural: Botschaften
+    examples:
+      - { de: "Für das Visum müssen Sie zur Botschaft gehen.", en: "You have to go to the embassy for the visa.", tags: [singular, Präsens] }
+      - { de: "Vor der Botschaft protestierten Hunderte Menschen.", en: "Hundreds of people protested in front of the embassy.", tags: [singular, Präteritum] }
+      - { de: "Mehrere Länder haben ihre Botschaften geschlossen.", en: "Several countries have closed their embassies.", tags: [plural, Perfekt] }
+      - { de: "Die Botschaft des Films ist klar: Gewalt löst keine Probleme.", en: "The film's message is clear: violence doesn't solve problems.", tags: [singular, Präsens] }
   - id: noun-botschafter
     type: noun
     lemma: Botschafter
@@ -12312,7 +12346,7 @@ records:
       - ambassador
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1875
     noun:
@@ -12322,6 +12356,10 @@ records:
         - lemma: Botschafterin
           gender: f
           plural: Botschafterinnen
+    examples:
+      - { de: "Der Botschafter wurde ins Außenministerium bestellt.", en: "The ambassador was summoned to the Foreign Office.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Die Botschafterin überreichte dem Präsidenten ihr Beglaubigungsschreiben.", en: "The ambassador presented her credentials to the president.", tags: [singular, Präteritum] }
+      - { de: "Die Botschafter der EU-Staaten treffen sich regelmäßig.", en: "The ambassadors of the EU states meet regularly.", tags: [plural, Präsens] }
   - id: noun-abkommen
     type: noun
     lemma: Abkommen
@@ -12329,12 +12367,16 @@ records:
       - agreement
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1879
     noun:
       gender: n
       plural: Abkommen
+    examples:
+      - { de: "Die beiden Länder haben ein Abkommen unterzeichnet.", en: "The two countries have signed an agreement.", tags: [singular, Perfekt] }
+      - { de: "Das Pariser Abkommen soll die Erderwärmung begrenzen.", en: "The Paris Agreement is meant to limit global warming.", tags: [singular, Präsens] }
+      - { de: "Internationale Abkommen werden oft jahrelang verhandelt.", en: "International agreements are often negotiated for years.", tags: [plural, Passiv, Präsens] }
   - id: noun-aussenbeziehungen
     type: noun
     lemma: Außenbeziehungen
@@ -12342,13 +12384,18 @@ records:
       - foreign relations
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1885
+    source_note: "kept plural-only: the singular Außenbeziehung is practically never used"
     noun:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "Die Außenbeziehungen der EU werden immer wichtiger.", en: "The EU's external relations are becoming more and more important.", tags: [plural, Präsens] }
+      - { de: "Die Ministerin ist für die Außenbeziehungen zuständig.", en: "The minister is responsible for foreign relations.", tags: [plural, Präsens] }
+      - { de: "Nach dem Regierungswechsel verbesserten sich die Außenbeziehungen des Landes.", en: "After the change of government, the country's foreign relations improved.", tags: [plural, Präteritum] }
   - id: noun-sanktion
     type: noun
     lemma: Sanktion
@@ -12356,12 +12403,16 @@ records:
       - sanction
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1887
     noun:
       gender: f
       plural: Sanktionen
+    examples:
+      - { de: "Die EU hat neue Sanktionen gegen das Regime beschlossen.", en: "The EU has decided on new sanctions against the regime.", tags: [plural, Perfekt] }
+      - { de: "Die Sanktionen treffen vor allem die Bevölkerung.", en: "The sanctions mainly hit the population.", tags: [plural, Präsens] }
+      - { de: "Als Sanktion wurde ihm das Stipendium gestrichen.", en: "As a sanction, his scholarship was withdrawn.", tags: [singular, Passiv, Präteritum] }
   - id: noun-embargo
     type: noun
     lemma: Embargo
@@ -12369,12 +12420,16 @@ records:
       - embargo
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1889
     noun:
       gender: n
       plural: Embargos
+    examples:
+      - { de: "Die EU verhängte ein Embargo gegen das Land.", en: "The EU imposed an embargo on the country.", tags: [singular, Präteritum] }
+      - { de: "Das Embargo wurde nach zehn Jahren aufgehoben.", en: "The embargo was lifted after ten years.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Wirtschaftliche Embargos haben oft nur begrenzte Wirkung.", en: "Economic embargoes often have only a limited effect.", tags: [plural, Präsens] }
   - id: noun-friedensverhandlung
     type: noun
     lemma: Friedensverhandlung
@@ -12382,12 +12437,16 @@ records:
       - peace negotiation
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1893
     noun:
       gender: f
       plural: Friedensverhandlungen
+    examples:
+      - { de: "Die Friedensverhandlungen sind gescheitert.", en: "The peace negotiations have failed.", tags: [plural, Perfekt] }
+      - { de: "Beide Seiten werden nächste Woche Friedensverhandlungen aufnehmen.", en: "Both sides will begin peace negotiations next week.", tags: [plural, Futur I] }
+      - { de: "Bei der ersten Friedensverhandlung saßen sich die Gegner direkt gegenüber.", en: "At the first round of peace talks, the opponents sat face to face.", tags: [singular, Präteritum] }
   - id: noun-krieg
     type: noun
     lemma: Krieg
@@ -12395,12 +12454,16 @@ records:
       - war
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1895
     noun:
       gender: m
       plural: Kriege
+    examples:
+      - { de: "Der Krieg hat Millionen Menschen zur Flucht gezwungen.", en: "The war has forced millions of people to flee.", tags: [singular, Perfekt] }
+      - { de: "Mein Großvater erzählte oft vom Krieg.", en: "My grandfather often talked about the war.", tags: [singular, Präteritum] }
+      - { de: "Kriege lösen keine Probleme, sie schaffen neue.", en: "Wars don't solve problems, they create new ones.", tags: [plural, Präsens] }
   - id: noun-frieden
     type: noun
     lemma: Frieden
@@ -12408,12 +12471,16 @@ records:
       - peace
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1897
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Alle Menschen wünschen sich Frieden.", en: "All people want peace.", tags: [singular, Präsens] }
+      - { de: "Nach dem Krieg herrschte endlich Frieden.", en: "After the war, peace finally reigned.", tags: [singular, Präteritum] }
+      - { de: "Lass mich in Frieden!", en: "Leave me alone!", tags: [singular, Imperativ] }
   - id: noun-instabilitaet
     type: noun
     lemma: Instabilität
@@ -12421,12 +12488,16 @@ records:
       - instability
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1901
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die politische Instabilität schreckt Investoren ab.", en: "Political instability deters investors.", tags: [singular, Präsens] }
+      - { de: "Nach dem Putsch herrschte große Instabilität im Land.", en: "After the coup there was great instability in the country.", tags: [singular, Präteritum] }
+      - { de: "Experten befürchten, dass die Instabilität in der Region zunehmen wird.", en: "Experts fear that instability in the region will increase.", tags: [singular, Futur I] }
   - id: noun-entwicklungspolitik
     type: noun
     lemma: Entwicklungspolitik
@@ -12434,12 +12505,16 @@ records:
       - development policy
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1903
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Entwicklungspolitik soll Armut weltweit bekämpfen.", en: "Development policy is meant to fight poverty worldwide.", tags: [singular, Präsens] }
+      - { de: "Deutschland gibt jedes Jahr Milliarden für Entwicklungspolitik aus.", en: "Germany spends billions every year on development policy.", tags: [singular, Präsens] }
+      - { de: "Die Ministerin hat die Ziele der Entwicklungspolitik neu definiert.", en: "The minister has redefined the goals of development policy.", tags: [singular, Perfekt] }
   - id: noun-konflikt
     type: noun
     lemma: Konflikt
@@ -12447,12 +12522,16 @@ records:
       - conflict
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1905
     noun:
       gender: m
       plural: Konflikte
+    examples:
+      - { de: "Der Konflikt zwischen den beiden Ländern dauert schon Jahrzehnte.", en: "The conflict between the two countries has lasted for decades.", tags: [singular, Präsens] }
+      - { de: "Im Team gab es immer wieder Konflikte.", en: "There were repeated conflicts in the team.", tags: [plural, Präteritum] }
+      - { de: "Die Vermittler versuchen, den Konflikt friedlich zu lösen.", en: "The mediators are trying to resolve the conflict peacefully.", tags: [singular, Präsens] }
   - id: noun-infrastruktur
     type: noun
     lemma: Infrastruktur
@@ -12460,12 +12539,16 @@ records:
       - infrastructure
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1920
     noun:
       gender: f
       plural: Infrastrukturen
+    examples:
+      - { de: "Die Infrastruktur des Landes ist veraltet.", en: "The country's infrastructure is outdated.", tags: [singular, Präsens] }
+      - { de: "Die Regierung will mehr Geld in die Infrastruktur investieren.", en: "The government wants to invest more money in infrastructure.", tags: [singular, Präsens] }
+      - { de: "Kritische Infrastrukturen wie Kraftwerke müssen besonders geschützt werden.", en: "Critical infrastructure such as power stations must be specially protected.", tags: [plural, Passiv, Präsens] }
   - id: noun-stadtviertel
     type: noun
     lemma: Stadtviertel
@@ -12474,12 +12557,16 @@ records:
       - neighbourhood
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1922
     noun:
       gender: n
       plural: Stadtviertel
+    examples:
+      - { de: "In welchem Stadtviertel wohnst du?", en: "Which part of town do you live in?", tags: [singular, Präsens] }
+      - { de: "Das alte Arbeiterviertel ist heute ein beliebtes Stadtviertel.", en: "The old working-class area is now a popular neighbourhood.", tags: [singular, Präsens] }
+      - { de: "Die Mieten sind in allen Stadtvierteln gestiegen.", en: "Rents have risen in all districts.", tags: [plural, Perfekt] }
   - id: noun-innenstadt
     type: noun
     lemma: Innenstadt
@@ -12487,12 +12574,16 @@ records:
       - city centre
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1924
     noun:
       gender: f
       plural: Innenstädte
+    examples:
+      - { de: "Die Innenstadt ist am Wochenende für Autos gesperrt.", en: "The city centre is closed to cars at weekends.", tags: [singular, Präsens] }
+      - { de: "Wir haben uns in der Innenstadt getroffen.", en: "We met in the city centre.", tags: [singular, Perfekt] }
+      - { de: "Viele Innenstädte leiden unter leeren Geschäften.", en: "Many town centres are suffering from empty shops.", tags: [plural, Präsens] }
   - id: noun-stadtrand
     type: noun
     lemma: Stadtrand
@@ -12500,12 +12591,16 @@ records:
       - outskirts
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1926
     noun:
       gender: m
       plural: Stadtränder
+    examples:
+      - { de: "Wir wohnen am Stadtrand, wo es ruhiger ist.", en: "We live on the outskirts, where it's quieter.", tags: [singular, Präsens] }
+      - { de: "Am Stadtrand entsteht ein neues Einkaufszentrum.", en: "A new shopping centre is being built on the outskirts.", tags: [singular, Präsens] }
+      - { de: "An den Stadträndern wurden viele neue Wohnungen gebaut.", en: "Many new flats have been built on the edges of the city.", tags: [plural, Passiv, Präteritum] }
   - id: noun-vorstadt
     type: noun
     lemma: Vorstadt
@@ -16456,14 +16551,19 @@ records:
       - United Nations
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1881
     abbreviation: UN
+    source_note: "proper name, plural only"
     noun:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "Die Vereinten Nationen wurden 1945 gegründet.", en: "The United Nations was founded in 1945.", tags: [plural, Passiv, Präteritum] }
+      - { de: "Der Sitz der Vereinten Nationen ist in New York.", en: "The headquarters of the United Nations is in New York.", tags: [plural, Präsens] }
+      - { de: "Die Vereinten Nationen haben zu einer Waffenruhe aufgerufen.", en: "The United Nations has called for a ceasefire.", tags: [plural, Perfekt] }
   - id: noun-europaeische-union
     type: noun
     lemma: Europäische Union
@@ -16471,13 +16571,17 @@ records:
       - European Union
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1883
     abbreviation: EU
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Europäische Union hat 27 Mitgliedstaaten.", en: "The European Union has 27 member states.", tags: [singular, Präsens] }
+      - { de: "Großbritannien ist 2020 aus der Europäischen Union ausgetreten.", en: "The United Kingdom left the European Union in 2020.", tags: [singular, Perfekt] }
+      - { de: "Die Bürger der Europäischen Union können frei reisen.", en: "Citizens of the European Union can travel freely.", tags: [singular, Präsens] }
   - id: noun-warmmiete
     type: noun
     lemma: Warmmiete
