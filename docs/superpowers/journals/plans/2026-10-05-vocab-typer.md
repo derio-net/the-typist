@@ -892,3 +892,8 @@ Filed at closeout as #4.
 ### p3-r17-resolved-2 · finding [deferred → #4] · resolves p3-r17: Siblings share the slowest speed, deviating from per-text speed
 
 Filed at closeout as #4.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r11-resolved-2 created=2026-10-05T21:12:28+00:00 state=open resolves=p6-r11 tracked_by=#5 -->
+### p6-r11-resolved-2 · finding [deferred → #5] · resolves p6-r11: Seed test requires status enriched; fails once a record is marked reviewed
+
+Filed at closeout as #5.
