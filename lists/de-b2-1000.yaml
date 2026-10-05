@@ -3045,12 +3045,16 @@ records:
       - punishment
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 391
     noun:
       gender: f
       plural: Strafen
+    examples:
+      - { de: "Die Strafe für Falschparken ist gestiegen.", en: "The fine for illegal parking has gone up.", tags: [singular, Perfekt] }
+      - { de: "Er musste zur Strafe sein Zimmer aufräumen.", en: "As a punishment he had to tidy his room.", tags: [singular, Präteritum] }
+      - { de: "Viele fordern härtere Strafen für Raser.", en: "Many people are calling for harsher punishments for speeders.", tags: [plural, Präsens] }
   - id: verb-bestrafen
     type: verb
     lemma: bestrafen
@@ -3058,9 +3062,20 @@ records:
       - to punish
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 393
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "bestraft"
+        praeteritum: "bestrafte"
+        partizip2: "bestraft"
+    examples:
+      - { de: "Wer zu schnell fährt, wird bestraft.", en: "Anyone who drives too fast is punished.", tags: [Passiv, Präsens] }
+      - { de: "Die Lehrerin bestrafte die ganze Klasse.", en: "The teacher punished the whole class.", tags: [Präteritum] }
+      - { de: "Man hat ihn für etwas bestraft, das er nicht getan hatte.", en: "He was punished for something he hadn't done.", tags: [Perfekt] }
   - id: noun-freiheitsstrafe
     type: noun
     lemma: Freiheitsstrafe
@@ -3068,12 +3083,16 @@ records:
       - prison sentence
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 395
     noun:
       gender: f
       plural: Freiheitsstrafen
+    examples:
+      - { de: "Er wurde zu einer Freiheitsstrafe von vier Jahren verurteilt.", en: "He was sentenced to four years in prison.", tags: [singular, Passiv] }
+      - { de: "Die Freiheitsstrafe wurde zur Bewährung ausgesetzt.", en: "The prison sentence was suspended.", tags: [singular, Passiv] }
+      - { de: "Lange Freiheitsstrafen schrecken nicht immer ab.", en: "Long prison sentences are not always a deterrent.", tags: [plural, Präsens] }
   - id: noun-geldstrafe
     type: noun
     lemma: Geldstrafe
@@ -3081,12 +3100,16 @@ records:
       - fine
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 397
     noun:
       gender: f
       plural: Geldstrafen
+    examples:
+      - { de: "Sie musste eine Geldstrafe von 500 Euro zahlen.", en: "She had to pay a fine of 500 euros.", tags: [singular, Präteritum] }
+      - { de: "Für kleinere Delikte gibt es meistens eine Geldstrafe.", en: "For minor offences there is usually a fine.", tags: [singular, Präsens] }
+      - { de: "Die Geldstrafen für Umweltsünder sollen erhöht werden.", en: "The fines for polluters are to be increased.", tags: [plural, Passiv] }
   - id: noun-haft
     type: noun
     lemma: Haft
@@ -3094,12 +3117,16 @@ records:
       - detention
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 399
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Der Verdächtige sitzt seit Montag in Haft.", en: "The suspect has been in custody since Monday.", tags: [singular, Präsens] }
+      - { de: "Nach zwei Jahren Haft wurde sie entlassen.", en: "After two years in prison she was released.", tags: [singular, Passiv] }
+      - { de: "Der Richter ordnete Haft an.", en: "The judge ordered detention.", tags: [singular, Präteritum] }
   - id: verb-inhaftieren
     type: verb
     lemma: inhaftieren
@@ -3107,9 +3134,20 @@ records:
       - to imprison
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 401
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "inhaftiert"
+        praeteritum: "inhaftierte"
+        partizip2: "inhaftiert"
+    examples:
+      - { de: "Die Polizei inhaftierte drei Verdächtige.", en: "The police arrested three suspects.", tags: [Präteritum] }
+      - { de: "Der Journalist wurde ohne Anklage inhaftiert.", en: "The journalist was imprisoned without charge.", tags: [Passiv, Präteritum] }
+      - { de: "Das Regime hat viele Oppositionelle inhaftiert.", en: "The regime has imprisoned many opposition members.", tags: [Perfekt] }
   - id: verb-freisprechen
     type: verb
     lemma: freisprechen
@@ -3117,9 +3155,21 @@ records:
       - to acquit
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 403
+    verb:
+      separable: frei
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "spricht frei"
+        praeteritum: "sprach frei"
+        partizip2: "freigesprochen"
+    examples:
+      - { de: "Das Gericht sprach den Angeklagten frei.", en: "The court acquitted the defendant.", tags: [separated, Präteritum] }
+      - { de: "Sie ist aus Mangel an Beweisen freigesprochen worden.", en: "She was acquitted for lack of evidence.", tags: [Passiv, Perfekt] }
+      - { de: "Wenn die Beweise nicht reichen, spricht der Richter ihn frei.", en: "If the evidence isn't enough, the judge will acquit him.", tags: [separated, Präsens] }
   - id: noun-berufung
     type: noun
     lemma: Berufung
@@ -3127,12 +3177,16 @@ records:
       - appeal
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 405
     noun:
       gender: f
       plural: Berufungen
+    examples:
+      - { de: "Der Anwalt hat gegen das Urteil Berufung eingelegt.", en: "The lawyer has lodged an appeal against the verdict.", tags: [singular, Perfekt] }
+      - { de: "Die Berufung wurde vom Landgericht abgelehnt.", en: "The appeal was rejected by the regional court.", tags: [singular, Passiv] }
+      - { de: "Beide Seiten kündigten Berufungen an.", en: "Both sides announced appeals.", tags: [plural, Präteritum] }
   - id: noun-rechtssystem
     type: noun
     lemma: Rechtssystem
@@ -3140,12 +3194,16 @@ records:
       - legal system
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 407
     noun:
       gender: n
       plural: Rechtssysteme
+    examples:
+      - { de: "Das deutsche Rechtssystem unterscheidet sich vom britischen.", en: "The German legal system differs from the British one.", tags: [singular, Präsens] }
+      - { de: "Sie vertraut dem Rechtssystem nicht mehr.", en: "She no longer trusts the legal system.", tags: [singular, Präsens] }
+      - { de: "Im Studium haben wir verschiedene Rechtssysteme verglichen.", en: "In our studies we compared different legal systems.", tags: [plural, Perfekt] }
   - id: noun-rechtslage
     type: noun
     lemma: Rechtslage
@@ -3153,12 +3211,16 @@ records:
       - legal situation
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 409
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Rechtslage ist in diesem Fall unklar.", en: "The legal situation is unclear in this case.", tags: [singular, Präsens] }
+      - { de: "Vor der Entscheidung sollte man die Rechtslage prüfen.", en: "Before deciding you should check the legal situation.", tags: [singular, Präsens] }
+      - { de: "Durch das neue Gesetz hat sich die Rechtslage geändert.", en: "The legal situation has changed because of the new law.", tags: [singular, Perfekt] }
   - id: noun-rechtsberatung
     type: noun
     lemma: Rechtsberatung
@@ -3166,12 +3228,16 @@ records:
       - legal advice
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 411
     noun:
       gender: f
       plural: Rechtsberatungen
+    examples:
+      - { de: "Die Gewerkschaft bietet ihren Mitgliedern kostenlose Rechtsberatung an.", en: "The union offers its members free legal advice.", tags: [singular, Präsens] }
+      - { de: "Ich habe mir vor der Kündigung eine Rechtsberatung geholt.", en: "I got legal advice before giving notice.", tags: [singular, Perfekt] }
+      - { de: "Studentische Rechtsberatungen helfen Menschen mit wenig Geld.", en: "Student-run legal advice clinics help people with little money.", tags: [plural, Präsens] }
   - id: noun-rechtsschutz
     type: noun
     lemma: Rechtsschutz
@@ -3179,12 +3245,16 @@ records:
       - legal protection
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 413
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Die Versicherung umfasst auch Rechtsschutz.", en: "The insurance also includes legal protection.", tags: [singular, Präsens] }
+      - { de: "Ohne Rechtsschutz wäre der Prozess zu teuer gewesen.", en: "Without legal protection the trial would have been too expensive.", tags: [singular, Konjunktiv II] }
+      - { de: "Jeder Bürger hat Anspruch auf effektiven Rechtsschutz.", en: "Every citizen is entitled to effective legal protection.", tags: [singular, Präsens] }
   - id: noun-menschenrechte
     type: noun
     lemma: Menschenrechte
@@ -3193,7 +3263,7 @@ records:
     categories:
       - law-and-justice
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 419
       - 1500
@@ -3201,6 +3271,10 @@ records:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "Die Menschenrechte gelten für alle Menschen.", en: "Human rights apply to all people.", tags: [plural, Präsens] }
+      - { de: "Die Organisation setzt sich für die Menschenrechte ein.", en: "The organisation campaigns for human rights.", tags: [plural, Präsens] }
+      - { de: "In dem Bericht wurden schwere Verletzungen der Menschenrechte dokumentiert.", en: "Serious human rights violations were documented in the report.", tags: [plural, Passiv] }
   - id: noun-rechtsanwalt
     type: noun
     lemma: Rechtsanwalt
@@ -3208,12 +3282,16 @@ records:
       - attorney
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 421
     noun:
       gender: m
       plural: Rechtsanwälte
+    examples:
+      - { de: "Mein Rechtsanwalt hat den Vertrag geprüft.", en: "My attorney checked the contract.", tags: [singular, Perfekt] }
+      - { de: "Er arbeitet als Rechtsanwalt für Familienrecht.", en: "He works as an attorney specialising in family law.", tags: [singular, Präsens] }
+      - { de: "Die Rechtsanwälte verhandelten bis spät in die Nacht.", en: "The attorneys negotiated until late at night.", tags: [plural, Präteritum] }
   - id: noun-grundrecht
     type: noun
     lemma: Grundrecht
@@ -3221,12 +3299,16 @@ records:
       - fundamental right
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 423
     noun:
       gender: n
       plural: Grundrechte
+    examples:
+      - { de: "Die Meinungsfreiheit ist ein Grundrecht.", en: "Freedom of opinion is a fundamental right.", tags: [singular, Präsens] }
+      - { de: "Während der Pandemie wurden einige Grundrechte eingeschränkt.", en: "Some fundamental rights were restricted during the pandemic.", tags: [plural, Passiv] }
+      - { de: "Das Gericht sah darin einen Eingriff in ein Grundrecht.", en: "The court saw this as an interference with a fundamental right.", tags: [singular, Präteritum] }
   - id: noun-strafmass
     type: noun
     lemma: Strafmaß
@@ -3234,12 +3316,16 @@ records:
       - sentence (length/severity)
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 427
     noun:
       gender: n
       plural: Strafmaße
+    examples:
+      - { de: "Das Strafmaß fiel überraschend mild aus.", en: "The sentence turned out to be surprisingly lenient.", tags: [singular, Präteritum] }
+      - { de: "Über das Strafmaß entscheidet allein der Richter.", en: "The judge alone decides on the sentence.", tags: [singular, Präsens] }
+      - { de: "Die Strafmaße für Cyberkriminalität wurden verschärft.", en: "The sentences for cybercrime were made tougher.", tags: [plural, Passiv] }
   - id: verb-ermitteln
     type: verb
     lemma: ermitteln
@@ -3247,9 +3333,20 @@ records:
       - to investigate
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 429
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "ermittelt"
+        praeteritum: "ermittelte"
+        partizip2: "ermittelt"
+    examples:
+      - { de: "Die Polizei ermittelt wegen Brandstiftung.", en: "The police are investigating arson.", tags: [Präsens] }
+      - { de: "Die Staatsanwaltschaft hat monatelang gegen ihn ermittelt.", en: "The public prosecutor's office investigated him for months.", tags: [Perfekt] }
+      - { de: "Man ermittelte den Täter mithilfe von Videoaufnahmen.", en: "The perpetrator was identified with the help of video footage.", tags: [Präteritum] }
   - id: noun-ermittlungen
     type: noun
     lemma: Ermittlungen
@@ -3257,13 +3354,17 @@ records:
       - investigations
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 431
     noun:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "Die Ermittlungen dauern noch an.", en: "The investigations are still ongoing.", tags: [plural, Präsens] }
+      - { de: "Die Polizei hat die Ermittlungen eingestellt.", en: "The police have closed the investigation.", tags: [plural, Perfekt] }
+      - { de: "Nach monatelangen Ermittlungen wurde der Täter gefasst.", en: "After months of investigations the perpetrator was caught.", tags: [plural, Passiv] }
   - id: noun-polizei
     type: noun
     lemma: Polizei
@@ -3271,12 +3372,16 @@ records:
       - police
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 433
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Rufen Sie sofort die Polizei!", en: "Call the police immediately!", tags: [singular, Imperativ] }
+      - { de: "Die Polizei sperrte die Straße ab.", en: "The police closed off the street.", tags: [singular, Präteritum] }
+      - { de: "Er arbeitet seit zwanzig Jahren bei der Polizei.", en: "He has been working for the police for twenty years.", tags: [singular, Präsens] }
   - id: noun-taeter
     type: noun
     lemma: Täter
@@ -3284,7 +3389,7 @@ records:
       - perpetrator
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 435
     noun:
@@ -3294,6 +3399,10 @@ records:
         - lemma: Täterin
           gender: f
           plural: Täterinnen
+    examples:
+      - { de: "Der Täter ist noch auf der Flucht.", en: "The perpetrator is still on the run.", tags: [singular, Präsens] }
+      - { de: "Die Polizei konnte die Täter schnell festnehmen.", en: "The police were able to arrest the perpetrators quickly.", tags: [plural, Präteritum] }
+      - { de: "Die Täterin hat die Tat gestanden.", en: "The perpetrator has confessed to the crime.", tags: [singular, Perfekt] }
   - id: noun-opfer
     type: noun
     lemma: Opfer
@@ -3301,12 +3410,16 @@ records:
       - victim
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 437
     noun:
       gender: n
       plural: Opfer
+    examples:
+      - { de: "Das Opfer wurde ins Krankenhaus gebracht.", en: "The victim was taken to hospital.", tags: [singular, Passiv] }
+      - { de: "Die Opfer des Unfalls erhalten eine Entschädigung.", en: "The victims of the accident receive compensation.", tags: [plural, Präsens] }
+      - { de: "Sie ist Opfer eines Betrugs geworden.", en: "She has become the victim of fraud.", tags: [singular, Perfekt] }
   - id: verb-duzen
     type: verb
     lemma: duzen
@@ -11548,10 +11661,16 @@ records:
     categories:
       - law-and-justice
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 387
       - 1470
+    adjective:
+      gradable: false
+    examples:
+      - { de: "Ein unschuldiger Mann saß zehn Jahre im Gefängnis.", en: "An innocent man spent ten years in prison.", tags: [attributive, Präteritum] }
+      - { de: "Bis zum Urteil gilt jeder als unschuldig.", en: "Until the verdict everyone is considered innocent.", tags: [Präsens] }
+      - { de: "Bei dem Anschlag starben viele unschuldige Menschen.", en: "Many innocent people died in the attack.", tags: [attributive, Präteritum] }
   - id: adjective-schuldig
     type: adjective
     lemma: schuldig
@@ -11560,10 +11679,16 @@ records:
     categories:
       - law-and-justice
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 389
       - 1470
+    adjective:
+      gradable: false
+    examples:
+      - { de: "Das Gericht sprach ihn schuldig.", en: "The court found him guilty.", tags: [Präteritum] }
+      - { de: "Der schuldige Fahrer muss den Schaden bezahlen.", en: "The guilty driver has to pay for the damage.", tags: [attributive, Präsens] }
+      - { de: "Ich fühle mich schuldig, weil ich nicht angerufen habe.", en: "I feel guilty because I didn't call.", tags: [Präsens] }
   - id: adjective-gesetzlich
     type: adjective
     lemma: gesetzlich
@@ -11572,9 +11697,15 @@ records:
       - by law
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 415
+    adjective:
+      gradable: false
+    examples:
+      - { de: "Die gesetzliche Krankenversicherung ist für Angestellte Pflicht.", en: "Statutory health insurance is compulsory for employees.", tags: [attributive, Präsens] }
+      - { de: "Arbeitgeber sind gesetzlich verpflichtet, den Lohn pünktlich zu zahlen.", en: "Employers are legally obliged to pay wages on time.", tags: [Präsens] }
+      - { de: "Morgen ist ein gesetzlicher Feiertag.", en: "Tomorrow is a public holiday.", tags: [attributive, Präsens] }
   - id: adjective-rechtswidrig
     type: adjective
     lemma: rechtswidrig
@@ -11582,9 +11713,15 @@ records:
       - unlawful
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 417
+    adjective:
+      gradable: false
+    examples:
+      - { de: "Die Kündigung war rechtswidrig.", en: "The dismissal was unlawful.", tags: [Präteritum] }
+      - { de: "Das Gericht stoppte die rechtswidrige Abschiebung.", en: "The court stopped the unlawful deportation.", tags: [attributive, Präteritum] }
+      - { de: "Rechtswidrige Inhalte müssen gelöscht werden.", en: "Unlawful content must be deleted.", tags: [attributive, Passiv] }
   - id: adjective-formell
     type: adjective
     lemma: formell
