@@ -14650,32 +14650,60 @@ records:
       - login
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1044
     noun:
       gender: n
       plural: Logins
+    examples:
+      - { de: "Das Login funktioniert seit dem Update nicht mehr.", en: "The login hasn't worked since the update.", tags: [singular, Präsens] }
+      - { de: "Für das Login brauchen Sie Ihre Kundennummer.", en: "You need your customer number to log in.", tags: [singular, Präsens] }
+      - { de: "Ich habe für jede Plattform andere Logins.", en: "I have different logins for every platform.", tags: [plural, Präsens] }
   - id: verb-sich-anmelden
     type: verb
-    lemma: sich anmelden
+    lemma: anmelden
     gloss:
       - to sign in
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1074
+    verb:
+      separable: an
+      auxiliary: haben
+      reflexive: true
+      parts:
+        praesens_3sg: "meldet an"
+        praeteritum: "meldete an"
+        partizip2: "angemeldet"
+    examples:
+      - { de: "Melde dich mit deiner E-Mail-Adresse an.", en: "Sign in with your email address.", tags: [separated, Imperativ] }
+      - { de: "Ich habe mich gestern für den Kurs angemeldet.", en: "I signed up for the course yesterday.", tags: [Perfekt] }
+      - { de: "Sie meldete sich mit dem falschen Passwort an.", en: "She signed in with the wrong password.", tags: [separated, Präteritum] }
   - id: verb-sich-abmelden
     type: verb
-    lemma: sich abmelden
+    lemma: abmelden
     gloss:
       - to sign out
     categories:
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 1074
+    verb:
+      separable: ab
+      auxiliary: haben
+      reflexive: true
+      parts:
+        praesens_3sg: "meldet ab"
+        praeteritum: "meldete ab"
+        partizip2: "abgemeldet"
+    examples:
+      - { de: "Vergiss nicht, dich am öffentlichen Computer abzumelden.", en: "Don't forget to sign out on the public computer.", tags: [Imperativ] }
+      - { de: "Er hat sich von dem Newsletter abgemeldet.", en: "He unsubscribed from the newsletter.", tags: [Perfekt] }
+      - { de: "Nach der Arbeit meldete sie sich aus dem System ab.", en: "After work she logged out of the system.", tags: [separated, Präteritum] }
   - id: adjective-technologisch
     type: adjective
     lemma: technologisch
