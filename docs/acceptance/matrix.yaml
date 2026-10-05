@@ -66,6 +66,15 @@ rows:
       - invalid-list-errors
       interactions:
       - load-valid-list-and-play
+  - id: list-errors-one-pass
+    capability: Lists
+    acceptance: An invalid list reports all its record-level and list-level errors together,
+      so its author can fix everything in one pass.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R9
+    levels: {}
+    status: not-implemented
+    notes: ''
   - id: record-ships
     capability: Gameplay
     acceptance: Each Record enters play as a mothership showing its display form and
@@ -117,6 +126,72 @@ rows:
       - empty-study-offers-free-play
       - storage-warning-banner
       - tts-toggle-disabled-note
+  - id: session-screens
+    capability: Gameplay
+    acceptance: A player picks a list and a mode from menus, plays a session of waves
+      with shared lives, can pause and resume without losing typing speed, and ends
+      on a summary of their grades.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R4
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R5
+    levels: {}
+    status: not-implemented
+    notes: ''
+    visual:
+      states:
+      - title-and-list-screen
+      - mode-choice-with-due-and-new-counts
+      - category-picker
+      - pause-panel
+      - between-wave-panel
+      - session-summary
+      interactions:
+      - esc-pause-then-resume-keeps-typing-focus
+      - study-session-runs-to-summary
+      - session-ends-at-zero-lives
+  - id: game-audio
+    capability: Gameplay
+    acceptance: Play has sound effects for hits, typos, explosions, escapes, cleared
+      waves and entering motherships, plus looping music when a track is supplied, each
+      switchable and remembered.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R7
+    levels: {}
+    status: not-implemented
+    notes: ''
+  - id: play-feel
+    capability: Gameplay
+    acceptance: The player ship fires from its front guns and drifts toward its target,
+      typos and pending ae/oe/ue/ss prefixes are visible on the locked ship, and the
+      playfield stays sharp, fits narrow windows and never hides the HUD.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R11
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R12
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R13
+    levels: {}
+    status: not-implemented
+    notes: ''
+    visual:
+      states:
+      - bullets-leave-front-guns
+      - player-tracks-locked-ship
+      - typo-flash-on-locked-ship
+      - pending-digraph-prefix-shown
+      - narrow-window-fit-no-horizontal-scroll
+      - released-ships-clear-of-hud
+      interactions:
+      - lock-then-player-drifts-to-target
+  - id: typing-edge-cases
+    capability: Gameplay
+    acceptance: A precomposed umlaut typed mid-digraph is accepted, closing quotes and
+      brackets at a sentence end need not be typed, and loanwords with accented letters
+      are typeable with the accent or its base letter.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R14
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R15
+    levels: {}
+    status: not-implemented
+    notes: ''
   - id: srs-sessions
     capability: Learning
     acceptance: Study sessions serve due plus capped new Records in category waves,

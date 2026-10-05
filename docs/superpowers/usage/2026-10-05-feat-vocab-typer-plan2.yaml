@@ -1,0 +1,37 @@
+schema_version: 1
+run: 2026-10-05-feat-vocab-typer-plan2
+captures:
+- host: h-7d787894
+  harness: claude-code
+  mode: devcontainer
+  captured_at: '2026-10-05T22:03:32+00:00'
+  at:
+  - resolve:brainstorm
+  sessions:
+  - session: a18f67a9-740c-4d3a-8be2-7904ac5f9fad
+    role: main
+    models:
+      claude-opus-5-5:
+        input: 68
+        cache_write: 96213
+        cache_read: 2922693
+        output: 27311
+        usd: null
+        usd_source: none
+    activity:
+      implementation:
+        usd: null
+        turns: 3
+      other:
+        usd: null
+        turns: 15
+      paperwork:
+        usd: null
+        turns: 16
+    steps:
+      (outside run):
+        usd: null
+        turns: 7
+      brainstorm:
+        usd: null
+        turns: 26
