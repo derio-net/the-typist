@@ -11805,12 +11805,16 @@ records:
       - salary
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1772
     noun:
       gender: n
       plural: Gehälter
+    examples:
+      - { de: "Das Gehalt wird am Ende des Monats überwiesen.", en: "The salary is paid at the end of the month.", tags: [singular, Passiv, Präsens] }
+      - { de: "Sie hat bei der Bewerbung ein höheres Gehalt verlangt.", en: "She asked for a higher salary when she applied.", tags: [singular, Perfekt] }
+      - { de: "Die Gehälter in der Pflege sind immer noch zu niedrig.", en: "Salaries in nursing are still too low.", tags: [plural, Präsens] }
   - id: noun-befoerderung
     type: noun
     lemma: Beförderung
@@ -11818,12 +11822,16 @@ records:
       - promotion
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1776
     noun:
       gender: f
       plural: Beförderungen
+    examples:
+      - { de: "Nach fünf Jahren bekam er endlich eine Beförderung.", en: "After five years he finally got a promotion.", tags: [singular, Präteritum] }
+      - { de: "Herzlichen Glückwunsch zur Beförderung!", en: "Congratulations on your promotion!", tags: [singular] }
+      - { de: "Beförderungen werden in unserer Firma nur einmal im Jahr vergeben.", en: "Promotions are only granted once a year in our company.", tags: [plural, Passiv, Präsens] }
   - id: noun-fortbildung
     type: noun
     lemma: Fortbildung
@@ -11831,25 +11839,34 @@ records:
       - professional development
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1780
     noun:
       gender: f
       plural: Fortbildungen
+    examples:
+      - { de: "Nächste Woche mache ich eine Fortbildung zum Thema Datenschutz.", en: "Next week I'm doing a training course on data protection.", tags: [singular, Präsens] }
+      - { de: "Die Firma bezahlt den Mitarbeitern regelmäßige Fortbildungen.", en: "The company pays for regular training courses for its employees.", tags: [plural, Präsens] }
+      - { de: "Durch die Fortbildung hat sie viel Neues gelernt.", en: "She learned a lot of new things through the training.", tags: [singular, Perfekt] }
   - id: noun-kompetenz
     type: noun
     lemma: Kompetenz
     gloss:
       - competence
+      - skill
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1782
     noun:
       gender: f
       plural: Kompetenzen
+    examples:
+      - { de: "Soziale Kompetenz ist in diesem Beruf besonders wichtig.", en: "Social skills are particularly important in this profession.", tags: [singular, Präsens] }
+      - { de: "Das liegt nicht in meiner Kompetenz.", en: "That's not within my remit.", tags: [singular, Präsens] }
+      - { de: "In der Fortbildung haben wir unsere digitalen Kompetenzen verbessert.", en: "In the training course we improved our digital skills.", tags: [plural, Perfekt] }
   - id: noun-qualifikation
     type: noun
     lemma: Qualifikation
@@ -11857,25 +11874,34 @@ records:
       - qualification
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1784
     noun:
       gender: f
       plural: Qualifikationen
+    examples:
+      - { de: "Für diese Stelle fehlt ihm die nötige Qualifikation.", en: "He lacks the necessary qualification for this position.", tags: [singular, Präsens] }
+      - { de: "Ausländische Qualifikationen werden oft nicht anerkannt.", en: "Foreign qualifications are often not recognised.", tags: [plural, Passiv, Präsens] }
+      - { de: "Die Mannschaft hatte die Qualifikation für die WM knapp verpasst.", en: "The team had narrowly missed qualifying for the World Cup.", tags: [singular, Plusquamperfekt] }
   - id: noun-politik
     type: noun
     lemma: Politik
     gloss:
       - politics
+      - policy
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1799
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Er interessiert sich schon seit der Schulzeit für Politik.", en: "He has been interested in politics since his school days.", tags: [singular, Präsens] }
+      - { de: "Die Politik der Regierung stößt auf viel Kritik.", en: "The government's policy is meeting with a lot of criticism.", tags: [singular, Präsens] }
+      - { de: "Nach zwanzig Jahren zog sie sich aus der Politik zurück.", en: "After twenty years she withdrew from politics.", tags: [singular, Präteritum] }
   - id: noun-politiker
     type: noun
     lemma: Politiker
@@ -11883,7 +11909,7 @@ records:
       - politician
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1801
     noun:
@@ -11893,6 +11919,10 @@ records:
         - lemma: Politikerin
           gender: f
           plural: Politikerinnen
+    examples:
+      - { de: "Viele Bürger vertrauen den Politikern nicht mehr.", en: "Many citizens no longer trust politicians.", tags: [plural, Präsens] }
+      - { de: "Die Politikerin hat ihren Rücktritt angekündigt.", en: "The politician has announced her resignation.", tags: [singular, Perfekt] }
+      - { de: "Ein Politiker muss auch unbequeme Fragen beantworten.", en: "A politician also has to answer awkward questions.", tags: [singular, Präsens] }
   - id: noun-bundeskanzleramt
     type: noun
     lemma: Bundeskanzleramt
@@ -11900,12 +11930,16 @@ records:
       - office of the Chancellor
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1813
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Das Bundeskanzleramt steht in Berlin direkt an der Spree.", en: "The Federal Chancellery is in Berlin, right on the Spree.", tags: [singular, Präsens] }
+      - { de: "Im Bundeskanzleramt fand ein Krisentreffen statt.", en: "A crisis meeting took place at the Chancellery.", tags: [singular, Präteritum] }
+      - { de: "Er arbeitet als Berater im Bundeskanzleramt.", en: "He works as an adviser in the Chancellor's office.", tags: [singular, Präsens] }
   - id: noun-bundespraesident
     type: noun
     lemma: Bundespräsident
@@ -11913,7 +11947,7 @@ records:
       - Federal President
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1815
     noun:
@@ -11923,6 +11957,11 @@ records:
         - lemma: Bundespräsidentin
           gender: f
           plural: Bundespräsidentinnen
+    examples:
+      - { de: "Der Bundespräsident wird von der Bundesversammlung gewählt.", en: "The Federal President is elected by the Federal Convention.", tags: [singular, Passiv, Präsens] }
+      - { de: "Die Rede des Bundespräsidenten wurde live übertragen.", en: "The Federal President's speech was broadcast live.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Bisher hatte noch keine Frau das Amt der Bundespräsidentin inne.", en: "So far no woman has held the office of Federal President.", tags: [singular, Präteritum] }
+      - { de: "Die früheren Bundespräsidenten trafen sich zum Jubiläum.", en: "The former Federal Presidents met for the anniversary.", tags: [plural, Präteritum] }
   - id: noun-bundeskanzler
     type: noun
     lemma: Bundeskanzler
@@ -11930,7 +11969,7 @@ records:
       - Federal Chancellor
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1817
     noun:
@@ -11940,29 +11979,51 @@ records:
         - lemma: Bundeskanzlerin
           gender: f
           plural: Bundeskanzlerinnen
+    examples:
+      - { de: "Der Bundeskanzler wird vom Bundestag gewählt.", en: "The Federal Chancellor is elected by the Bundestag.", tags: [singular, Passiv, Präsens] }
+      - { de: "Angela Merkel war 16 Jahre lang Bundeskanzlerin.", en: "Angela Merkel was Federal Chancellor for 16 years.", tags: [singular, Präteritum] }
+      - { de: "Seit 1949 hat Deutschland mehrere Bundeskanzler gehabt.", en: "Germany has had several federal chancellors since 1949.", tags: [plural, Perfekt] }
   - id: noun-wahl
     type: noun
     lemma: Wahl
     gloss:
       - election
+      - choice
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1823
     noun:
       gender: f
       plural: Wahlen
+    examples:
+      - { de: "Die nächste Wahl findet im Herbst statt.", en: "The next election takes place in the autumn.", tags: [singular, Präsens] }
+      - { de: "Ich hatte keine andere Wahl.", en: "I had no other choice.", tags: [singular, Präteritum] }
+      - { de: "Bei den letzten Wahlen ist die Beteiligung gestiegen.", en: "Turnout rose in the last elections.", tags: [plural, Perfekt] }
   - id: verb-waehlen
     type: verb
     lemma: wählen
     gloss:
       - to vote
+      - to elect
+      - to choose
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1825
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "wählt"
+        praeteritum: "wählte"
+        partizip2: "gewählt"
+    examples:
+      - { de: "In Deutschland darf man ab 18 den Bundestag wählen.", en: "In Germany you can vote in Bundestag elections from the age of 18.", tags: [Präsens] }
+      - { de: "Wen hast du gewählt?", en: "Who did you vote for?", tags: [Perfekt] }
+      - { de: "Die Mitglieder wählten sie zur neuen Vorsitzenden.", en: "The members elected her as the new chair.", tags: [Präteritum] }
   - id: noun-waehler
     type: noun
     lemma: Wähler
@@ -11970,7 +12031,7 @@ records:
       - voter
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1829
     noun:
@@ -11980,6 +12041,10 @@ records:
         - lemma: Wählerin
           gender: f
           plural: Wählerinnen
+    examples:
+      - { de: "Der Kandidat versuchte, jeden einzelnen Wähler zu überzeugen.", en: "The candidate tried to convince every single voter.", tags: [singular, Präteritum] }
+      - { de: "Viele Wähler sind noch unentschlossen.", en: "Many voters are still undecided.", tags: [plural, Präsens] }
+      - { de: "Die Partei hat besonders bei jungen Wählerinnen verloren.", en: "The party has lost support particularly among young female voters.", tags: [plural, Perfekt] }
   - id: noun-wahlergebnis
     type: noun
     lemma: Wahlergebnis
@@ -11987,12 +12052,16 @@ records:
       - election result
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1831
     noun:
       gender: n
       plural: Wahlergebnisse
+    examples:
+      - { de: "Das Wahlergebnis wird am Abend bekannt gegeben.", en: "The election result will be announced in the evening.", tags: [singular, Passiv, Präsens] }
+      - { de: "Mit diesem Wahlergebnis hatte niemand gerechnet.", en: "Nobody had expected this election result.", tags: [singular, Plusquamperfekt] }
+      - { de: "Die Wahlergebnisse in den Bundesländern waren sehr unterschiedlich.", en: "The election results in the federal states were very different.", tags: [plural, Präteritum] }
   - id: noun-politikverdrossenheit
     type: noun
     lemma: Politikverdrossenheit
@@ -12000,12 +12069,16 @@ records:
       - political apathy
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1837
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Politikverdrossenheit unter jungen Menschen wächst.", en: "Disillusionment with politics is growing among young people.", tags: [singular, Präsens] }
+      - { de: "Skandale verstärken die Politikverdrossenheit.", en: "Scandals increase disenchantment with politics.", tags: [singular, Präsens] }
+      - { de: "Die niedrige Wahlbeteiligung zeigte die Politikverdrossenheit vieler Bürger.", en: "The low turnout showed many citizens' disillusionment with politics.", tags: [singular, Präteritum] }
   - id: noun-mitbestimmung
     type: noun
     lemma: Mitbestimmung
@@ -12014,22 +12087,38 @@ records:
       - participation
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1839
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "In großen Firmen gibt es eine starke Mitbestimmung der Arbeitnehmer.", en: "In large companies, employees have extensive co-determination rights.", tags: [singular, Präsens] }
+      - { de: "Die Schüler fordern mehr Mitbestimmung im Unterricht.", en: "The pupils are demanding more say in their lessons.", tags: [singular, Präsens] }
+      - { de: "Der Betriebsrat hat sein Recht auf Mitbestimmung durchgesetzt.", en: "The works council has enforced its right to co-determination.", tags: [singular, Perfekt] }
   - id: verb-erlassen
     type: verb
     lemma: erlassen
     gloss:
       - to enact (a law)
+      - to issue
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1843
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "erlässt"
+        praeteritum: "erließ"
+        partizip2: "erlassen"
+    examples:
+      - { de: "Die Regierung erlässt neue Regeln für den Datenschutz.", en: "The government is issuing new data protection rules.", tags: [Präsens] }
+      - { de: "Die Stadt hat ein Verbot für Feuerwerk erlassen.", en: "The city has issued a ban on fireworks.", tags: [Perfekt] }
+      - { de: "Die Behörde erließ eine Warnung vor dem Sturm.", en: "The authority issued a storm warning.", tags: [Präteritum] }
   - id: noun-menschenrecht
     type: noun
     lemma: Menschenrecht
@@ -12060,12 +12149,16 @@ records:
       - freedom of the press
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1853
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Pressefreiheit ist ein Grundpfeiler der Demokratie.", en: "Freedom of the press is a cornerstone of democracy.", tags: [singular, Präsens] }
+      - { de: "In vielen Ländern wird die Pressefreiheit eingeschränkt.", en: "In many countries freedom of the press is restricted.", tags: [singular, Passiv, Präsens] }
+      - { de: "Journalisten demonstrierten für die Pressefreiheit.", en: "Journalists demonstrated for freedom of the press.", tags: [singular, Präteritum] }
   - id: noun-asylrecht
     type: noun
     lemma: Asylrecht
@@ -12073,12 +12166,16 @@ records:
       - right to asylum
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1855
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Das Asylrecht ist im Grundgesetz verankert.", en: "The right to asylum is enshrined in the Basic Law.", tags: [singular, Präsens] }
+      - { de: "Über eine Reform des Asylrechts wird heftig gestritten.", en: "There is fierce debate about reforming asylum law.", tags: [singular, Passiv, Präsens] }
+      - { de: "Die EU hat ihr Asylrecht in den letzten Jahren verschärft.", en: "The EU has tightened its asylum law in recent years.", tags: [singular, Perfekt] }
   - id: noun-fluechtling
     type: noun
     lemma: Flüchtling
@@ -12086,12 +12183,16 @@ records:
       - refugee
     categories:
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1857
     noun:
       gender: m
       plural: Flüchtlinge
+    examples:
+      - { de: "Der junge Flüchtling lernt seit einem Jahr Deutsch.", en: "The young refugee has been learning German for a year.", tags: [singular, Präsens] }
+      - { de: "Viele Flüchtlinge kamen 2015 nach Deutschland.", en: "Many refugees came to Germany in 2015.", tags: [plural, Präteritum] }
+      - { de: "Die Gemeinde hat Wohnungen für Flüchtlinge bereitgestellt.", en: "The municipality has provided flats for refugees.", tags: [plural, Perfekt] }
   - id: noun-asylbewerber
     type: noun
     lemma: Asylbewerber
@@ -16270,9 +16371,15 @@ records:
       - to take responsibility
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1730
+    phrase:
+      register: neutral
+    examples:
+      - { de: "Der Minister hat die Verantwortung für den Skandal übernommen.", en: "The minister has taken responsibility for the scandal.", tags: [Perfekt] }
+      - { de: "Wer übernimmt die Verantwortung, wenn etwas schiefgeht?", en: "Who takes responsibility if something goes wrong?", tags: [Präsens] }
+      - { de: "Sie wird ab Januar die Verantwortung für das Team übernehmen.", en: "From January she will take on responsibility for the team.", tags: [Futur I] }
   - id: phrase-zustaendig-sein
     type: phrase
     lemma: zuständig sein
@@ -16280,20 +16387,32 @@ records:
       - to be responsible (for)
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1732
     government: für
+    phrase:
+      register: formal
+    examples:
+      - { de: "Wer ist hier für die Anmeldung zuständig?", en: "Who is responsible for registration here?", tags: [Präsens] }
+      - { de: "Für Ihren Antrag ist leider eine andere Abteilung zuständig.", en: "Unfortunately, another department is responsible for your application.", tags: [Präsens] }
+      - { de: "Bis letztes Jahr war Herr Klein für den Einkauf zuständig.", en: "Until last year, Mr Klein was in charge of purchasing.", tags: [Präteritum] }
   - id: adjective-problemlos
     type: adjective
     lemma: problemlos
     gloss:
       - without problems
+      - smooth
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1758
+    adjective:
+      gradable: false
+    examples:
+      - { de: "Danke für die problemlose Zusammenarbeit!", en: "Thank you for the smooth cooperation!", tags: [attributive] }
+      - { de: "Die Installation hat problemlos funktioniert.", en: "The installation worked without any problems.", tags: [Perfekt] }
   - id: adjective-effizient
     type: adjective
     lemma: effizient
@@ -16301,9 +16420,17 @@ records:
       - efficient
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1760
+    adjective:
+      gradable: true
+      comparative: "effizienter"
+      superlative: "am effizientesten"
+    examples:
+      - { de: "Wir suchen nach einer effizienten Lösung.", en: "We are looking for an efficient solution.", tags: [attributive, Präsens] }
+      - { de: "Mit der neuen Software arbeiten wir viel effizienter.", en: "With the new software we work much more efficiently.", tags: [comparative, Präsens] }
+      - { de: "Wärmepumpen heizen am effizientesten in gut gedämmten Häusern.", en: "Heat pumps heat most efficiently in well-insulated houses.", tags: [superlative, Präsens] }
   - id: adjective-zuverlaessig
     type: adjective
     lemma: zuverlässig
@@ -16311,9 +16438,17 @@ records:
       - reliable
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1762
+    adjective:
+      gradable: true
+      comparative: "zuverlässiger"
+      superlative: "am zuverlässigsten"
+    examples:
+      - { de: "Sie ist eine sehr zuverlässige Mitarbeiterin.", en: "She is a very reliable employee.", tags: [attributive, Präsens] }
+      - { de: "Die Bahn ist leider nicht immer zuverlässig.", en: "Unfortunately, the trains are not always reliable.", tags: [Präsens] }
+      - { de: "Das neue Modell läuft zuverlässiger als das alte.", en: "The new model runs more reliably than the old one.", tags: [comparative, Präsens] }
   - id: noun-vereinten-nationen
     type: noun
     lemma: Vereinten Nationen
