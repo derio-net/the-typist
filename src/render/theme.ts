@@ -11,9 +11,11 @@ export const palette = {
   star: '#2a3556',
   text: '#e8ecf8',
   typed: '#5df2a0',
-  gloss: '#f6d365',
-  chip: '#7cc4ff',
-  translation: '#9aa6c9',
+  gloss: '#ffd970',
+  chip: '#b9e4ff',
+  translation: '#e3e8f8',
+  /** Dark plate behind text printed on a hull, so it reads on any hull colour. */
+  plate: 'rgba(6, 10, 24, 0.72)',
   lock: '#ffffff',
   bullet: '#fffb9a',
   explosion: '#ffb347',
@@ -34,32 +36,36 @@ export const palette = {
 } as const;
 
 export const fonts = {
-  ship: '16px ui-monospace, Menlo, Consolas, monospace',
-  gloss: 'italic 15px system-ui, sans-serif',
-  chip: '12px system-ui, sans-serif',
-  translation: '13px system-ui, sans-serif',
+  ship: '14px ui-monospace, Menlo, Consolas, monospace',
+  gloss: 'italic 13px system-ui, sans-serif',
+  chip: '600 11px system-ui, sans-serif',
+  translation: '12px system-ui, sans-serif',
   hud: '16px ui-monospace, Menlo, Consolas, monospace',
   banner: '32px system-ui, sans-serif',
 } as const;
 
 export const sizes = {
-  shipPaddingX: 12,
+  shipPaddingX: 10,
   /** Height of the hull's text strip; the whole hull scales from it. */
-  shipHeight: 24,
+  shipHeight: 21,
   /** Gap between the strip and the gloss / chip / translation printed on the hull. */
-  onHullGap: 9,
+  onHullGap: 8,
+  /** Plate behind on-hull text: height, horizontal padding, corner radius. */
+  plateHeight: 15,
+  platePadX: 6,
+  plateRadius: 4,
   /** End caps are squashed horizontally by this factor so short words don't get huge ships. */
   capSquash: 0.5,
   /** Source pixels of the strip each cap overlaps, so the seams don't show. */
   capBleed: 6,
-  playerSpriteHeight: 72,
-  playerSpriteOffsetY: 8,
-  bulletSpriteHeight: 36,
-  reticleSize: 14,
-  reticleInset: 7,
-  explosionSize: { mothership: 170, forms: 120, escort: 120 },
+  playerSpriteHeight: 63,
+  playerSpriteOffsetY: 7,
+  bulletSpriteHeight: 32,
+  reticleSize: 12,
+  reticleInset: 6,
+  explosionSize: { mothership: 150, forms: 105, escort: 105 },
   debrisCount: 3,
-  debrisHeight: 30,
+  debrisHeight: 26,
   debrisSpeed: 170,
   debrisSpin: 6,
   textShadowBlur: 4,
@@ -80,7 +86,7 @@ export const sizes = {
   starSize: 2,
   lockInset: 3,
   glossHeight: 14,
-  glossBaseline: 7,
+  glossBaseline: 6,
   rowHalf: 8,
   lifeGap: 6,
   starSeedX: 7919,
@@ -88,7 +94,7 @@ export const sizes = {
 } as const;
 
 /** Estimated glyph widths (px/char) for the fonts above; the renderer measures for real. */
-export const charWidths = { ship: 9.6, gloss: 7, chip: 6.5, translation: 6.5 } as const;
+export const charWidths = { ship: 8.4, gloss: 6.2, chip: 6, translation: 6 } as const;
 
 export const effects = {
   bulletMs: 120,

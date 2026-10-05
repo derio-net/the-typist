@@ -19,10 +19,10 @@ export const WORLD = {
   referenceLength: 12,
   /** Children spawn at least this many seconds of descent above the player line. */
   minReactionS: 3,
-  /** Top margin for ship centres (keeps clear of the HUD). */
-  minY: 30,
-  /** Where a mothership enters. */
-  entryY: 40,
+  /** Bottom of the HUD (score, wave): ship centres stay below it. */
+  minY: 64,
+  /** Gap between the HUD and the top of an entering mothership's hull. */
+  entryGap: 4,
   /** Break-up: each child slides sideways at a random speed in this range (px/s)... */
   burstMinVx: 8,
   burstMaxVx: 22,
@@ -199,14 +199,15 @@ function enterNext(w: Draft) {
   if (id === undefined) return;
   w.queue = w.queue.slice(1);
   const r = w.records[id].record;
-  const m = makeShip(w.measure, `${r.id}:m`, r.id, 'mothership', displayForm(r), 0, WORLD.entryY, w.wave, {
+  const m = makeShip(w.measure, `${r.id}:m`, r.id, 'mothership', displayForm(r), 0, 0, w.wave, {
     label: r.gloss.join('; '),
   });
   let u: number;
   [u, w.rng] = random(w.rng);
   const lo = m.w / 2;
   const hi = WORLD.width - m.w / 2;
-  spawn(w, { ...m, x: lo > hi ? WORLD.width / 2 : lo + u * (hi - lo) });
+  // enters with its whole hull below the HUD
+  spawn(w, { ...m, x: lo > hi ? WORLD.width / 2 : lo + u * (hi - lo), y: WORLD.minY + WORLD.entryGap + m.above });
 }
 
 function spawnChildren(w: Draft, m: WorldShip) {

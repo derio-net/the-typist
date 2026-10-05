@@ -58,6 +58,21 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
     ctx.strokeRect(box.x - sizes.lockInset, box.y - sizes.lockInset, box.w + 2 * sizes.lockInset, box.h + 2 * sizes.lockInset);
   }
 
+  /** Text centred at (x, y) on a dark plate, for rows printed on a hull. */
+  function onHull(text: string, x: number, y: number, font: string, colour: string) {
+    if (!text) return;
+    ctx.font = font;
+    const w = ctx.measureText(text).width + 2 * sizes.platePadX;
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = palette.plate;
+    ctx.beginPath();
+    ctx.roundRect(x - w / 2, y - sizes.plateHeight / 2, w, sizes.plateHeight, sizes.plateRadius);
+    ctx.fill();
+    ctx.shadowBlur = sizes.textShadowBlur;
+    ctx.fillStyle = colour;
+    ctx.fillText(text, x, y);
+  }
+
   function drawShipText(ship: WorldShip, world: World, locked: boolean) {
     const box = boxOf(ship);
     if (locked) drawLock(box);
@@ -79,18 +94,10 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
     ctx.textAlign = 'center';
     const below = box.y + box.h + sizes.onHullGap + sizes.glossBaseline;
     const above = box.y - sizes.onHullGap - sizes.glossBaseline;
-    if (ship.label) {
-      ctx.font = fonts.gloss;
-      ctx.fillStyle = palette.gloss;
-      ctx.fillText(ship.label, ship.x, below);
-    }
+    if (ship.label) onHull(ship.label, ship.x, below, fonts.gloss, palette.gloss);
     if (ship.kind === 'escort') {
-      ctx.font = fonts.chip;
-      ctx.fillStyle = palette.chip;
-      ctx.fillText(ship.chip ?? '', ship.x, above);
-      ctx.font = fonts.translation;
-      ctx.fillStyle = palette.translation;
-      ctx.fillText(ship.translation ?? '', ship.x, below);
+      onHull(ship.chip ?? '', ship.x, above, fonts.chip, palette.chip);
+      onHull(ship.translation ?? '', ship.x, below, fonts.translation, palette.translation);
     }
     ctx.shadowBlur = 0;
   }
