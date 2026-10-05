@@ -221,3 +221,6 @@ Both committed on the branch (1569f7e); CLAUDE.md update added to layout/scope.
 
 <!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-05-vocab-typer-p5 created=2026-10-05T06:55:10+00:00 -->
 ### phase-split-2026-10-05-vocab-typer-p5 · decision · ask: R7-R10, R13 learning loop
+
+<!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-05-vocab-typer-p6 created=2026-10-05T06:55:13+00:00 -->
+### phase-split-2026-10-05-vocab-typer-p6 · decision · ask: R11-R12 loading and hosting
