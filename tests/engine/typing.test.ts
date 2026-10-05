@@ -106,3 +106,29 @@ describe('punctuation', () => {
     expect(events.find((e) => e.type === 'destroyed')).toMatchObject({ expectedChars: 8 });
   });
 });
+
+import { matchChar, type Match } from '../../src/engine/typing';
+
+describe('matchChar', () => {
+  it.each<[string, string, string, Match]>([
+    ['a', '', 'a', 'advance'],
+    ['a', '', 'b', 'miss'],
+    ['ä', '', 'ä', 'advance'],
+    ['ä', '', 'a', 'pending'],
+    ['ä', 'a', 'e', 'advance'],
+    ['ä', 'a', 'a', 'miss'],
+    ['Ä', '', 'A', 'pending'],
+    ['Ä', 'A', 'e', 'advance'],
+    ['Ä', '', 'a', 'miss'],
+    ['ß', '', 's', 'pending'],
+    ['ß', 's', 's', 'advance'],
+    ['ß', 's', 'e', 'miss'],
+    ['’', '', "'", 'advance'],
+    ['„', '', '"', 'advance'],
+    ['–', '', '-', 'advance'],
+    ['₂', '', '2', 'advance'],
+    ['b', 'a', 'b', 'miss'],
+  ])('matchChar(%j, pending %j, typed %j) -> %s', (e, p, t, want) => {
+    expect(matchChar(e, p, t)).toBe(want);
+  });
+});

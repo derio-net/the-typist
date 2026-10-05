@@ -77,14 +77,21 @@ export function setPositions(state: TypingState, ys: Record<string, number>): Ty
 
 export type Match = 'advance' | 'pending' | 'miss';
 
-function matchOf(expected: string, ship: TypingShip, typed: string): Match {
-  if (expected === typed) return 'advance';
-  if (EQUIVALENCES[expected] === typed) return 'advance';
+/**
+ * Does `typed` advance `expected`, given the ASCII prefix `pending` already typed
+ * towards it? 'pending' means the first half of an ae/oe/ue/ss digraph.
+ */
+export function matchChar(expected: string, pending: string, typed: string): Match {
+  if (pending === '') {
+    if (expected === typed || EQUIVALENCES[expected] === typed) return 'advance';
+    const digraph = DIGRAPHS[expected];
+    return digraph && digraph[0] === typed ? 'pending' : 'miss';
+  }
   const digraph = DIGRAPHS[expected];
-  if (!digraph) return 'miss';
-  if (ship.pending === '') return digraph[0] === typed ? 'pending' : 'miss';
-  return ship.pending + typed === digraph ? 'advance' : 'miss';
+  return digraph && pending + typed === digraph ? 'advance' : 'miss';
 }
+
+const matchOf = (expected: string, ship: TypingShip, typed: string): Match => matchChar(expected, ship.pending, typed);
 
 export function step(
   state: TypingState,
