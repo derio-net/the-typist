@@ -522,3 +522,80 @@ All stated in SKILL; merge drops case-insensitive duplicate glosses.
 ### p4-r12-resolved · finding [fixed] · resolves p4-r12: Organise tests unrealistic and missed failure modes (phase 4)
 
 Tests rewritten with realistic fixtures covering all listed cases plus merge refusals and --skip; 252 tests green.
+
+<!-- fr:journal kind=discovery scope=plan id=p5-structure created=2026-10-05T19:19:12+00:00 phase=5 -->
+### p5-structure · discovery · Seed structured: 856 parsed + 144 unresolved lines resolved into 178 records = 1034 raw records (phase 5)
+
+`typist parse wordlist.raw.txt --id de-b2-1000 --title "German B2 – 1000 words"` wrote 856 records and
+144 unresolved (the phase-2 dry run said 861/139; the parser changed since). Every unresolved line was
+resolved per typist-structure into 178 records (all keep source_lines and their section's category);
+`unresolved:` removed; validate ok (1034 raw). Choices worth a look: templates became full typeable
+phrases with `source_note: "source: <original>"` (Sehr geehrte Damen und Herren, / Liebe Anna, lieber Max, /
+Entschuldigen Sie bitte! / Könnten Sie mir bitte helfen? / Wären Sie so freundlich, mir zu helfen? /
+Darf ich Sie um etwas bitten?), their glosses adjusted to match the full phrase; opinion frames kept as
+frames without the dots (ich bin der Ansicht, dass / ich vertrete die Meinung, dass); `ich stimme (dir) zu`
+→ `ich stimme dir zu`; modal triple → dürfen/mögen/können; der NC (Numerus Clausus) → noun Numerus Clausus,
+abbreviation NC; Vereinte Nationen → plural_only noun, abbreviation UN; Europäische Union → noun f, EU;
+die Erste Hilfe → noun; Fake News (pl.) → plural_only noun; das Angebot und die Nachfrage / das A und O sein /
+durch dick und dünn gehen → single phrase records.
+
+<!-- fr:journal kind=discovery scope=plan id=p5-merge created=2026-10-05T19:19:12+00:00 phase=5 -->
+### p5-merge · discovery · Organise: 59 duplicate groups, 0 conflicts; 57 merged, 2 kept apart as different senses (1034 → 970 records) (phase 5)
+
+`dupes` found 59 groups (the ~47 of the raw parse plus 12 created by the resolved unresolved lines, e.g.
+Mehrheit/Minderheit, Gewinn/Verlust, unschuldig/schuldig, nachhaltig, mitfühlend, emotional, Herr), no
+CONFLICT. `merge-dupes --skip noun-beitrag noun-kritik` merged 57; kept apart: noun-beitrag (contribution,
+financial) vs noun-beitrag-2 (post, social media) and noun-kritik (review, culture) vs noun-kritik-2
+(criticism, workplace). Near-duplicate glosses tidied by hand on verb-kuendigen, noun-kollege,
+noun-grundgesetz, noun-abstimmung, noun-nachhaltigkeit, noun-arbeitszeugnis. Ids frozen from commit
+"content(de-b2-1000): organise".
+
+<!-- fr:journal kind=discovery scope=plan id=p5-noun-corrections created=2026-10-05T19:19:12+00:00 phase=5 -->
+### p5-noun-corrections · discovery · Noun verification: 197 plurals filled, 5 plurals removed, 2 genders corrected, 1 plural-only, 1 lemma corrected, 59 variant plurals (phase 5)
+
+Every noun checked from German knowledge, not the parser. Organise pass: 197 `plural: null` filled with the
+real plural; 169 kept null as uncountable/abstract, proper names or with a rare plural in that sense
+(e.g. Stress, Klimawandel, Gesundheit, Bundestag, Grundgesetz, Austausch, Feedback, Rechtslage);
+4 existing plurals removed (Verantwortungen, Werbungen, Umwelten, Müll – "Müll" was given as its own
+plural); gender corrected on 2 (Cybermobbing die → das, rhetorische Mittel der → das); Betriebskosten made
+plural_only; plural set on all 59 dual-gender variants (-innen; adjectival nouns Vorgesetzte, Abgeordnete,
+Angeklagte, Ehrenamtliche → -n). During enrichment: Akquise plural Akquisen removed (activity noun) and
+noun-requisite lemma corrected from "die Requisite" (props department) to "das Requisit" (prop, plural
+Requisiten); the id stays noun-requisite. Each correction carries a source_note.
+
+<!-- fr:journal kind=discovery scope=plan id=p5-enrich created=2026-10-05T19:19:12+00:00 phase=5 -->
+### p5-enrich · discovery · Enrichment: 23 batches, 487 records enriched; 0 raw left in every category with order ≤ 11; 0 flagged (phase 5)
+
+Enriched by category with `next-batch --category <id>` (≤25 per batch), each batch validated, diff checked
+(stats total unchanged at 970; only the batch's records touched) and committed as
+"content(de-b2-1000): enrich <ids>". 23 batches; every category scope ended because next-batch printed nothing
+new for it. Final stats: academic 0/49, workplace 0/49, government 0/48, law 0/50, formal/informal address
+0/48, idioms 0/39, separable verbs 0/46, emotions 0/53, culture 0/52, social media 0/53 raw; orders 12–21
+untouched (483 raw left for phase 6). No record needed the needs-operator-attention escape hatch; no raw
+record skipped. Every verb has a Perfekt example; reflexive verbs converted (lemma without sich,
+reflexive: true, ids unchanged); modal triple each has a Konjunktiv II example.
+
+<!-- fr:journal kind=discovery scope=plan id=p5-typeable-accents created=2026-10-05T19:19:12+00:00 phase=5 -->
+### p5-typeable-accents · discovery · Non-German accented letters (é in Café) fail typeability (phase 5)
+
+The typeability table admits only A–Z, äöüß and listed punctuation, so loanwords such as Café, Varieté or
+names with accents cannot appear in examples. Batch 1 hit it once (replaced by Bäckerei); later batches
+avoided such words. Phase 6 should do the same.
+
+<!-- fr:journal kind=discovery scope=plan id=p5-build-not-bundling-list created=2026-10-05T19:19:12+00:00 phase=5 -->
+### p5-build-not-bundling-list · discovery · npm run build passes but does not yet bundle lists/de-b2-1000.yaml (nothing imports it) (phase 5)
+
+P5.T2.S2 reads "npm run build passes (list bundles)". The build is green but contains only the app shell:
+no module imports lists/*.yaml yet, so tools/vite-plugin-lists.ts never runs on the list during the build.
+Checked directly instead: the plugin's transform parses the full list without error (441 kB JSON module).
+The build becomes a real gate once a later phase imports the list.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p5-t1 created=2026-10-05T19:19:12+00:00 phase=5 -->
+### no-refactor-p5-t1 · discovery · no-refactor-because P5.T1 (phase 5)
+
+content-only task: the deliverable is lists/de-b2-1000.yaml built by the parse/merge-dupes CLIs plus targeted edits; no code was written, so nothing to clean
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p5-t2 created=2026-10-05T19:19:12+00:00 phase=5 -->
+### no-refactor-p5-t2 · discovery · no-refactor-because P5.T2 (phase 5)
+
+content-only task: enrichment is targeted per-record YAML edits committed per batch; no code was written, so nothing to clean
