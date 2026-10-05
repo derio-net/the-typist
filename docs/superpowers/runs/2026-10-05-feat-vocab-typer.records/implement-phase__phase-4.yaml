@@ -1,0 +1,29 @@
+schema_version: 7
+run: 2026-10-05-feat-vocab-typer
+step: implement-phase
+item: phase/4
+outcome: done
+ticks: [P4.T1.S1, P4.T1.S2, P4.T2.S1, P4.T2.S2]
+refactor:
+  P4.T1: "organise helpers are small pure functions with one CLI dispatcher; nothing to clean"
+  P4.T2: "skill is prose, reworded once already during the dry run (T2.S2)"
+journal:
+  - kind: discovery
+    id: p4-dry-run
+    phase: 4
+    title: Dry run of typist-enrich on a 3-record scratch list
+    body: >-
+      Parse, next-batch, enrich by hand, validate and stats worked as written; next-batch prints nothing with exit 0
+      when no raw is left. Unclear spots fixed in SKILL.md: non-gradable adjectives, muddled superlative wording,
+      precondition of no unresolved key, commit subject uses the record id (reflexive keeps verb-sich-). Scratch list not committed.
+  - kind: discovery
+    id: p4-tsx-timeouts
+    phase: 4
+    title: CLI tests spawning tsx exceed vitest's 5s default under parallel load
+    body: >-
+      Each tsx spawn takes seconds on this machine; when the tools tests run together the older CLI tests (validate, parse)
+      time out at 5000ms, while the full-suite run with --testTimeout 60000 passes. New organise CLI tests set a 60s timeout in the file. Existing tests were not changed.
+    review_scope: out
+resolves: []
+evidence:
+  tests: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/d5b2df96-f96a-4fde-8d39-796f394bda21/scratchpad/p4-tests.log
