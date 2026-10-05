@@ -175,6 +175,9 @@ rows:
       seed words in their 20 categories.
     origin:
     - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R16
-    levels: {}
-    status: not-implemented
-    notes: ''
+    levels:
+      unit:
+      - the-typist:tests/seed.test.ts
+    status: skipped
+    notes: 'lists/de-b2-1000.yaml: 968 enriched records covering all 1000 source lines
+      in 20 categories; seed test runs locally. No CI configured.'
