@@ -522,12 +522,16 @@ records:
       - admission
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 56
     noun:
       gender: f
       plural: Zulassungen
+    examples:
+      - { de: "Ich habe die Zulassung für Medizin bekommen!", en: "I got admission to study medicine!", tags: [singular, Perfekt] }
+      - { de: "Die Zulassung zum Masterstudium hängt von der Note ab.", en: "Admission to the master's programme depends on the grade.", tags: [singular, Präsens] }
+      - { de: "Die Hochschule vergibt jedes Jahr nur 200 Zulassungen.", en: "The university only grants 200 admissions every year.", tags: [plural, Präsens] }
   - id: noun-studienordnung
     type: noun
     lemma: Studienordnung
@@ -535,12 +539,16 @@ records:
       - study regulations
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 58
     noun:
       gender: f
       plural: Studienordnungen
+    examples:
+      - { de: "Laut Studienordnung muss man ein Praktikum machen.", en: "According to the study regulations you have to do an internship.", tags: [singular, Präsens] }
+      - { de: "Die neue Studienordnung trat im Herbst in Kraft.", en: "The new study regulations came into force in the autumn.", tags: [singular, Präteritum] }
+      - { de: "Die Studienordnungen der beiden Fächer unterscheiden sich stark.", en: "The study regulations of the two subjects differ greatly.", tags: [plural, Präsens] }
   - id: noun-anwesenheitspflicht
     type: noun
     lemma: Anwesenheitspflicht
@@ -548,12 +556,16 @@ records:
       - compulsory attendance
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 60
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "In diesem Seminar gilt Anwesenheitspflicht.", en: "Attendance is compulsory in this seminar.", tags: [singular, Präsens] }
+      - { de: "Viele Studierende kritisieren die Anwesenheitspflicht.", en: "Many students criticise compulsory attendance.", tags: [singular, Präsens] }
+      - { de: "Die Universität hat die Anwesenheitspflicht für Vorlesungen abgeschafft.", en: "The university has abolished compulsory attendance for lectures.", tags: [singular, Perfekt] }
   - id: noun-studiengebuehren
     type: noun
     lemma: Studiengebühren
@@ -561,13 +573,17 @@ records:
       - tuition fees
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 64
     noun:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "In Deutschland zahlt man an staatlichen Universitäten kaum Studiengebühren.", en: "In Germany you pay hardly any tuition fees at state universities.", tags: [plural, Präsens] }
+      - { de: "Die Studiengebühren wurden 2014 wieder abgeschafft.", en: "Tuition fees were abolished again in 2014.", tags: [plural, Passiv] }
+      - { de: "Wegen der hohen Studiengebühren hat er einen Kredit aufgenommen.", en: "Because of the high tuition fees he took out a loan.", tags: [plural, Perfekt] }
   - id: noun-einschreibung
     type: noun
     lemma: Einschreibung
@@ -575,12 +591,16 @@ records:
       - registration
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 66
     noun:
       gender: f
       plural: Einschreibungen
+    examples:
+      - { de: "Die Einschreibung für die Kurse beginnt am Montag.", en: "Registration for the courses starts on Monday.", tags: [singular, Präsens] }
+      - { de: "Bei der Einschreibung gab es technische Probleme.", en: "There were technical problems with the registration.", tags: [singular, Präteritum] }
+      - { de: "Alle Einschreibungen werden online bearbeitet.", en: "All registrations are processed online.", tags: [plural, Passiv] }
   - id: noun-vorlesungsverzeichnis
     type: noun
     lemma: Vorlesungsverzeichnis
@@ -588,12 +608,16 @@ records:
       - course catalogue
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 68
     noun:
       gender: n
       plural: Vorlesungsverzeichnisse
+    examples:
+      - { de: "Das Vorlesungsverzeichnis erscheint zwei Monate vor Semesterbeginn.", en: "The course catalogue comes out two months before the start of the semester.", tags: [singular, Präsens] }
+      - { de: "Ich habe den Kurs im Vorlesungsverzeichnis nicht gefunden.", en: "I didn't find the course in the course catalogue.", tags: [singular, Perfekt] }
+      - { de: "Früher wurden die Vorlesungsverzeichnisse gedruckt.", en: "In the past the course catalogues were printed.", tags: [plural, Passiv] }
   - id: noun-studienberatung
     type: noun
     lemma: Studienberatung
@@ -601,12 +625,16 @@ records:
       - student advisory service
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 70
     noun:
       gender: f
       plural: Studienberatungen
+    examples:
+      - { de: "Die Studienberatung hilft bei der Wahl des Studienfachs.", en: "The student advisory service helps with choosing a subject.", tags: [singular, Präsens] }
+      - { de: "Ich hatte gestern einen Termin bei der Studienberatung.", en: "I had an appointment with the student advisory service yesterday.", tags: [singular, Präteritum] }
+      - { de: "Viele Studienberatungen bieten auch Sprechstunden per Video an.", en: "Many advisory services also offer consultations by video.", tags: [plural, Präsens] }
   - id: noun-leistungsnachweis
     type: noun
     lemma: Leistungsnachweis
@@ -614,12 +642,16 @@ records:
       - academic record
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 72
     noun:
       gender: m
       plural: Leistungsnachweise
+    examples:
+      - { de: "Für das Seminar brauche ich noch einen Leistungsnachweis.", en: "I still need a credit certificate for the seminar.", tags: [singular, Präsens] }
+      - { de: "Sie hat alle Leistungsnachweise rechtzeitig eingereicht.", en: "She submitted all her academic records on time.", tags: [plural, Perfekt] }
+      - { de: "Ohne den Leistungsnachweis kann man sich nicht zur Prüfung anmelden.", en: "Without the academic record you cannot register for the exam.", tags: [singular, Präsens] }
   - id: noun-studienleistung
     type: noun
     lemma: Studienleistung
@@ -627,12 +659,16 @@ records:
       - academic achievement
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 74
     noun:
       gender: f
       plural: Studienleistungen
+    examples:
+      - { de: "Eine Studienleistung kann auch ein kurzes Referat sein.", en: "A piece of coursework can also be a short presentation.", tags: [singular, Präsens] }
+      - { de: "Seine Studienleistungen waren immer hervorragend.", en: "His academic achievements were always excellent.", tags: [plural, Präteritum] }
+      - { de: "Die Studienleistung wird nicht benotet.", en: "The coursework is not graded.", tags: [singular, Passiv] }
   - id: noun-akademische-jahr
     type: noun
     lemma: akademische Jahr
@@ -640,12 +676,16 @@ records:
       - academic year
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 78
     noun:
       gender: n
       plural: akademischen Jahre
+    examples:
+      - { de: "Das akademische Jahr beginnt in Großbritannien im September.", en: "The academic year begins in September in Britain.", tags: [singular, Präsens] }
+      - { de: "Im letzten akademischen Jahr hat sie im Ausland studiert.", en: "In the last academic year she studied abroad.", tags: [singular, Perfekt] }
+      - { de: "Die akademischen Jahre sind in vielen Ländern unterschiedlich aufgebaut.", en: "Academic years are structured differently in many countries.", tags: [plural, Präsens] }
   - id: noun-semesterbeitrag
     type: noun
     lemma: Semesterbeitrag
@@ -653,12 +693,16 @@ records:
       - semester fee
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 80
     noun:
       gender: m
       plural: Semesterbeiträge
+    examples:
+      - { de: "Der Semesterbeitrag enthält auch ein Ticket für Bus und Bahn.", en: "The semester fee also includes a ticket for bus and train.", tags: [singular, Präsens] }
+      - { de: "Hast du den Semesterbeitrag schon überwiesen?", en: "Have you already transferred the semester fee?", tags: [singular, Perfekt] }
+      - { de: "Die Semesterbeiträge sind in den letzten Jahren gestiegen.", en: "Semester fees have risen in recent years.", tags: [plural, Perfekt] }
   - id: noun-fernuniversitaet
     type: noun
     lemma: Fernuniversität
@@ -666,12 +710,16 @@ records:
       - distance learning university
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 82
     noun:
       gender: f
       plural: Fernuniversitäten
+    examples:
+      - { de: "Neben dem Job studiert er an einer Fernuniversität.", en: "Alongside his job he studies at a distance learning university.", tags: [singular, Präsens] }
+      - { de: "Die Fernuniversität in Hagen ist die größte Universität Deutschlands.", en: "The distance learning university in Hagen is the largest university in Germany.", tags: [singular, Präsens] }
+      - { de: "Fernuniversitäten waren während der Pandemie besonders gefragt.", en: "Distance learning universities were in particularly high demand during the pandemic.", tags: [plural, Präteritum] }
   - id: noun-abschluss
     type: noun
     lemma: Abschluss
@@ -679,12 +727,16 @@ records:
       - degree
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 84
     noun:
       gender: m
       plural: Abschlüsse
+    examples:
+      - { de: "Nach dem Abschluss möchte ich ein Jahr reisen.", en: "After my degree I want to travel for a year.", tags: [singular, Präsens] }
+      - { de: "Sie hat ihren Abschluss mit Auszeichnung gemacht.", en: "She graduated with distinction.", tags: [singular, Perfekt] }
+      - { de: "Ausländische Abschlüsse müssen oft anerkannt werden.", en: "Foreign degrees often have to be recognised.", tags: [plural, Passiv] }
   - id: verb-abschliessen
     type: verb
     lemma: abschließen
@@ -694,10 +746,22 @@ records:
     categories:
       - academic-and-higher-education
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 86
       - 2107
+    verb:
+      separable: ab
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "schließt ab"
+        praeteritum: "schloss ab"
+        partizip2: "abgeschlossen"
+    examples:
+      - { de: "Er schließt sein Studium im Sommer ab.", en: "He is completing his studies in the summer.", tags: [separated, Präsens] }
+      - { de: "Sie hat ihre Ausbildung erfolgreich abgeschlossen.", en: "She has successfully completed her training.", tags: [Perfekt] }
+      - { de: "Der Redner schloss seinen Vortrag mit einem Zitat ab.", en: "The speaker concluded his talk with a quotation.", tags: [separated, Präteritum] }
   - id: noun-bewertung
     type: noun
     lemma: Bewertung
@@ -707,13 +771,17 @@ records:
     categories:
       - academic-and-higher-education
       - social-media-and-internet
-    status: raw
+    status: enriched
     source_lines:
       - 88
       - 1062
     noun:
       gender: f
       plural: Bewertungen
+    examples:
+      - { de: "Die Bewertung der Hausarbeit dauert etwa vier Wochen.", en: "The evaluation of the term paper takes about four weeks.", tags: [singular, Präsens] }
+      - { de: "Das Hotel hat im Internet fast nur positive Bewertungen.", en: "The hotel has almost only positive reviews online.", tags: [plural, Präsens] }
+      - { de: "Mit der Bewertung meiner Prüfung war ich nicht einverstanden.", en: "I did not agree with the evaluation of my exam.", tags: [singular, Präteritum] }
   - id: noun-feedback
     type: noun
     lemma: Feedback
@@ -721,12 +789,16 @@ records:
       - feedback
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 90
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Danke für dein ehrliches Feedback!", en: "Thanks for your honest feedback!", tags: [singular] }
+      - { de: "Die Dozentin gibt uns nach jedem Referat Feedback.", en: "The lecturer gives us feedback after every presentation.", tags: [singular, Präsens] }
+      - { de: "Das Feedback der Kunden hat uns sehr geholfen.", en: "The customers' feedback helped us a lot.", tags: [singular, Perfekt] }
   - id: noun-kommilitonenrunde
     type: noun
     lemma: Kommilitonenrunde
@@ -734,12 +806,16 @@ records:
       - study group
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 92
     noun:
       gender: f
       plural: Kommilitonenrunden
+    examples:
+      - { de: "In unserer Kommilitonenrunde bereiten wir uns auf die Klausur vor.", en: "In our study group we prepare for the exam.", tags: [singular, Präsens] }
+      - { de: "Die Kommilitonenrunde traf sich jeden Dienstag in der Bibliothek.", en: "The study group met in the library every Tuesday.", tags: [singular, Präteritum] }
+      - { de: "Vor den Prüfungen bilden sich überall Kommilitonenrunden.", en: "Before the exams, study groups form everywhere.", tags: [plural, Präsens] }
   - id: noun-austauschstudent
     type: noun
     lemma: Austauschstudent
@@ -747,7 +823,7 @@ records:
       - exchange student
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 94
     noun:
@@ -757,6 +833,10 @@ records:
         - lemma: Austauschstudentin
           gender: f
           plural: Austauschstudentinnen
+    examples:
+      - { de: "Der Austauschstudent aus Brasilien wohnt bei uns im Wohnheim.", en: "The exchange student from Brazil lives in our hall of residence.", tags: [singular, Präsens] }
+      - { de: "Für die Austauschstudenten gibt es einen Deutschkurs.", en: "There is a German course for the exchange students.", tags: [plural, Präsens] }
+      - { de: "Als Austauschstudentin habe ich viele Freunde gefunden.", en: "As an exchange student I made a lot of friends.", tags: [singular, Perfekt] }
   - id: noun-studienwahl
     type: noun
     lemma: Studienwahl
@@ -764,12 +844,16 @@ records:
       - degree choice
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 96
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Studienwahl fällt vielen jungen Leuten schwer.", en: "Many young people find it hard to choose a degree.", tags: [singular, Präsens] }
+      - { de: "Bei der Studienwahl haben mir meine Eltern geholfen.", en: "My parents helped me choose my degree.", tags: [singular, Perfekt] }
+      - { de: "Ein Praktikum kann die Studienwahl erleichtern.", en: "An internship can make choosing a degree easier.", tags: [singular, Präsens] }
   - id: noun-bibliothekskarte
     type: noun
     lemma: Bibliothekskarte
@@ -777,12 +861,16 @@ records:
       - library card
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 98
     noun:
       gender: f
       plural: Bibliothekskarten
+    examples:
+      - { de: "Mit der Bibliothekskarte kann man bis zu zwanzig Bücher ausleihen.", en: "With the library card you can borrow up to twenty books.", tags: [singular, Präsens] }
+      - { de: "Ich habe meine Bibliothekskarte verloren.", en: "I have lost my library card.", tags: [singular, Perfekt] }
+      - { de: "Die neuen Bibliothekskarten funktionieren auch als Studentenausweis.", en: "The new library cards also work as a student ID.", tags: [plural, Präsens] }
   - id: noun-anwesenheitsliste
     type: noun
     lemma: Anwesenheitsliste
@@ -790,12 +878,16 @@ records:
       - attendance list
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 100
     noun:
       gender: f
       plural: Anwesenheitslisten
+    examples:
+      - { de: "Bitte tragen Sie sich in die Anwesenheitsliste ein.", en: "Please sign the attendance list.", tags: [singular, Imperativ] }
+      - { de: "Die Anwesenheitsliste ging durch den ganzen Raum.", en: "The attendance list went around the whole room.", tags: [singular, Präteritum] }
+      - { de: "Die Anwesenheitslisten werden am Ende des Semesters ausgewertet.", en: "The attendance lists are evaluated at the end of the semester.", tags: [plural, Passiv] }
   - id: noun-geschaeftsfuehrer
     type: noun
     lemma: Geschäftsführer
@@ -10746,12 +10838,16 @@ records:
       - required module
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 62
     noun:
       gender: n
       plural: Pflichtmodule
+    examples:
+      - { de: "Statistik ist ein Pflichtmodul im ersten Semester.", en: "Statistics is a required module in the first semester.", tags: [singular, Präsens] }
+      - { de: "Alle Pflichtmodule müssen bestanden werden.", en: "All required modules must be passed.", tags: [plural, Passiv] }
+      - { de: "Das Pflichtmodul hat mir überraschend gut gefallen.", en: "I liked the required module surprisingly well.", tags: [singular, Perfekt] }
   - id: noun-wahlmodul
     type: noun
     lemma: Wahlmodul
@@ -10759,12 +10855,16 @@ records:
       - elective module
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 62
     noun:
       gender: n
       plural: Wahlmodule
+    examples:
+      - { de: "Als Wahlmodul habe ich Japanisch gewählt.", en: "I chose Japanese as an elective module.", tags: [singular, Perfekt] }
+      - { de: "Die Wahlmodule bieten mehr Freiheit.", en: "The elective modules offer more freedom.", tags: [plural, Präsens] }
+      - { de: "Für ein Wahlmodul bekommt man sechs Leistungspunkte.", en: "You get six credits for an elective module.", tags: [singular, Präsens] }
   - id: noun-numerus-clausus
     type: noun
     lemma: Numerus Clausus
@@ -10772,13 +10872,17 @@ records:
       - restricted admission grade
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 76
     abbreviation: NC
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Für Psychologie gibt es einen strengen Numerus Clausus.", en: "There is a strict admission grade for psychology.", tags: [singular, Präsens] }
+      - { de: "Der Numerus Clausus lag letztes Jahr bei 1,2.", en: "Last year the admission grade was 1.2.", tags: [singular, Präteritum] }
+      - { de: "Wegen des Numerus Clausus musste sie zwei Semester warten.", en: "Because of the restricted admission grade she had to wait two semesters.", tags: [singular, Präteritum] }
   - id: adjective-befristet
     type: adjective
     lemma: befristet
