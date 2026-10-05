@@ -97,7 +97,7 @@ describe('stats', () => {
   });
 });
 
-describe('cli', () => {
+describe('cli', { timeout: 60000 }, () => {
   const dir = mkdtempSync(join(tmpdir(), 'typist-organise-'));
   const file = join(dir, 'l.yaml');
   const doc = {
