@@ -13045,7 +13045,7 @@ records:
       - pedestrian
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1980
     noun:
@@ -13055,6 +13055,10 @@ records:
         - lemma: Fußgängerin
           gender: f
           plural: Fußgängerinnen
+    examples:
+      - { de: "Ein Fußgänger wurde von einem Radfahrer angefahren.", en: "A pedestrian was hit by a cyclist.", tags: [singular, Passiv, Präteritum] }
+      - { de: "In der Altstadt haben Fußgänger Vorrang.", en: "Pedestrians have priority in the old town.", tags: [plural, Präsens] }
+      - { de: "Die Fußgängerin hatte das rote Licht übersehen.", en: "The pedestrian had not noticed the red light.", tags: [singular, Plusquamperfekt] }
   - id: noun-fussgaengerzone
     type: noun
     lemma: Fußgängerzone
@@ -13062,12 +13066,16 @@ records:
       - pedestrian zone
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1982
     noun:
       gender: f
       plural: Fußgängerzonen
+    examples:
+      - { de: "In der Fußgängerzone gibt es viele Geschäfte und Restaurants.", en: "There are lots of shops and restaurants in the pedestrian zone.", tags: [singular, Präsens] }
+      - { de: "Die Hauptstraße wurde in eine Fußgängerzone umgewandelt.", en: "The main street has been turned into a pedestrian zone.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Fußgängerzonen machen Innenstädte attraktiver.", en: "Pedestrian zones make town centres more attractive.", tags: [plural, Präsens] }
   - id: noun-ampel
     type: noun
     lemma: Ampel
@@ -13075,12 +13083,16 @@ records:
       - traffic light
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1984
     noun:
       gender: f
       plural: Ampeln
+    examples:
+      - { de: "Die Ampel ist rot, wir müssen warten.", en: "The traffic light is red, we have to wait.", tags: [singular, Präsens] }
+      - { de: "Er ist bei Rot über die Ampel gefahren.", en: "He drove through a red light.", tags: [singular, Perfekt] }
+      - { de: "An der Kreuzung wurden neue Ampeln installiert.", en: "New traffic lights have been installed at the junction.", tags: [plural, Passiv, Präteritum] }
   - id: noun-zebrastreifen
     type: noun
     lemma: Zebrastreifen
@@ -13088,12 +13100,16 @@ records:
       - pedestrian crossing
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1986
     noun:
       gender: m
       plural: Zebrastreifen
+    examples:
+      - { de: "Am Zebrastreifen müssen Autos anhalten.", en: "Cars have to stop at the zebra crossing.", tags: [singular, Präsens] }
+      - { de: "Die Kinder überquerten die Straße am Zebrastreifen.", en: "The children crossed the road at the zebra crossing.", tags: [singular, Präteritum] }
+      - { de: "Vor der Schule gibt es gleich zwei Zebrastreifen.", en: "There are two zebra crossings right outside the school.", tags: [plural, Präsens] }
   - id: noun-buergersteig
     type: noun
     lemma: Bürgersteig
@@ -13102,12 +13118,16 @@ records:
       - sidewalk
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1988
     noun:
       gender: m
       plural: Bürgersteige
+    examples:
+      - { de: "Bitte parken Sie nicht auf dem Bürgersteig!", en: "Please do not park on the pavement!", tags: [singular, Imperativ] }
+      - { de: "Im Winter muss man den Bürgersteig vor dem Haus räumen.", en: "In winter you have to clear the pavement in front of your house.", tags: [singular, Präsens] }
+      - { de: "Die Bürgersteige in der Altstadt sind sehr schmal.", en: "The pavements in the old town are very narrow.", tags: [plural, Präsens] }
   - id: noun-strassenschild
     type: noun
     lemma: Straßenschild
@@ -13115,12 +13135,16 @@ records:
       - street sign
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1990
     noun:
       gender: n
       plural: Straßenschilder
+    examples:
+      - { de: "Das Straßenschild war hinter einem Baum versteckt.", en: "The street sign was hidden behind a tree.", tags: [singular, Präteritum] }
+      - { de: "Die Stadt hat alle Straßenschilder erneuert.", en: "The town has replaced all the street signs.", tags: [plural, Perfekt] }
+      - { de: "Auf dem Straßenschild steht der Name eines berühmten Dichters.", en: "The street sign bears the name of a famous poet.", tags: [singular, Präsens] }
   - id: noun-strassenbeleuchtung
     type: noun
     lemma: Straßenbeleuchtung
@@ -13128,12 +13152,16 @@ records:
       - street lighting
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1992
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Straßenbeleuchtung wird auf LED umgestellt.", en: "The street lighting is being converted to LED.", tags: [singular, Passiv, Präsens] }
+      - { de: "In unserer Straße ist die Straßenbeleuchtung ausgefallen.", en: "The street lighting in our street has failed.", tags: [singular, Perfekt] }
+      - { de: "Um Energie zu sparen, schaltete die Gemeinde nachts die Straßenbeleuchtung ab.", en: "To save energy, the municipality switched off the street lighting at night.", tags: [singular, Präteritum] }
   - id: noun-gruenflaeche
     type: noun
     lemma: Grünfläche
@@ -13141,12 +13169,16 @@ records:
       - green space
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1994
     noun:
       gender: f
       plural: Grünflächen
+    examples:
+      - { de: "Die Grünfläche hinter dem Haus soll bebaut werden.", en: "The green space behind the house is to be built on.", tags: [singular, Passiv, Präsens] }
+      - { de: "Städte brauchen mehr Grünflächen gegen die Hitze.", en: "Cities need more green spaces to combat the heat.", tags: [plural, Präsens] }
+      - { de: "Viele Grünflächen waren im Sommer völlig vertrocknet.", en: "Many green spaces had completely dried out in the summer.", tags: [plural, Plusquamperfekt] }
   - id: noun-park
     type: noun
     lemma: Park
@@ -13154,12 +13186,16 @@ records:
       - park
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1996
     noun:
       gender: m
       plural: Parks
+    examples:
+      - { de: "Am Sonntag gehen wir im Park spazieren.", en: "On Sunday we go for a walk in the park.", tags: [singular, Präsens] }
+      - { de: "In unserer Stadt gibt es mehrere schöne Parks.", en: "There are several beautiful parks in our town.", tags: [plural, Präsens] }
+      - { de: "Im Park hat man ein Konzert unter freiem Himmel veranstaltet.", en: "An open-air concert was held in the park.", tags: [singular, Perfekt] }
   - id: noun-spielplatz
     type: noun
     lemma: Spielplatz
@@ -13167,25 +13203,34 @@ records:
       - playground
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1998
     noun:
       gender: m
       plural: Spielplätze
+    examples:
+      - { de: "Die Kinder spielen den ganzen Nachmittag auf dem Spielplatz.", en: "The children play in the playground all afternoon.", tags: [singular, Präsens] }
+      - { de: "Der Spielplatz wurde nach der Renovierung wieder geöffnet.", en: "The playground was reopened after the renovation.", tags: [singular, Passiv, Präteritum] }
+      - { de: "In unserem Viertel gibt es zu wenige Spielplätze.", en: "There are too few playgrounds in our neighbourhood.", tags: [plural, Präsens] }
   - id: noun-muellabfuhr
     type: noun
     lemma: Müllabfuhr
     gloss:
+      - refuse collection
       - garbage collection
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 2000
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Müllabfuhr kommt jeden Dienstag.", en: "The bin men come every Tuesday.", tags: [singular, Präsens] }
+      - { de: "Wegen des Feiertags kommt die Müllabfuhr einen Tag später.", en: "Because of the public holiday, refuse collection is a day later.", tags: [singular, Präsens] }
+      - { de: "Die Müllabfuhr hat den Sperrmüll noch nicht abgeholt.", en: "The refuse collection hasn't picked up the bulky waste yet.", tags: [singular, Perfekt] }
   - id: noun-abfallentsorgung
     type: noun
     lemma: Abfallentsorgung
@@ -13193,12 +13238,16 @@ records:
       - waste disposal
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 2002
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Abfallentsorgung kostet jede Familie mehrere hundert Euro im Jahr.", en: "Waste disposal costs each family several hundred euros a year.", tags: [singular, Präsens] }
+      - { de: "Für die Abfallentsorgung ist die Gemeinde zuständig.", en: "The municipality is responsible for waste disposal.", tags: [singular, Präsens] }
+      - { de: "Die Firma wurde wegen illegaler Abfallentsorgung angezeigt.", en: "The company was reported for illegal waste disposal.", tags: [singular, Passiv, Präteritum] }
   - id: noun-wasserversorgung
     type: noun
     lemma: Wasserversorgung
@@ -13206,12 +13255,16 @@ records:
       - water supply
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 2004
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Wasserversorgung ist nach dem Sturm unterbrochen.", en: "The water supply has been interrupted after the storm.", tags: [singular, Präsens] }
+      - { de: "In trockenen Sommern wird die Wasserversorgung zum Problem.", en: "In dry summers the water supply becomes a problem.", tags: [singular, Präsens] }
+      - { de: "Die Römer hatten eine erstaunliche Wasserversorgung gebaut.", en: "The Romans had built an astonishing water supply system.", tags: [singular, Plusquamperfekt] }
   - id: noun-stromversorgung
     type: noun
     lemma: Stromversorgung
@@ -13219,12 +13272,16 @@ records:
       - electricity supply
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 2006
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Stromversorgung fiel in der ganzen Stadt aus.", en: "The electricity supply failed throughout the city.", tags: [singular, Präteritum] }
+      - { de: "Eine sichere Stromversorgung ist für die Industrie entscheidend.", en: "A secure electricity supply is crucial for industry.", tags: [singular, Präsens] }
+      - { de: "Die Stromversorgung soll künftig vor allem aus Wind und Sonne kommen.", en: "In future, the electricity supply is to come mainly from wind and sun.", tags: [singular, Präsens] }
   - id: noun-kanalnetz
     type: noun
     lemma: Kanalnetz
@@ -13232,12 +13289,16 @@ records:
       - sewer system
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 2008
     noun:
       gender: n
       plural: Kanalnetze
+    examples:
+      - { de: "Das Kanalnetz der Stadt ist über hundert Jahre alt.", en: "The city's sewer system is more than a hundred years old.", tags: [singular, Präsens] }
+      - { de: "Bei starkem Regen ist das Kanalnetz schnell überlastet.", en: "In heavy rain the sewer system is quickly overloaded.", tags: [singular, Präsens] }
+      - { de: "Viele Gemeinden müssen ihre Kanalnetze dringend sanieren.", en: "Many municipalities urgently need to repair their sewer systems.", tags: [plural, Präsens] }
   - id: noun-stadtverwaltung
     type: noun
     lemma: Stadtverwaltung
@@ -13245,12 +13306,16 @@ records:
       - city administration
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 2010
     noun:
       gender: f
       plural: Stadtverwaltungen
+    examples:
+      - { de: "Die Stadtverwaltung hat den Antrag abgelehnt.", en: "The city administration has rejected the application.", tags: [singular, Perfekt] }
+      - { de: "Sie arbeitet seit zehn Jahren bei der Stadtverwaltung.", en: "She has been working for the city administration for ten years.", tags: [singular, Präsens] }
+      - { de: "Viele Stadtverwaltungen sind noch nicht digitalisiert.", en: "Many city administrations have not yet gone digital.", tags: [plural, Präsens] }
   - id: noun-buergeramt
     type: noun
     lemma: Bürgeramt
@@ -13258,12 +13323,16 @@ records:
       - citizens’ office
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 2012
     noun:
       gender: n
       plural: Bürgerämter
+    examples:
+      - { de: "Den neuen Ausweis bekommen Sie im Bürgeramt.", en: "You get the new identity card at the citizens' office.", tags: [singular, Präsens] }
+      - { de: "Ich habe drei Wochen auf einen Termin beim Bürgeramt gewartet.", en: "I waited three weeks for an appointment at the citizens' office.", tags: [singular, Perfekt] }
+      - { de: "In Berlin sind die Bürgerämter oft überlastet.", en: "In Berlin the citizens' offices are often overloaded.", tags: [plural, Präsens] }
   - id: noun-stadtplanung
     type: noun
     lemma: Stadtplanung
@@ -13271,12 +13340,16 @@ records:
       - urban planning
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 2014
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Stadtplanung muss auch an den Klimawandel denken.", en: "Urban planning must also take climate change into account.", tags: [singular, Präsens] }
+      - { de: "Sie hat Stadtplanung in Dortmund studiert.", en: "She studied urban planning in Dortmund.", tags: [singular, Perfekt] }
+      - { de: "Fehler in der Stadtplanung der Sechzigerjahre sind heute noch sichtbar.", en: "Mistakes in the urban planning of the sixties are still visible today.", tags: [singular, Präsens] }
   - id: noun-verkehrsplanung
     type: noun
     lemma: Verkehrsplanung
@@ -13284,12 +13357,16 @@ records:
       - transport planning
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 2016
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Bei der Verkehrsplanung stehen Radfahrer heute stärker im Fokus.", en: "Cyclists are more of a focus in transport planning today.", tags: [singular, Präsens] }
+      - { de: "Die Verkehrsplanung hatte das Wachstum der Stadt unterschätzt.", en: "Transport planning had underestimated the city's growth.", tags: [singular, Plusquamperfekt] }
+      - { de: "Bürger sollen stärker an der Verkehrsplanung beteiligt werden.", en: "Citizens are to be more involved in transport planning.", tags: [singular, Passiv, Präsens] }
   - id: noun-lebensqualitaet
     type: noun
     lemma: Lebensqualität
@@ -13297,12 +13374,16 @@ records:
       - quality of life
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 2018
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Wien hat eine sehr hohe Lebensqualität.", en: "Vienna has a very high quality of life.", tags: [singular, Präsens] }
+      - { de: "Mehr Grünflächen verbessern die Lebensqualität in der Stadt.", en: "More green spaces improve the quality of life in the city.", tags: [singular, Präsens] }
+      - { de: "Seit dem Umzug aufs Land hat sich unsere Lebensqualität verbessert.", en: "Our quality of life has improved since moving to the countryside.", tags: [singular, Perfekt] }
   - id: noun-mietpreisbremse
     type: noun
     lemma: Mietpreisbremse
@@ -13310,12 +13391,16 @@ records:
       - rent cap
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 2020
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Mietpreisbremse soll den Anstieg der Mieten begrenzen.", en: "The rent cap is meant to limit rent increases.", tags: [singular, Präsens] }
+      - { de: "Kritiker meinen, dass die Mietpreisbremse nicht funktioniert.", en: "Critics argue that the rent cap doesn't work.", tags: [singular, Präsens] }
+      - { de: "Die Mietpreisbremse wurde 2015 eingeführt.", en: "The rent cap was introduced in 2015.", tags: [singular, Passiv, Präteritum] }
   - id: noun-gentrifizierung
     type: noun
     lemma: Gentrifizierung
@@ -13323,12 +13408,16 @@ records:
       - gentrification
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 2022
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Durch die Gentrifizierung müssen alte Mieter das Viertel verlassen.", en: "Because of gentrification, long-standing tenants have to leave the neighbourhood.", tags: [singular, Präsens] }
+      - { de: "In Berlin-Kreuzberg wird viel über Gentrifizierung diskutiert.", en: "There is a lot of discussion about gentrification in Berlin-Kreuzberg.", tags: [singular, Passiv, Präsens] }
+      - { de: "Die Gentrifizierung hat das Gesicht des Stadtteils verändert.", en: "Gentrification has changed the face of the district.", tags: [singular, Perfekt] }
   - id: noun-meinung
     type: noun
     lemma: Meinung
@@ -13336,12 +13425,16 @@ records:
       - opinion
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2037
     noun:
       gender: f
       plural: Meinungen
+    examples:
+      - { de: "Meiner Meinung nach ist das keine gute Idee.", en: "In my opinion, that's not a good idea.", tags: [singular, Präsens] }
+      - { de: "Sie hat ihre Meinung geändert.", en: "She has changed her mind.", tags: [singular, Perfekt] }
+      - { de: "Zu diesem Thema gibt es sehr unterschiedliche Meinungen.", en: "There are very different opinions on this topic.", tags: [plural, Präsens] }
   - id: noun-standpunkt
     type: noun
     lemma: Standpunkt
@@ -16691,12 +16784,16 @@ records:
       - rent incl. utilities
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1944
     noun:
       gender: f
       plural: Warmmieten
+    examples:
+      - { de: "Die Warmmiete beträgt 1100 Euro im Monat.", en: "The rent including utilities is 1,100 euros a month.", tags: [singular, Präsens] }
+      - { de: "Achten Sie bei Anzeigen auf die Warmmiete, nicht nur auf die Kaltmiete.", en: "In adverts, look at the rent including bills, not just the basic rent.", tags: [singular, Imperativ] }
+      - { de: "Durch die Energiekrise sind die Warmmieten stark gestiegen.", en: "Rents including utilities have risen sharply because of the energy crisis.", tags: [plural, Perfekt] }
   - id: noun-kaltmiete
     type: noun
     lemma: Kaltmiete
@@ -16704,12 +16801,16 @@ records:
       - rent excl. utilities
     categories:
       - infrastructure-and-urban-life
-    status: raw
+    status: enriched
     source_lines:
       - 1944
     noun:
       gender: f
       plural: Kaltmieten
+    examples:
+      - { de: "Die Kaltmiete für die Wohnung liegt bei 800 Euro.", en: "The basic rent for the flat is 800 euros.", tags: [singular, Präsens] }
+      - { de: "Die Kaltmieten in Hamburg sind im letzten Jahr gestiegen.", en: "Basic rents in Hamburg rose last year.", tags: [plural, Perfekt] }
+      - { de: "Der Vermieter hatte die Kaltmiete ohne Begründung erhöht.", en: "The landlord had raised the basic rent without giving a reason.", tags: [singular, Plusquamperfekt] }
   - id: phrase-meiner-meinung-nach
     type: phrase
     lemma: meiner Meinung nach
