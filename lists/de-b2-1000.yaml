@@ -2573,12 +2573,16 @@ records:
       - judgment
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 337
     noun:
       gender: n
       plural: Urteile
+    examples:
+      - { de: "Das Urteil wird am Freitag verkündet.", en: "The verdict will be announced on Friday.", tags: [singular, Passiv] }
+      - { de: "Die Familie war mit dem Urteil nicht zufrieden.", en: "The family was not satisfied with the verdict.", tags: [singular, Präteritum] }
+      - { de: "Das Gericht hat in ähnlichen Fällen mildere Urteile gesprochen.", en: "The court has passed milder sentences in similar cases.", tags: [plural, Perfekt] }
   - id: noun-richter
     type: noun
     lemma: Richter
@@ -2586,7 +2590,7 @@ records:
       - judge
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 339
     noun:
@@ -2596,6 +2600,10 @@ records:
         - lemma: Richterin
           gender: f
           plural: Richterinnen
+    examples:
+      - { de: "Der Richter hörte den Zeugen aufmerksam zu.", en: "The judge listened carefully to the witnesses.", tags: [singular, Präteritum] }
+      - { de: "Die Richterin hat den Angeklagten freigesprochen.", en: "The judge acquitted the defendant.", tags: [singular, Perfekt] }
+      - { de: "Richter müssen unabhängig entscheiden können.", en: "Judges must be able to decide independently.", tags: [plural, Präsens] }
   - id: noun-anwalt
     type: noun
     lemma: Anwalt
@@ -2603,7 +2611,7 @@ records:
       - lawyer
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 341
     noun:
@@ -2613,6 +2621,10 @@ records:
         - lemma: Anwältin
           gender: f
           plural: Anwältinnen
+    examples:
+      - { de: "Ich habe mir einen Anwalt genommen.", en: "I have hired a lawyer.", tags: [singular, Perfekt] }
+      - { de: "Meine Anwältin rät mir, nichts zu unterschreiben.", en: "My lawyer advises me not to sign anything.", tags: [singular, Präsens] }
+      - { de: "Die Anwälte beider Seiten trafen sich zu einem Gespräch.", en: "The lawyers for both sides met for a talk.", tags: [plural, Präteritum] }
   - id: noun-staatsanwalt
     type: noun
     lemma: Staatsanwalt
@@ -2620,7 +2632,7 @@ records:
       - prosecutor
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 343
     noun:
@@ -2630,6 +2642,10 @@ records:
         - lemma: Staatsanwältin
           gender: f
           plural: Staatsanwältinnen
+    examples:
+      - { de: "Der Staatsanwalt fordert drei Jahre Haft.", en: "The prosecutor is demanding three years in prison.", tags: [singular, Präsens] }
+      - { de: "Die Staatsanwältin hat Anklage erhoben.", en: "The prosecutor has brought charges.", tags: [singular, Perfekt] }
+      - { de: "Die Staatsanwälte ermittelten monatelang gegen die Firma.", en: "The prosecutors investigated the company for months.", tags: [plural, Präteritum] }
   - id: noun-verteidiger
     type: noun
     lemma: Verteidiger
@@ -2637,7 +2653,7 @@ records:
       - defence attorney
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 345
     noun:
@@ -2647,6 +2663,10 @@ records:
         - lemma: Verteidigerin
           gender: f
           plural: Verteidigerinnen
+    examples:
+      - { de: "Der Verteidiger plädierte auf Freispruch.", en: "The defence attorney pleaded for an acquittal.", tags: [singular, Präteritum] }
+      - { de: "Die Verteidigerin stellte dem Zeugen viele Fragen.", en: "The defence attorney asked the witness many questions.", tags: [singular, Präteritum] }
+      - { de: "Die Verteidiger kündigten an, in Berufung zu gehen.", en: "The defence lawyers announced that they would appeal.", tags: [plural, Präteritum] }
   - id: noun-gericht
     type: noun
     lemma: Gericht
@@ -2654,12 +2674,16 @@ records:
       - court
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 347
     noun:
       gender: n
       plural: Gerichte
+    examples:
+      - { de: "Der Fall landet jetzt vor Gericht.", en: "The case is now going to court.", tags: [singular, Präsens] }
+      - { de: "Das Gericht hat die Klage abgewiesen.", en: "The court dismissed the lawsuit.", tags: [singular, Perfekt] }
+      - { de: "Die Gerichte sind mit Asylverfahren überlastet.", en: "The courts are overloaded with asylum cases.", tags: [plural, Präsens] }
   - id: noun-strafgericht
     type: noun
     lemma: Strafgericht
@@ -2667,12 +2691,16 @@ records:
       - criminal court
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 349
     noun:
       gender: n
       plural: Strafgerichte
+    examples:
+      - { de: "Der Fall wird vor einem Strafgericht verhandelt.", en: "The case is being tried before a criminal court.", tags: [singular, Passiv] }
+      - { de: "Das Strafgericht verurteilte ihn zu einer Geldstrafe.", en: "The criminal court sentenced him to a fine.", tags: [singular, Präteritum] }
+      - { de: "Internationale Strafgerichte verfolgen Kriegsverbrechen.", en: "International criminal courts prosecute war crimes.", tags: [plural, Präsens] }
   - id: noun-zivilgericht
     type: noun
     lemma: Zivilgericht
@@ -2680,12 +2708,16 @@ records:
       - civil court
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 351
     noun:
       gender: n
       plural: Zivilgerichte
+    examples:
+      - { de: "Streitigkeiten zwischen Nachbarn landen oft vor dem Zivilgericht.", en: "Disputes between neighbours often end up in civil court.", tags: [singular, Präsens] }
+      - { de: "Das Zivilgericht hat dem Kläger Schadenersatz zugesprochen.", en: "The civil court awarded the plaintiff damages.", tags: [singular, Perfekt] }
+      - { de: "Zivilgerichte entscheiden zum Beispiel über Mietstreitigkeiten.", en: "Civil courts decide on rental disputes, for example.", tags: [plural, Präsens] }
   - id: noun-klage
     type: noun
     lemma: Klage
@@ -2693,12 +2725,16 @@ records:
       - lawsuit
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 353
     noun:
       gender: f
       plural: Klagen
+    examples:
+      - { de: "Die Nachbarn haben eine Klage gegen die Baufirma eingereicht.", en: "The neighbours have filed a lawsuit against the construction company.", tags: [singular, Perfekt] }
+      - { de: "Die Klage wurde vom Gericht abgewiesen.", en: "The lawsuit was dismissed by the court.", tags: [singular, Passiv] }
+      - { de: "Gegen das Unternehmen laufen mehrere Klagen.", en: "Several lawsuits are pending against the company.", tags: [plural, Präsens] }
   - id: verb-klagen
     type: verb
     lemma: klagen
@@ -2706,10 +2742,21 @@ records:
       - to sue (someone)
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 355
     government: gegen
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "klagt"
+        praeteritum: "klagte"
+        partizip2: "geklagt"
+    examples:
+      - { de: "Die Verbraucherzentrale klagt gegen die Bank.", en: "The consumer advice centre is suing the bank.", tags: [Präsens] }
+      - { de: "Mehrere Anwohner haben gegen den Bau geklagt.", en: "Several residents sued against the construction.", tags: [Perfekt] }
+      - { de: "Die Firma klagte gegen die Entscheidung der Behörde.", en: "The company sued against the authority's decision.", tags: [Präteritum] }
   - id: verb-verklagen
     type: verb
     lemma: verklagen
@@ -2717,9 +2764,20 @@ records:
       - to take legal action against
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 357
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "verklagt"
+        praeteritum: "verklagte"
+        partizip2: "verklagt"
+    examples:
+      - { de: "Wenn er nicht zahlt, verklage ich ihn.", en: "If he doesn't pay, I'll take legal action against him.", tags: [Präsens] }
+      - { de: "Die Sängerin hat die Zeitung wegen Verleumdung verklagt.", en: "The singer sued the newspaper for defamation.", tags: [Perfekt] }
+      - { de: "Der Kunde verklagte den Hersteller auf Schadenersatz.", en: "The customer sued the manufacturer for damages.", tags: [Präteritum] }
   - id: noun-anzeige
     type: noun
     lemma: Anzeige
@@ -2727,12 +2785,16 @@ records:
       - criminal report
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 359
     noun:
       gender: f
       plural: Anzeigen
+    examples:
+      - { de: "Nach dem Einbruch haben wir Anzeige erstattet.", en: "After the burglary we reported it to the police.", tags: [singular, Perfekt] }
+      - { de: "Die Polizei hat die Anzeige aufgenommen.", en: "The police took down the report.", tags: [singular, Perfekt] }
+      - { de: "Wegen Betrugs gingen mehrere Anzeigen ein.", en: "Several criminal complaints were filed for fraud.", tags: [plural, Präteritum] }
   - id: verb-anzeigen
     type: verb
     lemma: anzeigen
@@ -2740,9 +2802,21 @@ records:
       - to report to the police
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 361
+    verb:
+      separable: an
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "zeigt an"
+        praeteritum: "zeigte an"
+        partizip2: "angezeigt"
+    examples:
+      - { de: "Wenn das noch einmal passiert, zeige ich Sie an!", en: "If that happens again, I'll report you to the police!", tags: [separated, Präsens] }
+      - { de: "Sie hat den Diebstahl sofort angezeigt.", en: "She reported the theft immediately.", tags: [Perfekt] }
+      - { de: "Der Nachbar zeigte den Fahrer wegen Fahrerflucht an.", en: "The neighbour reported the driver for a hit-and-run.", tags: [separated, Präteritum] }
   - id: noun-angeklagte
     type: noun
     lemma: Angeklagte
@@ -2750,7 +2824,7 @@ records:
       - defendant
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 363
     noun:
@@ -2760,6 +2834,10 @@ records:
         - lemma: Angeklagte
           gender: f
           plural: Angeklagten
+    examples:
+      - { de: "Der Angeklagte bestreitet die Tat.", en: "The defendant denies the crime.", tags: [singular, Präsens] }
+      - { de: "Die Angeklagte wurde zu zwei Jahren auf Bewährung verurteilt.", en: "The defendant was given a two-year suspended sentence.", tags: [singular, Passiv] }
+      - { de: "Alle drei Angeklagten schwiegen vor Gericht.", en: "All three defendants remained silent in court.", tags: [plural, Präteritum] }
   - id: noun-zeuge
     type: noun
     lemma: Zeuge
@@ -2767,7 +2845,7 @@ records:
       - witness
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 365
     noun:
@@ -2777,6 +2855,10 @@ records:
         - lemma: Zeugin
           gender: f
           plural: Zeuginnen
+    examples:
+      - { de: "Ein Zeuge hat den Unfall beobachtet.", en: "A witness observed the accident.", tags: [singular, Perfekt] }
+      - { de: "Die Polizei sucht Zeugen des Überfalls.", en: "The police are looking for witnesses to the robbery.", tags: [plural, Präsens] }
+      - { de: "Die Zeugin konnte sich an den Täter genau erinnern.", en: "The witness could remember the perpetrator exactly.", tags: [singular, Präteritum] }
   - id: noun-zeugenaussage
     type: noun
     lemma: Zeugenaussage
@@ -2784,12 +2866,16 @@ records:
       - testimony
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 367
     noun:
       gender: f
       plural: Zeugenaussagen
+    examples:
+      - { de: "Ihre Zeugenaussage war entscheidend für das Urteil.", en: "Her testimony was decisive for the verdict.", tags: [singular, Präteritum] }
+      - { de: "Die Zeugenaussagen widersprechen sich.", en: "The testimonies contradict each other.", tags: [plural, Präsens] }
+      - { de: "Er hat seine Zeugenaussage später zurückgezogen.", en: "He later withdrew his testimony.", tags: [singular, Perfekt] }
   - id: verb-aussagen
     type: verb
     lemma: aussagen
@@ -2797,9 +2883,21 @@ records:
       - to testify
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 369
+    verb:
+      separable: aus
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "sagt aus"
+        praeteritum: "sagte aus"
+        partizip2: "ausgesagt"
+    examples:
+      - { de: "Morgen sagt die wichtigste Zeugin aus.", en: "The most important witness testifies tomorrow.", tags: [separated, Präsens] }
+      - { de: "Er hat gegen seinen ehemaligen Chef ausgesagt.", en: "He testified against his former boss.", tags: [Perfekt] }
+      - { de: "Die Nachbarin sagte vor Gericht aus, sie habe nichts gehört.", en: "The neighbour testified in court that she had heard nothing.", tags: [separated, Präteritum] }
   - id: noun-prozess
     type: noun
     lemma: Prozess
@@ -2808,12 +2906,16 @@ records:
       - legal proceedings
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 371
     noun:
       gender: m
       plural: Prozesse
+    examples:
+      - { de: "Der Prozess beginnt nächste Woche.", en: "The trial begins next week.", tags: [singular, Präsens] }
+      - { de: "Der Prozess hat großes Interesse in den Medien geweckt.", en: "The trial attracted great media interest.", tags: [singular, Perfekt] }
+      - { de: "Solche Prozesse dauern oft mehrere Jahre.", en: "Trials like this often last several years.", tags: [plural, Präsens] }
   - id: noun-verfahren
     type: noun
     lemma: Verfahren
@@ -2821,12 +2923,16 @@ records:
       - legal procedure
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 373
     noun:
       gender: n
       plural: Verfahren
+    examples:
+      - { de: "Das Verfahren gegen ihn wurde eingestellt.", en: "The proceedings against him were dropped.", tags: [singular, Passiv] }
+      - { de: "Ein gerichtliches Verfahren kann teuer werden.", en: "Legal proceedings can become expensive.", tags: [singular, Präsens] }
+      - { de: "Die Zahl der Verfahren ist im letzten Jahr gesunken.", en: "The number of proceedings fell last year.", tags: [plural, Perfekt] }
   - id: noun-verhandlung
     type: noun
     lemma: Verhandlung
@@ -2835,12 +2941,16 @@ records:
       - court hearing
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 375
     noun:
       gender: f
       plural: Verhandlungen
+    examples:
+      - { de: "Die Verhandlung wurde auf Dezember vertagt.", en: "The hearing was adjourned until December.", tags: [singular, Passiv] }
+      - { de: "Die Verhandlungen über einen neuen Vertrag laufen noch.", en: "Negotiations on a new contract are still ongoing.", tags: [plural, Präsens] }
+      - { de: "Bei der Verhandlung waren auch Journalisten anwesend.", en: "Journalists were also present at the hearing.", tags: [singular, Präteritum] }
   - id: noun-tatort
     type: noun
     lemma: Tatort
@@ -2848,12 +2958,16 @@ records:
       - crime scene
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 377
     noun:
       gender: m
       plural: Tatorte
+    examples:
+      - { de: "Die Polizei hat den Tatort abgesperrt.", en: "The police have cordoned off the crime scene.", tags: [singular, Perfekt] }
+      - { de: "Am Tatort fand man Fingerabdrücke.", en: "Fingerprints were found at the crime scene.", tags: [singular, Präteritum] }
+      - { de: "Die beiden Tatorte liegen nur wenige Kilometer auseinander.", en: "The two crime scenes are only a few kilometres apart.", tags: [plural, Präsens] }
   - id: noun-verbrechen
     type: noun
     lemma: Verbrechen
@@ -2861,12 +2975,16 @@ records:
       - crime
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 379
     noun:
       gender: n
       plural: Verbrechen
+    examples:
+      - { de: "Das Verbrechen wurde nie aufgeklärt.", en: "The crime was never solved.", tags: [singular, Passiv] }
+      - { de: "Mord ist das schwerste Verbrechen.", en: "Murder is the most serious crime.", tags: [singular, Präsens] }
+      - { de: "Die Zahl der Verbrechen ist in der Stadt gesunken.", en: "The number of crimes in the city has fallen.", tags: [plural, Perfekt] }
   - id: noun-straftat
     type: noun
     lemma: Straftat
@@ -2874,12 +2992,16 @@ records:
       - criminal act
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 381
     noun:
       gender: f
       plural: Straftaten
+    examples:
+      - { de: "Steuerhinterziehung ist eine Straftat.", en: "Tax evasion is a criminal offence.", tags: [singular, Präsens] }
+      - { de: "Er hat mehrere Straftaten begangen.", en: "He has committed several criminal offences.", tags: [plural, Perfekt] }
+      - { de: "Wer eine Straftat beobachtet, sollte die Polizei rufen.", en: "Anyone who witnesses a crime should call the police.", tags: [singular, Präsens] }
   - id: noun-kriminalitaet
     type: noun
     lemma: Kriminalität
@@ -2887,12 +3009,16 @@ records:
       - criminality
     categories:
       - law-and-justice
-    status: raw
+    status: enriched
     source_lines:
       - 383
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Kriminalität in der Innenstadt hat abgenommen.", en: "Crime in the city centre has decreased.", tags: [singular, Perfekt] }
+      - { de: "Die Regierung will härter gegen Kriminalität vorgehen.", en: "The government wants to take tougher action against crime.", tags: [singular, Präsens] }
+      - { de: "Armut und Kriminalität hängen oft zusammen.", en: "Poverty and crime are often connected.", tags: [singular, Präsens] }
   - id: noun-schuld
     type: noun
     lemma: Schuld
@@ -2901,13 +3027,17 @@ records:
     categories:
       - law-and-justice
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 385
       - 1468
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Schuld des Angeklagten konnte nicht bewiesen werden.", en: "The defendant's guilt could not be proven.", tags: [singular, Passiv] }
+      - { de: "Er gibt seiner Schwester die Schuld an dem Streit.", en: "He blames his sister for the argument.", tags: [singular, Präsens] }
+      - { de: "Sie fühlte sich nach dem Unfall von Schuld geplagt.", en: "After the accident she felt tormented by guilt.", tags: [singular, Präteritum] }
   - id: noun-strafe
     type: noun
     lemma: Strafe
