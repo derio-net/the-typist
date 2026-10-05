@@ -1280,7 +1280,7 @@ records:
     type: noun
     lemma: Lohnsteuer
     gloss:
-      - income tax
+      - wage tax
     categories:
       - workplace-and-business
     status: enriched
@@ -1290,9 +1290,9 @@ records:
       gender: f
       plural: null
     examples:
-      - { de: "Die Lohnsteuer wird direkt vom Gehalt abgezogen.", en: "Income tax is deducted directly from the salary.", tags: [singular, Passiv] }
-      - { de: "Wie viel Lohnsteuer zahlst du im Monat?", en: "How much income tax do you pay a month?", tags: [singular, Präsens] }
-      - { de: "Durch die Reform sank die Lohnsteuer für Geringverdiener.", en: "The reform reduced income tax for low earners.", tags: [singular, Präteritum] }
+      - { de: "Die Lohnsteuer wird direkt vom Gehalt abgezogen.", en: "Wage tax is deducted directly from the salary.", tags: [singular, Passiv] }
+      - { de: "Wie viel Lohnsteuer zahlst du im Monat?", en: "How much wage tax do you pay a month?", tags: [singular, Präsens] }
+      - { de: "Durch die Reform sank die Lohnsteuer für Geringverdiener.", en: "The reform reduced wage tax for low earners.", tags: [singular, Präteritum] }
   - id: noun-sozialversicherung
     type: noun
     lemma: Sozialversicherung
@@ -1408,13 +1408,14 @@ records:
     status: enriched
     source_lines:
       - 175
+    source_note: "plural Buchhaltungen removed: almost never used in the plural"
     noun:
       gender: f
-      plural: Buchhaltungen
+      plural: null
     examples:
       - { de: "Die Rechnung habe ich schon an die Buchhaltung weitergeleitet.", en: "I have already forwarded the invoice to accounting.", tags: [singular, Perfekt] }
       - { de: "Frau Schulz arbeitet seit zwanzig Jahren in der Buchhaltung.", en: "Ms Schulz has been working in accounting for twenty years.", tags: [singular, Präsens] }
-      - { de: "Viele kleine Firmen lassen ihre Buchhaltungen von externen Büros erledigen.", en: "Many small companies have their accounting done by external offices.", tags: [plural, Präsens] }
+      - { de: "Die Buchhaltung braucht alle Belege bis zum Monatsende.", en: "Accounting needs all receipts by the end of the month.", tags: [singular, Präsens] }
   - id: noun-steuerberater
     type: noun
     lemma: Steuerberater
@@ -1781,13 +1782,14 @@ records:
     source_lines:
       - 228
       - 1805
+    source_note: "plural Oppositionen removed: almost never used in the plural"
     noun:
       gender: f
-      plural: Oppositionen
+      plural: null
     examples:
       - { de: "Die Opposition kritisiert den Haushaltsplan scharf.", en: "The opposition sharply criticises the budget plan.", tags: [singular, Präsens] }
       - { de: "Nach der Wahl ging die Partei in die Opposition.", en: "After the election the party went into opposition.", tags: [singular, Präteritum] }
-      - { de: "In manchen Ländern werden Oppositionen systematisch unterdrückt.", en: "In some countries oppositions are systematically suppressed.", tags: [plural, Passiv] }
+      - { de: "In manchen Ländern wird die Opposition systematisch unterdrückt.", en: "In some countries the opposition is systematically suppressed.", tags: [singular, Passiv] }
   - id: noun-parlament
     type: noun
     lemma: Parlament
@@ -2755,8 +2757,8 @@ records:
         partizip2: "geklagt"
     examples:
       - { de: "Die Verbraucherzentrale klagt gegen die Bank.", en: "The consumer advice centre is suing the bank.", tags: [Präsens] }
-      - { de: "Mehrere Anwohner haben gegen den Bau geklagt.", en: "Several residents sued against the construction.", tags: [Perfekt] }
-      - { de: "Die Firma klagte gegen die Entscheidung der Behörde.", en: "The company sued against the authority's decision.", tags: [Präteritum] }
+      - { de: "Mehrere Anwohner haben gegen den Bau geklagt.", en: "Several residents took legal action against the construction.", tags: [Perfekt] }
+      - { de: "Die Firma klagte gegen die Entscheidung der Behörde.", en: "The company took legal action against the authority's decision.", tags: [Präteritum] }
   - id: verb-verklagen
     type: verb
     lemma: verklagen
@@ -3255,26 +3257,6 @@ records:
       - { de: "Die Versicherung umfasst auch Rechtsschutz.", en: "The insurance also includes legal protection.", tags: [singular, Präsens] }
       - { de: "Ohne Rechtsschutz wäre der Prozess zu teuer gewesen.", en: "Without legal protection the trial would have been too expensive.", tags: [singular, Konjunktiv II] }
       - { de: "Jeder Bürger hat Anspruch auf effektiven Rechtsschutz.", en: "Every citizen is entitled to effective legal protection.", tags: [singular, Präsens] }
-  - id: noun-menschenrechte
-    type: noun
-    lemma: Menschenrechte
-    gloss:
-      - human rights
-    categories:
-      - law-and-justice
-      - ethics-and-society
-    status: enriched
-    source_lines:
-      - 419
-      - 1500
-    noun:
-      gender: f
-      plural: null
-      plural_only: true
-    examples:
-      - { de: "Die Menschenrechte gelten für alle Menschen.", en: "Human rights apply to all people.", tags: [plural, Präsens] }
-      - { de: "Die Organisation setzt sich für die Menschenrechte ein.", en: "The organisation campaigns for human rights.", tags: [plural, Präsens] }
-      - { de: "In dem Bericht wurden schwere Verletzungen der Menschenrechte dokumentiert.", en: "Serious human rights violations were documented in the report.", tags: [plural, Passiv] }
   - id: noun-rechtsanwalt
     type: noun
     lemma: Rechtsanwalt
@@ -3812,13 +3794,14 @@ records:
     status: enriched
     source_lines:
       - 520
+    source_note: "plural Tonfälle removed: almost never used in the plural"
     noun:
       gender: m
-      plural: Tonfälle
+      plural: null
     examples:
       - { de: "Sein Tonfall war unfreundlich.", en: "His tone of voice was unfriendly.", tags: [singular, Präteritum] }
       - { de: "Achte bitte auf deinen Tonfall!", en: "Please watch your tone!", tags: [singular, Imperativ] }
-      - { de: "Kinder hören die feinen Unterschiede in den Tonfällen genau.", en: "Children hear the subtle differences in tones of voice precisely.", tags: [plural, Präsens] }
+      - { de: "Am Tonfall merkte ich sofort, dass sie wütend war.", en: "I could tell from her tone of voice straight away that she was angry.", tags: [singular, Präteritum] }
   - id: noun-missverstaendnis
     type: noun
     lemma: Missverständnis
@@ -3858,6 +3841,7 @@ records:
     lemma: Distanz
     gloss:
       - distance (social/formal)
+      - distance (physical)
     categories:
       - formal-and-informal-address
     status: enriched
@@ -4512,7 +4496,7 @@ records:
         partizip2: "ausgegangen"
     examples:
       - { de: "Ich gehe davon aus, dass alle pünktlich kommen.", en: "I assume that everyone will arrive on time.", tags: [separated, Präsens] }
-      - { de: "Wir sind von falschen Zahlen ausgegangen.", en: "We assumed incorrect figures.", tags: [Perfekt] }
+      - { de: "Wir sind von falschen Zahlen ausgegangen.", en: "We based our assumptions on incorrect figures.", tags: [Perfekt] }
       - { de: "Die Initiative ging von einer Gruppe Studierender aus.", en: "The initiative came from a group of students.", tags: [separated, Präteritum] }
   - id: verb-einsetzen
     type: verb
@@ -4614,6 +4598,7 @@ records:
     gloss:
       - to say goodbye
     categories:
+      - formal-and-informal-address
       - separable-verbs-trennbare-verben
     status: enriched
     source_lines:
@@ -5101,13 +5086,14 @@ records:
     status: enriched
     source_lines:
       - 781
+    source_note: "plural Anspannungen removed: almost never used in the plural"
     noun:
       gender: f
-      plural: Anspannungen
+      plural: null
     examples:
       - { de: "Vor dem Elfmeter war die Anspannung im Stadion riesig.", en: "Before the penalty the tension in the stadium was enormous.", tags: [singular, Präteritum] }
       - { de: "Yoga hilft gegen innere Anspannung.", en: "Yoga helps against inner tension.", tags: [singular, Präsens] }
-      - { de: "Nach Wochen voller Anspannungen brauchte sie Urlaub.", en: "After weeks full of tension she needed a holiday.", tags: [plural, Präteritum] }
+      - { de: "Nach der Prüfung fiel die ganze Anspannung von mir ab.", en: "After the exam all the tension fell away from me.", tags: [singular, Präteritum] }
   - id: noun-angst
     type: noun
     lemma: Angst
@@ -5944,7 +5930,7 @@ records:
     examples:
       - { de: "Beethovens neunte Sinfonie ist weltberühmt.", en: "Beethoven's ninth symphony is world-famous.", tags: [singular, Präsens] }
       - { de: "Das Orchester spielte eine Sinfonie von Brahms.", en: "The orchestra played a symphony by Brahms.", tags: [singular, Präteritum] }
-      - { de: "Mahler schrieb insgesamt zehn Sinfonien.", en: "Mahler wrote ten symphonies in total.", tags: [plural, Präteritum] }
+      - { de: "Mahler vollendete insgesamt neun Sinfonien.", en: "Mahler completed nine symphonies in total.", tags: [plural, Präteritum] }
   - id: noun-orchester
     type: noun
     lemma: Orchester
@@ -6056,6 +6042,7 @@ records:
     lemma: Erzählung
     gloss:
       - short story
+      - account
     categories:
       - culture-arts-and-entertainment
     status: enriched
@@ -7033,6 +7020,7 @@ records:
     status: enriched
     source_lines:
       - 1066
+    source_note: "plural_only kept: names a platform's rulebook as a whole; a singular Plattformrichtlinie is rarely used"
     noun:
       gender: f
       plural: null
@@ -7062,7 +7050,7 @@ records:
     type: verb
     lemma: haten
     gloss:
-      - to hate (online slur/abuse)
+      - to hate on (someone) online
     categories:
       - social-media-and-internet
     status: enriched
@@ -7076,7 +7064,7 @@ records:
         praeteritum: "hatete"
         partizip2: "gehatet"
     examples:
-      - { de: "Im Netz hatet man schnell, ohne nachzudenken.", en: "Online people hate quickly without thinking.", tags: [Präsens] }
+      - { de: "Im Netz hatet man schnell, ohne nachzudenken.", en: "Online, people hate on others quickly without thinking.", tags: [Präsens] }
       - { de: "Nach dem Auftritt wurde die Sängerin massiv gehatet.", en: "After the performance the singer received massive online hate.", tags: [Passiv, Präteritum] }
       - { de: "Viele haben ihn für seine Meinung gehatet.", en: "Many people hated on him for his opinion.", tags: [Perfekt] }
   - id: noun-cybermobbing
@@ -8540,20 +8528,6 @@ records:
     noun:
       gender: n
       plural: null
-  - id: noun-symptome
-    type: noun
-    lemma: Symptome
-    gloss:
-      - symptoms
-    categories:
-      - health-and-medicine
-    status: raw
-    source_lines:
-      - 1345
-    noun:
-      gender: f
-      plural: null
-      plural_only: true
   - id: noun-diagnose
     type: noun
     lemma: Diagnose
@@ -8576,7 +8550,9 @@ records:
       - health-and-medicine
     status: raw
     source_lines:
+      - 1345
       - 1349
+    source_note: "merged with the plural-only duplicate noun-symptome (Symptome, line 1345)"
     noun:
       gender: n
       plural: Symptome
@@ -10820,13 +10796,23 @@ records:
     gloss:
       - human right
     categories:
+      - law-and-justice
+      - ethics-and-society
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
+      - 419
+      - 1500
       - 1849
+    source_note: "merged with the plural-only duplicate noun-menschenrechte (Menschenrechte, lines 419, 1500)"
     noun:
       gender: n
       plural: Menschenrechte
+    examples:
+      - { de: "Bildung ist ein Menschenrecht.", en: "Education is a human right.", tags: [singular, Präsens] }
+      - { de: "Die Menschenrechte gelten für alle Menschen.", en: "Human rights apply to all people.", tags: [plural, Präsens] }
+      - { de: "Die Organisation setzt sich für die Menschenrechte ein.", en: "The organisation campaigns for human rights.", tags: [plural, Präsens] }
+      - { de: "In dem Bericht wurden schwere Verletzungen der Menschenrechte dokumentiert.", en: "Serious human rights violations were documented in the report.", tags: [plural, Passiv] }
   - id: noun-pressefreiheit
     type: noun
     lemma: Pressefreiheit
@@ -12543,18 +12529,18 @@ records:
       plural: ökologischen Fußabdrücke
   - id: noun-ressourcen
     type: noun
-    lemma: Ressourcen
+    lemma: Ressource
     gloss:
-      - resources
+      - resource
     categories:
       - global-issues-and-sustainability
     status: raw
     source_lines:
       - 2216
+    source_note: "lemma changed from plural-only Ressourcen to singular Ressource (plural Ressourcen): the singular is natural"
     noun:
       gender: f
-      plural: null
-      plural_only: true
+      plural: Ressourcen
   - id: noun-energieeffizienz
     type: noun
     lemma: Energieeffizienz
@@ -12833,7 +12819,7 @@ records:
       - { de: "Für ein Wahlmodul bekommt man sechs Leistungspunkte.", en: "You get six credits for an elective module.", tags: [singular, Präsens] }
   - id: noun-numerus-clausus
     type: noun
-    lemma: Numerus Clausus
+    lemma: Numerus clausus
     gloss:
       - restricted admission grade
     categories:
@@ -12846,9 +12832,9 @@ records:
       gender: m
       plural: null
     examples:
-      - { de: "Für Psychologie gibt es einen strengen Numerus Clausus.", en: "There is a strict admission grade for psychology.", tags: [singular, Präsens] }
-      - { de: "Der Numerus Clausus lag letztes Jahr bei 1,2.", en: "Last year the admission grade was 1.2.", tags: [singular, Präteritum] }
-      - { de: "Wegen des Numerus Clausus musste sie zwei Semester warten.", en: "Because of the restricted admission grade she had to wait two semesters.", tags: [singular, Präteritum] }
+      - { de: "Für Psychologie gibt es einen strengen Numerus clausus.", en: "There is a strict admission grade for psychology.", tags: [singular, Präsens] }
+      - { de: "Der Numerus clausus lag letztes Jahr bei 1,2.", en: "Last year the admission grade was 1.2.", tags: [singular, Präteritum] }
+      - { de: "Wegen des Numerus clausus musste sie zwei Semester warten.", en: "Because of the restricted admission grade she had to wait two semesters.", tags: [singular, Präteritum] }
   - id: adjective-befristet
     type: adjective
     lemma: befristet
@@ -13167,6 +13153,8 @@ records:
     lemma: Frau
     gloss:
       - Mrs
+      - Ms
+      - woman
     categories:
       - formal-and-informal-address
     status: enriched
@@ -13331,7 +13319,7 @@ records:
     type: phrase
     lemma: Darf ich Sie um etwas bitten?
     gloss:
-      - May I ask you something?
+      - May I ask you a favour?
     categories:
       - formal-and-informal-address
     status: enriched
@@ -13341,9 +13329,9 @@ records:
     phrase:
       register: formal
     examples:
-      - { de: "Darf ich Sie um etwas bitten? Könnten Sie das Fenster schließen?", en: "May I ask you something? Could you close the window?", tags: [Präsens, Konjunktiv II] }
+      - { de: "Darf ich Sie um etwas bitten? Könnten Sie das Fenster schließen?", en: "May I ask you a favour? Could you close the window?", tags: [Präsens, Konjunktiv II] }
       - { de: "Frau Wagner, darf ich Sie um etwas bitten?", en: "Ms Wagner, may I ask you a favour?", tags: [Präsens] }
-      - { de: "Darf ich Sie um etwas bitten, bevor Sie gehen?", en: "May I ask you something before you go?", tags: [Präsens] }
+      - { de: "Darf ich Sie um etwas bitten, bevor Sie gehen?", en: "May I ask you a favour before you go?", tags: [Präsens] }
   - id: verb-duerfen
     type: verb
     lemma: dürfen
@@ -13786,7 +13774,7 @@ records:
       literal: "to get something into one's grip"
     examples:
       - { de: "Die Regierung muss die Inflation in den Griff bekommen.", en: "The government has to get inflation under control.", tags: [Präsens] }
-      - { de: "Nach ein paar Wochen hatte ich die neue Software im Griff.", en: "After a few weeks I had the new software under control.", tags: [Präteritum] }
+      - { de: "Nach ein paar Wochen habe ich die neue Software in den Griff bekommen.", en: "After a few weeks I got the hang of the new software.", tags: [Perfekt] }
       - { de: "Die Feuerwehr hat den Brand schnell in den Griff bekommen.", en: "The fire brigade quickly got the fire under control.", tags: [Perfekt] }
   - id: phrase-den-kopf-verlieren
     type: phrase
@@ -13807,7 +13795,7 @@ records:
       - { de: "Er verlor den Kopf und schrie alle an.", en: "He lost his head and shouted at everyone.", tags: [Präteritum] }
   - id: phrase-mit-jemandem-nicht-gut-kirschen-essen-sein
     type: phrase
-    lemma: mit jemandem nicht gut Kirschen essen sein
+    lemma: mit jemandem ist nicht gut Kirschen essen
     gloss:
       - someone is difficult to deal with
     categories:
@@ -13815,6 +13803,7 @@ records:
     status: enriched
     source_lines:
       - 595
+    source_note: "lemma changed from mit jemandem nicht gut Kirschen essen sein (fixed idiom form)"
     phrase:
       register: informal
       literal: "it is not good to eat cherries with someone"
@@ -13841,7 +13830,7 @@ records:
       - { de: "Ich bin wochenlang auf Wolke sieben geschwebt.", en: "I was on cloud nine for weeks.", tags: [Perfekt] }
   - id: phrase-einen-korb-geben
     type: phrase
-    lemma: einen Korb geben
+    lemma: jemandem einen Korb geben
     gloss:
       - to turn someone down
     categories:
@@ -13849,6 +13838,7 @@ records:
     status: enriched
     source_lines:
       - 599
+    source_note: "lemma changed from einen Korb geben (dative object made explicit)"
     phrase:
       register: informal
       literal: "to give someone a basket"
@@ -13990,7 +13980,7 @@ records:
       literal: "to crack a hard nut"
     examples:
       - { de: "Mit diesem Fall müssen die Ermittler eine harte Nuss knacken.", en: "With this case the investigators have a tough nut to crack.", tags: [Präsens] }
-      - { de: "Die letzte Aufgabe war eine harte Nuss.", en: "The last task was a tough nut to crack.", tags: [Präteritum] }
+      - { de: "Bei der letzten Aufgabe mussten wir eine harte Nuss knacken.", en: "With the last task we had a tough nut to crack.", tags: [Präteritum] }
       - { de: "Wir haben die harte Nuss am Ende doch geknackt.", en: "We cracked the tough nut in the end after all.", tags: [Perfekt] }
   - id: phrase-alles-ueber-einen-kamm-scheren
     type: phrase
@@ -14322,7 +14312,7 @@ records:
     examples:
       - { de: "Ich bin mir unsicher, ob das die richtige Entscheidung ist.", en: "I'm unsure whether this is the right decision.", tags: [Präsens] }
       - { de: "Die Zeiten sind unsicherer als früher.", en: "Times are more uncertain than they used to be.", tags: [comparative, Präsens] }
-      - { de: "Ein unsicherer Fahrer sollte nicht nachts fahren.", en: "An insecure driver shouldn't drive at night.", tags: [attributive, Präsens] }
+      - { de: "Ein unsicherer Fahrer sollte nicht nachts fahren.", en: "A nervous driver shouldn't drive at night.", tags: [attributive, Präsens] }
   - id: adjective-selbstbewusst
     type: adjective
     lemma: selbstbewusst
@@ -14630,6 +14620,7 @@ records:
     type: noun
     lemma: Anmeldung
     gloss:
+      - registration
       - login
     categories:
       - social-media-and-internet
@@ -14642,7 +14633,7 @@ records:
     examples:
       - { de: "Die Anmeldung funktioniert nur mit einer E-Mail-Adresse.", en: "Logging in only works with an email address.", tags: [singular, Präsens] }
       - { de: "Bei der Anmeldung ist ein Fehler aufgetreten.", en: "An error occurred during login.", tags: [singular, Perfekt] }
-      - { de: "Nach drei falschen Anmeldungen wird das Konto gesperrt.", en: "After three failed logins the account is locked.", tags: [plural, Passiv] }
+      - { de: "Für den Kurs gibt es schon über hundert Anmeldungen.", en: "There are already over a hundred registrations for the course.", tags: [plural, Präsens] }
   - id: noun-login
     type: noun
     lemma: Login
