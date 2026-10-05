@@ -1,0 +1,18 @@
+schema_version: 7
+run: 2026-10-05-feat-vocab-typer
+step: implement-phase
+item: phase/5
+outcome: blocked
+ticks: [P5.T1.S1, P5.T1.S2]
+refactor: {}
+journal:
+  - kind: discovery
+    id: p5-progress
+    phase: 5
+    title: "Phase 5 in progress: categories 1-9 enriched, social-media-and-internet next"
+    body: |
+      Work in progress (record committed so a dead session can resume): 20 enrich batches
+      committed; categories with order 1-9 have 0 raw; social-media-and-internet (order 11)
+      is next. Resume with next-batch --category social-media-and-internet.
+resolves: []
+evidence: {}
