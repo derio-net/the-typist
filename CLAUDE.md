@@ -4,16 +4,53 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-"the-typist" is a clone of ZType (https://zty.pe), the browser typing shoot-'em-up where enemies carry words and you destroy them by typing those words. **Development has not begun.** The repo has no commits, no source, no build tooling, and no README. When the stack is chosen, add the build/lint/test commands (including how to run a single test) and an architecture section to this file; until then, don't invent them.
+"the-typist" is a ZType-style (https://zty.pe) browser typing shoot-'em-up for learning German. Enemies carry vocabulary Records: a mothership shows the headword and its gloss, and destroying it releases a forms ship and one ship per example sentence. The player copy-types them.
 
-## What exists today
+- **Design:** `docs/superpowers/specs/2026-10-05-vocab-typer-design.md` (requirements R1–R16).
+- **Plan 1** (`docs/superpowers/plans/2026-10-05-vocab-typer/`) delivered:
+  - the list format and validation;
+  - the parser and the two list skills;
+  - the typing core with sprites;
+  - the enriched seed list.
+- **Plan 2 is still to come.** It will cover the learning loop (FSRS, study and free-play sessions, aids, menus), file-picker loading, the GitHub Pages deploy and audio, after a manual UX pass.
 
-- `wordlist.raw.txt` (untracked) — the only file. Raw, unprocessed vocabulary of **German words at B2 level with English glosses**, evidently intended as the game's word source (i.e. this is a German-learning typing game, not an English one).
-  - Format: one entry per line, blank line between entries: `<article> <German word> – <English gloss>`, e.g. `die Fakultät – faculty`. Verbs have no article (`publizieren – to publish`).
-  - Grouped into ~21 themed sections introduced by an emoji + number header (`📚 1. Academic & Higher Education`, …, `✍️ 20. Rhetoric & Argumentation`, `🌐 21. Global Issues & Sustainability`). Section 10 is missing from the numbering. Headers are followed by a prose intro line.
-  - Irregularities a parser must handle: dual-gender entries (`der Dozent / die Dozentin`), multiple glosses separated by commas, sections of non-nouns (`6. Idiomatic Expressions`, `7. Separable Verbs`, `11.`–`21.`), and umlauts/ß/typographic quotes (`’`), which matter for typing input.
+## Commands
 
-## Design implications to keep in mind
+- `npm run dev`: dev server. The playable core is at `http://localhost:5173/the-typist/?dev=fixture`.
+- `npm test`: Vitest, the full suite, including the seed test.
+  - Run one file with `npx vitest run tests/engine/typing.test.ts`.
+  - Run one test with `npx vitest run tests/engine/typing.test.ts -t '<name>'`.
+- `npm run build`: type-checks `src/` (browser-only, `tsconfig.json`) and `tests/`, `tools/` (`tsconfig.node.json`), then builds with Vite.
+- `npm run typist -- <cmd>`: list tooling (`tools/cli.ts`).
+  - `parse <raw.txt> -o <list.yaml>`
+  - `validate <list.yaml…>`
+  - `dupes`, `merge-dupes [--skip id…]`, `merge <list> <id> <id>…`
+  - `next-batch <list> [--n 25] [--category <id>]`
+  - `stats <list>`
+- `npm run sprites`: cuts `public/assets/sprites/sheet.png` into sprites and writes `src/render/sprite-atlas.json`.
 
-- Typing targets contain non-ASCII characters (ä, ö, ü, ß). Decide early whether the player must type them literally or whether input normalizes (ä→ae, etc.), and apply that consistently to matching.
-- The raw list needs a cleaning step (strip headers/intro prose, split article/word/gloss, normalize dashes and whitespace) before the game can consume it. Keep the raw file as the source of truth and generate the processed list from it rather than editing by hand.
+## Architecture
+
+- **`src/schema/`:** the zod Record and list schema. It holds the per-type R3 rules, typeability (the input-equivalence table) and display forms. It is shared by the game and the tools, and its objects are strict, so unknown keys fail.
+- **`src/engine/`:** pure logic with no DOM.
+  - `typing.ts`: target lock, ae/oe/ue/ss and quote/dash equivalences, pre-typed final punctuation.
+  - `world.ts`: a 60 Hz fixed step. One Record is on screen at a time; children break up into bands; seeded RNG; per-Record stats for grading.
+- **`src/platform/keyboard.ts`:** a hidden input with IME composition handling, so macOS dead keys work.
+- **`src/render/`:**
+  - `theme.ts`: every visual constant, plus the `drawShip` sprite hook.
+  - `sprites.ts`: loading, 3-slice hulls, the reticle.
+  - `renderer.ts`: two passes, hulls first and then text.
+- **`tools/`:** Node-only.
+  - `parse/`: raw list to Records.
+  - `organise/`: merge, batches, stats.
+  - `sprites/slice.ts`
+  - `vite-plugin-lists.ts`: validates `lists/*.yaml` and turns each into a JSON module.
+- **`lists/de-b2-1000.yaml`:** the seed list. It has 968 enriched Records covering all 1000 lines of `wordlist.raw.txt`, in 20 categories. Record ids are frozen, because SRS state keys on them.
+- **`wordlist.raw.txt`:** the seed source. Never edit it. Corrections live in the list, recorded in `source_note`.
+
+## Skills
+
+- **`.claude/skills/typist-structure`:** turns a raw list into a `raw`-status list.
+- **`.claude/skills/typist-enrich`:** organises a list and enriches it in batches of about 25, validating and committing each batch.
+
+Follow these skills literally when building or extending a list.
