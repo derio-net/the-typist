@@ -3894,12 +3894,16 @@ records:
       - context
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 534
     noun:
       gender: m
       plural: Kontexte
+    examples:
+      - { de: "Man muss das Zitat im Kontext lesen.", en: "You have to read the quote in context.", tags: [singular, Präsens] }
+      - { de: "In welchem Kontext hast du das Wort gehört?", en: "In what context did you hear the word?", tags: [singular, Perfekt] }
+      - { de: "Das Wort hat in verschiedenen Kontexten unterschiedliche Bedeutungen.", en: "The word has different meanings in different contexts.", tags: [plural, Präsens] }
   - id: noun-etikette
     type: noun
     lemma: Etikette
@@ -3907,12 +3911,16 @@ records:
       - etiquette
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 536
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Bei Geschäftsessen gilt eine strenge Etikette.", en: "A strict etiquette applies at business dinners.", tags: [singular, Präsens] }
+      - { de: "Er kennt sich mit der Etikette am Hof nicht aus.", en: "He's not familiar with court etiquette.", tags: [singular, Präsens] }
+      - { de: "Gegen die Etikette verstieß sie, als sie zuerst zu essen begann.", en: "She broke etiquette when she started eating first.", tags: [singular, Präteritum] }
   - id: verb-abbrechen
     type: verb
     lemma: abbrechen
@@ -11873,9 +11881,17 @@ records:
       - formal
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 462
+    adjective:
+      gradable: true
+      comparative: "formeller"
+      superlative: "am formellsten"
+    examples:
+      - { de: "Wir haben einen formellen Antrag gestellt.", en: "We have submitted a formal application.", tags: [attributive, Perfekt] }
+      - { de: "Der Ton in dieser Firma ist formeller als bei uns.", en: "The tone in this company is more formal than with us.", tags: [comparative, Präsens] }
+      - { de: "Die Einladung war sehr formell formuliert.", en: "The invitation was worded very formally.", tags: [Präteritum] }
   - id: adjective-informell
     type: adjective
     lemma: informell
@@ -11883,9 +11899,17 @@ records:
       - informal
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 462
+    adjective:
+      gradable: true
+      comparative: "informeller"
+      superlative: "am informellsten"
+    examples:
+      - { de: "Nach dem Vortrag gab es ein informelles Treffen.", en: "After the talk there was an informal get-together.", tags: [attributive, Präteritum] }
+      - { de: "In Start-ups geht es meist informeller zu als in Banken.", en: "Things are usually more informal in start-ups than in banks.", tags: [comparative, Präsens] }
+      - { de: "Wir haben uns ganz informell auf einen Kaffee getroffen.", en: "We met quite informally for a coffee.", tags: [Perfekt] }
   - id: phrase-sehr-geehrte-damen-und-herren
     type: phrase
     lemma: Sehr geehrte Damen und Herren,
@@ -11893,10 +11917,16 @@ records:
       - Dear Sir/Madam (formal)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 468
     source_note: "source: Sehr geehrte(r)..."
+    phrase:
+      register: formal
+    examples:
+      - { de: "Sehr geehrte Damen und Herren, hiermit bewerbe ich mich um die Stelle.", en: "Dear Sir or Madam, I hereby apply for the position.", tags: [Präsens] }
+      - { de: "Sehr geehrte Damen und Herren, vielen Dank für Ihre Anfrage.", en: "Dear Sir or Madam, thank you very much for your enquiry.", tags: [] }
+      - { de: "Wenn man den Namen nicht kennt, schreibt man „Sehr geehrte Damen und Herren“.", en: "If you don't know the name, you write \"Dear Sir or Madam\".", tags: [Präsens] }
   - id: phrase-liebe-anna-lieber-max
     type: phrase
     lemma: Liebe Anna, lieber Max,
@@ -11904,10 +11934,16 @@ records:
       - Dear (informal)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 470
     source_note: "source: Liebe(r)..."
+    phrase:
+      register: informal
+    examples:
+      - { de: "Liebe Anna, lieber Max, vielen Dank für eure Einladung!", en: "Dear Anna, dear Max, thanks a lot for your invitation!", tags: [] }
+      - { de: "Liebe Anna, lieber Max, wie geht es euch?", en: "Dear Anna, dear Max, how are you?", tags: [Präsens] }
+      - { de: "An Freunde schreibt man „Liebe Anna“ oder „Lieber Max“.", en: "To friends you write \"Liebe Anna\" or \"Lieber Max\".", tags: [Präsens] }
   - id: phrase-mit-freundlichen-gruessen
     type: phrase
     lemma: Mit freundlichen Grüßen
@@ -11915,9 +11951,15 @@ records:
       - Yours sincerely (formal closing)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 472
+    phrase:
+      register: formal
+    examples:
+      - { de: "Vergessen Sie am Ende nicht „Mit freundlichen Grüßen“.", en: "Don't forget \"Yours sincerely\" at the end.", tags: [Imperativ] }
+      - { de: "Ich beende den Brief mit „Mit freundlichen Grüßen“.", en: "I end the letter with \"Yours sincerely\".", tags: [Präsens] }
+      - { de: "In formellen E-Mails steht am Ende meistens „Mit freundlichen Grüßen“.", en: "Formal emails usually end with \"Yours sincerely\".", tags: [Präsens] }
   - id: phrase-viele-gruesse
     type: phrase
     lemma: Viele Grüße
@@ -11925,9 +11967,15 @@ records:
       - Best regards (neutral/informal)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 474
+    phrase:
+      register: neutral
+    examples:
+      - { de: "Viele Grüße aus dem sonnigen Berlin!", en: "Best regards from sunny Berlin!", tags: [] }
+      - { de: "Ich schicke dir viele Grüße von meiner Mutter.", en: "I'm sending you best wishes from my mother.", tags: [Präsens] }
+      - { de: "Viele Grüße und bis Montag!", en: "Best regards and see you on Monday!", tags: [] }
   - id: noun-herr
     type: noun
     lemma: Herr
@@ -11936,13 +11984,17 @@ records:
       - gentleman
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 482
       - 484
     noun:
       gender: m
       plural: Herren
+    examples:
+      - { de: "Herr Schneider ist heute leider nicht im Büro.", en: "Unfortunately Mr Schneider is not in the office today.", tags: [singular, Präsens] }
+      - { de: "Ein älterer Herr hat mir den Weg erklärt.", en: "An elderly gentleman explained the way to me.", tags: [singular, Perfekt] }
+      - { de: "Die Herren werden gebeten, ein Sakko zu tragen.", en: "The gentlemen are asked to wear a jacket.", tags: [plural, Passiv] }
   - id: noun-frau
     type: noun
     lemma: Frau
@@ -11950,12 +12002,16 @@ records:
       - Mrs
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 482
     noun:
       gender: f
       plural: Frauen
+    examples:
+      - { de: "Frau Dr. Klein erwartet Sie im Besprechungsraum.", en: "Dr Klein is expecting you in the meeting room.", tags: [singular, Präsens] }
+      - { de: "Ich habe gestern mit Frau Yilmaz telefoniert.", en: "I spoke to Mrs Yilmaz on the phone yesterday.", tags: [singular, Perfekt] }
+      - { de: "Immer mehr Frauen gründen ein eigenes Unternehmen.", en: "More and more women are starting their own businesses.", tags: [plural, Präsens] }
   - id: noun-dame
     type: noun
     lemma: Dame
@@ -11963,12 +12019,16 @@ records:
       - lady
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 484
     noun:
       gender: f
       plural: Damen
+    examples:
+      - { de: "Die Dame am Empfang war sehr freundlich.", en: "The lady at reception was very friendly.", tags: [singular, Präteritum] }
+      - { de: "Meine Damen und Herren, ich begrüße Sie herzlich.", en: "Ladies and gentlemen, I welcome you warmly.", tags: [plural, Präsens] }
+      - { de: "Können Sie der Dame bitte helfen?", en: "Could you help the lady, please?", tags: [singular, Präsens] }
   - id: noun-absage
     type: noun
     lemma: Absage
@@ -11976,12 +12036,16 @@ records:
       - rejection (of appointment)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 494
     noun:
       gender: f
       plural: Absagen
+    examples:
+      - { de: "Leider habe ich auf meine Bewerbung eine Absage bekommen.", en: "Unfortunately I received a rejection for my application.", tags: [singular, Perfekt] }
+      - { de: "Nach zwanzig Absagen hat er endlich eine Stelle gefunden.", en: "After twenty rejections he finally found a job.", tags: [plural, Perfekt] }
+      - { de: "Die Absage des Termins kam sehr kurzfristig.", en: "The cancellation of the appointment came at very short notice.", tags: [singular, Präteritum] }
   - id: noun-zusage
     type: noun
     lemma: Zusage
@@ -11989,12 +12053,16 @@ records:
       - confirmation (of appointment)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 494
     noun:
       gender: f
       plural: Zusagen
+    examples:
+      - { de: "Ich habe heute die Zusage für die Wohnung bekommen!", en: "Today I got confirmation for the flat!", tags: [singular, Perfekt] }
+      - { de: "Bisher haben wir dreißig Zusagen für die Feier.", en: "So far we have thirty acceptances for the party.", tags: [plural, Präsens] }
+      - { de: "Bitte geben Sie uns bis Freitag Ihre Zusage.", en: "Please confirm by Friday.", tags: [singular, Imperativ] }
   - id: verb-absagen
     type: verb
     lemma: absagen
@@ -12002,9 +12070,22 @@ records:
       - to cancel
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 496
+    verb:
+      separable: ab
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "sagt ab"
+        praeteritum: "sagte ab"
+        partizip2: "abgesagt"
+    examples:
+      - { de: "Ich muss den Termin leider absagen.", en: "Unfortunately I have to cancel the appointment.", tags: [Präsens] }
+      - { de: "Wegen des Regens wurde das Konzert abgesagt.", en: "The concert was cancelled because of the rain.", tags: [Passiv, Präteritum] }
+      - { de: "Sie sagte die Reise in letzter Minute ab.", en: "She cancelled the trip at the last minute.", tags: [separated, Präteritum] }
+      - { de: "Er hat mir gestern abgesagt.", en: "He cancelled on me yesterday.", tags: [Perfekt] }
   - id: verb-zusagen
     type: verb
     lemma: zusagen
@@ -12012,9 +12093,21 @@ records:
       - to confirm
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 496
+    verb:
+      separable: zu
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "sagt zu"
+        praeteritum: "sagte zu"
+        partizip2: "zugesagt"
+    examples:
+      - { de: "Ich sage Ihnen gern für Donnerstag zu.", en: "I'm happy to confirm Thursday with you.", tags: [separated, Präsens] }
+      - { de: "Die Firma hat mir die Stelle schriftlich zugesagt.", en: "The company confirmed the job in writing.", tags: [Perfekt] }
+      - { de: "Fast alle Gäste sagten sofort zu.", en: "Almost all guests accepted immediately.", tags: [separated, Präteritum] }
   - id: phrase-entschuldigen-sie-bitte
     type: phrase
     lemma: Entschuldigen Sie bitte!
@@ -12023,10 +12116,16 @@ records:
       - sorry (formal)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 508
     source_note: "source: entschuldigen Sie..."
+    phrase:
+      register: formal
+    examples:
+      - { de: "Entschuldigen Sie bitte, wo ist der Bahnhof?", en: "Excuse me, where is the station?", tags: [] }
+      - { de: "Entschuldigen Sie bitte die Verspätung!", en: "Please excuse the delay!", tags: [Imperativ] }
+      - { de: "Entschuldigen Sie bitte, ist dieser Platz noch frei?", en: "Excuse me, is this seat free?", tags: [Präsens] }
   - id: phrase-koennten-sie-mir-bitte-helfen
     type: phrase
     lemma: Könnten Sie mir bitte helfen?
@@ -12034,10 +12133,16 @@ records:
       - Could you please help me? (formal request)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 510
     source_note: "source: Könnten Sie bitte...?"
+    phrase:
+      register: formal
+    examples:
+      - { de: "Entschuldigung, könnten Sie mir bitte helfen?", en: "Excuse me, could you please help me?", tags: [Konjunktiv II] }
+      - { de: "Könnten Sie mir bitte helfen? Der Koffer ist zu schwer.", en: "Could you please help me? The suitcase is too heavy.", tags: [Konjunktiv II] }
+      - { de: "Ich fragte die Nachbarin: „Könnten Sie mir bitte helfen?“", en: "I asked the neighbour, \"Could you please help me?\"", tags: [Präteritum, Konjunktiv II] }
   - id: phrase-waeren-sie-so-freundlich-mir-zu-helfen
     type: phrase
     lemma: Wären Sie so freundlich, mir zu helfen?
@@ -12045,10 +12150,16 @@ records:
       - Would you be so kind as to help me?
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 512
     source_note: "source: Wären Sie so freundlich...?"
+    phrase:
+      register: formal
+    examples:
+      - { de: "Wären Sie so freundlich, mir zu helfen? Ich finde den Eingang nicht.", en: "Would you be so kind as to help me? I can't find the entrance.", tags: [Konjunktiv II] }
+      - { de: "Entschuldigung, wären Sie so freundlich, mir zu helfen?", en: "Excuse me, would you be so kind as to help me?", tags: [Konjunktiv II] }
+      - { de: "Mit „Wären Sie so freundlich, mir zu helfen?“ klingt man sehr höflich.", en: "With \"Wären Sie so freundlich, mir zu helfen?\" you sound very polite.", tags: [Präsens] }
   - id: phrase-darf-ich-sie-um-etwas-bitten
     type: phrase
     lemma: Darf ich Sie um etwas bitten?
@@ -12056,10 +12167,16 @@ records:
       - May I ask you something?
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 514
     source_note: "source: Darf ich Sie bitten...?"
+    phrase:
+      register: formal
+    examples:
+      - { de: "Darf ich Sie um etwas bitten? Könnten Sie das Fenster schließen?", en: "May I ask you something? Could you close the window?", tags: [Präsens, Konjunktiv II] }
+      - { de: "Frau Wagner, darf ich Sie um etwas bitten?", en: "Ms Wagner, may I ask you a favour?", tags: [Präsens] }
+      - { de: "Darf ich Sie um etwas bitten, bevor Sie gehen?", en: "May I ask you something before you go?", tags: [Präsens] }
   - id: verb-duerfen
     type: verb
     lemma: dürfen
@@ -12067,10 +12184,22 @@ records:
       - may, to be allowed to (polite requests)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 516
     source_note: "source: dürfen / möchten / könnten – modal verbs for polite requests"
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "darf"
+        praeteritum: "durfte"
+        partizip2: "gedurft"
+    examples:
+      - { de: "Darf ich Sie kurz stören?", en: "May I disturb you for a moment?", tags: [Präsens] }
+      - { de: "Dürfte ich Ihr Telefon kurz benutzen?", en: "Might I use your phone for a moment?", tags: [Konjunktiv II] }
+      - { de: "Als Kind durfte ich nie lange aufbleiben.", en: "As a child I was never allowed to stay up late.", tags: [Präteritum] }
+      - { de: "Das hat er nicht gedurft.", en: "He wasn't allowed to do that.", tags: [Perfekt] }
   - id: verb-moegen
     type: verb
     lemma: mögen
@@ -12078,10 +12207,22 @@ records:
       - would like (möchten, polite requests)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 516
     source_note: "source: dürfen / möchten / könnten – modal verbs for polite requests"
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "mag"
+        praeteritum: "mochte"
+        partizip2: "gemocht"
+    examples:
+      - { de: "Ich möchte gern einen Termin vereinbaren.", en: "I would like to make an appointment.", tags: [Konjunktiv II] }
+      - { de: "Möchten Sie etwas trinken?", en: "Would you like something to drink?", tags: [Konjunktiv II] }
+      - { de: "Ich mag keine langen Besprechungen.", en: "I don't like long meetings.", tags: [Präsens] }
+      - { de: "Meinen alten Chef habe ich nie gemocht.", en: "I never liked my old boss.", tags: [Perfekt] }
   - id: verb-koennen
     type: verb
     lemma: können
@@ -12089,10 +12230,22 @@ records:
       - could (könnten, polite requests)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 516
     source_note: "source: dürfen / möchten / könnten – modal verbs for polite requests"
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "kann"
+        praeteritum: "konnte"
+        partizip2: "gekonnt"
+    examples:
+      - { de: "Könnten Sie bitte etwas langsamer sprechen?", en: "Could you speak a little more slowly, please?", tags: [Konjunktiv II] }
+      - { de: "Kannst du mir morgen beim Umzug helfen?", en: "Can you help me move tomorrow?", tags: [Präsens] }
+      - { de: "Wir haben die Aufgabe leider nicht lösen können.", en: "Unfortunately we weren't able to solve the task.", tags: [Perfekt] }
+      - { de: "Gestern konnte ich wegen des Lärms nicht schlafen.", en: "Yesterday I couldn't sleep because of the noise.", tags: [Präteritum] }
   - id: adjective-angemessen
     type: adjective
     lemma: angemessen
@@ -12100,9 +12253,17 @@ records:
       - appropriate
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 522
+    adjective:
+      gradable: true
+      comparative: "angemessener"
+      superlative: "am angemessensten"
+    examples:
+      - { de: "Bitte tragen Sie zum Vorstellungsgespräch angemessene Kleidung.", en: "Please wear appropriate clothing to the interview.", tags: [attributive, Imperativ] }
+      - { de: "Eine kurze E-Mail wäre hier angemessener als ein Anruf.", en: "A short email would be more appropriate here than a call.", tags: [comparative, Konjunktiv II] }
+      - { de: "Die Reaktion des Chefs war nicht angemessen.", en: "The boss's reaction was not appropriate.", tags: [Präteritum] }
   - id: phrase-etwas-auf-dem-schirm-haben
     type: phrase
     lemma: etwas auf dem Schirm haben
