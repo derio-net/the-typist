@@ -225,19 +225,23 @@ in forms ships is `, `, so it can be typed on any keyboard.
 
 ### World and waves (`src/engine/World`)
 
-- The world runs a fixed 60 Hz step. Motherships fall straight toward the
-  player. Their speed rises per wave, and long texts fall more slowly (speed
-  divided by the square root of length over a reference length).
-- Destroying a mothership breaks it up. Its forms ship (if any) and its
-  escorts burst out of the wreck: each child gets a random sideways velocity
-  and a short upward kick that decays. After that the children drift down at
-  one shared, slower speed.
-- Children bounce off the left and right screen edges, and off each other
-  horizontally, so sentences stay readable. The locked ship is drawn on top.
-  No child spawns closer to the player than a minimum reaction distance.
+- The world runs a fixed 60 Hz step. Only one Record is on screen at a time:
+  a wave's motherships arrive one after another, and the next one enters only
+  when every ship of the current Record has been destroyed or has escaped.
+- The mothership falls straight toward the player. Speed rises per wave, and
+  long texts fall more slowly (speed divided by the square root of length over
+  a reference length).
+- Destroying the mothership breaks it up. Its forms ship (if any) and its
+  escorts burst out of the wreck, each in its own horizontal band: the
+  children are stacked as rows and given one strong upward kick that decays.
+  After that they drift down together at one shared speed, so rows never
+  cross. Each child slides slowly sideways at a random speed and bounces only
+  off the left and right screen edges.
+- The stack is placed so that the kick never lifts the top row into the HUD
+  and the bottom row starts at least a minimum reaction distance above the
+  player.
 - All randomness comes from a seeded generator passed into the World, so tests
-  are deterministic. Every motion constant (speeds, burst velocities, kick
-  decay, reaction distance) lives in one tunable block.
+  are deterministic. Every motion constant lives in one tunable block.
 - A ship reaching the player costs a life (default 3), and the session ends
   at 0 lives. Score depends on characters and accuracy.
 - A wave ends when all its Records are resolved. Each Record is graded once,

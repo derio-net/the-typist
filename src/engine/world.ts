@@ -21,15 +21,16 @@ export const WORLD = {
   minReactionS: 3,
   /** Top margin for ship centres (keeps clear of the HUD). */
   minY: 30,
-  /** Candidate grid for child placement. */
-  slotStepX: 20,
-  slotStepY: 15,
-  /** Break-up: children leave the wreck with a random sideways speed in this range (px/s)... */
-  burstMinVx: 40,
-  burstMaxVx: 110,
-  /** ...and an upward kick (px/s) that decays with this time constant (s). */
-  burstKick: 70,
-  kickDecayS: 0.4,
+  /** Where a mothership enters. */
+  entryY: 40,
+  /** Break-up: each child slides sideways at a random speed in this range (px/s)... */
+  burstMinVx: 8,
+  burstMaxVx: 22,
+  /** ...after one shared upward kick (px/s) that decays with this time constant (s). */
+  burstKick: 220,
+  kickDecayS: 0.45,
+  /** Vertical gap between the children's bands. */
+  bandGap: 6,
 } as const;
 
 /** Pixel width of `text` in a theme font; ship text includes the hull padding. */
@@ -76,7 +77,6 @@ export function shipBounds(s: WorldShip): Bounds {
   };
 }
 
-const overlaps = (a: Bounds, b: Bounds) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
 
 export interface RecordStats {
   typos: number;
@@ -118,6 +118,8 @@ export interface World {
   minReactionS: number;
   /** Seeded PRNG state: all randomness in the world comes from here. */
   rng: number;
+  /** Records whose mothership has not entered yet, in order. */
+  queue: string[];
 }
 
 export interface WorldOptions {
@@ -145,7 +147,6 @@ export function shipSpeed(length: number, wave: number): number {
   return (WORLD.baseSpeed * (1 + WORLD.speedPerWave * wave)) / factor;
 }
 
-const clamp = (v: number, lo: number, hi: number) => (lo > hi ? (lo + hi) / 2 : Math.min(hi, Math.max(lo, v)));
 
 function rowsBelow(kind: ShipKind, hasLabel: boolean): number {
   if (kind === 'mothership') return hasLabel ? sizes.glossGap + sizes.glossHeight : 0;
@@ -162,29 +163,26 @@ function makeShip(
   return { id, recordId, kind, text, x, y, speed: shipSpeed(text.length, wave), vx: 0, vy: 0, w, below: rowsBelow(kind, !!extra.label), ...extra };
 }
 
-/** A new wave: every record's mothership is on screen, in staggered lanes. */
+/** A new wave: the first record's mothership enters; the rest wait in the queue (one record on screen at a time). */
 export function createWorld(records: VocabRecord[], opts: WorldOptions = {}): World {
   const wave = opts.wave ?? 0;
   const measure = opts.measure ?? defaultMeasure;
-  const n = records.length;
-  const ships = records.map((r, i) =>
-    makeShip(measure, `${r.id}:m`, r.id, 'mothership', displayForm(r), ((i + 1) / (n + 1)) * WORLD.width, 40 + (i % 3) * 45, wave, {
-      label: r.gloss.join('; '),
-    }),
-  );
-  return {
+  const w: Draft = {
     time: 0, acc: 0, wave, lives: opts.lives ?? WORLD.lives, score: 0, status: 'playing',
-    ships,
-    typing: createTyping(ships.map((s) => ({ id: s.id, recordId: s.recordId, text: s.text, y: s.y }))),
+    ships: [],
+    typing: createTyping([]),
     records: Object.fromEntries(
-      records.map((r) => [r.id, { record: r, open: 1, stats: { typos: 0, expectedChars: 0, activeMs: 0, escaped: false } }]),
+      records.map((r) => [r.id, { record: r, open: 0, stats: { typos: 0, expectedChars: 0, activeMs: 0, escaped: false } }]),
     ),
     results: {},
     events: [],
     measure,
     minReactionS: opts.minReactionS ?? WORLD.minReactionS,
     rng: opts.seed ?? 1,
+    queue: records.map((r) => r.id),
   };
+  enterNext(w);
+  return { ...w, events: [] };
 }
 
 interface Draft extends World {}
@@ -197,30 +195,20 @@ function spawn(w: Draft, ship: WorldShip) {
   w.events.push({ type: 'spawned', shipId: ship.id, kind: ship.kind });
 }
 
-/**
- * Nearest free slot to (px, py): the child's whole box must stay on the canvas,
- * clear of every live ship, and keep its centre `maxY` or higher. If no slot is
- * free, falls back to the top row.
- */
-function findSlot(w: Draft, child: WorldShip, px: number, py: number): { x: number; y: number } {
-  const maxY = Math.max(WORLD.minY, WORLD.playerY - child.speed * w.minReactionS);
-  const lo = child.w / 2;
-  const hi = WORLD.width - child.w / 2;
-  const xs: number[] = lo > hi ? [WORLD.width / 2] : [];
-  if (lo <= hi) for (let x = lo; x <= hi; x += WORLD.slotStepX) xs.push(x);
-  const others = w.ships.map(shipBounds);
-  let best: { x: number; y: number; d: number } | null = null;
-  for (let y = WORLD.minY; y <= maxY; y += WORLD.slotStepY) {
-    for (const x of xs) {
-      const d = (x - px) ** 2 + (y - py) ** 2;
-      if (best && d >= best.d) continue;
-      const box = shipBounds({ ...child, x, y });
-      if (others.some((o) => overlaps(box, o))) continue;
-      best = { x, y, d };
-    }
-  }
-  if (best) return best;
-  return { x: clamp(px, lo, hi), y: WORLD.minY };
+/** The next queued record's mothership enters at the top, at a random x. */
+function enterNext(w: Draft) {
+  const id = w.queue[0];
+  if (id === undefined) return;
+  w.queue = w.queue.slice(1);
+  const r = w.records[id].record;
+  const m = makeShip(w.measure, `${r.id}:m`, r.id, 'mothership', displayForm(r), 0, WORLD.entryY, w.wave, {
+    label: r.gloss.join('; '),
+  });
+  let u: number;
+  [u, w.rng] = random(w.rng);
+  const lo = m.w / 2;
+  const hi = WORLD.width - m.w / 2;
+  spawn(w, { ...m, x: lo > hi ? WORLD.width / 2 : lo + u * (hi - lo) });
 }
 
 function spawnChildren(w: Draft, m: WorldShip) {
@@ -235,23 +223,27 @@ function spawnChildren(w: Draft, m: WorldShip) {
       ...(chip ? { chip } : {}),
     }));
   });
-  // Siblings descend together at the group's slowest speed, so a short ship never overtakes a long one.
+  if (children.length === 0) return;
+  // One shared speed and kick, so the bands move as one and never cross.
   const speed = Math.min(...children.map((c) => c.speed));
-  for (const child of children) {
-    const same = { ...child, speed };
-    const at = findSlot(w, same, m.x, m.y);
-    // Burst away from the wreck; a child placed straight above/below picks a random side.
-    let r: number;
-    [r, w.rng] = random(w.rng);
-    let dir = Math.sign(at.x - m.x);
-    if (dir === 0) {
-      let side: number;
-      [side, w.rng] = random(w.rng);
-      dir = side < 0.5 ? -1 : 1;
-    }
-    const vx = dir * (WORLD.burstMinVx + r * (WORLD.burstMaxVx - WORLD.burstMinVx));
-    spawn(w, { ...same, ...at, vx, vy: -WORLD.burstKick });
-  }
+  const heights = children.map((c) => sizes.shipHeight + c.below);
+  const stack = heights.reduce((a, h) => a + h, 0) + WORLD.bandGap * (children.length - 1);
+  const rise = WORLD.burstKick * WORLD.kickDecayS; // total upward travel of the kick
+  const topLimit = WORLD.minY + rise; // the kick must not lift the top row into the HUD
+  const bottomLimit = WORLD.playerY - speed * w.minReactionS - heights[heights.length - 1] + sizes.shipHeight / 2;
+  let top = m.y - stack / 2 + sizes.shipHeight / 2;
+  top = Math.max(top, topLimit);
+  top = Math.min(top, bottomLimit - (stack - heights[heights.length - 1]));
+  let y = top;
+  children.forEach((child, k) => {
+    let u: number;
+    let side: number;
+    [u, w.rng] = random(w.rng);
+    [side, w.rng] = random(w.rng);
+    const vx = (side < 0.5 ? -1 : 1) * (WORLD.burstMinVx + u * (WORLD.burstMaxVx - WORLD.burstMinVx));
+    spawn(w, keepInside({ ...child, speed, x: m.x, y, vx, vy: -WORLD.burstKick }));
+    y += heights[k] + WORLD.bandGap;
+  });
 }
 
 /** Marks one of the record's ships as done; resolves the record when it was the last. */
@@ -266,6 +258,7 @@ function shipDone(w: Draft, recordId: string, patch: Partial<RecordStats>, add: 
   if (rs.open - 1 === 0) {
     w.results[recordId] = stats;
     w.events.push({ type: 'resolved', recordId, stats });
+    if (w.lives > 0) enterNext(w);
   }
 }
 
@@ -274,7 +267,7 @@ function finish(w: Draft): World {
     if (w.lives <= 0) {
       w.status = 'game-over';
       w.events.push({ type: 'game-over' });
-    } else if (Object.values(w.records).every((r) => r.open === 0)) {
+    } else if (w.queue.length === 0 && Object.values(w.records).every((r) => r.open === 0)) {
       w.status = 'wave-complete';
       w.events.push({ type: 'wave-complete' });
     }
@@ -283,7 +276,7 @@ function finish(w: Draft): World {
 }
 
 const draft = (w: World): Draft => ({
-  ...w, ships: [...w.ships], records: { ...w.records }, results: { ...w.results }, events: [],
+  ...w, ships: [...w.ships], records: { ...w.records }, results: { ...w.results }, queue: [...w.queue], events: [],
 });
 
 /** One fixed step: ships descend; any ship reaching the player line escapes. */
@@ -295,9 +288,8 @@ export function tick(world: World): World {
   const decay = Math.exp(-dt / WORLD.kickDecayS);
   w.ships = w.ships.map((s) => {
     const vy = s.vy * decay;
-    return { ...s, x: s.x + s.vx * dt, vy, y: Math.max(WORLD.minY, s.y + (s.speed + vy) * dt) };
+    return keepInside({ ...s, x: s.x + s.vx * dt, vy, y: s.y + (s.speed + vy) * dt });
   });
-  bounce(w);
   const ys: Record<string, number> = {};
   for (const s of w.ships) ys[s.id] = s.y;
   w.typing = setPositions(w.typing, ys);
@@ -319,37 +311,6 @@ function keepInside(s: WorldShip): WorldShip {
   if (s.x < lo) return { ...s, x: lo, vx: Math.abs(s.vx) };
   if (s.x > hi) return { ...s, x: hi, vx: -Math.abs(s.vx) };
   return s;
-}
-
-/**
- * Edge and ship-to-ship bounces. Overlapping pairs (at least one child) are
- * pushed apart horizontally and sent away from each other; a mothership is an
- * immovable obstacle that only the child bounces off.
- */
-function bounce(w: Draft) {
-  const ships = w.ships.map(keepInside);
-  for (let i = 0; i < ships.length; i++) {
-    for (let j = i + 1; j < ships.length; j++) {
-      let a = ships[i];
-      let b = ships[j];
-      if (a.kind === 'mothership' && b.kind === 'mothership') continue;
-      const [ba, bb] = [shipBounds(a), shipBounds(b)];
-      if (!overlaps(ba, bb)) continue;
-      const leftFirst = a.x <= b.x;
-      const overlap = Math.min(ba.x1, bb.x1) - Math.max(ba.x0, bb.x0) + 0.01;
-      const away = (s: WorldShip, left: boolean, by: number) =>
-        ({ ...s, x: s.x + (left ? -by : by), vx: left ? -Math.abs(s.vx) : Math.abs(s.vx) });
-      if (a.kind === 'mothership') b = away(b, !leftFirst, overlap);
-      else if (b.kind === 'mothership') a = away(a, leftFirst, overlap);
-      else {
-        a = away(a, leftFirst, overlap / 2);
-        b = away(b, !leftFirst, overlap / 2);
-      }
-      ships[i] = keepInside(a);
-      ships[j] = keepInside(b);
-    }
-  }
-  w.ships = ships;
 }
 
 /** Runs as many whole 60 Hz steps as `elapsedMs` allows, carrying the remainder. */
