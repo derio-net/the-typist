@@ -1,0 +1,25 @@
+schema_version: 8
+run: 2026-10-05-feat-vocab-typer-plan2
+workflow: fr-goal@1
+branch: feat/vocab-typer-plan2
+started: '2026-10-05T21:27:24+00:00'
+cursor: brainstorm
+steps:
+  brainstorm:
+    state: pending
+  spec-review:
+    state: pending
+  plan:
+    state: pending
+  plan-review:
+    state: pending
+  implement:
+    state: pending
+    members:
+    - implement-phase
+    - review-phase
+  journal-check:
+    state: pending
+  deliver:
+    state: pending
+driver: standalone
