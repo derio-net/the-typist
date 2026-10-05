@@ -12156,7 +12156,7 @@ records:
       gender: f
       plural: null
     examples:
-      - { de: "Die Pressefreiheit ist ein Grundpfeiler der Demokratie.", en: "Freedom of the press is a cornerstone of democracy.", tags: [singular, Präsens] }
+      - { de: "Ohne Pressefreiheit gibt es keine echte Demokratie.", en: "Without freedom of the press there is no real democracy.", tags: [singular, Präsens] }
       - { de: "In vielen Ländern wird die Pressefreiheit eingeschränkt.", en: "In many countries freedom of the press is restricted.", tags: [singular, Passiv, Präsens] }
       - { de: "Journalisten demonstrierten für die Pressefreiheit.", en: "Journalists demonstrated for freedom of the press.", tags: [singular, Präteritum] }
   - id: noun-asylrecht
@@ -12968,7 +12968,7 @@ records:
       plural: Verspätungen
     examples:
       - { de: "Der Zug hat zwanzig Minuten Verspätung.", en: "The train is twenty minutes late.", tags: [singular, Präsens] }
-      - { de: "Entschuldigen Sie bitte die Verspätung!", en: "Please excuse the delay!", tags: [singular, Imperativ] }
+      - { de: "Wir bitten, die Verspätung zu entschuldigen.", en: "We apologise for the delay.", tags: [singular, Präsens] }
       - { de: "Ständige Verspätungen ärgern die Pendler.", en: "Constant delays annoy commuters.", tags: [plural, Präsens] }
   - id: noun-stau
     type: noun
@@ -14751,7 +14751,7 @@ records:
     examples:
       - { de: "Den Klimawandel kann man nur durch internationale Zusammenarbeit bremsen.", en: "Climate change can only be slowed through international cooperation.", tags: [singular, Präsens] }
       - { de: "Die internationale Zusammenarbeit in der Forschung hat sich bewährt.", en: "International cooperation in research has proved its worth.", tags: [singular, Perfekt] }
-      - { de: "Ohne internationale Zusammenarbeit wäre der Impfstoff nicht so schnell entwickelt worden.", en: "Without international cooperation, the vaccine would not have been developed so quickly.", tags: [singular, Konjunktiv II, Passiv] }
+      - { de: "Ohne internationale Zusammenarbeit gäbe es den Impfstoff noch nicht.", en: "Without international cooperation, the vaccine would not exist yet.", tags: [singular, Konjunktiv II] }
   - id: noun-aktivist
     type: noun
     lemma: Aktivist
