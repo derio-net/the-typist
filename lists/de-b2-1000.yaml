@@ -73,12 +73,16 @@ records:
       - faculty
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 6
     noun:
       gender: f
       plural: Fakultäten
+    examples:
+      - { de: "Die Fakultät für Informatik ist sehr beliebt.", en: "The faculty of computer science is very popular.", tags: [singular, Präsens] }
+      - { de: "Sie hat an zwei Fakultäten gleichzeitig studiert.", en: "She studied at two faculties at the same time.", tags: [plural, Perfekt] }
+      - { de: "Der Dekan der Fakultät begrüßte die neuen Studierenden.", en: "The dean of the faculty welcomed the new students.", tags: [singular, Präteritum] }
   - id: noun-institut
     type: noun
     lemma: Institut
@@ -86,12 +90,16 @@ records:
       - institute
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 8
     noun:
       gender: n
       plural: Institute
+    examples:
+      - { de: "Das Institut sucht eine neue wissenschaftliche Hilfskraft.", en: "The institute is looking for a new research assistant.", tags: [singular, Präsens] }
+      - { de: "Mehrere Institute arbeiten an diesem Projekt zusammen.", en: "Several institutes are working together on this project.", tags: [plural, Präsens] }
+      - { de: "Ich habe mein Praktikum an einem Institut für Meeresforschung gemacht.", en: "I did my internship at an institute for marine research.", tags: [singular, Perfekt] }
   - id: noun-bibliothek
     type: noun
     lemma: Bibliothek
@@ -99,12 +107,16 @@ records:
       - library
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 10
     noun:
       gender: f
       plural: Bibliotheken
+    examples:
+      - { de: "Die Bibliothek ist während der Prüfungszeit bis Mitternacht geöffnet.", en: "The library is open until midnight during the exam period.", tags: [singular, Präsens] }
+      - { de: "In vielen Bibliotheken kann man E-Books ausleihen.", en: "In many libraries you can borrow e-books.", tags: [plural, Präsens] }
+      - { de: "Ich habe den ganzen Nachmittag in der Bibliothek gelernt.", en: "I studied in the library all afternoon.", tags: [singular, Perfekt] }
   - id: noun-mensa
     type: noun
     lemma: Mensa
@@ -112,12 +124,16 @@ records:
       - campus cafeteria
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 12
     noun:
       gender: f
       plural: Mensen
+    examples:
+      - { de: "Die Mensa bietet jeden Tag ein vegetarisches Gericht an.", en: "The cafeteria offers a vegetarian dish every day.", tags: [singular, Präsens] }
+      - { de: "Wir haben uns mittags in der Mensa getroffen.", en: "We met in the cafeteria at lunchtime.", tags: [singular, Perfekt] }
+      - { de: "Die Mensen der Universität schließen in den Semesterferien früher.", en: "The university's cafeterias close earlier during the semester break.", tags: [plural, Präsens] }
   - id: noun-hoersaal
     type: noun
     lemma: Hörsaal
@@ -125,12 +141,16 @@ records:
       - lecture hall
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 14
     noun:
       gender: m
       plural: Hörsäle
+    examples:
+      - { de: "Der Hörsaal war bis auf den letzten Platz besetzt.", en: "The lecture hall was full to the last seat.", tags: [singular, Präteritum] }
+      - { de: "Die alten Hörsäle werden im Sommer renoviert.", en: "The old lecture halls are being renovated in the summer.", tags: [plural, Passiv] }
+      - { de: "Die Vorlesung findet im großen Hörsaal statt.", en: "The lecture takes place in the large lecture hall.", tags: [singular, Präsens] }
   - id: noun-kommilitone
     type: noun
     lemma: Kommilitone
@@ -138,7 +158,7 @@ records:
       - fellow student
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 16
     noun:
@@ -148,6 +168,10 @@ records:
         - lemma: Kommilitonin
           gender: f
           plural: Kommilitoninnen
+    examples:
+      - { de: "Mein Kommilitone hat mir seine Notizen geliehen.", en: "My fellow student lent me his notes.", tags: [singular, Perfekt] }
+      - { de: "Mit meinen Kommilitonen lerne ich jeden Donnerstag.", en: "I study with my fellow students every Thursday.", tags: [plural, Präsens] }
+      - { de: "Eine Kommilitonin hat die Diskussion geleitet.", en: "A fellow student led the discussion.", tags: [singular, Perfekt] }
   - id: noun-dozent
     type: noun
     lemma: Dozent
@@ -155,7 +179,7 @@ records:
       - lecturer
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 18
     noun:
@@ -165,6 +189,10 @@ records:
         - lemma: Dozentin
           gender: f
           plural: Dozentinnen
+    examples:
+      - { de: "Der Dozent erklärt die Theorie sehr anschaulich.", en: "The lecturer explains the theory very clearly.", tags: [singular, Präsens] }
+      - { de: "Die Dozenten treffen sich einmal im Monat.", en: "The lecturers meet once a month.", tags: [plural, Präsens] }
+      - { de: "Ich habe die Dozentin nach der Stunde um Rat gefragt.", en: "I asked the lecturer for advice after class.", tags: [singular, Perfekt] }
   - id: noun-promotion
     type: noun
     lemma: Promotion
@@ -172,12 +200,16 @@ records:
       - doctorate
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 20
     noun:
       gender: f
       plural: Promotionen
+    examples:
+      - { de: "Nach der Promotion möchte sie in der Forschung bleiben.", en: "After her doctorate she wants to stay in research.", tags: [singular, Präsens] }
+      - { de: "Seine Promotion hat fast fünf Jahre gedauert.", en: "His doctorate took almost five years.", tags: [singular, Perfekt] }
+      - { de: "Die Zahl der Promotionen ist leicht gestiegen.", en: "The number of doctorates has risen slightly.", tags: [plural, Perfekt] }
   - id: noun-doktorand
     type: noun
     lemma: Doktorand
@@ -185,7 +217,7 @@ records:
       - PhD candidate
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 22
     noun:
@@ -195,6 +227,10 @@ records:
         - lemma: Doktorandin
           gender: f
           plural: Doktorandinnen
+    examples:
+      - { de: "Der Doktorand stellt seine Ergebnisse im Kolloquium vor.", en: "The PhD candidate presents his results in the colloquium.", tags: [singular, Präsens] }
+      - { de: "Die Professorin betreut zurzeit sechs Doktoranden.", en: "The professor is currently supervising six PhD candidates.", tags: [plural, Präsens] }
+      - { de: "Als Doktorandin hatte sie ein eigenes Büro.", en: "As a PhD candidate she had her own office.", tags: [singular, Präteritum] }
   - id: noun-dissertation
     type: noun
     lemma: Dissertation
@@ -202,12 +238,16 @@ records:
       - dissertation
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 24
     noun:
       gender: f
       plural: Dissertationen
+    examples:
+      - { de: "Ihre Dissertation behandelt die Geschichte der Stadt.", en: "Her dissertation deals with the history of the city.", tags: [singular, Präsens] }
+      - { de: "Er hat seine Dissertation letzte Woche eingereicht.", en: "He submitted his dissertation last week.", tags: [singular, Perfekt] }
+      - { de: "Viele Dissertationen werden heute online veröffentlicht.", en: "Many dissertations are published online today.", tags: [plural, Passiv] }
   - id: noun-lehrstuhl
     type: noun
     lemma: Lehrstuhl
@@ -215,12 +255,16 @@ records:
       - academic chair
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 26
     noun:
       gender: m
       plural: Lehrstühle
+    examples:
+      - { de: "Sie hat den Lehrstuhl für Soziologie übernommen.", en: "She took over the chair of sociology.", tags: [singular, Perfekt] }
+      - { de: "Der Lehrstuhl wird ab Oktober neu besetzt.", en: "The chair will be filled again from October.", tags: [singular, Passiv] }
+      - { de: "An der Universität gibt es drei Lehrstühle für Geschichte.", en: "There are three chairs of history at the university.", tags: [plural, Präsens] }
   - id: noun-kolloquium
     type: noun
     lemma: Kolloquium
@@ -228,12 +272,16 @@ records:
       - colloquium
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 28
     noun:
       gender: n
       plural: Kolloquien
+    examples:
+      - { de: "Im Kolloquium diskutieren wir aktuelle Forschungsarbeiten.", en: "In the colloquium we discuss current research papers.", tags: [singular, Präsens] }
+      - { de: "Das Kolloquium fand dieses Mal online statt.", en: "This time the colloquium took place online.", tags: [singular, Präteritum] }
+      - { de: "Doktoranden müssen regelmäßig an Kolloquien teilnehmen.", en: "PhD candidates have to take part in colloquia regularly.", tags: [plural, Präsens] }
   - id: noun-wissenschaft
     type: noun
     lemma: Wissenschaft
@@ -243,13 +291,17 @@ records:
     categories:
       - academic-and-higher-education
       - science-and-technology
-    status: raw
+    status: enriched
     source_lines:
       - 30
       - 1101
     noun:
       gender: f
       plural: Wissenschaften
+    examples:
+      - { de: "Die Wissenschaft hat auf diese Frage noch keine Antwort.", en: "Science does not yet have an answer to this question.", tags: [singular, Präsens] }
+      - { de: "Sie interessiert sich für die Geschichte der Wissenschaft.", en: "She is interested in the history of science.", tags: [singular, Präsens] }
+      - { de: "Die Wissenschaften haben sich im 19. Jahrhundert stark entwickelt.", en: "The sciences developed strongly in the 19th century.", tags: [plural, Perfekt] }
   - id: noun-wissenschaftler
     type: noun
     lemma: Wissenschaftler
@@ -257,7 +309,7 @@ records:
       - scholar
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 32
     noun:
@@ -267,6 +319,10 @@ records:
         - lemma: Wissenschaftlerin
           gender: f
           plural: Wissenschaftlerinnen
+    examples:
+      - { de: "Ein Wissenschaftler aus Wien leitet das Projekt.", en: "A scientist from Vienna is leading the project.", tags: [singular, Präsens] }
+      - { de: "Die Wissenschaftler warnten vor den Folgen.", en: "The scientists warned of the consequences.", tags: [plural, Präteritum] }
+      - { de: "Die Wissenschaftlerin hat ihre Ergebnisse veröffentlicht.", en: "The scholar published her results.", tags: [singular, Perfekt] }
   - id: verb-publizieren
     type: verb
     lemma: publizieren
@@ -274,9 +330,20 @@ records:
       - to publish
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 34
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "publiziert"
+        praeteritum: "publizierte"
+        partizip2: "publiziert"
+    examples:
+      - { de: "Sie publiziert regelmäßig in internationalen Fachzeitschriften.", en: "She publishes regularly in international journals.", tags: [Präsens] }
+      - { de: "Der Artikel wurde 2021 publiziert.", en: "The article was published in 2021.", tags: [Passiv, Präteritum] }
+      - { de: "Hast du schon einmal etwas publiziert?", en: "Have you ever published anything?", tags: [Perfekt] }
   - id: noun-publikation
     type: noun
     lemma: Publikation
@@ -284,12 +351,16 @@ records:
       - publication
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 36
     noun:
       gender: f
       plural: Publikationen
+    examples:
+      - { de: "Die Publikation erscheint im nächsten Frühjahr.", en: "The publication will come out next spring.", tags: [singular, Präsens] }
+      - { de: "Für die Stelle braucht man mehrere Publikationen.", en: "For the position you need several publications.", tags: [plural, Präsens] }
+      - { de: "In ihrer ersten Publikation ging es um Migration.", en: "Her first publication was about migration.", tags: [singular, Präteritum] }
   - id: noun-referat
     type: noun
     lemma: Referat
@@ -297,12 +368,16 @@ records:
       - presentation
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 38
     noun:
       gender: n
       plural: Referate
+    examples:
+      - { de: "Ich halte nächste Woche ein Referat über Kant.", en: "I am giving a presentation on Kant next week.", tags: [singular, Präsens] }
+      - { de: "Das Referat hat genau zwanzig Minuten gedauert.", en: "The presentation lasted exactly twenty minutes.", tags: [singular, Perfekt] }
+      - { de: "In diesem Seminar müssen alle zwei Referate halten.", en: "In this seminar everyone has to give two presentations.", tags: [plural, Präsens] }
   - id: noun-hausarbeit
     type: noun
     lemma: Hausarbeit
@@ -310,12 +385,16 @@ records:
       - term paper
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 40
     noun:
       gender: f
       plural: Hausarbeiten
+    examples:
+      - { de: "Die Hausarbeit muss bis Ende März abgegeben werden.", en: "The term paper must be handed in by the end of March.", tags: [singular, Passiv] }
+      - { de: "Ich schreibe gerade zwei Hausarbeiten gleichzeitig.", en: "I am writing two term papers at the same time.", tags: [plural, Präsens] }
+      - { de: "Für ihre Hausarbeit hat sie eine gute Note bekommen.", en: "She got a good grade for her term paper.", tags: [singular, Perfekt] }
   - id: noun-bachelorarbeit
     type: noun
     lemma: Bachelorarbeit
@@ -323,12 +402,16 @@ records:
       - bachelor’s thesis
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 42
     noun:
       gender: f
       plural: Bachelorarbeiten
+    examples:
+      - { de: "Meine Bachelorarbeit schreibe ich über erneuerbare Energien.", en: "I am writing my bachelor's thesis on renewable energy.", tags: [singular, Präsens] }
+      - { de: "Er hat die Bachelorarbeit in drei Monaten fertiggestellt.", en: "He finished the bachelor's thesis in three months.", tags: [singular, Perfekt] }
+      - { de: "Die besten Bachelorarbeiten werden jedes Jahr ausgezeichnet.", en: "The best bachelor's theses receive an award every year.", tags: [plural, Passiv] }
   - id: noun-masterarbeit
     type: noun
     lemma: Masterarbeit
@@ -336,12 +419,16 @@ records:
       - master’s thesis
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 44
     noun:
       gender: f
       plural: Masterarbeiten
+    examples:
+      - { de: "Die Masterarbeit wird von zwei Professoren bewertet.", en: "The master's thesis is assessed by two professors.", tags: [singular, Passiv] }
+      - { de: "Sie arbeitete ein halbes Jahr an ihrer Masterarbeit.", en: "She worked on her master's thesis for half a year.", tags: [singular, Präteritum] }
+      - { de: "Viele Masterarbeiten entstehen in Zusammenarbeit mit Firmen.", en: "Many master's theses are written in cooperation with companies.", tags: [plural, Präsens] }
   - id: noun-modul
     type: noun
     lemma: Modul
@@ -349,12 +436,16 @@ records:
       - module
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 46
     noun:
       gender: n
       plural: Module
+    examples:
+      - { de: "Dieses Modul ist für alle Erstsemester verpflichtend.", en: "This module is compulsory for all first-year students.", tags: [singular, Präsens] }
+      - { de: "Ich habe in diesem Semester vier Module belegt.", en: "I have taken four modules this semester.", tags: [plural, Perfekt] }
+      - { de: "Am Ende des Moduls schreiben wir eine Klausur.", en: "At the end of the module we write an exam.", tags: [singular, Präsens] }
   - id: noun-semesterferien
     type: noun
     lemma: Semesterferien
@@ -362,13 +453,17 @@ records:
       - semester break
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 48
     noun:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "In den Semesterferien arbeite ich in einer Bäckerei.", en: "During the semester break I work in a bakery.", tags: [plural, Präsens] }
+      - { de: "Die Semesterferien waren viel zu kurz.", en: "The semester break was far too short.", tags: [plural, Präteritum] }
+      - { de: "Wir sind in den Semesterferien nach Portugal gefahren.", en: "We went to Portugal during the semester break.", tags: [plural, Perfekt] }
   - id: noun-immatrikulation
     type: noun
     lemma: Immatrikulation
@@ -376,12 +471,16 @@ records:
       - enrolment
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 50
     noun:
       gender: f
       plural: Immatrikulationen
+    examples:
+      - { de: "Für die Immatrikulation brauchen Sie Ihr Abiturzeugnis.", en: "For enrolment you need your school-leaving certificate.", tags: [singular, Präsens] }
+      - { de: "Die Immatrikulation ist nur bis zum 15. Oktober möglich.", en: "Enrolment is only possible until 15 October.", tags: [singular, Präsens] }
+      - { de: "Das Büro bearbeitet jedes Jahr tausende Immatrikulationen.", en: "The office processes thousands of enrolments every year.", tags: [plural, Präsens] }
   - id: noun-studienaufenthalt
     type: noun
     lemma: Studienaufenthalt
@@ -389,12 +488,16 @@ records:
       - study abroad stay
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 52
     noun:
       gender: m
       plural: Studienaufenthalte
+    examples:
+      - { de: "Ein Studienaufenthalt im Ausland verbessert die Sprachkenntnisse.", en: "A study stay abroad improves language skills.", tags: [singular, Präsens] }
+      - { de: "Während ihres Studienaufenthalts in Lyon lernte sie Französisch.", en: "During her study stay in Lyon she learned French.", tags: [singular, Präteritum] }
+      - { de: "Die Universität fördert Studienaufenthalte in ganz Europa.", en: "The university funds study stays all over Europe.", tags: [plural, Präsens] }
   - id: noun-austausch
     type: noun
     lemma: Austausch
@@ -402,12 +505,16 @@ records:
       - exchange (program)
     categories:
       - academic-and-higher-education
-    status: raw
+    status: enriched
     source_lines:
       - 54
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der Austausch mit Studierenden aus anderen Ländern war bereichernd.", en: "The exchange with students from other countries was enriching.", tags: [singular, Präteritum] }
+      - { de: "Sie nimmt an einem Austausch mit einer Universität in Japan teil.", en: "She is taking part in an exchange with a university in Japan.", tags: [singular, Präsens] }
+      - { de: "Für den Austausch hat er ein Stipendium bekommen.", en: "He received a scholarship for the exchange.", tags: [singular, Perfekt] }
   - id: noun-zulassung
     type: noun
     lemma: Zulassung
