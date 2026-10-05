@@ -877,3 +877,8 @@ Filed at closeout as #2.
 ### p3-r6-resolved-2 · finding [deferred → #3] · resolves p3-r6: Pending o then precomposed ö stays a typo until e
 
 Filed at closeout as #3.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r12-resolved-2 created=2026-10-05T21:12:16+00:00 state=open resolves=p3-r12 tracked_by=#3 -->
+### p3-r12-resolved-2 · finding [deferred → #3] · resolves p3-r12: ‘ ’ ) not pre-typed
+
+Filed at closeout as #3.
