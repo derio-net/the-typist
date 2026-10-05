@@ -5,6 +5,61 @@ the style block to every asset prompt so the assets share one look. Generate
 one asset per request, because image models rarely keep a whole sprite sheet
 consistent.
 
+## Single-sheet prompt (all assets at once)
+
+Use this when you want one image. The game finds each sprite by its outline
+(alpha or magenta key) rather than by a fixed grid, so what matters is clear
+spacing and the row order below. It doesn't need pixel-exact cells.
+
+> One game sprite sheet on a flat pure-magenta (#FF00FF) background, wide
+> landscape format (about 2048×1536). Every element is separate, with at
+> least 64 px of empty magenta around it; nothing touches or overlaps, and
+> there is no glow or shadow on the background. Style for every element:
+> pre-rendered 3D look like a polished Blender/Octane render, slightly
+> top-down three-quarter view, one key light from the upper left and a soft
+> cyan rim light from the right, glossy painted metal with subtle panel
+> lines, crisp silhouettes readable at small size, clean stylised sci-fi.
+> There is no text, letters, numbers, labels, logos or grid lines anywhere.
+>
+> **Row 1:** a wide, low alien carrier hull about four times wider than tall,
+> in violet and deep purple armour with gold trim. Its fins and glowing
+> engines are ONLY on the left and right end caps. The central 60% is a
+> plain, uniform violet band with an empty dark glass display strip running
+> straight across it.
+>
+> **Row 2:** a sleek diamond-shaped scout hull about four times wider than
+> tall, in teal and cyan, with bright cyan lights only at its pointed left and
+> right tips. Its central 60% is a plain, uniform teal band with an empty dark
+> glass display strip.
+>
+> **Row 3:** a long, slim freighter barge hull about six times wider than
+> tall, in steel blue and slate grey. Its cockpit and amber running lights are
+> only on the end caps. The long central section is a plain, uniform
+> steel-blue band with an empty dark glass display strip.
+>
+> **Row 4, left to right:**
+> 1. a compact mint-green and white turret-fighter pointing straight up, with
+>    a twin cannon and a glowing engine below;
+> 2. a glowing mint plasma bolt pointing up, with a white-hot core and a short
+>    trail;
+> 3. a thin mint-green lock-on reticle made of four corner brackets;
+> 4. four small tumbling hull fragments, one violet, one teal and two steel
+>    blue.
+>
+> **Row 5, left to right:** eight explosion frames of the same blast, growing
+> from a small white flash, to an orange and violet fireball with a shockwave
+> ring and sparks, to fading smoke.
+
+**After generating:**
+1. Save the image as `public/assets/sprites/sheet.png`.
+2. Check that no two elements touch.
+3. Check that the three hulls have plain middles: no rivets or lights in the
+   centre band.
+
+If a hull comes out with details in the middle, regenerate just that hull
+with its single-asset prompt below. Image models tend to be weakest at the
+explosion row; if it's poor, generate the explosion separately on black.
+
 ## Delivery requirements (for every asset)
 
 - **Background:** transparent PNG. If the model can't do alpha, use a flat
