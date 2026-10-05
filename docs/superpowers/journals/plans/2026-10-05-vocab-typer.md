@@ -761,3 +761,94 @@ largest source.
 ### no-refactor-p6-t2 · discovery · no-refactor-because P6.T2 (phase 6)
 
 content-only task: enrichment is targeted per-record YAML edits committed per batch; no code was written, so nothing to clean
+
+<!-- fr:journal kind=finding scope=plan id=p6-r1 created=2026-10-05T20:09:29+00:00 phase=6 state=open review_scope=in -->
+### p6-r1 · finding [open] (reviewer: in scope) · adjective-gerecht tense tag (phase 6)
+
+<!-- fr:journal kind=finding scope=plan id=p6-r2 created=2026-10-05T20:09:29+00:00 phase=6 state=open review_scope=in -->
+### p6-r2 · finding [open] (reviewer: in scope) · Dated facts likely to age (Windkraft, Erneuerbare, Bundespräsidentin, Innenpolitik) (phase 6)
+
+<!-- fr:journal kind=finding scope=plan id=p6-r3 created=2026-10-05T20:09:29+00:00 phase=6 state=open review_scope=in -->
+### p6-r3 · finding [open] (reviewer: in scope) · Lower-risk dated numbers (phase 6)
+
+<!-- fr:journal kind=finding scope=plan id=p6-r4 created=2026-10-05T20:09:29+00:00 phase=6 state=open review_scope=in -->
+### p6-r4 · finding [open] (reviewer: in scope) · Isolated Plusquamperfekt sentences (phase 6)
+
+<!-- fr:journal kind=finding scope=plan id=p6-r5 created=2026-10-05T20:09:29+00:00 phase=6 state=open review_scope=in -->
+### p6-r5 · finding [open] (reviewer: in scope) · Residual forced number (phase 6)
+
+<!-- fr:journal kind=finding scope=plan id=p6-r6 created=2026-10-05T20:09:29+00:00 phase=6 state=open review_scope=in -->
+### p6-r6 · finding [open] (reviewer: in scope) · Example/gloss drift and overlap (phase 6)
+
+<!-- fr:journal kind=finding scope=plan id=p6-r7 created=2026-10-05T20:09:29+00:00 phase=6 state=open review_scope=in -->
+### p6-r7 · finding [open] (reviewer: in scope) · English mistranslations (phase 6)
+
+<!-- fr:journal kind=finding scope=plan id=p6-r8 created=2026-10-05T20:09:29+00:00 phase=6 state=open review_scope=in -->
+### p6-r8 · finding [open] (reviewer: in scope) · Naturalness nits (phase 6)
+
+<!-- fr:journal kind=finding scope=plan id=p6-r9 created=2026-10-05T20:09:29+00:00 phase=6 state=open review_scope=in -->
+### p6-r9 · finding [open] (reviewer: in scope) · Gloss nits (phase 6)
+
+<!-- fr:journal kind=finding scope=plan id=p6-r10 created=2026-10-05T20:09:29+00:00 phase=6 state=open review_scope=in -->
+### p6-r10 · finding [open] (reviewer: in scope) · Near-duplicate templates (phase 6)
+
+<!-- fr:journal kind=finding scope=plan id=p6-r11 created=2026-10-05T20:09:29+00:00 phase=6 state=open review_scope=out -->
+### p6-r11 · finding [open] (reviewer: out of scope) · Seed test requires status enriched; fails once a record is marked reviewed (phase 6)
+
+<!-- fr:journal kind=review scope=plan id=p6-review created=2026-10-05T20:09:29+00:00 phase=6 -->
+### p6-review · review · phase 6 content review: all 481 records read, no grammar errors; 10 in-scope fixes applied; 968 records all enriched (phase 6)
+
+<!-- fr:journal kind=finding scope=plan id=p6-r1-resolved created=2026-10-05T20:09:29+00:00 phase=6 state=fixed resolves=p6-r1 -->
+### p6-r1-resolved · finding [fixed] · resolves p6-r1: adjective-gerecht tense tag (phase 6)
+
+Tagged Präteritum.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r2-resolved created=2026-10-05T20:09:29+00:00 phase=6 state=fixed resolves=p6-r2 -->
+### p6-r2-resolved · finding [fixed] · resolves p6-r2: Dated facts likely to age (Windkraft, Erneuerbare, Bundespräsidentin, Innenpolitik) (phase 6)
+
+Rewritten as timeless sentences.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r3-resolved created=2026-10-05T20:09:29+00:00 phase=6 state=fixed resolves=p6-r3 -->
+### p6-r3-resolved · finding [fixed] · resolves p6-r3: Lower-risk dated numbers (phase 6)
+
+Five sentences made timeless.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r4-resolved created=2026-10-05T20:09:29+00:00 phase=6 state=fixed resolves=p6-r4 -->
+### p6-r4-resolved · finding [fixed] · resolves p6-r4: Isolated Plusquamperfekt sentences (phase 6)
+
+39 examples anchored with bevor/nachdem/als/bis or a second past clause; script check finds none unanchored.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r5-resolved created=2026-10-05T20:09:29+00:00 phase=6 state=fixed resolves=p6-r5 -->
+### p6-r5-resolved · finding [fixed] · resolves p6-r5: Residual forced number (phase 6)
+
+CO₂-Emissionen and Friedensverhandlungen plural_only with notes; Fußabdruck plural removed; Bankverbindungen/Gegenüberstellungen natural.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r6-resolved created=2026-10-05T20:09:29+00:00 phase=6 state=fixed resolves=p6-r6 -->
+### p6-r6-resolved · finding [fixed] · resolves p6-r6: Example/gloss drift and overlap (phase 6)
+
+Ungleichheit, Qualifikation fixed; Vermögen glossed assets; fortune.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r7-resolved created=2026-10-05T20:09:29+00:00 phase=6 state=fixed resolves=p6-r7 -->
+### p6-r7-resolved · finding [fixed] · resolves p6-r7: English mistranslations (phase 6)
+
+einwenden and Müllabfuhr English fixed.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r8-resolved created=2026-10-05T20:09:29+00:00 phase=6 state=fixed resolves=p6-r8 -->
+### p6-r8-resolved · finding [fixed] · resolves p6-r8: Naturalness nits (phase 6)
+
+All six fixed.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r9-resolved created=2026-10-05T20:09:29+00:00 phase=6 state=fixed resolves=p6-r9 -->
+### p6-r9-resolved · finding [fixed] · resolves p6-r9: Gloss nits (phase 6)
+
+All four fixed.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r10-resolved created=2026-10-05T20:09:29+00:00 phase=6 state=fixed resolves=p6-r10 -->
+### p6-r10-resolved · finding [fixed] · resolves p6-r10: Near-duplicate templates (phase 6)
+
+Lohn and Meeting examples rewritten.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r11-resolved created=2026-10-05T20:09:29+00:00 phase=6 state=open resolves=p6-r11 out_of_scope=true -->
+### p6-r11-resolved · finding [out-of-scope] · resolves p6-r11: Seed test requires status enriched; fails once a record is marked reviewed (phase 6)
+
+Surfaced to the operator; R16 literally requires enriched. Follow-up if the operator wants reviewed accepted.

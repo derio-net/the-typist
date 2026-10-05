@@ -3,7 +3,7 @@ run: 2026-10-05-feat-vocab-typer
 workflow: fr-goal@1
 branch: feat/vocab-typer
 started: '2026-10-05T06:08:27+00:00'
-cursor: implement
+cursor: journal-check
 steps:
   brainstorm:
     state: done
@@ -53,8 +53,8 @@ steps:
       \ nothing.\n[warn] orphan phase-split decision phase-split-2026-10-05-vocab-typer-p9\
       \ names \nno agentic phase; it waives nothing.\n"
   implement:
-    state: running
-    at: '2026-10-05T19:59:54+00:00'
+    state: done
+    at: '2026-10-05T20:09:30+00:00'
     members:
     - implement-phase
     - review-phase
@@ -213,12 +213,19 @@ steps:
           tests: phase6-tests.log@1d9b70da6cac;tree=98468ade03013e81ae133010051ec42c07a450a89a556ee4a5761c72312aa0e9
           visual: none
       phase/6/review-phase:
-        state: running
+        state: done
         attempts:
         - dispatched: '2026-10-05T19:59:54+00:00'
           harness: claude-code
           model: claude-opus-5-5
           session: d5b2df96-f96a-4fde-8d39-796f394bda21
+          returned: '2026-10-05T20:09:30+00:00'
+          outcome: done
+        evidence:
+          review: p6-review
+          reviewer: a5aac5a1212383dc5
+          visual: none
+          findings: p6-r1,p6-r2,p6-r3,p6-r4,p6-r5,p6-r6,p6-r7,p6-r8,p6-r9,p6-r10,p6-r11
   journal-check:
     state: pending
   deliver:
