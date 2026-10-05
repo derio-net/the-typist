@@ -11345,12 +11345,16 @@ records:
       - presentation
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1694
     noun:
       gender: f
       plural: Präsentationen
+    examples:
+      - { de: "Die Präsentation dauert etwa zwanzig Minuten.", en: "The presentation lasts about twenty minutes.", tags: [singular, Präsens] }
+      - { de: "Nach der Präsentation gab es viele Fragen.", en: "After the presentation there were lots of questions.", tags: [singular, Präteritum] }
+      - { de: "Für die Konferenz muss ich noch zwei Präsentationen vorbereiten.", en: "I still have to prepare two presentations for the conference.", tags: [plural, Präsens] }
   - id: verb-vortragen
     type: verb
     lemma: vortragen
@@ -11358,9 +11362,21 @@ records:
       - to present (formally)
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1696
+    verb:
+      separable: vor
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "trägt vor"
+        praeteritum: "trug vor"
+        partizip2: "vorgetragen"
+    examples:
+      - { de: "Sie trägt die Ergebnisse morgen dem Vorstand vor.", en: "She is presenting the results to the board tomorrow.", tags: [separated, Präsens] }
+      - { de: "Der Schüler hat ein Gedicht von Goethe vorgetragen.", en: "The pupil recited a poem by Goethe.", tags: [Perfekt] }
+      - { de: "Der Anwalt trug seine Argumente ruhig und sachlich vor.", en: "The lawyer presented his arguments calmly and objectively.", tags: [separated, Präteritum] }
   - id: noun-unterlagen
     type: noun
     lemma: Unterlagen
@@ -11368,13 +11384,18 @@ records:
       - documents
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1698
+    source_note: "kept plural-only: in the sense 'documents, paperwork' the singular Unterlage is not used (die Unterlage means 'pad, base')"
     noun:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "Bitte bringen Sie alle Unterlagen zum Termin mit.", en: "Please bring all the documents to the appointment.", tags: [plural, Imperativ] }
+      - { de: "Die Unterlagen für die Sitzung liegen auf Ihrem Tisch.", en: "The documents for the meeting are on your desk.", tags: [plural, Präsens] }
+      - { de: "Leider waren die Unterlagen nicht vollständig.", en: "Unfortunately, the paperwork was not complete.", tags: [plural, Präteritum] }
   - id: noun-e-mail
     type: noun
     lemma: E-Mail
@@ -11382,12 +11403,16 @@ records:
       - email
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1700
     noun:
       gender: f
       plural: E-Mails
+    examples:
+      - { de: "Ich schicke Ihnen die Informationen per E-Mail.", en: "I'll send you the information by email.", tags: [singular, Präsens] }
+      - { de: "Nach dem Urlaub hatte ich 300 ungelesene E-Mails.", en: "After my holiday I had 300 unread emails.", tags: [plural, Präteritum] }
+      - { de: "Haben Sie meine E-Mail von gestern bekommen?", en: "Did you get my email from yesterday?", tags: [singular, Perfekt] }
   - id: noun-mitteilung
     type: noun
     lemma: Mitteilung
@@ -11396,12 +11421,16 @@ records:
       - communication
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1704
     noun:
       gender: f
       plural: Mitteilungen
+    examples:
+      - { de: "Wir haben eine wichtige Mitteilung für alle Mitarbeiter.", en: "We have an important announcement for all employees.", tags: [singular, Präsens] }
+      - { de: "Die Mitteilung über die Preiserhöhung kam per Post.", en: "The notification of the price increase came by post.", tags: [singular, Präteritum] }
+      - { de: "Auf dem Handy erscheinen ständig neue Mitteilungen.", en: "New notifications keep appearing on the phone.", tags: [plural, Präsens] }
   - id: verb-weiterleiten
     type: verb
     lemma: weiterleiten
@@ -11409,9 +11438,21 @@ records:
       - to forward (email)
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1706
+    verb:
+      separable: weiter
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "leitet weiter"
+        praeteritum: "leitete weiter"
+        partizip2: "weitergeleitet"
+    examples:
+      - { de: "Ich leite Ihnen die E-Mail gleich weiter.", en: "I'll forward the email to you straight away.", tags: [separated, Präsens] }
+      - { de: "Hast du die Einladung an das ganze Team weitergeleitet?", en: "Did you forward the invitation to the whole team?", tags: [Perfekt] }
+      - { de: "Die Sekretärin leitete den Anruf an den Chef weiter.", en: "The secretary put the call through to the boss.", tags: [separated, Präteritum] }
   - id: verb-anhaengen
     type: verb
     lemma: anhängen
@@ -11419,9 +11460,21 @@ records:
       - to attach
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1708
+    verb:
+      separable: an
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "hängt an"
+        praeteritum: "hängte an"
+        partizip2: "angehängt"
+    examples:
+      - { de: "Ich hänge Ihnen den Vertrag als PDF an.", en: "I'm attaching the contract as a PDF.", tags: [separated, Präsens] }
+      - { de: "Ich habe die Datei leider nicht angehängt.", en: "Unfortunately, I didn't attach the file.", tags: [Perfekt] }
+      - { de: "Sie hängte die Fotos an die E-Mail an.", en: "She attached the photos to the email.", tags: [separated, Präteritum] }
   - id: noun-datei
     type: noun
     lemma: Datei
@@ -11429,12 +11482,16 @@ records:
       - file
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1710
     noun:
       gender: f
       plural: Dateien
+    examples:
+      - { de: "Die Datei ist zu groß zum Verschicken.", en: "The file is too big to send.", tags: [singular, Präsens] }
+      - { de: "Speichern Sie die Datei bitte im PDF-Format.", en: "Please save the file in PDF format.", tags: [singular, Imperativ] }
+      - { de: "Bei dem Absturz sind alle Dateien verloren gegangen.", en: "All the files were lost in the crash.", tags: [plural, Perfekt] }
   - id: noun-anhang
     type: noun
     lemma: Anhang
@@ -11442,12 +11499,16 @@ records:
       - attachment
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1712
     noun:
       gender: m
       plural: Anhänge
+    examples:
+      - { de: "Im Anhang finden Sie meinen Lebenslauf.", en: "Please find my CV attached.", tags: [singular, Präsens] }
+      - { de: "Der Anhang lässt sich leider nicht öffnen.", en: "Unfortunately, the attachment won't open.", tags: [singular, Präsens] }
+      - { de: "Öffnen Sie keine Anhänge von unbekannten Absendern!", en: "Don't open attachments from unknown senders!", tags: [plural, Imperativ] }
   - id: noun-protokoll
     type: noun
     lemma: Protokoll
@@ -11456,12 +11517,16 @@ records:
       - record
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1714
     noun:
       gender: n
       plural: Protokolle
+    examples:
+      - { de: "Wer schreibt heute das Protokoll?", en: "Who is taking the minutes today?", tags: [singular, Präsens] }
+      - { de: "Das Protokoll der Sitzung wurde an alle verschickt.", en: "The minutes of the meeting were sent to everyone.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Die Protokolle der letzten Jahre liegen im Archiv.", en: "The records of recent years are kept in the archive.", tags: [plural, Präsens] }
   - id: noun-vereinbarung
     type: noun
     lemma: Vereinbarung
@@ -11469,12 +11534,16 @@ records:
       - agreement
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1716
     noun:
       gender: f
       plural: Vereinbarungen
+    examples:
+      - { de: "Wir haben eine schriftliche Vereinbarung getroffen.", en: "We have made a written agreement.", tags: [singular, Perfekt] }
+      - { de: "Termine nur nach Vereinbarung.", en: "Appointments by arrangement only.", tags: [singular] }
+      - { de: "Beide Seiten hielten sich nicht an die Vereinbarungen.", en: "Neither side stuck to the agreements.", tags: [plural, Präteritum] }
   - id: noun-absprache
     type: noun
     lemma: Absprache
@@ -11482,34 +11551,63 @@ records:
       - arrangement
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1718
     noun:
       gender: f
       plural: Absprachen
+    examples:
+      - { de: "Nach Absprache mit dem Chef darf ich früher gehen.", en: "After checking with the boss, I'm allowed to leave early.", tags: [singular, Präsens] }
+      - { de: "Wir brauchen eine klare Absprache, wer was macht.", en: "We need a clear agreement about who does what.", tags: [singular, Präsens] }
+      - { de: "Die Firmen hatten verbotene Absprachen über die Preise getroffen.", en: "The companies had made illegal price-fixing agreements.", tags: [plural, Plusquamperfekt] }
   - id: verb-absprechen
     type: verb
     lemma: absprechen
     gloss:
       - to coordinate
+      - to agree on
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1720
     government: mit
+    verb:
+      separable: ab
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "spricht ab"
+        praeteritum: "sprach ab"
+        partizip2: "abgesprochen"
+    examples:
+      - { de: "Ich spreche den Termin noch mit meinen Kollegen ab.", en: "I still need to coordinate the date with my colleagues.", tags: [separated, Präsens] }
+      - { de: "Das habe ich vorher mit der Chefin abgesprochen.", en: "I agreed that with the boss beforehand.", tags: [Perfekt] }
+      - { de: "Die beiden Zeugen sprachen ihre Aussagen vorher ab.", en: "The two witnesses coordinated their statements beforehand.", tags: [separated, Präteritum] }
   - id: verb-sich-abstimmen
     type: verb
-    lemma: sich abstimmen
+    lemma: abstimmen
     gloss:
       - to consult with
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1722
     government: mit
+    verb:
+      separable: ab
+      auxiliary: haben
+      reflexive: true
+      parts:
+        praesens_3sg: "stimmt ab"
+        praeteritum: "stimmte ab"
+        partizip2: "abgestimmt"
+    examples:
+      - { de: "Ich stimme mich vor dem Meeting noch mit der Abteilung ab.", en: "I'll consult with the department before the meeting.", tags: [separated, Präsens] }
+      - { de: "Habt ihr euch schon mit dem Kunden abgestimmt?", en: "Have you already consulted with the client?", tags: [Perfekt] }
+      - { de: "Die Teams stimmten sich jeden Morgen kurz ab.", en: "The teams briefly coordinated with each other every morning.", tags: [separated, Präteritum] }
   - id: noun-zeitplan
     type: noun
     lemma: Zeitplan
@@ -11517,12 +11615,16 @@ records:
       - schedule
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1724
     noun:
       gender: m
       plural: Zeitpläne
+    examples:
+      - { de: "Der Zeitplan ist sehr knapp.", en: "The schedule is very tight.", tags: [singular, Präsens] }
+      - { de: "Wir liegen gut im Zeitplan.", en: "We are well on schedule.", tags: [singular, Präsens] }
+      - { de: "Wegen des Streiks mussten alle Zeitpläne geändert werden.", en: "Because of the strike, all the schedules had to be changed.", tags: [plural, Passiv, Präteritum] }
   - id: noun-frist
     type: noun
     lemma: Frist
@@ -11531,12 +11633,16 @@ records:
       - time limit
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1728
     noun:
       gender: f
       plural: Fristen
+    examples:
+      - { de: "Die Frist für die Bewerbung endet am 31. Mai.", en: "The deadline for applications is 31 May.", tags: [singular, Präsens] }
+      - { de: "Leider haben Sie die Frist versäumt.", en: "Unfortunately, you have missed the deadline.", tags: [singular, Perfekt] }
+      - { de: "Für Widersprüche gelten kurze Fristen.", en: "Short time limits apply to objections.", tags: [plural, Präsens] }
   - id: noun-unternehmen
     type: noun
     lemma: Unternehmen
@@ -11544,25 +11650,34 @@ records:
       - company
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1740
     noun:
       gender: n
       plural: Unternehmen
+    examples:
+      - { de: "Das Unternehmen beschäftigt über 2000 Mitarbeiter.", en: "The company employs over 2,000 people.", tags: [singular, Präsens] }
+      - { de: "Sie hat vor zehn Jahren ihr eigenes Unternehmen gegründet.", en: "She founded her own company ten years ago.", tags: [singular, Perfekt] }
+      - { de: "Viele kleine Unternehmen suchen dringend Fachkräfte.", en: "Many small businesses are urgently looking for skilled workers.", tags: [plural, Präsens] }
   - id: noun-firma
     type: noun
     lemma: Firma
     gloss:
+      - company
       - firm
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1744
     noun:
       gender: f
       plural: Firmen
+    examples:
+      - { de: "In welcher Firma arbeiten Sie?", en: "Which company do you work for?", tags: [singular, Präsens] }
+      - { de: "Die Firma meines Vaters stellt Möbel her.", en: "My father's firm makes furniture.", tags: [singular, Präsens] }
+      - { de: "Mehrere Firmen hatten sich um den Auftrag beworben.", en: "Several firms had bid for the contract.", tags: [plural, Plusquamperfekt] }
   - id: noun-anweisung
     type: noun
     lemma: Anweisung
@@ -11570,12 +11685,16 @@ records:
       - instruction
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1748
     noun:
       gender: f
       plural: Anweisungen
+    examples:
+      - { de: "Bitte folgen Sie den Anweisungen des Personals.", en: "Please follow the instructions of the staff.", tags: [plural, Imperativ] }
+      - { de: "Er handelte auf Anweisung seines Vorgesetzten.", en: "He acted on his superior's instructions.", tags: [singular, Präteritum] }
+      - { de: "Die Anweisung kam direkt von der Geschäftsführung.", en: "The instruction came directly from management.", tags: [singular, Präteritum] }
   - id: noun-rueckmeldung
     type: noun
     lemma: Rückmeldung
@@ -11583,12 +11702,16 @@ records:
       - feedback
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1750
     noun:
       gender: f
       plural: Rückmeldungen
+    examples:
+      - { de: "Vielen Dank für Ihre schnelle Rückmeldung.", en: "Thank you for your quick reply.", tags: [singular] }
+      - { de: "Ich warte noch auf eine Rückmeldung von der Personalabteilung.", en: "I'm still waiting to hear back from HR.", tags: [singular, Präsens] }
+      - { de: "Die Rückmeldungen der Kunden waren durchweg positiv.", en: "Customer feedback was consistently positive.", tags: [plural, Präteritum] }
   - id: noun-kritik-2
     type: noun
     lemma: Kritik
@@ -11596,12 +11719,17 @@ records:
       - criticism
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1752
+    source_note: "plural Kritiken removed: uncountable in the sense criticism (Kritiken = reviews, see noun-kritik)"
     noun:
       gender: f
-      plural: Kritiken
+      plural: null
+    examples:
+      - { de: "Er kann mit Kritik nicht gut umgehen.", en: "He can't handle criticism well.", tags: [singular, Präsens] }
+      - { de: "Die Chefin übte scharfe Kritik an dem Bericht.", en: "The boss sharply criticised the report.", tags: [singular, Präteritum] }
+      - { de: "Konstruktive Kritik hilft dem ganzen Team.", en: "Constructive criticism helps the whole team.", tags: [singular, Präsens] }
   - id: noun-loesung
     type: noun
     lemma: Lösung
@@ -11609,12 +11737,16 @@ records:
       - solution
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1756
     noun:
       gender: f
       plural: Lösungen
+    examples:
+      - { de: "Wir müssen schnell eine Lösung finden.", en: "We have to find a solution quickly.", tags: [singular, Präsens] }
+      - { de: "Die Lösung des Problems war einfacher als gedacht.", en: "The solution to the problem was simpler than expected.", tags: [singular, Präteritum] }
+      - { de: "Das Team hat mehrere Lösungen vorgeschlagen.", en: "The team has proposed several solutions.", tags: [plural, Perfekt] }
   - id: noun-arbeitsvertrag
     type: noun
     lemma: Arbeitsvertrag
@@ -11622,12 +11754,16 @@ records:
       - employment contract
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1764
     noun:
       gender: m
       plural: Arbeitsverträge
+    examples:
+      - { de: "Ich habe den Arbeitsvertrag gestern unterschrieben.", en: "I signed the employment contract yesterday.", tags: [singular, Perfekt] }
+      - { de: "Im Arbeitsvertrag steht, dass ich 30 Tage Urlaub habe.", en: "My employment contract says I have 30 days' holiday.", tags: [singular, Präsens] }
+      - { de: "Viele junge Leute bekommen nur befristete Arbeitsverträge.", en: "Many young people only get fixed-term employment contracts.", tags: [plural, Präsens] }
   - id: noun-kuendigung
     type: noun
     lemma: Kündigung
@@ -11635,12 +11771,16 @@ records:
       - termination / resignation
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1768
     noun:
       gender: f
       plural: Kündigungen
+    examples:
+      - { de: "Sie hat gestern ihre Kündigung eingereicht.", en: "She handed in her resignation yesterday.", tags: [singular, Perfekt] }
+      - { de: "Die Kündigung muss schriftlich erfolgen.", en: "Notice must be given in writing.", tags: [singular, Präsens] }
+      - { de: "Wegen der Krise kam es zu zahlreichen Kündigungen.", en: "Because of the crisis there were numerous dismissals.", tags: [plural, Präteritum] }
   - id: noun-lohn
     type: noun
     lemma: Lohn
@@ -11648,12 +11788,16 @@ records:
       - wage
     categories:
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 1770
     noun:
       gender: m
       plural: Löhne
+    examples:
+      - { de: "Der Lohn wird am Monatsende überwiesen.", en: "The wages are paid at the end of the month.", tags: [singular, Passiv, Präsens] }
+      - { de: "Die Gewerkschaft fordert höhere Löhne.", en: "The union is demanding higher wages.", tags: [plural, Präsens] }
+      - { de: "Für die gleiche Arbeit bekam sie weniger Lohn als ihr Kollege.", en: "She got lower pay than her colleague for the same work.", tags: [singular, Präteritum] }
   - id: noun-gehalt
     type: noun
     lemma: Gehalt
