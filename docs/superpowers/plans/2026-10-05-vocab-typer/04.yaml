@@ -1,0 +1,56 @@
+schema_version: 2
+phase:
+  number: 4
+  title: typist-enrich skill
+  tag: agentic
+  depends_on:
+  - 2
+  tracking_issue: null
+  acceptance:
+  - enrich-skill
+  tier: standard
+  files:
+  - .claude/skills/typist-enrich/**
+  - tools/cli.ts
+  - tools/organise/**
+  - tests/tools/organise*.test.ts
+  - tests/fixtures/lists/**
+  estimate_lines: 500
+tasks:
+- number: 1
+  title: Deterministic organise helpers
+  steps:
+  - id: P4.T1.S1
+    text: 'RED: `tests/tools/organise.test.ts` — `findDuplicates(list)` groups records with the same type and lemma; `mergeRecords(list, group)` keeps the first id, unions categories (first stays primary) and source_lines, merges glosses without duplicates, keeps the most advanced status; `nextBatch(list, n=25)` returns the first n `raw` record ids in primary-category `order` then list order; `stats(list)` counts by status/type.'
+  - id: P4.T1.S2
+    text: 'GREEN: implement `tools/organise/*.ts` and CLI subcommands `dupes <list>` (prints groups), `merge-dupes <list>` (applies merges in place), `next-batch <list> [--n 25] [--category <id>]` (prints ids), `stats <list>`. Tests pass.'
+- number: 2
+  title: Skill (R15)
+  steps:
+  - id: P4.T2.S1
+    text: 'Write `.claude/skills/typist-enrich/SKILL.md` (name/description: ''Use when organising or enriching a the-typist list with grammar and example sentences''). Organise: run `dupes`/`merge-dupes`; check categories; fix mis-typed records; verify gender, plural, plural_only for every noun — re-check EVERY `plural: null` (the parser emits null whenever the source omitted the plural, e.g. Fakultät, Abteilung; p2-r4) and correct errors (e.g. Cybermobbing → das, rhetorische Mittel → das, Müll → no plural, Betriebskosten → plural_only) recording each in source_note; never change an id. Enrich loop: `next-batch` (optionally `--category`), for those ≤25 records fill the type block and examples meeting R3 with natural B2-level sentences (nouns: singular and plural, different cases; verbs: ≥2 tenses incl. Perfekt with the right auxiliary, separated prefix example for separable verbs; adjectives: attributive declined form, comparative/superlative when gradable; phrases: realistic contexts and
+      register), English translations, recognised tags; set status enriched; `validate`; fix; commit `content(<list>): enrich <ids…>`. Stop conditions: no raw left, or the caller''s category scope done. Never set reviewed. No per-record external LLM calls.'
+  - id: P4.T2.S2
+    text: 'Dry-run the skill instructions on a 3-record raw fixture in a scratch copy: confirm `next-batch`, validation and commit message format work as written; fix the SKILL.md where they don''t. Commit.'
+state:
+  steps:
+    P4.T1.S1:
+      state: x
+      ticked_at: '2026-10-05T18:27:56+00:00'
+      note: null
+    P4.T1.S2:
+      state: x
+      ticked_at: '2026-10-05T18:27:56+00:00'
+      note: null
+    P4.T2.S1:
+      state: x
+      ticked_at: '2026-10-05T18:27:56+00:00'
+      note: null
+    P4.T2.S2:
+      state: x
+      ticked_at: '2026-10-05T18:27:56+00:00'
+      note: null
+  completion:
+    at: '2026-10-05T18:27:56+00:00'
+    note: null
+    observed_prs: []

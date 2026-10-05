@@ -1,0 +1,13 @@
+schema: 1
+list: { id: fixture, title: "Bad", lang: de, gloss_lang: en }
+records:
+  - id: noun-boerse
+    type: noun
+    status: enriched
+    source_lines: [1]
+    lemma: Börse
+    gloss: [stock exchange]
+    noun: { gender: f, plural: Börsen }
+    examples:
+      - { de: "Die Börse schloss.", en: "x", tags: [singular] }
+      - { de: "Die Börsen öffnen.", en: "y", tags: [plural] }

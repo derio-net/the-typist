@@ -1,0 +1,104 @@
+schema_version: 2
+phase:
+  number: 3
+  title: Typing core and ships (playable fixture)
+  tag: agentic
+  depends_on:
+  - 1
+  tracking_issue: null
+  acceptance:
+  - record-ships
+  - typing-rules
+  tier: standard
+  files:
+  - src/platform/keyboard.ts
+  - src/engine/**
+  - src/render/**
+  - src/main.ts
+  - src/dev/**
+  - tests/engine/**
+  - tests/platform/keyboard.test.ts
+  - tests/fixtures/lists/**
+  estimate_lines: 1400
+tasks:
+- number: 1
+  title: Keyboard capture with composition (R6 dead keys)
+  steps:
+  - id: P3.T1.S1
+    text: |-
+      RED (vitest, jsdom environment): `tests/platform/keyboard.test.ts` dispatches synthetic sequences on the hidden input and asserts the committed chars emitted: plain 'a','b'; Option-U + A = compositionstart → input(inputType insertCompositionText, data '¨', isComposing) → compositionend(data 'ä') emits exactly ['ä']; Option-U + X = compositionend data '¨x' emits ['x']; Option-S = input(insertText 'ß') emits ['ß']; input value is cleared after each read; Backspace emits nothing.
+  - id: P3.T1.S2
+    text: |-
+      GREEN: implement `src/platform/keyboard.ts` `createKeyboard(input: HTMLInputElement, onChar: (c:string)=>void): () => void` per the spec (ignore composing input events, read compositionend.data and non-composing input.data, drop standalone ¨ ´ ` ^ ~, clear value, keep focus on blur). Tests pass.
+- number: 2
+  title: TypingEngine (R5, R6)
+  steps:
+  - id: P3.T2.S1
+    text: |-
+      RED: `tests/engine/typing.test.ts`, table-driven over (ships, input chars) → (lock, progress, typos, events): first char locks the closest-to-player matching ship; later chars only go to the locked ship; non-match = typo on locked record, no progress; no lock + no matching ship = ignored, no typo; 'Börse' accepts 'B','ö' and 'B','o','e'; after 'o' only 'e' is accepted (an 'r' is a typo and keeps the pending state); 'Ä'/'Ae'; 'ß'/'ss'; expected ’ accepts "'", „ accepts '"', – accepts '-', ₂ accepts '2'; final '.', '!', '?', '…' and closing quotes are pre-typed at spawn so 'Er kommt.' completes after 'Er kommt'; mid-sentence ',' must be typed; ship completion emits `destroyed` with lockAt/destroyedAt timestamps.
+  - id: P3.T2.S2
+    text: |-
+      GREEN: implement `src/engine/typing.ts` as a pure reducer `step(state, char, now) → {state, events}` reusing `EQUIVALENCES` from `src/schema/typeable.ts`. Tests pass.
+  - id: P3.T2.S3
+    text: |-
+      REFACTOR: isolate `matchChar(expected, pending, typed)` with its own small test table; all green.
+- number: 3
+  title: World — motherships, forms ships, escorts (R4)
+  steps:
+  - id: P3.T3.S1
+    text: |-
+      RED: `tests/engine/world.test.ts` with a fixed-step clock: spawning a Record creates one mothership whose text is `displayForm` and label is the gloss; destroying it spawns the forms ship (when `formsText` non-null) plus one escort per example, positioned around the mothership; plural_only noun and phrase spawn no forms ship; ships descend, longer texts slower (speed ∝ 1/length factor), speed scales per wave index; a ship reaching the player line costs a life and emits `escaped`; a record is `resolved` when its last ship is destroyed or escaped, with per-record {typos, expectedChars, activeMs, escaped}; wave ends when all its records resolved; 0 lives ends the session.
+  - id: P3.T3.S2
+    text: |-
+      GREEN: implement `src/engine/world.ts` (60 Hz fixed timestep, pure, no DOM) driving the TypingEngine. Tests pass.
+- number: 4
+  title: Themeable Canvas renderer and dev play page
+  steps:
+  - id: P3.T4.S1
+    text: |-
+      Implement `src/render/theme.ts` — ALL visual constants as exported tokens (palette, fonts, sizes, ship shapes, effects timing) with placeholder values, plus a sprite hook `drawShip(ctx, kind: 'mothership'|'forms'|'escort', box)` that draws simple placeholder shapes. `src/render/renderer.ts` reads world state and draws: ships with text, typed prefix highlighted on the locked ship, gloss under the mothership, chip and translation slots under escorts (always drawn in this phase), bullets from player to locked ship, simple explosion, HUD (lives, score, wave). No colours or fonts outside theme.ts.
+  - id: P3.T4.S2
+    text: |-
+      Create `tests/fixtures/lists/two-records.yaml` (one enriched noun with plural, one enriched separable verb; typeable). `src/main.ts` in dev mode (`import.meta.env.DEV`) loads it via `?dev=fixture` and runs one wave with keyboard + world + renderer wired by requestAnimationFrame. Verify in a browser with `npm run dev`: type the mothership, forms and escorts including an 'ae' fallback; capture screenshots of states mothership-with-gloss, escorts-spawned, locked-ship-typed-prefix for the record-ships visual row. `npm test` and `npm run build` green. Commit.
+state:
+  steps:
+    P3.T1.S1:
+      state: x
+      ticked_at: '2026-10-05T08:06:14+00:00'
+      note: null
+    P3.T1.S2:
+      state: x
+      ticked_at: '2026-10-05T08:06:14+00:00'
+      note: null
+    P3.T2.S1:
+      state: x
+      ticked_at: '2026-10-05T08:06:14+00:00'
+      note: null
+    P3.T2.S2:
+      state: x
+      ticked_at: '2026-10-05T08:06:14+00:00'
+      note: null
+    P3.T2.S3:
+      state: x
+      ticked_at: '2026-10-05T08:06:14+00:00'
+      note: null
+    P3.T3.S1:
+      state: x
+      ticked_at: '2026-10-05T08:06:14+00:00'
+      note: null
+    P3.T3.S2:
+      state: x
+      ticked_at: '2026-10-05T08:06:14+00:00'
+      note: null
+    P3.T4.S1:
+      state: x
+      ticked_at: '2026-10-05T08:06:14+00:00'
+      note: null
+    P3.T4.S2:
+      state: x
+      ticked_at: '2026-10-05T08:06:14+00:00'
+      note: null
+  completion:
+    at: '2026-10-05T08:06:14+00:00'
+    note: null
+    observed_prs: []

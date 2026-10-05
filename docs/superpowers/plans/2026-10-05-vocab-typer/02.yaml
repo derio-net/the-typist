@@ -1,0 +1,107 @@
+schema_version: 2
+phase:
+  number: 2
+  title: Raw-list parser and typist-structure skill
+  tag: agentic
+  depends_on:
+  - 1
+  tracking_issue: null
+  acceptance:
+  - structure-skill
+  tier: standard
+  files:
+  - tools/cli.ts
+  - tools/parse/**
+  - tests/tools/parse*.test.ts
+  - tests/fixtures/raw/**
+  - .claude/skills/typist-structure/**
+  estimate_lines: 900
+tasks:
+- number: 1
+  title: Entry detection and headers
+  steps:
+  - id: P2.T1.S1
+    text: |-
+      RED: capture seed excerpts verbatim from `wordlist.raw.txt` into `tests/fixtures/raw/` (section 1 head incl. intro prose, the line-221 intro containing an em dash, a 'Usage Notes:' block, line 976 stray text). Tests: only lines containing ' – ' (U+2013 with spaces) are entries; headers `<emoji> N. Title` become `{id: slug(title), title, order: N}`; prose lines are skipped and never reported; each entry carries its 1-based source line.
+  - id: P2.T1.S2
+    text: |-
+      GREEN: implement `tools/parse/lines.ts` (split on first ' – ' only, no dash normalisation) and `tools/parse/headers.ts` (slug: lowercase, ascii-fold umlauts, & → and, non-alnum → '-'). Tests pass.
+- number: 2
+  title: Line shapes per the spec's Parser table
+  steps:
+  - id: P2.T2.S1
+    text: |-
+      RED: `tests/tools/parse-shapes.test.ts`, one case per shape using the real seed line: `die Börse, -n` → noun f plural Börsen; `das akademische Jahr`; plurals `, -e`, `, -s`, `, -` (unchanged), `, -länder`, `, Ämter`, `, Museen`, `, -men`, a stem/umlaut form the parser cannot build → unresolved with reason 'plural'; `die Nebenkosten (pl.)` → plural_only; `der Dozent / die Dozentin` and `der Anwalt / die Anwältin` and `der/die Vorgesetzte` → one noun + variant; `publizieren`, `sich anmelden`, `freuen (sich)` → verbs (reflexive); `anlegen (in)` → government 'in'; `(an + D)` → government; `die künstliche Intelligenz (KI)` → abbreviation 'KI'; gloss split on ', ' into gloss[].
+  - id: P2.T2.S2
+    text: |-
+      RED: unresolved cases: `der Herr / die Frau`, `der Gewinn / der Verlust`, `das Darlehen / der Kredit`, `die Hauptrolle / Nebenrolle`, `gut / schlecht gelaunt`, the 5-item line (2115), the modal triple (516), an `und` compound (1222), `das ist nicht mein Bier`, `die Daumen drücken`, `Sehr geehrte(r)...` — each lands in `unresolved: [{line, text, reason}]` and nowhere else.
+  - id: P2.T2.S3
+    text: |-
+      GREEN: implement `tools/parse/entry.ts` (shape matchers in the table's order, each a small function returning Record|Unresolved) and ids per the spec (`<type>-<ascii-lemma>`, noun gender suffix on collision, else `-2` in source order). Tests pass.
+  - id: P2.T2.S4
+    text: |-
+      REFACTOR: one matcher per file-local function with a comment naming its shape; tests green.
+- number: 3
+  title: parse CLI and full-seed dry run
+  steps:
+  - id: P2.T3.S1
+    text: |-
+      RED: `tests/tools/parse-cli.test.ts` — `parse <raw> -o out.yaml` writes a list (`status: raw` records, categories from headers, list header with id from the file stem) plus an `unresolved:` top-level key; `validate` on output with `unresolved:` removed passes for a small fixture.
+  - id: P2.T3.S2
+    text: |-
+      GREEN: add the `parse` subcommand to `tools/cli.ts`. Run it on `wordlist.raw.txt` into a scratch path outside the repo and record in the plan journal: entry count (expect 1000 source lines covered by records ∪ unresolved), number of categories (expect 20), unresolved count by reason. Every one of the 1000 entry lines must appear in exactly one of records' source_lines or unresolved.
+- number: 4
+  title: typist-structure skill (R14)
+  steps:
+  - id: P2.T4.S1
+    text: |-
+      Write `.claude/skills/typist-structure/SKILL.md` (frontmatter name/description: 'Use when turning a raw vocabulary list into a raw-status the-typist list'). Body: run `npm run typist -- parse <raw> -o lists/<id>.yaml`; resolve every `unresolved` entry with the spec's expansion rules (distinct-word pairs → one record each with its side of a '/'-split gloss; synonym pair with one gloss → two records same gloss; shared head expanded; ≥3-item lists split; modal triple → dürfen/mögen/können verbs; idioms/adverbs/connectors/'X sein' → phrase; templates rewritten to a full typeable phrase, original in source_note; irregular plurals written out), keeping source_lines; if the source has no headers, propose thematic categories and ask the operator before applying; delete `unresolved:`; run `npm run typist -- validate` until clean; never invent ids for records that already exist in a committed list.
+  - id: P2.T4.S2
+    text: |-
+      Verify the skill's instructions against the dry-run output from P2.T3.S2: every unresolved reason seen there has an instruction. Commit.
+state:
+  steps:
+    P2.T1.S1:
+      state: x
+      ticked_at: '2026-10-05T07:48:46+00:00'
+      note: null
+    P2.T1.S2:
+      state: x
+      ticked_at: '2026-10-05T07:48:46+00:00'
+      note: null
+    P2.T2.S1:
+      state: x
+      ticked_at: '2026-10-05T07:48:46+00:00'
+      note: null
+    P2.T2.S2:
+      state: x
+      ticked_at: '2026-10-05T07:48:46+00:00'
+      note: null
+    P2.T2.S3:
+      state: x
+      ticked_at: '2026-10-05T07:48:46+00:00'
+      note: null
+    P2.T2.S4:
+      state: x
+      ticked_at: '2026-10-05T07:48:46+00:00'
+      note: null
+    P2.T3.S1:
+      state: x
+      ticked_at: '2026-10-05T07:48:46+00:00'
+      note: null
+    P2.T3.S2:
+      state: x
+      ticked_at: '2026-10-05T07:48:46+00:00'
+      note: null
+    P2.T4.S1:
+      state: x
+      ticked_at: '2026-10-05T07:48:46+00:00'
+      note: null
+    P2.T4.S2:
+      state: x
+      ticked_at: '2026-10-05T07:48:46+00:00'
+      note: null
+  completion:
+    at: '2026-10-05T07:48:46+00:00'
+    note: null
+    observed_prs: []
