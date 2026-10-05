@@ -71,10 +71,37 @@ describe('createKeyboard', () => {
     expect(out).toEqual([]);
   });
 
-  it('keeps focus on blur and stops after dispose', () => {
+  it('does not write the input value while composing (would cancel the IME)', () => {
+    input.dispatchEvent(new CompositionEvent('compositionstart', { bubbles: true }));
+    typeInput('¨', 'insertCompositionText', true);
+    expect(input.value).toBe('¨');
+    typeInput('', 'insertCompositionText', false);
+    expect(input.value).toBe('¨');
+    input.dispatchEvent(new CompositionEvent('compositionend', { data: 'ä', bubbles: true }));
+    expect(input.value).toBe('');
+    expect(out).toEqual(['ä']);
+  });
+
+  it('WebKit order: compositionend then a plain insertText echo yields one ä', () => {
+    input.dispatchEvent(new CompositionEvent('compositionstart', { bubbles: true }));
+    typeInput('¨', 'insertCompositionText', true);
+    input.dispatchEvent(new CompositionEvent('compositionend', { data: 'ä', bubbles: true }));
+    typeInput('ä', 'insertText', false);
+    expect(out).toEqual(['ä']);
+    // the dedupe is one-shot: a later genuine ä is kept
+    typeInput('ä', 'insertText', false);
+    expect(out).toEqual(['ä', 'ä']);
+  });
+
+  it('refocuses on blur (deferred, for Firefox) and stops after dispose', async () => {
     input.focus();
     input.blur();
+    await new Promise((r) => setTimeout(r, 0));
     expect(document.activeElement).toBe(input);
+    input.blur();
+    stop();
+    await new Promise((r) => setTimeout(r, 0));
+    expect(document.activeElement).not.toBe(input);
     stop();
     typeInput('z');
     expect(out).toEqual([]);
