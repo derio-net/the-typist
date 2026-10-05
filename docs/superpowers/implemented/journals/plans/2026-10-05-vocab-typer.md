@@ -852,3 +852,63 @@ Lohn and Meeting examples rewritten.
 ### p6-r11-resolved · finding [out-of-scope] · resolves p6-r11: Seed test requires status enriched; fails once a record is marked reviewed (phase 6)
 
 Surfaced to the operator; R16 literally requires enriched. Follow-up if the operator wants reviewed accepted.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r8-resolved-2 created=2026-10-05T21:11:58+00:00 state=open resolves=p3-r8 tracked_by=#2 -->
+### p3-r8-resolved-2 · finding [deferred → #2] · resolves p3-r8: No typo / pending-digraph feedback
+
+Filed at closeout as #2.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r9-resolved-2 created=2026-10-05T21:12:01+00:00 state=open resolves=p3-r9 tracked_by=#2 -->
+### p3-r9-resolved-2 · finding [deferred → #2] · resolves p3-r9: No devicePixelRatio scaling / responsive fit
+
+Filed at closeout as #2.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r15-resolved-2 created=2026-10-05T21:12:05+00:00 state=open resolves=p3-r15 tracked_by=#2 -->
+### p3-r15-resolved-2 · finding [deferred → #2] · resolves p3-r15: findSlot ignores the HUD rectangle
+
+Filed at closeout as #2.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r16-resolved-2 created=2026-10-05T21:12:09+00:00 state=open resolves=p3-r16 tracked_by=#2 -->
+### p3-r16-resolved-2 · finding [deferred → #2] · resolves p3-r16: Child boxes may touch exactly; no-slot fallback untested
+
+Filed at closeout as #2.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r6-resolved-2 created=2026-10-05T21:12:13+00:00 state=open resolves=p3-r6 tracked_by=#3 -->
+### p3-r6-resolved-2 · finding [deferred → #3] · resolves p3-r6: Pending o then precomposed ö stays a typo until e
+
+Filed at closeout as #3.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r12-resolved-2 created=2026-10-05T21:12:16+00:00 state=open resolves=p3-r12 tracked_by=#3 -->
+### p3-r12-resolved-2 · finding [deferred → #3] · resolves p3-r12: ‘ ’ ) not pre-typed
+
+Filed at closeout as #3.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r14-resolved-2 created=2026-10-05T21:12:21+00:00 state=open resolves=p3-r14 tracked_by=#4 -->
+### p3-r14-resolved-2 · finding [deferred → #4] · resolves p3-r14: world.ts imports layout metrics from render/theme (engine→render dependency)
+
+Filed at closeout as #4.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r17-resolved-2 created=2026-10-05T21:12:24+00:00 state=open resolves=p3-r17 tracked_by=#4 -->
+### p3-r17-resolved-2 · finding [deferred → #4] · resolves p3-r17: Siblings share the slowest speed, deviating from per-text speed
+
+Filed at closeout as #4.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r11-resolved-2 created=2026-10-05T21:12:28+00:00 state=open resolves=p6-r11 tracked_by=#5 -->
+### p6-r11-resolved-2 · finding [deferred → #5] · resolves p6-r11: Seed test requires status enriched; fails once a record is marked reviewed
+
+Filed at closeout as #5.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r11-resolved-2 created=2026-10-05T21:12:32+00:00 state=open resolves=p5-r11 tracked_by=#5 -->
+### p5-r11-resolved-2 · finding [deferred → #5] · resolves p5-r11: Journal overstates source_note coverage (197 filled plurals, noun-burnout have none)
+
+Filed at closeout as #5.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r4-resolved-2 created=2026-10-05T21:12:35+00:00 state=open resolves=p2-r4 tracked_by=#5 -->
+### p2-r4-resolved-2 · finding [deferred → #5] · resolves p2-r4: 368 nouns get plural: null when the source omitted the plural
+
+Filed at closeout as #5.
+
+<!-- fr:journal kind=finding scope=plan id=p1-r9-resolved-2 created=2026-10-05T21:12:40+00:00 state=open resolves=p1-r9 tracked_by=#6 -->
+### p1-r9-resolved-2 · finding [deferred → #6] · resolves p1-r9: List-level errors masked until record shape errors fixed (zod abort)
+
+Filed at closeout as #6.
