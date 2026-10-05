@@ -2210,13 +2210,17 @@ records:
     categories:
       - government-and-politics
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 274
       - 1807
     noun:
       gender: f
       plural: Parteien
+    examples:
+      - { de: "Welche Partei hast du gewählt?", en: "Which party did you vote for?", tags: [singular, Perfekt] }
+      - { de: "Die kleinen Parteien haben es bei dieser Wahl schwer.", en: "The small parties are having a hard time in this election.", tags: [plural, Präsens] }
+      - { de: "Er trat mit achtzehn in die Partei ein.", en: "He joined the party at eighteen.", tags: [singular, Präteritum] }
   - id: noun-parteiprogramm
     type: noun
     lemma: Parteiprogramm
@@ -2224,12 +2228,16 @@ records:
       - party platform
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 276
     noun:
       gender: n
       plural: Parteiprogramme
+    examples:
+      - { de: "Das Parteiprogramm ist über hundert Seiten lang.", en: "The party platform is over a hundred pages long.", tags: [singular, Präsens] }
+      - { de: "Ich habe die Parteiprogramme vor der Wahl verglichen.", en: "I compared the party platforms before the election.", tags: [plural, Perfekt] }
+      - { de: "Klimaschutz spielt im neuen Parteiprogramm eine große Rolle.", en: "Climate protection plays a big role in the new party platform.", tags: [singular, Präsens] }
   - id: noun-kandidat
     type: noun
     lemma: Kandidat
@@ -2237,7 +2245,7 @@ records:
       - candidate
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 278
     noun:
@@ -2247,6 +2255,10 @@ records:
         - lemma: Kandidatin
           gender: f
           plural: Kandidatinnen
+    examples:
+      - { de: "Der Kandidat hat im Fernsehen eine gute Figur gemacht.", en: "The candidate cut a good figure on television.", tags: [singular, Perfekt] }
+      - { de: "Die Kandidaten diskutierten zwei Stunden lang.", en: "The candidates debated for two hours.", tags: [plural, Präteritum] }
+      - { de: "Sie ist die jüngste Kandidatin für das Amt.", en: "She is the youngest candidate for the office.", tags: [singular, Präsens] }
   - id: noun-wahlsieg
     type: noun
     lemma: Wahlsieg
@@ -2254,12 +2266,16 @@ records:
       - election victory
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 280
     noun:
       gender: m
       plural: Wahlsiege
+    examples:
+      - { de: "Die Partei feierte ihren Wahlsieg bis spät in die Nacht.", en: "The party celebrated its election victory until late at night.", tags: [singular, Präteritum] }
+      - { de: "Nach dem Wahlsieg kündigte er Reformen an.", en: "After the election victory he announced reforms.", tags: [singular, Präteritum] }
+      - { de: "Zwei Wahlsiege hintereinander sind selten.", en: "Two election victories in a row are rare.", tags: [plural, Präsens] }
   - id: noun-niederlage
     type: noun
     lemma: Niederlage
@@ -2267,12 +2283,16 @@ records:
       - defeat
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 282
     noun:
       gender: f
       plural: Niederlagen
+    examples:
+      - { de: "Die Niederlage bei der Wahl war eine große Enttäuschung.", en: "The defeat in the election was a big disappointment.", tags: [singular, Präteritum] }
+      - { de: "Der Parteichef hat die Verantwortung für die Niederlage übernommen.", en: "The party leader has taken responsibility for the defeat.", tags: [singular, Perfekt] }
+      - { de: "Nach mehreren Niederlagen trat der Trainer zurück.", en: "After several defeats the coach resigned.", tags: [plural, Präteritum] }
   - id: noun-koalition
     type: noun
     lemma: Koalition
@@ -2281,13 +2301,17 @@ records:
     categories:
       - government-and-politics
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 284
       - 1835
     noun:
       gender: f
       plural: Koalitionen
+    examples:
+      - { de: "Die beiden Parteien bilden eine Koalition.", en: "The two parties are forming a coalition.", tags: [singular, Präsens] }
+      - { de: "Die Koalition ist nach nur einem Jahr zerbrochen.", en: "The coalition fell apart after only one year.", tags: [singular, Perfekt] }
+      - { de: "Koalitionen aus drei Parteien sind oft schwierig.", en: "Coalitions of three parties are often difficult.", tags: [plural, Präsens] }
   - id: noun-gesetz
     type: noun
     lemma: Gesetz
@@ -2297,7 +2321,7 @@ records:
       - government-and-politics
       - law-and-justice
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 288
       - 335
@@ -2305,6 +2329,10 @@ records:
     noun:
       gender: n
       plural: Gesetze
+    examples:
+      - { de: "Das neue Gesetz tritt im Januar in Kraft.", en: "The new law comes into force in January.", tags: [singular, Präsens] }
+      - { de: "Vor dem Gesetz sind alle Menschen gleich.", en: "All people are equal before the law.", tags: [singular, Präsens] }
+      - { de: "Im letzten Jahr wurden zahlreiche Gesetze geändert.", en: "Numerous laws were changed last year.", tags: [plural, Passiv] }
   - id: verb-beschliessen
     type: verb
     lemma: beschließen
@@ -2313,9 +2341,20 @@ records:
       - resolve
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 292
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "beschließt"
+        praeteritum: "beschloss"
+        partizip2: "beschlossen"
+    examples:
+      - { de: "Der Stadtrat beschließt heute den Haushalt.", en: "The city council is approving the budget today.", tags: [Präsens] }
+      - { de: "Wir haben beschlossen, nach Wien zu ziehen.", en: "We have decided to move to Vienna.", tags: [Perfekt] }
+      - { de: "Die Regierung beschloss, die Steuern zu senken.", en: "The government decided to lower taxes.", tags: [Präteritum] }
   - id: noun-skandal
     type: noun
     lemma: Skandal
@@ -2323,12 +2362,16 @@ records:
       - scandal
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 296
     noun:
       gender: m
       plural: Skandale
+    examples:
+      - { de: "Der Skandal kostete den Minister sein Amt.", en: "The scandal cost the minister his office.", tags: [singular, Präteritum] }
+      - { de: "Die Zeitung hat den Skandal aufgedeckt.", en: "The newspaper uncovered the scandal.", tags: [singular, Perfekt] }
+      - { de: "Die Partei wurde von mehreren Skandalen erschüttert.", en: "The party was shaken by several scandals.", tags: [plural, Passiv] }
   - id: noun-debatte
     type: noun
     lemma: Debatte
@@ -2336,12 +2379,16 @@ records:
       - debate
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 298
     noun:
       gender: f
       plural: Debatten
+    examples:
+      - { de: "Die Debatte im Parlament dauerte bis Mitternacht.", en: "The debate in parliament lasted until midnight.", tags: [singular, Präteritum] }
+      - { de: "Über das Thema wird eine heftige Debatte geführt.", en: "A heated debate is being held on the topic.", tags: [singular, Passiv] }
+      - { de: "Solche Debatten finden heute oft in sozialen Medien statt.", en: "Such debates often take place on social media today.", tags: [plural, Präsens] }
   - id: noun-redner
     type: noun
     lemma: Redner
@@ -2349,7 +2396,7 @@ records:
       - speaker
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 300
     noun:
@@ -2359,6 +2406,10 @@ records:
         - lemma: Rednerin
           gender: f
           plural: Rednerinnen
+    examples:
+      - { de: "Der Redner sprach ohne Notizen.", en: "The speaker spoke without notes.", tags: [singular, Präteritum] }
+      - { de: "Auf der Konferenz gibt es zwölf Redner aus acht Ländern.", en: "There are twelve speakers from eight countries at the conference.", tags: [plural, Präsens] }
+      - { de: "Die letzte Rednerin hat das Publikum begeistert.", en: "The last speaker inspired the audience.", tags: [singular, Perfekt] }
   - id: noun-rede
     type: noun
     lemma: Rede
@@ -2366,12 +2417,16 @@ records:
       - speech
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 302
     noun:
       gender: f
       plural: Reden
+    examples:
+      - { de: "Die Kanzlerin hielt eine Rede zur Lage der Nation.", en: "The chancellor gave a speech on the state of the nation.", tags: [singular, Präteritum] }
+      - { de: "Seine Rede wurde mehrmals von Applaus unterbrochen.", en: "His speech was interrupted several times by applause.", tags: [singular, Passiv] }
+      - { de: "Ich habe schon viele Reden für meinen Chef geschrieben.", en: "I have already written many speeches for my boss.", tags: [plural, Perfekt] }
   - id: noun-petition
     type: noun
     lemma: Petition
@@ -2379,12 +2434,16 @@ records:
       - petition
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 304
     noun:
       gender: f
       plural: Petitionen
+    examples:
+      - { de: "Über 100.000 Menschen haben die Petition unterschrieben.", en: "Over 100,000 people have signed the petition.", tags: [singular, Perfekt] }
+      - { de: "Wir reichen die Petition morgen beim Landtag ein.", en: "We are submitting the petition to the state parliament tomorrow.", tags: [singular, Präsens] }
+      - { de: "Online-Petitionen sind ein beliebtes Mittel des Protests.", en: "Online petitions are a popular means of protest.", tags: [plural, Präsens] }
   - id: noun-umfrage
     type: noun
     lemma: Umfrage
@@ -2393,12 +2452,16 @@ records:
       - poll
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 306
     noun:
       gender: f
       plural: Umfragen
+    examples:
+      - { de: "Laut einer Umfrage ist die Mehrheit für das Verbot.", en: "According to a survey, the majority is in favour of the ban.", tags: [singular, Präsens] }
+      - { de: "Die Umfragen sahen die Partei bei zwanzig Prozent.", en: "The polls had the party at twenty percent.", tags: [plural, Präteritum] }
+      - { de: "An der Umfrage haben tausend Personen teilgenommen.", en: "A thousand people took part in the survey.", tags: [singular, Perfekt] }
   - id: noun-oeffentliche-meinung
     type: noun
     lemma: öffentliche Meinung
@@ -2406,12 +2469,16 @@ records:
       - public opinion
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 308
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die öffentliche Meinung hat sich in diesem Punkt gewandelt.", en: "Public opinion has changed on this point.", tags: [singular, Perfekt] }
+      - { de: "Die Medien beeinflussen die öffentliche Meinung stark.", en: "The media strongly influence public opinion.", tags: [singular, Präsens] }
+      - { de: "Gegen die öffentliche Meinung konnte sich die Regierung nicht durchsetzen.", en: "The government could not prevail against public opinion.", tags: [singular, Präteritum] }
   - id: noun-behoerde
     type: noun
     lemma: Behörde
@@ -2420,12 +2487,16 @@ records:
       - government office
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 310
     noun:
       gender: f
       plural: Behörden
+    examples:
+      - { de: "Die Behörde hat meinen Antrag abgelehnt.", en: "The authority rejected my application.", tags: [singular, Perfekt] }
+      - { de: "Für die Genehmigung ist eine andere Behörde zuständig.", en: "A different authority is responsible for the permit.", tags: [singular, Präsens] }
+      - { de: "Die Behörden warnten vor dem Sturm.", en: "The authorities warned of the storm.", tags: [plural, Präteritum] }
   - id: noun-verwaltungsapparat
     type: noun
     lemma: Verwaltungsapparat
@@ -2433,12 +2504,16 @@ records:
       - administrative body
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 312
     noun:
       gender: m
       plural: Verwaltungsapparate
+    examples:
+      - { de: "Der Verwaltungsapparat der Stadt ist schwerfällig.", en: "The city's administrative apparatus is cumbersome.", tags: [singular, Präsens] }
+      - { de: "Die Regierung will den Verwaltungsapparat verkleinern.", en: "The government wants to shrink the administrative apparatus.", tags: [singular, Präsens] }
+      - { de: "Die Verwaltungsapparate der Länder wurden digitalisiert.", en: "The administrative bodies of the federal states were digitised.", tags: [plural, Passiv] }
   - id: noun-buerokratie
     type: noun
     lemma: Bürokratie
@@ -2446,12 +2521,16 @@ records:
       - bureaucracy
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 314
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Bürokratie in Deutschland ist berüchtigt.", en: "Bureaucracy in Germany is notorious.", tags: [singular, Präsens] }
+      - { de: "Wegen der Bürokratie hat die Genehmigung ein Jahr gedauert.", en: "Because of the bureaucracy the permit took a year.", tags: [singular, Perfekt] }
+      - { de: "Viele Unternehmen beklagen sich über zu viel Bürokratie.", en: "Many companies complain about too much bureaucracy.", tags: [singular, Präsens] }
   - id: noun-amt
     type: noun
     lemma: Amt
@@ -2459,12 +2538,16 @@ records:
       - office (public administration)
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 316
     noun:
       gender: n
       plural: Ämter
+    examples:
+      - { de: "Er hat das Amt des Bürgermeisters zwölf Jahre lang ausgeübt.", en: "He held the office of mayor for twelve years.", tags: [singular, Perfekt] }
+      - { de: "Ich muss morgen aufs Amt, um meinen Pass zu verlängern.", en: "I have to go to the authorities tomorrow to renew my passport.", tags: [singular, Präsens] }
+      - { de: "Die Ämter sind am Freitagnachmittag geschlossen.", en: "The offices are closed on Friday afternoons.", tags: [plural, Präsens] }
   - id: noun-gesetzesaenderung
     type: noun
     lemma: Gesetzesänderung
@@ -2472,12 +2555,16 @@ records:
       - legislative amendment
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 320
     noun:
       gender: f
       plural: Gesetzesänderungen
+    examples:
+      - { de: "Die Gesetzesänderung betrifft vor allem Mieter.", en: "The legislative amendment mainly affects tenants.", tags: [singular, Präsens] }
+      - { de: "Der Bundestag hat die Gesetzesänderung gestern beschlossen.", en: "The Bundestag passed the amendment yesterday.", tags: [singular, Perfekt] }
+      - { de: "Mehrere Gesetzesänderungen wurden kurzfristig verschoben.", en: "Several legislative amendments were postponed at short notice.", tags: [plural, Passiv] }
   - id: noun-urteil
     type: noun
     lemma: Urteil
@@ -11272,13 +11359,17 @@ records:
     categories:
       - government-and-politics
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 286
       - 1833
     noun:
       gender: f
       plural: Mehrheiten
+    examples:
+      - { de: "Die Mehrheit der Befragten ist mit der Regierung unzufrieden.", en: "The majority of respondents are dissatisfied with the government.", tags: [singular, Präsens] }
+      - { de: "Die Koalition verlor ihre Mehrheit im Parlament.", en: "The coalition lost its majority in parliament.", tags: [singular, Präteritum] }
+      - { de: "Für Verfassungsänderungen braucht man besondere Mehrheiten.", en: "Special majorities are needed for constitutional amendments.", tags: [plural, Präsens] }
   - id: noun-minderheit
     type: noun
     lemma: Minderheit
@@ -11287,13 +11378,17 @@ records:
     categories:
       - government-and-politics
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 286
       - 1833
     noun:
       gender: f
       plural: Minderheiten
+    examples:
+      - { de: "Die dänische Minderheit hat eigene Schulen.", en: "The Danish minority has its own schools.", tags: [singular, Präsens] }
+      - { de: "Der Schutz von Minderheiten ist in der Verfassung verankert.", en: "The protection of minorities is enshrined in the constitution.", tags: [plural, Präsens] }
+      - { de: "Mit ihrer Meinung war sie in der Minderheit.", en: "With her opinion she was in the minority.", tags: [singular, Präteritum] }
   - id: verb-verabschieden
     type: verb
     lemma: verabschieden
@@ -11301,9 +11396,20 @@ records:
       - to pass (a law)
     categories:
       - government-and-politics
-    status: raw
+    status: enriched
     source_lines:
       - 290
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "verabschiedet"
+        praeteritum: "verabschiedete"
+        partizip2: "verabschiedet"
+    examples:
+      - { de: "Das Parlament verabschiedet heute das Klimagesetz.", en: "Parliament is passing the climate law today.", tags: [Präsens] }
+      - { de: "Das Gesetz wurde mit knapper Mehrheit verabschiedet.", en: "The law was passed by a narrow majority.", tags: [Passiv, Präteritum] }
+      - { de: "Der Bundestag hat den Haushalt noch nicht verabschiedet.", en: "The Bundestag has not yet passed the budget.", tags: [Perfekt] }
   - id: adjective-unschuldig
     type: adjective
     lemma: unschuldig
