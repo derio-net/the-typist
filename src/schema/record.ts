@@ -5,38 +5,38 @@ export { RECOGNISED_TAGS, TENSE_TAGS, checkRecordRules, checkEnriched, type Rule
 
 export const Gender = z.enum(['m', 'f', 'n']);
 
-export const NounBlock = z.object({
+export const NounBlock = z.strictObject({
   gender: Gender,
   plural: z.string().min(1).nullable(),
   plural_only: z.boolean().optional(),
   variants: z
-    .array(z.object({ lemma: z.string().min(1), gender: Gender, plural: z.string().min(1).nullable().optional() }))
+    .array(z.strictObject({ lemma: z.string().min(1), gender: Gender, plural: z.string().min(1).nullable().optional() }))
     .optional(),
 });
 
-export const VerbBlock = z.object({
+export const VerbBlock = z.strictObject({
   separable: z.string().min(1).optional(),
   auxiliary: z.enum(['haben', 'sein']),
   reflexive: z.boolean(),
-  parts: z.object({
+  parts: z.strictObject({
     praesens_3sg: z.string().min(1),
     praeteritum: z.string().min(1),
     partizip2: z.string().min(1),
   }),
 });
 
-export const AdjectiveBlock = z.object({
+export const AdjectiveBlock = z.strictObject({
   gradable: z.boolean(),
   comparative: z.string().min(1).optional(),
   superlative: z.string().min(1).optional(),
 });
 
-export const PhraseBlock = z.object({
+export const PhraseBlock = z.strictObject({
   register: z.enum(['formal', 'informal', 'neutral']).optional(),
   literal: z.string().optional(),
 });
 
-export const Example = z.object({
+export const Example = z.strictObject({
   de: z.string().min(1),
   en: z.string().min(1),
   tags: z.array(z.string()),
@@ -45,14 +45,14 @@ export const Example = z.object({
 export const RecordType = z.enum(['noun', 'verb', 'adjective', 'phrase']);
 export const Status = z.enum(['raw', 'enriched', 'reviewed']);
 
-export const RecordBase = z.object({
+export const RecordBase = z.strictObject({
   id: z.string().min(1),
   type: RecordType,
   lemma: z.string().min(1),
   gloss: z.array(z.string().min(1)).min(1),
   categories: z.array(z.string()).optional(),
   status: Status,
-  source_lines: z.array(z.number().int()).min(1),
+  source_lines: z.array(z.number().int().min(1)).min(1),
   government: z.string().optional(),
   abbreviation: z.string().optional(),
   source_note: z.string().optional(),

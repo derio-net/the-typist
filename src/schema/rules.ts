@@ -52,6 +52,8 @@ export function verbRules(r: VocabRecord, min: Min): string[] {
 export function adjectiveRules(r: VocabRecord, min: Min): string[] {
   const out = needExamples(r, min.adjective_examples);
   if (!countTag(r, 'attributive')) out.push('adjective needs an example tagged attributive');
+  if (r.adjective?.gradable && !(r.adjective.comparative && r.adjective.superlative))
+    out.push('gradable adjective needs both comparative and superlative forms');
   if (r.adjective?.gradable && !countTag(r, 'comparative') && !countTag(r, 'superlative'))
     out.push('gradable adjective needs an example tagged comparative or superlative');
   return out;

@@ -1,20 +1,20 @@
 import { z } from 'zod';
 import { RecordBase, checkEnriched } from './record';
 
-export const Rules = z.object({
-  noun_examples: z.number().int().min(1).optional(),
-  verb_examples: z.number().int().min(1).optional(),
-  adjective_examples: z.number().int().min(1).optional(),
-  phrase_examples: z.number().int().min(1).optional(),
+export const Rules = z.strictObject({
+  noun_examples: z.number().int().min(3).optional(),
+  verb_examples: z.number().int().min(3).optional(),
+  adjective_examples: z.number().int().min(2).optional(),
+  phrase_examples: z.number().int().min(2).optional(),
 });
 
-export const Category = z.object({
+export const Category = z.strictObject({
   id: z.string().min(1),
   title: z.string().min(1),
   order: z.number().int(),
 });
 
-export const ListHeader = z.object({
+export const ListHeader = z.strictObject({
   id: z.string().min(1),
   title: z.string().min(1),
   lang: z.string().min(1),
@@ -30,7 +30,12 @@ export const ListSchema = z
     records: z.array(RecordBase),
   })
   .superRefine((l, ctx) => {
-    const declared = new Set((l.categories ?? []).map((c) => c.id));
+    const declared = new Set<string>();
+    (l.categories ?? []).forEach((c, i) => {
+      if (declared.has(c.id))
+        ctx.addIssue({ code: 'custom', message: `duplicate category id '${c.id}'`, path: ['categories', i] });
+      declared.add(c.id);
+    });
     const seen = new Set<string>();
     l.records.forEach((r, i) => {
       const add = (message: string) => ctx.addIssue({ code: 'custom', message, path: ['records', i] });

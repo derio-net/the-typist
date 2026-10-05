@@ -8,7 +8,9 @@ export function listsPlugin() {
     name: 'typist-lists',
     enforce: 'pre' as const,
     transform(code: string, id: string): string | null {
-      const path = id.split('?')[0]!;
+      // `?raw` / `?url` imports want the file itself, not a validated module.
+      if (id.includes('?')) return null;
+      const path = id;
       if (!LIST_ID.test(path)) return null;
       const res = parseList(code);
       if (!res.ok) {
