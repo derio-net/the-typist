@@ -247,3 +247,8 @@ Both committed on the branch (1569f7e); CLAUDE.md update added to layout/scope.
 ### two-plans · decision · Split into two plans/PRs so UX direction and assets are settled before the UI is built
 
 Operator asked for a manual UX phase after the typing core, before the rest of the game. fr-goal never blocks on a mid-plan manual phase, so plan 1 = R1-R6, R14-R16; plan 2 (new run after merge) = front-loaded manual UX phase + R7-R13.
+
+<!-- fr:journal kind=decision scope=spec id=motion-break-up-bounce created=2026-10-05T11:10:54+00:00 -->
+### motion-break-up-bounce · decision · Children burst out with random sideways velocity and bounce off edges and siblings; slower descent
+
+Operator feedback after playing the phase-3 core: elements should go slower, break up once the mothership is shot (random left/right speed) and bounce off the screen edges. Operator approved the proposal incl. sibling bouncing; implemented as a follow-up to phase 3 before phase 4.
