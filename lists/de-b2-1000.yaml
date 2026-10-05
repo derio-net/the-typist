@@ -9722,12 +9722,16 @@ records:
       - justice
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1454
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Viele Menschen demonstrieren für soziale Gerechtigkeit.", en: "Many people demonstrate for social justice.", tags: [singular, Präsens] }
+      - { de: "Die Familie des Opfers will Gerechtigkeit.", en: "The victim's family wants justice.", tags: [singular, Präsens] }
+      - { de: "Sie hatte schon als Kind einen starken Sinn für Gerechtigkeit.", en: "Even as a child she had a strong sense of justice.", tags: [singular, Präteritum] }
   - id: noun-gewissen
     type: noun
     lemma: Gewissen
@@ -9735,12 +9739,16 @@ records:
       - conscience
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1458
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Ich habe ein schlechtes Gewissen, weil ich sie nicht angerufen habe.", en: "I feel guilty because I didn't call her.", tags: [singular, Präsens] }
+      - { de: "Er handelte nach seinem Gewissen und verweigerte den Befehl.", en: "He followed his conscience and refused the order.", tags: [singular, Präteritum] }
+      - { de: "Mit gutem Gewissen kann ich dieses Produkt nicht empfehlen.", en: "I can't recommend this product with a clear conscience.", tags: [singular, Präsens] }
   - id: noun-verantwortung
     type: noun
     lemma: Verantwortung
@@ -9748,13 +9756,17 @@ records:
       - responsibility
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1460
     source_note: "plural Verantwortungen removed: not used in this sense"
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Eltern tragen die Verantwortung für ihre Kinder.", en: "Parents bear responsibility for their children.", tags: [singular, Präsens] }
+      - { de: "Niemand wollte die Verantwortung für den Fehler übernehmen.", en: "Nobody wanted to take responsibility for the mistake.", tags: [singular, Präteritum] }
+      - { de: "Mit der neuen Stelle hat sie mehr Verantwortung bekommen.", en: "With the new job she has been given more responsibility.", tags: [singular, Perfekt] }
   - id: noun-pflicht
     type: noun
     lemma: Pflicht
@@ -9762,12 +9774,16 @@ records:
       - duty
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1464
     noun:
       gender: f
       plural: Pflichten
+    examples:
+      - { de: "Es ist unsere Pflicht, den Menschen in Not zu helfen.", en: "It is our duty to help people in need.", tags: [singular, Präsens] }
+      - { de: "In Deutschland besteht für Kinder die Pflicht, zur Schule zu gehen.", en: "In Germany, children are obliged to attend school.", tags: [singular, Präsens] }
+      - { de: "Mieter haben nicht nur Rechte, sondern auch Pflichten.", en: "Tenants have not only rights but also duties.", tags: [plural, Präsens] }
   - id: noun-pflichtverletzung
     type: noun
     lemma: Pflichtverletzung
@@ -9775,12 +9791,16 @@ records:
       - breach of duty
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1466
     noun:
       gender: f
       plural: Pflichtverletzungen
+    examples:
+      - { de: "Das Gericht sah in seinem Verhalten eine schwere Pflichtverletzung.", en: "The court saw his behaviour as a serious breach of duty.", tags: [singular, Präteritum] }
+      - { de: "Wegen einer Pflichtverletzung wurde die Mitarbeiterin abgemahnt.", en: "The employee received a formal warning for a breach of duty.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Wiederholte Pflichtverletzungen können zur Kündigung führen.", en: "Repeated breaches of duty can lead to dismissal.", tags: [plural, Präsens] }
   - id: noun-entscheidung
     type: noun
     lemma: Entscheidung
@@ -9788,12 +9808,16 @@ records:
       - decision
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1472
     noun:
       gender: f
       plural: Entscheidungen
+    examples:
+      - { de: "Das war die beste Entscheidung meines Lebens.", en: "That was the best decision of my life.", tags: [singular, Präteritum] }
+      - { de: "Wir müssen bis Freitag eine Entscheidung treffen.", en: "We have to make a decision by Friday.", tags: [singular, Präsens] }
+      - { de: "Schwierige Entscheidungen hatte er immer lange hinausgezögert.", en: "He had always put off difficult decisions for a long time.", tags: [plural, Plusquamperfekt] }
   - id: noun-meinungsfreiheit
     type: noun
     lemma: Meinungsfreiheit
@@ -9803,26 +9827,35 @@ records:
     categories:
       - ethics-and-society
       - politics-and-international-relations
-    status: raw
+    status: enriched
     source_lines:
       - 1474
       - 1851
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Meinungsfreiheit ist im Grundgesetz garantiert.", en: "Freedom of opinion is guaranteed in the Basic Law.", tags: [singular, Präsens] }
+      - { de: "Auch die Meinungsfreiheit hat Grenzen.", en: "Even freedom of speech has limits.", tags: [singular, Präsens] }
+      - { de: "Journalisten protestierten gegen die Einschränkung der Meinungsfreiheit.", en: "Journalists protested against the restriction of freedom of speech.", tags: [singular, Präteritum] }
   - id: noun-gleichberechtigung
     type: noun
     lemma: Gleichberechtigung
     gloss:
+      - equal rights
       - equality
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1476
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Gleichberechtigung von Mann und Frau steht im Grundgesetz.", en: "Equal rights for men and women are enshrined in the Basic Law.", tags: [singular, Präsens] }
+      - { de: "Bei der Bezahlung gibt es noch keine echte Gleichberechtigung.", en: "There is still no real equality when it comes to pay.", tags: [singular, Präsens] }
+      - { de: "Sie hat ihr Leben lang für die Gleichberechtigung gekämpft.", en: "She fought for equal rights all her life.", tags: [singular, Perfekt] }
   - id: noun-diskriminierung
     type: noun
     lemma: Diskriminierung
@@ -9830,12 +9863,16 @@ records:
       - discrimination
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1478
     noun:
       gender: f
       plural: Diskriminierungen
+    examples:
+      - { de: "Diskriminierung am Arbeitsplatz ist verboten.", en: "Discrimination in the workplace is prohibited.", tags: [singular, Präsens] }
+      - { de: "Sie hat wegen ihres Namens oft Diskriminierung erlebt.", en: "She has often experienced discrimination because of her name.", tags: [singular, Perfekt] }
+      - { de: "Die Beratungsstelle dokumentiert alle gemeldeten Diskriminierungen.", en: "The advice centre documents all reported cases of discrimination.", tags: [plural, Präsens] }
   - id: verb-diskriminieren
     type: verb
     lemma: diskriminieren
@@ -9843,9 +9880,20 @@ records:
       - to discriminate
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1480
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "diskriminiert"
+        praeteritum: "diskriminierte"
+        partizip2: "diskriminiert"
+    examples:
+      - { de: "Das Gesetz verbietet, Menschen wegen ihrer Herkunft zu diskriminieren.", en: "The law forbids discriminating against people because of their origin.", tags: [Präsens] }
+      - { de: "Die Firma hat ältere Bewerber systematisch diskriminiert.", en: "The company systematically discriminated against older applicants.", tags: [Perfekt] }
+      - { de: "Früher diskriminierte man Frauen auch bei der Vergabe von Krediten.", en: "In the past, women were also discriminated against when loans were granted.", tags: [Präteritum] }
   - id: noun-toleranz
     type: noun
     lemma: Toleranz
@@ -9853,12 +9901,16 @@ records:
       - tolerance
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1482
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "In einer Demokratie braucht man Toleranz gegenüber anderen Meinungen.", en: "In a democracy you need tolerance of other opinions.", tags: [singular, Präsens] }
+      - { de: "Die Schule setzt sich für Toleranz und Vielfalt ein.", en: "The school is committed to tolerance and diversity.", tags: [singular, Präsens] }
+      - { de: "Seine Toleranz hatte Grenzen, als es um Gewalt ging.", en: "His tolerance had its limits when it came to violence.", tags: [singular, Präteritum] }
   - id: noun-solidaritaet
     type: noun
     lemma: Solidarität
@@ -9866,12 +9918,16 @@ records:
       - solidarity
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1486
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Nach der Flut zeigten die Menschen große Solidarität.", en: "After the flood, people showed great solidarity.", tags: [singular, Präteritum] }
+      - { de: "Die Gewerkschaft ruft zur Solidarität mit den Streikenden auf.", en: "The union is calling for solidarity with the strikers.", tags: [singular, Präsens] }
+      - { de: "Ohne Solidarität funktioniert keine Gesellschaft.", en: "No society works without solidarity.", tags: [singular, Präsens] }
   - id: noun-zivilcourage
     type: noun
     lemma: Zivilcourage
@@ -9879,23 +9935,39 @@ records:
       - moral courage
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1488
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Es braucht Zivilcourage, in so einer Situation einzugreifen.", en: "It takes courage to intervene in a situation like that.", tags: [singular, Präsens] }
+      - { de: "Die junge Frau wurde für ihre Zivilcourage ausgezeichnet.", en: "The young woman received an award for her moral courage.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Leider hat in der U-Bahn niemand Zivilcourage gezeigt.", en: "Unfortunately, nobody on the underground showed the courage to step in.", tags: [singular, Perfekt] }
   - id: verb-sich-engagieren
     type: verb
-    lemma: sich engagieren
+    lemma: engagieren
     gloss:
+      - to be actively involved (in)
       - to commit oneself to
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1490
     government: für
+    verb:
+      auxiliary: haben
+      reflexive: true
+      parts:
+        praesens_3sg: "engagiert"
+        praeteritum: "engagierte"
+        partizip2: "engagiert"
+    examples:
+      - { de: "Sie engagiert sich seit Jahren für den Umweltschutz.", en: "She has been actively involved in environmental protection for years.", tags: [Präsens] }
+      - { de: "Er hat sich in der Flüchtlingshilfe engagiert.", en: "He was actively involved in helping refugees.", tags: [Perfekt] }
+      - { de: "Als Studentin engagierte sie sich in der Hochschulpolitik.", en: "As a student, she was involved in university politics.", tags: [Präteritum] }
   - id: noun-engagement
     type: noun
     lemma: Engagement
@@ -9904,12 +9976,16 @@ records:
       - commitment
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1492
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Ohne das Engagement der Eltern gäbe es das Schulfest nicht.", en: "Without the parents' commitment there would be no school fair.", tags: [singular, Konjunktiv II] }
+      - { de: "Ihr soziales Engagement wurde mit einem Preis gewürdigt.", en: "Her commitment to social causes was recognised with an award.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Wir suchen Mitarbeiter mit Engagement und Teamgeist.", en: "We are looking for employees with commitment and team spirit.", tags: [singular, Präsens] }
   - id: noun-ehrenamtliche
     type: noun
     lemma: Ehrenamtliche
@@ -9917,7 +9993,7 @@ records:
       - volunteer
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1496
     noun:
@@ -9927,6 +10003,10 @@ records:
         - lemma: Ehrenamtliche
           gender: f
           plural: Ehrenamtlichen
+    examples:
+      - { de: "Ein Ehrenamtlicher bringt den alten Menschen das Essen.", en: "A volunteer brings the elderly people their meals.", tags: [singular, Präsens] }
+      - { de: "Ohne die vielen Ehrenamtlichen könnte der Verein nicht existieren.", en: "Without its many volunteers, the club could not exist.", tags: [plural, Konjunktiv II] }
+      - { de: "Die Ehrenamtliche hat die Tafel zwanzig Jahre lang geleitet.", en: "The volunteer ran the food bank for twenty years.", tags: [singular, Perfekt] }
   - id: noun-menschenwuerde
     type: noun
     lemma: Menschenwürde
@@ -9934,12 +10014,16 @@ records:
       - human dignity
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1498
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Folter verstößt gegen die Menschenwürde.", en: "Torture violates human dignity.", tags: [singular, Präsens] }
+      - { de: "Die Menschenwürde steht im ersten Artikel des Grundgesetzes.", en: "Human dignity is set out in the first article of the Basic Law.", tags: [singular, Präsens] }
+      - { de: "Die Bedingungen im Lager verletzten die Menschenwürde.", en: "The conditions in the camp violated human dignity.", tags: [singular, Präteritum] }
   - id: noun-missbrauch
     type: noun
     lemma: Missbrauch
@@ -9947,12 +10031,17 @@ records:
       - abuse
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1502
+    source_note: "plural Missbräuche removed: rarely used (Missbrauchsfälle is usual)"
     noun:
       gender: m
-      plural: Missbräuche
+      plural: null
+    examples:
+      - { de: "Der Missbrauch von Medikamenten ist ein wachsendes Problem.", en: "The abuse of medication is a growing problem.", tags: [singular, Präsens] }
+      - { de: "Die Firma wurde wegen Missbrauchs ihrer Marktmacht bestraft.", en: "The company was fined for abusing its market power.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Um Missbrauch zu verhindern, werden alle Anträge geprüft.", en: "To prevent misuse, all applications are checked.", tags: [singular, Passiv, Präsens] }
   - id: noun-betrug
     type: noun
     lemma: Betrug
@@ -9960,12 +10049,16 @@ records:
       - fraud
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1504
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der Betrug fiel erst nach Jahren auf.", en: "The fraud only came to light after years.", tags: [singular, Präteritum] }
+      - { de: "Er wurde wegen Betrugs zu zwei Jahren Haft verurteilt.", en: "He was sentenced to two years in prison for fraud.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Vorsicht, diese E-Mail ist Betrug!", en: "Careful, this email is a scam!", tags: [singular, Präsens] }
   - id: noun-korruption
     type: noun
     lemma: Korruption
@@ -9973,12 +10066,16 @@ records:
       - corruption
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1506
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Korruption ist in vielen Ländern ein großes Problem.", en: "Corruption is a big problem in many countries.", tags: [singular, Präsens] }
+      - { de: "Der Minister trat nach Vorwürfen der Korruption zurück.", en: "The minister resigned after allegations of corruption.", tags: [singular, Präteritum] }
+      - { de: "Die neue Regierung wird die Korruption entschlossen bekämpfen.", en: "The new government will fight corruption decisively.", tags: [singular, Futur I] }
   - id: noun-vorurteil
     type: noun
     lemma: Vorurteil
@@ -9986,12 +10083,16 @@ records:
       - prejudice
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1508
     noun:
       gender: n
       plural: Vorurteile
+    examples:
+      - { de: "Das ist doch nur ein Vorurteil!", en: "That's just a prejudice!", tags: [singular, Präsens] }
+      - { de: "Viele Migranten kämpfen mit Vorurteilen.", en: "Many migrants struggle with prejudice.", tags: [plural, Präsens] }
+      - { de: "Durch die Reise hat sie viele Vorurteile abgebaut.", en: "The trip helped her get rid of many prejudices.", tags: [plural, Perfekt] }
   - id: noun-ungleichheit
     type: noun
     lemma: Ungleichheit
@@ -9999,12 +10100,16 @@ records:
       - inequality
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1510
     noun:
       gender: f
       plural: Ungleichheiten
+    examples:
+      - { de: "Die soziale Ungleichheit hat in den letzten Jahren zugenommen.", en: "Social inequality has increased in recent years.", tags: [singular, Perfekt] }
+      - { de: "Ungleichheit beim Einkommen führt oft zu Spannungen.", en: "Income inequality often leads to tension.", tags: [singular, Präsens] }
+      - { de: "Die Studie zeigt große regionale Ungleichheiten.", en: "The study shows large regional inequalities.", tags: [plural, Präsens] }
   - id: noun-armut
     type: noun
     lemma: Armut
@@ -10012,12 +10117,16 @@ records:
       - poverty
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1512
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Viele Kinder in Deutschland sind von Armut bedroht.", en: "Many children in Germany are at risk of poverty.", tags: [singular, Präsens] }
+      - { de: "Er wuchs in großer Armut auf.", en: "He grew up in great poverty.", tags: [singular, Präteritum] }
+      - { de: "Bildung ist der beste Weg aus der Armut.", en: "Education is the best way out of poverty.", tags: [singular, Präsens] }
   - id: noun-obdachlosigkeit
     type: noun
     lemma: Obdachlosigkeit
@@ -10025,12 +10134,16 @@ records:
       - homelessness
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1514
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Obdachlosigkeit in den Großstädten nimmt zu.", en: "Homelessness in the big cities is increasing.", tags: [singular, Präsens] }
+      - { de: "Viele Menschen geraten durch Schulden in die Obdachlosigkeit.", en: "Many people become homeless because of debt.", tags: [singular, Präsens] }
+      - { de: "Die Stadt will die Obdachlosigkeit bis 2030 beenden.", en: "The city wants to end homelessness by 2030.", tags: [singular, Präsens] }
   - id: noun-reichtum
     type: noun
     lemma: Reichtum
@@ -10038,12 +10151,16 @@ records:
       - wealth
     categories:
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 1516
     noun:
       gender: m
       plural: Reichtümer
+    examples:
+      - { de: "Sein Reichtum hat ihn nicht glücklich gemacht.", en: "His wealth did not make him happy.", tags: [singular, Perfekt] }
+      - { de: "Der Reichtum ist in vielen Ländern ungleich verteilt.", en: "Wealth is unequally distributed in many countries.", tags: [singular, Präsens] }
+      - { de: "Trotz seiner natürlichen Reichtümer ist das Land arm.", en: "Despite its natural riches, the country is poor.", tags: [plural, Präsens] }
   - id: noun-soziale-aufstieg
     type: noun
     lemma: soziale Aufstieg
