@@ -3,7 +3,7 @@ run: 2026-10-05-feat-vocab-typer
 workflow: fr-goal@1
 branch: feat/vocab-typer
 started: '2026-10-05T06:08:27+00:00'
-cursor: journal-check
+cursor: deliver
 steps:
   brainstorm:
     state: done
@@ -227,7 +227,11 @@ steps:
           visual: none
           findings: p6-r1,p6-r2,p6-r3,p6-r4,p6-r5,p6-r6,p6-r7,p6-r8,p6-r9,p6-r10,p6-r11
   journal-check:
-    state: pending
+    state: done
+    at: '2026-10-05T20:09:33+00:00'
+    exit: 0
+    stdout: "12 out-of-scope finding(s): p1-r9, p2-r4, p3-r6, p3-r8, p3-r9, p3-r12,\
+      \ p3-r14, \np3-r15, p3-r16, p3-r17, p5-r11, p6-r11\n"
   deliver:
     state: pending
 driver: standalone
