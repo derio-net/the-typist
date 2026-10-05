@@ -90,8 +90,8 @@ describe('equivalences', () => {
 });
 
 describe('punctuation', () => {
-  it.each(['Er kommt.', 'Wirklich?', 'Nein!', 'Er kommt…', 'Sie sagt „Nein.“'])('%s trailing punctuation is pre-typed', (text) => {
-    const stripped = text.replace(/[.!?…“]+$/u, '');
+  it.each(['Er kommt.', 'Wirklich?', 'Nein!', 'Er kommt…', 'Sie sagt „Nein.“', 'Er sagt »Nein«', 'Sie sagt „Nein”', 'Er sagt "Nein"'])('%s trailing punctuation is pre-typed', (text) => {
+    const stripped = text.replace(/[.!?…“”«»"]+$/u, '');
     const { state, events } = run(make([{ id: 'a', text }]), stripped);
     expect(state.ships).toEqual([]);
     expect(kinds(events).at(-1)).toBe('destroyed');

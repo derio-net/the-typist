@@ -1,10 +1,12 @@
 import { WORLD, type World, type WorldEvent, type WorldShip } from '../engine/world';
-import { drawShip, effects, fonts, labels, palette, sizes, type ShipBox } from './theme';
+import { drawShip, effects, fonts, labels, palette, sizes, type MeasureFont, type ShipBox } from './theme';
 
 interface Bullet { shipId: string; fromX: number; at: number; lastX: number; lastY: number }
 interface Explosion { x: number; y: number; at: number }
 
 export interface Renderer {
+  /** Text measurer for `createWorld({ measure })`, so layout uses real glyph widths. */
+  measure(text: string, font?: MeasureFont): number;
   /** Feed events from `tick` / `typeChar` so effects can be spawned. */
   push(events: WorldEvent[], now: number): void;
   draw(world: World, now: number): void;
@@ -16,17 +18,22 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
   canvas.height = WORLD.height;
 
   const stars = Array.from({ length: sizes.starCount }, (_, i) => ({
-    x: (i * 7919) % WORLD.width,
-    y: (i * 104729) % WORLD.height,
+    x: (i * sizes.starSeedX) % WORLD.width,
+    y: (i * sizes.starSeedY) % WORLD.height,
   }));
   const lastPos = new Map<string, { x: number; y: number }>();
   let bullets: Bullet[] = [];
   let explosions: Explosion[] = [];
   const playerX = WORLD.width / 2;
 
+  /** Pixel width of `text` in the given font; ship text includes its hull padding. */
+  const measure = (text: string, font: MeasureFont = 'ship'): number => {
+    ctx.font = fonts[font];
+    return ctx.measureText(text).width + (font === 'ship' ? 2 * sizes.shipPaddingX : 0);
+  };
+
   function boxOf(ship: WorldShip): ShipBox {
-    ctx.font = fonts.ship;
-    const w = ctx.measureText(ship.text).width + sizes.shipPaddingX * 2;
+    const w = measure(ship.text);
     return { x: ship.x - w / 2, y: ship.y - sizes.shipHeight / 2, w, h: sizes.shipHeight };
   }
 
@@ -36,7 +43,7 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
     if (locked) {
       ctx.strokeStyle = palette.lock;
       ctx.lineWidth = sizes.lockLineWidth;
-      ctx.strokeRect(box.x - 3, box.y - 3, box.w + 6, box.h + 6);
+      ctx.strokeRect(box.x - sizes.lockInset, box.y - sizes.lockInset, box.w + 2 * sizes.lockInset, box.h + 2 * sizes.lockInset);
     }
     const typing = world.typing.ships.find((s) => s.id === ship.id);
     const pos = typing?.pos ?? 0;
@@ -56,7 +63,7 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
       under += sizes.glossGap;
       ctx.font = fonts.gloss;
       ctx.fillStyle = palette.gloss;
-      ctx.fillText(ship.label, ship.x, under + 6);
+      ctx.fillText(ship.label, ship.x, under + sizes.glossBaseline);
     }
     if (ship.kind === 'escort') {
       // chip and translation slots are always drawn in this phase
@@ -72,6 +79,7 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
   }
 
   return {
+    measure,
     push(events, now) {
       for (const ev of events) {
         const p = 'shipId' in ev ? lastPos.get(ev.shipId) : undefined;
@@ -132,7 +140,7 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
       ctx.fillText(`${labels.wave} ${world.wave + 1}`, sizes.hudMargin, sizes.hudMargin + sizes.hudLineHeight);
       ctx.fillStyle = palette.hudLife;
       for (let i = 0; i < world.lives; i++) {
-        ctx.fillRect(WORLD.width - sizes.hudMargin - (i + 1) * (sizes.lifeSize * 1.6), sizes.hudMargin, sizes.lifeSize, sizes.lifeSize);
+        ctx.fillRect(WORLD.width - sizes.hudMargin - (i + 1) * (sizes.lifeSize + sizes.lifeGap), sizes.hudMargin, sizes.lifeSize, sizes.lifeSize);
       }
       if (world.status !== 'playing') {
         ctx.font = fonts.banner;

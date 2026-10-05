@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { parseList, displayForm, formsText, type VocabRecord } from '../../src/schema';
 import {
-  STEP_MS, advance, createWorld, shipSpeed, tick, typeChar, type World, type WorldEvent,
+  STEP_MS, WORLD, advance, createWorld, shipBounds, shipSpeed, tick, typeChar, type World, type WorldEvent,
 } from '../../src/engine/world';
 
 const fixture = parseList(readFileSync('tests/fixtures/lists/two-records.yaml', 'utf8'));
@@ -165,5 +165,90 @@ describe('headless play-through of the two-record fixture', () => {
       expect(r.typos).toBe(0);
     }
     expect(w.score).toBeGreaterThan(0);
+  });
+});
+
+const lowered = (w: World, y: number): World => ({ ...w, ships: w.ships.map((s) => ({ ...s, y })) });
+const intersects = (a: ReturnType<typeof shipBounds>, b: ReturnType<typeof shipBounds>) =>
+  a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
+
+describe('child placement (r1, r2, r3)', () => {
+  const destroyFirst = (w: World) => typeText(w, w.ships.find((s) => s.kind === 'mothership')!.text);
+
+  it.each([0, 200, 450])('children fit the canvas and never overlap live ships (mothership at y=%i)', (y) => {
+    let w = createWorld([boerse, anlegen]);
+    const target = w.ships[0];
+    w = { ...w, ships: w.ships.map((s) => (s.id === target.id ? { ...s, y: y || s.y } : s)) };
+    w = typeText(w, target.text);
+    const boxes = w.ships.map(shipBounds);
+    expect(boxes.length).toBe(1 + 1 + boerse.examples!.length);
+    for (const b of boxes) {
+      expect(b.x0).toBeGreaterThanOrEqual(0);
+      expect(b.x1).toBeLessThanOrEqual(WORLD.width);
+      expect(b.y0).toBeGreaterThanOrEqual(0);
+    }
+    for (let i = 0; i < boxes.length; i++)
+      for (let j = i + 1; j < boxes.length; j++) expect(intersects(boxes[i], boxes[j])).toBe(false);
+  });
+
+  it('keeps children a reaction distance above the player line even when the mothership dies low', () => {
+    let w = createWorld([boerse]);
+    w = lowered(w, WORLD.playerY - 5);
+    w = destroyFirst(w);
+    const kids = w.ships.filter((s) => s.kind !== 'mothership');
+    expect(kids.length).toBeGreaterThan(0);
+    for (const k of kids) expect(k.y).toBeLessThanOrEqual(WORLD.playerY - k.speed * WORLD.minReactionS + 1e-9);
+    const next = advance(w, 1000);
+    expect(next.lives).toBe(3);
+  });
+
+  it('measures with the injected function: wider-than-canvas text is centred', () => {
+    let w = createWorld([boerse], { measure: () => WORLD.width + 400 });
+    w = destroyFirst(w);
+    for (const s of w.ships) expect(s.x).toBe(WORLD.width / 2);
+  });
+
+  it('uses the injected measure for the clamp (no ship box leaves the canvas)', () => {
+    let w = createWorld([boerse], { measure: (t) => t.length * 14 + 24 });
+    w = destroyFirst(w);
+    for (const s of w.ships) {
+      const b = shipBounds(s);
+      expect(b.x0).toBeGreaterThanOrEqual(0);
+      expect(b.x1).toBeLessThanOrEqual(WORLD.width);
+    }
+  });
+});
+
+describe('advance events (r4)', () => {
+  it('keeps events from every step, not just the last', () => {
+    const lanes = createWorld([boerse, anlegen]);
+    const staggered: World = { ...lanes, ships: lanes.ships.map((s, i) => ({ ...s, y: s.y + i * 200 })) };
+    const w = advance(staggered, 60000);
+    const escaped = w.events.filter((e) => e.type === 'escaped');
+    const resolved = w.events.filter((e) => e.type === 'resolved');
+    expect(escaped).toHaveLength(2);
+    expect(resolved).toHaveLength(2);
+    expect(w.events.at(-1)?.type).toBe('wave-complete');
+  });
+});
+
+describe('escapes (r13)', () => {
+  it('releases the lock when the locked ship escapes', () => {
+    let w = typeChar(createWorld([boerse]), 'd');
+    expect(w.typing.lock).not.toBeNull();
+    w = advance(w, 60000);
+    expect(w.lives).toBe(2);
+    expect(w.typing.lock).toBeNull();
+    expect(w.typing.ships).toEqual([]);
+  });
+
+  it('a child escaping after the mothership was destroyed with typos still resolves with those stats', () => {
+    let w = createWorld([phrase]);
+    w = typeText(w, 'jx');
+    w = typeText(w, 'edoch');
+    expect(w.results['phrase-jedoch']).toBeUndefined();
+    w = advance(w, 120000);
+    expect(w.results['phrase-jedoch']).toEqual({ typos: 1, expectedChars: 6, activeMs: 0, escaped: true });
+    expect(w.lives).toBe(1);
   });
 });

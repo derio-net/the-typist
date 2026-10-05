@@ -7,9 +7,7 @@ export const palette = {
   background: '#0b1020',
   star: '#2a3556',
   text: '#e8ecf8',
-  textDim: '#8d97b5',
   typed: '#5df2a0',
-  typo: '#ff5d6c',
   gloss: '#f6d365',
   chip: '#7cc4ff',
   translation: '#9aa6c9',
@@ -58,8 +56,17 @@ export const sizes = {
   lifeSize: 10,
   starCount: 60,
   starSize: 2,
-  playerLineWidth: 1,
+  lockInset: 3,
+  glossHeight: 14,
+  glossBaseline: 7,
+  rowHalf: 8,
+  lifeGap: 6,
+  starSeedX: 7919,
+  starSeedY: 104729,
 } as const;
+
+/** Estimated glyph widths (px/char) for the fonts above; the renderer measures for real. */
+export const charWidths = { ship: 10.8, gloss: 7, chip: 6.5, translation: 6.5 } as const;
 
 export const effects = {
   bulletMs: 120,
@@ -72,6 +79,8 @@ export const labels = {
   waveComplete: 'Wave complete',
   gameOver: 'Game over',
 } as const;
+
+export type MeasureFont = 'ship' | 'gloss' | 'chip' | 'translation';
 
 export type ShipKindName = 'mothership' | 'forms' | 'escort';
 

@@ -1,5 +1,6 @@
 import { displayForm, formsText } from '../schema/display';
 import { RECOGNISED_TAGS, type VocabRecord } from '../schema/record';
+import { charWidths, sizes, type MeasureFont } from '../render/theme';
 import {
   addShip, createTyping, removeShip, setPositions, step, type TypingEvent, type TypingState,
 } from './typing';
@@ -16,9 +17,21 @@ export const WORLD = {
   speedPerWave: 0.2,
   /** Texts up to this many characters descend at full speed; longer ones in proportion. */
   referenceLength: 12,
-  /** Rough glyph width used only to keep escorts on screen. */
-  charWidth: 9,
+  /** Children spawn at least this many seconds of descent above the player line. */
+  minReactionS: 3,
+  /** Top margin for ship centres (keeps clear of the HUD). */
+  minY: 30,
+  /** Candidate grid for child placement. */
+  slotStepX: 20,
+  slotStepY: 15,
 } as const;
+
+/** Pixel width of `text` in a theme font; ship text includes the hull padding. */
+export type Measure = (text: string, font?: MeasureFont) => number;
+
+/** Default measurer derived from the theme's glyph-width estimates. */
+export const defaultMeasure: Measure = (text, font = 'ship') =>
+  text.length * charWidths[font] + (font === 'ship' ? 2 * sizes.shipPaddingX : 0);
 
 export type ShipKind = 'mothership' | 'forms' | 'escort';
 
@@ -37,7 +50,24 @@ export interface WorldShip {
   /** English translation and grammar chip, for escorts. */
   translation?: string;
   chip?: string;
+  /** Width of the whole bounding box (text hull plus the rows under it) and height of those rows. */
+  w: number;
+  below: number;
 }
+
+export interface Bounds { x0: number; y0: number; x1: number; y1: number }
+
+/** Full bounding box: hull plus gloss / chip / translation rows. */
+export function shipBounds(s: WorldShip): Bounds {
+  return {
+    x0: s.x - s.w / 2,
+    x1: s.x + s.w / 2,
+    y0: s.y - sizes.shipHeight / 2,
+    y1: s.y + sizes.shipHeight / 2 + s.below,
+  };
+}
+
+const overlaps = (a: Bounds, b: Bounds) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
 
 export interface RecordStats {
   typos: number;
@@ -73,13 +103,18 @@ export interface World {
   records: Record<string, RecordState>;
   /** Stats of every resolved record. */
   results: Record<string, RecordStats>;
-  /** Events produced by the last `tick` / `typeChar`. */
+  /** Events produced by the last `tick` / `typeChar` / `advance`. */
   events: WorldEvent[];
+  measure: Measure;
+  minReactionS: number;
 }
 
 export interface WorldOptions {
   wave?: number;
   lives?: number;
+  /** Text measurer; the renderer supplies real glyph widths. */
+  measure?: Measure;
+  minReactionS?: number;
 }
 
 export function shipSpeed(length: number, wave: number): number {
@@ -87,21 +122,30 @@ export function shipSpeed(length: number, wave: number): number {
   return (WORLD.baseSpeed * (1 + WORLD.speedPerWave * wave)) / factor;
 }
 
-const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
+const clamp = (v: number, lo: number, hi: number) => (lo > hi ? (lo + hi) / 2 : Math.min(hi, Math.max(lo, v)));
+
+function rowsBelow(kind: ShipKind, hasLabel: boolean): number {
+  if (kind === 'mothership') return hasLabel ? sizes.glossGap + sizes.glossHeight : 0;
+  if (kind === 'escort') return sizes.chipGap + sizes.translationGap + sizes.rowHalf;
+  return 0;
+}
 
 function makeShip(
-  id: string, recordId: string, kind: ShipKind, text: string, x: number, y: number, wave: number,
+  m: Measure, id: string, recordId: string, kind: ShipKind, text: string, x: number, y: number, wave: number,
   extra: Partial<WorldShip> = {},
 ): WorldShip {
-  return { id, recordId, kind, text, x, y, speed: shipSpeed(text.length, wave), ...extra };
+  const rows = [extra.label && m(extra.label, 'gloss'), extra.chip && m(extra.chip, 'chip'), extra.translation && m(extra.translation, 'translation')];
+  const w = Math.max(m(text), ...rows.map((r) => r || 0));
+  return { id, recordId, kind, text, x, y, speed: shipSpeed(text.length, wave), w, below: rowsBelow(kind, !!extra.label), ...extra };
 }
 
 /** A new wave: every record's mothership is on screen, in staggered lanes. */
 export function createWorld(records: VocabRecord[], opts: WorldOptions = {}): World {
   const wave = opts.wave ?? 0;
+  const measure = opts.measure ?? defaultMeasure;
   const n = records.length;
   const ships = records.map((r, i) =>
-    makeShip(`${r.id}:m`, r.id, 'mothership', displayForm(r), ((i + 1) / (n + 1)) * WORLD.width, 40 + (i % 3) * 45, wave, {
+    makeShip(measure, `${r.id}:m`, r.id, 'mothership', displayForm(r), ((i + 1) / (n + 1)) * WORLD.width, 40 + (i % 3) * 45, wave, {
       label: r.gloss.join('; '),
     }),
   );
@@ -114,6 +158,8 @@ export function createWorld(records: VocabRecord[], opts: WorldOptions = {}): Wo
     ),
     results: {},
     events: [],
+    measure,
+    minReactionS: opts.minReactionS ?? WORLD.minReactionS,
   };
 }
 
@@ -127,17 +173,42 @@ function spawn(w: Draft, ship: WorldShip) {
   w.events.push({ type: 'spawned', shipId: ship.id, kind: ship.kind });
 }
 
+/**
+ * Nearest free slot to (px, py): the child's whole box must stay on the canvas,
+ * clear of every live ship, and keep its centre `maxY` or higher. If no slot is
+ * free, falls back to the top row.
+ */
+function findSlot(w: Draft, child: WorldShip, px: number, py: number): { x: number; y: number } {
+  const maxY = Math.max(WORLD.minY, WORLD.playerY - child.speed * w.minReactionS);
+  const lo = child.w / 2;
+  const hi = WORLD.width - child.w / 2;
+  const xs: number[] = lo > hi ? [WORLD.width / 2] : [];
+  if (lo <= hi) for (let x = lo; x <= hi; x += WORLD.slotStepX) xs.push(x);
+  const others = w.ships.map(shipBounds);
+  let best: { x: number; y: number; d: number } | null = null;
+  for (let y = WORLD.minY; y <= maxY; y += WORLD.slotStepY) {
+    for (const x of xs) {
+      const d = (x - px) ** 2 + (y - py) ** 2;
+      if (best && d >= best.d) continue;
+      const box = shipBounds({ ...child, x, y });
+      if (others.some((o) => overlaps(box, o))) continue;
+      best = { x, y, d };
+    }
+  }
+  if (best) return best;
+  return { x: clamp(px, lo, hi), y: WORLD.minY };
+}
+
 function spawnChildren(w: Draft, m: WorldShip) {
   const record = w.records[m.recordId].record;
   const forms = formsText(record);
-  if (forms !== null) spawn(w, makeShip(`${record.id}:f`, record.id, 'forms', forms, m.x, m.y, w.wave));
+  const make = (child: WorldShip) => {
+    spawn(w, { ...child, ...findSlot(w, child, m.x, m.y) });
+  };
+  if (forms !== null) make(makeShip(w.measure, `${record.id}:f`, record.id, 'forms', forms, m.x, m.y, w.wave));
   (record.examples ?? []).forEach((e, k) => {
-    const half = (e.de.length * WORLD.charWidth) / 2 + 10;
-    const side = k % 2 === 0 ? -1 : 1;
-    const x = clamp(m.x + side * 150, half, WORLD.width - half);
-    const y = clamp(m.y - 10 + k * 52, 30, WORLD.playerY - 60);
     const chip = e.tags.filter((t) => (RECOGNISED_TAGS as readonly string[]).includes(t)).join(', ');
-    spawn(w, makeShip(`${record.id}:e${k}`, record.id, 'escort', e.de, x, y, w.wave, {
+    make(makeShip(w.measure, `${record.id}:e${k}`, record.id, 'escort', e.de, m.x, m.y, w.wave, {
       translation: e.en,
       ...(chip ? { chip } : {}),
     }));
@@ -200,11 +271,13 @@ export function tick(world: World): World {
 export function advance(world: World, elapsedMs: number): World {
   let w = world;
   let acc = w.acc + elapsedMs;
+  const events: WorldEvent[] = [];
   while (acc >= STEP_MS - 1e-9 && w.status === 'playing') {
     w = tick(w);
+    events.push(...w.events);
     acc -= STEP_MS;
   }
-  return { ...w, acc, events: w === world ? [] : w.events };
+  return { ...w, acc, events };
 }
 
 /** Feeds one committed character to the typing engine and applies the consequences. */
