@@ -14725,12 +14725,16 @@ records:
       - global responsibility
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2248
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Reiche Länder tragen eine globale Verantwortung für den Klimaschutz.", en: "Rich countries bear a global responsibility for climate protection.", tags: [singular, Präsens] }
+      - { de: "Die Rede appellierte an unsere globale Verantwortung.", en: "The speech appealed to our global responsibility.", tags: [singular, Präteritum] }
+      - { de: "Unternehmen müssen ihrer globalen Verantwortung gerecht werden.", en: "Companies must live up to their global responsibility.", tags: [singular, Präsens] }
   - id: noun-internationale-zusammenarbeit
     type: noun
     lemma: internationale Zusammenarbeit
@@ -14738,12 +14742,16 @@ records:
       - international cooperation
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2250
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Den Klimawandel kann man nur durch internationale Zusammenarbeit bremsen.", en: "Climate change can only be slowed through international cooperation.", tags: [singular, Präsens] }
+      - { de: "Die internationale Zusammenarbeit in der Forschung hat sich bewährt.", en: "International cooperation in research has proved its worth.", tags: [singular, Perfekt] }
+      - { de: "Ohne internationale Zusammenarbeit wäre der Impfstoff nicht so schnell entwickelt worden.", en: "Without international cooperation, the vaccine would not have been developed so quickly.", tags: [singular, Konjunktiv II, Passiv] }
   - id: noun-aktivist
     type: noun
     lemma: Aktivist
@@ -14751,7 +14759,7 @@ records:
       - activist
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2252
     noun:
@@ -14761,6 +14769,10 @@ records:
         - lemma: Aktivistin
           gender: f
           plural: Aktivistinnen
+    examples:
+      - { de: "Ein Aktivist klebte sich auf der Straße fest.", en: "An activist glued himself to the road.", tags: [singular, Präteritum] }
+      - { de: "Die Aktivisten protestierten vor dem Parlament.", en: "The activists protested in front of parliament.", tags: [plural, Präteritum] }
+      - { de: "Die junge Aktivistin hat weltweit Millionen Menschen inspiriert.", en: "The young activist has inspired millions of people around the world.", tags: [singular, Perfekt] }
   - id: noun-klimabewegung
     type: noun
     lemma: Klimabewegung
@@ -14768,12 +14780,17 @@ records:
       - climate movement
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2254
+    source_note: "plural Klimabewegungen removed: rarely used"
     noun:
       gender: f
-      plural: Klimabewegungen
+      plural: null
+    examples:
+      - { de: "Die Klimabewegung hat vor allem junge Menschen mobilisiert.", en: "The climate movement has mobilised young people in particular.", tags: [singular, Perfekt] }
+      - { de: "Fridays for Future ist ein Teil der weltweiten Klimabewegung.", en: "Fridays for Future is part of the global climate movement.", tags: [singular, Präsens] }
+      - { de: "Innerhalb der Klimabewegung wird über radikale Protestformen gestritten.", en: "Within the climate movement there is debate about radical forms of protest.", tags: [singular, Passiv, Präsens] }
   - id: noun-pflichtmodul
     type: noun
     lemma: Pflichtmodul
@@ -17675,12 +17692,16 @@ records:
       - global South
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2234
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der globale Süden leidet besonders unter dem Klimawandel.", en: "The global South suffers particularly from climate change.", tags: [singular, Präsens] }
+      - { de: "Viele Rohstoffe kommen aus dem globalen Süden.", en: "Many raw materials come from the global South.", tags: [singular, Präsens] }
+      - { de: "Die Länder des globalen Südens fordern mehr Mitsprache.", en: "The countries of the global South are demanding more of a say.", tags: [singular, Präsens] }
   - id: noun-globale-norden
     type: noun
     lemma: globale Norden
@@ -17688,9 +17709,13 @@ records:
       - global North
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2234
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der globale Norden verbraucht den größten Teil der Ressourcen.", en: "The global North consumes most of the resources.", tags: [singular, Präsens] }
+      - { de: "Die Staaten des globalen Nordens haben historisch die meisten Emissionen verursacht.", en: "The states of the global North have historically caused most emissions.", tags: [singular, Perfekt] }
+      - { de: "Zwischen dem globalen Norden und dem Süden gibt es große Unterschiede.", en: "There are big differences between the global North and South.", tags: [singular, Präsens] }
