@@ -1,0 +1,16 @@
+schema_version: 7
+run: 2026-10-05-feat-vocab-typer
+step: implement-phase
+item: phase/1
+outcome: done
+ticks: [P1.T1.S1, P1.T1.S2, P1.T2.S1, P1.T2.S2, P1.T2.S3, P1.T3.S1, P1.T3.S2, P1.T3.S3, P1.T4.S1, P1.T4.S2]
+refactor:
+  P1.T1: "Scaffold plus a trivial smoke test; nothing to clean."
+  P1.T4: "CLI and plugin are each a thin wrapper over parseList; nothing duplicated to extract."
+journal:
+  - {kind: decision, id: p1-rules-in-rules-ts, phase: 1, title: "Per-type rules and typeability live in src/schema/rules.ts", body: "record.ts re-exports RECOGNISED_TAGS/TENSE_TAGS/checkRecordRules. checkEnriched (type-block presence + per-type rules + typeability) is shared by RecordSchema (default minimums) and ListSchema (header rules). ListSchema builds on RecordBase (no refine) so header rules.* apply instead of defaults."}
+  - {kind: decision, id: p1-rule-interpretations, phase: 1, title: "Interpretations of R3 edge cases", body: "plural_only/plural:null nouns skip the singular/plural tag requirement but still need >=3 examples; gradable adjective needs a comparative OR superlative tagged example; phrase needs no type block; header rules also accept adjective_examples/phrase_examples; forms for a gradable adjective is null unless both comparative and superlative are present."}
+  - {kind: discovery, id: p1-cli-exits-on-import, phase: 1, title: "tools/cli.ts runs its dispatch at module top level", body: "It calls process.exit on import, so it must not be imported by tests or other modules. Phase 2 adds the parse subcommand; keep logic in importable modules and tests spawning node_modules/.bin/tsx (as validate.test.ts does)."}
+  - {kind: discovery, id: p1-vitest-plugin-config, phase: 1, title: "vite.config.ts imports defineConfig from vitest/config", body: "Single config carries both the base/plugins and the vitest test block (node environment, tests/**/*.test.ts); jsdom tests in later phases should opt in with a per-file '// @vitest-environment jsdom' docblock."}
+resolves: []
+evidence: {tests: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/d5b2df96-f96a-4fde-8d39-796f394bda21/scratchpad/suite.log}
