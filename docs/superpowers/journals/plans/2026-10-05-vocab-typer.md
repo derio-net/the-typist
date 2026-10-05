@@ -907,3 +907,8 @@ Filed at closeout as #5.
 ### p2-r4-resolved-2 · finding [deferred → #5] · resolves p2-r4: 368 nouns get plural: null when the source omitted the plural
 
 Filed at closeout as #5.
+
+<!-- fr:journal kind=finding scope=plan id=p1-r9-resolved-2 created=2026-10-05T21:12:40+00:00 state=open resolves=p1-r9 tracked_by=#6 -->
+### p1-r9-resolved-2 · finding [deferred → #6] · resolves p1-r9: List-level errors masked until record shape errors fixed (zod abort)
+
+Filed at closeout as #6.
