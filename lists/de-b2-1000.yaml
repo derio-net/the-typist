@@ -5918,12 +5918,16 @@ records:
       - opera
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 916
     noun:
       gender: f
       plural: Opern
+    examples:
+      - { de: "Wir gehen heute Abend in die Oper.", en: "We're going to the opera tonight.", tags: [singular, Präsens] }
+      - { de: "Mozart hat zweiundzwanzig Opern komponiert.", en: "Mozart composed twenty-two operas.", tags: [plural, Perfekt] }
+      - { de: "Die Oper wurde 1786 in Wien uraufgeführt.", en: "The opera was first performed in Vienna in 1786.", tags: [singular, Passiv] }
   - id: noun-sinfonie
     type: noun
     lemma: Sinfonie
@@ -5931,12 +5935,16 @@ records:
       - symphony
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 918
     noun:
       gender: f
       plural: Sinfonien
+    examples:
+      - { de: "Beethovens neunte Sinfonie ist weltberühmt.", en: "Beethoven's ninth symphony is world-famous.", tags: [singular, Präsens] }
+      - { de: "Das Orchester spielte eine Sinfonie von Brahms.", en: "The orchestra played a symphony by Brahms.", tags: [singular, Präteritum] }
+      - { de: "Mahler schrieb insgesamt zehn Sinfonien.", en: "Mahler wrote ten symphonies in total.", tags: [plural, Präteritum] }
   - id: noun-orchester
     type: noun
     lemma: Orchester
@@ -5944,12 +5952,16 @@ records:
       - orchestra
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 920
     noun:
       gender: n
       plural: Orchester
+    examples:
+      - { de: "Das Orchester probt jeden Mittwoch.", en: "The orchestra rehearses every Wednesday.", tags: [singular, Präsens] }
+      - { de: "Sie spielt seit zehn Jahren Geige im Orchester.", en: "She has played violin in the orchestra for ten years.", tags: [singular, Präsens] }
+      - { de: "Mehrere Orchester mussten wegen Geldmangels schließen.", en: "Several orchestras had to close due to lack of money.", tags: [plural, Präteritum] }
   - id: noun-komposition
     type: noun
     lemma: Komposition
@@ -5957,12 +5969,16 @@ records:
       - composition
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 922
     noun:
       gender: f
       plural: Kompositionen
+    examples:
+      - { de: "Die Komposition entstand in nur drei Wochen.", en: "The composition was written in just three weeks.", tags: [singular, Präteritum] }
+      - { de: "Er studiert Komposition an der Musikhochschule.", en: "He studies composition at the music academy.", tags: [singular, Präsens] }
+      - { de: "Auf der CD sind frühe Kompositionen von Bach zu hören.", en: "Early compositions by Bach can be heard on the CD.", tags: [plural, Präsens] }
   - id: noun-komponist
     type: noun
     lemma: Komponist
@@ -5970,7 +5986,7 @@ records:
       - composer
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 924
     noun:
@@ -5980,6 +5996,10 @@ records:
         - lemma: Komponistin
           gender: f
           plural: Komponistinnen
+    examples:
+      - { de: "Der Komponist dirigierte die Uraufführung selbst.", en: "The composer conducted the premiere himself.", tags: [singular, Präteritum] }
+      - { de: "Clara Schumann war eine bedeutende Komponistin.", en: "Clara Schumann was an important composer.", tags: [singular, Präteritum] }
+      - { de: "Viele Komponisten lebten im 19. Jahrhundert in Wien.", en: "Many composers lived in Vienna in the 19th century.", tags: [plural, Präteritum] }
   - id: noun-gedicht
     type: noun
     lemma: Gedicht
@@ -5987,12 +6007,16 @@ records:
       - poem
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 926
     noun:
       gender: n
       plural: Gedichte
+    examples:
+      - { de: "Kannst du ein Gedicht auswendig?", en: "Do you know a poem by heart?", tags: [singular, Präsens] }
+      - { de: "Rilke hat wunderschöne Gedichte geschrieben.", en: "Rilke wrote beautiful poems.", tags: [plural, Perfekt] }
+      - { de: "In dem Gedicht geht es um den Herbst.", en: "The poem is about autumn.", tags: [singular, Präsens] }
   - id: noun-lyrik
     type: noun
     lemma: Lyrik
@@ -6000,12 +6024,16 @@ records:
       - poetry
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 928
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Lyrik wird heute weniger gelesen als Romane.", en: "Poetry is read less today than novels.", tags: [singular, Passiv] }
+      - { de: "Sie hat einen Preis für junge Lyrik gewonnen.", en: "She won a prize for young poetry.", tags: [singular, Perfekt] }
+      - { de: "Im Deutschunterricht behandeln wir gerade die Lyrik der Romantik.", en: "In German class we're currently studying Romantic poetry.", tags: [singular, Präsens] }
   - id: noun-roman
     type: noun
     lemma: Roman
@@ -6013,12 +6041,16 @@ records:
       - novel
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 930
     noun:
       gender: m
       plural: Romane
+    examples:
+      - { de: "Ihr neuer Roman erscheint im Herbst.", en: "Her new novel comes out in the autumn.", tags: [singular, Präsens] }
+      - { de: "Ich habe den Roman in einer Nacht gelesen.", en: "I read the novel in one night.", tags: [singular, Perfekt] }
+      - { de: "Thomas Mann schrieb mehrere berühmte Romane.", en: "Thomas Mann wrote several famous novels.", tags: [plural, Präteritum] }
   - id: noun-erzaehlung
     type: noun
     lemma: Erzählung
@@ -6026,12 +6058,16 @@ records:
       - short story
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 932
     noun:
       gender: f
       plural: Erzählungen
+    examples:
+      - { de: "Die Erzählung spielt in einem kleinen Dorf.", en: "The short story is set in a small village.", tags: [singular, Präsens] }
+      - { de: "Kafka schrieb viele kurze Erzählungen.", en: "Kafka wrote many short stories.", tags: [plural, Präteritum] }
+      - { de: "Nach seiner Erzählung war alles ganz anders gewesen.", en: "According to his account, everything had been quite different.", tags: [singular, Plusquamperfekt] }
   - id: noun-autor
     type: noun
     lemma: Autor
@@ -6039,7 +6075,7 @@ records:
       - author
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 934
     noun:
@@ -6049,6 +6085,10 @@ records:
         - lemma: Autorin
           gender: f
           plural: Autorinnen
+    examples:
+      - { de: "Der Autor signiert heute in der Buchhandlung seine Bücher.", en: "The author is signing his books in the bookshop today.", tags: [singular, Präsens] }
+      - { de: "Die Autorin hat für ihr Buch lange recherchiert.", en: "The author researched her book for a long time.", tags: [singular, Perfekt] }
+      - { de: "Auf der Buchmesse treffen sich Autoren aus aller Welt.", en: "Authors from all over the world meet at the book fair.", tags: [plural, Präsens] }
   - id: noun-lesung
     type: noun
     lemma: Lesung
@@ -6056,12 +6096,16 @@ records:
       - reading
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 936
     noun:
       gender: f
       plural: Lesungen
+    examples:
+      - { de: "Die Lesung findet in der Stadtbibliothek statt.", en: "The reading takes place in the city library.", tags: [singular, Präsens] }
+      - { de: "Nach der Lesung konnte man dem Autor Fragen stellen.", en: "After the reading you could ask the author questions.", tags: [singular, Präteritum] }
+      - { de: "Während der Buchmesse gibt es über hundert Lesungen.", en: "During the book fair there are over a hundred readings.", tags: [plural, Präsens] }
   - id: noun-verlag
     type: noun
     lemma: Verlag
@@ -6069,12 +6113,16 @@ records:
       - publishing house
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 938
     noun:
       gender: m
       plural: Verlage
+    examples:
+      - { de: "Der Verlag hat ihr Manuskript angenommen.", en: "The publisher accepted her manuscript.", tags: [singular, Perfekt] }
+      - { de: "Er arbeitet als Lektor in einem großen Verlag.", en: "He works as an editor at a large publishing house.", tags: [singular, Präsens] }
+      - { de: "Viele kleine Verlage haben finanzielle Probleme.", en: "Many small publishing houses have financial problems.", tags: [plural, Präsens] }
   - id: verb-veroeffentlichen
     type: verb
     lemma: veröffentlichen
@@ -6082,9 +6130,20 @@ records:
       - to publish
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 940
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "veröffentlicht"
+        praeteritum: "veröffentlichte"
+        partizip2: "veröffentlicht"
+    examples:
+      - { de: "Die Band veröffentlicht im März ein neues Album.", en: "The band is releasing a new album in March.", tags: [Präsens] }
+      - { de: "Die Zeitung hat den Brief ohne Erlaubnis veröffentlicht.", en: "The newspaper published the letter without permission.", tags: [Perfekt] }
+      - { de: "Die Ergebnisse wurden im Januar veröffentlicht.", en: "The results were published in January.", tags: [Passiv, Präteritum] }
   - id: noun-feuilleton
     type: noun
     lemma: Feuilleton
@@ -6092,12 +6151,16 @@ records:
       - arts/culture section of a newspaper
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 942
     noun:
       gender: n
       plural: Feuilletons
+    examples:
+      - { de: "Im Feuilleton stand eine lange Kritik über das Stück.", en: "There was a long review of the play in the arts section.", tags: [singular, Präteritum] }
+      - { de: "Sie schreibt seit Jahren für das Feuilleton der Zeitung.", en: "She has been writing for the newspaper's arts section for years.", tags: [singular, Präsens] }
+      - { de: "Die Feuilletons der großen Zeitungen lobten den Roman.", en: "The arts sections of the major newspapers praised the novel.", tags: [plural, Präteritum] }
   - id: noun-untertitel
     type: noun
     lemma: Untertitel
@@ -6105,12 +6168,16 @@ records:
       - subtitle
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 944
     noun:
       gender: m
       plural: Untertitel
+    examples:
+      - { de: "Ich schaue Serien am liebsten mit Untertiteln.", en: "I prefer watching series with subtitles.", tags: [plural, Präsens] }
+      - { de: "Der Untertitel des Buches verrät schon viel.", en: "The book's subtitle already gives a lot away.", tags: [singular, Präsens] }
+      - { de: "Die Untertitel waren leider schlecht übersetzt.", en: "Unfortunately the subtitles were badly translated.", tags: [plural, Präteritum] }
   - id: verb-synchronisieren
     type: verb
     lemma: synchronisieren
@@ -6118,9 +6185,20 @@ records:
       - to dub (a film)
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 946
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "synchronisiert"
+        praeteritum: "synchronisierte"
+        partizip2: "synchronisiert"
+    examples:
+      - { de: "In Deutschland werden fast alle Filme synchronisiert.", en: "In Germany almost all films are dubbed.", tags: [Passiv, Präsens] }
+      - { de: "Sie synchronisiert seit Jahren eine bekannte Hollywoodschauspielerin.", en: "For years she has been the German voice of a well-known Hollywood actress.", tags: [Präsens] }
+      - { de: "Die Serie hat man schlecht synchronisiert.", en: "The series was badly dubbed.", tags: [Perfekt] }
   - id: noun-originalfassung
     type: noun
     lemma: Originalfassung
@@ -6128,12 +6206,16 @@ records:
       - original version
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 948
     noun:
       gender: f
       plural: Originalfassungen
+    examples:
+      - { de: "Ich sehe Filme lieber in der Originalfassung.", en: "I prefer to watch films in the original version.", tags: [singular, Präsens] }
+      - { de: "Das Kino zeigt den Film nur in der Originalfassung mit Untertiteln.", en: "The cinema only shows the film in the original version with subtitles.", tags: [singular, Präsens] }
+      - { de: "Originalfassungen sind in kleinen Kinos beliebter.", en: "Original versions are more popular in small cinemas.", tags: [plural, Präsens] }
   - id: noun-dokumentarfilm
     type: noun
     lemma: Dokumentarfilm
@@ -6141,12 +6223,16 @@ records:
       - documentary
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 950
     noun:
       gender: m
       plural: Dokumentarfilme
+    examples:
+      - { de: "Der Dokumentarfilm zeigt das Leben in der Arktis.", en: "The documentary shows life in the Arctic.", tags: [singular, Präsens] }
+      - { de: "Gestern habe ich einen Dokumentarfilm über Bienen gesehen.", en: "Yesterday I watched a documentary about bees.", tags: [singular, Perfekt] }
+      - { de: "Auf dem Festival laufen dieses Jahr viele Dokumentarfilme.", en: "Many documentaries are showing at the festival this year.", tags: [plural, Präsens] }
   - id: noun-zeichentrickfilm
     type: noun
     lemma: Zeichentrickfilm
@@ -6154,12 +6240,16 @@ records:
       - animated film
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 952
     noun:
       gender: m
       plural: Zeichentrickfilme
+    examples:
+      - { de: "Als Kind habe ich jeden Zeichentrickfilm von Disney gesehen.", en: "As a child I watched every Disney cartoon.", tags: [singular, Perfekt] }
+      - { de: "Zeichentrickfilme sind nicht nur etwas für Kinder.", en: "Animated films are not just for children.", tags: [plural, Präsens] }
+      - { de: "Der Zeichentrickfilm wurde von Hand gezeichnet.", en: "The animated film was drawn by hand.", tags: [singular, Passiv] }
   - id: noun-genre
     type: noun
     lemma: Genre
@@ -6167,12 +6257,16 @@ records:
       - genre
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 954
     noun:
       gender: n
       plural: Genres
+    examples:
+      - { de: "Krimis sind mein Lieblingsgenre.", en: "Crime stories are my favourite genre.", tags: [singular, Präsens] }
+      - { de: "Der Autor schreibt in verschiedenen Genres.", en: "The author writes in various genres.", tags: [plural, Präsens] }
+      - { de: "Mit diesem Film hat sie ein neues Genre erfunden.", en: "With this film she invented a new genre.", tags: [singular, Perfekt] }
   - id: noun-spannung
     type: noun
     lemma: Spannung
@@ -6180,12 +6274,16 @@ records:
       - suspense
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 956
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Der Film ist voller Spannung bis zur letzten Minute.", en: "The film is full of suspense up to the last minute.", tags: [singular, Präsens] }
+      - { de: "Mit großer Spannung warteten alle auf das Ergebnis.", en: "Everyone waited for the result with great suspense.", tags: [singular, Präteritum] }
+      - { de: "Der Autor baut die Spannung langsam auf.", en: "The author builds up the suspense slowly.", tags: [singular, Präsens] }
   - id: noun-handlung
     type: noun
     lemma: Handlung
@@ -6193,12 +6291,16 @@ records:
       - plot
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 958
     noun:
       gender: f
       plural: Handlungen
+    examples:
+      - { de: "Die Handlung des Films ist ziemlich kompliziert.", en: "The plot of the film is rather complicated.", tags: [singular, Präsens] }
+      - { de: "Kannst du mir die Handlung kurz erzählen?", en: "Can you briefly tell me the plot?", tags: [singular, Präsens] }
+      - { de: "Der Roman verbindet zwei Handlungen aus verschiedenen Jahrhunderten.", en: "The novel connects two plots from different centuries.", tags: [plural, Präsens] }
   - id: noun-figur
     type: noun
     lemma: Figur
@@ -6206,12 +6308,16 @@ records:
       - character
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 960
     noun:
       gender: f
       plural: Figuren
+    examples:
+      - { de: "Die Hauptfigur ist eine junge Ärztin.", en: "The main character is a young doctor.", tags: [singular, Präsens] }
+      - { de: "Der Autor hat seine Figuren sehr lebendig beschrieben.", en: "The author described his characters very vividly.", tags: [plural, Perfekt] }
+      - { de: "Welche Figur aus dem Buch mochtest du am meisten?", en: "Which character from the book did you like the most?", tags: [singular, Präteritum] }
   - id: noun-szene
     type: noun
     lemma: Szene
@@ -6219,12 +6325,16 @@ records:
       - scene
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 964
     noun:
       gender: f
       plural: Szenen
+    examples:
+      - { de: "Die letzte Szene hat mich zum Weinen gebracht.", en: "The last scene made me cry.", tags: [singular, Perfekt] }
+      - { de: "Diese Szene wurde in Venedig gedreht.", en: "This scene was filmed in Venice.", tags: [singular, Passiv] }
+      - { de: "Einige Szenen sind für Kinder zu brutal.", en: "Some scenes are too violent for children.", tags: [plural, Präsens] }
   - id: noun-zuschauer
     type: noun
     lemma: Zuschauer
@@ -6233,7 +6343,7 @@ records:
       - audience member
     categories:
       - culture-arts-and-entertainment
-    status: raw
+    status: enriched
     source_lines:
       - 966
     noun:
@@ -6243,6 +6353,10 @@ records:
         - lemma: Zuschauerin
           gender: f
           plural: Zuschauerinnen
+    examples:
+      - { de: "Jeder Zuschauer bekam am Eingang ein Programmheft.", en: "Every audience member got a programme at the entrance.", tags: [singular, Präteritum] }
+      - { de: "Das Finale sahen über zehn Millionen Zuschauer.", en: "Over ten million viewers watched the final.", tags: [plural, Präteritum] }
+      - { de: "Eine Zuschauerin rief während der Vorstellung laut „Bravo“!", en: "A member of the audience shouted \"Bravo\" loudly during the performance!", tags: [singular, Präteritum] }
   - id: noun-plattform
     type: noun
     lemma: Plattform
