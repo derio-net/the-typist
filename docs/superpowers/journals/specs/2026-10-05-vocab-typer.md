@@ -267,3 +267,8 @@ Operator asked for music and SFX. Prompts written to docs/ux/audio-prompts.md (m
 ### sprites-early · decision · Operator-generated sprite sheet integrated in plan 1 (pulled forward from the plan-2 UX phase)
 
 Operator generated public/assets/sprites/sheet.png from docs/ux/sprite-prompts.md and asked to see it in game. Added npm run sprites (slicer), 3-slice hull rendering, reticle, bullets, explosion frames, debris; hull extents drive layout; ~12% size reduction and on-hull text plates per operator feedback.
+
+<!-- fr:journal kind=decision scope=spec id=seed-model-opus created=2026-10-05T18:44:49+00:00 -->
+### seed-model-opus · decision · Seed enrichment phases (5, 6) run on Opus instead of the plan's standard tier
+
+The enriched Records are the learning content itself; operator chose Opus for German correctness over cost.
