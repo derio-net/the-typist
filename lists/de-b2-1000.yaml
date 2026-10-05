@@ -3427,9 +3427,20 @@ records:
       - to address informally (with “du”)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 452
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "duzt"
+        praeteritum: "duzte"
+        partizip2: "geduzt"
+    examples:
+      - { de: "In unserem Team duzen sich alle.", en: "Everyone in our team uses \"du\" with each other.", tags: [Präsens] }
+      - { de: "Mein Chef hat mich von Anfang an geduzt.", en: "My boss addressed me as \"du\" from the start.", tags: [Perfekt] }
+      - { de: "Früher duzte man nur Freunde und Familie.", en: "In the past you only used \"du\" with friends and family.", tags: [Präteritum] }
   - id: verb-siezen
     type: verb
     lemma: siezen
@@ -3437,9 +3448,20 @@ records:
       - to address formally (with “Sie”)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 454
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "siezt"
+        praeteritum: "siezte"
+        partizip2: "gesiezt"
+    examples:
+      - { de: "Lehrer siezen ihre Schüler ab der elften Klasse.", en: "Teachers address their pupils as \"Sie\" from year eleven.", tags: [Präsens] }
+      - { de: "Wir haben uns jahrelang gesiezt.", en: "We addressed each other as \"Sie\" for years.", tags: [Perfekt] }
+      - { de: "Sie siezte ihre Schwiegereltern bis zur Hochzeit.", en: "She called her parents-in-law \"Sie\" until the wedding.", tags: [Präteritum] }
   - id: noun-anrede
     type: noun
     lemma: Anrede
@@ -3447,12 +3469,16 @@ records:
       - form of address
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 456
     noun:
       gender: f
       plural: Anreden
+    examples:
+      - { de: "Die richtige Anrede ist in Briefen sehr wichtig.", en: "The correct form of address is very important in letters.", tags: [singular, Präsens] }
+      - { de: "Mit der Anrede „Sie“ zeigt man Respekt.", en: "With the form of address \"Sie\" you show respect.", tags: [singular, Präsens] }
+      - { de: "Im Deutschen gibt es zwei Anreden für eine Person.", en: "In German there are two forms of address for one person.", tags: [plural, Präsens] }
   - id: noun-hoeflichkeitsform
     type: noun
     lemma: Höflichkeitsform
@@ -3460,12 +3486,16 @@ records:
       - polite/formal form
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 458
     noun:
       gender: f
       plural: Höflichkeitsformen
+    examples:
+      - { de: "„Sie“ ist die Höflichkeitsform im Deutschen.", en: "\"Sie\" is the polite form in German.", tags: [singular, Präsens] }
+      - { de: "Im Geschäftsleben benutzt man meistens die Höflichkeitsform.", en: "In business you usually use the polite form.", tags: [singular, Präsens] }
+      - { de: "Viele Sprachen kennen unterschiedliche Höflichkeitsformen.", en: "Many languages have different polite forms.", tags: [plural, Präsens] }
   - id: noun-umgangssprache
     type: noun
     lemma: Umgangssprache
@@ -3473,12 +3503,16 @@ records:
       - colloquial language
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 460
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "In der Umgangssprache sagt man oft „nee“ statt „nein“.", en: "In colloquial language people often say \"nee\" instead of \"nein\".", tags: [singular, Präsens] }
+      - { de: "Dieses Wort gehört zur Umgangssprache.", en: "This word belongs to colloquial language.", tags: [singular, Präsens] }
+      - { de: "Im Bewerbungsschreiben hat Umgangssprache nichts zu suchen.", en: "Colloquial language has no place in a cover letter.", tags: [singular, Präsens] }
   - id: noun-begruessung
     type: noun
     lemma: Begrüßung
@@ -3486,12 +3520,16 @@ records:
       - greeting
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 464
     noun:
       gender: f
       plural: Begrüßungen
+    examples:
+      - { de: "Zur Begrüßung gab es ein Glas Sekt.", en: "There was a glass of sparkling wine as a welcome.", tags: [singular, Präteritum] }
+      - { de: "Die Begrüßung fiel sehr herzlich aus.", en: "The greeting was very warm.", tags: [singular, Präteritum] }
+      - { de: "In der Schweiz sind die Begrüßungen oft etwas förmlicher.", en: "In Switzerland greetings are often a little more formal.", tags: [plural, Präsens] }
   - id: noun-verabschiedung
     type: noun
     lemma: Verabschiedung
@@ -3499,12 +3537,16 @@ records:
       - farewell
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 466
     noun:
       gender: f
       plural: Verabschiedungen
+    examples:
+      - { de: "Bei der Verabschiedung umarmten sich alle.", en: "Everyone hugged when saying goodbye.", tags: [singular, Präteritum] }
+      - { de: "Die Verabschiedung des Direktors findet im Juni statt.", en: "The director's farewell takes place in June.", tags: [singular, Präsens] }
+      - { de: "Lange Verabschiedungen am Bahnhof mag ich nicht.", en: "I don't like long farewells at the station.", tags: [plural, Präsens] }
   - id: noun-betreff
     type: noun
     lemma: Betreff
@@ -3512,12 +3554,16 @@ records:
       - subject (of an email or letter)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 476
     noun:
       gender: m
       plural: Betreffe
+    examples:
+      - { de: "Bitte schreiben Sie die Rechnungsnummer in den Betreff.", en: "Please write the invoice number in the subject line.", tags: [singular, Imperativ] }
+      - { de: "Der Betreff der E-Mail war leider leer.", en: "Unfortunately the subject of the email was empty.", tags: [singular, Präteritum] }
+      - { de: "Kurze und klare Betreffe werden eher gelesen.", en: "Short and clear subject lines are more likely to be read.", tags: [plural, Passiv] }
   - id: noun-anredeform
     type: noun
     lemma: Anredeform
@@ -3525,12 +3571,16 @@ records:
       - form of salutation
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 478
     noun:
       gender: f
       plural: Anredeformen
+    examples:
+      - { de: "Welche Anredeform ist in einer Bewerbung angemessen?", en: "Which form of salutation is appropriate in an application?", tags: [singular, Präsens] }
+      - { de: "Die Anredeform „Fräulein“ benutzt man heute nicht mehr.", en: "The form of address \"Fräulein\" is no longer used today.", tags: [singular, Präsens] }
+      - { de: "Die Anredeformen unterscheiden sich von Land zu Land.", en: "Forms of salutation differ from country to country.", tags: [plural, Präsens] }
   - id: noun-titel
     type: noun
     lemma: Titel
@@ -3538,12 +3588,16 @@ records:
       - title (e.g. Dr., Prof.)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 480
     noun:
       gender: m
       plural: Titel
+    examples:
+      - { de: "Sein Titel steht auch auf der Visitenkarte.", en: "His title is also on his business card.", tags: [singular, Präsens] }
+      - { de: "Der Professor legt großen Wert auf seinen Titel.", en: "The professor attaches great importance to his title.", tags: [singular, Präsens] }
+      - { de: "In Österreich werden akademische Titel oft in der Anrede verwendet.", en: "In Austria academic titles are often used when addressing people.", tags: [plural, Passiv] }
   - id: noun-kollege
     type: noun
     lemma: Kollege
@@ -3552,7 +3606,7 @@ records:
     categories:
       - formal-and-informal-address
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 486
       - 1682
@@ -3563,6 +3617,10 @@ records:
         - lemma: Kollegin
           gender: f
           plural: Kolleginnen
+    examples:
+      - { de: "Darf ich Ihnen meinen Kollegen Herrn Weber vorstellen?", en: "May I introduce my colleague Mr Weber to you?", tags: [singular, Präsens] }
+      - { de: "Mit meinen Kollegen gehe ich oft mittags essen.", en: "I often go for lunch with my colleagues.", tags: [plural, Präsens] }
+      - { de: "Eine Kollegin hat mich gestern vertreten.", en: "A colleague stood in for me yesterday.", tags: [singular, Perfekt] }
   - id: noun-ansprechpartner
     type: noun
     lemma: Ansprechpartner
@@ -3570,7 +3628,7 @@ records:
       - contact person
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 488
     noun:
@@ -3580,6 +3638,10 @@ records:
         - lemma: Ansprechpartnerin
           gender: f
           plural: Ansprechpartnerinnen
+    examples:
+      - { de: "Ihr Ansprechpartner für alle Fragen ist Herr Becker.", en: "Your contact person for all questions is Mr Becker.", tags: [singular, Präsens] }
+      - { de: "Bei Problemen wenden Sie sich bitte an Ihre Ansprechpartnerin.", en: "If you have problems, please contact your contact person.", tags: [singular, Imperativ] }
+      - { de: "Auf der Website finden Sie alle Ansprechpartner.", en: "You can find all contact persons on the website.", tags: [plural, Präsens] }
   - id: noun-visitenkarte
     type: noun
     lemma: Visitenkarte
@@ -3587,12 +3649,16 @@ records:
       - business card
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 490
     noun:
       gender: f
       plural: Visitenkarten
+    examples:
+      - { de: "Darf ich Ihnen meine Visitenkarte geben?", en: "May I give you my business card?", tags: [singular, Präsens] }
+      - { de: "Auf der Messe habe ich über fünfzig Visitenkarten gesammelt.", en: "I collected over fifty business cards at the trade fair.", tags: [plural, Perfekt] }
+      - { de: "Die Telefonnummer auf der Visitenkarte stimmte nicht mehr.", en: "The phone number on the business card was no longer correct.", tags: [singular, Präteritum] }
   - id: noun-einladung
     type: noun
     lemma: Einladung
@@ -3600,12 +3666,16 @@ records:
       - invitation
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 492
     noun:
       gender: f
       plural: Einladungen
+    examples:
+      - { de: "Vielen Dank für die Einladung!", en: "Thank you very much for the invitation!", tags: [singular] }
+      - { de: "Wir haben die Einladungen zur Hochzeit schon verschickt.", en: "We have already sent out the wedding invitations.", tags: [plural, Perfekt] }
+      - { de: "Leider muss ich die Einladung absagen.", en: "Unfortunately I have to decline the invitation.", tags: [singular, Präsens] }
   - id: noun-vorschlag
     type: noun
     lemma: Vorschlag
@@ -3614,13 +3684,17 @@ records:
     categories:
       - formal-and-informal-address
       - professional-communication-and-workplace-language
-    status: raw
+    status: enriched
     source_lines:
       - 498
       - 1754
     noun:
       gender: m
       plural: Vorschläge
+    examples:
+      - { de: "Ich hätte einen Vorschlag für das Wochenende.", en: "I'd have a suggestion for the weekend.", tags: [singular, Konjunktiv II] }
+      - { de: "Ihr Vorschlag wurde von allen angenommen.", en: "Her suggestion was accepted by everyone.", tags: [singular, Passiv] }
+      - { de: "Haben Sie weitere Vorschläge?", en: "Do you have any further suggestions?", tags: [plural, Präsens] }
   - id: verb-vorschlagen
     type: verb
     lemma: vorschlagen
@@ -3629,42 +3703,88 @@ records:
     categories:
       - formal-and-informal-address
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 500
       - 672
+    verb:
+      separable: vor
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "schlägt vor"
+        praeteritum: "schlug vor"
+        partizip2: "vorgeschlagen"
+    examples:
+      - { de: "Ich schlage vor, dass wir eine Pause machen.", en: "I suggest that we take a break.", tags: [separated, Präsens] }
+      - { de: "Sie hat ein Treffen am Montag vorgeschlagen.", en: "She suggested a meeting on Monday.", tags: [Perfekt] }
+      - { de: "Der Kellner schlug uns den Fisch vor.", en: "The waiter recommended the fish to us.", tags: [separated, Präteritum] }
   - id: verb-sich-vorstellen
     type: verb
-    lemma: sich vorstellen
+    lemma: vorstellen
     gloss:
       - to introduce oneself
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 502
+    verb:
+      separable: vor
+      auxiliary: haben
+      reflexive: true
+      parts:
+        praesens_3sg: "stellt vor"
+        praeteritum: "stellte vor"
+        partizip2: "vorgestellt"
+    examples:
+      - { de: "Darf ich mich kurz vorstellen?", en: "May I briefly introduce myself?", tags: [Präsens] }
+      - { de: "Zu Beginn stellte sich jeder Teilnehmer vor.", en: "At the beginning every participant introduced themselves.", tags: [separated, Präteritum] }
+      - { de: "Sie hat sich bei drei Firmen vorgestellt.", en: "She has had interviews at three companies.", tags: [Perfekt] }
   - id: verb-sich-bedanken
     type: verb
-    lemma: sich bedanken
+    lemma: bedanken
     gloss:
       - to thank (for)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 504
     government: für
+    verb:
+      auxiliary: haben
+      reflexive: true
+      parts:
+        praesens_3sg: "bedankt"
+        praeteritum: "bedankte"
+        partizip2: "bedankt"
+    examples:
+      - { de: "Ich möchte mich herzlich für Ihre Hilfe bedanken.", en: "I would like to thank you warmly for your help.", tags: [Präsens] }
+      - { de: "Hast du dich schon für das Geschenk bedankt?", en: "Have you already said thank you for the present?", tags: [Perfekt] }
+      - { de: "Der Gast bedankte sich mit einem Blumenstrauß.", en: "The guest said thank you with a bunch of flowers.", tags: [Präteritum] }
   - id: verb-sich-entschuldigen
     type: verb
-    lemma: sich entschuldigen
+    lemma: entschuldigen
     gloss:
       - to apologise (for)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 506
     government: für
+    verb:
+      auxiliary: haben
+      reflexive: true
+      parts:
+        praesens_3sg: "entschuldigt"
+        praeteritum: "entschuldigte"
+        partizip2: "entschuldigt"
+    examples:
+      - { de: "Ich entschuldige mich für die Verspätung.", en: "I apologise for the delay.", tags: [Präsens] }
+      - { de: "Er hat sich bei ihr für seine Worte entschuldigt.", en: "He apologised to her for his words.", tags: [Perfekt] }
+      - { de: "Die Firma entschuldigte sich öffentlich für den Fehler.", en: "The company publicly apologised for the mistake.", tags: [Präteritum] }
   - id: noun-gespraech
     type: noun
     lemma: Gespräch
@@ -3672,12 +3792,16 @@ records:
       - conversation
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 518
     noun:
       gender: n
       plural: Gespräche
+    examples:
+      - { de: "Das Gespräch mit der Chefin verlief sehr positiv.", en: "The conversation with the boss went very positively.", tags: [singular, Präteritum] }
+      - { de: "Nach vielen Gesprächen haben wir eine Lösung gefunden.", en: "After many conversations we found a solution.", tags: [plural, Perfekt] }
+      - { de: "Ich habe morgen ein Gespräch bei einer Bank.", en: "I have an interview at a bank tomorrow.", tags: [singular, Präsens] }
   - id: noun-tonfall
     type: noun
     lemma: Tonfall
@@ -3685,12 +3809,16 @@ records:
       - tone of voice
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 520
     noun:
       gender: m
       plural: Tonfälle
+    examples:
+      - { de: "Sein Tonfall war unfreundlich.", en: "His tone of voice was unfriendly.", tags: [singular, Präteritum] }
+      - { de: "Achte bitte auf deinen Tonfall!", en: "Please watch your tone!", tags: [singular, Imperativ] }
+      - { de: "Kinder hören die feinen Unterschiede in den Tonfällen genau.", en: "Children hear the subtle differences in tones of voice precisely.", tags: [plural, Präsens] }
   - id: noun-missverstaendnis
     type: noun
     lemma: Missverständnis
@@ -3698,12 +3826,16 @@ records:
       - misunderstanding
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 526
     noun:
       gender: n
       plural: Missverständnisse
+    examples:
+      - { de: "Das war nur ein Missverständnis.", en: "That was just a misunderstanding.", tags: [singular, Präteritum] }
+      - { de: "Um Missverständnisse zu vermeiden, schicke ich Ihnen eine E-Mail.", en: "To avoid misunderstandings, I'll send you an email.", tags: [plural, Präsens] }
+      - { de: "Wir haben das Missverständnis schnell geklärt.", en: "We quickly cleared up the misunderstanding.", tags: [singular, Perfekt] }
   - id: noun-verwechslung
     type: noun
     lemma: Verwechslung
@@ -3711,12 +3843,16 @@ records:
       - confusion
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 528
     noun:
       gender: f
       plural: Verwechslungen
+    examples:
+      - { de: "Es handelt sich um eine Verwechslung.", en: "It's a case of mistaken identity.", tags: [singular, Präsens] }
+      - { de: "Wegen einer Verwechslung bekam ich das falsche Paket.", en: "Because of a mix-up I got the wrong parcel.", tags: [singular, Präteritum] }
+      - { de: "Ähnliche Namen führen oft zu Verwechslungen.", en: "Similar names often lead to confusion.", tags: [plural, Präsens] }
   - id: noun-distanz
     type: noun
     lemma: Distanz
@@ -3724,12 +3860,16 @@ records:
       - distance (social/formal)
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 530
     noun:
       gender: f
       plural: Distanzen
+    examples:
+      - { de: "Mit „Sie“ wahrt man eine gewisse Distanz.", en: "With \"Sie\" you keep a certain distance.", tags: [singular, Präsens] }
+      - { de: "Zu Kunden hält er immer professionelle Distanz.", en: "He always keeps a professional distance from customers.", tags: [singular, Präsens] }
+      - { de: "Die Distanzen zwischen den Städten sind in Kanada riesig.", en: "The distances between cities in Canada are huge.", tags: [plural, Präsens] }
   - id: noun-beziehungsebene
     type: noun
     lemma: Beziehungsebene
@@ -3737,12 +3877,16 @@ records:
       - level of relationship
     categories:
       - formal-and-informal-address
-    status: raw
+    status: enriched
     source_lines:
       - 532
     noun:
       gender: f
       plural: Beziehungsebenen
+    examples:
+      - { de: "Auf der Beziehungsebene verstehen wir uns gut.", en: "On a personal level we get on well.", tags: [singular, Präsens] }
+      - { de: "Der Konflikt spielte sich eher auf der Beziehungsebene ab.", en: "The conflict took place more on the relationship level.", tags: [singular, Präteritum] }
+      - { de: "In einem Team gibt es oft mehrere Beziehungsebenen gleichzeitig.", en: "In a team there are often several relationship levels at once.", tags: [plural, Präsens] }
   - id: noun-kontext
     type: noun
     lemma: Kontext
