@@ -242,3 +242,8 @@ Both committed on the branch (1569f7e); CLAUDE.md update added to layout/scope.
 
 <!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-05-vocab-typer-p6-1 created=2026-10-05T07:26:52+00:00 -->
 ### phase-split-2026-10-05-vocab-typer-p6-1 · decision · review-size: R16 seed content second half; one executor context cannot hold 1000 enrichments
+
+<!-- fr:journal kind=decision scope=spec id=two-plans created=2026-10-05T07:26:55+00:00 -->
+### two-plans · decision · Split into two plans/PRs so UX direction and assets are settled before the UI is built
+
+Operator asked for a manual UX phase after the typing core, before the rest of the game. fr-goal never blocks on a mid-plan manual phase, so plan 1 = R1-R6, R14-R16; plan 2 (new run after merge) = front-loaded manual UX phase + R7-R13.
