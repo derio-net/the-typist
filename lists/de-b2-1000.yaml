@@ -14013,10 +14013,18 @@ records:
     categories:
       - emotions-and-psychology
       - ethics-and-society
-    status: raw
+    status: enriched
     source_lines:
       - 839
       - 1538
+    adjective:
+      gradable: true
+      comparative: "mitfühlender"
+      superlative: "am mitfühlendsten"
+    examples:
+      - { de: "Sie hat einen sehr mitfühlenden Brief geschrieben.", en: "She wrote a very compassionate letter.", tags: [attributive, Perfekt] }
+      - { de: "Die Ärztin hörte mitfühlend zu.", en: "The doctor listened compassionately.", tags: [Präteritum] }
+      - { de: "Nach seiner Krankheit ist er mitfühlender geworden.", en: "Since his illness he has become more compassionate.", tags: [comparative, Perfekt] }
   - id: adjective-gereizt
     type: adjective
     lemma: gereizt
@@ -14024,9 +14032,17 @@ records:
       - irritable
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 843
+    adjective:
+      gradable: true
+      comparative: "gereizter"
+      superlative: "am gereiztesten"
+    examples:
+      - { de: "Wenn er Hunger hat, ist er schnell gereizt.", en: "When he's hungry, he quickly gets irritable.", tags: [Präsens] }
+      - { de: "Die gereizte Stimmung in der Sitzung war unangenehm.", en: "The tense mood in the meeting was unpleasant.", tags: [attributive, Präteritum] }
+      - { de: "Je länger die Verhandlung dauerte, desto gereizter wurden alle.", en: "The longer the negotiation lasted, the more irritable everyone became.", tags: [comparative, Präteritum] }
   - id: adjective-ausgeglichen
     type: adjective
     lemma: ausgeglichen
@@ -14034,9 +14050,17 @@ records:
       - balanced
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 845
+    adjective:
+      gradable: true
+      comparative: "ausgeglichener"
+      superlative: "am ausgeglichensten"
+    examples:
+      - { de: "Seit sie Yoga macht, ist sie viel ausgeglichener.", en: "Since she started doing yoga, she's much more balanced.", tags: [comparative, Präsens] }
+      - { de: "Er ist ein ruhiger und ausgeglichener Mensch.", en: "He's a calm and balanced person.", tags: [attributive, Präsens] }
+      - { de: "Das Spiel war bis zur letzten Minute ausgeglichen.", en: "The match was evenly balanced until the last minute.", tags: [Präteritum] }
   - id: noun-hauptrolle
     type: noun
     lemma: Hauptrolle
