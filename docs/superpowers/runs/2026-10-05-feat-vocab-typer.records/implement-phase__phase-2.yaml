@@ -1,0 +1,61 @@
+schema_version: 7
+run: 2026-10-05-feat-vocab-typer
+step: implement-phase
+item: phase/2
+outcome: done
+ticks: [P2.T1.S1, P2.T1.S2, P2.T2.S1, P2.T2.S2, P2.T2.S3, P2.T2.S4, P2.T3.S1, P2.T3.S2, P2.T4.S1, P2.T4.S2]
+refactor:
+  P2.T1: "lines.ts and headers.ts are two tiny single-purpose functions written clean; nothing to extract."
+  P2.T3: "the parse subcommand is one small function beside validate; nothing duplicated."
+  P2.T4: "the deliverable is a prose skill; no code to clean."
+journal:
+  - kind: discovery
+    id: p2-seed-dry-run
+    phase: 2
+    title: "Seed dry run: 1000 entry lines covered exactly once; 861 records, 20 categories, 139 unresolved"
+    body: |
+      `typist parse wordlist.raw.txt` (scratch output outside the repo). 1000 lines containing ' – ';
+      every one is in exactly one of records[].source_lines or unresolved (checked: no gaps, no overlaps).
+      861 records (735 noun, 126 verb, all status raw, 861 unique ids, 57 of them -2/-3 suffixed: repeats
+      of the same word across sections, e.g. noun-gesetz, noun-nachhaltigkeit-4; typist-enrich's organise
+      pass merges these). 20 categories (headers numbered 1-9, 11-21; there is no section 10).
+      139 unresolved by reason: phrase 56, word 38, slash 28, template 8, und 3, parenthetical 2,
+      list 2, plural 2 (gloss 0). With unresolved: removed the output validates (861 records).
+      No seed line hits the plural reason except two adjective+noun lines (das soziale Netzwerk, -e;
+      der rhetorische Mittel, -): every stem/umlaut plural (-schläge, -stände, -hälter ...) is built
+      by the tail-replacement rule. Every reason has an instruction in the typist-structure skill.
+  - kind: decision
+    id: p2-reflexive-lemma
+    phase: 2
+    title: "Raw reflexive verbs keep 'sich' in the lemma; id uses the bare verb"
+    body: |
+      VerbBlock needs auxiliary and parts, so a raw record has nowhere to say reflexive. The parser
+      emits lemma 'sich vorstellen' with id verb-vorstellen; typist-enrich converts to
+      lemma vorstellen + verb.reflexive true. Likewise a raw noun with no plural in the source gets
+      noun {gender, plural: null}, which enrich verifies.
+  - kind: decision
+    id: p2-list-schema-strict
+    phase: 2
+    title: "ListSchema made z.strictObject so a leftover top-level 'unresolved:' fails validate"
+    body: |
+      Phase 1 left the top-level object non-strict (unknown keys were stripped silently), so validate
+      did not reject 'unresolved:'. Changed src/schema/list.ts to strictObject and added a strictness
+      test; the skill's 'remove unresolved, run validate' step now has teeth.
+  - kind: discovery
+    id: p2-category-slug-and
+    phase: 2
+    title: "Header slug maps & to 'and' (plan), differing from the spec's economics-finance example"
+    body: |
+      Per P2.T1.S2, '&' becomes 'and', so 'Economics & Finance' is economics-and-finance, while the
+      spec schema example and tests/fixtures/lists/valid.yaml say economics-finance. The seed test
+      derives ids from headers, so it is consistent; the example in the spec is only illustrative.
+  - kind: discovery
+    id: p2-container-node-modules
+    phase: 2
+    title: "fr isolation exec npm test fails: node_modules has host (darwin) rolldown bindings"
+    body: |
+      Inside the devcontainer (linux) vitest dies with 'Cannot find native binding'; node_modules in
+      the worktree was installed on the host. The phase suite was therefore run on the host. Needs an
+      in-container npm install (or a per-platform node_modules) before the exec-bridge can run tests.
+resolves: []
+evidence: {tests: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/d5b2df96-f96a-4fde-8d39-796f394bda21/scratchpad/tests-p2.log}
