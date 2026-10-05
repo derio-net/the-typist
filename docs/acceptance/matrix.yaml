@@ -92,9 +92,14 @@ rows:
     origin:
     - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R5
     - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R6
-    levels: {}
-    status: not-implemented
-    notes: ''
+    levels:
+      unit:
+      - the-typist:tests/engine/typing.test.ts
+      - the-typist:tests/platform/keyboard.test.ts
+    status: skipped
+    notes: Built in plan 1 phase 3; engine and keyboard (jsdom composition) tests run
+      locally; real dead-key composition verified via CDP IME in headless Chrome. No
+      CI configured.
   - id: degraded-states
     capability: Gameplay
     acceptance: The game stays playable when nothing is due, when browser storage is
