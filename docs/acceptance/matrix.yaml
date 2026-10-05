@@ -149,9 +149,14 @@ rows:
       proposed.
     origin:
     - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R14
-    levels: {}
-    status: not-implemented
-    notes: ''
+    levels:
+      unit:
+      - the-typist:tests/tools/parse-shapes.test.ts
+      - the-typist:tests/tools/parse-cli.test.ts
+      - the-typist:tests/tools/parse-lines.test.ts
+    status: skipped
+    notes: Built in plan 1 phase 2; parser tests run locally; skill exercised on the
+      full seed in phase 5. No CI configured.
   - id: enrich-skill
     capability: Authoring
     acceptance: The enrich skill turns raw Records into enriched ones that pass validation,
