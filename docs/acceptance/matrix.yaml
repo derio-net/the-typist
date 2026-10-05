@@ -72,9 +72,12 @@ rows:
       gloss, which on destruction releases a forms ship and one ship per example sentence.
     origin:
     - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R4
-    levels: {}
-    status: not-implemented
-    notes: ''
+    levels:
+      unit:
+      - the-typist:tests/engine/world.test.ts
+    status: skipped
+    notes: Built in plan 1 phase 3 (+ operator-directed motion and sprites); World tests
+      run locally; visual states captured headlessly in phase 3 review. No CI configured.
     visual:
       states:
       - mothership-with-gloss
