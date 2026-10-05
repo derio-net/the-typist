@@ -14012,13 +14012,17 @@ records:
       - environment
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2162
     source_note: "plural Umwelten removed: not used in the sense environment"
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Plastik schadet der Umwelt.", en: "Plastic harms the environment.", tags: [singular, Präsens] }
+      - { de: "Wir müssen die Umwelt für künftige Generationen schützen.", en: "We must protect the environment for future generations.", tags: [singular, Präsens] }
+      - { de: "Kinder lernen viel von ihrer sozialen Umwelt.", en: "Children learn a lot from their social environment.", tags: [singular, Präsens] }
   - id: noun-umweltschutz
     type: noun
     lemma: Umweltschutz
@@ -14026,12 +14030,16 @@ records:
       - environmental protection
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2164
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Umweltschutz beginnt im eigenen Haushalt.", en: "Environmental protection begins at home.", tags: [singular, Präsens] }
+      - { de: "Die Partei hat den Umweltschutz zum Hauptthema gemacht.", en: "The party has made environmental protection its main issue.", tags: [singular, Perfekt] }
+      - { de: "Für den Umweltschutz wird in Zukunft mehr Geld nötig sein.", en: "More money will be needed for environmental protection in the future.", tags: [singular, Futur I] }
   - id: noun-erderwaermung
     type: noun
     lemma: Erderwärmung
@@ -14039,12 +14047,16 @@ records:
       - global warming
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2168
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Erderwärmung lässt das Eis an den Polen schmelzen.", en: "Global warming is making the ice at the poles melt.", tags: [singular, Präsens] }
+      - { de: "Die Erderwärmung soll deutlich unter zwei Grad bleiben.", en: "Global warming is to be kept well below two degrees.", tags: [singular, Präsens] }
+      - { de: "Wissenschaftler hatten schon früh vor der Erderwärmung gewarnt.", en: "Scientists had warned of global warming early on.", tags: [singular, Plusquamperfekt] }
   - id: noun-co-emission
     type: noun
     lemma: CO₂-Emission
@@ -14052,12 +14064,16 @@ records:
       - CO₂ emission
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2170
     noun:
       gender: f
       plural: CO₂-Emissionen
+    examples:
+      - { de: "Der Verkehr verursacht einen großen Teil der CO₂-Emissionen.", en: "Transport causes a large share of CO₂ emissions.", tags: [plural, Präsens] }
+      - { de: "Die EU will die CO₂-Emissionen bis 2030 deutlich senken.", en: "The EU wants to cut CO₂ emissions significantly by 2030.", tags: [plural, Präsens] }
+      - { de: "Jede eingesparte CO₂-Emission hilft dem Klima.", en: "Every CO₂ emission saved helps the climate.", tags: [singular, Präsens] }
   - id: noun-co-ausstoss
     type: noun
     lemma: CO₂-Ausstoß
@@ -14065,12 +14081,16 @@ records:
       - CO₂ output
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2172
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der CO₂-Ausstoß der Industrie ist leicht gesunken.", en: "Industry's CO₂ output has fallen slightly.", tags: [singular, Perfekt] }
+      - { de: "Neue Autos müssen einen niedrigeren CO₂-Ausstoß haben.", en: "New cars must have lower CO₂ output.", tags: [singular, Präsens] }
+      - { de: "Durch das Homeoffice sank der CO₂-Ausstoß im Verkehr.", en: "Working from home reduced CO₂ output from transport.", tags: [singular, Präteritum] }
   - id: noun-klimapolitik
     type: noun
     lemma: Klimapolitik
@@ -14078,12 +14098,16 @@ records:
       - climate policy
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2174
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Klimapolitik der Regierung ist umstritten.", en: "The government's climate policy is controversial.", tags: [singular, Präsens] }
+      - { de: "Junge Menschen fordern eine ehrgeizigere Klimapolitik.", en: "Young people are demanding a more ambitious climate policy.", tags: [singular, Präsens] }
+      - { de: "In der Klimapolitik hat sich in den letzten Jahren viel getan.", en: "A lot has happened in climate policy in recent years.", tags: [singular, Perfekt] }
   - id: noun-klimaziel
     type: noun
     lemma: Klimaziel
@@ -14091,12 +14115,16 @@ records:
       - climate goal
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2176
     noun:
       gender: n
       plural: Klimaziele
+    examples:
+      - { de: "Deutschland wird sein Klimaziel für 2030 nur schwer erreichen.", en: "Germany will have difficulty reaching its 2030 climate target.", tags: [singular, Futur I] }
+      - { de: "Die Klimaziele der EU sind sehr ehrgeizig.", en: "The EU's climate goals are very ambitious.", tags: [plural, Präsens] }
+      - { de: "Viele Länder haben ihre Klimaziele verfehlt.", en: "Many countries have missed their climate targets.", tags: [plural, Perfekt] }
   - id: noun-klimagipfel
     type: noun
     lemma: Klimagipfel
@@ -14104,12 +14132,16 @@ records:
       - climate summit
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2178
     noun:
       gender: m
       plural: Klimagipfel
+    examples:
+      - { de: "Auf dem Klimagipfel wurde bis tief in die Nacht verhandelt.", en: "Negotiations at the climate summit went on late into the night.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Der Klimagipfel 2025 fand in Brasilien statt.", en: "The 2025 climate summit took place in Brazil.", tags: [singular, Präteritum] }
+      - { de: "Die Ergebnisse der letzten Klimagipfel waren enttäuschend.", en: "The results of the last climate summits were disappointing.", tags: [plural, Präteritum] }
   - id: noun-energiewende
     type: noun
     lemma: Energiewende
@@ -14117,12 +14149,16 @@ records:
       - energy transition
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2180
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Energiewende ist ein Projekt für Jahrzehnte.", en: "The energy transition is a project that will take decades.", tags: [singular, Präsens] }
+      - { de: "Deutschland hat die Energiewende nach Fukushima beschleunigt.", en: "Germany accelerated the energy transition after Fukushima.", tags: [singular, Perfekt] }
+      - { de: "Ohne neue Stromleitungen wird die Energiewende scheitern.", en: "Without new power lines the energy transition will fail.", tags: [singular, Futur I] }
   - id: noun-erneuerbaren-energien
     type: noun
     lemma: erneuerbaren Energien
@@ -14130,13 +14166,18 @@ records:
       - renewable energies
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2182
+    source_note: "kept plural-only: the usual form is plural (erneuerbare Energien)"
     noun:
       gender: f
       plural: null
       plural_only: true
+    examples:
+      - { de: "Die erneuerbaren Energien liefern über die Hälfte des deutschen Stroms.", en: "Renewables supply more than half of Germany's electricity.", tags: [plural, Präsens] }
+      - { de: "Die Regierung will den Ausbau der erneuerbaren Energien beschleunigen.", en: "The government wants to speed up the expansion of renewable energy.", tags: [plural, Präsens] }
+      - { de: "In erneuerbare Energien wurde lange zu wenig investiert.", en: "For a long time too little was invested in renewable energy.", tags: [plural, Passiv, Präteritum] }
   - id: noun-solarenergie
     type: noun
     lemma: Solarenergie
@@ -14144,12 +14185,16 @@ records:
       - solar energy
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2184
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Solarenergie wird immer günstiger.", en: "Solar energy is becoming cheaper and cheaper.", tags: [singular, Präsens] }
+      - { de: "Wir nutzen Solarenergie, um Warmwasser zu erzeugen.", en: "We use solar energy to heat water.", tags: [singular, Präsens] }
+      - { de: "Spanien hat stark in die Solarenergie investiert.", en: "Spain has invested heavily in solar energy.", tags: [singular, Perfekt] }
   - id: noun-windkraft
     type: noun
     lemma: Windkraft
@@ -14157,12 +14202,16 @@ records:
       - wind power
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2186
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "An der Küste wird viel Strom aus Windkraft erzeugt.", en: "A lot of electricity is generated from wind power on the coast.", tags: [singular, Passiv, Präsens] }
+      - { de: "Viele Anwohner wehren sich gegen den Ausbau der Windkraft.", en: "Many residents oppose the expansion of wind power.", tags: [singular, Präsens] }
+      - { de: "Windkraft ist heute die wichtigste Stromquelle in Deutschland.", en: "Wind power is now the most important source of electricity in Germany.", tags: [singular, Präsens] }
   - id: noun-wasserkraft
     type: noun
     lemma: Wasserkraft
@@ -14170,12 +14219,16 @@ records:
       - hydropower
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2188
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Norwegen gewinnt fast seinen gesamten Strom aus Wasserkraft.", en: "Norway generates almost all its electricity from hydropower.", tags: [singular, Präsens] }
+      - { de: "Wasserkraft wird schon seit Jahrhunderten genutzt.", en: "Hydropower has been used for centuries.", tags: [singular, Passiv, Präsens] }
+      - { de: "Früher trieb die Wasserkraft hier viele Mühlen an.", en: "In the past, water power drove many mills here.", tags: [singular, Präteritum] }
   - id: noun-recycling
     type: noun
     lemma: Recycling
@@ -14183,12 +14236,16 @@ records:
       - recycling
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2190
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Recycling spart Rohstoffe und Energie.", en: "Recycling saves raw materials and energy.", tags: [singular, Präsens] }
+      - { de: "Beim Recycling von Plastik gibt es noch viele Probleme.", en: "There are still many problems with recycling plastic.", tags: [singular, Präsens] }
+      - { de: "Das alte Handy habe ich zum Recycling gebracht.", en: "I took the old mobile phone for recycling.", tags: [singular, Perfekt] }
   - id: verb-recyceln
     type: verb
     lemma: recyceln
@@ -14196,9 +14253,20 @@ records:
       - to recycle
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2192
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "recycelt"
+        praeteritum: "recycelte"
+        partizip2: "recycelt"
+    examples:
+      - { de: "Glas lässt sich fast unbegrenzt recyceln.", en: "Glass can be recycled almost indefinitely.", tags: [Präsens] }
+      - { de: "Die Firma hat letztes Jahr tausend Tonnen Plastik recycelt.", en: "Last year the company recycled a thousand tonnes of plastic.", tags: [Perfekt] }
+      - { de: "Früher recycelte man kaum etwas.", en: "In the past, hardly anything was recycled.", tags: [Präteritum] }
   - id: noun-muell
     type: noun
     lemma: Müll
@@ -14207,13 +14275,17 @@ records:
       - waste
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2194
     source_note: "plural Müll removed: Müll has no plural"
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Bring bitte den Müll raus!", en: "Please take the rubbish out!", tags: [singular, Imperativ] }
+      - { de: "In Deutschland wird der Müll getrennt.", en: "In Germany, waste is separated.", tags: [singular, Passiv, Präsens] }
+      - { de: "Nach dem Festival lag überall Müll herum.", en: "After the festival there was rubbish lying around everywhere.", tags: [singular, Präteritum] }
   - id: noun-muelltrennung
     type: noun
     lemma: Mülltrennung
@@ -17345,11 +17417,18 @@ records:
     lemma: zunächst
     gloss:
       - firstly
+      - at first
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2115
+    phrase:
+      register: neutral
+    examples:
+      - { de: "Zunächst möchte ich mich kurz vorstellen.", en: "First of all, I'd like to briefly introduce myself.", tags: [Präsens] }
+      - { de: "Zunächst lief alles nach Plan, dann kamen die Probleme.", en: "At first everything went according to plan, then the problems came.", tags: [Präteritum] }
+      - { de: "Wir müssen zunächst klären, wer die Kosten trägt.", en: "First we have to clarify who will bear the costs.", tags: [Präsens] }
   - id: phrase-ausserdem
     type: phrase
     lemma: außerdem
@@ -17357,9 +17436,15 @@ records:
       - furthermore
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2115
+    phrase:
+      register: neutral
+    examples:
+      - { de: "Die Wohnung ist hell und außerdem sehr günstig.", en: "The flat is bright and also very cheap.", tags: [Präsens] }
+      - { de: "Außerdem muss man bedenken, dass die Preise steigen werden.", en: "Furthermore, one has to bear in mind that prices will rise.", tags: [Futur I] }
+      - { de: "Ich habe keine Zeit, und außerdem habe ich keine Lust.", en: "I don't have time, and besides, I don't feel like it.", tags: [Präsens] }
   - id: phrase-jedoch
     type: phrase
     lemma: jedoch
@@ -17367,9 +17452,15 @@ records:
       - however
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2115
+    phrase:
+      register: formal
+    examples:
+      - { de: "Die Idee ist gut, jedoch fehlt das Geld.", en: "The idea is good; however, there is no money.", tags: [Präsens] }
+      - { de: "Er hatte sich gut vorbereitet, die Prüfung war jedoch sehr schwer.", en: "He had prepared well; the exam, however, was very difficult.", tags: [Plusquamperfekt] }
+      - { de: "Viele Bürger sind jedoch anderer Meinung.", en: "Many citizens, however, take a different view.", tags: [Präsens] }
   - id: phrase-dennoch
     type: phrase
     lemma: dennoch
@@ -17377,19 +17468,32 @@ records:
       - nevertheless
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2115
+    phrase:
+      register: neutral
+    examples:
+      - { de: "Es regnete stark, dennoch gingen wir spazieren.", en: "It was raining heavily; nevertheless, we went for a walk.", tags: [Präteritum] }
+      - { de: "Das Projekt ist riskant, dennoch wollen wir es versuchen.", en: "The project is risky, but we still want to try it.", tags: [Präsens] }
+      - { de: "Sie war krank und ist dennoch zur Arbeit gegangen.", en: "She was ill and still went to work.", tags: [Perfekt] }
   - id: phrase-schliesslich
     type: phrase
     lemma: schließlich
     gloss:
       - finally
+      - after all
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2115
+    phrase:
+      register: neutral
+    examples:
+      - { de: "Nach langer Suche haben wir schließlich eine Wohnung gefunden.", en: "After a long search we finally found a flat.", tags: [Perfekt] }
+      - { de: "Schließlich möchte ich noch auf die Kosten eingehen.", en: "Finally, I would like to address the costs.", tags: [Präsens] }
+      - { de: "Du musst ihm helfen, er ist schließlich dein Bruder.", en: "You have to help him, he is your brother after all.", tags: [Präsens] }
   - id: adjective-sachlich
     type: adjective
     lemma: sachlich
@@ -17397,9 +17501,17 @@ records:
       - objective
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2119
+    adjective:
+      gradable: true
+      comparative: "sachlicher"
+      superlative: "am sachlichsten"
+    examples:
+      - { de: "Bitte bleiben Sie sachlich!", en: "Please stay objective!", tags: [Imperativ] }
+      - { de: "Der Bericht ist in einem sachlichen Ton geschrieben.", en: "The report is written in a factual tone.", tags: [attributive, Präsens] }
+      - { de: "Die zweite Debatte verlief deutlich sachlicher.", en: "The second debate was considerably more objective.", tags: [comparative, Präteritum] }
   - id: adjective-objektiv
     type: adjective
     lemma: objektiv
@@ -17407,9 +17519,17 @@ records:
       - objective
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2119
+    adjective:
+      gradable: true
+      comparative: "objektiver"
+      superlative: "am objektivsten"
+    examples:
+      - { de: "Journalisten sollten objektiv berichten.", en: "Journalists should report objectively.", tags: [Konjunktiv II] }
+      - { de: "Wir brauchen eine objektive Bewertung der Lage.", en: "We need an objective assessment of the situation.", tags: [attributive, Präsens] }
+      - { de: "Ein Außenstehender kann das oft objektiver beurteilen.", en: "An outsider can often judge that more objectively.", tags: [comparative, Präsens] }
   - id: adjective-subjektiv
     type: adjective
     lemma: subjektiv
@@ -17417,9 +17537,17 @@ records:
       - subjective
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2121
+    adjective:
+      gradable: true
+      comparative: "subjektiver"
+      superlative: "am subjektivsten"
+    examples:
+      - { de: "Das ist natürlich nur mein subjektiver Eindruck.", en: "That's only my subjective impression, of course.", tags: [attributive, Präsens] }
+      - { de: "Geschmack ist immer subjektiv.", en: "Taste is always subjective.", tags: [Präsens] }
+      - { de: "Ihr zweiter Roman ist noch persönlicher und subjektiver.", en: "Her second novel is even more personal and subjective.", tags: [comparative, Präsens] }
   - id: noun-rhetorische-mittel
     type: noun
     lemma: rhetorische Mittel
@@ -17427,13 +17555,17 @@ records:
       - rhetorical device
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2131
     source_note: "gender corrected from der to das"
     noun:
       gender: n
       plural: rhetorischen Mittel
+    examples:
+      - { de: "Die Alliteration ist ein beliebtes rhetorisches Mittel.", en: "Alliteration is a popular rhetorical device.", tags: [singular, Präsens] }
+      - { de: "Welche rhetorischen Mittel verwendet der Redner?", en: "Which rhetorical devices does the speaker use?", tags: [plural, Präsens] }
+      - { de: "Mit diesem rhetorischen Mittel wollte sie das Publikum überzeugen.", en: "With this rhetorical device she wanted to convince the audience.", tags: [singular, Präteritum] }
   - id: noun-globale-sueden
     type: noun
     lemma: globale Süden
