@@ -13443,12 +13443,16 @@ records:
       - point of view
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2039
     noun:
       gender: m
       plural: Standpunkte
+    examples:
+      - { de: "Von meinem Standpunkt aus ist das unmöglich.", en: "From my point of view, that's impossible.", tags: [singular, Präsens] }
+      - { de: "Die Ministerin hat ihren Standpunkt klar dargelegt.", en: "The minister has clearly set out her position.", tags: [singular, Perfekt] }
+      - { de: "In der Diskussion prallten sehr unterschiedliche Standpunkte aufeinander.", en: "Very different points of view clashed in the discussion.", tags: [plural, Präteritum] }
   - id: noun-ansicht
     type: noun
     lemma: Ansicht
@@ -13457,12 +13461,16 @@ records:
       - perspective
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2041
     noun:
       gender: f
       plural: Ansichten
+    examples:
+      - { de: "Ich bin der Ansicht, dass wir mehr Zeit brauchen.", en: "I am of the opinion that we need more time.", tags: [singular, Präsens] }
+      - { de: "Über diese Frage gehen die Ansichten weit auseinander.", en: "Views on this question differ widely.", tags: [plural, Präsens] }
+      - { de: "Mit dem Alter hat er seine Ansichten geändert.", en: "He has changed his views as he has got older.", tags: [plural, Perfekt] }
   - id: noun-einwand
     type: noun
     lemma: Einwand
@@ -13470,12 +13478,16 @@ records:
       - objection
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2057
     noun:
       gender: m
       plural: Einwände
+    examples:
+      - { de: "Haben Sie noch Einwände gegen den Vorschlag?", en: "Do you have any objections to the proposal?", tags: [plural, Präsens] }
+      - { de: "Ihr Einwand ist berechtigt.", en: "Your objection is justified.", tags: [singular, Präsens] }
+      - { de: "Der Richter wies den Einwand des Anwalts zurück.", en: "The judge rejected the lawyer's objection.", tags: [singular, Präteritum] }
   - id: verb-einwenden
     type: verb
     lemma: einwenden
@@ -13483,23 +13495,40 @@ records:
       - to object (to)
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2059
     government: gegen
+    verb:
+      separable: ein
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "wendet ein"
+        praeteritum: "wandte ein"
+        partizip2: "eingewandt"
+    examples:
+      - { de: "Dagegen wende ich ein, dass die Kosten zu hoch sind.", en: "I object to that because the costs are too high.", tags: [separated, Präsens] }
+      - { de: "Sie hat eingewandt, dass die Daten veraltet sind.", en: "She objected that the data was out of date.", tags: [Perfekt] }
+      - { de: "Niemand wandte etwas gegen den Plan ein.", en: "Nobody raised any objection to the plan.", tags: [separated, Präteritum] }
   - id: noun-widerspruch
     type: noun
     lemma: Widerspruch
     gloss:
       - contradiction
+      - objection
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2061
     noun:
       gender: m
       plural: Widersprüche
+    examples:
+      - { de: "Seine Aussage steht im Widerspruch zu den Fakten.", en: "His statement contradicts the facts.", tags: [singular, Präsens] }
+      - { de: "Gegen den Bescheid können Sie innerhalb eines Monats Widerspruch einlegen.", en: "You can lodge an objection to the decision within one month.", tags: [singular, Präsens] }
+      - { de: "Die Zeugin verwickelte sich in Widersprüche.", en: "The witness got tangled up in contradictions.", tags: [plural, Präteritum] }
   - id: verb-widersprechen
     type: verb
     lemma: widersprechen
@@ -13507,9 +13536,21 @@ records:
       - to contradict
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2063
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "widerspricht"
+        praeteritum: "widersprach"
+        partizip2: "widersprochen"
+    examples:
+      - { de: "Da muss ich Ihnen leider widersprechen.", en: "I'm afraid I have to disagree with you there.", tags: [Präsens] }
+      - { de: "Die Ergebnisse widersprechen der bisherigen Theorie.", en: "The results contradict the previous theory.", tags: [Präsens] }
+      - { de: "Niemand hat dem Chef widersprochen.", en: "Nobody contradicted the boss.", tags: [Perfekt] }
+      - { de: "Sie widersprach ihm in allen Punkten.", en: "She contradicted him on every point.", tags: [Präteritum] }
   - id: noun-argument
     type: noun
     lemma: Argument
@@ -13517,12 +13558,16 @@ records:
       - argument
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2065
     noun:
       gender: n
       plural: Argumente
+    examples:
+      - { de: "Das ist ein starkes Argument für den Ausbau der Bahn.", en: "That is a strong argument for expanding the railways.", tags: [singular, Präsens] }
+      - { de: "Sie hat ihre Argumente sehr überzeugend vorgetragen.", en: "She presented her arguments very convincingly.", tags: [plural, Perfekt] }
+      - { de: "Mir fehlen langsam die Argumente.", en: "I'm slowly running out of arguments.", tags: [plural, Präsens] }
   - id: noun-begruendung
     type: noun
     lemma: Begründung
@@ -13530,12 +13575,16 @@ records:
       - justification
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2079
     noun:
       gender: f
       plural: Begründungen
+    examples:
+      - { de: "Der Antrag wurde ohne Begründung abgelehnt.", en: "The application was rejected without any reason being given.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Die Begründung des Urteils umfasst fünfzig Seiten.", en: "The court's reasoning runs to fifty pages.", tags: [singular, Präsens] }
+      - { de: "Seine Begründungen klangen nicht sehr überzeugend.", en: "His justifications didn't sound very convincing.", tags: [plural, Präteritum] }
   - id: verb-begruenden
     type: verb
     lemma: begründen
@@ -13543,9 +13592,20 @@ records:
       - to justify
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2081
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "begründet"
+        praeteritum: "begründete"
+        partizip2: "begründet"
+    examples:
+      - { de: "Bitte begründen Sie Ihre Meinung mit Beispielen.", en: "Please justify your opinion with examples.", tags: [Imperativ] }
+      - { de: "Die Regierung hat die Entscheidung mit den hohen Kosten begründet.", en: "The government justified the decision by citing the high costs.", tags: [Perfekt] }
+      - { de: "Wie begründete er sein Fehlen?", en: "How did he justify his absence?", tags: [Präteritum] }
   - id: noun-these
     type: noun
     lemma: These
@@ -13553,12 +13613,16 @@ records:
       - thesis
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2083
     noun:
       gender: f
       plural: Thesen
+    examples:
+      - { de: "Die These des Autors lautet: Wohlstand macht nicht glücklich.", en: "The author's thesis is: prosperity doesn't make you happy.", tags: [singular, Präsens] }
+      - { de: "Diese These lässt sich mit Daten nicht belegen.", en: "This thesis cannot be substantiated with data.", tags: [singular, Präsens] }
+      - { de: "Luther veröffentlichte 1517 seine 95 Thesen.", en: "Luther published his 95 theses in 1517.", tags: [plural, Präteritum] }
   - id: noun-antithese
     type: noun
     lemma: Antithese
@@ -13566,12 +13630,16 @@ records:
       - antithesis
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2085
     noun:
       gender: f
       plural: Antithesen
+    examples:
+      - { de: "Nach der These folgt in der Erörterung die Antithese.", en: "In the discursive essay, the antithesis follows the thesis.", tags: [singular, Präsens] }
+      - { de: "Formulieren Sie zu jeder These eine Antithese.", en: "Formulate an antithesis for each thesis.", tags: [singular, Imperativ] }
+      - { de: "Die Antithesen in seinem Aufsatz waren schwach begründet.", en: "The antitheses in his essay were poorly argued.", tags: [plural, Präteritum] }
   - id: noun-schlussfolgerung
     type: noun
     lemma: Schlussfolgerung
@@ -13579,12 +13647,16 @@ records:
       - conclusion
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2087
     noun:
       gender: f
       plural: Schlussfolgerungen
+    examples:
+      - { de: "Welche Schlussfolgerung ziehen Sie aus diesen Zahlen?", en: "What conclusion do you draw from these figures?", tags: [singular, Präsens] }
+      - { de: "Die Forscher kamen zu überraschenden Schlussfolgerungen.", en: "The researchers came to surprising conclusions.", tags: [plural, Präteritum] }
+      - { de: "Ziehen Sie keine voreiligen Schlussfolgerungen!", en: "Don't jump to conclusions!", tags: [plural, Imperativ] }
   - id: noun-aussage
     type: noun
     lemma: Aussage
@@ -13592,12 +13664,16 @@ records:
       - statement
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2091
     noun:
       gender: f
       plural: Aussagen
+    examples:
+      - { de: "Diese Aussage ist so nicht richtig.", en: "That statement is not correct as it stands.", tags: [singular, Präsens] }
+      - { de: "Der Zeuge hat seine Aussage zurückgezogen.", en: "The witness has withdrawn his statement.", tags: [singular, Perfekt] }
+      - { de: "Die Aussagen der beiden Politiker widersprechen sich.", en: "The two politicians' statements contradict each other.", tags: [plural, Präsens] }
   - id: noun-behauptung
     type: noun
     lemma: Behauptung
@@ -13605,12 +13681,16 @@ records:
       - claim
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2093
     noun:
       gender: f
       plural: Behauptungen
+    examples:
+      - { de: "Das ist eine bloße Behauptung ohne Beweise.", en: "That's a mere claim without any evidence.", tags: [singular, Präsens] }
+      - { de: "Seine Behauptungen hatten sich als falsch erwiesen.", en: "His claims had turned out to be false.", tags: [plural, Plusquamperfekt] }
+      - { de: "Die Firma wies die Behauptung entschieden zurück.", en: "The company firmly rejected the claim.", tags: [singular, Präteritum] }
   - id: verb-behaupten
     type: verb
     lemma: behaupten
@@ -13618,9 +13698,20 @@ records:
       - to claim
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2095
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "behauptet"
+        praeteritum: "behauptete"
+        partizip2: "behauptet"
+    examples:
+      - { de: "Er behauptet, er habe nichts davon gewusst.", en: "He claims he knew nothing about it.", tags: [Präsens] }
+      - { de: "Wer hat das behauptet?", en: "Who claimed that?", tags: [Perfekt] }
+      - { de: "Die Zeitung behauptete, der Minister sei bestechlich.", en: "The newspaper claimed the minister was corrupt.", tags: [Präteritum] }
   - id: noun-analyse
     type: noun
     lemma: Analyse
@@ -13628,12 +13719,16 @@ records:
       - analysis
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2097
     noun:
       gender: f
       plural: Analysen
+    examples:
+      - { de: "Eine genaue Analyse der Daten zeigt ein anderes Bild.", en: "A close analysis of the data paints a different picture.", tags: [singular, Präsens] }
+      - { de: "Die Analyse hat drei Monate gedauert.", en: "The analysis took three months.", tags: [singular, Perfekt] }
+      - { de: "Die Analysen der Experten kommen zu unterschiedlichen Ergebnissen.", en: "The experts' analyses come to different conclusions.", tags: [plural, Präsens] }
   - id: verb-analysieren
     type: verb
     lemma: analysieren
@@ -13641,9 +13736,20 @@ records:
       - to analyse
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2099
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "analysiert"
+        praeteritum: "analysierte"
+        partizip2: "analysiert"
+    examples:
+      - { de: "Im Kurs analysieren wir Reden von bekannten Politikern.", en: "In the course we analyse speeches by well-known politicians.", tags: [Präsens] }
+      - { de: "Die Polizei hat die Videos genau analysiert.", en: "The police analysed the videos closely.", tags: [Perfekt] }
+      - { de: "Das Labor analysierte die Proben innerhalb von zwei Tagen.", en: "The laboratory analysed the samples within two days.", tags: [Präteritum] }
   - id: noun-struktur
     type: noun
     lemma: Struktur
@@ -13651,26 +13757,35 @@ records:
       - structure
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2101
     noun:
       gender: f
       plural: Strukturen
+    examples:
+      - { de: "Die Struktur des Textes ist klar und logisch.", en: "The structure of the text is clear and logical.", tags: [singular, Präsens] }
+      - { de: "Das Unternehmen hat seine Strukturen komplett umgebaut.", en: "The company has completely restructured.", tags: [plural, Perfekt] }
+      - { de: "Kinder brauchen eine feste Struktur im Alltag.", en: "Children need a firm structure in their daily lives.", tags: [singular, Präsens] }
   - id: noun-aufbau
     type: noun
     lemma: Aufbau
     gloss:
       - composition
       - structure
+      - construction
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2103
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Der Aufbau des Aufsatzes folgt einem klaren Schema.", en: "The structure of the essay follows a clear pattern.", tags: [singular, Präsens] }
+      - { de: "Achten Sie beim Schreiben auf einen logischen Aufbau.", en: "Pay attention to a logical structure when writing.", tags: [singular, Imperativ] }
+      - { de: "Nach dem Krieg begann der Aufbau der zerstörten Städte.", en: "After the war, the rebuilding of the destroyed cities began.", tags: [singular, Präteritum] }
   - id: noun-gliederung
     type: noun
     lemma: Gliederung
@@ -13678,12 +13793,16 @@ records:
       - outline
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2105
     noun:
       gender: f
       plural: Gliederungen
+    examples:
+      - { de: "Erstellen Sie vor dem Schreiben eine Gliederung.", en: "Draw up an outline before you start writing.", tags: [singular, Imperativ] }
+      - { de: "Die Gliederung der Präsentation war sehr übersichtlich.", en: "The outline of the presentation was very clear.", tags: [singular, Präteritum] }
+      - { de: "Wir haben die Gliederungen der Hausarbeiten im Seminar besprochen.", en: "We discussed the outlines of the term papers in the seminar.", tags: [plural, Perfekt] }
   - id: noun-uebergang
     type: noun
     lemma: Übergang
@@ -13691,25 +13810,34 @@ records:
       - transition
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2109
     noun:
       gender: m
       plural: Übergänge
+    examples:
+      - { de: "Der Übergang von der Schule zur Uni ist für viele schwierig.", en: "The transition from school to university is difficult for many.", tags: [singular, Präsens] }
+      - { de: "Achten Sie in Ihrem Text auf flüssige Übergänge.", en: "Make sure there are smooth transitions in your text.", tags: [plural, Imperativ] }
+      - { de: "Der Übergang zur Demokratie verlief friedlich.", en: "The transition to democracy was peaceful.", tags: [singular, Präteritum] }
   - id: noun-formulierung
     type: noun
     lemma: Formulierung
     gloss:
       - phrasing
+      - wording
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2117
     noun:
       gender: f
       plural: Formulierungen
+    examples:
+      - { de: "Diese Formulierung ist zu umgangssprachlich für einen Brief.", en: "This wording is too colloquial for a letter.", tags: [singular, Präsens] }
+      - { de: "Bei der Formulierung des Vertrags müssen wir genau sein.", en: "We have to be precise in the wording of the contract.", tags: [singular, Präsens] }
+      - { de: "Die Lehrerin hat einige Formulierungen im Text verbessert.", en: "The teacher improved some of the phrasing in the text.", tags: [plural, Perfekt] }
   - id: verb-uebertreiben
     type: verb
     lemma: übertreiben
@@ -13717,9 +13845,20 @@ records:
       - to exaggerate
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2123
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "übertreibt"
+        praeteritum: "übertrieb"
+        partizip2: "übertrieben"
+    examples:
+      - { de: "Jetzt übertreibst du aber!", en: "Now you're exaggerating!", tags: [Präsens] }
+      - { de: "Die Medien haben die Gefahr stark übertrieben.", en: "The media greatly exaggerated the danger.", tags: [Perfekt] }
+      - { de: "Er übertrieb gern, wenn er von seinen Reisen erzählte.", en: "He liked to exaggerate when he talked about his travels.", tags: [Präteritum] }
   - id: verb-verharmlosen
     type: verb
     lemma: verharmlosen
@@ -13727,9 +13866,20 @@ records:
       - to downplay
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2125
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "verharmlost"
+        praeteritum: "verharmloste"
+        partizip2: "verharmlost"
+    examples:
+      - { de: "Man darf die Risiken nicht verharmlosen.", en: "We must not downplay the risks.", tags: [Präsens] }
+      - { de: "Der Politiker hat die Folgen des Skandals verharmlost.", en: "The politician downplayed the consequences of the scandal.", tags: [Perfekt] }
+      - { de: "Lange verharmloste die Industrie die Gefahren des Rauchens.", en: "For a long time, the industry played down the dangers of smoking.", tags: [Präteritum] }
   - id: verb-vergleichen
     type: verb
     lemma: vergleichen
@@ -13737,10 +13887,21 @@ records:
       - to compare (with)
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2127
     government: mit
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "vergleicht"
+        praeteritum: "verglich"
+        partizip2: "verglichen"
+    examples:
+      - { de: "Vergleichen Sie die Preise, bevor Sie etwas kaufen.", en: "Compare prices before you buy anything.", tags: [Imperativ] }
+      - { de: "Man kann Äpfel nicht mit Birnen vergleichen.", en: "You can't compare apples and oranges.", tags: [Präsens] }
+      - { de: "Die Studie hat zwei Gruppen von Patienten verglichen.", en: "The study compared two groups of patients.", tags: [Perfekt] }
   - id: noun-perspektive
     type: noun
     lemma: Perspektive
