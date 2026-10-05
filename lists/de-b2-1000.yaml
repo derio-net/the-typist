@@ -3929,9 +3929,21 @@ records:
       - interrupt
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 642
+    verb:
+      separable: ab
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "bricht ab"
+        praeteritum: "brach ab"
+        partizip2: "abgebrochen"
+    examples:
+      - { de: "Wegen des Gewitters brach der Schiedsrichter das Spiel ab.", en: "Because of the thunderstorm the referee called off the match.", tags: [separated, Präteritum] }
+      - { de: "Sie hat ihr Studium nach zwei Semestern abgebrochen.", en: "She dropped out of her studies after two semesters.", tags: [Perfekt] }
+      - { de: "Wenn es zu teuer wird, brechen wir das Projekt ab.", en: "If it gets too expensive, we'll stop the project.", tags: [separated, Präsens] }
   - id: verb-annehmen
     type: verb
     lemma: annehmen
@@ -3940,9 +3952,21 @@ records:
       - assume
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 644
+    verb:
+      separable: an
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "nimmt an"
+        praeteritum: "nahm an"
+        partizip2: "angenommen"
+    examples:
+      - { de: "Ich nehme das Angebot gern an.", en: "I'm happy to accept the offer.", tags: [separated, Präsens] }
+      - { de: "Sie hat die Stelle in München angenommen.", en: "She has accepted the job in Munich.", tags: [Perfekt] }
+      - { de: "Wir nahmen an, dass der Zug pünktlich kommt.", en: "We assumed that the train would be on time.", tags: [separated, Präteritum] }
   - id: verb-aufstellen
     type: verb
     lemma: aufstellen
@@ -3951,9 +3975,21 @@ records:
       - establish
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 646
+    verb:
+      separable: auf
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "stellt auf"
+        praeteritum: "stellte auf"
+        partizip2: "aufgestellt"
+    examples:
+      - { de: "Die Partei stellt eine junge Kandidatin auf.", en: "The party is putting up a young candidate.", tags: [separated, Präsens] }
+      - { de: "Wir haben klare Regeln für das Homeoffice aufgestellt.", en: "We have set up clear rules for working from home.", tags: [Perfekt] }
+      - { de: "Die Läuferin stellte einen neuen Weltrekord auf.", en: "The runner set a new world record.", tags: [separated, Präteritum] }
   - id: verb-ausarbeiten
     type: verb
     lemma: ausarbeiten
@@ -3962,9 +3998,21 @@ records:
       - elaborate
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 648
+    verb:
+      separable: aus
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "arbeitet aus"
+        praeteritum: "arbeitete aus"
+        partizip2: "ausgearbeitet"
+    examples:
+      - { de: "Das Team arbeitet gerade ein neues Konzept aus.", en: "The team is currently drawing up a new concept.", tags: [separated, Präsens] }
+      - { de: "Die Anwältin hat den Vertrag sorgfältig ausgearbeitet.", en: "The lawyer drew up the contract carefully.", tags: [Perfekt] }
+      - { de: "Gemeinsam arbeiteten sie einen Kompromiss aus.", en: "Together they worked out a compromise.", tags: [separated, Präteritum] }
   - id: verb-beistehen
     type: verb
     lemma: beistehen
@@ -3973,9 +4021,21 @@ records:
       - stand by
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 650
+    verb:
+      separable: bei
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "steht bei"
+        praeteritum: "stand bei"
+        partizip2: "beigestanden"
+    examples:
+      - { de: "In schweren Zeiten steht sie mir immer bei.", en: "In hard times she always stands by me.", tags: [separated, Präsens] }
+      - { de: "Meine Freunde haben mir nach der Trennung beigestanden.", en: "My friends stood by me after the break-up.", tags: [Perfekt] }
+      - { de: "Der Anwalt stand seinem Mandanten bis zum Ende bei.", en: "The lawyer stood by his client to the end.", tags: [separated, Präteritum] }
   - id: verb-einfuehren
     type: verb
     lemma: einführen
@@ -3983,9 +4043,21 @@ records:
       - to introduce (a law, system)
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 652
+    verb:
+      separable: ein
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "führt ein"
+        praeteritum: "führte ein"
+        partizip2: "eingeführt"
+    examples:
+      - { de: "Die Stadt führt nächstes Jahr eine Citymaut ein.", en: "The city is introducing a congestion charge next year.", tags: [separated, Präsens] }
+      - { de: "Deutschland hat 2015 den Mindestlohn eingeführt.", en: "Germany introduced the minimum wage in 2015.", tags: [Perfekt] }
+      - { de: "Die Firma führte ein neues System für die Zeiterfassung ein.", en: "The company introduced a new system for recording working hours.", tags: [separated, Präteritum] }
   - id: verb-eingehen
     type: verb
     lemma: eingehen
@@ -3994,10 +4066,22 @@ records:
       - to address
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 654
     government: auf
+    verb:
+      separable: ein
+      auxiliary: sein
+      reflexive: false
+      parts:
+        praesens_3sg: "geht ein"
+        praeteritum: "ging ein"
+        partizip2: "eingegangen"
+    examples:
+      - { de: "Leider geht der Politiker nicht auf die Frage ein.", en: "Unfortunately the politician doesn't respond to the question.", tags: [separated, Präsens] }
+      - { de: "Die Lehrerin ist auf jeden Einwand eingegangen.", en: "The teacher addressed every objection.", tags: [Perfekt] }
+      - { de: "Er ging in seinem Vortrag ausführlich auf die Risiken ein.", en: "In his talk he went into the risks in detail.", tags: [separated, Präteritum] }
   - id: verb-festlegen
     type: verb
     lemma: festlegen
@@ -4006,9 +4090,21 @@ records:
       - define
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 656
+    verb:
+      separable: fest
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "legt fest"
+        praeteritum: "legte fest"
+        partizip2: "festgelegt"
+    examples:
+      - { de: "Wir legen den Termin für das nächste Treffen gleich fest.", en: "We'll fix the date for the next meeting right away.", tags: [separated, Präsens] }
+      - { de: "Das Gesetz hat klare Grenzwerte festgelegt.", en: "The law has set clear limits.", tags: [Perfekt] }
+      - { de: "Die Chefin legte die Ziele für das Jahr fest.", en: "The boss defined the targets for the year.", tags: [separated, Präteritum] }
   - id: verb-fortsetzen
     type: verb
     lemma: fortsetzen
@@ -4016,9 +4112,22 @@ records:
       - to continue
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 658
+    verb:
+      separable: fort
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "setzt fort"
+        praeteritum: "setzte fort"
+        partizip2: "fortgesetzt"
+    examples:
+      - { de: "Nach der Pause setzen wir die Diskussion fort.", en: "After the break we'll continue the discussion.", tags: [separated, Präsens] }
+      - { de: "Die Verhandlungen werden morgen fortgesetzt.", en: "The negotiations will be continued tomorrow.", tags: [Passiv, Präsens] }
+      - { de: "Trotz des Regens setzten die Wanderer ihren Weg fort.", en: "Despite the rain the hikers continued on their way.", tags: [separated, Präteritum] }
+      - { de: "Sie hat ihre Ausbildung in Wien fortgesetzt.", en: "She continued her training in Vienna.", tags: [Perfekt] }
   - id: verb-gegenueberstehen
     type: verb
     lemma: gegenüberstehen
@@ -4027,9 +4136,21 @@ records:
       - to face
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 660
+    verb:
+      separable: gegenüber
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "steht gegenüber"
+        praeteritum: "stand gegenüber"
+        partizip2: "gegenübergestanden"
+    examples:
+      - { de: "Viele Bürger stehen dem Projekt skeptisch gegenüber.", en: "Many citizens are sceptical about the project.", tags: [separated, Präsens] }
+      - { de: "Im Finale standen sich zwei alte Rivalen gegenüber.", en: "In the final two old rivals faced each other.", tags: [separated, Präteritum] }
+      - { de: "Die Firma hat nie zuvor so großen Problemen gegenübergestanden.", en: "The company has never faced such big problems before.", tags: [Perfekt] }
   - id: verb-herausfinden
     type: verb
     lemma: herausfinden
@@ -4037,9 +4158,21 @@ records:
       - to find out
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 662
+    verb:
+      separable: heraus
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "findet heraus"
+        praeteritum: "fand heraus"
+        partizip2: "herausgefunden"
+    examples:
+      - { de: "Ich finde heraus, wann der letzte Bus fährt.", en: "I'll find out when the last bus leaves.", tags: [separated, Präsens] }
+      - { de: "Hast du herausgefunden, wer das geschrieben hat?", en: "Did you find out who wrote that?", tags: [Perfekt] }
+      - { de: "Die Forscher fanden heraus, dass Schlaf das Gedächtnis stärkt.", en: "The researchers found out that sleep strengthens memory.", tags: [separated, Präteritum] }
   - id: verb-hervorgehen
     type: verb
     lemma: hervorgehen
@@ -4047,10 +4180,22 @@ records:
       - to emerge (from)
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 664
     government: aus
+    verb:
+      separable: hervor
+      auxiliary: sein
+      reflexive: false
+      parts:
+        praesens_3sg: "geht hervor"
+        praeteritum: "ging hervor"
+        partizip2: "hervorgegangen"
+    examples:
+      - { de: "Aus der Studie geht hervor, dass immer mehr Menschen allein leben.", en: "The study shows that more and more people live alone.", tags: [separated, Präsens] }
+      - { de: "Aus der Wahl ist die Partei als Siegerin hervorgegangen.", en: "The party emerged from the election as the winner.", tags: [Perfekt] }
+      - { de: "Aus dem Brief ging nicht hervor, wer ihn geschickt hatte.", en: "It wasn't clear from the letter who had sent it.", tags: [separated, Präteritum] }
   - id: verb-mitarbeiten
     type: verb
     lemma: mitarbeiten
@@ -4058,9 +4203,21 @@ records:
       - to collaborate
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 666
+    verb:
+      separable: mit
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "arbeitet mit"
+        praeteritum: "arbeitete mit"
+        partizip2: "mitgearbeitet"
+    examples:
+      - { de: "Im Unterricht arbeitet sie immer aktiv mit.", en: "She always participates actively in class.", tags: [separated, Präsens] }
+      - { de: "Er hat an der Entwicklung der App mitgearbeitet.", en: "He collaborated on the development of the app.", tags: [Perfekt] }
+      - { de: "Viele Freiwillige arbeiteten bei dem Projekt mit.", en: "Many volunteers worked on the project.", tags: [separated, Präteritum] }
   - id: verb-nachholen
     type: verb
     lemma: nachholen
@@ -4069,9 +4226,21 @@ records:
       - catch up on
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 668
+    verb:
+      separable: nach
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "holt nach"
+        praeteritum: "holte nach"
+        partizip2: "nachgeholt"
+    examples:
+      - { de: "Die ausgefallene Stunde holen wir nächste Woche nach.", en: "We'll make up the cancelled lesson next week.", tags: [separated, Präsens] }
+      - { de: "Sie hat ihr Abitur später an der Abendschule nachgeholt.", en: "She later caught up on her school-leaving exam at evening school.", tags: [Perfekt] }
+      - { de: "Am Wochenende holte ich endlich meinen Schlaf nach.", en: "At the weekend I finally caught up on my sleep.", tags: [separated, Präteritum] }
   - id: verb-vorbereiten
     type: verb
     lemma: vorbereiten
@@ -4079,9 +4248,21 @@ records:
       - to prepare
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 670
+    verb:
+      separable: vor
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "bereitet vor"
+        praeteritum: "bereitete vor"
+        partizip2: "vorbereitet"
+    examples:
+      - { de: "Ich bereite mich gerade auf das Vorstellungsgespräch vor.", en: "I'm preparing for the job interview right now.", tags: [separated, Präsens] }
+      - { de: "Hast du die Präsentation schon vorbereitet?", en: "Have you already prepared the presentation?", tags: [Perfekt] }
+      - { de: "Die Studenten bereiteten das Fest wochenlang vor.", en: "The students spent weeks preparing the party.", tags: [separated, Präteritum] }
   - id: verb-vorstellen
     type: verb
     lemma: vorstellen
@@ -4090,9 +4271,21 @@ records:
       - present
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 674
+    verb:
+      separable: vor
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "stellt vor"
+        praeteritum: "stellte vor"
+        partizip2: "vorgestellt"
+    examples:
+      - { de: "Darf ich Ihnen meinen Mann vorstellen?", en: "May I introduce my husband to you?", tags: [Präsens] }
+      - { de: "Morgen stellt die Firma ihr neues Smartphone vor.", en: "Tomorrow the company presents its new smartphone.", tags: [separated, Präsens] }
+      - { de: "Die Studentin hat ihre Ergebnisse im Seminar vorgestellt.", en: "The student presented her results in the seminar.", tags: [Perfekt] }
   - id: verb-wegfallen
     type: verb
     lemma: wegfallen
@@ -4101,9 +4294,21 @@ records:
       - fall away
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 676
+    verb:
+      separable: weg
+      auxiliary: sein
+      reflexive: false
+      parts:
+        praesens_3sg: "fällt weg"
+        praeteritum: "fiel weg"
+        partizip2: "weggefallen"
+    examples:
+      - { de: "Durch die Reform fallen viele Formulare weg.", en: "Thanks to the reform many forms are no longer needed.", tags: [separated, Präsens] }
+      - { de: "Seit Januar ist die Gebühr weggefallen.", en: "The fee has been dropped since January.", tags: [Perfekt] }
+      - { de: "Wegen der Krise fielen hunderte Arbeitsplätze weg.", en: "Because of the crisis hundreds of jobs disappeared.", tags: [separated, Präteritum] }
   - id: verb-wiederherstellen
     type: verb
     lemma: wiederherstellen
@@ -4111,9 +4316,21 @@ records:
       - to restore
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 678
+    verb:
+      separable: wiederher
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "stellt wieder her"
+        praeteritum: "stellte wieder her"
+        partizip2: "wiederhergestellt"
+    examples:
+      - { de: "Der Techniker stellt die Daten aus dem Backup wieder her.", en: "The technician is restoring the data from the backup.", tags: [separated, Präsens] }
+      - { de: "Nach dem Sturm wurde die Stromversorgung schnell wiederhergestellt.", en: "After the storm the power supply was quickly restored.", tags: [Passiv, Präteritum] }
+      - { de: "Die Polizei hat die Ordnung wiederhergestellt.", en: "The police have restored order.", tags: [Perfekt] }
   - id: verb-zusammenarbeiten
     type: verb
     lemma: zusammenarbeiten
@@ -4121,9 +4338,21 @@ records:
       - to work together
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 680
+    verb:
+      separable: zusammen
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "arbeitet zusammen"
+        praeteritum: "arbeitete zusammen"
+        partizip2: "zusammengearbeitet"
+    examples:
+      - { de: "Unsere Abteilungen arbeiten eng zusammen.", en: "Our departments work closely together.", tags: [separated, Präsens] }
+      - { de: "Wir haben jahrelang gut zusammengearbeitet.", en: "We worked well together for years.", tags: [Perfekt] }
+      - { de: "Die beiden Forscherinnen arbeiteten an einem Buch zusammen.", en: "The two researchers worked together on a book.", tags: [separated, Präteritum] }
   - id: verb-zurueckkehren
     type: verb
     lemma: zurückkehren
@@ -4131,9 +4360,21 @@ records:
       - to return
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 682
+    verb:
+      separable: zurück
+      auxiliary: sein
+      reflexive: false
+      parts:
+        praesens_3sg: "kehrt zurück"
+        praeteritum: "kehrte zurück"
+        partizip2: "zurückgekehrt"
+    examples:
+      - { de: "Nach zehn Jahren im Ausland kehrt er nach Hause zurück.", en: "After ten years abroad he is returning home.", tags: [separated, Präsens] }
+      - { de: "Sie ist gestern von ihrer Reise zurückgekehrt.", en: "She returned from her trip yesterday.", tags: [Perfekt] }
+      - { de: "Nach dem Krieg kehrten viele Flüchtlinge in ihre Heimat zurück.", en: "After the war many refugees returned to their home country.", tags: [separated, Präteritum] }
   - id: verb-zuruecktreten
     type: verb
     lemma: zurücktreten
@@ -4142,9 +4383,21 @@ records:
       - step back
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 684
+    verb:
+      separable: zurück
+      auxiliary: sein
+      reflexive: false
+      parts:
+        praesens_3sg: "tritt zurück"
+        praeteritum: "trat zurück"
+        partizip2: "zurückgetreten"
+    examples:
+      - { de: "Die Ministerin tritt wegen des Skandals zurück.", en: "The minister is resigning because of the scandal.", tags: [separated, Präsens] }
+      - { de: "Der Vorstand ist geschlossen zurückgetreten.", en: "The board resigned en bloc.", tags: [Perfekt] }
+      - { de: "Bitte treten Sie von der Bahnsteigkante zurück!", en: "Please step back from the edge of the platform!", tags: [separated, Imperativ] }
   - id: verb-zustimmen
     type: verb
     lemma: zustimmen
@@ -4153,10 +4406,22 @@ records:
     categories:
       - separable-verbs-trennbare-verben
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 686
       - 2053
+    verb:
+      separable: zu
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "stimmt zu"
+        praeteritum: "stimmte zu"
+        partizip2: "zugestimmt"
+    examples:
+      - { de: "Da stimme ich Ihnen völlig zu.", en: "I completely agree with you there.", tags: [separated, Präsens] }
+      - { de: "Der Betriebsrat hat dem Vorschlag zugestimmt.", en: "The works council agreed to the proposal.", tags: [Perfekt] }
+      - { de: "Nur wenige Abgeordnete stimmten dem Gesetz zu.", en: "Only a few MPs agreed to the law.", tags: [separated, Präteritum] }
   - id: verb-zunehmen
     type: verb
     lemma: zunehmen
@@ -4164,9 +4429,21 @@ records:
       - to increase
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 688
+    verb:
+      separable: zu
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "nimmt zu"
+        praeteritum: "nahm zu"
+        partizip2: "zugenommen"
+    examples:
+      - { de: "Der Verkehr in der Innenstadt nimmt jedes Jahr zu.", en: "Traffic in the city centre increases every year.", tags: [separated, Präsens] }
+      - { de: "Im Urlaub habe ich zwei Kilo zugenommen.", en: "I put on two kilos on holiday.", tags: [Perfekt] }
+      - { de: "Im Laufe des Tages nahm der Wind deutlich zu.", en: "Over the course of the day the wind picked up considerably.", tags: [separated, Präteritum] }
   - id: verb-abnehmen
     type: verb
     lemma: abnehmen
@@ -4175,9 +4452,21 @@ records:
       - to lose weight
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 690
+    verb:
+      separable: ab
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "nimmt ab"
+        praeteritum: "nahm ab"
+        partizip2: "abgenommen"
+    examples:
+      - { de: "Die Zahl der Raucher nimmt langsam ab.", en: "The number of smokers is slowly decreasing.", tags: [separated, Präsens] }
+      - { de: "Er hat durch mehr Bewegung zehn Kilo abgenommen.", en: "He lost ten kilos by exercising more.", tags: [Perfekt] }
+      - { de: "Nach der Operation nahmen die Schmerzen schnell ab.", en: "After the operation the pain quickly decreased.", tags: [separated, Präteritum] }
   - id: verb-anfallen
     type: verb
     lemma: anfallen
@@ -4186,9 +4475,21 @@ records:
       - occur
     categories:
       - separable-verbs-trennbare-verben
-    status: raw
+    status: enriched
     source_lines:
       - 692
+    verb:
+      separable: an
+      auxiliary: sein
+      reflexive: false
+      parts:
+        praesens_3sg: "fällt an"
+        praeteritum: "fiel an"
+        partizip2: "angefallen"
+    examples:
+      - { de: "Bei der Buchung fallen zusätzliche Gebühren an.", en: "Additional fees arise when booking.", tags: [separated, Präsens] }
+      - { de: "Im letzten Monat ist viel Arbeit angefallen.", en: "A lot of work came up last month.", tags: [Perfekt] }
+      - { de: "Für die Reparatur fielen Kosten von 300 Euro an.", en: "The repair incurred costs of 300 euros.", tags: [separated, Präteritum] }
   - id: verb-ausgehen
     type: verb
     lemma: ausgehen
