@@ -78,7 +78,7 @@ records:
       - 6
     noun:
       gender: f
-      plural: null
+      plural: Fakultäten
   - id: noun-institut
     type: noun
     lemma: Institut
@@ -91,7 +91,7 @@ records:
       - 8
     noun:
       gender: n
-      plural: null
+      plural: Institute
   - id: noun-bibliothek
     type: noun
     lemma: Bibliothek
@@ -104,7 +104,7 @@ records:
       - 10
     noun:
       gender: f
-      plural: null
+      plural: Bibliotheken
   - id: noun-mensa
     type: noun
     lemma: Mensa
@@ -117,7 +117,7 @@ records:
       - 12
     noun:
       gender: f
-      plural: null
+      plural: Mensen
   - id: noun-hoersaal
     type: noun
     lemma: Hörsaal
@@ -130,7 +130,7 @@ records:
       - 14
     noun:
       gender: m
-      plural: null
+      plural: Hörsäle
   - id: noun-kommilitone
     type: noun
     lemma: Kommilitone
@@ -143,10 +143,11 @@ records:
       - 16
     noun:
       gender: m
-      plural: null
+      plural: Kommilitonen
       variants:
         - lemma: Kommilitonin
           gender: f
+          plural: Kommilitoninnen
   - id: noun-dozent
     type: noun
     lemma: Dozent
@@ -159,10 +160,11 @@ records:
       - 18
     noun:
       gender: m
-      plural: null
+      plural: Dozenten
       variants:
         - lemma: Dozentin
           gender: f
+          plural: Dozentinnen
   - id: noun-promotion
     type: noun
     lemma: Promotion
@@ -175,7 +177,7 @@ records:
       - 20
     noun:
       gender: f
-      plural: null
+      plural: Promotionen
   - id: noun-doktorand
     type: noun
     lemma: Doktorand
@@ -188,10 +190,11 @@ records:
       - 22
     noun:
       gender: m
-      plural: null
+      plural: Doktoranden
       variants:
         - lemma: Doktorandin
           gender: f
+          plural: Doktorandinnen
   - id: noun-dissertation
     type: noun
     lemma: Dissertation
@@ -204,7 +207,7 @@ records:
       - 24
     noun:
       gender: f
-      plural: null
+      plural: Dissertationen
   - id: noun-lehrstuhl
     type: noun
     lemma: Lehrstuhl
@@ -217,7 +220,7 @@ records:
       - 26
     noun:
       gender: m
-      plural: null
+      plural: Lehrstühle
   - id: noun-kolloquium
     type: noun
     lemma: Kolloquium
@@ -230,7 +233,7 @@ records:
       - 28
     noun:
       gender: n
-      plural: null
+      plural: Kolloquien
   - id: noun-wissenschaft
     type: noun
     lemma: Wissenschaft
@@ -239,12 +242,14 @@ records:
       - scholarship
     categories:
       - academic-and-higher-education
+      - science-and-technology
     status: raw
     source_lines:
       - 30
+      - 1101
     noun:
       gender: f
-      plural: null
+      plural: Wissenschaften
   - id: noun-wissenschaftler
     type: noun
     lemma: Wissenschaftler
@@ -257,10 +262,11 @@ records:
       - 32
     noun:
       gender: m
-      plural: null
+      plural: Wissenschaftler
       variants:
         - lemma: Wissenschaftlerin
           gender: f
+          plural: Wissenschaftlerinnen
   - id: verb-publizieren
     type: verb
     lemma: publizieren
@@ -283,7 +289,7 @@ records:
       - 36
     noun:
       gender: f
-      plural: null
+      plural: Publikationen
   - id: noun-referat
     type: noun
     lemma: Referat
@@ -296,7 +302,7 @@ records:
       - 38
     noun:
       gender: n
-      plural: null
+      plural: Referate
   - id: noun-hausarbeit
     type: noun
     lemma: Hausarbeit
@@ -309,7 +315,7 @@ records:
       - 40
     noun:
       gender: f
-      plural: null
+      plural: Hausarbeiten
   - id: noun-bachelorarbeit
     type: noun
     lemma: Bachelorarbeit
@@ -322,7 +328,7 @@ records:
       - 42
     noun:
       gender: f
-      plural: null
+      plural: Bachelorarbeiten
   - id: noun-masterarbeit
     type: noun
     lemma: Masterarbeit
@@ -335,7 +341,7 @@ records:
       - 44
     noun:
       gender: f
-      plural: null
+      plural: Masterarbeiten
   - id: noun-modul
     type: noun
     lemma: Modul
@@ -348,7 +354,7 @@ records:
       - 46
     noun:
       gender: n
-      plural: null
+      plural: Module
   - id: noun-semesterferien
     type: noun
     lemma: Semesterferien
@@ -375,7 +381,7 @@ records:
       - 50
     noun:
       gender: f
-      plural: null
+      plural: Immatrikulationen
   - id: noun-studienaufenthalt
     type: noun
     lemma: Studienaufenthalt
@@ -388,7 +394,7 @@ records:
       - 52
     noun:
       gender: m
-      plural: null
+      plural: Studienaufenthalte
   - id: noun-austausch
     type: noun
     lemma: Austausch
@@ -414,7 +420,7 @@ records:
       - 56
     noun:
       gender: f
-      plural: null
+      plural: Zulassungen
   - id: noun-studienordnung
     type: noun
     lemma: Studienordnung
@@ -427,7 +433,7 @@ records:
       - 58
     noun:
       gender: f
-      plural: null
+      plural: Studienordnungen
   - id: noun-anwesenheitspflicht
     type: noun
     lemma: Anwesenheitspflicht
@@ -467,7 +473,7 @@ records:
       - 66
     noun:
       gender: f
-      plural: null
+      plural: Einschreibungen
   - id: noun-vorlesungsverzeichnis
     type: noun
     lemma: Vorlesungsverzeichnis
@@ -480,7 +486,7 @@ records:
       - 68
     noun:
       gender: n
-      plural: null
+      plural: Vorlesungsverzeichnisse
   - id: noun-studienberatung
     type: noun
     lemma: Studienberatung
@@ -493,7 +499,7 @@ records:
       - 70
     noun:
       gender: f
-      plural: null
+      plural: Studienberatungen
   - id: noun-leistungsnachweis
     type: noun
     lemma: Leistungsnachweis
@@ -506,7 +512,7 @@ records:
       - 72
     noun:
       gender: m
-      plural: null
+      plural: Leistungsnachweise
   - id: noun-studienleistung
     type: noun
     lemma: Studienleistung
@@ -519,7 +525,7 @@ records:
       - 74
     noun:
       gender: f
-      plural: null
+      plural: Studienleistungen
   - id: noun-akademische-jahr
     type: noun
     lemma: akademische Jahr
@@ -532,7 +538,7 @@ records:
       - 78
     noun:
       gender: n
-      plural: null
+      plural: akademischen Jahre
   - id: noun-semesterbeitrag
     type: noun
     lemma: Semesterbeitrag
@@ -545,7 +551,7 @@ records:
       - 80
     noun:
       gender: m
-      plural: null
+      plural: Semesterbeiträge
   - id: noun-fernuniversitaet
     type: noun
     lemma: Fernuniversität
@@ -558,7 +564,7 @@ records:
       - 82
     noun:
       gender: f
-      plural: null
+      plural: Fernuniversitäten
   - id: noun-abschluss
     type: noun
     lemma: Abschluss
@@ -571,30 +577,36 @@ records:
       - 84
     noun:
       gender: m
-      plural: null
+      plural: Abschlüsse
   - id: verb-abschliessen
     type: verb
     lemma: abschließen
     gloss:
       - to complete
+      - to conclude
     categories:
       - academic-and-higher-education
+      - rhetoric-and-argumentation
     status: raw
     source_lines:
       - 86
+      - 2107
   - id: noun-bewertung
     type: noun
     lemma: Bewertung
     gloss:
       - evaluation
+      - review
     categories:
       - academic-and-higher-education
+      - social-media-and-internet
     status: raw
     source_lines:
       - 88
+      - 1062
     noun:
       gender: f
-      plural: null
+      plural: Bewertungen
   - id: noun-feedback
     type: noun
     lemma: Feedback
@@ -620,7 +632,7 @@ records:
       - 92
     noun:
       gender: f
-      plural: null
+      plural: Kommilitonenrunden
   - id: noun-austauschstudent
     type: noun
     lemma: Austauschstudent
@@ -633,10 +645,11 @@ records:
       - 94
     noun:
       gender: m
-      plural: null
+      plural: Austauschstudenten
       variants:
         - lemma: Austauschstudentin
           gender: f
+          plural: Austauschstudentinnen
   - id: noun-studienwahl
     type: noun
     lemma: Studienwahl
@@ -662,7 +675,7 @@ records:
       - 98
     noun:
       gender: f
-      plural: null
+      plural: Bibliothekskarten
   - id: noun-anwesenheitsliste
     type: noun
     lemma: Anwesenheitsliste
@@ -675,7 +688,7 @@ records:
       - 100
     noun:
       gender: f
-      plural: null
+      plural: Anwesenheitslisten
   - id: noun-geschaeftsfuehrer
     type: noun
     lemma: Geschäftsführer
@@ -684,15 +697,18 @@ records:
       - managing director
     categories:
       - workplace-and-business
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 115
+      - 1738
     noun:
       gender: m
-      plural: null
+      plural: Geschäftsführer
       variants:
         - lemma: Geschäftsführerin
           gender: f
+          plural: Geschäftsführerinnen
   - id: noun-personalabteilung
     type: noun
     lemma: Personalabteilung
@@ -705,21 +721,24 @@ records:
       - 117
     noun:
       gender: f
-      plural: null
+      plural: Personalabteilungen
   - id: noun-betrieb
     type: noun
     lemma: Betrieb
     gloss:
       - company
       - operation
+      - business
     categories:
       - workplace-and-business
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 119
+      - 1742
     noun:
       gender: m
-      plural: null
+      plural: Betriebe
   - id: noun-belegschaft
     type: noun
     lemma: Belegschaft
@@ -733,24 +752,28 @@ records:
       - 121
     noun:
       gender: f
-      plural: null
+      plural: Belegschaften
   - id: noun-vorgesetzte
     type: noun
     lemma: Vorgesetzte
     gloss:
       - superior
       - manager
+      - supervisor
     categories:
       - workplace-and-business
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 123
+      - 1736
     noun:
       gender: m
-      plural: null
+      plural: Vorgesetzten
       variants:
         - lemma: Vorgesetzte
           gender: f
+          plural: Vorgesetzten
   - id: noun-mitarbeiter
     type: noun
     lemma: Mitarbeiter
@@ -763,23 +786,27 @@ records:
       - 125
     noun:
       gender: m
-      plural: null
+      plural: Mitarbeiter
       variants:
         - lemma: Mitarbeiterin
           gender: f
+          plural: Mitarbeiterinnen
   - id: noun-vertrag
     type: noun
     lemma: Vertrag
     gloss:
       - contract
+      - treaty
     categories:
       - workplace-and-business
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 127
+      - 1877
     noun:
       gender: m
-      plural: null
+      plural: Verträge
   - id: verb-unterzeichnen
     type: verb
     lemma: unterzeichnen
@@ -794,12 +821,16 @@ records:
     type: verb
     lemma: kündigen
     gloss:
-      - to resign; to terminate (a contract)
+      - to resign
+      - to terminate (a contract)
+      - to dismiss
     categories:
       - workplace-and-business
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 131
+      - 1766
   - id: noun-kuendigungsfrist
     type: noun
     lemma: Kündigungsfrist
@@ -812,7 +843,7 @@ records:
       - 133
     noun:
       gender: f
-      plural: null
+      plural: Kündigungsfristen
   - id: noun-arbeitsverhaeltnis
     type: noun
     lemma: Arbeitsverhältnis
@@ -825,7 +856,7 @@ records:
       - 135
     noun:
       gender: n
-      plural: null
+      plural: Arbeitsverhältnisse
   - id: noun-festanstellung
     type: noun
     lemma: Festanstellung
@@ -838,20 +869,23 @@ records:
       - 137
     noun:
       gender: f
-      plural: null
+      plural: Festanstellungen
   - id: noun-arbeitszeugnis
     type: noun
     lemma: Arbeitszeugnis
     gloss:
       - employment reference
+      - job reference
     categories:
       - workplace-and-business
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 141
+      - 1778
     noun:
       gender: n
-      plural: null
+      plural: Arbeitszeugnisse
   - id: noun-einarbeitung
     type: noun
     lemma: Einarbeitung
@@ -890,7 +924,7 @@ records:
       - 147
     noun:
       gender: m
-      plural: null
+      plural: Schichtpläne
   - id: noun-arbeitsumfeld
     type: noun
     lemma: Arbeitsumfeld
@@ -898,12 +932,14 @@ records:
       - work environment
     categories:
       - workplace-and-business
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 149
+      - 1674
     noun:
       gender: n
-      plural: null
+      plural: Arbeitsumfelder
   - id: noun-fuehrungskraft
     type: noun
     lemma: Führungskraft
@@ -917,7 +953,7 @@ records:
       - 151
     noun:
       gender: f
-      plural: null
+      plural: Führungskräfte
   - id: noun-gehaltsverhandlung
     type: noun
     lemma: Gehaltsverhandlung
@@ -930,20 +966,23 @@ records:
       - 153
     noun:
       gender: f
-      plural: null
+      plural: Gehaltsverhandlungen
   - id: noun-gehaltserhoehung
     type: noun
     lemma: Gehaltserhöhung
     gloss:
       - pay rise
+      - salary increase
     categories:
       - workplace-and-business
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 155
+      - 1774
     noun:
       gender: f
-      plural: null
+      plural: Gehaltserhöhungen
   - id: noun-lohnsteuer
     type: noun
     lemma: Lohnsteuer
@@ -969,7 +1008,7 @@ records:
       - 161
     noun:
       gender: f
-      plural: null
+      plural: Sozialversicherungen
   - id: noun-rentenversicherung
     type: noun
     lemma: Rentenversicherung
@@ -982,7 +1021,7 @@ records:
       - 163
     noun:
       gender: f
-      plural: null
+      plural: Rentenversicherungen
   - id: noun-beitrag
     type: noun
     lemma: Beitrag
@@ -995,7 +1034,7 @@ records:
       - 165
     noun:
       gender: m
-      plural: null
+      plural: Beiträge
   - id: noun-betriebskosten
     type: noun
     lemma: Betriebskosten
@@ -1006,9 +1045,11 @@ records:
     status: raw
     source_lines:
       - 167
+    source_note: "plural-only noun (plural_only set)"
     noun:
       gender: f
       plural: null
+      plural_only: true
   - id: noun-umsatz
     type: noun
     lemma: Umsatz
@@ -1022,7 +1063,7 @@ records:
       - 169
     noun:
       gender: m
-      plural: null
+      plural: Umsätze
   - id: noun-bilanz
     type: noun
     lemma: Bilanz
@@ -1035,7 +1076,7 @@ records:
       - 173
     noun:
       gender: f
-      plural: null
+      plural: Bilanzen
   - id: noun-buchhaltung
     type: noun
     lemma: Buchhaltung
@@ -1048,7 +1089,7 @@ records:
       - 175
     noun:
       gender: f
-      plural: null
+      plural: Buchhaltungen
   - id: noun-steuerberater
     type: noun
     lemma: Steuerberater
@@ -1061,7 +1102,7 @@ records:
       - 177
     noun:
       gender: m
-      plural: null
+      plural: Steuerberater
   - id: noun-arbeitszeitregelung
     type: noun
     lemma: Arbeitszeitregelung
@@ -1074,7 +1115,7 @@ records:
       - 179
     noun:
       gender: f
-      plural: null
+      plural: Arbeitszeitregelungen
   - id: noun-betriebsrat
     type: noun
     lemma: Betriebsrat
@@ -1087,7 +1128,7 @@ records:
       - 181
     noun:
       gender: m
-      plural: null
+      plural: Betriebsräte
   - id: noun-tarifverhandlung
     type: noun
     lemma: Tarifverhandlung
@@ -1100,7 +1141,7 @@ records:
       - 183
     noun:
       gender: f
-      plural: null
+      plural: Tarifverhandlungen
   - id: noun-gewerkschaft
     type: noun
     lemma: Gewerkschaft
@@ -1113,7 +1154,7 @@ records:
       - 185
     noun:
       gender: f
-      plural: null
+      plural: Gewerkschaften
   - id: verb-streiken
     type: verb
     lemma: streiken
@@ -1136,10 +1177,11 @@ records:
       - 189
     noun:
       gender: m
-      plural: null
+      plural: Lieferanten
       variants:
         - lemma: Lieferantin
           gender: f
+          plural: Lieferantinnen
   - id: noun-lager
     type: noun
     lemma: Lager
@@ -1152,7 +1194,7 @@ records:
       - 191
     noun:
       gender: n
-      plural: null
+      plural: Lager
   - id: noun-logistik
     type: noun
     lemma: Logistik
@@ -1173,25 +1215,33 @@ records:
       - department
     categories:
       - workplace-and-business
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 195
+      - 1684
     noun:
       gender: f
-      plural: null
+      plural: Abteilungen
   - id: noun-zustaendigkeit
     type: noun
     lemma: Zuständigkeit
     gloss:
       - area of responsibility
+      - jurisdiction
+      - responsibility
     categories:
       - workplace-and-business
+      - government-and-politics
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 197
+      - 318
+      - 1734
     noun:
       gender: f
-      plural: null
+      plural: Zuständigkeiten
   - id: noun-hierarchie
     type: noun
     lemma: Hierarchie
@@ -1199,12 +1249,16 @@ records:
       - hierarchy
     categories:
       - workplace-and-business
+      - formal-and-informal-address
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 199
+      - 524
+      - 1746
     noun:
       gender: f
-      plural: null
+      plural: Hierarchien
   - id: noun-kundenstamm
     type: noun
     lemma: Kundenstamm
@@ -1217,7 +1271,7 @@ records:
       - 201
     noun:
       gender: m
-      plural: null
+      plural: Kundenstämme
   - id: noun-akquise
     type: noun
     lemma: Akquise
@@ -1230,7 +1284,7 @@ records:
       - 203
     noun:
       gender: f
-      plural: null
+      plural: Akquisen
   - id: noun-vertragspartner
     type: noun
     lemma: Vertragspartner
@@ -1243,7 +1297,7 @@ records:
       - 205
     noun:
       gender: m
-      plural: null
+      plural: Vertragspartner
   - id: noun-selbststaendigkeit
     type: noun
     lemma: Selbstständigkeit
@@ -1269,10 +1323,11 @@ records:
       - 209
     noun:
       gender: m
-      plural: null
+      plural: Freiberufler
       variants:
         - lemma: Freiberuflerin
           gender: f
+          plural: Freiberuflerinnen
   - id: noun-regierung
     type: noun
     lemma: Regierung
@@ -1280,12 +1335,14 @@ records:
       - government
     categories:
       - government-and-politics
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 224
+      - 1803
     noun:
       gender: f
-      plural: null
+      plural: Regierungen
   - id: verb-regieren
     type: verb
     lemma: regieren
@@ -1303,12 +1360,14 @@ records:
       - opposition
     categories:
       - government-and-politics
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 228
+      - 1805
     noun:
       gender: f
-      plural: null
+      plural: Oppositionen
   - id: noun-parlament
     type: noun
     lemma: Parlament
@@ -1316,12 +1375,14 @@ records:
       - parliament
     categories:
       - government-and-politics
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 230
+      - 1809
     noun:
       gender: n
-      plural: null
+      plural: Parlamente
   - id: noun-abgeordnete
     type: noun
     lemma: Abgeordnete
@@ -1334,10 +1395,11 @@ records:
       - 232
     noun:
       gender: m
-      plural: null
+      plural: Abgeordneten
       variants:
         - lemma: Abgeordnete
           gender: f
+          plural: Abgeordneten
   - id: noun-kabinett
     type: noun
     lemma: Kabinett
@@ -1350,7 +1412,7 @@ records:
       - 234
     noun:
       gender: n
-      plural: null
+      plural: Kabinette
   - id: noun-minister
     type: noun
     lemma: Minister
@@ -1363,10 +1425,11 @@ records:
       - 236
     noun:
       gender: m
-      plural: null
+      plural: Minister
       variants:
         - lemma: Ministerin
           gender: f
+          plural: Ministerinnen
   - id: noun-ministerium
     type: noun
     lemma: Ministerium
@@ -1379,7 +1442,7 @@ records:
       - 238
     noun:
       gender: n
-      plural: null
+      plural: Ministerien
   - id: noun-kanzler
     type: noun
     lemma: Kanzler
@@ -1392,10 +1455,11 @@ records:
       - 240
     noun:
       gender: m
-      plural: null
+      plural: Kanzler
       variants:
         - lemma: Kanzlerin
           gender: f
+          plural: Kanzlerinnen
   - id: noun-praesident
     type: noun
     lemma: Präsident
@@ -1408,10 +1472,11 @@ records:
       - 242
     noun:
       gender: m
-      plural: null
+      plural: Präsidenten
       variants:
         - lemma: Präsidentin
           gender: f
+          plural: Präsidentinnen
   - id: noun-demokratie
     type: noun
     lemma: Demokratie
@@ -1419,12 +1484,14 @@ records:
       - democracy
     categories:
       - government-and-politics
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 244
+      - 1819
     noun:
       gender: f
-      plural: null
+      plural: Demokratien
   - id: noun-diktatur
     type: noun
     lemma: Diktatur
@@ -1432,12 +1499,14 @@ records:
       - dictatorship
     categories:
       - government-and-politics
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 246
+      - 1821
     noun:
       gender: f
-      plural: null
+      plural: Diktaturen
   - id: noun-monarchie
     type: noun
     lemma: Monarchie
@@ -1450,7 +1519,7 @@ records:
       - 248
     noun:
       gender: f
-      plural: null
+      plural: Monarchien
   - id: noun-verfassung
     type: noun
     lemma: Verfassung
@@ -1458,12 +1527,16 @@ records:
       - constitution
     categories:
       - government-and-politics
+      - law-and-justice
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 250
+      - 425
+      - 1847
     noun:
       gender: f
-      plural: null
+      plural: Verfassungen
   - id: noun-grundgesetz
     type: noun
     lemma: Grundgesetz
@@ -1471,9 +1544,11 @@ records:
       - Basic Law (German constitution)
     categories:
       - government-and-politics
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 252
+      - 1845
     noun:
       gender: n
       plural: null
@@ -1510,9 +1585,11 @@ records:
       - German federal parliament
     categories:
       - government-and-politics
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 258
+      - 1811
     noun:
       gender: m
       plural: null
@@ -1528,7 +1605,7 @@ records:
       - 260
     noun:
       gender: f
-      plural: null
+      plural: Landtagswahlen
   - id: noun-bundestagswahl
     type: noun
     lemma: Bundestagswahl
@@ -1541,7 +1618,7 @@ records:
       - 262
     noun:
       gender: f
-      plural: null
+      plural: Bundestagswahlen
   - id: noun-wahlbeteiligung
     type: noun
     lemma: Wahlbeteiligung
@@ -1568,7 +1645,7 @@ records:
       - 266
     noun:
       gender: f
-      plural: null
+      plural: Stimmen
   - id: verb-abstimmen
     type: verb
     lemma: abstimmen
@@ -1583,15 +1660,19 @@ records:
     type: noun
     lemma: Abstimmung
     gloss:
-      - vote (noun)
+      - vote
+      - ballot
     categories:
       - government-and-politics
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 270
+      - 294
+      - 1827
     noun:
       gender: f
-      plural: null
+      plural: Abstimmungen
   - id: noun-wahlkampf
     type: noun
     lemma: Wahlkampf
@@ -1604,7 +1685,7 @@ records:
       - 272
     noun:
       gender: m
-      plural: null
+      plural: Wahlkämpfe
   - id: noun-partei
     type: noun
     lemma: Partei
@@ -1612,9 +1693,11 @@ records:
       - political party
     categories:
       - government-and-politics
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 274
+      - 1807
     noun:
       gender: f
       plural: Parteien
@@ -1630,7 +1713,7 @@ records:
       - 276
     noun:
       gender: n
-      plural: null
+      plural: Parteiprogramme
   - id: noun-kandidat
     type: noun
     lemma: Kandidat
@@ -1643,10 +1726,11 @@ records:
       - 278
     noun:
       gender: m
-      plural: null
+      plural: Kandidaten
       variants:
         - lemma: Kandidatin
           gender: f
+          plural: Kandidatinnen
   - id: noun-wahlsieg
     type: noun
     lemma: Wahlsieg
@@ -1659,7 +1743,7 @@ records:
       - 280
     noun:
       gender: m
-      plural: null
+      plural: Wahlsiege
   - id: noun-niederlage
     type: noun
     lemma: Niederlage
@@ -1672,7 +1756,7 @@ records:
       - 282
     noun:
       gender: f
-      plural: null
+      plural: Niederlagen
   - id: noun-koalition
     type: noun
     lemma: Koalition
@@ -1680,12 +1764,14 @@ records:
       - coalition
     categories:
       - government-and-politics
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 284
+      - 1835
     noun:
       gender: f
-      plural: null
+      plural: Koalitionen
   - id: noun-gesetz
     type: noun
     lemma: Gesetz
@@ -1693,9 +1779,13 @@ records:
       - law
     categories:
       - government-and-politics
+      - law-and-justice
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 288
+      - 335
+      - 1841
     noun:
       gender: n
       plural: Gesetze
@@ -1710,20 +1800,6 @@ records:
     status: raw
     source_lines:
       - 292
-  - id: noun-abstimmung-2
-    type: noun
-    lemma: Abstimmung
-    gloss:
-      - ballot
-      - vote
-    categories:
-      - government-and-politics
-    status: raw
-    source_lines:
-      - 294
-    noun:
-      gender: f
-      plural: null
   - id: noun-skandal
     type: noun
     lemma: Skandal
@@ -1736,7 +1812,7 @@ records:
       - 296
     noun:
       gender: m
-      plural: null
+      plural: Skandale
   - id: noun-debatte
     type: noun
     lemma: Debatte
@@ -1749,7 +1825,7 @@ records:
       - 298
     noun:
       gender: f
-      plural: null
+      plural: Debatten
   - id: noun-redner
     type: noun
     lemma: Redner
@@ -1762,10 +1838,11 @@ records:
       - 300
     noun:
       gender: m
-      plural: null
+      plural: Redner
       variants:
         - lemma: Rednerin
           gender: f
+          plural: Rednerinnen
   - id: noun-rede
     type: noun
     lemma: Rede
@@ -1845,7 +1922,7 @@ records:
       - 312
     noun:
       gender: m
-      plural: null
+      plural: Verwaltungsapparate
   - id: noun-buerokratie
     type: noun
     lemma: Bürokratie
@@ -1872,19 +1949,6 @@ records:
     noun:
       gender: n
       plural: Ämter
-  - id: noun-zustaendigkeit-2
-    type: noun
-    lemma: Zuständigkeit
-    gloss:
-      - jurisdiction
-    categories:
-      - government-and-politics
-    status: raw
-    source_lines:
-      - 318
-    noun:
-      gender: f
-      plural: null
   - id: noun-gesetzesaenderung
     type: noun
     lemma: Gesetzesänderung
@@ -1897,20 +1961,7 @@ records:
       - 320
     noun:
       gender: f
-      plural: null
-  - id: noun-gesetz-2
-    type: noun
-    lemma: Gesetz
-    gloss:
-      - law
-    categories:
-      - law-and-justice
-    status: raw
-    source_lines:
-      - 335
-    noun:
-      gender: n
-      plural: Gesetze
+      plural: Gesetzesänderungen
   - id: noun-urteil
     type: noun
     lemma: Urteil
@@ -1937,10 +1988,11 @@ records:
       - 339
     noun:
       gender: m
-      plural: null
+      plural: Richter
       variants:
         - lemma: Richterin
           gender: f
+          plural: Richterinnen
   - id: noun-anwalt
     type: noun
     lemma: Anwalt
@@ -1953,10 +2005,11 @@ records:
       - 341
     noun:
       gender: m
-      plural: null
+      plural: Anwälte
       variants:
         - lemma: Anwältin
           gender: f
+          plural: Anwältinnen
   - id: noun-staatsanwalt
     type: noun
     lemma: Staatsanwalt
@@ -1969,10 +2022,11 @@ records:
       - 343
     noun:
       gender: m
-      plural: null
+      plural: Staatsanwälte
       variants:
         - lemma: Staatsanwältin
           gender: f
+          plural: Staatsanwältinnen
   - id: noun-verteidiger
     type: noun
     lemma: Verteidiger
@@ -1985,10 +2039,11 @@ records:
       - 345
     noun:
       gender: m
-      plural: null
+      plural: Verteidiger
       variants:
         - lemma: Verteidigerin
           gender: f
+          plural: Verteidigerinnen
   - id: noun-gericht
     type: noun
     lemma: Gericht
@@ -2014,7 +2069,7 @@ records:
       - 349
     noun:
       gender: n
-      plural: null
+      plural: Strafgerichte
   - id: noun-zivilgericht
     type: noun
     lemma: Zivilgericht
@@ -2027,7 +2082,7 @@ records:
       - 351
     noun:
       gender: n
-      plural: null
+      plural: Zivilgerichte
   - id: noun-klage
     type: noun
     lemma: Klage
@@ -2097,10 +2152,11 @@ records:
       - 363
     noun:
       gender: m
-      plural: null
+      plural: Angeklagten
       variants:
         - lemma: Angeklagte
           gender: f
+          plural: Angeklagten
   - id: noun-zeuge
     type: noun
     lemma: Zeuge
@@ -2113,10 +2169,11 @@ records:
       - 365
     noun:
       gender: m
-      plural: null
+      plural: Zeugen
       variants:
         - lemma: Zeugin
           gender: f
+          plural: Zeuginnen
   - id: noun-zeugenaussage
     type: noun
     lemma: Zeugenaussage
@@ -2240,9 +2297,11 @@ records:
       - guilt
     categories:
       - law-and-justice
+      - ethics-and-society
     status: raw
     source_lines:
       - 385
+      - 1468
     noun:
       gender: f
       plural: null
@@ -2281,7 +2340,7 @@ records:
       - 395
     noun:
       gender: f
-      plural: null
+      plural: Freiheitsstrafen
   - id: noun-geldstrafe
     type: noun
     lemma: Geldstrafe
@@ -2294,7 +2353,7 @@ records:
       - 397
     noun:
       gender: f
-      plural: null
+      plural: Geldstrafen
   - id: noun-haft
     type: noun
     lemma: Haft
@@ -2353,7 +2412,7 @@ records:
       - 407
     noun:
       gender: n
-      plural: null
+      plural: Rechtssysteme
   - id: noun-rechtslage
     type: noun
     lemma: Rechtslage
@@ -2379,7 +2438,7 @@ records:
       - 411
     noun:
       gender: f
-      plural: null
+      plural: Rechtsberatungen
   - id: noun-rechtsschutz
     type: noun
     lemma: Rechtsschutz
@@ -2400,9 +2459,11 @@ records:
       - human rights
     categories:
       - law-and-justice
+      - ethics-and-society
     status: raw
     source_lines:
       - 419
+      - 1500
     noun:
       gender: f
       plural: null
@@ -2419,7 +2480,7 @@ records:
       - 421
     noun:
       gender: m
-      plural: null
+      plural: Rechtsanwälte
   - id: noun-grundrecht
     type: noun
     lemma: Grundrecht
@@ -2433,19 +2494,6 @@ records:
     noun:
       gender: n
       plural: Grundrechte
-  - id: noun-verfassung-2
-    type: noun
-    lemma: Verfassung
-    gloss:
-      - constitution
-    categories:
-      - law-and-justice
-    status: raw
-    source_lines:
-      - 425
-    noun:
-      gender: f
-      plural: null
   - id: noun-strafmass
     type: noun
     lemma: Strafmaß
@@ -2458,7 +2506,7 @@ records:
       - 427
     noun:
       gender: n
-      plural: null
+      plural: Strafmaße
   - id: verb-ermitteln
     type: verb
     lemma: ermitteln
@@ -2508,10 +2556,11 @@ records:
       - 435
     noun:
       gender: m
-      plural: null
+      plural: Täter
       variants:
         - lemma: Täterin
           gender: f
+          plural: Täterinnen
   - id: noun-opfer
     type: noun
     lemma: Opfer
@@ -2570,7 +2619,7 @@ records:
       - 458
     noun:
       gender: f
-      plural: null
+      plural: Höflichkeitsformen
   - id: noun-umgangssprache
     type: noun
     lemma: Umgangssprache
@@ -2656,15 +2705,18 @@ records:
       - colleague (can be formal or neutral)
     categories:
       - formal-and-informal-address
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 486
+      - 1682
     noun:
       gender: m
-      plural: null
+      plural: Kollegen
       variants:
         - lemma: Kollegin
           gender: f
+          plural: Kolleginnen
   - id: noun-ansprechpartner
     type: noun
     lemma: Ansprechpartner
@@ -2677,10 +2729,11 @@ records:
       - 488
     noun:
       gender: m
-      plural: null
+      plural: Ansprechpartner
       variants:
         - lemma: Ansprechpartnerin
           gender: f
+          plural: Ansprechpartnerinnen
   - id: noun-visitenkarte
     type: noun
     lemma: Visitenkarte
@@ -2714,9 +2767,11 @@ records:
       - suggestion
     categories:
       - formal-and-informal-address
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 498
+      - 1754
     noun:
       gender: m
       plural: Vorschläge
@@ -2727,9 +2782,11 @@ records:
       - to suggest
     categories:
       - formal-and-informal-address
+      - separable-verbs-trennbare-verben
     status: raw
     source_lines:
       - 500
+      - 672
   - id: verb-sich-vorstellen
     type: verb
     lemma: sich vorstellen
@@ -2787,20 +2844,7 @@ records:
       - 520
     noun:
       gender: m
-      plural: null
-  - id: noun-hierarchie-2
-    type: noun
-    lemma: Hierarchie
-    gloss:
-      - hierarchy
-    categories:
-      - formal-and-informal-address
-    status: raw
-    source_lines:
-      - 524
-    noun:
-      gender: f
-      plural: Hierarchien
+      plural: Tonfälle
   - id: noun-missverstaendnis
     type: noun
     lemma: Missverständnis
@@ -2839,7 +2883,7 @@ records:
       - 530
     noun:
       gender: f
-      plural: null
+      plural: Distanzen
   - id: noun-beziehungsebene
     type: noun
     lemma: Beziehungsebene
@@ -2852,7 +2896,7 @@ records:
       - 532
     noun:
       gender: f
-      plural: null
+      plural: Beziehungsebenen
   - id: noun-kontext
     type: noun
     lemma: Kontext
@@ -3040,16 +3084,6 @@ records:
     status: raw
     source_lines:
       - 670
-  - id: verb-vorschlagen-2
-    type: verb
-    lemma: vorschlagen
-    gloss:
-      - to suggest
-    categories:
-      - separable-verbs-trennbare-verben
-    status: raw
-    source_lines:
-      - 672
   - id: verb-vorstellen
     type: verb
     lemma: vorstellen
@@ -3120,9 +3154,11 @@ records:
       - to agree
     categories:
       - separable-verbs-trennbare-verben
+      - rhetoric-and-argumentation
     status: raw
     source_lines:
       - 686
+      - 2053
   - id: verb-zunehmen
     type: verb
     lemma: zunehmen
@@ -3196,9 +3232,11 @@ records:
       - to prove
     categories:
       - separable-verbs-trennbare-verben
+      - science-and-technology
     status: raw
     source_lines:
       - 700
+      - 1133
   - id: verb-untergehen
     type: verb
     lemma: untergehen
@@ -3389,7 +3427,7 @@ records:
       - 749
     noun:
       gender: f
-      plural: null
+      plural: Stimmungen
   - id: noun-laune
     type: noun
     lemma: Laune
@@ -3402,7 +3440,7 @@ records:
       - 751
     noun:
       gender: f
-      plural: null
+      plural: Launen
   - id: noun-emotion
     type: noun
     lemma: Emotion
@@ -3518,7 +3556,7 @@ records:
       - 791
     noun:
       gender: f
-      plural: null
+      plural: Unsicherheiten
   - id: noun-selbstzweifel
     type: noun
     lemma: Selbstzweifel
@@ -3575,9 +3613,11 @@ records:
       - therapy
     categories:
       - emotions-and-psychology
+      - health-and-medicine
     status: raw
     source_lines:
       - 811
+      - 1359
     noun:
       gender: f
       plural: Therapien
@@ -3593,10 +3633,11 @@ records:
       - 813
     noun:
       gender: m
-      plural: null
+      plural: Therapeuten
       variants:
         - lemma: Therapeutin
           gender: f
+          plural: Therapeutinnen
   - id: noun-psychologe
     type: noun
     lemma: Psychologe
@@ -3609,10 +3650,11 @@ records:
       - 815
     noun:
       gender: m
-      plural: null
+      plural: Psychologen
       variants:
         - lemma: Psychologin
           gender: f
+          plural: Psychologinnen
   - id: noun-beratung
     type: noun
     lemma: Beratung
@@ -3638,7 +3680,7 @@ records:
       - 819
     noun:
       gender: m
-      plural: null
+      plural: Rückzüge
   - id: verb-sich-zurueckziehen
     type: verb
     lemma: sich zurückziehen
@@ -3713,7 +3755,7 @@ records:
       - 847
     noun:
       gender: m
-      plural: null
+      plural: Burnouts
   - id: noun-selbstwahrnehmung
     type: noun
     lemma: Selbstwahrnehmung
@@ -3765,7 +3807,7 @@ records:
       - 868
     noun:
       gender: n
-      plural: null
+      plural: kulturellen Angebote
   - id: noun-veranstaltung
     type: noun
     lemma: Veranstaltung
@@ -3854,10 +3896,11 @@ records:
       - 882
     noun:
       gender: m
-      plural: null
+      plural: Regisseure
       variants:
         - lemma: Regisseurin
           gender: f
+          plural: Regisseurinnen
   - id: noun-drehbuch
     type: noun
     lemma: Drehbuch
@@ -3936,10 +3979,11 @@ records:
       - 894
     noun:
       gender: m
-      plural: null
+      plural: Kritiker
       variants:
         - lemma: Kritikerin
           gender: f
+          plural: Kritikerinnen
   - id: noun-gemaelde
     type: noun
     lemma: Gemälde
@@ -4017,10 +4061,11 @@ records:
       - 906
     noun:
       gender: m
-      plural: null
+      plural: Künstler
       variants:
         - lemma: Künstlerin
           gender: f
+          plural: Künstlerinnen
   - id: noun-kunstbewegung
     type: noun
     lemma: Kunstbewegung
@@ -4137,10 +4182,11 @@ records:
       - 924
     noun:
       gender: m
-      plural: null
+      plural: Komponisten
       variants:
         - lemma: Komponistin
           gender: f
+          plural: Komponistinnen
   - id: noun-gedicht
     type: noun
     lemma: Gedicht
@@ -4205,10 +4251,11 @@ records:
       - 934
     noun:
       gender: m
-      plural: null
+      plural: Autoren
       variants:
         - lemma: Autorin
           gender: f
+          plural: Autorinnen
   - id: noun-lesung
     type: noun
     lemma: Lesung
@@ -4398,10 +4445,11 @@ records:
       - 966
     noun:
       gender: m
-      plural: null
+      plural: Zuschauer
       variants:
         - lemma: Zuschauerin
           gender: f
+          plural: Zuschauerinnen
   - id: noun-plattform
     type: noun
     lemma: Plattform
@@ -4493,10 +4541,11 @@ records:
       - 1000
     noun:
       gender: m
-      plural: null
+      plural: Follower
       variants:
         - lemma: Followerin
           gender: f
+          plural: Followerinnen
   - id: noun-profil
     type: noun
     lemma: Profil
@@ -4530,9 +4579,11 @@ records:
       - update
     categories:
       - social-media-and-internet
+      - science-and-technology
     status: raw
     source_lines:
       - 1006
+      - 1177
     noun:
       gender: n
       plural: Updates
@@ -4556,9 +4607,11 @@ records:
       - message
     categories:
       - social-media-and-internet
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 1010
+      - 1702
     noun:
       gender: f
       plural: Nachrichten
@@ -4587,7 +4640,7 @@ records:
       - 1014
     noun:
       gender: m
-      plural: null
+      plural: Posteingänge
   - id: verb-blockieren
     type: verb
     lemma: blockieren
@@ -4633,7 +4686,7 @@ records:
       - 1022
     noun:
       gender: f
-      plural: null
+      plural: Direktnachrichten
     abbreviation: DM
   - id: noun-hashtag
     type: noun
@@ -4668,9 +4721,11 @@ records:
       - algorithm
     categories:
       - social-media-and-internet
+      - science-and-technology
     status: raw
     source_lines:
       - 1030
+      - 1189
     noun:
       gender: m
       plural: Algorithmen
@@ -4751,10 +4806,11 @@ records:
       - 1046
     noun:
       gender: m
-      plural: null
+      plural: Nutzer
       variants:
         - lemma: Nutzerin
           gender: f
+          plural: Nutzerinnen
   - id: noun-inhalt
     type: noun
     lemma: Inhalt
@@ -4780,10 +4836,11 @@ records:
       - 1050
     noun:
       gender: m
-      plural: null
+      plural: Influencer
       variants:
         - lemma: Influencerin
           gender: f
+          plural: Influencerinnen
   - id: noun-werbepartner
     type: noun
     lemma: Werbepartner
@@ -4796,10 +4853,11 @@ records:
       - 1052
     noun:
       gender: m
-      plural: null
+      plural: Werbepartner
       variants:
         - lemma: Werbepartnerin
           gender: f
+          plural: Werbepartnerinnen
   - id: noun-kooperation
     type: noun
     lemma: Kooperation
@@ -4830,9 +4888,11 @@ records:
       - target group
     categories:
       - social-media-and-internet
+      - consumer-culture-and-advertising
     status: raw
     source_lines:
       - 1058
+      - 1577
     noun:
       gender: f
       plural: Zielgruppen
@@ -4849,19 +4909,6 @@ records:
     noun:
       gender: m
       plural: Online-Shops
-  - id: noun-bewertung-2
-    type: noun
-    lemma: Bewertung
-    gloss:
-      - review
-    categories:
-      - social-media-and-internet
-    status: raw
-    source_lines:
-      - 1062
-    noun:
-      gender: f
-      plural: Bewertungen
   - id: noun-rezension
     type: noun
     lemma: Rezension
@@ -4922,8 +4969,9 @@ records:
     status: raw
     source_lines:
       - 1072
+    source_note: "gender corrected from die to das"
     noun:
-      gender: f
+      gender: n
       plural: null
   - id: verb-hochladen
     type: verb
@@ -4957,7 +5005,7 @@ records:
       - 1080
     noun:
       gender: n
-      plural: null
+      plural: WLANs
   - id: noun-verbindung
     type: noun
     lemma: Verbindung
@@ -4997,19 +5045,6 @@ records:
     noun:
       gender: m
       plural: Bildschirme
-  - id: noun-wissenschaft-2
-    type: noun
-    lemma: Wissenschaft
-    gloss:
-      - science
-    categories:
-      - science-and-technology
-    status: raw
-    source_lines:
-      - 1101
-    noun:
-      gender: f
-      plural: Wissenschaften
   - id: noun-naturwissenschaft
     type: noun
     lemma: Naturwissenschaft
@@ -5196,24 +5231,17 @@ records:
     lemma: Untersuchung
     gloss:
       - examination
+      - medical examination
     categories:
       - science-and-technology
+      - health-and-medicine
     status: raw
     source_lines:
       - 1131
+      - 1353
     noun:
       gender: f
       plural: Untersuchungen
-  - id: verb-nachweisen-2
-    type: verb
-    lemma: nachweisen
-    gloss:
-      - to prove
-    categories:
-      - science-and-technology
-    status: raw
-    source_lines:
-      - 1133
   - id: verb-belegen
     type: verb
     lemma: belegen
@@ -5251,7 +5279,7 @@ records:
       - 1139
     noun:
       gender: f
-      plural: null
+      plural: Datenanalysen
   - id: noun-statistik
     type: noun
     lemma: Statistik
@@ -5471,19 +5499,6 @@ records:
     noun:
       gender: f
       plural: null
-  - id: noun-update-2
-    type: noun
-    lemma: Update
-    gloss:
-      - update
-    categories:
-      - science-and-technology
-    status: raw
-    source_lines:
-      - 1177
-    noun:
-      gender: n
-      plural: Updates
   - id: noun-schnittstelle
     type: noun
     lemma: Schnittstelle
@@ -5549,19 +5564,6 @@ records:
     noun:
       gender: f
       plural: null
-  - id: noun-algorithmus-2
-    type: noun
-    lemma: Algorithmus
-    gloss:
-      - algorithm
-    categories:
-      - science-and-technology
-    status: raw
-    source_lines:
-      - 1189
-    noun:
-      gender: m
-      plural: Algorithmen
   - id: noun-gen
     type: noun
     lemma: Gen
@@ -5595,9 +5597,11 @@ records:
       - climate change
     categories:
       - science-and-technology
+      - global-issues-and-sustainability
     status: raw
     source_lines:
       - 1195
+      - 2166
     noun:
       gender: m
       plural: null
@@ -5608,9 +5612,15 @@ records:
       - sustainability
     categories:
       - science-and-technology
+      - ethics-and-society
+      - consumer-culture-and-advertising
+      - global-issues-and-sustainability
     status: raw
     source_lines:
       - 1197
+      - 1526
+      - 1649
+      - 2158
     noun:
       gender: f
       plural: null
@@ -5652,7 +5662,7 @@ records:
       - 1216
     noun:
       gender: f
-      plural: null
+      plural: Volkswirtschaften
   - id: noun-betriebswirtschaft
     type: noun
     lemma: Betriebswirtschaft
@@ -5674,9 +5684,11 @@ records:
       - market
     categories:
       - economics-and-finance
+      - consumer-culture-and-advertising
     status: raw
     source_lines:
       - 1220
+      - 1575
     noun:
       gender: m
       plural: Märkte
@@ -5692,7 +5704,7 @@ records:
       - 1224
     noun:
       gender: m
-      plural: null
+      plural: Wettbewerbe
   - id: noun-konjunktur
     type: noun
     lemma: Konjunktur
@@ -5718,7 +5730,7 @@ records:
       - 1228
     noun:
       gender: f
-      plural: null
+      plural: Rezessionen
   - id: noun-aufschwung
     type: noun
     lemma: Aufschwung
@@ -5731,7 +5743,7 @@ records:
       - 1230
     noun:
       gender: m
-      plural: null
+      plural: Aufschwünge
   - id: noun-wachstum
     type: noun
     lemma: Wachstum
@@ -5778,9 +5790,11 @@ records:
       - crisis
     categories:
       - economics-and-finance
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 1238
+      - 1899
     noun:
       gender: f
       plural: Krisen
@@ -5791,9 +5805,11 @@ records:
       - globalisation
     categories:
       - economics-and-finance
+      - global-issues-and-sustainability
     status: raw
     source_lines:
       - 1240
+      - 2156
     noun:
       gender: f
       plural: null
@@ -5823,7 +5839,7 @@ records:
       - 1244
     noun:
       gender: n
-      plural: null
+      plural: Haushaltsdefizite
   - id: noun-steuer
     type: noun
     lemma: Steuer
@@ -5876,7 +5892,7 @@ records:
       - 1252
     noun:
       gender: m
-      plural: null
+      plural: Staatshaushalte
   - id: noun-finanzminister
     type: noun
     lemma: Finanzminister
@@ -5889,10 +5905,11 @@ records:
       - 1254
     noun:
       gender: m
-      plural: null
+      plural: Finanzminister
       variants:
         - lemma: Finanzministerin
           gender: f
+          plural: Finanzministerinnen
   - id: noun-subvention
     type: noun
     lemma: Subvention
@@ -5913,9 +5930,11 @@ records:
       - trade agreement
     categories:
       - economics-and-finance
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 1260
+      - 1891
     noun:
       gender: n
       plural: Handelsabkommen
@@ -5998,10 +6017,11 @@ records:
       - 1276
     noun:
       gender: m
-      plural: null
+      plural: Anleger
       variants:
         - lemma: Anlegerin
           gender: f
+          plural: Anlegerinnen
   - id: noun-investment
     type: noun
     lemma: Investment
@@ -6014,7 +6034,7 @@ records:
       - 1278
     noun:
       gender: n
-      plural: null
+      plural: Investments
   - id: verb-anlegen
     type: verb
     lemma: anlegen
@@ -6059,8 +6079,10 @@ records:
       - loss
     categories:
       - economics-and-finance
+      - workplace-and-business
     status: raw
     source_lines:
+      - 171
       - 1286
     noun:
       gender: m
@@ -6114,8 +6136,10 @@ records:
       - profit
     categories:
       - economics-and-finance
+      - workplace-and-business
     status: raw
     source_lines:
+      - 171
       - 1294
     noun:
       gender: m
@@ -6132,7 +6156,7 @@ records:
       - 1296
     noun:
       gender: n
-      plural: null
+      plural: Vermögen
   - id: noun-kreditwuerdigkeit
     type: noun
     lemma: Kreditwürdigkeit
@@ -6184,7 +6208,7 @@ records:
       - 1304
     noun:
       gender: n
-      plural: null
+      plural: Sparkonten
   - id: noun-girokonto
     type: noun
     lemma: Girokonto
@@ -6197,7 +6221,7 @@ records:
       - 1306
     noun:
       gender: n
-      plural: null
+      plural: Girokonten
   - id: noun-bankverbindung
     type: noun
     lemma: Bankverbindung
@@ -6210,7 +6234,7 @@ records:
       - 1308
     noun:
       gender: f
-      plural: null
+      plural: Bankverbindungen
   - id: noun-online-banking
     type: noun
     lemma: Online-Banking
@@ -6249,7 +6273,7 @@ records:
       - 1314
     noun:
       gender: f
-      plural: null
+      plural: Bargeldzahlungen
   - id: noun-kartenzahlung
     type: noun
     lemma: Kartenzahlung
@@ -6262,7 +6286,7 @@ records:
       - 1316
     noun:
       gender: f
-      plural: null
+      plural: Kartenzahlungen
   - id: noun-gesundheit
     type: noun
     lemma: Gesundheit
@@ -6401,19 +6425,6 @@ records:
     status: raw
     source_lines:
       - 1351
-  - id: noun-untersuchung-2
-    type: noun
-    lemma: Untersuchung
-    gloss:
-      - medical examination
-    categories:
-      - health-and-medicine
-    status: raw
-    source_lines:
-      - 1353
-    noun:
-      gender: f
-      plural: Untersuchungen
   - id: noun-behandlung
     type: noun
     lemma: Behandlung
@@ -6437,19 +6448,6 @@ records:
     status: raw
     source_lines:
       - 1357
-  - id: noun-therapie-2
-    type: noun
-    lemma: Therapie
-    gloss:
-      - therapy
-    categories:
-      - health-and-medicine
-    status: raw
-    source_lines:
-      - 1359
-    noun:
-      gender: f
-      plural: Therapien
   - id: noun-medikament
     type: noun
     lemma: Medikament
@@ -6645,10 +6643,11 @@ records:
       - 1391
     noun:
       gender: m
-      plural: null
+      plural: Chirurgen
       variants:
         - lemma: Chirurgin
           gender: f
+          plural: Chirurginnen
   - id: noun-notaufnahme
     type: noun
     lemma: Notaufnahme
@@ -6661,7 +6660,7 @@ records:
       - 1393
     noun:
       gender: f
-      plural: null
+      plural: Notaufnahmen
   - id: noun-notfall
     type: noun
     lemma: Notfall
@@ -6687,10 +6686,11 @@ records:
       - 1399
     noun:
       gender: m
-      plural: null
+      plural: Hausärzte
       variants:
         - lemma: Hausärztin
           gender: f
+          plural: Hausärztinnen
   - id: noun-facharzt
     type: noun
     lemma: Facharzt
@@ -6703,10 +6703,11 @@ records:
       - 1401
     noun:
       gender: m
-      plural: null
+      plural: Fachärzte
       variants:
         - lemma: Fachärztin
           gender: f
+          plural: Fachärztinnen
   - id: noun-sprechstunde
     type: noun
     lemma: Sprechstunde
@@ -6725,11 +6726,14 @@ records:
     lemma: Termin
     gloss:
       - appointment
+      - deadline
     categories:
       - health-and-medicine
+      - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 1405
+      - 1726
     noun:
       gender: m
       plural: Termine
@@ -6758,7 +6762,7 @@ records:
       - 1409
     noun:
       gender: f
-      plural: null
+      plural: Krankenversicherungen
   - id: noun-vorsorgeuntersuchung
     type: noun
     lemma: Vorsorgeuntersuchung
@@ -6797,7 +6801,7 @@ records:
       - 1417
     noun:
       gender: n
-      plural: null
+      plural: Immunsysteme
   - id: noun-ansteckung
     type: noun
     lemma: Ansteckung
@@ -6938,9 +6942,10 @@ records:
     status: raw
     source_lines:
       - 1460
+    source_note: "plural Verantwortungen removed: not used in this sense"
     noun:
       gender: f
-      plural: Verantwortungen
+      plural: null
   - id: noun-pflicht
     type: noun
     lemma: Pflicht
@@ -6966,20 +6971,7 @@ records:
       - 1466
     noun:
       gender: f
-      plural: null
-  - id: noun-schuld-2
-    type: noun
-    lemma: Schuld
-    gloss:
-      - guilt
-    categories:
-      - ethics-and-society
-    status: raw
-    source_lines:
-      - 1468
-    noun:
-      gender: f
-      plural: null
+      plural: Pflichtverletzungen
   - id: noun-entscheidung
     type: noun
     lemma: Entscheidung
@@ -6998,11 +6990,14 @@ records:
     lemma: Meinungsfreiheit
     gloss:
       - freedom of opinion
+      - freedom of speech
     categories:
       - ethics-and-society
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 1474
+      - 1851
     noun:
       gender: f
       plural: null
@@ -7118,10 +7113,11 @@ records:
       - 1496
     noun:
       gender: m
-      plural: null
+      plural: Ehrenamtlichen
       variants:
         - lemma: Ehrenamtliche
           gender: f
+          plural: Ehrenamtlichen
   - id: noun-menschenwuerde
     type: noun
     lemma: Menschenwürde
@@ -7135,20 +7131,6 @@ records:
     noun:
       gender: f
       plural: null
-  - id: noun-menschenrechte-2
-    type: noun
-    lemma: Menschenrechte
-    gloss:
-      - human rights
-    categories:
-      - ethics-and-society
-    status: raw
-    source_lines:
-      - 1500
-    noun:
-      gender: f
-      plural: null
-      plural_only: true
   - id: noun-missbrauch
     type: noun
     lemma: Missbrauch
@@ -7213,7 +7195,7 @@ records:
       - 1510
     noun:
       gender: f
-      plural: null
+      plural: Ungleichheiten
   - id: noun-armut
     type: noun
     lemma: Armut
@@ -7252,7 +7234,7 @@ records:
       - 1516
     noun:
       gender: m
-      plural: null
+      plural: Reichtümer
   - id: noun-soziale-aufstieg
     type: noun
     lemma: soziale Aufstieg
@@ -7291,19 +7273,6 @@ records:
       - 1522
     noun:
       gender: m
-      plural: null
-  - id: noun-nachhaltigkeit-2
-    type: noun
-    lemma: Nachhaltigkeit
-    gloss:
-      - sustainability
-    categories:
-      - ethics-and-society
-    status: raw
-    source_lines:
-      - 1526
-    noun:
-      gender: f
       plural: null
   - id: noun-umweltethik
     type: noun
@@ -7418,10 +7387,11 @@ records:
       - 1559
     noun:
       gender: m
-      plural: null
+      plural: Verbraucher
       variants:
         - lemma: Verbraucherin
           gender: f
+          plural: Verbraucherinnen
   - id: noun-konsument
     type: noun
     lemma: Konsument
@@ -7434,10 +7404,11 @@ records:
       - 1561
     noun:
       gender: m
-      plural: null
+      plural: Konsumenten
       variants:
         - lemma: Konsumentin
           gender: f
+          plural: Konsumentinnen
   - id: noun-konsumverhalten
     type: noun
     lemma: Konsumverhalten
@@ -7463,7 +7434,7 @@ records:
       - 1565
     noun:
       gender: f
-      plural: null
+      plural: Konsumgesellschaften
   - id: noun-bedarf
     type: noun
     lemma: Bedarf
@@ -7521,32 +7492,6 @@ records:
     noun:
       gender: n
       plural: Angebote
-  - id: noun-markt-2
-    type: noun
-    lemma: Markt
-    gloss:
-      - market
-    categories:
-      - consumer-culture-and-advertising
-    status: raw
-    source_lines:
-      - 1575
-    noun:
-      gender: m
-      plural: Märkte
-  - id: noun-zielgruppe-2
-    type: noun
-    lemma: Zielgruppe
-    gloss:
-      - target group
-    categories:
-      - consumer-culture-and-advertising
-    status: raw
-    source_lines:
-      - 1577
-    noun:
-      gender: f
-      plural: Zielgruppen
   - id: noun-werbung
     type: noun
     lemma: Werbung
@@ -7557,9 +7502,10 @@ records:
     status: raw
     source_lines:
       - 1579
+    source_note: "plural Werbungen removed: uncountable in the sense advertising"
     noun:
       gender: f
-      plural: Werbungen
+      plural: null
   - id: verb-werben
     type: verb
     lemma: werben
@@ -7912,7 +7858,7 @@ records:
       - 1635
     noun:
       gender: f
-      plural: null
+      plural: Ratenzahlungen
   - id: noun-kreditkarte
     type: noun
     lemma: Kreditkarte
@@ -7991,19 +7937,6 @@ records:
     noun:
       gender: m
       plural: null
-  - id: noun-nachhaltigkeit-3
-    type: noun
-    lemma: Nachhaltigkeit
-    gloss:
-      - sustainability (in consumption)
-    categories:
-      - consumer-culture-and-advertising
-    status: raw
-    source_lines:
-      - 1649
-    noun:
-      gender: f
-      plural: null
   - id: noun-bewusste-konsum
     type: noun
     lemma: bewusste Konsum
@@ -8069,19 +8002,6 @@ records:
     noun:
       gender: f
       plural: null
-  - id: noun-arbeitsumfeld-2
-    type: noun
-    lemma: Arbeitsumfeld
-    gloss:
-      - work environment
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1674
-    noun:
-      gender: n
-      plural: null
   - id: noun-arbeitsplatz
     type: noun
     lemma: Arbeitsplatz
@@ -8107,10 +8027,11 @@ records:
       - 1678
     noun:
       gender: m
-      plural: null
+      plural: Arbeitgeber
       variants:
         - lemma: Arbeitgeberin
           gender: f
+          plural: Arbeitgeberinnen
   - id: noun-arbeitnehmer
     type: noun
     lemma: Arbeitnehmer
@@ -8123,39 +8044,11 @@ records:
       - 1680
     noun:
       gender: m
-      plural: null
+      plural: Arbeitnehmer
       variants:
         - lemma: Arbeitnehmerin
           gender: f
-  - id: noun-kollege-2
-    type: noun
-    lemma: Kollege
-    gloss:
-      - colleague
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1682
-    noun:
-      gender: m
-      plural: null
-      variants:
-        - lemma: Kollegin
-          gender: f
-  - id: noun-abteilung-2
-    type: noun
-    lemma: Abteilung
-    gloss:
-      - department
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1684
-    noun:
-      gender: f
-      plural: Abteilungen
+          plural: Arbeitnehmerinnen
   - id: noun-team
     type: noun
     lemma: Team
@@ -8258,19 +8151,6 @@ records:
     noun:
       gender: f
       plural: E-Mails
-  - id: noun-nachricht-2
-    type: noun
-    lemma: Nachricht
-    gloss:
-      - message
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1702
-    noun:
-      gender: f
-      plural: Nachrichten
   - id: noun-mitteilung
     type: noun
     lemma: Mitteilung
@@ -8406,20 +8286,6 @@ records:
     noun:
       gender: m
       plural: Zeitpläne
-  - id: noun-termin-2
-    type: noun
-    lemma: Termin
-    gloss:
-      - appointment
-      - deadline
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1726
-    noun:
-      gender: m
-      plural: Termine
   - id: noun-frist
     type: noun
     lemma: Frist
@@ -8434,52 +8300,6 @@ records:
     noun:
       gender: f
       plural: Fristen
-  - id: noun-zustaendigkeit-3
-    type: noun
-    lemma: Zuständigkeit
-    gloss:
-      - responsibility
-      - jurisdiction
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1734
-    noun:
-      gender: f
-      plural: Zuständigkeiten
-  - id: noun-vorgesetzte-2
-    type: noun
-    lemma: Vorgesetzte
-    gloss:
-      - supervisor
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1736
-    noun:
-      gender: m
-      plural: null
-      variants:
-        - lemma: Vorgesetzte
-          gender: f
-  - id: noun-geschaeftsfuehrer-2
-    type: noun
-    lemma: Geschäftsführer
-    gloss:
-      - managing director
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1738
-    noun:
-      gender: m
-      plural: null
-      variants:
-        - lemma: Geschäftsführerin
-          gender: f
   - id: noun-unternehmen
     type: noun
     lemma: Unternehmen
@@ -8493,19 +8313,6 @@ records:
     noun:
       gender: n
       plural: Unternehmen
-  - id: noun-betrieb-2
-    type: noun
-    lemma: Betrieb
-    gloss:
-      - business
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1742
-    noun:
-      gender: m
-      plural: Betriebe
   - id: noun-firma
     type: noun
     lemma: Firma
@@ -8519,19 +8326,6 @@ records:
     noun:
       gender: f
       plural: Firmen
-  - id: noun-hierarchie-3
-    type: noun
-    lemma: Hierarchie
-    gloss:
-      - hierarchy
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1746
-    noun:
-      gender: f
-      plural: Hierarchien
   - id: noun-anweisung
     type: noun
     lemma: Anweisung
@@ -8571,19 +8365,6 @@ records:
     noun:
       gender: f
       plural: Kritiken
-  - id: noun-vorschlag-2
-    type: noun
-    lemma: Vorschlag
-    gloss:
-      - suggestion
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1754
-    noun:
-      gender: m
-      plural: Vorschläge
   - id: noun-loesung
     type: noun
     lemma: Lösung
@@ -8610,16 +8391,6 @@ records:
     noun:
       gender: m
       plural: Arbeitsverträge
-  - id: verb-kuendigen-2
-    type: verb
-    lemma: kündigen
-    gloss:
-      - to resign / to dismiss
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1766
   - id: noun-kuendigung
     type: noun
     lemma: Kündigung
@@ -8659,19 +8430,6 @@ records:
     noun:
       gender: n
       plural: Gehälter
-  - id: noun-gehaltserhoehung-2
-    type: noun
-    lemma: Gehaltserhöhung
-    gloss:
-      - salary increase
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1774
-    noun:
-      gender: f
-      plural: Gehaltserhöhungen
   - id: noun-befoerderung
     type: noun
     lemma: Beförderung
@@ -8685,19 +8443,6 @@ records:
     noun:
       gender: f
       plural: Beförderungen
-  - id: noun-arbeitszeugnis-2
-    type: noun
-    lemma: Arbeitszeugnis
-    gloss:
-      - job reference
-    categories:
-      - professional-communication-and-workplace-language
-    status: raw
-    source_lines:
-      - 1778
-    noun:
-      gender: n
-      plural: Arbeitszeugnisse
   - id: noun-fortbildung
     type: noun
     lemma: Fortbildung
@@ -8762,75 +8507,11 @@ records:
       - 1801
     noun:
       gender: m
-      plural: null
+      plural: Politiker
       variants:
         - lemma: Politikerin
           gender: f
-  - id: noun-regierung-2
-    type: noun
-    lemma: Regierung
-    gloss:
-      - government
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1803
-    noun:
-      gender: f
-      plural: Regierungen
-  - id: noun-opposition-2
-    type: noun
-    lemma: Opposition
-    gloss:
-      - opposition
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1805
-    noun:
-      gender: f
-      plural: Oppositionen
-  - id: noun-partei-2
-    type: noun
-    lemma: Partei
-    gloss:
-      - political party
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1807
-    noun:
-      gender: f
-      plural: Parteien
-  - id: noun-parlament-2
-    type: noun
-    lemma: Parlament
-    gloss:
-      - parliament
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1809
-    noun:
-      gender: n
-      plural: Parlamente
-  - id: noun-bundestag-2
-    type: noun
-    lemma: Bundestag
-    gloss:
-      - German federal parliament
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1811
-    noun:
-      gender: m
-      plural: null
+          plural: Politikerinnen
   - id: noun-bundeskanzleramt
     type: noun
     lemma: Bundeskanzleramt
@@ -8856,10 +8537,11 @@ records:
       - 1815
     noun:
       gender: m
-      plural: null
+      plural: Bundespräsidenten
       variants:
         - lemma: Bundespräsidentin
           gender: f
+          plural: Bundespräsidentinnen
   - id: noun-bundeskanzler
     type: noun
     lemma: Bundeskanzler
@@ -8872,36 +8554,11 @@ records:
       - 1817
     noun:
       gender: m
-      plural: null
+      plural: Bundeskanzler
       variants:
         - lemma: Bundeskanzlerin
           gender: f
-  - id: noun-demokratie-2
-    type: noun
-    lemma: Demokratie
-    gloss:
-      - democracy
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1819
-    noun:
-      gender: f
-      plural: Demokratien
-  - id: noun-diktatur-2
-    type: noun
-    lemma: Diktatur
-    gloss:
-      - dictatorship
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1821
-    noun:
-      gender: f
-      plural: Diktaturen
+          plural: Bundeskanzlerinnen
   - id: noun-wahl
     type: noun
     lemma: Wahl
@@ -8925,20 +8582,6 @@ records:
     status: raw
     source_lines:
       - 1825
-  - id: noun-abstimmung-3
-    type: noun
-    lemma: Abstimmung
-    gloss:
-      - vote
-      - ballot
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1827
-    noun:
-      gender: f
-      plural: Abstimmungen
   - id: noun-waehler
     type: noun
     lemma: Wähler
@@ -8951,10 +8594,11 @@ records:
       - 1829
     noun:
       gender: m
-      plural: null
+      plural: Wähler
       variants:
         - lemma: Wählerin
           gender: f
+          plural: Wählerinnen
   - id: noun-wahlergebnis
     type: noun
     lemma: Wahlergebnis
@@ -8968,19 +8612,6 @@ records:
     noun:
       gender: n
       plural: Wahlergebnisse
-  - id: noun-koalition-2
-    type: noun
-    lemma: Koalition
-    gloss:
-      - coalition
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1835
-    noun:
-      gender: f
-      plural: Koalitionen
   - id: noun-politikverdrossenheit
     type: noun
     lemma: Politikverdrossenheit
@@ -9008,19 +8639,6 @@ records:
     noun:
       gender: f
       plural: null
-  - id: noun-gesetz-3
-    type: noun
-    lemma: Gesetz
-    gloss:
-      - law
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1841
-    noun:
-      gender: n
-      plural: Gesetze
   - id: verb-erlassen
     type: verb
     lemma: erlassen
@@ -9031,32 +8649,6 @@ records:
     status: raw
     source_lines:
       - 1843
-  - id: noun-grundgesetz-2
-    type: noun
-    lemma: Grundgesetz
-    gloss:
-      - German Basic Law (constitution)
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1845
-    noun:
-      gender: n
-      plural: null
-  - id: noun-verfassung-3
-    type: noun
-    lemma: Verfassung
-    gloss:
-      - constitution
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1847
-    noun:
-      gender: f
-      plural: Verfassungen
   - id: noun-menschenrecht
     type: noun
     lemma: Menschenrecht
@@ -9070,19 +8662,6 @@ records:
     noun:
       gender: n
       plural: Menschenrechte
-  - id: noun-meinungsfreiheit-2
-    type: noun
-    lemma: Meinungsfreiheit
-    gloss:
-      - freedom of speech
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1851
-    noun:
-      gender: f
-      plural: null
   - id: noun-pressefreiheit
     type: noun
     lemma: Pressefreiheit
@@ -9134,10 +8713,11 @@ records:
       - 1859
     noun:
       gender: m
-      plural: null
+      plural: Asylbewerber
       variants:
         - lemma: Asylbewerberin
           gender: f
+          plural: Asylbewerberinnen
   - id: noun-buergerrecht
     type: noun
     lemma: Bürgerrecht
@@ -9163,7 +8743,7 @@ records:
       - 1863
     noun:
       gender: f
-      plural: null
+      plural: Staatsbürgerschaften
   - id: noun-innenpolitik
     type: noun
     lemma: Innenpolitik
@@ -9215,10 +8795,11 @@ records:
       - 1871
     noun:
       gender: m
-      plural: null
+      plural: Diplomaten
       variants:
         - lemma: Diplomatin
           gender: f
+          plural: Diplomatinnen
   - id: noun-botschaft
     type: noun
     lemma: Botschaft
@@ -9244,23 +8825,11 @@ records:
       - 1875
     noun:
       gender: m
-      plural: null
+      plural: Botschafter
       variants:
         - lemma: Botschafterin
           gender: f
-  - id: noun-vertrag-2
-    type: noun
-    lemma: Vertrag
-    gloss:
-      - treaty
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1877
-    noun:
-      gender: m
-      plural: Verträge
+          plural: Botschafterinnen
   - id: noun-abkommen
     type: noun
     lemma: Abkommen
@@ -9314,19 +8883,6 @@ records:
     noun:
       gender: n
       plural: Embargos
-  - id: noun-handelsabkommen-2
-    type: noun
-    lemma: Handelsabkommen
-    gloss:
-      - trade agreement
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1891
-    noun:
-      gender: n
-      plural: Handelsabkommen
   - id: noun-friedensverhandlung
     type: noun
     lemma: Friedensverhandlung
@@ -9366,19 +8922,6 @@ records:
     noun:
       gender: m
       plural: null
-  - id: noun-krise-2
-    type: noun
-    lemma: Krise
-    gloss:
-      - crisis
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1899
-    noun:
-      gender: f
-      plural: Krisen
   - id: noun-instabilitaet
     type: noun
     lemma: Instabilität
@@ -9601,10 +9144,11 @@ records:
       - 1948
     noun:
       gender: m
-      plural: null
+      plural: Vermieter
       variants:
         - lemma: Vermieterin
           gender: f
+          plural: Vermieterinnen
   - id: noun-mieter
     type: noun
     lemma: Mieter
@@ -9617,10 +9161,11 @@ records:
       - 1950
     noun:
       gender: m
-      plural: null
+      plural: Mieter
       variants:
         - lemma: Mieterin
           gender: f
+          plural: Mieterinnen
   - id: noun-bauprojekt
     type: noun
     lemma: Bauprojekt
@@ -9816,10 +9361,11 @@ records:
       - 1980
     noun:
       gender: m
-      plural: null
+      plural: Fußgänger
       variants:
         - lemma: Fußgängerin
           gender: f
+          plural: Fußgängerinnen
   - id: noun-fussgaengerzone
     type: noun
     lemma: Fußgängerzone
@@ -10002,7 +9548,7 @@ records:
       - 2008
     noun:
       gender: n
-      plural: null
+      plural: Kanalnetze
   - id: noun-stadtverwaltung
     type: noun
     lemma: Stadtverwaltung
@@ -10015,7 +9561,7 @@ records:
       - 2010
     noun:
       gender: f
-      plural: null
+      plural: Stadtverwaltungen
   - id: noun-buergeramt
     type: noun
     lemma: Bürgeramt
@@ -10491,32 +10037,6 @@ records:
     noun:
       gender: f
       plural: Gegenüberstellungen
-  - id: noun-globalisierung-2
-    type: noun
-    lemma: Globalisierung
-    gloss:
-      - globalisation
-    categories:
-      - global-issues-and-sustainability
-    status: raw
-    source_lines:
-      - 2156
-    noun:
-      gender: f
-      plural: null
-  - id: noun-nachhaltigkeit-4
-    type: noun
-    lemma: Nachhaltigkeit
-    gloss:
-      - sustainability
-    categories:
-      - global-issues-and-sustainability
-    status: raw
-    source_lines:
-      - 2158
-    noun:
-      gender: f
-      plural: null
   - id: noun-umwelt
     type: noun
     lemma: Umwelt
@@ -10527,9 +10047,10 @@ records:
     status: raw
     source_lines:
       - 2162
+    source_note: "plural Umwelten removed: not used in the sense environment"
     noun:
       gender: f
-      plural: Umwelten
+      plural: null
   - id: noun-umweltschutz
     type: noun
     lemma: Umweltschutz
@@ -10540,19 +10061,6 @@ records:
     status: raw
     source_lines:
       - 2164
-    noun:
-      gender: m
-      plural: null
-  - id: noun-klimawandel-2
-    type: noun
-    lemma: Klimawandel
-    gloss:
-      - climate change
-    categories:
-      - global-issues-and-sustainability
-    status: raw
-    source_lines:
-      - 2166
     noun:
       gender: m
       plural: null
@@ -10734,9 +10242,10 @@ records:
     status: raw
     source_lines:
       - 2194
+    source_note: "plural Müll removed: Müll has no plural"
     noun:
       gender: m
-      plural: Müll
+      plural: null
   - id: noun-muelltrennung
     type: noun
     lemma: Mülltrennung
@@ -10866,7 +10375,7 @@ records:
       - 2214
     noun:
       gender: m
-      plural: null
+      plural: ökologischen Fußabdrücke
   - id: noun-ressourcen
     type: noun
     lemma: Ressourcen
@@ -10945,10 +10454,11 @@ records:
       - 2226
     noun:
       gender: m
-      plural: null
+      plural: Umweltsünder
       variants:
         - lemma: Umweltsünderin
           gender: f
+          plural: Umweltsünderinnen
   - id: noun-entwicklungsland
     type: noun
     lemma: Entwicklungsland
@@ -11104,10 +10614,11 @@ records:
       - 2252
     noun:
       gender: m
-      plural: null
+      plural: Aktivisten
       variants:
         - lemma: Aktivistin
           gender: f
+          plural: Aktivistinnen
   - id: noun-klimabewegung
     type: noun
     lemma: Klimabewegung
@@ -11123,9 +10634,9 @@ records:
       plural: Klimabewegungen
   - id: noun-pflichtmodul
     type: noun
-    lemma: "Pflichtmodul"
+    lemma: Pflichtmodul
     gloss:
-      - "required module"
+      - required module
     categories:
       - academic-and-higher-education
     status: raw
@@ -11133,12 +10644,12 @@ records:
       - 62
     noun:
       gender: n
-      plural: null
+      plural: Pflichtmodule
   - id: noun-wahlmodul
     type: noun
-    lemma: "Wahlmodul"
+    lemma: Wahlmodul
     gloss:
-      - "elective module"
+      - elective module
     categories:
       - academic-and-higher-education
     status: raw
@@ -11146,12 +10657,12 @@ records:
       - 62
     noun:
       gender: n
-      plural: null
+      plural: Wahlmodule
   - id: noun-numerus-clausus
     type: noun
-    lemma: "Numerus Clausus"
+    lemma: Numerus Clausus
     gloss:
-      - "restricted admission grade"
+      - restricted admission grade
     categories:
       - academic-and-higher-education
     status: raw
@@ -11163,9 +10674,9 @@ records:
       plural: null
   - id: adjective-befristet
     type: adjective
-    lemma: "befristet"
+    lemma: befristet
     gloss:
-      - "fixed-term"
+      - fixed-term
     categories:
       - workplace-and-business
     status: raw
@@ -11173,9 +10684,9 @@ records:
       - 139
   - id: adjective-unbefristet
     type: adjective
-    lemma: "unbefristet"
+    lemma: unbefristet
     gloss:
-      - "permanent"
+      - permanent
     categories:
       - workplace-and-business
     status: raw
@@ -11183,9 +10694,9 @@ records:
       - 139
   - id: noun-nettogehalt
     type: noun
-    lemma: "Nettogehalt"
+    lemma: Nettogehalt
     gloss:
-      - "net salary"
+      - net salary
     categories:
       - workplace-and-business
     status: raw
@@ -11193,12 +10704,12 @@ records:
       - 157
     noun:
       gender: n
-      plural: null
+      plural: Nettogehälter
   - id: noun-bruttogehalt
     type: noun
-    lemma: "Bruttogehalt"
+    lemma: Bruttogehalt
     gloss:
-      - "gross salary"
+      - gross salary
     categories:
       - workplace-and-business
     status: raw
@@ -11206,64 +10717,42 @@ records:
       - 157
     noun:
       gender: n
-      plural: null
-  - id: noun-gewinn-2
-    type: noun
-    lemma: "Gewinn"
-    gloss:
-      - "profit"
-    categories:
-      - workplace-and-business
-    status: raw
-    source_lines:
-      - 171
-    noun:
-      gender: m
-      plural: null
-  - id: noun-verlust-2
-    type: noun
-    lemma: "Verlust"
-    gloss:
-      - "loss"
-    categories:
-      - workplace-and-business
-    status: raw
-    source_lines:
-      - 171
-    noun:
-      gender: m
-      plural: null
+      plural: Bruttogehälter
   - id: noun-mehrheit
     type: noun
-    lemma: "Mehrheit"
+    lemma: Mehrheit
     gloss:
-      - "majority"
+      - majority
     categories:
       - government-and-politics
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 286
+      - 1833
     noun:
       gender: f
-      plural: null
+      plural: Mehrheiten
   - id: noun-minderheit
     type: noun
-    lemma: "Minderheit"
+    lemma: Minderheit
     gloss:
-      - "minority"
+      - minority
     categories:
       - government-and-politics
+      - politics-and-international-relations
     status: raw
     source_lines:
       - 286
+      - 1833
     noun:
       gender: f
-      plural: null
+      plural: Minderheiten
   - id: verb-verabschieden
     type: verb
-    lemma: "verabschieden"
+    lemma: verabschieden
     gloss:
-      - "to pass (a law)"
+      - to pass (a law)
     categories:
       - government-and-politics
     status: raw
@@ -11271,30 +10760,34 @@ records:
       - 290
   - id: adjective-unschuldig
     type: adjective
-    lemma: "unschuldig"
+    lemma: unschuldig
     gloss:
-      - "innocent"
+      - innocent
     categories:
       - law-and-justice
+      - ethics-and-society
     status: raw
     source_lines:
       - 387
+      - 1470
   - id: adjective-schuldig
     type: adjective
-    lemma: "schuldig"
+    lemma: schuldig
     gloss:
-      - "guilty"
+      - guilty
     categories:
       - law-and-justice
+      - ethics-and-society
     status: raw
     source_lines:
       - 389
+      - 1470
   - id: adjective-gesetzlich
     type: adjective
-    lemma: "gesetzlich"
+    lemma: gesetzlich
     gloss:
-      - "legal"
-      - "by law"
+      - legal
+      - by law
     categories:
       - law-and-justice
     status: raw
@@ -11302,9 +10795,9 @@ records:
       - 415
   - id: adjective-rechtswidrig
     type: adjective
-    lemma: "rechtswidrig"
+    lemma: rechtswidrig
     gloss:
-      - "unlawful"
+      - unlawful
     categories:
       - law-and-justice
     status: raw
@@ -11312,9 +10805,9 @@ records:
       - 417
   - id: adjective-formell
     type: adjective
-    lemma: "formell"
+    lemma: formell
     gloss:
-      - "formal"
+      - formal
     categories:
       - formal-and-informal-address
     status: raw
@@ -11322,9 +10815,9 @@ records:
       - 462
   - id: adjective-informell
     type: adjective
-    lemma: "informell"
+    lemma: informell
     gloss:
-      - "informal"
+      - informal
     categories:
       - formal-and-informal-address
     status: raw
@@ -11332,9 +10825,9 @@ records:
       - 462
   - id: phrase-sehr-geehrte-damen-und-herren
     type: phrase
-    lemma: "Sehr geehrte Damen und Herren,"
+    lemma: Sehr geehrte Damen und Herren,
     gloss:
-      - "Dear Sir/Madam (formal)"
+      - Dear Sir/Madam (formal)
     categories:
       - formal-and-informal-address
     status: raw
@@ -11343,9 +10836,9 @@ records:
     source_note: "source: Sehr geehrte(r)..."
   - id: phrase-liebe-anna-lieber-max
     type: phrase
-    lemma: "Liebe Anna, lieber Max,"
+    lemma: Liebe Anna, lieber Max,
     gloss:
-      - "Dear (informal)"
+      - Dear (informal)
     categories:
       - formal-and-informal-address
     status: raw
@@ -11354,9 +10847,9 @@ records:
     source_note: "source: Liebe(r)..."
   - id: phrase-mit-freundlichen-gruessen
     type: phrase
-    lemma: "Mit freundlichen Grüßen"
+    lemma: Mit freundlichen Grüßen
     gloss:
-      - "Yours sincerely (formal closing)"
+      - Yours sincerely (formal closing)
     categories:
       - formal-and-informal-address
     status: raw
@@ -11364,9 +10857,9 @@ records:
       - 472
   - id: phrase-viele-gruesse
     type: phrase
-    lemma: "Viele Grüße"
+    lemma: Viele Grüße
     gloss:
-      - "Best regards (neutral/informal)"
+      - Best regards (neutral/informal)
     categories:
       - formal-and-informal-address
     status: raw
@@ -11374,22 +10867,24 @@ records:
       - 474
   - id: noun-herr
     type: noun
-    lemma: "Herr"
+    lemma: Herr
     gloss:
-      - "Mr"
+      - Mr
+      - gentleman
     categories:
       - formal-and-informal-address
     status: raw
     source_lines:
       - 482
+      - 484
     noun:
       gender: m
-      plural: null
+      plural: Herren
   - id: noun-frau
     type: noun
-    lemma: "Frau"
+    lemma: Frau
     gloss:
-      - "Mrs"
+      - Mrs
     categories:
       - formal-and-informal-address
     status: raw
@@ -11397,12 +10892,12 @@ records:
       - 482
     noun:
       gender: f
-      plural: null
+      plural: Frauen
   - id: noun-dame
     type: noun
-    lemma: "Dame"
+    lemma: Dame
     gloss:
-      - "lady"
+      - lady
     categories:
       - formal-and-informal-address
     status: raw
@@ -11410,25 +10905,12 @@ records:
       - 484
     noun:
       gender: f
-      plural: null
-  - id: noun-herr-2
-    type: noun
-    lemma: "Herr"
-    gloss:
-      - "gentleman"
-    categories:
-      - formal-and-informal-address
-    status: raw
-    source_lines:
-      - 484
-    noun:
-      gender: m
-      plural: null
+      plural: Damen
   - id: noun-absage
     type: noun
-    lemma: "Absage"
+    lemma: Absage
     gloss:
-      - "rejection (of appointment)"
+      - rejection (of appointment)
     categories:
       - formal-and-informal-address
     status: raw
@@ -11436,12 +10918,12 @@ records:
       - 494
     noun:
       gender: f
-      plural: null
+      plural: Absagen
   - id: noun-zusage
     type: noun
-    lemma: "Zusage"
+    lemma: Zusage
     gloss:
-      - "confirmation (of appointment)"
+      - confirmation (of appointment)
     categories:
       - formal-and-informal-address
     status: raw
@@ -11449,12 +10931,12 @@ records:
       - 494
     noun:
       gender: f
-      plural: null
+      plural: Zusagen
   - id: verb-absagen
     type: verb
-    lemma: "absagen"
+    lemma: absagen
     gloss:
-      - "to cancel"
+      - to cancel
     categories:
       - formal-and-informal-address
     status: raw
@@ -11462,9 +10944,9 @@ records:
       - 496
   - id: verb-zusagen
     type: verb
-    lemma: "zusagen"
+    lemma: zusagen
     gloss:
-      - "to confirm"
+      - to confirm
     categories:
       - formal-and-informal-address
     status: raw
@@ -11472,10 +10954,10 @@ records:
       - 496
   - id: phrase-entschuldigen-sie-bitte
     type: phrase
-    lemma: "Entschuldigen Sie bitte!"
+    lemma: Entschuldigen Sie bitte!
     gloss:
-      - "excuse me"
-      - "sorry (formal)"
+      - excuse me
+      - sorry (formal)
     categories:
       - formal-and-informal-address
     status: raw
@@ -11484,9 +10966,9 @@ records:
     source_note: "source: entschuldigen Sie..."
   - id: phrase-koennten-sie-mir-bitte-helfen
     type: phrase
-    lemma: "Könnten Sie mir bitte helfen?"
+    lemma: Könnten Sie mir bitte helfen?
     gloss:
-      - "Could you please help me? (formal request)"
+      - Could you please help me? (formal request)
     categories:
       - formal-and-informal-address
     status: raw
@@ -11495,9 +10977,9 @@ records:
     source_note: "source: Könnten Sie bitte...?"
   - id: phrase-waeren-sie-so-freundlich-mir-zu-helfen
     type: phrase
-    lemma: "Wären Sie so freundlich, mir zu helfen?"
+    lemma: Wären Sie so freundlich, mir zu helfen?
     gloss:
-      - "Would you be so kind as to help me?"
+      - Would you be so kind as to help me?
     categories:
       - formal-and-informal-address
     status: raw
@@ -11506,9 +10988,9 @@ records:
     source_note: "source: Wären Sie so freundlich...?"
   - id: phrase-darf-ich-sie-um-etwas-bitten
     type: phrase
-    lemma: "Darf ich Sie um etwas bitten?"
+    lemma: Darf ich Sie um etwas bitten?
     gloss:
-      - "May I ask you something?"
+      - May I ask you something?
     categories:
       - formal-and-informal-address
     status: raw
@@ -11517,9 +10999,9 @@ records:
     source_note: "source: Darf ich Sie bitten...?"
   - id: verb-duerfen
     type: verb
-    lemma: "dürfen"
+    lemma: dürfen
     gloss:
-      - "may, to be allowed to (polite requests)"
+      - may, to be allowed to (polite requests)
     categories:
       - formal-and-informal-address
     status: raw
@@ -11528,9 +11010,9 @@ records:
     source_note: "source: dürfen / möchten / könnten – modal verbs for polite requests"
   - id: verb-moegen
     type: verb
-    lemma: "mögen"
+    lemma: mögen
     gloss:
-      - "would like (möchten, polite requests)"
+      - would like (möchten, polite requests)
     categories:
       - formal-and-informal-address
     status: raw
@@ -11539,9 +11021,9 @@ records:
     source_note: "source: dürfen / möchten / könnten – modal verbs for polite requests"
   - id: verb-koennen
     type: verb
-    lemma: "können"
+    lemma: können
     gloss:
-      - "could (könnten, polite requests)"
+      - could (könnten, polite requests)
     categories:
       - formal-and-informal-address
     status: raw
@@ -11550,9 +11032,9 @@ records:
     source_note: "source: dürfen / möchten / könnten – modal verbs for polite requests"
   - id: adjective-angemessen
     type: adjective
-    lemma: "angemessen"
+    lemma: angemessen
     gloss:
-      - "appropriate"
+      - appropriate
     categories:
       - formal-and-informal-address
     status: raw
@@ -11560,9 +11042,9 @@ records:
       - 522
   - id: phrase-etwas-auf-dem-schirm-haben
     type: phrase
-    lemma: "etwas auf dem Schirm haben"
+    lemma: etwas auf dem Schirm haben
     gloss:
-      - "to have something on one’s radar"
+      - to have something on one’s radar
     categories:
       - idiomatic-expressions
     status: raw
@@ -11570,9 +11052,9 @@ records:
       - 551
   - id: phrase-aus-einer-muecke-einen-elefanten-machen
     type: phrase
-    lemma: "aus einer Mücke einen Elefanten machen"
+    lemma: aus einer Mücke einen Elefanten machen
     gloss:
-      - "to make a mountain out of a molehill"
+      - to make a mountain out of a molehill
     categories:
       - idiomatic-expressions
     status: raw
@@ -11580,9 +11062,9 @@ records:
       - 553
   - id: phrase-ins-kalte-wasser-springen
     type: phrase
-    lemma: "ins kalte Wasser springen"
+    lemma: ins kalte Wasser springen
     gloss:
-      - "to dive in at the deep end"
+      - to dive in at the deep end
     categories:
       - idiomatic-expressions
     status: raw
@@ -11590,9 +11072,9 @@ records:
       - 555
   - id: phrase-das-ist-nicht-mein-bier
     type: phrase
-    lemma: "das ist nicht mein Bier"
+    lemma: das ist nicht mein Bier
     gloss:
-      - "that’s not my problem"
+      - that’s not my problem
     categories:
       - idiomatic-expressions
     status: raw
@@ -11600,9 +11082,9 @@ records:
       - 557
   - id: phrase-tomaten-auf-den-augen-haben
     type: phrase
-    lemma: "Tomaten auf den Augen haben"
+    lemma: Tomaten auf den Augen haben
     gloss:
-      - "to be oblivious"
+      - to be oblivious
     categories:
       - idiomatic-expressions
     status: raw
@@ -11610,9 +11092,9 @@ records:
       - 559
   - id: phrase-zwei-fliegen-mit-einer-klappe-schlagen
     type: phrase
-    lemma: "zwei Fliegen mit einer Klappe schlagen"
+    lemma: zwei Fliegen mit einer Klappe schlagen
     gloss:
-      - "to kill two birds with one stone"
+      - to kill two birds with one stone
     categories:
       - idiomatic-expressions
     status: raw
@@ -11620,9 +11102,9 @@ records:
       - 561
   - id: phrase-da-ist-der-wurm-drin
     type: phrase
-    lemma: "da ist der Wurm drin"
+    lemma: da ist der Wurm drin
     gloss:
-      - "something is going wrong"
+      - something is going wrong
     categories:
       - idiomatic-expressions
     status: raw
@@ -11630,9 +11112,9 @@ records:
       - 563
   - id: phrase-einen-frosch-im-hals-haben
     type: phrase
-    lemma: "einen Frosch im Hals haben"
+    lemma: einen Frosch im Hals haben
     gloss:
-      - "to have a frog in one’s throat"
+      - to have a frog in one’s throat
     categories:
       - idiomatic-expressions
     status: raw
@@ -11640,9 +11122,9 @@ records:
       - 565
   - id: phrase-den-nagel-auf-den-kopf-treffen
     type: phrase
-    lemma: "den Nagel auf den Kopf treffen"
+    lemma: den Nagel auf den Kopf treffen
     gloss:
-      - "to hit the nail on the head"
+      - to hit the nail on the head
     categories:
       - idiomatic-expressions
     status: raw
@@ -11650,9 +11132,9 @@ records:
       - 567
   - id: phrase-aus-dem-haeuschen-sein
     type: phrase
-    lemma: "aus dem Häuschen sein"
+    lemma: aus dem Häuschen sein
     gloss:
-      - "to be over the moon"
+      - to be over the moon
     categories:
       - idiomatic-expressions
     status: raw
@@ -11660,9 +11142,9 @@ records:
       - 569
   - id: phrase-etwas-unter-vier-augen-besprechen
     type: phrase
-    lemma: "etwas unter vier Augen besprechen"
+    lemma: etwas unter vier Augen besprechen
     gloss:
-      - "to discuss privately"
+      - to discuss privately
     categories:
       - idiomatic-expressions
     status: raw
@@ -11670,9 +11152,9 @@ records:
       - 571
   - id: phrase-durch-die-blume-sagen
     type: phrase
-    lemma: "durch die Blume sagen"
+    lemma: durch die Blume sagen
     gloss:
-      - "to say something indirectly"
+      - to say something indirectly
     categories:
       - idiomatic-expressions
     status: raw
@@ -11680,9 +11162,9 @@ records:
       - 573
   - id: phrase-naegel-mit-koepfen-machen
     type: phrase
-    lemma: "Nägel mit Köpfen machen"
+    lemma: Nägel mit Köpfen machen
     gloss:
-      - "to get things done properly"
+      - to get things done properly
     categories:
       - idiomatic-expressions
     status: raw
@@ -11690,9 +11172,9 @@ records:
       - 575
   - id: phrase-auf-die-lange-bank-schieben
     type: phrase
-    lemma: "auf die lange Bank schieben"
+    lemma: auf die lange Bank schieben
     gloss:
-      - "to procrastinate"
+      - to procrastinate
     categories:
       - idiomatic-expressions
     status: raw
@@ -11700,9 +11182,9 @@ records:
       - 577
   - id: phrase-mit-dem-linken-fuss-aufstehen
     type: phrase
-    lemma: "mit dem linken Fuß aufstehen"
+    lemma: mit dem linken Fuß aufstehen
     gloss:
-      - "to get up on the wrong side of the bed"
+      - to get up on the wrong side of the bed
     categories:
       - idiomatic-expressions
     status: raw
@@ -11710,9 +11192,9 @@ records:
       - 579
   - id: phrase-ueber-den-eigenen-schatten-springen
     type: phrase
-    lemma: "über den eigenen Schatten springen"
+    lemma: über den eigenen Schatten springen
     gloss:
-      - "to overcome oneself"
+      - to overcome oneself
     categories:
       - idiomatic-expressions
     status: raw
@@ -11720,9 +11202,9 @@ records:
       - 581
   - id: phrase-einen-zahn-zulegen
     type: phrase
-    lemma: "einen Zahn zulegen"
+    lemma: einen Zahn zulegen
     gloss:
-      - "to hurry up"
+      - to hurry up
     categories:
       - idiomatic-expressions
     status: raw
@@ -11730,9 +11212,9 @@ records:
       - 583
   - id: phrase-etwas-aus-dem-effeff-koennen
     type: phrase
-    lemma: "etwas aus dem Effeff können"
+    lemma: etwas aus dem Effeff können
     gloss:
-      - "to know something inside out"
+      - to know something inside out
     categories:
       - idiomatic-expressions
     status: raw
@@ -11740,9 +11222,9 @@ records:
       - 585
   - id: phrase-auf-dem-holzweg-sein
     type: phrase
-    lemma: "auf dem Holzweg sein"
+    lemma: auf dem Holzweg sein
     gloss:
-      - "to be barking up the wrong tree"
+      - to be barking up the wrong tree
     categories:
       - idiomatic-expressions
     status: raw
@@ -11750,9 +11232,9 @@ records:
       - 587
   - id: phrase-kein-blatt-vor-den-mund-nehmen
     type: phrase
-    lemma: "kein Blatt vor den Mund nehmen"
+    lemma: kein Blatt vor den Mund nehmen
     gloss:
-      - "to speak frankly"
+      - to speak frankly
     categories:
       - idiomatic-expressions
     status: raw
@@ -11760,9 +11242,9 @@ records:
       - 589
   - id: phrase-etwas-in-den-griff-bekommen
     type: phrase
-    lemma: "etwas in den Griff bekommen"
+    lemma: etwas in den Griff bekommen
     gloss:
-      - "to get something under control"
+      - to get something under control
     categories:
       - idiomatic-expressions
     status: raw
@@ -11770,9 +11252,9 @@ records:
       - 591
   - id: phrase-den-kopf-verlieren
     type: phrase
-    lemma: "den Kopf verlieren"
+    lemma: den Kopf verlieren
     gloss:
-      - "to lose one’s head"
+      - to lose one’s head
     categories:
       - idiomatic-expressions
     status: raw
@@ -11780,9 +11262,9 @@ records:
       - 593
   - id: phrase-mit-jemandem-nicht-gut-kirschen-essen-sein
     type: phrase
-    lemma: "mit jemandem nicht gut Kirschen essen sein"
+    lemma: mit jemandem nicht gut Kirschen essen sein
     gloss:
-      - "someone is difficult to deal with"
+      - someone is difficult to deal with
     categories:
       - idiomatic-expressions
     status: raw
@@ -11790,9 +11272,9 @@ records:
       - 595
   - id: phrase-auf-wolke-sieben-schweben
     type: phrase
-    lemma: "auf Wolke sieben schweben"
+    lemma: auf Wolke sieben schweben
     gloss:
-      - "to be on cloud nine"
+      - to be on cloud nine
     categories:
       - idiomatic-expressions
     status: raw
@@ -11800,9 +11282,9 @@ records:
       - 597
   - id: phrase-einen-korb-geben
     type: phrase
-    lemma: "einen Korb geben"
+    lemma: einen Korb geben
     gloss:
-      - "to turn someone down"
+      - to turn someone down
     categories:
       - idiomatic-expressions
     status: raw
@@ -11810,9 +11292,9 @@ records:
       - 599
   - id: phrase-unter-die-lupe-nehmen
     type: phrase
-    lemma: "unter die Lupe nehmen"
+    lemma: unter die Lupe nehmen
     gloss:
-      - "to examine closely"
+      - to examine closely
     categories:
       - idiomatic-expressions
     status: raw
@@ -11820,9 +11302,9 @@ records:
       - 601
   - id: phrase-jemandem-ueber-den-mund-fahren
     type: phrase
-    lemma: "jemandem über den Mund fahren"
+    lemma: jemandem über den Mund fahren
     gloss:
-      - "to interrupt rudely"
+      - to interrupt rudely
     categories:
       - idiomatic-expressions
     status: raw
@@ -11830,9 +11312,9 @@ records:
       - 603
   - id: phrase-auf-dem-teppich-bleiben
     type: phrase
-    lemma: "auf dem Teppich bleiben"
+    lemma: auf dem Teppich bleiben
     gloss:
-      - "to stay grounded"
+      - to stay grounded
     categories:
       - idiomatic-expressions
     status: raw
@@ -11840,9 +11322,9 @@ records:
       - 605
   - id: phrase-das-a-und-o-sein
     type: phrase
-    lemma: "das A und O sein"
+    lemma: das A und O sein
     gloss:
-      - "to be the most important thing"
+      - to be the most important thing
     categories:
       - idiomatic-expressions
     status: raw
@@ -11850,9 +11332,9 @@ records:
       - 607
   - id: phrase-etwas-schwarzsehen
     type: phrase
-    lemma: "etwas schwarzsehen"
+    lemma: etwas schwarzsehen
     gloss:
-      - "to be pessimistic"
+      - to be pessimistic
     categories:
       - idiomatic-expressions
     status: raw
@@ -11860,9 +11342,9 @@ records:
       - 609
   - id: phrase-jemanden-auf-den-arm-nehmen
     type: phrase
-    lemma: "jemanden auf den Arm nehmen"
+    lemma: jemanden auf den Arm nehmen
     gloss:
-      - "to tease someone"
+      - to tease someone
     categories:
       - idiomatic-expressions
     status: raw
@@ -11870,9 +11352,9 @@ records:
       - 611
   - id: phrase-durch-dick-und-duenn-gehen
     type: phrase
-    lemma: "durch dick und dünn gehen"
+    lemma: durch dick und dünn gehen
     gloss:
-      - "to go through thick and thin"
+      - to go through thick and thin
     categories:
       - idiomatic-expressions
     status: raw
@@ -11880,9 +11362,9 @@ records:
       - 613
   - id: phrase-eine-harte-nuss-knacken
     type: phrase
-    lemma: "eine harte Nuss knacken"
+    lemma: eine harte Nuss knacken
     gloss:
-      - "to crack a tough nut"
+      - to crack a tough nut
     categories:
       - idiomatic-expressions
     status: raw
@@ -11890,9 +11372,9 @@ records:
       - 615
   - id: phrase-alles-ueber-einen-kamm-scheren
     type: phrase
-    lemma: "alles über einen Kamm scheren"
+    lemma: alles über einen Kamm scheren
     gloss:
-      - "to generalise unfairly"
+      - to generalise unfairly
     categories:
       - idiomatic-expressions
     status: raw
@@ -11900,9 +11382,9 @@ records:
       - 617
   - id: phrase-den-faden-verlieren
     type: phrase
-    lemma: "den Faden verlieren"
+    lemma: den Faden verlieren
     gloss:
-      - "to lose track (in conversation)"
+      - to lose track (in conversation)
     categories:
       - idiomatic-expressions
     status: raw
@@ -11910,9 +11392,9 @@ records:
       - 619
   - id: phrase-auf-nummer-sicher-gehen
     type: phrase
-    lemma: "auf Nummer sicher gehen"
+    lemma: auf Nummer sicher gehen
     gloss:
-      - "to play it safe"
+      - to play it safe
     categories:
       - idiomatic-expressions
     status: raw
@@ -11920,9 +11402,9 @@ records:
       - 621
   - id: phrase-etwas-ist-in-trockenen-tuechern
     type: phrase
-    lemma: "etwas ist in trockenen Tüchern"
+    lemma: etwas ist in trockenen Tüchern
     gloss:
-      - "something is settled"
+      - something is settled
     categories:
       - idiomatic-expressions
     status: raw
@@ -11930,9 +11412,9 @@ records:
       - 623
   - id: phrase-die-daumen-druecken
     type: phrase
-    lemma: "die Daumen drücken"
+    lemma: die Daumen drücken
     gloss:
-      - "to keep one’s fingers crossed"
+      - to keep one’s fingers crossed
     categories:
       - idiomatic-expressions
     status: raw
@@ -11940,9 +11422,9 @@ records:
       - 625
   - id: phrase-eine-bauchentscheidung-treffen
     type: phrase
-    lemma: "eine Bauchentscheidung treffen"
+    lemma: eine Bauchentscheidung treffen
     gloss:
-      - "to make a gut decision"
+      - to make a gut decision
     categories:
       - idiomatic-expressions
     status: raw
@@ -11950,9 +11432,9 @@ records:
       - 627
   - id: adjective-gut-gelaunt
     type: adjective
-    lemma: "gut gelaunt"
+    lemma: gut gelaunt
     gloss:
-      - "in a good mood"
+      - in a good mood
     categories:
       - emotions-and-psychology
     status: raw
@@ -11960,9 +11442,9 @@ records:
       - 753
   - id: adjective-schlecht-gelaunt
     type: adjective
-    lemma: "schlecht gelaunt"
+    lemma: schlecht gelaunt
     gloss:
-      - "in a bad mood"
+      - in a bad mood
     categories:
       - emotions-and-psychology
     status: raw
@@ -11970,9 +11452,9 @@ records:
       - 753
   - id: adjective-zufrieden
     type: adjective
-    lemma: "zufrieden"
+    lemma: zufrieden
     gloss:
-      - "content"
+      - content
     categories:
       - emotions-and-psychology
     status: raw
@@ -11980,9 +11462,9 @@ records:
       - 763
   - id: adjective-unzufrieden
     type: adjective
-    lemma: "unzufrieden"
+    lemma: unzufrieden
     gloss:
-      - "discontent"
+      - discontent
     categories:
       - emotions-and-psychology
     status: raw
@@ -11990,10 +11472,10 @@ records:
       - 765
   - id: adjective-gelassen
     type: adjective
-    lemma: "gelassen"
+    lemma: gelassen
     gloss:
-      - "calm"
-      - "composed"
+      - calm
+      - composed
     categories:
       - emotions-and-psychology
     status: raw
@@ -12001,9 +11483,9 @@ records:
       - 767
   - id: adjective-nervoes
     type: adjective
-    lemma: "nervös"
+    lemma: nervös
     gloss:
-      - "nervous"
+      - nervous
     categories:
       - emotions-and-psychology
     status: raw
@@ -12011,9 +11493,9 @@ records:
       - 769
   - id: adjective-ueberfordert
     type: adjective
-    lemma: "überfordert"
+    lemma: überfordert
     gloss:
-      - "overwhelmed"
+      - overwhelmed
     categories:
       - emotions-and-psychology
     status: raw
@@ -12021,9 +11503,9 @@ records:
       - 771
   - id: phrase-unter-druck-stehen
     type: phrase
-    lemma: "unter Druck stehen"
+    lemma: unter Druck stehen
     gloss:
-      - "to be under pressure"
+      - to be under pressure
     categories:
       - emotions-and-psychology
     status: raw
@@ -12031,9 +11513,9 @@ records:
       - 773
   - id: adjective-gestresst
     type: adjective
-    lemma: "gestresst"
+    lemma: gestresst
     gloss:
-      - "stressed"
+      - stressed
     categories:
       - emotions-and-psychology
     status: raw
@@ -12041,9 +11523,9 @@ records:
       - 777
   - id: adjective-entspannt
     type: adjective
-    lemma: "entspannt"
+    lemma: entspannt
     gloss:
-      - "relaxed"
+      - relaxed
     categories:
       - emotions-and-psychology
     status: raw
@@ -12051,9 +11533,9 @@ records:
       - 779
   - id: adjective-aengstlich
     type: adjective
-    lemma: "ängstlich"
+    lemma: ängstlich
     gloss:
-      - "anxious"
+      - anxious
     categories:
       - emotions-and-psychology
     status: raw
@@ -12061,9 +11543,9 @@ records:
       - 785
   - id: adjective-veraengstigt
     type: adjective
-    lemma: "verängstigt"
+    lemma: verängstigt
     gloss:
-      - "frightened"
+      - frightened
     categories:
       - emotions-and-psychology
     status: raw
@@ -12071,9 +11553,9 @@ records:
       - 787
   - id: adjective-unsicher
     type: adjective
-    lemma: "unsicher"
+    lemma: unsicher
     gloss:
-      - "insecure"
+      - insecure
     categories:
       - emotions-and-psychology
     status: raw
@@ -12081,9 +11563,9 @@ records:
       - 793
   - id: adjective-selbstbewusst
     type: adjective
-    lemma: "selbstbewusst"
+    lemma: selbstbewusst
     gloss:
-      - "self-confident"
+      - self-confident
     categories:
       - emotions-and-psychology
     status: raw
@@ -12091,9 +11573,9 @@ records:
       - 795
   - id: adjective-traurig
     type: adjective
-    lemma: "traurig"
+    lemma: traurig
     gloss:
-      - "sad"
+      - sad
     categories:
       - emotions-and-psychology
     status: raw
@@ -12101,9 +11583,9 @@ records:
       - 803
   - id: adjective-verzweifelt
     type: adjective
-    lemma: "verzweifelt"
+    lemma: verzweifelt
     gloss:
-      - "desperate"
+      - desperate
     categories:
       - emotions-and-psychology
     status: raw
@@ -12111,9 +11593,9 @@ records:
       - 805
   - id: adjective-deprimiert
     type: adjective
-    lemma: "deprimiert"
+    lemma: deprimiert
     gloss:
-      - "depressed"
+      - depressed
     categories:
       - emotions-and-psychology
     status: raw
@@ -12121,9 +11603,9 @@ records:
       - 807
   - id: adjective-verletzlich
     type: adjective
-    lemma: "verletzlich"
+    lemma: verletzlich
     gloss:
-      - "vulnerable"
+      - vulnerable
     categories:
       - emotions-and-psychology
     status: raw
@@ -12131,19 +11613,21 @@ records:
       - 823
   - id: adjective-emotional
     type: adjective
-    lemma: "emotional"
+    lemma: emotional
     gloss:
-      - "emotional"
+      - emotional
     categories:
       - emotions-and-psychology
+      - rhetoric-and-argumentation
     status: raw
     source_lines:
       - 825
+      - 2121
   - id: adjective-gefuehlsbetont
     type: adjective
-    lemma: "gefühlsbetont"
+    lemma: gefühlsbetont
     gloss:
-      - "emotionally driven"
+      - emotionally driven
     categories:
       - emotions-and-psychology
     status: raw
@@ -12151,9 +11635,9 @@ records:
       - 827
   - id: adjective-eifersuechtig
     type: adjective
-    lemma: "eifersüchtig"
+    lemma: eifersüchtig
     gloss:
-      - "jealous"
+      - jealous
     categories:
       - emotions-and-psychology
     status: raw
@@ -12161,9 +11645,9 @@ records:
       - 829
   - id: adjective-neidisch
     type: adjective
-    lemma: "neidisch"
+    lemma: neidisch
     gloss:
-      - "envious"
+      - envious
     categories:
       - emotions-and-psychology
     status: raw
@@ -12171,19 +11655,21 @@ records:
       - 831
   - id: adjective-mitfuehlend
     type: adjective
-    lemma: "mitfühlend"
+    lemma: mitfühlend
     gloss:
-      - "compassionate"
+      - compassionate
     categories:
       - emotions-and-psychology
+      - ethics-and-society
     status: raw
     source_lines:
       - 839
+      - 1538
   - id: adjective-gereizt
     type: adjective
-    lemma: "gereizt"
+    lemma: gereizt
     gloss:
-      - "irritable"
+      - irritable
     categories:
       - emotions-and-psychology
     status: raw
@@ -12191,9 +11677,9 @@ records:
       - 843
   - id: adjective-ausgeglichen
     type: adjective
-    lemma: "ausgeglichen"
+    lemma: ausgeglichen
     gloss:
-      - "balanced"
+      - balanced
     categories:
       - emotions-and-psychology
     status: raw
@@ -12201,9 +11687,9 @@ records:
       - 845
   - id: noun-hauptrolle
     type: noun
-    lemma: "Hauptrolle"
+    lemma: Hauptrolle
     gloss:
-      - "lead role"
+      - lead role
     categories:
       - culture-arts-and-entertainment
     status: raw
@@ -12211,12 +11697,12 @@ records:
       - 962
     noun:
       gender: f
-      plural: null
+      plural: Hauptrollen
   - id: noun-nebenrolle
     type: noun
-    lemma: "Nebenrolle"
+    lemma: Nebenrolle
     gloss:
-      - "supporting role"
+      - supporting role
     categories:
       - culture-arts-and-entertainment
     status: raw
@@ -12224,12 +11710,12 @@ records:
       - 962
     noun:
       gender: f
-      plural: null
+      plural: Nebenrollen
   - id: noun-soziale-netzwerk
     type: noun
-    lemma: "soziale Netzwerk"
+    lemma: soziale Netzwerk
     gloss:
-      - "social network"
+      - social network
     categories:
       - social-media-and-internet
     status: raw
@@ -12237,12 +11723,12 @@ records:
       - 984
     noun:
       gender: n
-      plural: "sozialen Netzwerke"
+      plural: sozialen Netzwerke
   - id: phrase-viral-gehen
     type: phrase
-    lemma: "viral gehen"
+    lemma: viral gehen
     gloss:
-      - "to go viral"
+      - to go viral
     categories:
       - social-media-and-internet
     status: raw
@@ -12250,9 +11736,9 @@ records:
       - 1024
   - id: noun-fake-news
     type: noun
-    lemma: "Fake News"
+    lemma: Fake News
     gloss:
-      - "fake news"
+      - fake news
     categories:
       - social-media-and-internet
     status: raw
@@ -12264,9 +11750,9 @@ records:
       plural_only: true
   - id: noun-anmeldung
     type: noun
-    lemma: "Anmeldung"
+    lemma: Anmeldung
     gloss:
-      - "login"
+      - login
     categories:
       - social-media-and-internet
     status: raw
@@ -12274,12 +11760,12 @@ records:
       - 1044
     noun:
       gender: f
-      plural: null
+      plural: Anmeldungen
   - id: noun-login
     type: noun
-    lemma: "Login"
+    lemma: Login
     gloss:
-      - "login"
+      - login
     categories:
       - social-media-and-internet
     status: raw
@@ -12287,12 +11773,12 @@ records:
       - 1044
     noun:
       gender: n
-      plural: null
+      plural: Logins
   - id: verb-sich-anmelden
     type: verb
-    lemma: "sich anmelden"
+    lemma: sich anmelden
     gloss:
-      - "to sign in"
+      - to sign in
     categories:
       - social-media-and-internet
     status: raw
@@ -12300,9 +11786,9 @@ records:
       - 1074
   - id: verb-sich-abmelden
     type: verb
-    lemma: "sich abmelden"
+    lemma: sich abmelden
     gloss:
-      - "to sign out"
+      - to sign out
     categories:
       - social-media-and-internet
     status: raw
@@ -12310,9 +11796,9 @@ records:
       - 1074
   - id: adjective-technologisch
     type: adjective
-    lemma: "technologisch"
+    lemma: technologisch
     gloss:
-      - "technological"
+      - technological
     categories:
       - science-and-technology
     status: raw
@@ -12320,9 +11806,9 @@ records:
       - 1157
   - id: phrase-das-angebot-und-die-nachfrage
     type: phrase
-    lemma: "das Angebot und die Nachfrage"
+    lemma: das Angebot und die Nachfrage
     gloss:
-      - "supply and demand"
+      - supply and demand
     categories:
       - economics-and-finance
     status: raw
@@ -12330,9 +11816,9 @@ records:
       - 1222
   - id: noun-import
     type: noun
-    lemma: "Import"
+    lemma: Import
     gloss:
-      - "import"
+      - import
     categories:
       - economics-and-finance
     status: raw
@@ -12340,12 +11826,12 @@ records:
       - 1258
     noun:
       gender: m
-      plural: null
+      plural: Importe
   - id: noun-export
     type: noun
-    lemma: "Export"
+    lemma: Export
     gloss:
-      - "export"
+      - export
     categories:
       - economics-and-finance
     status: raw
@@ -12353,12 +11839,12 @@ records:
       - 1258
     noun:
       gender: m
-      plural: null
+      plural: Exporte
   - id: noun-darlehen
     type: noun
-    lemma: "Darlehen"
+    lemma: Darlehen
     gloss:
-      - "loan"
+      - loan
     categories:
       - economics-and-finance
     status: raw
@@ -12366,12 +11852,12 @@ records:
       - 1264
     noun:
       gender: n
-      plural: null
+      plural: Darlehen
   - id: noun-kredit
     type: noun
-    lemma: "Kredit"
+    lemma: Kredit
     gloss:
-      - "loan"
+      - loan
     categories:
       - economics-and-finance
     status: raw
@@ -12379,12 +11865,12 @@ records:
       - 1264
     noun:
       gender: m
-      plural: null
+      plural: Kredite
   - id: phrase-verschuldet-sein
     type: phrase
-    lemma: "verschuldet sein"
+    lemma: verschuldet sein
     gloss:
-      - "to be in debt"
+      - to be in debt
     categories:
       - economics-and-finance
     status: raw
@@ -12392,9 +11878,9 @@ records:
       - 1268
   - id: noun-erste-hilfe
     type: noun
-    lemma: "Erste Hilfe"
+    lemma: Erste Hilfe
     gloss:
-      - "first aid"
+      - first aid
     categories:
       - health-and-medicine
     status: raw
@@ -12405,9 +11891,9 @@ records:
       plural: null
   - id: phrase-versichert-sein
     type: phrase
-    lemma: "versichert sein"
+    lemma: versichert sein
     gloss:
-      - "to be insured"
+      - to be insured
     categories:
       - health-and-medicine
     status: raw
@@ -12415,9 +11901,9 @@ records:
       - 1411
   - id: adjective-ansteckend
     type: adjective
-    lemma: "ansteckend"
+    lemma: ansteckend
     gloss:
-      - "contagious"
+      - contagious
     categories:
       - health-and-medicine
     status: raw
@@ -12425,9 +11911,9 @@ records:
       - 1421
   - id: adjective-moralisch
     type: adjective
-    lemma: "moralisch"
+    lemma: moralisch
     gloss:
-      - "moral"
+      - moral
     categories:
       - ethics-and-society
     status: raw
@@ -12435,9 +11921,9 @@ records:
       - 1450
   - id: phrase-ethisch-vertretbar
     type: phrase
-    lemma: "ethisch vertretbar"
+    lemma: ethisch vertretbar
     gloss:
-      - "ethically acceptable"
+      - ethically acceptable
     categories:
       - ethics-and-society
     status: raw
@@ -12445,9 +11931,9 @@ records:
       - 1452
   - id: adjective-gerecht
     type: adjective
-    lemma: "gerecht"
+    lemma: gerecht
     gloss:
-      - "just"
+      - just
     categories:
       - ethics-and-society
     status: raw
@@ -12455,9 +11941,9 @@ records:
       - 1456
   - id: adjective-ungerecht
     type: adjective
-    lemma: "ungerecht"
+    lemma: ungerecht
     gloss:
-      - "unjust"
+      - unjust
     categories:
       - ethics-and-society
     status: raw
@@ -12465,40 +11951,20 @@ records:
       - 1456
   - id: phrase-verantwortlich-sein
     type: phrase
-    lemma: "verantwortlich sein"
+    lemma: verantwortlich sein
     gloss:
-      - "to be responsible (for)"
+      - to be responsible (for)
     categories:
       - ethics-and-society
     status: raw
     source_lines:
       - 1462
     government: für
-  - id: adjective-unschuldig-2
-    type: adjective
-    lemma: "unschuldig"
-    gloss:
-      - "innocent"
-    categories:
-      - ethics-and-society
-    status: raw
-    source_lines:
-      - 1470
-  - id: adjective-schuldig-2
-    type: adjective
-    lemma: "schuldig"
-    gloss:
-      - "guilty"
-    categories:
-      - ethics-and-society
-    status: raw
-    source_lines:
-      - 1470
   - id: adjective-tolerant
     type: adjective
-    lemma: "tolerant"
+    lemma: tolerant
     gloss:
-      - "tolerant"
+      - tolerant
     categories:
       - ethics-and-society
     status: raw
@@ -12506,9 +11972,9 @@ records:
       - 1484
   - id: adjective-intolerant
     type: adjective
-    lemma: "intolerant"
+    lemma: intolerant
     gloss:
-      - "intolerant"
+      - intolerant
     categories:
       - ethics-and-society
     status: raw
@@ -12516,9 +11982,9 @@ records:
       - 1484
   - id: adjective-ehrenamtlich
     type: adjective
-    lemma: "ehrenamtlich"
+    lemma: ehrenamtlich
     gloss:
-      - "voluntary"
+      - voluntary
     categories:
       - ethics-and-society
     status: raw
@@ -12526,29 +11992,21 @@ records:
       - 1494
   - id: adjective-nachhaltig
     type: adjective
-    lemma: "nachhaltig"
+    lemma: nachhaltig
     gloss:
-      - "sustainable"
+      - sustainable
     categories:
       - ethics-and-society
+      - global-issues-and-sustainability
     status: raw
     source_lines:
       - 1524
-  - id: adjective-mitfuehlend-2
-    type: adjective
-    lemma: "mitfühlend"
-    gloss:
-      - "compassionate"
-    categories:
-      - ethics-and-society
-    status: raw
-    source_lines:
-      - 1538
+      - 2160
   - id: phrase-die-verantwortung-uebernehmen
     type: phrase
-    lemma: "die Verantwortung übernehmen"
+    lemma: die Verantwortung übernehmen
     gloss:
-      - "to take responsibility"
+      - to take responsibility
     categories:
       - professional-communication-and-workplace-language
     status: raw
@@ -12556,9 +12014,9 @@ records:
       - 1730
   - id: phrase-zustaendig-sein
     type: phrase
-    lemma: "zuständig sein"
+    lemma: zuständig sein
     gloss:
-      - "to be responsible (for)"
+      - to be responsible (for)
     categories:
       - professional-communication-and-workplace-language
     status: raw
@@ -12567,9 +12025,9 @@ records:
     government: für
   - id: adjective-problemlos
     type: adjective
-    lemma: "problemlos"
+    lemma: problemlos
     gloss:
-      - "without problems"
+      - without problems
     categories:
       - professional-communication-and-workplace-language
     status: raw
@@ -12577,9 +12035,9 @@ records:
       - 1758
   - id: adjective-effizient
     type: adjective
-    lemma: "effizient"
+    lemma: effizient
     gloss:
-      - "efficient"
+      - efficient
     categories:
       - professional-communication-and-workplace-language
     status: raw
@@ -12587,45 +12045,19 @@ records:
       - 1760
   - id: adjective-zuverlaessig
     type: adjective
-    lemma: "zuverlässig"
+    lemma: zuverlässig
     gloss:
-      - "reliable"
+      - reliable
     categories:
       - professional-communication-and-workplace-language
     status: raw
     source_lines:
       - 1762
-  - id: noun-mehrheit-2
-    type: noun
-    lemma: "Mehrheit"
-    gloss:
-      - "majority"
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1833
-    noun:
-      gender: f
-      plural: null
-  - id: noun-minderheit-2
-    type: noun
-    lemma: "Minderheit"
-    gloss:
-      - "minority"
-    categories:
-      - politics-and-international-relations
-    status: raw
-    source_lines:
-      - 1833
-    noun:
-      gender: f
-      plural: null
   - id: noun-vereinten-nationen
     type: noun
-    lemma: "Vereinten Nationen"
+    lemma: Vereinten Nationen
     gloss:
-      - "United Nations"
+      - United Nations
     categories:
       - politics-and-international-relations
     status: raw
@@ -12638,9 +12070,9 @@ records:
       plural_only: true
   - id: noun-europaeische-union
     type: noun
-    lemma: "Europäische Union"
+    lemma: Europäische Union
     gloss:
-      - "European Union"
+      - European Union
     categories:
       - politics-and-international-relations
     status: raw
@@ -12652,9 +12084,9 @@ records:
       plural: null
   - id: noun-warmmiete
     type: noun
-    lemma: "Warmmiete"
+    lemma: Warmmiete
     gloss:
-      - "rent incl. utilities"
+      - rent incl. utilities
     categories:
       - infrastructure-and-urban-life
     status: raw
@@ -12662,12 +12094,12 @@ records:
       - 1944
     noun:
       gender: f
-      plural: null
+      plural: Warmmieten
   - id: noun-kaltmiete
     type: noun
-    lemma: "Kaltmiete"
+    lemma: Kaltmiete
     gloss:
-      - "rent excl. utilities"
+      - rent excl. utilities
     categories:
       - infrastructure-and-urban-life
     status: raw
@@ -12675,12 +12107,12 @@ records:
       - 1944
     noun:
       gender: f
-      plural: null
+      plural: Kaltmieten
   - id: phrase-meiner-meinung-nach
     type: phrase
-    lemma: "meiner Meinung nach"
+    lemma: meiner Meinung nach
     gloss:
-      - "in my opinion"
+      - in my opinion
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12688,9 +12120,9 @@ records:
       - 2043
   - id: phrase-ich-bin-der-ansicht-dass
     type: phrase
-    lemma: "ich bin der Ansicht, dass"
+    lemma: ich bin der Ansicht, dass
     gloss:
-      - "I am of the opinion that"
+      - I am of the opinion that
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12699,9 +12131,9 @@ records:
     source_note: "source: ich bin der Ansicht, dass..."
   - id: phrase-ich-vertrete-die-meinung-dass
     type: phrase
-    lemma: "ich vertrete die Meinung, dass"
+    lemma: ich vertrete die Meinung, dass
     gloss:
-      - "I hold the view that"
+      - I hold the view that
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12710,9 +12142,9 @@ records:
     source_note: "source: ich vertrete die Meinung, dass..."
   - id: phrase-ich-stimme-dir-zu
     type: phrase
-    lemma: "ich stimme dir zu"
+    lemma: ich stimme dir zu
     gloss:
-      - "I agree (with you)"
+      - I agree (with you)
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12721,30 +12153,20 @@ records:
     source_note: "source: ich stimme (dir) zu"
   - id: phrase-ich-bin-einverstanden
     type: phrase
-    lemma: "ich bin einverstanden"
+    lemma: ich bin einverstanden
     gloss:
-      - "I agree (with)"
+      - I agree (with)
     categories:
       - rhetoric-and-argumentation
     status: raw
     source_lines:
       - 2051
     government: mit
-  - id: verb-zustimmen-2
-    type: verb
-    lemma: "zustimmen"
-    gloss:
-      - "to agree"
-    categories:
-      - rhetoric-and-argumentation
-    status: raw
-    source_lines:
-      - 2053
   - id: verb-ablehnen
     type: verb
-    lemma: "ablehnen"
+    lemma: ablehnen
     gloss:
-      - "to reject"
+      - to reject
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12752,9 +12174,9 @@ records:
       - 2053
   - id: noun-zustimmung
     type: noun
-    lemma: "Zustimmung"
+    lemma: Zustimmung
     gloss:
-      - "agreement"
+      - agreement
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12765,9 +12187,9 @@ records:
       plural: null
   - id: noun-ablehnung
     type: noun
-    lemma: "Ablehnung"
+    lemma: Ablehnung
     gloss:
-      - "rejection"
+      - rejection
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12775,12 +12197,12 @@ records:
       - 2055
     noun:
       gender: f
-      plural: null
+      plural: Ablehnungen
   - id: phrase-ein-argument-vorbringen
     type: phrase
-    lemma: "ein Argument vorbringen"
+    lemma: ein Argument vorbringen
     gloss:
-      - "to put forward an argument"
+      - to put forward an argument
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12788,9 +12210,9 @@ records:
       - 2067
   - id: adjective-einleuchtend
     type: adjective
-    lemma: "einleuchtend"
+    lemma: einleuchtend
     gloss:
-      - "convincing"
+      - convincing
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12798,9 +12220,9 @@ records:
       - 2069
   - id: adjective-ueberzeugend
     type: adjective
-    lemma: "überzeugend"
+    lemma: überzeugend
     gloss:
-      - "persuasive"
+      - persuasive
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12808,9 +12230,9 @@ records:
       - 2071
   - id: adjective-plausibel
     type: adjective
-    lemma: "plausibel"
+    lemma: plausibel
     gloss:
-      - "plausible"
+      - plausible
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12818,9 +12240,9 @@ records:
       - 2073
   - id: adjective-zweifelhaft
     type: adjective
-    lemma: "zweifelhaft"
+    lemma: zweifelhaft
     gloss:
-      - "doubtful"
+      - doubtful
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12828,10 +12250,10 @@ records:
       - 2075
   - id: adjective-unsachlich
     type: adjective
-    lemma: "unsachlich"
+    lemma: unsachlich
     gloss:
-      - "biased"
-      - "unobjective"
+      - biased
+      - unobjective
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12839,9 +12261,9 @@ records:
       - 2077
   - id: verb-folgern
     type: verb
-    lemma: "folgern"
+    lemma: folgern
     gloss:
-      - "to conclude"
+      - to conclude
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12849,9 +12271,9 @@ records:
       - 2089
   - id: verb-schlussfolgern
     type: verb
-    lemma: "schlussfolgern"
+    lemma: schlussfolgern
     gloss:
-      - "to conclude"
+      - to conclude
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12859,19 +12281,9 @@ records:
       - 2089
   - id: verb-einleiten
     type: verb
-    lemma: "einleiten"
+    lemma: einleiten
     gloss:
-      - "to begin"
-    categories:
-      - rhetoric-and-argumentation
-    status: raw
-    source_lines:
-      - 2107
-  - id: verb-abschliessen-2
-    type: verb
-    lemma: "abschließen"
-    gloss:
-      - "to conclude"
+      - to begin
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12879,9 +12291,9 @@ records:
       - 2107
   - id: phrase-abschliessend
     type: phrase
-    lemma: "abschließend"
+    lemma: abschließend
     gloss:
-      - "in conclusion"
+      - in conclusion
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12889,9 +12301,9 @@ records:
       - 2111
   - id: phrase-meines-erachtens
     type: phrase
-    lemma: "meines Erachtens"
+    lemma: meines Erachtens
     gloss:
-      - "in my view"
+      - in my view
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12899,9 +12311,9 @@ records:
       - 2113
   - id: phrase-zunaechst
     type: phrase
-    lemma: "zunächst"
+    lemma: zunächst
     gloss:
-      - "firstly"
+      - firstly
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12909,9 +12321,9 @@ records:
       - 2115
   - id: phrase-ausserdem
     type: phrase
-    lemma: "außerdem"
+    lemma: außerdem
     gloss:
-      - "furthermore"
+      - furthermore
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12919,9 +12331,9 @@ records:
       - 2115
   - id: phrase-jedoch
     type: phrase
-    lemma: "jedoch"
+    lemma: jedoch
     gloss:
-      - "however"
+      - however
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12929,9 +12341,9 @@ records:
       - 2115
   - id: phrase-dennoch
     type: phrase
-    lemma: "dennoch"
+    lemma: dennoch
     gloss:
-      - "nevertheless"
+      - nevertheless
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12939,9 +12351,9 @@ records:
       - 2115
   - id: phrase-schliesslich
     type: phrase
-    lemma: "schließlich"
+    lemma: schließlich
     gloss:
-      - "finally"
+      - finally
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12949,9 +12361,9 @@ records:
       - 2115
   - id: adjective-sachlich
     type: adjective
-    lemma: "sachlich"
+    lemma: sachlich
     gloss:
-      - "objective"
+      - objective
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12959,29 +12371,19 @@ records:
       - 2119
   - id: adjective-objektiv
     type: adjective
-    lemma: "objektiv"
+    lemma: objektiv
     gloss:
-      - "objective"
+      - objective
     categories:
       - rhetoric-and-argumentation
     status: raw
     source_lines:
       - 2119
-  - id: adjective-emotional-2
-    type: adjective
-    lemma: "emotional"
-    gloss:
-      - "emotional"
-    categories:
-      - rhetoric-and-argumentation
-    status: raw
-    source_lines:
-      - 2121
   - id: adjective-subjektiv
     type: adjective
-    lemma: "subjektiv"
+    lemma: subjektiv
     gloss:
-      - "subjective"
+      - subjective
     categories:
       - rhetoric-and-argumentation
     status: raw
@@ -12989,32 +12391,23 @@ records:
       - 2121
   - id: noun-rhetorische-mittel
     type: noun
-    lemma: "rhetorische Mittel"
+    lemma: rhetorische Mittel
     gloss:
-      - "rhetorical device"
+      - rhetorical device
     categories:
       - rhetoric-and-argumentation
     status: raw
     source_lines:
       - 2131
+    source_note: "gender corrected from der to das"
     noun:
-      gender: m
-      plural: "rhetorischen Mittel"
-  - id: adjective-nachhaltig-2
-    type: adjective
-    lemma: "nachhaltig"
-    gloss:
-      - "sustainable"
-    categories:
-      - global-issues-and-sustainability
-    status: raw
-    source_lines:
-      - 2160
+      gender: n
+      plural: rhetorischen Mittel
   - id: noun-globale-sueden
     type: noun
-    lemma: "globale Süden"
+    lemma: globale Süden
     gloss:
-      - "global South"
+      - global South
     categories:
       - global-issues-and-sustainability
     status: raw
@@ -13025,9 +12418,9 @@ records:
       plural: null
   - id: noun-globale-norden
     type: noun
-    lemma: "globale Norden"
+    lemma: globale Norden
     gloss:
-      - "global North"
+      - global North
     categories:
       - global-issues-and-sustainability
     status: raw
