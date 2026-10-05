@@ -218,3 +218,6 @@ Both committed on the branch (1569f7e); CLAUDE.md update added to layout/scope.
 
 <!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-05-vocab-typer-p4 created=2026-10-05T06:55:08+00:00 -->
 ### phase-split-2026-10-05-vocab-typer-p4 · decision · ask: operator-owned UX direction and assets gate the UI build (manual)
+
+<!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-05-vocab-typer-p5 created=2026-10-05T06:55:10+00:00 -->
+### phase-split-2026-10-05-vocab-typer-p5 · decision · ask: R7-R10, R13 learning loop
