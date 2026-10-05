@@ -13909,12 +13909,16 @@ records:
       - perspective
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2129
     noun:
       gender: f
       plural: Perspektiven
+    examples:
+      - { de: "Aus dieser Perspektive sieht das Problem ganz anders aus.", en: "From this perspective, the problem looks quite different.", tags: [singular, Präsens] }
+      - { de: "Der Roman wird aus der Perspektive eines Kindes erzählt.", en: "The novel is told from the perspective of a child.", tags: [singular, Passiv, Präsens] }
+      - { de: "Junge Menschen auf dem Land haben oft wenig berufliche Perspektiven.", en: "Young people in rural areas often have few career prospects.", tags: [plural, Präsens] }
   - id: noun-wiederholung
     type: noun
     lemma: Wiederholung
@@ -13922,12 +13926,16 @@ records:
       - repetition
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2133
     noun:
       gender: f
       plural: Wiederholungen
+    examples:
+      - { de: "Wiederholung ist beim Vokabellernen das Wichtigste.", en: "Repetition is the most important thing when learning vocabulary.", tags: [singular, Präsens] }
+      - { de: "Vermeiden Sie in Ihrem Text unnötige Wiederholungen.", en: "Avoid unnecessary repetition in your text.", tags: [plural, Imperativ] }
+      - { de: "Die Rednerin setzte die Wiederholung bewusst als Stilmittel ein.", en: "The speaker used repetition deliberately as a stylistic device.", tags: [singular, Präteritum] }
   - id: noun-metapher
     type: noun
     lemma: Metapher
@@ -13935,12 +13943,16 @@ records:
       - metaphor
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2135
     noun:
       gender: f
       plural: Metaphern
+    examples:
+      - { de: "„Das Leben ist eine Reise“ ist eine bekannte Metapher.", en: "\"Life is a journey\" is a well-known metaphor.", tags: [singular, Präsens] }
+      - { de: "Der Dichter verwendet viele Metaphern aus der Natur.", en: "The poet uses many metaphors from nature.", tags: [plural, Präsens] }
+      - { de: "Die Schüler hatten die Metapher im Gedicht nicht erkannt.", en: "The pupils had not recognised the metaphor in the poem.", tags: [singular, Plusquamperfekt] }
   - id: noun-ironie
     type: noun
     lemma: Ironie
@@ -13948,12 +13960,16 @@ records:
       - irony
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2137
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Er sagte das mit leiser Ironie.", en: "He said it with a hint of irony.", tags: [singular, Präteritum] }
+      - { de: "Die Ironie der Geschichte ist, dass er am Ende recht hatte.", en: "The irony of the story is that he was right in the end.", tags: [singular, Präsens] }
+      - { de: "Ironie wird im Internet oft missverstanden.", en: "Irony is often misunderstood on the internet.", tags: [singular, Passiv, Präsens] }
   - id: noun-uebertreibung
     type: noun
     lemma: Übertreibung
@@ -13961,25 +13977,34 @@ records:
       - exaggeration
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2139
     noun:
       gender: f
       plural: Übertreibungen
+    examples:
+      - { de: "Das ist doch eine maßlose Übertreibung!", en: "That's a gross exaggeration!", tags: [singular, Präsens] }
+      - { de: "Ohne Übertreibung: Das war der beste Urlaub meines Lebens.", en: "Without exaggeration, that was the best holiday of my life.", tags: [singular, Präteritum] }
+      - { de: "Werbung arbeitet gern mit Übertreibungen.", en: "Advertising likes to work with exaggerations.", tags: [plural, Präsens] }
   - id: noun-gegenueberstellung
     type: noun
     lemma: Gegenüberstellung
     gloss:
       - contrast
+      - juxtaposition
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2141
     noun:
       gender: f
       plural: Gegenüberstellungen
+    examples:
+      - { de: "Die Gegenüberstellung von Vor- und Nachteilen hilft bei der Entscheidung.", en: "Setting the pros and cons side by side helps with the decision.", tags: [singular, Präsens] }
+      - { de: "Der Aufsatz lebt von der Gegenüberstellung zweier Lebenswelten.", en: "The essay thrives on the contrast between two worlds.", tags: [singular, Präsens] }
+      - { de: "In der Tabelle finden Sie mehrere Gegenüberstellungen von Preisen.", en: "In the table you'll find several comparisons of prices.", tags: [plural, Präsens] }
   - id: noun-umwelt
     type: noun
     lemma: Umwelt
@@ -16979,9 +17004,15 @@ records:
       - in my opinion
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2043
+    phrase:
+      register: neutral
+    examples:
+      - { de: "Meiner Meinung nach sollte das Rauchen in Parks verboten werden.", en: "In my opinion, smoking in parks should be banned.", tags: [Konjunktiv II] }
+      - { de: "Das ist meiner Meinung nach der falsche Weg.", en: "In my opinion, this is the wrong way to go.", tags: [Präsens] }
+      - { de: "Meiner Meinung nach hat die Regierung zu spät reagiert.", en: "In my opinion, the government reacted too late.", tags: [Perfekt] }
   - id: phrase-ich-bin-der-ansicht-dass
     type: phrase
     lemma: ich bin der Ansicht, dass
@@ -16989,10 +17020,15 @@ records:
       - I am of the opinion that
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2045
     source_note: "source: ich bin der Ansicht, dass..."
+    phrase:
+      register: formal
+    examples:
+      - { de: "Ich bin der Ansicht, dass Bildung kostenlos sein sollte.", en: "I am of the opinion that education should be free.", tags: [Präsens] }
+      - { de: "Ich bin der Ansicht, dass man darüber offen sprechen muss.", en: "I believe that we have to talk about this openly.", tags: [Präsens] }
   - id: phrase-ich-vertrete-die-meinung-dass
     type: phrase
     lemma: ich vertrete die Meinung, dass
@@ -17000,10 +17036,15 @@ records:
       - I hold the view that
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2047
     source_note: "source: ich vertrete die Meinung, dass..."
+    phrase:
+      register: formal
+    examples:
+      - { de: "Ich vertrete die Meinung, dass Social Media Jugendlichen schadet.", en: "I hold the view that social media harms young people.", tags: [Präsens] }
+      - { de: "Ich vertrete die Meinung, dass jeder eine zweite Chance verdient.", en: "I take the view that everyone deserves a second chance.", tags: [Präsens] }
   - id: phrase-ich-stimme-dir-zu
     type: phrase
     lemma: ich stimme dir zu
@@ -17011,10 +17052,16 @@ records:
       - I agree (with you)
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2049
     source_note: "source: ich stimme (dir) zu"
+    phrase:
+      register: informal
+    examples:
+      - { de: "Ich stimme dir zu, das Konzert war großartig.", en: "I agree with you, the concert was great.", tags: [Präsens] }
+      - { de: "Ich stimme dir zu, aber nur teilweise.", en: "I agree with you, but only partly.", tags: [Präsens] }
+      - { de: "In diesem Punkt stimme ich dir voll und ganz zu.", en: "On this point I agree with you completely.", tags: [Präsens] }
   - id: phrase-ich-bin-einverstanden
     type: phrase
     lemma: ich bin einverstanden
@@ -17022,10 +17069,16 @@ records:
       - I agree (with)
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2051
     government: mit
+    phrase:
+      register: neutral
+    examples:
+      - { de: "Ich bin mit dem Vorschlag einverstanden.", en: "I agree with the proposal.", tags: [Präsens] }
+      - { de: "Wenn du einverstanden bist, buche ich die Tickets.", en: "If you agree, I'll book the tickets.", tags: [Präsens] }
+      - { de: "Ich bin einverstanden, dass wir den Termin verschieben.", en: "I agree that we should postpone the appointment.", tags: [Präsens] }
   - id: verb-ablehnen
     type: verb
     lemma: ablehnen
@@ -17033,22 +17086,39 @@ records:
       - to reject
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2053
+    verb:
+      separable: ab
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "lehnt ab"
+        praeteritum: "lehnte ab"
+        partizip2: "abgelehnt"
+    examples:
+      - { de: "Sie lehnt das Angebot höflich ab.", en: "She politely declines the offer.", tags: [separated, Präsens] }
+      - { de: "Mein Antrag wurde leider abgelehnt.", en: "Unfortunately, my application was rejected.", tags: [Passiv, Präteritum] }
+      - { de: "Der Bundestag hat den Gesetzentwurf abgelehnt.", en: "The Bundestag rejected the bill.", tags: [Perfekt] }
   - id: noun-zustimmung
     type: noun
     lemma: Zustimmung
     gloss:
       - agreement
+      - approval
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2055
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Der Vorschlag fand breite Zustimmung.", en: "The proposal met with broad approval.", tags: [singular, Präteritum] }
+      - { de: "Für den Umbau brauchen Sie die Zustimmung des Vermieters.", en: "You need the landlord's consent for the alterations.", tags: [singular, Präsens] }
+      - { de: "Sie nickte zum Zeichen der Zustimmung.", en: "She nodded in agreement.", tags: [singular, Präteritum] }
   - id: noun-ablehnung
     type: noun
     lemma: Ablehnung
@@ -17056,12 +17126,16 @@ records:
       - rejection
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2055
     noun:
       gender: f
       plural: Ablehnungen
+    examples:
+      - { de: "Die Ablehnung kam per E-Mail.", en: "The rejection came by email.", tags: [singular, Präteritum] }
+      - { de: "Der Plan stieß auf heftige Ablehnung.", en: "The plan met with fierce opposition.", tags: [singular, Präteritum] }
+      - { de: "Nach fünf Ablehnungen bekam er endlich eine Zusage.", en: "After five rejections he finally got an offer.", tags: [plural, Präteritum] }
   - id: phrase-ein-argument-vorbringen
     type: phrase
     lemma: ein Argument vorbringen
@@ -17069,19 +17143,34 @@ records:
       - to put forward an argument
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2067
+    phrase:
+      register: formal
+    examples:
+      - { de: "Sie brachte ein überzeugendes Argument vor.", en: "She put forward a convincing argument.", tags: [Präteritum] }
+      - { de: "Kann jemand ein Argument dagegen vorbringen?", en: "Can anyone put forward an argument against it?", tags: [Präsens] }
+      - { de: "Der Anwalt hat ein neues Argument vorgebracht.", en: "The lawyer has put forward a new argument.", tags: [Perfekt] }
   - id: adjective-einleuchtend
     type: adjective
     lemma: einleuchtend
     gloss:
       - convincing
+      - plausible
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2069
+    adjective:
+      gradable: true
+      comparative: "einleuchtender"
+      superlative: "am einleuchtendsten"
+    examples:
+      - { de: "Ihre Erklärung ist einleuchtend.", en: "Your explanation makes sense.", tags: [Präsens] }
+      - { de: "Er nannte einen einleuchtenden Grund für seine Verspätung.", en: "He gave a plausible reason for being late.", tags: [attributive, Präteritum] }
+      - { de: "Die zweite Begründung finde ich einleuchtender.", en: "I find the second justification more convincing.", tags: [comparative, Präsens] }
   - id: adjective-ueberzeugend
     type: adjective
     lemma: überzeugend
@@ -17089,9 +17178,17 @@ records:
       - persuasive
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2071
+    adjective:
+      gradable: true
+      comparative: "überzeugender"
+      superlative: "am überzeugendsten"
+    examples:
+      - { de: "Sie hielt eine überzeugende Rede.", en: "She gave a persuasive speech.", tags: [attributive, Präteritum] }
+      - { de: "Sein Argument klingt nicht sehr überzeugend.", en: "His argument doesn't sound very convincing.", tags: [Präsens] }
+      - { de: "Die Kandidatin wirkte im zweiten Interview überzeugender.", en: "The candidate came across as more convincing in the second interview.", tags: [comparative, Präteritum] }
   - id: adjective-plausibel
     type: adjective
     lemma: plausibel
@@ -17099,9 +17196,17 @@ records:
       - plausible
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2073
+    adjective:
+      gradable: true
+      comparative: "plausibler"
+      superlative: "am plausibelsten"
+    examples:
+      - { de: "Das ist eine plausible Erklärung.", en: "That is a plausible explanation.", tags: [attributive, Präsens] }
+      - { de: "Seine Geschichte klingt nicht sehr plausibel.", en: "His story doesn't sound very plausible.", tags: [Präsens] }
+      - { de: "Die zweite Theorie erscheint mir plausibler.", en: "The second theory seems more plausible to me.", tags: [comparative, Präsens] }
   - id: adjective-zweifelhaft
     type: adjective
     lemma: zweifelhaft
@@ -17109,9 +17214,17 @@ records:
       - doubtful
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2075
+    adjective:
+      gradable: true
+      comparative: "zweifelhafter"
+      superlative: "am zweifelhaftesten"
+    examples:
+      - { de: "Der Erfolg der Reform ist noch zweifelhaft.", en: "The success of the reform is still doubtful.", tags: [Präsens] }
+      - { de: "Er verdiente sein Geld mit zweifelhaften Geschäften.", en: "He made his money from dubious business deals.", tags: [attributive, Präteritum] }
+      - { de: "Die Quelle ist noch zweifelhafter als die erste.", en: "This source is even more questionable than the first.", tags: [comparative, Präsens] }
   - id: adjective-unsachlich
     type: adjective
     lemma: unsachlich
@@ -17120,9 +17233,17 @@ records:
       - unobjective
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2077
+    adjective:
+      gradable: true
+      comparative: "unsachlicher"
+      superlative: "am unsachlichsten"
+    examples:
+      - { de: "Die Diskussion wurde immer unsachlicher.", en: "The discussion became less and less objective.", tags: [comparative, Präteritum] }
+      - { de: "Unsachliche Kommentare werden gelöscht.", en: "Comments that are not objective will be deleted.", tags: [attributive, Passiv, Präsens] }
+      - { de: "Der Artikel ist unsachlich und einseitig.", en: "The article is biased and one-sided.", tags: [Präsens] }
   - id: verb-folgern
     type: verb
     lemma: folgern
@@ -17130,9 +17251,20 @@ records:
       - to conclude
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2089
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "folgert"
+        praeteritum: "folgerte"
+        partizip2: "gefolgert"
+    examples:
+      - { de: "Was folgern Sie aus diesen Ergebnissen?", en: "What do you conclude from these results?", tags: [Präsens] }
+      - { de: "Daraus hat die Kommission gefolgert, dass das Gesetz geändert werden muss.", en: "From this, the commission concluded that the law must be changed.", tags: [Perfekt] }
+      - { de: "Aus seinem Schweigen folgerte sie, dass er einverstanden war.", en: "From his silence she concluded that he agreed.", tags: [Präteritum] }
   - id: verb-schlussfolgern
     type: verb
     lemma: schlussfolgern
@@ -17140,19 +17272,43 @@ records:
       - to conclude
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2089
+    verb:
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "schlussfolgert"
+        praeteritum: "schlussfolgerte"
+        partizip2: "geschlussfolgert"
+    examples:
+      - { de: "Die Autoren schlussfolgern, dass weitere Studien nötig sind.", en: "The authors conclude that further studies are needed.", tags: [Präsens] }
+      - { de: "Daraus haben wir geschlussfolgert, dass der Plan nicht funktioniert.", en: "From that we concluded that the plan doesn't work.", tags: [Perfekt] }
+      - { de: "Der Detektiv schlussfolgerte aus den Spuren, wer der Täter war.", en: "The detective deduced from the clues who the culprit was.", tags: [Präteritum] }
   - id: verb-einleiten
     type: verb
     lemma: einleiten
     gloss:
-      - to begin
+      - to introduce (a text, a speech)
+      - to initiate
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2107
+    verb:
+      separable: ein
+      auxiliary: haben
+      reflexive: false
+      parts:
+        praesens_3sg: "leitet ein"
+        praeteritum: "leitete ein"
+        partizip2: "eingeleitet"
+    examples:
+      - { de: "Ich leite meinen Vortrag mit einer kurzen Geschichte ein.", en: "I'm introducing my talk with a short story.", tags: [separated, Präsens] }
+      - { de: "Die Polizei hat ein Verfahren gegen ihn eingeleitet.", en: "The police have initiated proceedings against him.", tags: [Perfekt] }
+      - { de: "Der Moderator leitete die Diskussion mit einer Frage ein.", en: "The presenter opened the discussion with a question.", tags: [separated, Präteritum] }
   - id: phrase-abschliessend
     type: phrase
     lemma: abschließend
@@ -17160,9 +17316,14 @@ records:
       - in conclusion
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2111
+    phrase:
+      register: formal
+    examples:
+      - { de: "Abschließend möchte ich mich bei allen Helfern bedanken.", en: "In conclusion, I would like to thank all the helpers.", tags: [Präsens] }
+      - { de: "Abschließend lässt sich sagen, dass das Projekt ein Erfolg war.", en: "In conclusion, it can be said that the project was a success.", tags: [Präsens] }
   - id: phrase-meines-erachtens
     type: phrase
     lemma: meines Erachtens
@@ -17170,9 +17331,15 @@ records:
       - in my view
     categories:
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 2113
+    phrase:
+      register: formal
+    examples:
+      - { de: "Meines Erachtens ist der Plan zu teuer.", en: "In my view, the plan is too expensive.", tags: [Präsens] }
+      - { de: "Das ist meines Erachtens ein großer Fehler.", en: "In my view, that is a big mistake.", tags: [Präsens] }
+      - { de: "Meines Erachtens hätte man früher handeln müssen.", en: "In my view, action should have been taken earlier.", tags: [Konjunktiv II] }
   - id: phrase-zunaechst
     type: phrase
     lemma: zunächst
