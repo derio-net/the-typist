@@ -15,6 +15,10 @@ every sentence yourself: **no per-record external LLM calls**, no `claude -p`.
 You never set `status: reviewed` (that is a human step) and you **never change an
 id**: not when merging, not when a lemma changes.
 
+Precondition: the list validates and has no `unresolved:` key (that was
+`typist-structure`'s job). `merge-dupes` rewrites the file as plain YAML, so
+YAML comments are not preserved; there are none to lose in generated lists.
+
 ## Rules you must meet (R3)
 
 Records use exactly the schema's keys (the schema is strict: unknown keys fail).
@@ -82,11 +86,14 @@ Repeat until a stop condition:
 3. `npm run typist -- validate lists/<id>.yaml`; fix every error it prints
    (`records[N] (id): message`) and re-run until `ok`.
 4. Commit: `git add lists/<id>.yaml && git commit -m "content(<list>): enrich <id1> <id2> …"`
-   (all ids of the batch; keep the subject on one line).
+   (all ids of the batch; keep the subject on one line, e.g.
+   `content(politics): enrich noun-fakultaet verb-sich-vorstellen adjective-befristet`,
+   using the record id, so a reflexive verb keeps its old `verb-sich-…` id).
 5. Back to step 1.
 
 **Stop** when `next-batch` prints nothing (no raw left), or when the caller's
-`--category` scope prints nothing. Report which; never set `reviewed`.
+`--category` scope prints nothing. `next-batch` printing nothing (exit 0) is the normal end signal. Report which
+condition ended the run; never set `reviewed`.
 
 ### What to write per type
 
@@ -108,8 +115,9 @@ a separable verb needs an example tagged `separated` (prefix split off, e.g.
 **Adjective** — `adjective: {gradable: bool, comparative?, superlative?}`.
 Examples: ≥ 2, at least one `attributive` (declined form before a noun:
 *ein befristeter Vertrag*). When gradable, give **both** `comparative` and
-`superlative` (`besser`, `am besten`-style superlative as `am besten`) and an example
-tagged `comparative` or `superlative`.
+`superlative` as the forms shown in the game (`besser`, `am besten`) and an example
+tagged `comparative` or `superlative`. A non-gradable adjective is just
+`adjective: {gradable: false}` (no comparative/superlative; *befristet*, *schriftlich*).
 
 **Phrase** — `phrase: {register?: formal|informal|neutral, literal?}`. Examples:
 ≥ 2 realistic contexts that show the register (letter closings, spoken
