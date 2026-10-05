@@ -56,11 +56,16 @@ could not. You never enrich (no type blocks, no examples): that is
 - **`und`**: `und` compounds (`das Angebot und die Nachfrage`, `das A und O sein`)
   are a single `phrase` record (lemma = the source text), unless it is clearly two
   independent words, in which case split.
+- **Category:** every unresolved entry carries the `category` of its section;
+  give the resolved record(s) `categories: [<that id>]`.
 - **`phrase`**: multi-word lines that are not a noun shape: idioms, adverbs,
   connectors, greetings, `X sein` forms, `etwas …` constructions. One `phrase`
-  record, lemma = the text exactly as in the source; a noun phrase with an
-  article that merely failed the shape check (more than adjective + noun) is
-  still a `phrase` unless it is plainly a noun.
+  record, lemma = the source text **minus any trailing parenthesis**: a trailing
+  abbreviation (`(UN)`, `(EU)`) goes to `abbreviation`, a trailing preposition
+  (`zuständig sein (für)`) goes to `government`. A noun phrase with an article
+  that merely failed the shape check is a `noun` when it is plainly one,
+  including proper names with a capitalised adjective (`die Vereinten Nationen`
+  → noun, plural_only; `die Europäische Union` → noun f); otherwise `phrase`.
 - **`word`**: a single article-less word that is not a verb (adjectives, adverbs,
   nouns without article): `type: adjective` for adjectives, `type: phrase` for
   adverbs and connectors; a noun gets its article and `noun: { gender, plural: null }`
@@ -70,19 +75,26 @@ could not. You never enrich (no type blocks, no examples): that is
   phrase** (`Sehr geehrte Damen und Herren,`), with the original text kept in
   `source_note: "source: <original>"`. Write it so it contains no `...`.
 - **`plural`**: a plural the parser could not build (adjective + noun, or a
-  stem/umlaut form). Write the **full plural out** (`die sozialen Netzwerke`
-  → `plural: soziale Netzwerke`) in `noun.plural`, with gender from the article.
+  stem/umlaut form). Write the **full plural out** in `noun.plural`, exactly as
+  it reads after `die` — an adjective takes its weak plural ending:
+  `das soziale Netzwerk` → `plural: sozialen Netzwerke` (shown as
+  "die sozialen Netzwerke"). Gender comes from the singular's article.
 - **`parenthetical`**: a parenthesis that is not a government preposition,
-  `(pl.)`, `(sich)` or an abbreviation. Government-like (`verabschieden (ein Gesetz)`):
-  keep the verb as lemma, put the parenthesis in `government`
-  (`ein Gesetz`). Expansion of an abbreviation (`der NC (Numerus Clausus)`):
+  `(pl.)`, `(sich)` or an abbreviation. `government` only ever holds a
+  preposition, optionally with its case (`für`, `an + D`). A parenthesis naming
+  an object (`verabschieden (ein Gesetz)`) is a sense hint: keep the verb as
+  lemma, leave `government` unset, and keep the hint in the gloss
+  (`to pass (a law)`) or `source_note`. If the id then collides with another
+  sense of the same verb, the `-2` suffix is correct: they are different senses.
+  Expansion of an abbreviation (`der NC (Numerus Clausus)`):
   `abbreviation: NC`, lemma the long form.
 - **`gloss`**: the right-hand side was empty: ask the operator, never invent it.
 
 ## Conventions the parser uses
 
-- A reflexive verb keeps `sich` in the raw lemma (`sich vorstellen`); its id is
-  from the bare verb (`verb-vorstellen`). `typist-enrich` later converts it to
+- A reflexive verb keeps `sich` in the lemma and the id (`sich vorstellen` →
+  `verb-sich-vorstellen`), so it never collides with the plain verb
+  (`vorstellen` → `verb-vorstellen`). `typist-enrich` later converts it to
   `lemma: vorstellen` with `verb.reflexive: true`.
 - Nouns with no plural in the source get `plural: null`; `typist-enrich`
   verifies that against its own German knowledge.

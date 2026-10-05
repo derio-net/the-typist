@@ -74,9 +74,9 @@ describe('resolved shapes', () => {
   it('article-less single -en word is a verb', () => {
     expect(rec('publizieren')).toMatchObject({ id: 'verb-publizieren', type: 'verb', lemma: 'publizieren', gloss: ['to publish'] });
   });
-  it('reflexive verbs keep sich in the lemma but not in the id', () => {
-    expect(rec('sich vorstellen')).toMatchObject({ id: 'verb-vorstellen', type: 'verb', lemma: 'sich vorstellen' });
-    expect(rec('verabschieden (sich)')).toMatchObject({ id: 'verb-verabschieden', type: 'verb', lemma: 'sich verabschieden' });
+  it('reflexive verbs keep sich in both lemma and id, so they never collide with the plain verb (p2-r3)', () => {
+    expect(rec('sich vorstellen')).toMatchObject({ id: 'verb-sich-vorstellen', type: 'verb', lemma: 'sich vorstellen' });
+    expect(rec('verabschieden (sich)')).toMatchObject({ id: 'verb-sich-verabschieden', type: 'verb', lemma: 'sich verabschieden' });
     expect(rec('verabschieden (sich)').government).toBeUndefined();
   });
   it('parenthetical government', () => {
@@ -122,5 +122,14 @@ describe('unresolved shapes', () => {
     expect(u.reason).toBe(reason);
     expect(u.text).toBe(seedLine(lhs));
     expect(u.line).toBe(3);
+  });
+});
+
+describe('review fixes (phase 2)', () => {
+  it('an -en word without a "to …" gloss is not a verb (p2-r1)', () => {
+    expect(unresolved('zufrieden')).toMatchObject({ reason: 'word' });
+  });
+  it('unresolved entries carry their section category (p2-r7)', () => {
+    expect(unresolved('zufrieden')).toMatchObject({ category: 'test-section' });
   });
 });

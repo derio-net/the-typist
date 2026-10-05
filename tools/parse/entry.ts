@@ -7,6 +7,7 @@ export interface Unresolved {
   line: number;
   text: string;
   reason: Reason;
+  category?: string;
 }
 
 interface Ctx {
@@ -27,7 +28,12 @@ type Article = keyof typeof GENDER;
 const isArticle = (s: string): s is Article => s in GENDER;
 const CAPITAL = /^[A-ZÄÖÜ]/;
 
-const fail = (c: Ctx, reason: Reason): Unresolved => ({ line: c.line, text: c.text, reason });
+const fail = (c: Ctx, reason: Reason): Unresolved => ({
+  line: c.line,
+  text: c.text,
+  reason,
+  ...(c.category ? { category: c.category } : {}),
+});
 
 /** Split on ', ' outside parentheses. */
 export function splitGloss(rhs: string): string[] {
@@ -71,7 +77,7 @@ export function buildPlural(lemma: string, form: string): string | null {
 }
 
 const base = (c: Ctx, type: VocabRecord['type'], lemma: string): VocabRecord => ({
-  id: `${type}-${slug(lemma.replace(/^sich /, ''))}`,
+  id: `${type}-${slug(lemma)}`,
   type,
   lemma,
   gloss: c.gloss,
@@ -176,6 +182,8 @@ function verbShape(c: Ctx, head: string, plural: string | undefined, paren: Pare
   const words = tokens[0] === 'sich' ? tokens.slice(1) : tokens;
   if (words.length !== 1) return fail(c, 'phrase');
   if (!/(en|ern|eln)$/.test(words[0]) || CAPITAL.test(words[0])) return fail(c, 'word');
+  // -en adjectives (zufrieden, gelassen) look like infinitives; every seed verb's gloss starts with "to "
+  if (!/^to /.test(c.gloss[0] ?? '')) return fail(c, 'word');
   if (plural !== undefined || paren.plural_only || paren.abbreviation) return fail(c, 'parenthetical');
   const r = base(c, 'verb', reflexive ? `sich ${words[0]}` : words[0]);
   if (paren.government) r.government = paren.government;

@@ -26,7 +26,7 @@ describe('cli parse', () => {
     expect(doc.records).toHaveLength(4);
     for (const rec of doc.records) expect(rec.status).toBe('raw');
     expect(doc.unresolved).toEqual([
-      { line: 14, text: 'die Daumen drücken – to keep one’s fingers crossed', reason: 'phrase' },
+      { line: 14, text: 'die Daumen drücken – to keep one’s fingers crossed', reason: 'phrase', category: 'academic-and-higher-education' },
     ]);
     expect(Object.keys(doc).at(-1)).toBe('unresolved');
   });
