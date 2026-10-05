@@ -862,3 +862,8 @@ Filed at closeout as #2.
 ### p3-r9-resolved-2 · finding [deferred → #2] · resolves p3-r9: No devicePixelRatio scaling / responsive fit
 
 Filed at closeout as #2.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r15-resolved-2 created=2026-10-05T21:12:05+00:00 state=open resolves=p3-r15 tracked_by=#2 -->
+### p3-r15-resolved-2 · finding [deferred → #2] · resolves p3-r15: findSlot ignores the HUD rectangle
+
+Filed at closeout as #2.
