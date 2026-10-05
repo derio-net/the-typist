@@ -1,86 +1,33 @@
 schema_version: 2
 phase:
   number: 5
-  title: Learning loop — grading, FSRS, sessions, aids, menus
+  title: Seed list I — structure the full seed, organise, enrich sections 1–11
   tag: agentic
   depends_on:
-  - 3
+  - 2
   - 4
   tracking_issue: null
   acceptance:
-  - srs-sessions
-  - learning-aids
-  - degraded-states
+  - seed-list
   tier: standard
   files:
-  - package.json
-  - package-lock.json
-  - src/srs/**
-  - src/session/**
-  - src/platform/tts.ts
-  - src/platform/settings.ts
-  - src/platform/storage.ts
-  - src/ui/**
-  - src/render/**
-  - src/main.ts
-  - src/content/bundled.ts
-  - tests/srs/**
-  - tests/session/**
-  - tests/platform/**
-  - tests/ui/**
-  estimate_lines: 1600
+  - lists/de-b2-1000.yaml
+  estimate_lines: 9000
 tasks:
 - number: 1
-  title: Grading (R7)
+  title: Structure and organise
   steps:
   - id: P5.T1.S1
-    text: |-
-      RED: `tests/srs/grade.test.ts` boundaries: escaped with 0 typos → Again; typos/expected = 0.10 exactly → not Hard (Good or Easy by speed); 0.11 → Hard; 0 typos and cps exactly 2.5 → Good; 2.51 → Easy; 1 typo, fast → Good. cps = expectedChars / (sum of activeMs / 1000).
+    text: Following `.claude/skills/typist-structure/SKILL.md`, build `lists/de-b2-1000.yaml` from `wordlist.raw.txt` (list id de-b2-1000, title 'German B2 – 1000 words'); resolve all unresolved lines; `validate` passes; commit.
   - id: P5.T1.S2
-    text: |-
-      GREEN: `src/srs/grade.ts` exporting `TARGET_CPS = 2.5` and `grade(result)`. Tests pass.
+    text: Following the organise half of `.claude/skills/typist-enrich/SKILL.md`, merge duplicates and verify/correct nouns; `validate` passes; commit. Ids are frozen from this commit on.
 - number: 2
-  title: FSRS store with fallbacks (R7, R13)
+  title: Enrich categories with order 1–11
   steps:
   - id: P5.T2.S1
-    text: |-
-      RED: add `ts-fsrs` and `fake-indexeddb` (dev). `tests/srs/store.test.ts`: `review(listId, recordId, grade, now)` creates/updates a card in object store `cards` key `listId:recordId` with counters seen/typos/escapes; first grade increments `meta` key `new:<listId>:<local yyyy-mm-dd>`; `dueCards(listId, now)`; `newCountToday(listId, now)` uses the local date; when `indexedDB.open` throws, `openStore()` returns an in-memory store with `persistent: false`.
+    text: Following the enrich loop, enrich every record whose primary category has order ≤ 11, batch by batch (`next-batch --category <id>`), validating and committing per batch. Record in the plan journal the batch count and any records needing operator attention.
   - id: P5.T2.S2
-    text: |-
-      GREEN: implement `src/srs/fsrs.ts` (ts-fsrs default params, Rating mapping) and `src/srs/store.ts` (IndexedDB `typist`, stores `cards` and `meta`, in-memory fallback). Tests pass.
-- number: 3
-  title: Session builders (R8, R9, R13)
-  steps:
-  - id: P5.T3.S1
-    text: |-
-      RED: `tests/session/session.test.ts`: study = due + new up to cap(10) − newCountToday; raw records never included; grouped by primary category; categories ordered by their most overdue card, new-only categories after in `order`; waves ≤6, shuffled with an injected RNG; uncategorised list chunks in record order; free play = all playable records whose categories include the chosen id; uncategorised free play = whole list in order; empty study → `{kind:'empty'}`; zero playable records → `{kind:'nothing-playable'}`; a record first graded in free play reduces the next study's new allowance.
-  - id: P5.T3.S2
-    text: |-
-      GREEN: implement `src/session/study.ts`, `src/session/freeplay.ts`, `src/session/waves.ts`. Tests pass.
-- number: 4
-  title: Settings, TTS, storage banner (R10, R13)
-  steps:
-  - id: P5.T4.S1
-    text: |-
-      RED: `tests/platform/settings.test.ts` — four toggles (chip, translation, tts, recap) default true, persist to localStorage, survive reload; when localStorage throws, settings work in memory and `persistent` is false. `tests/platform/tts.test.ts` — picks the first `de-*` voice; no German voice → `available: false` with reason; speak() is a no-op when disabled.
-  - id: P5.T4.S2
-    text: |-
-      GREEN: implement `src/platform/settings.ts`, `src/platform/tts.ts`, `src/platform/storage.ts` (single `storageWarning()` true when either SRS or settings is non-persistent). Tests pass.
-- number: 5
-  title: Screens per docs/style-guide.md
-  steps:
-  - id: P5.T5.S1
-    text: |-
-      Implement `src/ui/` screens as DOM overlays styled from `docs/style-guide.md` and theme tokens: main menu (bundled lists from `src/content/bundled.ts` via import.meta.glob of the plugin's JSON modules; Study; Free play → category picker or whole list), settings (four toggles; TTS disabled with the reason when unavailable), recap card (per Again/Hard record: display form, gloss, forms, all sentences + translations), session summary, storage-warning banner, empty-study prompt offering free play, nothing-playable message.
-  - id: P5.T5.S2
-    text: |-
-      Wire the loop in `src/main.ts`: session → waves → World → per-record grade → store.review → recap (if toggle on and any Again/Hard) → next wave → summary. Renderer honours chip/translation toggles; TTS speaks a destroyed ship's text when on.
-  - id: P5.T5.S3
-    text: |-
-      RED→GREEN: `tests/ui/flow.test.ts` (jsdom, fake timers, in-memory store, two-record fixture) drives a wave via the World API and asserts recap shows for a record forced to Hard and the summary lists both records. Then verify in the browser and capture screenshots for visual states settings-four-toggles, sentence-ship-chip-and-translation, recap-card, toggle-aid-persists-after-reload, empty-study-offers-free-play, storage-warning-banner, tts-toggle-disabled-note. `npm test` and `npm run build` green. Commit.
-  - id: P5.T5.S4
-    text: |-
-      REFACTOR: remove the P3 dev-only fixture path from main.ts if superseded by the menu; tests green.
+    text: 'Check: `npm run typist -- stats lists/de-b2-1000.yaml` shows zero `raw` records in categories with order ≤ 11; `validate` passes; `npm run build` passes (list bundles).'
 state:
   steps:
     P5.T1.S1:
@@ -96,38 +43,6 @@ state:
       ticked_at: null
       note: null
     P5.T2.S2:
-      state: ' '
-      ticked_at: null
-      note: null
-    P5.T3.S1:
-      state: ' '
-      ticked_at: null
-      note: null
-    P5.T3.S2:
-      state: ' '
-      ticked_at: null
-      note: null
-    P5.T4.S1:
-      state: ' '
-      ticked_at: null
-      note: null
-    P5.T4.S2:
-      state: ' '
-      ticked_at: null
-      note: null
-    P5.T5.S1:
-      state: ' '
-      ticked_at: null
-      note: null
-    P5.T5.S2:
-      state: ' '
-      ticked_at: null
-      note: null
-    P5.T5.S3:
-      state: ' '
-      ticked_at: null
-      note: null
-    P5.T5.S4:
       state: ' '
       ticked_at: null
       note: null
