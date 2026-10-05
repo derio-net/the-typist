@@ -3,6 +3,7 @@ import { parseList } from '../schema';
 import { createKeyboard } from '../platform/keyboard';
 import { advance, createWorld, typeChar, type World, type WorldEvent } from '../engine/world';
 import { createRenderer } from '../render/renderer';
+import { loadSprites } from '../render/sprites';
 
 /** Dev-only play page: one wave of the two-record fixture (`/?dev=fixture`). */
 export function startFixture(root: HTMLElement): void {
@@ -22,6 +23,8 @@ export function startFixture(root: HTMLElement): void {
   canvas.addEventListener('click', () => input.focus());
 
   const renderer = createRenderer(canvas);
+  // placeholders are drawn until the sprites arrive
+  loadSprites(import.meta.env.BASE_URL).catch((e) => console.error(e));
   let world: World = createWorld(res.list.records, { measure: renderer.measure, seed: (Math.random() * 2 ** 31) | 0 });
   const queue: WorldEvent[] = [];
   createKeyboard(input, (c) => {

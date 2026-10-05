@@ -335,7 +335,7 @@ describe('one record at a time, banded break-up', () => {
     for (const k of after) {
       const k0 = before.find((b) => b.id === k.id)!;
       expect(k0.y - k.y).toBeGreaterThan(30);
-      expect(shipBounds(k).y0).toBeGreaterThanOrEqual(WORLD.minY - sizes.shipHeight / 2 - 1e-6);
+      expect(k.y).toBeGreaterThanOrEqual(WORLD.minY - 1e-6); // the strip (the word) stays below the HUD line
     }
   });
 

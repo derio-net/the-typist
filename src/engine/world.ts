@@ -1,6 +1,6 @@
 import { displayForm, formsText } from '../schema/display';
 import { RECOGNISED_TAGS, type VocabRecord } from '../schema/record';
-import { charWidths, sizes, type MeasureFont } from '../render/theme';
+import { charWidths, hullExtent, sizes, type MeasureFont } from '../render/theme';
 import {
   addShip, createTyping, removeShip, setPositions, step, type TypingEvent, type TypingState,
 } from './typing';
@@ -33,7 +33,7 @@ export const WORLD = {
   bandGap: 6,
 } as const;
 
-/** Pixel width of `text` in a theme font; ship text includes the hull padding. */
+/** Pixel width of `text` in a theme font; ship text includes the strip's padding (not the hull's end caps). */
 export type Measure = (text: string, font?: MeasureFont) => number;
 
 /** Default measurer derived from the theme's glyph-width estimates. */
@@ -62,6 +62,8 @@ export interface WorldShip {
   chip?: string;
   /** Width of the whole bounding box (text hull plus the rows under it) and height of those rows. */
   w: number;
+  /** Reach of the drawn hull above and below the ship's centre. */
+  above: number;
   below: number;
 }
 
@@ -72,8 +74,8 @@ export function shipBounds(s: WorldShip): Bounds {
   return {
     x0: s.x - s.w / 2,
     x1: s.x + s.w / 2,
-    y0: s.y - sizes.shipHeight / 2,
-    y1: s.y + sizes.shipHeight / 2 + s.below,
+    y0: s.y - s.above,
+    y1: s.y + s.below,
   };
 }
 
@@ -148,19 +150,15 @@ export function shipSpeed(length: number, wave: number): number {
 }
 
 
-function rowsBelow(kind: ShipKind, hasLabel: boolean): number {
-  if (kind === 'mothership') return hasLabel ? sizes.glossGap + sizes.glossHeight : 0;
-  if (kind === 'escort') return sizes.chipGap + sizes.translationGap + sizes.rowHalf;
-  return 0;
-}
-
 function makeShip(
   m: Measure, id: string, recordId: string, kind: ShipKind, text: string, x: number, y: number, wave: number,
   extra: Partial<WorldShip> = {},
 ): WorldShip {
+  // gloss, chip and translation are printed on the hull itself, so they only widen the box when longer than it
+  const ext = hullExtent(kind);
   const rows = [extra.label && m(extra.label, 'gloss'), extra.chip && m(extra.chip, 'chip'), extra.translation && m(extra.translation, 'translation')];
-  const w = Math.max(m(text), ...rows.map((r) => r || 0));
-  return { id, recordId, kind, text, x, y, speed: shipSpeed(text.length, wave), vx: 0, vy: 0, w, below: rowsBelow(kind, !!extra.label), ...extra };
+  const w = Math.max(m(text) + 2 * ext.side, ...rows.map((r) => r || 0));
+  return { id, recordId, kind, text, x, y, speed: shipSpeed(text.length, wave), vx: 0, vy: 0, w, above: ext.above, below: ext.below, ...extra };
 }
 
 /** A new wave: the first record's mothership enters; the rest wait in the queue (one record on screen at a time). */
@@ -226,15 +224,16 @@ function spawnChildren(w: Draft, m: WorldShip) {
   if (children.length === 0) return;
   // One shared speed and kick, so the bands move as one and never cross.
   const speed = Math.min(...children.map((c) => c.speed));
-  const heights = children.map((c) => sizes.shipHeight + c.below);
-  const stack = heights.reduce((a, h) => a + h, 0) + WORLD.bandGap * (children.length - 1);
+  const stack = children.reduce((a, c) => a + c.above + c.below, 0) + WORLD.bandGap * (children.length - 1);
+  const first = children[0];
+  const last = children[children.length - 1];
+  const lastOffset = stack - first.above - last.below; // first centre → last centre
   const rise = WORLD.burstKick * WORLD.kickDecayS; // total upward travel of the kick
-  const topLimit = WORLD.minY + rise; // the kick must not lift the top row into the HUD
-  const bottomLimit = WORLD.playerY - speed * w.minReactionS - heights[heights.length - 1] + sizes.shipHeight / 2;
-  let top = m.y - stack / 2 + sizes.shipHeight / 2;
-  top = Math.max(top, topLimit);
-  top = Math.min(top, bottomLimit - (stack - heights[heights.length - 1]));
-  let y = top;
+  // centre of the first band: around the wreck, low enough that the kick keeps it below the HUD,
+  // high enough that the last band keeps the reaction distance (that one wins)
+  let y = m.y - stack / 2 + first.above;
+  y = Math.max(y, WORLD.minY + rise);
+  y = Math.min(y, WORLD.playerY - speed * w.minReactionS - lastOffset);
   children.forEach((child, k) => {
     let u: number;
     let side: number;
@@ -242,7 +241,8 @@ function spawnChildren(w: Draft, m: WorldShip) {
     [side, w.rng] = random(w.rng);
     const vx = (side < 0.5 ? -1 : 1) * (WORLD.burstMinVx + u * (WORLD.burstMaxVx - WORLD.burstMinVx));
     spawn(w, keepInside({ ...child, speed, x: m.x, y, vx, vy: -WORLD.burstKick }));
-    y += heights[k] + WORLD.bandGap;
+    const next = children[k + 1];
+    if (next) y += child.below + WORLD.bandGap + next.above;
   });
 }
 
