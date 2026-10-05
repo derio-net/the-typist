@@ -22,7 +22,7 @@ export function startFixture(root: HTMLElement): void {
   canvas.addEventListener('click', () => input.focus());
 
   const renderer = createRenderer(canvas);
-  let world: World = createWorld(res.list.records, { measure: renderer.measure });
+  let world: World = createWorld(res.list.records, { measure: renderer.measure, seed: (Math.random() * 2 ** 31) | 0 });
   const queue: WorldEvent[] = [];
   createKeyboard(input, (c) => {
     world = typeChar(world, c);

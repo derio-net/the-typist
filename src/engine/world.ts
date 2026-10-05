@@ -13,9 +13,9 @@ export const WORLD = {
   playerY: 590,
   lives: 3,
   /** Descent speed (px/s) of a short ship on wave 0. */
-  baseSpeed: 34,
+  baseSpeed: 20,
   speedPerWave: 0.2,
-  /** Texts up to this many characters descend at full speed; longer ones in proportion. */
+  /** Texts up to this many characters descend at full speed; longer ones slow with the square root of their length. */
   referenceLength: 12,
   /** Children spawn at least this many seconds of descent above the player line. */
   minReactionS: 3,
@@ -24,6 +24,12 @@ export const WORLD = {
   /** Candidate grid for child placement. */
   slotStepX: 20,
   slotStepY: 15,
+  /** Break-up: children leave the wreck with a random sideways speed in this range (px/s)... */
+  burstMinVx: 40,
+  burstMaxVx: 110,
+  /** ...and an upward kick (px/s) that decays with this time constant (s). */
+  burstKick: 70,
+  kickDecayS: 0.4,
 } as const;
 
 /** Pixel width of `text` in a theme font; ship text includes the hull padding. */
@@ -45,6 +51,9 @@ export interface WorldShip {
   y: number;
   /** Descent speed, px/s. */
   speed: number;
+  /** Sideways velocity (px/s; 0 for motherships) and the decaying extra vertical velocity of the burst kick. */
+  vx: number;
+  vy: number;
   /** Gloss, shown under motherships. */
   label?: string;
   /** English translation and grammar chip, for escorts. */
@@ -107,6 +116,8 @@ export interface World {
   events: WorldEvent[];
   measure: Measure;
   minReactionS: number;
+  /** Seeded PRNG state: all randomness in the world comes from here. */
+  rng: number;
 }
 
 export interface WorldOptions {
@@ -115,10 +126,22 @@ export interface WorldOptions {
   /** Text measurer; the renderer supplies real glyph widths. */
   measure?: Measure;
   minReactionS?: number;
+  /** PRNG seed; the same seed gives the same game. */
+  seed?: number;
+}
+
+/** mulberry32: pure, returns a value in [0, 1) and the next state. */
+function random(state: number): [number, number] {
+  const next = (state + 0x6d2b79f5) | 0;
+  let t = next;
+  t = Math.imul(t ^ (t >>> 15), t | 1);
+  t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+  return [((t ^ (t >>> 14)) >>> 0) / 4294967296, next];
 }
 
 export function shipSpeed(length: number, wave: number): number {
-  const factor = Math.max(1, length / WORLD.referenceLength);
+  // sqrt: long sentences fall slower, but not so slowly that they stall on screen
+  const factor = Math.sqrt(Math.max(1, length / WORLD.referenceLength));
   return (WORLD.baseSpeed * (1 + WORLD.speedPerWave * wave)) / factor;
 }
 
@@ -136,7 +159,7 @@ function makeShip(
 ): WorldShip {
   const rows = [extra.label && m(extra.label, 'gloss'), extra.chip && m(extra.chip, 'chip'), extra.translation && m(extra.translation, 'translation')];
   const w = Math.max(m(text), ...rows.map((r) => r || 0));
-  return { id, recordId, kind, text, x, y, speed: shipSpeed(text.length, wave), w, below: rowsBelow(kind, !!extra.label), ...extra };
+  return { id, recordId, kind, text, x, y, speed: shipSpeed(text.length, wave), vx: 0, vy: 0, w, below: rowsBelow(kind, !!extra.label), ...extra };
 }
 
 /** A new wave: every record's mothership is on screen, in staggered lanes. */
@@ -160,6 +183,7 @@ export function createWorld(records: VocabRecord[], opts: WorldOptions = {}): Wo
     events: [],
     measure,
     minReactionS: opts.minReactionS ?? WORLD.minReactionS,
+    rng: opts.seed ?? 1,
   };
 }
 
@@ -215,7 +239,18 @@ function spawnChildren(w: Draft, m: WorldShip) {
   const speed = Math.min(...children.map((c) => c.speed));
   for (const child of children) {
     const same = { ...child, speed };
-    spawn(w, { ...same, ...findSlot(w, same, m.x, m.y) });
+    const at = findSlot(w, same, m.x, m.y);
+    // Burst away from the wreck; a child placed straight above/below picks a random side.
+    let r: number;
+    [r, w.rng] = random(w.rng);
+    let dir = Math.sign(at.x - m.x);
+    if (dir === 0) {
+      let side: number;
+      [side, w.rng] = random(w.rng);
+      dir = side < 0.5 ? -1 : 1;
+    }
+    const vx = dir * (WORLD.burstMinVx + r * (WORLD.burstMaxVx - WORLD.burstMinVx));
+    spawn(w, { ...same, ...at, vx, vy: -WORLD.burstKick });
   }
 }
 
@@ -257,7 +292,12 @@ export function tick(world: World): World {
   const w = draft(world);
   const dt = STEP_MS / 1000;
   w.time += STEP_MS;
-  w.ships = w.ships.map((s) => ({ ...s, y: s.y + s.speed * dt }));
+  const decay = Math.exp(-dt / WORLD.kickDecayS);
+  w.ships = w.ships.map((s) => {
+    const vy = s.vy * decay;
+    return { ...s, x: s.x + s.vx * dt, vy, y: Math.max(WORLD.minY, s.y + (s.speed + vy) * dt) };
+  });
+  bounce(w);
   const ys: Record<string, number> = {};
   for (const s of w.ships) ys[s.id] = s.y;
   w.typing = setPositions(w.typing, ys);
@@ -269,6 +309,47 @@ export function tick(world: World): World {
     shipDone(w, s.recordId, { escaped: true });
   }
   return finish(w);
+}
+
+/** Keeps a ship inside the canvas, reflecting its sideways velocity at the edges. */
+function keepInside(s: WorldShip): WorldShip {
+  const lo = s.w / 2;
+  const hi = WORLD.width - s.w / 2;
+  if (lo > hi) return { ...s, x: WORLD.width / 2, vx: 0 };
+  if (s.x < lo) return { ...s, x: lo, vx: Math.abs(s.vx) };
+  if (s.x > hi) return { ...s, x: hi, vx: -Math.abs(s.vx) };
+  return s;
+}
+
+/**
+ * Edge and ship-to-ship bounces. Overlapping pairs (at least one child) are
+ * pushed apart horizontally and sent away from each other; a mothership is an
+ * immovable obstacle that only the child bounces off.
+ */
+function bounce(w: Draft) {
+  const ships = w.ships.map(keepInside);
+  for (let i = 0; i < ships.length; i++) {
+    for (let j = i + 1; j < ships.length; j++) {
+      let a = ships[i];
+      let b = ships[j];
+      if (a.kind === 'mothership' && b.kind === 'mothership') continue;
+      const [ba, bb] = [shipBounds(a), shipBounds(b)];
+      if (!overlaps(ba, bb)) continue;
+      const leftFirst = a.x <= b.x;
+      const overlap = Math.min(ba.x1, bb.x1) - Math.max(ba.x0, bb.x0) + 0.01;
+      const away = (s: WorldShip, left: boolean, by: number) =>
+        ({ ...s, x: s.x + (left ? -by : by), vx: left ? -Math.abs(s.vx) : Math.abs(s.vx) });
+      if (a.kind === 'mothership') b = away(b, !leftFirst, overlap);
+      else if (b.kind === 'mothership') a = away(a, leftFirst, overlap);
+      else {
+        a = away(a, leftFirst, overlap / 2);
+        b = away(b, !leftFirst, overlap / 2);
+      }
+      ships[i] = keepInside(a);
+      ships[j] = keepInside(b);
+    }
+  }
+  w.ships = ships;
 }
 
 /** Runs as many whole 60 Hz steps as `elapsedMs` allows, carrying the remainder. */

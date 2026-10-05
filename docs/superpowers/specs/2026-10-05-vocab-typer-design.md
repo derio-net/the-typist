@@ -225,11 +225,19 @@ in forms ships is `, `, so it can be typed on any keyboard.
 
 ### World and waves (`src/engine/World`)
 
-- The world runs a fixed 60 Hz step. Ships descend toward the player; speed
-  rises per wave, and long sentences descend more slowly in proportion to
-  their length.
-- Destroying a mothership spawns its forms ship (if any) and its escorts
-  around it.
+- The world runs a fixed 60 Hz step. Motherships fall straight toward the
+  player. Their speed rises per wave, and long texts fall more slowly (speed
+  divided by the square root of length over a reference length).
+- Destroying a mothership breaks it up. Its forms ship (if any) and its
+  escorts burst out of the wreck: each child gets a random sideways velocity
+  and a short upward kick that decays. After that the children drift down at
+  one shared, slower speed.
+- Children bounce off the left and right screen edges, and off each other
+  horizontally, so sentences stay readable. The locked ship is drawn on top.
+  No child spawns closer to the player than a minimum reaction distance.
+- All randomness comes from a seeded generator passed into the World, so tests
+  are deterministic. Every motion constant (speeds, burst velocities, kick
+  decay, reaction distance) lives in one tunable block.
 - A ship reaching the player costs a life (default 3), and the session ends
   at 0 lives. Score depends on characters and accuracy.
 - A wave ends when all its Records are resolved. Each Record is graded once,

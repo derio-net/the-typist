@@ -105,7 +105,11 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
       ctx.closePath();
       ctx.fill();
 
-      for (const s of world.ships) drawShipText(s, world, s.id === world.typing.lock);
+      // the locked ship is drawn last, on top of anything it drifts over
+      const lock = world.typing.lock;
+      for (const s of world.ships) if (s.id !== lock) drawShipText(s, world, false);
+      const locked = world.ships.find((s) => s.id === lock);
+      if (locked) drawShipText(locked, world, true);
 
       bullets = bullets.filter((b) => now - b.at < effects.bulletMs);
       ctx.fillStyle = palette.bullet;

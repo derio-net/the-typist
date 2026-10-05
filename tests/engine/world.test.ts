@@ -62,9 +62,9 @@ describe('spawning', () => {
 });
 
 describe('movement', () => {
-  it('ships descend; longer texts slower in proportion; speed scales per wave', () => {
+  it('ships descend; longer texts slower (by the square root of length); speed scales per wave', () => {
     expect(shipSpeed(48, 0)).toBeLessThan(shipSpeed(10, 0));
-    expect(shipSpeed(24, 0) / shipSpeed(48, 0)).toBeCloseTo(2);
+    expect(shipSpeed(24, 0) / shipSpeed(48, 0)).toBeCloseTo(Math.SQRT2);
     expect(shipSpeed(10, 0)).toBe(shipSpeed(12, 0));
     expect(shipSpeed(10, 2)).toBeGreaterThan(shipSpeed(10, 0));
     const w0 = createWorld([boerse]);
@@ -261,5 +261,89 @@ describe('escapes (r13)', () => {
     w = advance(w, 120000);
     expect(w.results['phrase-jedoch']).toEqual({ typos: 1, expectedChars: 6, activeMs: 0, escaped: true });
     expect(w.lives).toBe(1);
+  });
+});
+
+describe('break up and bounce', () => {
+  const kids = (w: World) => w.ships.filter((s) => s.kind !== 'mothership');
+  const burst = (seed: number) => typeText(createWorld([boerse, anlegen], { seed }), displayForm(boerse));
+  const inCanvas = (w: World) => {
+    for (const b of w.ships.map(shipBounds)) {
+      expect(b.x0).toBeGreaterThanOrEqual(-1e-9);
+      expect(b.x1).toBeLessThanOrEqual(WORLD.width + 1e-9);
+    }
+  };
+
+  it('descends slower than before: a short mothership falls at the base speed, ≤ 21 px/s on wave 0', () => {
+    expect(WORLD.baseSpeed).toBeLessThanOrEqual(21);
+    expect(shipSpeed(5, 0)).toBe(WORLD.baseSpeed);
+  });
+
+  it('motherships fall straight down', () => {
+    const w0 = createWorld([boerse, anlegen], { seed: 1 });
+    const w1 = advance(w0, 2000);
+    for (const m of w1.ships) {
+      expect(m.vx).toBe(0);
+      expect(m.x).toBe(w0.ships.find((s) => s.id === m.id)!.x);
+    }
+  });
+
+  it('children burst out with a sideways speed in the configured range, away from the wreck', () => {
+    const w = burst(7);
+    const m = createWorld([boerse, anlegen], { seed: 7 }).ships[0];
+    expect(kids(w).length).toBeGreaterThan(1);
+    for (const k of kids(w)) {
+      expect(Math.abs(k.vx)).toBeGreaterThanOrEqual(WORLD.burstMinVx);
+      expect(Math.abs(k.vx)).toBeLessThanOrEqual(WORLD.burstMaxVx);
+      if (k.x !== m.x) expect(Math.sign(k.vx)).toBe(Math.sign(k.x - m.x));
+    }
+  });
+
+  it('is deterministic for a seed and varies between seeds', () => {
+    const vx = (w: World) => kids(w).map((k) => k.vx);
+    expect(vx(burst(3))).toEqual(vx(burst(3)));
+    expect(vx(burst(3))).not.toEqual(vx(burst(4)));
+  });
+
+  it('children get an upward kick that decays, then drift down', () => {
+    let w = burst(5);
+    const k0 = kids(w)[0];
+    w = advance(w, 100);
+    const k1 = w.ships.find((s) => s.id === k0.id)!;
+    expect(k1.y).toBeLessThan(k0.y);
+    w = advance(w, 6000);
+    const k2 = w.ships.find((s) => s.id === k0.id);
+    if (k2) expect(k2.y).toBeGreaterThan(k1.y);
+  });
+
+  it('children bounce off the screen edges and stay inside the canvas', () => {
+    let w = burst(11);
+    const k = kids(w)[0];
+    // push one child against the right edge, moving right
+    w = { ...w, ships: w.ships.map((s) => (s.id === k.id ? { ...s, x: WORLD.width - s.w / 2 - 1, vx: Math.abs(s.vx) } : s)) };
+    w = advance(w, 200);
+    const after = w.ships.find((s) => s.id === k.id)!;
+    expect(after.vx).toBeLessThan(0);
+    for (let i = 0; i < 20; i++) { w = advance(w, 250); inCanvas(w); }
+  });
+
+  it('siblings bounce off each other horizontally instead of passing through', () => {
+    let w = burst(13);
+    const [a, b] = kids(w);
+    // put two siblings on one row, a just left of b, moving towards each other
+    const y = 300;
+    w = {
+      ...w,
+      ships: w.ships.map((s) =>
+        s.id === a.id ? { ...s, x: 300, y, vx: 80, vy: 0 } : s.id === b.id ? { ...s, x: 300 + (a.w + b.w) / 2 + 4, y, vx: -80, vy: 0 } : s.kind === 'mothership' ? s : { ...s, y: 100 },
+      ),
+    };
+    w = advance(w, 500);
+    const A = w.ships.find((s) => s.id === a.id)!;
+    const B = w.ships.find((s) => s.id === b.id)!;
+    expect(A.vx).toBeLessThan(0);
+    expect(B.vx).toBeGreaterThan(0);
+    const [ba, bb] = [shipBounds(A), shipBounds(B)];
+    expect(ba.x1 <= bb.x0 + 1e-6 || bb.x1 <= ba.x0 + 1e-6).toBe(true);
   });
 });
