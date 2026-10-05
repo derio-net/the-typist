@@ -209,3 +209,6 @@ Categories ordered by most overdue card; separate meta store, local date, increm
 ### s15-resolved · finding [fixed] · resolves s15: Seed/CLAUDE.md untracked; CLAUDE.md update
 
 Both committed on the branch (1569f7e); CLAUDE.md update added to layout/scope.
+
+<!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-05-vocab-typer-p2 created=2026-10-05T06:55:03+00:00 -->
+### phase-split-2026-10-05-vocab-typer-p2 · decision · ask: R14 parser and structure skill
