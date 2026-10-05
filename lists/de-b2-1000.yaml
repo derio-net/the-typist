@@ -14293,12 +14293,16 @@ records:
       - waste separation
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2196
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "In Deutschland nimmt man die Mülltrennung sehr ernst.", en: "In Germany, people take waste separation very seriously.", tags: [singular, Präsens] }
+      - { de: "Die Mülltrennung ist für viele Touristen verwirrend.", en: "Waste separation is confusing for many tourists.", tags: [singular, Präsens] }
+      - { de: "Durch konsequente Mülltrennung hat die Stadt viel Geld gespart.", en: "Through consistent waste separation, the city has saved a lot of money.", tags: [singular, Perfekt] }
   - id: noun-abfallwirtschaft
     type: noun
     lemma: Abfallwirtschaft
@@ -14306,12 +14310,16 @@ records:
       - waste management
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2198
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Abfallwirtschaft ist ein wichtiger Wirtschaftszweig.", en: "Waste management is an important branch of industry.", tags: [singular, Präsens] }
+      - { de: "Er arbeitet seit Jahren in der Abfallwirtschaft.", en: "He has been working in waste management for years.", tags: [singular, Präsens] }
+      - { de: "Die Abfallwirtschaft muss sich auf Recycling umstellen.", en: "Waste management has to switch to recycling.", tags: [singular, Präsens] }
   - id: noun-plastikmuell
     type: noun
     lemma: Plastikmüll
@@ -14319,12 +14327,16 @@ records:
       - plastic waste
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2200
     noun:
       gender: m
       plural: null
+    examples:
+      - { de: "Im Meer schwimmen Millionen Tonnen Plastikmüll.", en: "Millions of tonnes of plastic waste are floating in the sea.", tags: [singular, Präsens] }
+      - { de: "Wir versuchen, im Alltag weniger Plastikmüll zu produzieren.", en: "We try to produce less plastic waste in everyday life.", tags: [singular, Präsens] }
+      - { de: "Früher wurde viel Plastikmüll nach Asien exportiert.", en: "In the past, a lot of plastic waste was exported to Asia.", tags: [singular, Passiv, Präteritum] }
   - id: noun-luftverschmutzung
     type: noun
     lemma: Luftverschmutzung
@@ -14332,12 +14344,16 @@ records:
       - air pollution
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2202
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Luftverschmutzung in den Städten ist ein großes Gesundheitsrisiko.", en: "Air pollution in cities is a major health risk.", tags: [singular, Präsens] }
+      - { de: "Wegen der starken Luftverschmutzung blieben die Schulen geschlossen.", en: "The schools stayed closed because of the heavy air pollution.", tags: [singular, Präteritum] }
+      - { de: "Elektroautos sollen die Luftverschmutzung verringern.", en: "Electric cars are meant to reduce air pollution.", tags: [singular, Präsens] }
   - id: noun-wasserverschmutzung
     type: noun
     lemma: Wasserverschmutzung
@@ -14345,12 +14361,16 @@ records:
       - water pollution
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2204
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Wasserverschmutzung durch Dünger ist ein großes Problem.", en: "Water pollution caused by fertiliser is a big problem.", tags: [singular, Präsens] }
+      - { de: "Die Fabrik wurde wegen Wasserverschmutzung geschlossen.", en: "The factory was closed because of water pollution.", tags: [singular, Passiv, Präteritum] }
+      - { de: "Die Wasserverschmutzung hatte zum Tod vieler Fische geführt.", en: "The water pollution had led to the death of many fish.", tags: [singular, Plusquamperfekt] }
   - id: noun-artenvielfalt
     type: noun
     lemma: Artenvielfalt
@@ -14358,12 +14378,16 @@ records:
       - biodiversity
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2206
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Der Regenwald hat eine enorme Artenvielfalt.", en: "The rainforest has enormous biodiversity.", tags: [singular, Präsens] }
+      - { de: "Die Artenvielfalt nimmt weltweit dramatisch ab.", en: "Biodiversity is declining dramatically worldwide.", tags: [singular, Präsens] }
+      - { de: "Blühwiesen sollen die Artenvielfalt in der Stadt fördern.", en: "Wildflower meadows are meant to promote biodiversity in the city.", tags: [singular, Präsens] }
   - id: noun-artensterben
     type: noun
     lemma: Artensterben
@@ -14371,12 +14395,16 @@ records:
       - species extinction
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2208
     noun:
       gender: n
       plural: null
+    examples:
+      - { de: "Das Artensterben schreitet so schnell voran wie nie zuvor.", en: "Species extinction is progressing faster than ever before.", tags: [singular, Präsens] }
+      - { de: "Pestizide tragen zum Artensterben bei.", en: "Pesticides contribute to the extinction of species.", tags: [singular, Präsens] }
+      - { de: "Forscher warnen schon lange vor dem Artensterben bei Insekten.", en: "Researchers have long been warning about insect species dying out.", tags: [singular, Präsens] }
   - id: noun-oekosystem
     type: noun
     lemma: Ökosystem
@@ -14384,12 +14412,16 @@ records:
       - ecosystem
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2210
     noun:
       gender: n
       plural: Ökosysteme
+    examples:
+      - { de: "Das Ökosystem des Sees ist sehr empfindlich.", en: "The lake's ecosystem is very fragile.", tags: [singular, Präsens] }
+      - { de: "Der Bau der Straße hat ein ganzes Ökosystem zerstört.", en: "Building the road destroyed an entire ecosystem.", tags: [singular, Perfekt] }
+      - { de: "Korallenriffe gehören zu den artenreichsten Ökosystemen der Erde.", en: "Coral reefs are among the most species-rich ecosystems on Earth.", tags: [plural, Präsens] }
   - id: noun-treibhausgas
     type: noun
     lemma: Treibhausgas
@@ -14397,12 +14429,16 @@ records:
       - greenhouse gas
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2212
     noun:
       gender: n
       plural: Treibhausgase
+    examples:
+      - { de: "Methan ist ein besonders starkes Treibhausgas.", en: "Methane is a particularly potent greenhouse gas.", tags: [singular, Präsens] }
+      - { de: "Die Landwirtschaft verursacht viele Treibhausgase.", en: "Agriculture produces a lot of greenhouse gases.", tags: [plural, Präsens] }
+      - { de: "Kohlekraftwerke haben jahrzehntelang riesige Mengen Treibhausgase ausgestoßen.", en: "For decades, coal-fired power stations have emitted huge quantities of greenhouse gases.", tags: [plural, Perfekt] }
   - id: noun-oekologische-fussabdruck
     type: noun
     lemma: ökologische Fußabdruck
@@ -14410,12 +14446,16 @@ records:
       - ecological footprint
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2214
     noun:
       gender: m
       plural: ökologischen Fußabdrücke
+    examples:
+      - { de: "Mit diesem Rechner kannst du deinen ökologischen Fußabdruck berechnen.", en: "You can calculate your ecological footprint with this calculator.", tags: [singular, Präsens] }
+      - { de: "Wer weniger fliegt, verkleinert seinen ökologischen Fußabdruck.", en: "Flying less reduces your ecological footprint.", tags: [singular, Präsens] }
+      - { de: "Die ökologischen Fußabdrücke reicher Länder sind besonders groß.", en: "The ecological footprints of rich countries are particularly large.", tags: [plural, Präsens] }
   - id: noun-ressourcen
     type: noun
     lemma: Ressource
@@ -14423,13 +14463,17 @@ records:
       - resource
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2216
     source_note: "lemma changed from plural-only Ressourcen to singular Ressource (plural Ressourcen): the singular is natural"
     noun:
       gender: f
       plural: Ressourcen
+    examples:
+      - { de: "Wasser ist eine wertvolle Ressource.", en: "Water is a valuable resource.", tags: [singular, Präsens] }
+      - { de: "Wir müssen sparsamer mit unseren Ressourcen umgehen.", en: "We have to use our resources more economically.", tags: [plural, Präsens] }
+      - { de: "Die Firma hatte nicht genug Ressourcen für das Projekt eingeplant.", en: "The company had not planned enough resources for the project.", tags: [plural, Plusquamperfekt] }
   - id: noun-energieeffizienz
     type: noun
     lemma: Energieeffizienz
@@ -14437,12 +14481,16 @@ records:
       - energy efficiency
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2218
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Neue Kühlschränke haben eine hohe Energieeffizienz.", en: "New fridges are highly energy-efficient.", tags: [singular, Präsens] }
+      - { de: "Die Regierung fördert Maßnahmen zur Energieeffizienz.", en: "The government supports energy efficiency measures.", tags: [singular, Präsens] }
+      - { de: "Durch bessere Dämmung wurde die Energieeffizienz des Hauses verbessert.", en: "The house's energy efficiency was improved by better insulation.", tags: [singular, Passiv, Präteritum] }
   - id: noun-kreislaufwirtschaft
     type: noun
     lemma: Kreislaufwirtschaft
@@ -14450,12 +14498,16 @@ records:
       - circular economy
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2220
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "In der Kreislaufwirtschaft werden Produkte wiederverwendet.", en: "In a circular economy, products are reused.", tags: [singular, Passiv, Präsens] }
+      - { de: "Die EU will die Kreislaufwirtschaft stärken.", en: "The EU wants to strengthen the circular economy.", tags: [singular, Präsens] }
+      - { de: "Ohne Kreislaufwirtschaft werden uns die Rohstoffe ausgehen.", en: "Without a circular economy we will run out of raw materials.", tags: [singular, Futur I] }
   - id: noun-nachhaltige-entwicklung
     type: noun
     lemma: nachhaltige Entwicklung
@@ -14463,12 +14515,16 @@ records:
       - sustainable development
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2222
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die UN haben 17 Ziele für nachhaltige Entwicklung beschlossen.", en: "The UN has adopted 17 goals for sustainable development.", tags: [singular, Perfekt] }
+      - { de: "Bildung ist ein Schlüssel zur nachhaltigen Entwicklung.", en: "Education is a key to sustainable development.", tags: [singular, Präsens] }
+      - { de: "Die nachhaltige Entwicklung der Region hat Vorrang.", en: "The sustainable development of the region has priority.", tags: [singular, Präsens] }
   - id: noun-umweltschaden
     type: noun
     lemma: Umweltschaden
@@ -14476,20 +14532,25 @@ records:
       - environmental damage
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2224
     noun:
       gender: m
       plural: Umweltschäden
+    examples:
+      - { de: "Der Ölunfall hat einen enormen Umweltschaden verursacht.", en: "The oil spill caused enormous environmental damage.", tags: [singular, Perfekt] }
+      - { de: "Die Firma muss für die Umweltschäden aufkommen.", en: "The company has to pay for the environmental damage.", tags: [plural, Präsens] }
+      - { de: "Viele Umweltschäden werden erst nach Jahren sichtbar.", en: "Much environmental damage only becomes visible after years.", tags: [plural, Präsens] }
   - id: noun-umweltsuender
     type: noun
     lemma: Umweltsünder
     gloss:
+      - polluter
       - environmental offender
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2226
     noun:
@@ -14499,6 +14560,10 @@ records:
         - lemma: Umweltsünderin
           gender: f
           plural: Umweltsünderinnen
+    examples:
+      - { de: "Der Konzern gilt als einer der größten Umweltsünder Europas.", en: "The group is regarded as one of the biggest polluters in Europe.", tags: [plural, Präsens] }
+      - { de: "Wer seinen Müll in den Wald wirft, ist ein Umweltsünder.", en: "Anyone who dumps their rubbish in the forest is an environmental offender.", tags: [singular, Präsens] }
+      - { de: "Die Polizei erwischte die Umweltsünderin beim Entsorgen von Altöl.", en: "The police caught the polluter disposing of waste oil.", tags: [singular, Präteritum] }
   - id: noun-entwicklungsland
     type: noun
     lemma: Entwicklungsland
@@ -14506,12 +14571,16 @@ records:
       - developing country
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2228
     noun:
       gender: n
       plural: Entwicklungsländer
+    examples:
+      - { de: "In vielen Entwicklungsländern fehlt sauberes Trinkwasser.", en: "Many developing countries lack clean drinking water.", tags: [plural, Präsens] }
+      - { de: "Sie hat zwei Jahre in einem Entwicklungsland gearbeitet.", en: "She worked in a developing country for two years.", tags: [singular, Perfekt] }
+      - { de: "Die Entwicklungsländer leiden am stärksten unter dem Klimawandel.", en: "Developing countries suffer most from climate change.", tags: [plural, Präsens] }
   - id: noun-industrieland
     type: noun
     lemma: Industrieland
@@ -14519,12 +14588,16 @@ records:
       - industrialised nation
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2230
     noun:
       gender: n
       plural: Industrieländer
+    examples:
+      - { de: "Deutschland ist ein typisches Industrieland.", en: "Germany is a typical industrialised country.", tags: [singular, Präsens] }
+      - { de: "Die Industrieländer haben den größten Teil der Emissionen verursacht.", en: "The industrialised countries have caused most of the emissions.", tags: [plural, Perfekt] }
+      - { de: "In den Industrieländern wird die Bevölkerung immer älter.", en: "In industrialised countries, the population is getting older and older.", tags: [plural, Präsens] }
   - id: noun-soziale-ungleichheit
     type: noun
     lemma: soziale Ungleichheit
@@ -14532,12 +14605,16 @@ records:
       - social inequality
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2232
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Pandemie hat die soziale Ungleichheit verschärft.", en: "The pandemic has worsened social inequality.", tags: [singular, Perfekt] }
+      - { de: "Bildung ist ein wichtiges Mittel gegen soziale Ungleichheit.", en: "Education is an important means of combating social inequality.", tags: [singular, Präsens] }
+      - { de: "Die Studie untersucht die Ursachen sozialer Ungleichheit.", en: "The study examines the causes of social inequality.", tags: [singular, Präsens] }
   - id: noun-armutsbekaempfung
     type: noun
     lemma: Armutsbekämpfung
@@ -14545,12 +14622,16 @@ records:
       - fight against poverty
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2236
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Armutsbekämpfung ist ein zentrales Ziel der Entwicklungspolitik.", en: "Fighting poverty is a central goal of development policy.", tags: [singular, Präsens] }
+      - { de: "Für die Armutsbekämpfung stehen mehr Mittel zur Verfügung.", en: "More funds are available for fighting poverty.", tags: [singular, Präsens] }
+      - { de: "Bei der Armutsbekämpfung hat das Land große Fortschritte gemacht.", en: "The country has made great progress in fighting poverty.", tags: [singular, Perfekt] }
   - id: noun-wasserknappheit
     type: noun
     lemma: Wasserknappheit
@@ -14558,12 +14639,16 @@ records:
       - water scarcity
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2238
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Wasserknappheit wird in Zukunft viele Konflikte auslösen.", en: "Water scarcity will trigger many conflicts in the future.", tags: [singular, Futur I] }
+      - { de: "Im Süden Spaniens herrscht große Wasserknappheit.", en: "There is a severe water shortage in southern Spain.", tags: [singular, Präsens] }
+      - { de: "Wegen der Wasserknappheit durfte man den Rasen nicht gießen.", en: "Because of the water shortage, people were not allowed to water their lawns.", tags: [singular, Präteritum] }
   - id: noun-hungersnot
     type: noun
     lemma: Hungersnot
@@ -14571,12 +14656,16 @@ records:
       - famine
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2240
     noun:
       gender: f
       plural: Hungersnöte
+    examples:
+      - { de: "Eine Hungersnot bedroht Millionen Menschen in der Region.", en: "A famine is threatening millions of people in the region.", tags: [singular, Präsens] }
+      - { de: "Die große Hungersnot in Irland begann 1845.", en: "The Great Famine in Ireland began in 1845.", tags: [singular, Präteritum] }
+      - { de: "Kriege führen oft zu Hungersnöten.", en: "Wars often lead to famines.", tags: [plural, Präsens] }
   - id: noun-nahrungsknappheit
     type: noun
     lemma: Nahrungsknappheit
@@ -14584,25 +14673,34 @@ records:
       - food shortage
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2242
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Dürren verursachen in vielen Regionen Nahrungsknappheit.", en: "Droughts cause food shortages in many regions.", tags: [singular, Präsens] }
+      - { de: "Nach der Missernte herrschte im Land Nahrungsknappheit.", en: "After the crop failure there was a food shortage in the country.", tags: [singular, Präteritum] }
+      - { de: "Experten befürchten, dass die Nahrungsknappheit zunehmen wird.", en: "Experts fear that food shortages will increase.", tags: [singular, Futur I] }
   - id: noun-fluchtursache
     type: noun
     lemma: Fluchtursache
     gloss:
-      - cause of flight
+      - reason for fleeing
+      - root cause of displacement
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2244
     noun:
       gender: f
       plural: Fluchtursachen
+    examples:
+      - { de: "Krieg ist die häufigste Fluchtursache.", en: "War is the most common reason for people fleeing their homes.", tags: [singular, Präsens] }
+      - { de: "Die Politik will die Fluchtursachen bekämpfen.", en: "Politicians want to tackle the root causes of displacement.", tags: [plural, Präsens] }
+      - { de: "Der Klimawandel wird zu einer immer wichtigeren Fluchtursache werden.", en: "Climate change will become an increasingly important reason for people to flee.", tags: [singular, Futur I] }
   - id: noun-humanitaere-hilfe
     type: noun
     lemma: humanitäre Hilfe
@@ -14610,12 +14708,16 @@ records:
       - humanitarian aid
     categories:
       - global-issues-and-sustainability
-    status: raw
+    status: enriched
     source_lines:
       - 2246
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die Menschen im Kriegsgebiet brauchen dringend humanitäre Hilfe.", en: "The people in the war zone urgently need humanitarian aid.", tags: [singular, Präsens] }
+      - { de: "Die EU hat die humanitäre Hilfe für die Region aufgestockt.", en: "The EU has increased humanitarian aid for the region.", tags: [singular, Perfekt] }
+      - { de: "Die Lieferung humanitärer Hilfe wurde tagelang blockiert.", en: "The delivery of humanitarian aid was blocked for days.", tags: [singular, Passiv, Präteritum] }
   - id: noun-globale-verantwortung
     type: noun
     lemma: globale Verantwortung
