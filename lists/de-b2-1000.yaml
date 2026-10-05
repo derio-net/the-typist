@@ -5423,12 +5423,16 @@ records:
       - burnout
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 847
     noun:
       gender: m
       plural: Burnouts
+    examples:
+      - { de: "Nach Jahren voller Überstunden bekam sie einen Burnout.", en: "After years of overtime she got burnout.", tags: [singular, Präteritum] }
+      - { de: "Ein Burnout entwickelt sich oft langsam.", en: "Burnout often develops slowly.", tags: [singular, Präsens] }
+      - { de: "Die Zahl der Burnouts in Pflegeberufen ist gestiegen.", en: "The number of burnout cases in nursing has risen.", tags: [plural, Perfekt] }
   - id: noun-selbstwahrnehmung
     type: noun
     lemma: Selbstwahrnehmung
@@ -5436,12 +5440,16 @@ records:
       - self-perception
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 849
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Ihre Selbstwahrnehmung unterscheidet sich stark von der Meinung anderer.", en: "Her self-perception differs greatly from what others think.", tags: [singular, Präsens] }
+      - { de: "Soziale Medien können die Selbstwahrnehmung von Jugendlichen verändern.", en: "Social media can change young people's self-perception.", tags: [singular, Präsens] }
+      - { de: "Das Training hat meine Selbstwahrnehmung verbessert.", en: "The training improved my self-perception.", tags: [singular, Perfekt] }
   - id: noun-mentale-gesundheit
     type: noun
     lemma: mentale Gesundheit
@@ -5449,12 +5457,16 @@ records:
       - mental health
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 851
     noun:
       gender: f
       plural: null
+    examples:
+      - { de: "Die mentale Gesundheit ist genauso wichtig wie die körperliche.", en: "Mental health is just as important as physical health.", tags: [singular, Präsens] }
+      - { de: "Die Firma investiert in die mentale Gesundheit ihrer Mitarbeiter.", en: "The company invests in its employees' mental health.", tags: [singular, Präsens] }
+      - { de: "Während der Pandemie hat die mentale Gesundheit vieler Menschen gelitten.", en: "During the pandemic many people's mental health suffered.", tags: [singular, Perfekt] }
   - id: noun-kultur
     type: noun
     lemma: Kultur
@@ -13609,9 +13621,17 @@ records:
       - in a good mood
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 753
+    adjective:
+      gradable: true
+      comparative: "besser gelaunt"
+      superlative: "am besten gelaunt"
+    examples:
+      - { de: "Ein gut gelaunter Kellner brachte uns die Karte.", en: "A cheerful waiter brought us the menu.", tags: [attributive, Präteritum] }
+      - { de: "Heute bist du ja besser gelaunt als gestern.", en: "You're in a better mood today than yesterday.", tags: [comparative, Präsens] }
+      - { de: "Nach dem Urlaub kam sie gut gelaunt ins Büro.", en: "After the holiday she came into the office in a good mood.", tags: [Präteritum] }
   - id: adjective-schlecht-gelaunt
     type: adjective
     lemma: schlecht gelaunt
@@ -13619,9 +13639,17 @@ records:
       - in a bad mood
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 753
+    adjective:
+      gradable: true
+      comparative: "schlechter gelaunt"
+      superlative: "am schlechtesten gelaunt"
+    examples:
+      - { de: "Der schlecht gelaunte Busfahrer ließ uns nicht einsteigen.", en: "The grumpy bus driver didn't let us get on.", tags: [attributive, Präteritum] }
+      - { de: "Montags ist er am schlechtesten gelaunt.", en: "He's in the worst mood on Mondays.", tags: [superlative, Präsens] }
+      - { de: "Warum bist du heute so schlecht gelaunt?", en: "Why are you in such a bad mood today?", tags: [Präsens] }
   - id: adjective-zufrieden
     type: adjective
     lemma: zufrieden
@@ -13629,9 +13657,17 @@ records:
       - content
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 763
+    adjective:
+      gradable: true
+      comparative: "zufriedener"
+      superlative: "am zufriedensten"
+    examples:
+      - { de: "Zufriedene Kunden empfehlen uns weiter.", en: "Satisfied customers recommend us to others.", tags: [attributive, Präsens] }
+      - { de: "Mit dem Ergebnis bin ich sehr zufrieden.", en: "I'm very satisfied with the result.", tags: [Präsens] }
+      - { de: "Seit dem Jobwechsel ist sie viel zufriedener.", en: "Since changing jobs she's much more content.", tags: [comparative, Präsens] }
   - id: adjective-unzufrieden
     type: adjective
     lemma: unzufrieden
@@ -13639,9 +13675,17 @@ records:
       - discontent
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 765
+    adjective:
+      gradable: true
+      comparative: "unzufriedener"
+      superlative: "am unzufriedensten"
+    examples:
+      - { de: "Unzufriedene Mitarbeiter kündigen schneller.", en: "Dissatisfied employees resign more quickly.", tags: [attributive, Präsens] }
+      - { de: "Viele Bürger sind mit der Politik unzufrieden.", en: "Many citizens are dissatisfied with politics.", tags: [Präsens] }
+      - { de: "Die jungen Leute waren am unzufriedensten mit dem Angebot.", en: "The young people were the most dissatisfied with the offer.", tags: [superlative, Präteritum] }
   - id: adjective-gelassen
     type: adjective
     lemma: gelassen
@@ -13650,9 +13694,17 @@ records:
       - composed
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 767
+    adjective:
+      gradable: true
+      comparative: "gelassener"
+      superlative: "am gelassensten"
+    examples:
+      - { de: "Sie reagierte erstaunlich gelassen auf die Kritik.", en: "She reacted surprisingly calmly to the criticism.", tags: [Präteritum] }
+      - { de: "Mit dem Alter bin ich gelassener geworden.", en: "I've become calmer with age.", tags: [comparative, Perfekt] }
+      - { de: "Er ist ein gelassener Mensch, den nichts aus der Ruhe bringt.", en: "He's a calm person whom nothing can upset.", tags: [attributive, Präsens] }
   - id: adjective-nervoes
     type: adjective
     lemma: nervös
@@ -13660,9 +13712,17 @@ records:
       - nervous
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 769
+    adjective:
+      gradable: true
+      comparative: "nervöser"
+      superlative: "am nervösesten"
+    examples:
+      - { de: "Vor der Prüfung war ich total nervös.", en: "I was really nervous before the exam.", tags: [Präteritum] }
+      - { de: "Der nervöse Kandidat vergaß seinen Text.", en: "The nervous candidate forgot his lines.", tags: [attributive, Präteritum] }
+      - { de: "Je näher der Termin kam, desto nervöser wurde sie.", en: "The closer the date came, the more nervous she became.", tags: [comparative, Präteritum] }
   - id: adjective-ueberfordert
     type: adjective
     lemma: überfordert
@@ -13670,9 +13730,15 @@ records:
       - overwhelmed
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 771
+    adjective:
+      gradable: false
+    examples:
+      - { de: "Mit drei Kindern und Vollzeitjob fühlt sie sich oft überfordert.", en: "With three children and a full-time job she often feels overwhelmed.", tags: [Präsens] }
+      - { de: "Die überforderten Lehrer baten um Unterstützung.", en: "The overwhelmed teachers asked for support.", tags: [attributive, Präteritum] }
+      - { de: "In der ersten Woche war ich mit allem überfordert.", en: "In the first week I was overwhelmed by everything.", tags: [Präteritum] }
   - id: phrase-unter-druck-stehen
     type: phrase
     lemma: unter Druck stehen
@@ -13680,9 +13746,15 @@ records:
       - to be under pressure
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 773
+    phrase:
+      register: neutral
+    examples:
+      - { de: "Vor dem Abgabetermin stehen alle unter Druck.", en: "Before the deadline everyone is under pressure.", tags: [Präsens] }
+      - { de: "Der Trainer stand nach drei Niederlagen stark unter Druck.", en: "After three defeats the coach was under a lot of pressure.", tags: [Präteritum] }
+      - { de: "Ich arbeite nicht gern, wenn ich unter Druck stehe.", en: "I don't like working when I'm under pressure.", tags: [Präsens] }
   - id: adjective-gestresst
     type: adjective
     lemma: gestresst
@@ -13690,9 +13762,17 @@ records:
       - stressed
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 777
+    adjective:
+      gradable: true
+      comparative: "gestresster"
+      superlative: "am gestresstesten"
+    examples:
+      - { de: "Gestresste Eltern haben oft wenig Zeit für sich.", en: "Stressed parents often have little time for themselves.", tags: [attributive, Präsens] }
+      - { de: "Du wirkst heute ziemlich gestresst.", en: "You seem quite stressed today.", tags: [Präsens] }
+      - { de: "Im Dezember sind die Leute gestresster als sonst.", en: "In December people are more stressed than usual.", tags: [comparative, Präsens] }
   - id: adjective-entspannt
     type: adjective
     lemma: entspannt
@@ -13700,9 +13780,17 @@ records:
       - relaxed
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 779
+    adjective:
+      gradable: true
+      comparative: "entspannter"
+      superlative: "am entspanntesten"
+    examples:
+      - { de: "Nach der Massage fühlte ich mich total entspannt.", en: "After the massage I felt totally relaxed.", tags: [Präteritum] }
+      - { de: "Wir hatten einen entspannten Abend zu Hause.", en: "We had a relaxed evening at home.", tags: [attributive, Präteritum] }
+      - { de: "Im Urlaub ist er viel entspannter.", en: "On holiday he is much more relaxed.", tags: [comparative, Präsens] }
   - id: adjective-aengstlich
     type: adjective
     lemma: ängstlich
@@ -13710,9 +13798,17 @@ records:
       - anxious
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 785
+    adjective:
+      gradable: true
+      comparative: "ängstlicher"
+      superlative: "am ängstlichsten"
+    examples:
+      - { de: "Das ängstliche Kind versteckte sich hinter seiner Mutter.", en: "The anxious child hid behind its mother.", tags: [attributive, Präteritum] }
+      - { de: "Seit dem Überfall ist sie ängstlicher geworden.", en: "Since the robbery she has become more anxious.", tags: [comparative, Perfekt] }
+      - { de: "Er schaute ängstlich aus dem Fenster.", en: "He looked anxiously out of the window.", tags: [Präteritum] }
   - id: adjective-veraengstigt
     type: adjective
     lemma: verängstigt
@@ -13720,9 +13816,15 @@ records:
       - frightened
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 787
+    adjective:
+      gradable: false
+    examples:
+      - { de: "Die verängstigten Passagiere warteten auf Hilfe.", en: "The frightened passengers waited for help.", tags: [attributive, Präteritum] }
+      - { de: "Nach dem Gewitter war der Hund völlig verängstigt.", en: "After the thunderstorm the dog was completely frightened.", tags: [Präteritum] }
+      - { de: "Verängstigt rief sie die Polizei.", en: "Frightened, she called the police.", tags: [Präteritum] }
   - id: adjective-unsicher
     type: adjective
     lemma: unsicher
@@ -13730,9 +13832,17 @@ records:
       - insecure
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 793
+    adjective:
+      gradable: true
+      comparative: "unsicherer"
+      superlative: "am unsichersten"
+    examples:
+      - { de: "Ich bin mir unsicher, ob das die richtige Entscheidung ist.", en: "I'm unsure whether this is the right decision.", tags: [Präsens] }
+      - { de: "Die Zeiten sind unsicherer als früher.", en: "Times are more uncertain than they used to be.", tags: [comparative, Präsens] }
+      - { de: "Ein unsicherer Fahrer sollte nicht nachts fahren.", en: "An insecure driver shouldn't drive at night.", tags: [attributive, Präsens] }
   - id: adjective-selbstbewusst
     type: adjective
     lemma: selbstbewusst
@@ -13740,9 +13850,17 @@ records:
       - self-confident
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 795
+    adjective:
+      gradable: true
+      comparative: "selbstbewusster"
+      superlative: "am selbstbewusstesten"
+    examples:
+      - { de: "Sie trat sehr selbstbewusst auf.", en: "She came across very confidently.", tags: [Präteritum] }
+      - { de: "Ein selbstbewusster Auftritt hilft im Vorstellungsgespräch.", en: "A self-confident appearance helps in a job interview.", tags: [attributive, Präsens] }
+      - { de: "Durch das Training ist er selbstbewusster geworden.", en: "Through the training he has become more self-confident.", tags: [comparative, Perfekt] }
   - id: adjective-traurig
     type: adjective
     lemma: traurig
@@ -13750,9 +13868,17 @@ records:
       - sad
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 803
+    adjective:
+      gradable: true
+      comparative: "trauriger"
+      superlative: "am traurigsten"
+    examples:
+      - { de: "Das ist eine traurige Geschichte.", en: "That's a sad story.", tags: [attributive, Präsens] }
+      - { de: "Sie war traurig, dass ihr bester Freund wegzog.", en: "She was sad that her best friend was moving away.", tags: [Präteritum] }
+      - { de: "Der Abschied war der traurigste Moment des Jahres.", en: "The farewell was the saddest moment of the year.", tags: [superlative, Präteritum] }
   - id: adjective-verzweifelt
     type: adjective
     lemma: verzweifelt
@@ -13760,9 +13886,17 @@ records:
       - desperate
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 805
+    adjective:
+      gradable: true
+      comparative: "verzweifelter"
+      superlative: "am verzweifeltsten"
+    examples:
+      - { de: "Verzweifelt suchte er nach seinem Schlüssel.", en: "He searched desperately for his key.", tags: [Präteritum] }
+      - { de: "Die verzweifelten Eltern baten um Hilfe.", en: "The desperate parents asked for help.", tags: [attributive, Präteritum] }
+      - { de: "Ihre Briefe wurden immer verzweifelter.", en: "Her letters became more and more desperate.", tags: [comparative, Präteritum] }
   - id: adjective-deprimiert
     type: adjective
     lemma: deprimiert
@@ -13770,9 +13904,15 @@ records:
       - depressed
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 807
+    adjective:
+      gradable: false
+    examples:
+      - { de: "Nach der Absage war er tagelang deprimiert.", en: "After the rejection he was depressed for days.", tags: [Präteritum] }
+      - { de: "Im November bin ich wegen des Wetters oft deprimiert.", en: "In November I'm often depressed because of the weather.", tags: [Präsens] }
+      - { de: "Die deprimierte Stimmung im Team war spürbar.", en: "The depressed mood in the team was noticeable.", tags: [attributive, Präteritum] }
   - id: adjective-verletzlich
     type: adjective
     lemma: verletzlich
@@ -13780,9 +13920,17 @@ records:
       - vulnerable
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 823
+    adjective:
+      gradable: true
+      comparative: "verletzlicher"
+      superlative: "am verletzlichsten"
+    examples:
+      - { de: "Kinder sind besonders verletzlich.", en: "Children are particularly vulnerable.", tags: [Präsens] }
+      - { de: "Ältere Menschen sind eine verletzliche Gruppe.", en: "Older people are a vulnerable group.", tags: [attributive, Präsens] }
+      - { de: "Nach der Trennung fühlte sie sich verletzlicher als je zuvor.", en: "After the break-up she felt more vulnerable than ever.", tags: [comparative, Präteritum] }
   - id: adjective-emotional
     type: adjective
     lemma: emotional
@@ -13791,10 +13939,18 @@ records:
     categories:
       - emotions-and-psychology
       - rhetoric-and-argumentation
-    status: raw
+    status: enriched
     source_lines:
       - 825
       - 2121
+    adjective:
+      gradable: true
+      comparative: "emotionaler"
+      superlative: "am emotionalsten"
+    examples:
+      - { de: "Es war ein sehr emotionaler Abschied.", en: "It was a very emotional farewell.", tags: [attributive, Präteritum] }
+      - { de: "Die Diskussion wurde immer emotionaler.", en: "The discussion became more and more emotional.", tags: [comparative, Präteritum] }
+      - { de: "Bitte reagiere nicht so emotional!", en: "Please don't react so emotionally!", tags: [Imperativ] }
   - id: adjective-gefuehlsbetont
     type: adjective
     lemma: gefühlsbetont
@@ -13802,9 +13958,17 @@ records:
       - emotionally driven
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 827
+    adjective:
+      gradable: true
+      comparative: "gefühlsbetonter"
+      superlative: "am gefühlsbetontesten"
+    examples:
+      - { de: "Er ist ein sehr gefühlsbetonter Mensch.", en: "He's a very emotional person.", tags: [attributive, Präsens] }
+      - { de: "Ihre Rede war gefühlsbetonter als erwartet.", en: "Her speech was more emotional than expected.", tags: [comparative, Präteritum] }
+      - { de: "Die Werbung spricht die Kunden sehr gefühlsbetont an.", en: "The advert appeals to customers in a very emotional way.", tags: [Präsens] }
   - id: adjective-eifersuechtig
     type: adjective
     lemma: eifersüchtig
@@ -13812,9 +13976,17 @@ records:
       - jealous
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 829
+    adjective:
+      gradable: true
+      comparative: "eifersüchtiger"
+      superlative: "am eifersüchtigsten"
+    examples:
+      - { de: "Ihr eifersüchtiger Freund liest ihre Nachrichten.", en: "Her jealous boyfriend reads her messages.", tags: [attributive, Präsens] }
+      - { de: "Er wird schnell eifersüchtig.", en: "He gets jealous quickly.", tags: [Präsens] }
+      - { de: "Von allen Geschwistern war der Kleinste am eifersüchtigsten.", en: "Of all the siblings the youngest was the most jealous.", tags: [superlative, Präteritum] }
   - id: adjective-neidisch
     type: adjective
     lemma: neidisch
@@ -13822,9 +13994,17 @@ records:
       - envious
     categories:
       - emotions-and-psychology
-    status: raw
+    status: enriched
     source_lines:
       - 831
+    adjective:
+      gradable: true
+      comparative: "neidischer"
+      superlative: "am neidischsten"
+    examples:
+      - { de: "Sie ist neidisch auf den Erfolg ihrer Schwester.", en: "She is envious of her sister's success.", tags: [Präsens] }
+      - { de: "Neidische Kollegen machen einem das Leben schwer.", en: "Envious colleagues make your life difficult.", tags: [attributive, Präsens] }
+      - { de: "Je mehr er verdiente, desto neidischer wurden seine Nachbarn.", en: "The more he earned, the more envious his neighbours became.", tags: [comparative, Präteritum] }
   - id: adjective-mitfuehlend
     type: adjective
     lemma: mitfühlend
