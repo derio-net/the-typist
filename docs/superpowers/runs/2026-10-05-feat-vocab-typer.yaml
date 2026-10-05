@@ -12,7 +12,16 @@ steps:
     emitted:
       spec: docs/superpowers/specs/2026-10-05-vocab-typer-design.md
   spec-review:
-    state: pending
+    state: running
+    at: '2026-10-05T06:37:04+00:00'
+    units:
+      step/spec-review:
+        attempts:
+        - dispatched: '2026-10-05T06:37:04+00:00'
+          agent_type: super-fr:fr-spec-reviewer
+          harness: claude-code
+          model: opus
+          session: d5b2df96-f96a-4fde-8d39-796f394bda21
   plan:
     state: pending
   plan-review:
