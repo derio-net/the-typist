@@ -12696,9 +12696,16 @@ records:
       - to examine closely
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 601
+    phrase:
+      register: neutral
+      literal: "to take under the magnifying glass"
+    examples:
+      - { de: "Die Journalisten nahmen die Zahlen genau unter die Lupe.", en: "The journalists examined the figures closely.", tags: [Präteritum] }
+      - { de: "Wir sollten den Vertrag noch einmal unter die Lupe nehmen.", en: "We should take a close look at the contract again.", tags: [Präsens] }
+      - { de: "Die Behörde hat das Unternehmen unter die Lupe genommen.", en: "The authority scrutinised the company.", tags: [Perfekt] }
   - id: phrase-jemandem-ueber-den-mund-fahren
     type: phrase
     lemma: jemandem über den Mund fahren
@@ -12706,9 +12713,16 @@ records:
       - to interrupt rudely
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 603
+    phrase:
+      register: informal
+      literal: "to drive over someone's mouth"
+    examples:
+      - { de: "Fahr mir nicht ständig über den Mund!", en: "Stop cutting me off all the time!", tags: [Imperativ] }
+      - { de: "In der Sitzung fuhr er seiner Kollegin über den Mund.", en: "In the meeting he rudely interrupted his colleague.", tags: [Präteritum] }
+      - { de: "Sie ist mir einfach über den Mund gefahren.", en: "She just cut me off.", tags: [Perfekt] }
   - id: phrase-auf-dem-teppich-bleiben
     type: phrase
     lemma: auf dem Teppich bleiben
@@ -12716,9 +12730,16 @@ records:
       - to stay grounded
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 605
+    phrase:
+      register: informal
+      literal: "to stay on the carpet"
+    examples:
+      - { de: "Trotz des Erfolgs ist sie auf dem Teppich geblieben.", en: "Despite her success she has stayed grounded.", tags: [Perfekt] }
+      - { de: "Jetzt bleib mal auf dem Teppich, so schlimm ist es nicht.", en: "Now keep your feet on the ground, it's not that bad.", tags: [Imperativ] }
+      - { de: "Mit unseren Erwartungen sollten wir auf dem Teppich bleiben.", en: "We should keep our expectations realistic.", tags: [Präsens] }
   - id: phrase-das-a-und-o-sein
     type: phrase
     lemma: das A und O sein
@@ -12726,9 +12747,16 @@ records:
       - to be the most important thing
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 607
+    phrase:
+      register: neutral
+      literal: "to be the A and O"
+    examples:
+      - { de: "Eine gute Vorbereitung ist das A und O.", en: "Good preparation is the be-all and end-all.", tags: [Präsens] }
+      - { de: "Bei der Bewerbung ist der erste Eindruck das A und O.", en: "In an application the first impression is everything.", tags: [Präsens] }
+      - { de: "Kommunikation war in diesem Projekt das A und O.", en: "Communication was the key thing in this project.", tags: [Präteritum] }
   - id: phrase-etwas-schwarzsehen
     type: phrase
     lemma: etwas schwarzsehen
@@ -12736,9 +12764,16 @@ records:
       - to be pessimistic
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 609
+    phrase:
+      register: informal
+      literal: "to see something black"
+    examples:
+      - { de: "Für die Zukunft der Firma sehe ich schwarz.", en: "I'm pessimistic about the company's future.", tags: [Präsens] }
+      - { de: "Er hat für die Prüfung schwarzgesehen, aber er hat bestanden.", en: "He was pessimistic about the exam, but he passed.", tags: [Perfekt] }
+      - { de: "Sieh doch nicht immer alles so schwarz!", en: "Don't always be so pessimistic about everything!", tags: [Imperativ] }
   - id: phrase-jemanden-auf-den-arm-nehmen
     type: phrase
     lemma: jemanden auf den Arm nehmen
@@ -12746,9 +12781,16 @@ records:
       - to tease someone
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 611
+    phrase:
+      register: informal
+      literal: "to take someone on the arm"
+    examples:
+      - { de: "Willst du mich auf den Arm nehmen?", en: "Are you pulling my leg?", tags: [Präsens] }
+      - { de: "Keine Sorge, ich habe dich nur auf den Arm genommen.", en: "Don't worry, I was only teasing you.", tags: [Perfekt] }
+      - { de: "Die Kollegen nahmen ihn wegen seines Hutes auf den Arm.", en: "His colleagues teased him about his hat.", tags: [Präteritum] }
   - id: phrase-durch-dick-und-duenn-gehen
     type: phrase
     lemma: durch dick und dünn gehen
@@ -12756,9 +12798,16 @@ records:
       - to go through thick and thin
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 613
+    phrase:
+      register: neutral
+      literal: "to go through thick and thin"
+    examples:
+      - { de: "Echte Freunde gehen mit dir durch dick und dünn.", en: "Real friends go through thick and thin with you.", tags: [Präsens] }
+      - { de: "Die beiden sind dreißig Jahre lang durch dick und dünn gegangen.", en: "The two of them went through thick and thin for thirty years.", tags: [Perfekt] }
+      - { de: "Meine Schwester und ich gingen immer zusammen durch dick und dünn.", en: "My sister and I always went through thick and thin together.", tags: [Präteritum] }
   - id: phrase-eine-harte-nuss-knacken
     type: phrase
     lemma: eine harte Nuss knacken
@@ -12766,9 +12815,16 @@ records:
       - to crack a tough nut
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 615
+    phrase:
+      register: neutral
+      literal: "to crack a hard nut"
+    examples:
+      - { de: "Mit diesem Fall müssen die Ermittler eine harte Nuss knacken.", en: "With this case the investigators have a tough nut to crack.", tags: [Präsens] }
+      - { de: "Die letzte Aufgabe war eine harte Nuss.", en: "The last task was a tough nut to crack.", tags: [Präteritum] }
+      - { de: "Wir haben die harte Nuss am Ende doch geknackt.", en: "We cracked the tough nut in the end after all.", tags: [Perfekt] }
   - id: phrase-alles-ueber-einen-kamm-scheren
     type: phrase
     lemma: alles über einen Kamm scheren
@@ -12776,9 +12832,16 @@ records:
       - to generalise unfairly
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 617
+    phrase:
+      register: informal
+      literal: "to shear everything over one comb"
+    examples:
+      - { de: "Man darf nicht alle Politiker über einen Kamm scheren.", en: "You can't lump all politicians together.", tags: [Präsens] }
+      - { de: "Der Artikel schert alle Jugendlichen über einen Kamm.", en: "The article lumps all young people together.", tags: [Präsens] }
+      - { de: "Sie hat alle Kunden über einen Kamm geschoren.", en: "She treated all customers as if they were the same.", tags: [Perfekt] }
   - id: phrase-den-faden-verlieren
     type: phrase
     lemma: den Faden verlieren
@@ -12786,9 +12849,16 @@ records:
       - to lose track (in conversation)
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 619
+    phrase:
+      register: neutral
+      literal: "to lose the thread"
+    examples:
+      - { de: "Entschuldigung, ich habe den Faden verloren.", en: "Sorry, I've lost my train of thought.", tags: [Perfekt] }
+      - { de: "Mitten im Vortrag verlor er den Faden.", en: "In the middle of the talk he lost his thread.", tags: [Präteritum] }
+      - { de: "Wenn ich nervös bin, verliere ich leicht den Faden.", en: "When I'm nervous, I easily lose track.", tags: [Präsens] }
   - id: phrase-auf-nummer-sicher-gehen
     type: phrase
     lemma: auf Nummer sicher gehen
@@ -12796,9 +12866,16 @@ records:
       - to play it safe
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 621
+    phrase:
+      register: informal
+      literal: "to go on number safe"
+    examples:
+      - { de: "Ich nehme einen Regenschirm mit, um auf Nummer sicher zu gehen.", en: "I'll take an umbrella to play it safe.", tags: [Präsens] }
+      - { de: "Bei der Buchung sind wir auf Nummer sicher gegangen.", en: "We played it safe with the booking.", tags: [Perfekt] }
+      - { de: "Die Bank ging auf Nummer sicher und lehnte den Kredit ab.", en: "The bank played it safe and rejected the loan.", tags: [Präteritum] }
   - id: phrase-etwas-ist-in-trockenen-tuechern
     type: phrase
     lemma: etwas ist in trockenen Tüchern
@@ -12806,9 +12883,16 @@ records:
       - something is settled
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 623
+    phrase:
+      register: informal
+      literal: "something is in dry cloths"
+    examples:
+      - { de: "Der Vertrag ist endlich in trockenen Tüchern.", en: "The contract is finally signed and sealed.", tags: [Präsens] }
+      - { de: "Bevor alles in trockenen Tüchern ist, sage ich nichts.", en: "I won't say anything before everything is settled.", tags: [Präsens] }
+      - { de: "Im Mai war die Finanzierung in trockenen Tüchern.", en: "In May the financing was settled.", tags: [Präteritum] }
   - id: phrase-die-daumen-druecken
     type: phrase
     lemma: die Daumen drücken
@@ -12816,9 +12900,16 @@ records:
       - to keep one’s fingers crossed
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 625
+    phrase:
+      register: informal
+      literal: "to press the thumbs"
+    examples:
+      - { de: "Ich drücke dir für die Prüfung die Daumen!", en: "I'll keep my fingers crossed for your exam!", tags: [Präsens] }
+      - { de: "Wir haben alle die Daumen gedrückt.", en: "We all kept our fingers crossed.", tags: [Perfekt] }
+      - { de: "Drück mir die Daumen, morgen habe ich ein Vorstellungsgespräch.", en: "Keep your fingers crossed for me, I have a job interview tomorrow.", tags: [Imperativ] }
   - id: phrase-eine-bauchentscheidung-treffen
     type: phrase
     lemma: eine Bauchentscheidung treffen
@@ -12826,9 +12917,16 @@ records:
       - to make a gut decision
     categories:
       - idiomatic-expressions
-    status: raw
+    status: enriched
     source_lines:
       - 627
+    phrase:
+      register: informal
+      literal: "to make a belly decision"
+    examples:
+      - { de: "Bei der Wohnungssuche habe ich eine Bauchentscheidung getroffen.", en: "When looking for a flat I made a gut decision.", tags: [Perfekt] }
+      - { de: "Manchmal muss man einfach eine Bauchentscheidung treffen.", en: "Sometimes you just have to make a gut decision.", tags: [Präsens] }
+      - { de: "Sie traf eine Bauchentscheidung und kündigte ihren Job.", en: "She made a gut decision and quit her job.", tags: [Präteritum] }
   - id: adjective-gut-gelaunt
     type: adjective
     lemma: gut gelaunt
