@@ -1,0 +1,30 @@
+schema: 1
+list: { id: fixture-two, title: "Two-record play fixture", lang: de, gloss_lang: en }
+records:
+  - id: noun-boerse
+    type: noun
+    status: enriched
+    source_lines: [1272]
+    lemma: Börse
+    gloss: [stock exchange]
+    noun: { gender: f, plural: Börsen }
+    examples:
+      - { de: "Die Börse schloss gestern mit leichten Verlusten.", en: "The stock exchange closed with slight losses yesterday.", tags: [singular, Präteritum] }
+      - { de: "Die Börsen in Asien öffnen früher.", en: "The exchanges in Asia open earlier.", tags: [plural, Präsens] }
+      - { de: "Sie arbeitet an der Börse.", en: "She works at the stock exchange.", tags: [singular] }
+  - id: verb-anlegen
+    type: verb
+    status: enriched
+    source_lines: [1280]
+    lemma: anlegen
+    gloss: [to invest]
+    government: "in + Akk."
+    verb:
+      separable: an
+      auxiliary: haben
+      reflexive: false
+      parts: { praesens_3sg: "legt an", praeteritum: "legte an", partizip2: "angelegt" }
+    examples:
+      - { de: "Sie legt ihr Geld in Aktien an.", en: "She invests her money in shares.", tags: [Präsens, separated] }
+      - { de: "Er legte das Geld sicher an.", en: "He invested the money safely.", tags: [Präteritum, separated] }
+      - { de: "Wir haben viel Geld angelegt.", en: "We have invested a lot of money.", tags: [Perfekt] }
