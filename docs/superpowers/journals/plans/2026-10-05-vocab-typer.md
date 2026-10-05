@@ -221,3 +221,38 @@ government is a preposition (+case) only; object hints go to gloss/source_note.
 ### p2-r7-resolved · finding [fixed] · resolves p2-r7: Unresolved entries drop the section category (phase 2)
 
 Unresolved now carries category; skill applies it; CLI test updated.
+
+<!-- fr:journal kind=discovery scope=plan id=p3-s2-screenshots-owed created=2026-10-05T08:06:14+00:00 phase=3 -->
+### p3-s2-screenshots-owed · discovery · P3.T4.S2 browser verification partly done (phase 3)
+
+No browser available to the executor. Done: World-level play-through test (both fixture records, one 'ae' fallback, zero escapes), npm run build green, npm run dev serving /?dev=fixture with HTTP 200 and the dev module transformed. NOT done: typing in a real browser and the three screenshots (mothership-with-gloss, escorts-spawned, locked-ship-typed-prefix) for the record-ships visual row - left for the orchestrator.
+
+<!-- fr:journal kind=decision scope=plan id=p3-engine-api created=2026-10-05T08:06:14+00:00 phase=3 -->
+### p3-engine-api · decision · Engine and world API shapes (phase 3)
+
+TypingEngine is step(state, char, now) over TypingState {ships, lock, typos}; ships carry y (largest = closest to the player) and the world syncs y each tick. Trailing pre-typed punctuation = . ! ? … and closing quotes, never the whole text. World is immutable-style: tick/typeChar/advance return a new World with `events` for the last call; RecordStats.escaped is a boolean; expectedChars counts destroyed ships only (an escaped mothership contributes 0). Motherships all spawn on screen in staggered lanes so the offscreen is never targetable.
+
+<!-- fr:journal kind=discovery scope=plan id=p3-composition-echo created=2026-10-05T08:06:14+00:00 phase=3 -->
+### p3-composition-echo · discovery · Composition echo guard (phase 3)
+
+keyboard.ts ignores input events whose inputType is insertCompositionText or insertFromComposition, so a browser that echoes the composed char as a non-composing input after compositionend (Safari-style) is not double-counted. Tested synthetically only; real macOS Safari/Chrome ordering is unverified.
+
+<!-- fr:journal kind=discovery scope=plan id=p3-browser-check created=2026-10-05T08:06:14+00:00 phase=3 -->
+### p3-browser-check · discovery · Orchestrator browser check (headless Chrome via playwright-core; extension offline) (phase 3)
+
+Mothership+gloss, typed-prefix highlight, oe→ö fallback destroying "die Börse", escorts with chips+translations all work. Defects: escort sentence clipped off the left edge; forms ship overlaps escorts; escorts overlap the other mothership; one 404 (likely favicon). Routed to review-phase.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p3-t1 created=2026-10-05T08:06:14+00:00 phase=3 -->
+### no-refactor-p3-t1 · discovery · no-refactor-because P3.T1 (phase 3)
+
+single small module written straight to spec; nothing to clean
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p3-t3 created=2026-10-05T08:06:14+00:00 phase=3 -->
+### no-refactor-p3-t3 · discovery · no-refactor-because P3.T3 (phase 3)
+
+world.ts was written in one pass with shared helpers (spawn, shipDone, finish); nothing duplicated
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p3-t4 created=2026-10-05T08:06:14+00:00 phase=3 -->
+### no-refactor-p3-t4 · discovery · no-refactor-because P3.T4 (phase 3)
+
+renderer/theme/dev page are new code with no repetition; purity test already guards the theme boundary
