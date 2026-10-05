@@ -423,3 +423,102 @@ organise helpers are small pure functions with one CLI dispatcher; nothing to cl
 ### no-refactor-p4-t2 · discovery · no-refactor-because P4.T2 (phase 4)
 
 skill is prose, reworded once already during the dry run (T2.S2)
+
+<!-- fr:journal kind=finding scope=plan id=p4-r1 created=2026-10-05T18:41:20+00:00 phase=4 state=open review_scope=in -->
+### p4-r1 · finding [open] (reviewer: in scope) · mergeRecords kept the first whole type block: dropped parsed plurals, mixed raw/enriched, could escalate to reviewed (phase 4)
+
+<!-- fr:journal kind=finding scope=plan id=p4-r2 created=2026-10-05T18:41:20+00:00 phase=4 state=open review_scope=in -->
+### p4-r2 · finding [open] (reviewer: in scope) · Grouping by type+lemma merged gender homonyms and reflexive/non-reflexive verbs; all-or-nothing merge-dupes (phase 4)
+
+<!-- fr:journal kind=finding scope=plan id=p4-r3 created=2026-10-05T18:41:20+00:00 phase=4 state=open review_scope=in -->
+### p4-r3 · finding [open] (reviewer: in scope) · No guard against whole-file rewrites or lost records (phase 4)
+
+<!-- fr:journal kind=finding scope=plan id=p4-r4 created=2026-10-05T18:41:20+00:00 phase=4 state=open review_scope=in -->
+### p4-r4 · finding [open] (reviewer: in scope) · No exit for an unenrichable record (phase 4)
+
+<!-- fr:journal kind=finding scope=plan id=p4-r5 created=2026-10-05T18:41:20+00:00 phase=4 state=open review_scope=in -->
+### p4-r5 · finding [open] (reviewer: in scope) · Type-assignment rules missing from mis-typed fixes (phase 4)
+
+<!-- fr:journal kind=finding scope=plan id=p4-r6 created=2026-10-05T18:41:20+00:00 phase=4 state=open review_scope=in -->
+### p4-r6 · finding [open] (reviewer: in scope) · Plural-only gender and dual-gender variants unaddressed (phase 4)
+
+<!-- fr:journal kind=finding scope=plan id=p4-r7 created=2026-10-05T18:41:20+00:00 phase=4 state=open review_scope=in -->
+### p4-r7 · finding [open] (reviewer: in scope) · stats lacked per-category raw counts for the phase-5 gate (phase 4)
+
+<!-- fr:journal kind=finding scope=plan id=p4-r8 created=2026-10-05T18:41:20+00:00 phase=4 state=open review_scope=in -->
+### p4-r8 · finding [open] (reviewer: in scope) · next-batch --category typos silently ended runs; --n=10 ignored; merge-dupes rewrote with 0 groups (phase 4)
+
+<!-- fr:journal kind=finding scope=plan id=p4-r9 created=2026-10-05T18:41:20+00:00 phase=4 state=open review_scope=in -->
+### p4-r9 · finding [open] (reviewer: in scope) · Phase A commit lacked git add; ambiguous placeholders (phase 4)
+
+<!-- fr:journal kind=finding scope=plan id=p4-r10 created=2026-10-05T18:41:20+00:00 phase=4 state=open review_scope=in -->
+### p4-r10 · finding [open] (reviewer: in scope) · YAML quoting and untypeable low-9 quotes not addressed; misleading noun tag sample (phase 4)
+
+<!-- fr:journal kind=finding scope=plan id=p4-r11 created=2026-10-05T18:41:20+00:00 phase=4 state=open review_scope=in -->
+### p4-r11 · finding [open] (reviewer: in scope) · sich in verb parts, phrase.literal, modal Konjunktiv II, gloss tidying unstated (phase 4)
+
+<!-- fr:journal kind=finding scope=plan id=p4-r12 created=2026-10-05T18:41:20+00:00 phase=4 state=open review_scope=in -->
+### p4-r12 · finding [open] (reviewer: in scope) · Organise tests unrealistic and missed failure modes (phase 4)
+
+<!-- fr:journal kind=review scope=plan id=p4-review created=2026-10-05T18:41:20+00:00 phase=4 -->
+### p4-review · review · phase 4 code review: with fixes; all 12 in-scope findings fixed; real-seed merge check 856→802 records, 0 conflicts, plurals kept (phase 4)
+
+<!-- fr:journal kind=finding scope=plan id=p4-r1-resolved created=2026-10-05T18:41:20+00:00 phase=4 state=fixed resolves=p4-r1 -->
+### p4-r1-resolved · finding [fixed] · resolves p4-r1: mergeRecords kept the first whole type block: dropped parsed plurals, mixed raw/enriched, could escalate to reviewed (phase 4)
+
+Field-by-field block merge; most advanced record supplies block/examples/source_note; status capped at enriched; conflicting values reported, group not merged. Real seed: noun-vertrag keeps Verträge.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r2-resolved created=2026-10-05T18:41:20+00:00 phase=4 state=fixed resolves=p4-r2 -->
+### p4-r2-resolved · finding [fixed] · resolves p4-r2: Grouping by type+lemma merged gender homonyms and reflexive/non-reflexive verbs; all-or-nothing merge-dupes (phase 4)
+
+Keys include noun gender and verb reflexivity; selective merge and merge-dupes --skip; SKILL merge step rewritten.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r3-resolved created=2026-10-05T18:41:20+00:00 phase=4 state=fixed resolves=p4-r3 -->
+### p4-r3-resolved · finding [fixed] · resolves p4-r3: No guard against whole-file rewrites or lost records (phase 4)
+
+SKILL: targeted edits only; per-batch stats total and git diff checks before commit.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r4-resolved created=2026-10-05T18:41:20+00:00 phase=4 state=fixed resolves=p4-r4 -->
+### p4-r4-resolved · finding [fixed] · resolves p4-r4: No exit for an unenrichable record (phase 4)
+
+SKILL: best-effort + needs-operator-attention source_note; attempted-ids skip list; flagged records in final report.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r5-resolved created=2026-10-05T18:41:20+00:00 phase=4 state=fixed resolves=p4-r5 -->
+### p4-r5-resolved · finding [fixed] · resolves p4-r5: Type-assignment rules missing from mis-typed fixes (phase 4)
+
+Spec rules copied into SKILL; retyping removes old block; phrase lemma = full text; modal triple rule.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r6-resolved created=2026-10-05T18:41:20+00:00 phase=4 state=fixed resolves=p4-r6 -->
+### p4-r6-resolved · finding [fixed] · resolves p4-r6: Plural-only gender and dual-gender variants unaddressed (phase 4)
+
+SKILL covers plural_only (gender f, plural lemma) and variants (kept, plural set when known).
+
+<!-- fr:journal kind=finding scope=plan id=p4-r7-resolved created=2026-10-05T18:41:20+00:00 phase=4 state=fixed resolves=p4-r7 -->
+### p4-r7-resolved · finding [fixed] · resolves p4-r7: stats lacked per-category raw counts for the phase-5 gate (phase 4)
+
+stats prints raw/total per primary category in order.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r8-resolved created=2026-10-05T18:41:20+00:00 phase=4 state=fixed resolves=p4-r8 -->
+### p4-r8-resolved · finding [fixed] · resolves p4-r8: next-batch --category typos silently ended runs; --n=10 ignored; merge-dupes rewrote with 0 groups (phase 4)
+
+Errors on missing/undeclared category, unknown flags, bad --n; --n=/--category= accepted; no rewrite when nothing merged (tested by content+mtime).
+
+<!-- fr:journal kind=finding scope=plan id=p4-r9-resolved created=2026-10-05T18:41:20+00:00 phase=4 state=fixed resolves=p4-r9 -->
+### p4-r9-resolved · finding [fixed] · resolves p4-r9: Phase A commit lacked git add; ambiguous placeholders (phase 4)
+
+git add added; <list-id>/<record-id> placeholders; subject uses list id.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r10-resolved created=2026-10-05T18:41:20+00:00 phase=4 state=fixed resolves=p4-r10 -->
+### p4-r10-resolved · finding [fixed] · resolves p4-r10: YAML quoting and untypeable low-9 quotes not addressed; misleading noun tag sample (phase 4)
+
+Always double-quote de/en; avoid ‚‘; separated removed from noun sample.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r11-resolved created=2026-10-05T18:41:20+00:00 phase=4 state=fixed resolves=p4-r11 -->
+### p4-r11-resolved · finding [fixed] · resolves p4-r11: sich in verb parts, phrase.literal, modal Konjunktiv II, gloss tidying unstated (phase 4)
+
+All stated in SKILL; merge drops case-insensitive duplicate glosses.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r12-resolved created=2026-10-05T18:41:20+00:00 phase=4 state=fixed resolves=p4-r12 -->
+### p4-r12-resolved · finding [fixed] · resolves p4-r12: Organise tests unrealistic and missed failure modes (phase 4)
+
+Tests rewritten with realistic fixtures covering all listed cases plus merge refusals and --skip; 252 tests green.
