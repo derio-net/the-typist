@@ -54,7 +54,7 @@ steps:
       \ names \nno agentic phase; it waives nothing.\n"
   implement:
     state: running
-    at: '2026-10-05T07:27:15+00:00'
+    at: '2026-10-05T07:36:26+00:00'
     members:
     - implement-phase
     - review-phase
@@ -73,6 +73,13 @@ steps:
         evidence:
           tests: suite.log@f6ced6475a03;tree=0b5fafef1356ec6fd0d1c6b64341c548045efdf1157138949a1d335cde86fef4
           visual: none
+      phase/1/review-phase:
+        state: running
+        attempts:
+        - dispatched: '2026-10-05T07:36:26+00:00'
+          harness: claude-code
+          model: claude-opus-5-5
+          session: d5b2df96-f96a-4fde-8d39-796f394bda21
   journal-check:
     state: pending
   deliver:
