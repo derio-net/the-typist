@@ -7266,7 +7266,7 @@ records:
     examples:
       - { de: "Die Forschung auf diesem Gebiet steht noch am Anfang.", en: "Research in this field is still in its early stages.", tags: [singular, Präsens] }
       - { de: "Der Staat investiert viel Geld in die Forschung.", en: "The state invests a lot of money in research.", tags: [singular, Präsens] }
-      - { de: "Frühere Forschungen hatten diesen Effekt übersehen.", en: "Earlier research had overlooked this effect.", tags: [plural, Plusquamperfekt] }
+      - { de: "Frühere Forschungen hatten den Effekt übersehen, bevor neue Methoden ihn zeigten.", en: "Earlier research had overlooked the effect before new methods revealed it.", tags: [plural, Plusquamperfekt] }
   - id: verb-forschen
     type: verb
     lemma: forschen
@@ -7469,7 +7469,7 @@ records:
     lemma: belegen
     gloss:
       - to substantiate
-      - demonstrate
+      - to demonstrate
     categories:
       - science-and-technology
     status: enriched
@@ -7504,7 +7504,7 @@ records:
     examples:
       - { de: "Die Daten werden anonym gespeichert.", en: "The data is stored anonymously.", tags: [plural, Passiv, Präsens] }
       - { de: "Wir haben nicht genug Daten für eine sichere Aussage.", en: "We don't have enough data for a reliable statement.", tags: [plural, Präsens] }
-      - { de: "Die Firma hatte die Daten ohne Erlaubnis weitergegeben.", en: "The company had passed on the data without permission.", tags: [plural, Plusquamperfekt] }
+      - { de: "Als der Skandal bekannt wurde, hatte die Firma die Daten längst weitergegeben.", en: "By the time the scandal broke, the company had long since passed on the data.", tags: [plural, Plusquamperfekt] }
   - id: noun-datenanalyse
     type: noun
     lemma: Datenanalyse
@@ -7537,7 +7537,7 @@ records:
       gender: f
       plural: Statistiken
     examples:
-      - { de: "Laut Statistik leben in Berlin rund 3,8 Millionen Menschen.", en: "According to statistics, around 3.8 million people live in Berlin.", tags: [singular, Präsens] }
+      - { de: "Laut Statistik leben immer mehr Menschen allein.", en: "According to statistics, more and more people live alone.", tags: [singular, Präsens] }
       - { de: "Im Studium musste ich auch Statistik lernen.", en: "At university I also had to learn statistics.", tags: [singular, Präteritum] }
       - { de: "Die neuesten Statistiken zeigen einen Anstieg der Arbeitslosigkeit.", en: "The latest statistics show a rise in unemployment.", tags: [plural, Präsens] }
   - id: noun-zusammenhang
@@ -7609,7 +7609,7 @@ records:
       plural: Entwicklungen
     examples:
       - { de: "Die Entwicklung eines neuen Medikaments dauert oft zehn Jahre.", en: "The development of a new drug often takes ten years.", tags: [singular, Präsens] }
-      - { de: "Diese Entwicklung hatte niemand vorhergesehen.", en: "Nobody had foreseen this development.", tags: [singular, Plusquamperfekt] }
+      - { de: "Diese Entwicklung hatte niemand vorhergesehen, als wir das Projekt starteten.", en: "Nobody had foreseen this development when we started the project.", tags: [singular, Plusquamperfekt] }
       - { de: "Wir beobachten die aktuellen Entwicklungen sehr genau.", en: "We are watching current developments very closely.", tags: [plural, Präsens] }
   - id: noun-erfindung
     type: noun
@@ -7924,7 +7924,7 @@ records:
     examples:
       - { de: "Dieses Gen erhöht das Risiko für Diabetes.", en: "This gene increases the risk of diabetes.", tags: [singular, Präsens] }
       - { de: "Die Augenfarbe wird von mehreren Genen bestimmt.", en: "Eye colour is determined by several genes.", tags: [plural, Passiv, Präsens] }
-      - { de: "Die Forscher hatten das Gen schon 2010 entdeckt.", en: "The researchers had already discovered the gene in 2010.", tags: [singular, Plusquamperfekt] }
+      - { de: "Die Forscher hatten das Gen entdeckt, bevor seine Funktion bekannt war.", en: "The researchers had discovered the gene before its function was known.", tags: [singular, Plusquamperfekt] }
   - id: noun-genetik
     type: noun
     lemma: Genetik
@@ -8125,7 +8125,7 @@ records:
       plural: Rezessionen
     examples:
       - { de: "Das Land steckt seit Monaten in einer Rezession.", en: "The country has been in a recession for months.", tags: [singular, Präsens] }
-      - { de: "Viele Ökonomen hatten die Rezession nicht kommen sehen.", en: "Many economists had not seen the recession coming.", tags: [singular, Plusquamperfekt] }
+      - { de: "Als die Rezession begann, hatten viele Ökonomen noch Wachstum erwartet.", en: "When the recession began, many economists had still been expecting growth.", tags: [singular, Plusquamperfekt] }
       - { de: "Nach zwei Rezessionen in Folge stieg die Arbeitslosigkeit stark an.", en: "After two recessions in a row, unemployment rose sharply.", tags: [plural, Präteritum] }
   - id: noun-aufschwung
     type: noun
@@ -8428,7 +8428,7 @@ records:
       plural_only: true
     examples:
       - { de: "Er hat hohe Schulden bei der Bank.", en: "He has large debts with the bank.", tags: [plural, Präsens] }
-      - { de: "Nach zehn Jahren hatte sie endlich alle Schulden bezahlt.", en: "After ten years she had finally paid off all her debts.", tags: [plural, Plusquamperfekt] }
+      - { de: "Nachdem sie alle Schulden bezahlt hatte, kaufte sie sich ein Auto.", en: "After she had paid off all her debts, she bought herself a car.", tags: [plural, Plusquamperfekt] }
       - { de: "Der Staat darf nur begrenzt neue Schulden machen.", en: "The state may only take on new debt to a limited extent.", tags: [plural, Präsens] }
   - id: noun-aktie
     type: noun
@@ -8503,7 +8503,7 @@ records:
     examples:
       - { de: "Ein vorsichtiger Anleger verteilt sein Geld auf mehrere Fonds.", en: "A cautious investor spreads his money across several funds.", tags: [singular, Präsens] }
       - { de: "Die Anleger verloren durch den Absturz viel Geld.", en: "Investors lost a lot of money in the crash.", tags: [plural, Präteritum] }
-      - { de: "Die Anlegerin hatte ihre Aktien rechtzeitig verkauft.", en: "The investor had sold her shares in time.", tags: [singular, Plusquamperfekt] }
+      - { de: "Die Anlegerin hatte ihre Aktien verkauft, bevor die Kurse fielen.", en: "The investor had sold her shares before prices fell.", tags: [singular, Plusquamperfekt] }
   - id: noun-investment
     type: noun
     lemma: Investment
@@ -8635,7 +8635,7 @@ records:
     examples:
       - { de: "Ein neues Auto ist eine große Ausgabe.", en: "A new car is a big expense.", tags: [singular, Präsens] }
       - { de: "Wir müssen unsere Ausgaben senken.", en: "We have to cut our expenses.", tags: [plural, Präsens] }
-      - { de: "Die Ausgaben für Energie hatten sich im Winter verdoppelt.", en: "Spending on energy had doubled in the winter.", tags: [plural, Plusquamperfekt] }
+      - { de: "Als der Winter vorbei war, hatten sich die Ausgaben für Energie verdoppelt.", en: "By the time winter was over, spending on energy had doubled.", tags: [plural, Plusquamperfekt] }
   - id: noun-budget
     type: noun
     lemma: Budget
@@ -8676,7 +8676,8 @@ records:
     type: noun
     lemma: Vermögen
     gloss:
-      - wealth
+      - assets
+      - fortune
     categories:
       - economics-and-finance
     status: enriched
@@ -8687,7 +8688,7 @@ records:
       plural: Vermögen
     examples:
       - { de: "Er hat sein Vermögen mit Immobilien gemacht.", en: "He made his fortune in property.", tags: [singular, Perfekt] }
-      - { de: "Das Vermögen in Deutschland ist sehr ungleich verteilt.", en: "Wealth in Germany is very unequally distributed.", tags: [singular, Präsens] }
+      - { de: "Das Vermögen in Deutschland ist sehr ungleich verteilt.", en: "Assets in Germany are very unequally distributed.", tags: [singular, Präsens] }
       - { de: "Große Vermögen sollen stärker besteuert werden.", en: "Large fortunes are to be taxed more heavily.", tags: [plural, Passiv, Präsens] }
   - id: noun-kreditwuerdigkeit
     type: noun
@@ -8704,7 +8705,7 @@ records:
       gender: f
       plural: null
     examples:
-      - { de: "Vor dem Kredit prüft die Bank Ihre Kreditwürdigkeit.", en: "Before granting the loan, the bank checks your creditworthiness.", tags: [singular, Präsens] }
+      - { de: "Vor der Kreditvergabe prüft die Bank Ihre Kreditwürdigkeit.", en: "Before granting a loan, the bank checks your creditworthiness.", tags: [singular, Präsens] }
       - { de: "Durch die unbezahlten Rechnungen hat seine Kreditwürdigkeit gelitten.", en: "His credit rating has suffered because of the unpaid bills.", tags: [singular, Perfekt] }
       - { de: "Die Kreditwürdigkeit des Landes wurde herabgestuft.", en: "The country's credit rating was downgraded.", tags: [singular, Passiv, Präteritum] }
   - id: noun-kontoauszug
@@ -8791,7 +8792,7 @@ records:
     examples:
       - { de: "Bitte geben Sie Ihre Bankverbindung im Formular an.", en: "Please enter your bank details in the form.", tags: [singular, Imperativ] }
       - { de: "Meine Bankverbindung hat sich geändert.", en: "My bank details have changed.", tags: [singular, Perfekt] }
-      - { de: "Er nutzt zwei Bankverbindungen: eine private und eine geschäftliche.", en: "He uses two bank accounts: a private one and a business one.", tags: [plural, Präsens] }
+      - { de: "Bitte prüfen Sie die Bankverbindungen aller Lieferanten.", en: "Please check the bank details of all suppliers.", tags: [plural, Imperativ] }
   - id: noun-online-banking
     type: noun
     lemma: Online-Banking
@@ -8841,7 +8842,7 @@ records:
       plural: Bargeldzahlungen
     examples:
       - { de: "In diesem Geschäft ist nur Bargeldzahlung möglich.", en: "Only cash payment is possible in this shop.", tags: [singular, Präsens] }
-      - { de: "Bargeldzahlungen über 10000 Euro sind in manchen Ländern verboten.", en: "Cash payments over 10,000 euros are banned in some countries.", tags: [plural, Präsens] }
+      - { de: "Bargeldzahlungen über 10.000 Euro sind in manchen Ländern verboten.", en: "Cash payments over 10,000 euros are banned in some countries.", tags: [plural, Präsens] }
       - { de: "Er bestand auf einer Bargeldzahlung.", en: "He insisted on a cash payment.", tags: [singular, Präteritum] }
   - id: noun-kartenzahlung
     type: noun
@@ -9225,7 +9226,7 @@ records:
     examples:
       - { de: "Der Hausarzt impft auch gegen Grippe.", en: "The family doctor also vaccinates against flu.", tags: [Präsens] }
       - { de: "Bist du schon gegen Tetanus geimpft worden?", en: "Have you been vaccinated against tetanus yet?", tags: [Passiv, Perfekt] }
-      - { de: "Im Herbst impfte die Schule alle Kinder gegen Masern.", en: "In the autumn the school vaccinated all the children against measles.", tags: [Präteritum] }
+      - { de: "Im Herbst impfte das Gesundheitsamt alle Schulkinder gegen Masern.", en: "In the autumn, the health authority vaccinated all schoolchildren against measles.", tags: [Präteritum] }
       - { de: "Wir haben unseren Hund letzte Woche impfen lassen.", en: "We had our dog vaccinated last week.", tags: [Perfekt] }
   - id: noun-nebenwirkung
     type: noun
@@ -9243,7 +9244,7 @@ records:
     examples:
       - { de: "Das Medikament hat kaum Nebenwirkungen.", en: "The medicine has hardly any side effects.", tags: [plural, Präsens] }
       - { de: "Eine häufige Nebenwirkung ist Müdigkeit.", en: "A common side effect is tiredness.", tags: [singular, Präsens] }
-      - { de: "Über die Nebenwirkungen hatte niemand sie informiert.", en: "Nobody had informed her about the side effects.", tags: [plural, Plusquamperfekt] }
+      - { de: "Niemand hatte sie über die Nebenwirkungen informiert, bevor sie die Tabletten nahm.", en: "Nobody had told her about the side effects before she took the pills.", tags: [plural, Plusquamperfekt] }
   - id: noun-allergie
     type: noun
     lemma: Allergie
@@ -9489,7 +9490,7 @@ records:
       - { de: "Ich hätte gern einen Termin beim Zahnarzt.", en: "I would like an appointment with the dentist.", tags: [singular, Konjunktiv II] }
       - { de: "Den Termin für die Abgabe dürfen wir nicht verpassen.", en: "We mustn't miss the deadline for submission.", tags: [singular, Präsens] }
       - { de: "Heute habe ich drei Termine hintereinander.", en: "I have three appointments in a row today.", tags: [plural, Präsens] }
-      - { de: "Sie hatte den Termin völlig vergessen.", en: "She had completely forgotten the appointment.", tags: [singular, Plusquamperfekt] }
+      - { de: "Sie hatte den Termin völlig vergessen und kam zu spät.", en: "She had completely forgotten the appointment and arrived late.", tags: [singular, Plusquamperfekt] }
   - id: noun-wartezimmer
     type: noun
     lemma: Wartezimmer
@@ -9627,7 +9628,7 @@ records:
     examples:
       - { de: "Rauchverbote dienen der öffentlichen Gesundheit.", en: "Smoking bans serve public health.", tags: [singular, Präsens] }
       - { de: "Die öffentliche Gesundheit hat für die Regierung Vorrang.", en: "Public health has priority for the government.", tags: [singular, Präsens] }
-      - { de: "Die Pandemie hatte gezeigt, wie wichtig die öffentliche Gesundheit ist.", en: "The pandemic had shown how important public health is.", tags: [singular, Plusquamperfekt] }
+      - { de: "Nachdem die Pandemie ausgebrochen war, wurde die öffentliche Gesundheit zum Thema.", en: "After the pandemic had broken out, public health became a major topic.", tags: [singular, Plusquamperfekt] }
   - id: noun-gesundheitspolitik
     type: noun
     lemma: Gesundheitspolitik
@@ -9659,7 +9660,7 @@ records:
       gender: f
       plural: null
     examples:
-      - { de: "Die Lebenserwartung in Deutschland liegt bei etwa 81 Jahren.", en: "Life expectancy in Germany is around 81 years.", tags: [singular, Präsens] }
+      - { de: "Die Lebenserwartung hängt stark vom Einkommen ab.", en: "Life expectancy depends heavily on income.", tags: [singular, Präsens] }
       - { de: "Frauen haben eine höhere Lebenserwartung als Männer.", en: "Women have a higher life expectancy than men.", tags: [singular, Präsens] }
       - { de: "Im 20. Jahrhundert stieg die Lebenserwartung deutlich an.", en: "Life expectancy rose significantly in the 20th century.", tags: [singular, Präteritum] }
   - id: noun-lebensstil
@@ -9817,7 +9818,7 @@ records:
     examples:
       - { de: "Das war die beste Entscheidung meines Lebens.", en: "That was the best decision of my life.", tags: [singular, Präteritum] }
       - { de: "Wir müssen bis Freitag eine Entscheidung treffen.", en: "We have to make a decision by Friday.", tags: [singular, Präsens] }
-      - { de: "Schwierige Entscheidungen hatte er immer lange hinausgezögert.", en: "He had always put off difficult decisions for a long time.", tags: [plural, Plusquamperfekt] }
+      - { de: "Schwierige Entscheidungen hatte er immer hinausgezögert, bis es zu spät war.", en: "He had always put off difficult decisions until it was too late.", tags: [plural, Plusquamperfekt] }
   - id: noun-meinungsfreiheit
     type: noun
     lemma: Meinungsfreiheit
@@ -10107,7 +10108,7 @@ records:
       gender: f
       plural: Ungleichheiten
     examples:
-      - { de: "Die soziale Ungleichheit hat in den letzten Jahren zugenommen.", en: "Social inequality has increased in recent years.", tags: [singular, Perfekt] }
+      - { de: "Die Ungleichheit zwischen Stadt und Land wächst.", en: "Inequality between town and country is growing.", tags: [singular, Präsens] }
       - { de: "Ungleichheit beim Einkommen führt oft zu Spannungen.", en: "Income inequality often leads to tension.", tags: [singular, Präsens] }
       - { de: "Die Studie zeigt große regionale Ungleichheiten.", en: "The study shows large regional inequalities.", tags: [plural, Präsens] }
   - id: noun-armut
@@ -10178,7 +10179,7 @@ records:
     examples:
       - { de: "Bildung gilt als Schlüssel zum sozialen Aufstieg.", en: "Education is seen as the key to upward social mobility.", tags: [singular, Präsens] }
       - { de: "Der soziale Aufstieg ist für Arbeiterkinder oft schwer.", en: "Upward mobility is often difficult for working-class children.", tags: [singular, Präsens] }
-      - { de: "Ihr Vater hatte den sozialen Aufstieg aus eigener Kraft geschafft.", en: "Her father had moved up in society by his own efforts.", tags: [singular, Plusquamperfekt] }
+      - { de: "Ihr Vater hatte den sozialen Aufstieg geschafft, bevor sie geboren wurde.", en: "Her father had moved up in society before she was born.", tags: [singular, Plusquamperfekt] }
   - id: noun-soziale-gerechtigkeit
     type: noun
     lemma: soziale Gerechtigkeit
@@ -10373,12 +10374,12 @@ records:
     examples:
       - { de: "Der Verbraucher hat ein Recht auf klare Informationen.", en: "The consumer has a right to clear information.", tags: [singular, Präsens] }
       - { de: "Die Verbraucher müssen für Strom bald mehr bezahlen.", en: "Consumers will soon have to pay more for electricity.", tags: [plural, Präsens] }
-      - { de: "Eine Verbraucherin hatte sich über die Verpackung beschwert.", en: "A consumer had complained about the packaging.", tags: [singular, Plusquamperfekt] }
+      - { de: "Nachdem sich eine Verbraucherin beschwert hatte, änderte die Firma die Verpackung.", en: "After a consumer had complained, the company changed the packaging.", tags: [singular, Plusquamperfekt] }
   - id: noun-konsument
     type: noun
     lemma: Konsument
     gloss:
-      - consumer (alternative term)
+      - consumer
     categories:
       - consumer-culture-and-advertising
     status: enriched
@@ -10447,7 +10448,7 @@ records:
     examples:
       - { de: "Der Bedarf an Pflegekräften steigt jedes Jahr.", en: "The need for nursing staff increases every year.", tags: [singular, Präsens] }
       - { de: "Bei Bedarf können Sie uns jederzeit anrufen.", en: "If necessary, you can call us at any time.", tags: [singular, Präsens] }
-      - { de: "Die Firma hatte den Bedarf an Masken völlig unterschätzt.", en: "The company had completely underestimated the demand for masks.", tags: [singular, Plusquamperfekt] }
+      - { de: "Als die Pandemie begann, hatte die Firma den Bedarf an Masken unterschätzt.", en: "When the pandemic began, the company had underestimated the demand for masks.", tags: [singular, Plusquamperfekt] }
   - id: noun-beduerfnis
     type: noun
     lemma: Bedürfnis
@@ -10594,7 +10595,7 @@ records:
     examples:
       - { de: "An der Haltestelle hängt ein riesiges Werbeplakat.", en: "There is a huge advertising poster at the bus stop.", tags: [singular, Präsens] }
       - { de: "Die Stadt will die Werbeplakate an den Straßen reduzieren.", en: "The city wants to reduce the number of billboards along the roads.", tags: [plural, Präsens] }
-      - { de: "Jemand hatte das Werbeplakat mit Farbe besprüht.", en: "Somebody had sprayed the advertising poster with paint.", tags: [singular, Plusquamperfekt] }
+      - { de: "Als wir am Morgen kamen, hatte jemand das Werbeplakat mit Farbe besprüht.", en: "When we arrived in the morning, someone had sprayed paint on the advertising poster.", tags: [singular, Plusquamperfekt] }
   - id: noun-reklame
     type: noun
     lemma: Reklame
@@ -10648,7 +10649,7 @@ records:
     examples:
       - { de: "Von welcher Marke ist dein Handy?", en: "What make is your phone?", tags: [singular, Präsens] }
       - { de: "Viele Jugendliche tragen nur teure Marken.", en: "Many young people only wear expensive brands.", tags: [plural, Präsens] }
-      - { de: "Die Marke hatte ihr Image komplett verändert.", en: "The brand had completely changed its image.", tags: [singular, Plusquamperfekt] }
+      - { de: "Die Marke hatte ihr Image verändert, bevor sie den Markt in Asien eroberte.", en: "The brand had changed its image before it conquered the Asian market.", tags: [singular, Plusquamperfekt] }
   - id: noun-markenbindung
     type: noun
     lemma: Markenbindung
@@ -10771,7 +10772,7 @@ records:
       plural: Sonderangebote
     examples:
       - { de: "Die Erdbeeren sind diese Woche im Sonderangebot.", en: "The strawberries are on special offer this week.", tags: [singular, Präsens] }
-      - { de: "Ich habe die Schuhe als Sonderangebot gekauft.", en: "I bought the shoes on special offer.", tags: [singular, Perfekt] }
+      - { de: "Ich habe die Schuhe im Sonderangebot gekauft.", en: "I bought the shoes on special offer.", tags: [singular, Perfekt] }
       - { de: "Die Sonderangebote stehen jeden Montag im Prospekt.", en: "The special offers are in the brochure every Monday.", tags: [plural, Präsens] }
   - id: noun-schnaeppchen
     type: noun
@@ -10822,7 +10823,7 @@ records:
       plural: null
     examples:
       - { de: "Am Black Friday geraten viele Menschen in einen Kaufrausch.", en: "On Black Friday many people go on a shopping spree.", tags: [singular, Präsens] }
-      - { de: "Im Kaufrausch hatte sie Dinge gekauft, die sie nie brauchte.", en: "On a shopping spree she had bought things she never needed.", tags: [singular, Plusquamperfekt] }
+      - { de: "Als die Rechnung kam, merkte sie, was sie im Kaufrausch gekauft hatte.", en: "When the bill came, she realised what she had bought on her shopping spree.", tags: [singular, Plusquamperfekt] }
       - { de: "Nach dem Kaufrausch kam die hohe Kreditkartenrechnung.", en: "After the shopping spree came the big credit card bill.", tags: [singular, Präteritum] }
   - id: noun-einkaufsverhalten
     type: noun
@@ -10970,7 +10971,7 @@ records:
     examples:
       - { de: "Kann ich den Pullover in einer anderen Größe umtauschen?", en: "Can I exchange the jumper for a different size?", tags: [Präsens] }
       - { de: "Ich tausche das Geschenk morgen um.", en: "I'm going to exchange the present tomorrow.", tags: [separated, Präsens] }
-      - { de: "Vor der Reise hatte sie Euro in Dollar umgetauscht.", en: "Before the trip she had changed euros into dollars.", tags: [Plusquamperfekt] }
+      - { de: "Bevor sie nach New York flog, hatte sie Euro in Dollar umgetauscht.", en: "Before she flew to New York, she had changed euros into dollars.", tags: [Plusquamperfekt] }
   - id: noun-kaufkraft
     type: noun
     lemma: Kaufkraft
@@ -11073,7 +11074,7 @@ records:
     examples:
       - { de: "Die Rechnung ist innerhalb von 14 Tagen zu bezahlen.", en: "The invoice is payable within 14 days.", tags: [singular, Präsens] }
       - { de: "Wir hätten gern die Rechnung, bitte.", en: "We'd like the bill, please.", tags: [singular, Konjunktiv II] }
-      - { de: "Er hatte die Rechnungen monatelang nicht bezahlt.", en: "He hadn't paid the bills for months.", tags: [plural, Plusquamperfekt] }
+      - { de: "Er hatte die Rechnungen monatelang nicht bezahlt, als der Strom abgestellt wurde.", en: "He hadn't paid the bills for months when the electricity was cut off.", tags: [plural, Plusquamperfekt] }
   - id: noun-kundenbindung
     type: noun
     lemma: Kundenbindung
@@ -11246,7 +11247,7 @@ records:
           gender: f
           plural: Arbeitgeberinnen
     examples:
-      - { de: "Mein Arbeitgeber bezahlt mir das Deutschlandticket.", en: "My employer pays for my Deutschlandticket.", tags: [singular, Präsens] }
+      - { de: "Mein Arbeitgeber zahlt einen Zuschuss zum Monatsticket.", en: "My employer contributes to my monthly travel pass.", tags: [singular, Präsens] }
       - { de: "Die Arbeitgeber lehnen höhere Löhne ab.", en: "Employers reject higher wages.", tags: [plural, Präsens] }
       - { de: "Die Stadt ist der größte Arbeitgeber in der Region.", en: "The city is the largest employer in the region.", tags: [singular, Präsens] }
   - id: noun-arbeitnehmer
@@ -11269,7 +11270,7 @@ records:
     examples:
       - { de: "Jeder Arbeitnehmer hat Anspruch auf bezahlten Urlaub.", en: "Every employee is entitled to paid holiday.", tags: [singular, Präsens] }
       - { de: "Die Arbeitnehmer streiken für bessere Bedingungen.", en: "The employees are striking for better conditions.", tags: [plural, Präsens] }
-      - { de: "Die Arbeitnehmerin hatte ihre Kündigung schriftlich erhalten.", en: "The employee had received her notice in writing.", tags: [singular, Plusquamperfekt] }
+      - { de: "Die Arbeitnehmerin hatte ihre Kündigung schon erhalten, als die Firma schloss.", en: "The employee had already received her notice when the company closed.", tags: [singular, Plusquamperfekt] }
   - id: noun-team
     type: noun
     lemma: Team
@@ -11319,7 +11320,7 @@ records:
       plural: Meetings
     examples:
       - { de: "Das Meeting fängt in fünf Minuten an.", en: "The meeting starts in five minutes.", tags: [singular, Präsens] }
-      - { de: "Ich hatte heute drei Meetings hintereinander.", en: "I had three meetings in a row today.", tags: [plural, Präteritum] }
+      - { de: "Viele Meetings könnten auch eine E-Mail sein.", en: "Many meetings could just as well be an email.", tags: [plural, Konjunktiv II] }
       - { de: "Wir werden das Meeting online durchführen.", en: "We will hold the meeting online.", tags: [singular, Futur I] }
   - id: noun-konferenz
     type: noun
@@ -11560,7 +11561,7 @@ records:
     examples:
       - { de: "Nach Absprache mit dem Chef darf ich früher gehen.", en: "After checking with the boss, I'm allowed to leave early.", tags: [singular, Präsens] }
       - { de: "Wir brauchen eine klare Absprache, wer was macht.", en: "We need a clear agreement about who does what.", tags: [singular, Präsens] }
-      - { de: "Die Firmen hatten verbotene Absprachen über die Preise getroffen.", en: "The companies had made illegal price-fixing agreements.", tags: [plural, Plusquamperfekt] }
+      - { de: "Die Firmen hatten verbotene Preisabsprachen getroffen, bevor das Kartellamt eingriff.", en: "The companies had made illegal price-fixing agreements before the competition authority stepped in.", tags: [plural, Plusquamperfekt] }
   - id: verb-absprechen
     type: verb
     lemma: absprechen
@@ -11677,7 +11678,7 @@ records:
     examples:
       - { de: "In welcher Firma arbeiten Sie?", en: "Which company do you work for?", tags: [singular, Präsens] }
       - { de: "Die Firma meines Vaters stellt Möbel her.", en: "My father's firm makes furniture.", tags: [singular, Präsens] }
-      - { de: "Mehrere Firmen hatten sich um den Auftrag beworben.", en: "Several firms had bid for the contract.", tags: [plural, Plusquamperfekt] }
+      - { de: "Mehrere Firmen hatten sich beworben, bevor die Stadt den Auftrag vergab.", en: "Several firms had bid before the city awarded the contract.", tags: [plural, Plusquamperfekt] }
   - id: noun-anweisung
     type: noun
     lemma: Anweisung
@@ -11795,7 +11796,7 @@ records:
       gender: m
       plural: Löhne
     examples:
-      - { de: "Der Lohn wird am Monatsende überwiesen.", en: "The wages are paid at the end of the month.", tags: [singular, Passiv, Präsens] }
+      - { de: "Nach der Miete bleibt vom Lohn kaum etwas übrig.", en: "After paying the rent, there's hardly anything left of the wages.", tags: [singular, Präsens] }
       - { de: "Die Gewerkschaft fordert höhere Löhne.", en: "The union is demanding higher wages.", tags: [plural, Präsens] }
       - { de: "Für die gleiche Arbeit bekam sie weniger Lohn als ihr Kollege.", en: "She got lower pay than her colleague for the same work.", tags: [singular, Präteritum] }
   - id: noun-gehalt
@@ -11883,7 +11884,7 @@ records:
     examples:
       - { de: "Für diese Stelle fehlt ihm die nötige Qualifikation.", en: "He lacks the necessary qualification for this position.", tags: [singular, Präsens] }
       - { de: "Ausländische Qualifikationen werden oft nicht anerkannt.", en: "Foreign qualifications are often not recognised.", tags: [plural, Passiv, Präsens] }
-      - { de: "Die Mannschaft hatte die Qualifikation für die WM knapp verpasst.", en: "The team had narrowly missed qualifying for the World Cup.", tags: [singular, Plusquamperfekt] }
+      - { de: "Bevor sie die Stelle bekam, hatte sie zusätzliche Qualifikationen erworben.", en: "Before she got the job, she had acquired additional qualifications.", tags: [plural, Plusquamperfekt] }
   - id: noun-politik
     type: noun
     lemma: Politik
@@ -11960,7 +11961,7 @@ records:
     examples:
       - { de: "Der Bundespräsident wird von der Bundesversammlung gewählt.", en: "The Federal President is elected by the Federal Convention.", tags: [singular, Passiv, Präsens] }
       - { de: "Die Rede des Bundespräsidenten wurde live übertragen.", en: "The Federal President's speech was broadcast live.", tags: [singular, Passiv, Präteritum] }
-      - { de: "Bisher hatte noch keine Frau das Amt der Bundespräsidentin inne.", en: "So far no woman has held the office of Federal President.", tags: [singular, Präteritum] }
+      - { de: "Die Bundespräsidentin hält eine Rede zum Nationalfeiertag.", en: "The Federal President gives a speech on the national holiday.", tags: [singular, Präsens] }
       - { de: "Die früheren Bundespräsidenten trafen sich zum Jubiläum.", en: "The former Federal Presidents met for the anniversary.", tags: [plural, Präteritum] }
   - id: noun-bundeskanzler
     type: noun
@@ -12060,7 +12061,7 @@ records:
       plural: Wahlergebnisse
     examples:
       - { de: "Das Wahlergebnis wird am Abend bekannt gegeben.", en: "The election result will be announced in the evening.", tags: [singular, Passiv, Präsens] }
-      - { de: "Mit diesem Wahlergebnis hatte niemand gerechnet.", en: "Nobody had expected this election result.", tags: [singular, Plusquamperfekt] }
+      - { de: "Bis die erste Hochrechnung kam, hatte niemand mit diesem Wahlergebnis gerechnet.", en: "Until the first projection came in, nobody had expected this election result.", tags: [singular, Plusquamperfekt] }
       - { de: "Die Wahlergebnisse in den Bundesländern waren sehr unterschiedlich.", en: "The election results in the federal states were very different.", tags: [plural, Präteritum] }
   - id: noun-politikverdrossenheit
     type: noun
@@ -12213,7 +12214,7 @@ records:
     examples:
       - { de: "Jeder Asylbewerber hat das Recht auf ein faires Verfahren.", en: "Every asylum seeker has the right to a fair procedure.", tags: [singular, Präsens] }
       - { de: "Die Asylbewerber warten oft monatelang auf eine Entscheidung.", en: "Asylum seekers often wait months for a decision.", tags: [plural, Präsens] }
-      - { de: "Die Asylbewerberin hatte vorher als Lehrerin gearbeitet.", en: "The asylum seeker had previously worked as a teacher.", tags: [singular, Plusquamperfekt] }
+      - { de: "Bevor sie fliehen musste, hatte die Asylbewerberin als Lehrerin gearbeitet.", en: "Before she had to flee, the asylum seeker had worked as a teacher.", tags: [singular, Plusquamperfekt] }
   - id: noun-buergerrecht
     type: noun
     lemma: Bürgerrecht
@@ -12262,7 +12263,7 @@ records:
       gender: f
       plural: null
     examples:
-      - { de: "In der Innenpolitik geht es vor allem um Migration und Sicherheit.", en: "Domestic policy is mainly about migration and security.", tags: [singular, Präsens] }
+      - { de: "Zur Innenpolitik gehören Themen wie Bildung, Sicherheit und Soziales.", en: "Domestic policy covers issues such as education, security and social affairs.", tags: [singular, Präsens] }
       - { de: "Der Minister ist für die Innenpolitik zuständig.", en: "The minister is responsible for domestic policy.", tags: [singular, Präsens] }
       - { de: "Nach der Wahl konzentrierte sich die Regierung auf die Innenpolitik.", en: "After the election the government concentrated on domestic policy.", tags: [singular, Präteritum] }
   - id: noun-aussenpolitik
@@ -12432,21 +12433,24 @@ records:
       - { de: "Wirtschaftliche Embargos haben oft nur begrenzte Wirkung.", en: "Economic embargoes often have only a limited effect.", tags: [plural, Präsens] }
   - id: noun-friedensverhandlung
     type: noun
-    lemma: Friedensverhandlung
+    lemma: Friedensverhandlungen
     gloss:
-      - peace negotiation
+      - peace negotiations
+      - peace talks
     categories:
       - politics-and-international-relations
     status: enriched
     source_lines:
       - 1893
+    source_note: "made plural-only (lemma Friedensverhandlungen): the plural is the norm"
     noun:
       gender: f
-      plural: Friedensverhandlungen
+      plural: null
+      plural_only: true
     examples:
       - { de: "Die Friedensverhandlungen sind gescheitert.", en: "The peace negotiations have failed.", tags: [plural, Perfekt] }
       - { de: "Beide Seiten werden nächste Woche Friedensverhandlungen aufnehmen.", en: "Both sides will begin peace negotiations next week.", tags: [plural, Futur I] }
-      - { de: "Bei der ersten Friedensverhandlung saßen sich die Gegner direkt gegenüber.", en: "At the first round of peace talks, the opponents sat face to face.", tags: [singular, Präteritum] }
+      - { de: "Bei den ersten Friedensverhandlungen saßen sich die Gegner direkt gegenüber.", en: "In the first peace talks, the opponents sat face to face.", tags: [plural, Präteritum] }
   - id: noun-krieg
     type: noun
     lemma: Krieg
@@ -12651,7 +12655,7 @@ records:
     examples:
       - { de: "Das Wohnhaus hat sechs Stockwerke und keinen Aufzug.", en: "The residential building has six floors and no lift.", tags: [singular, Präsens] }
       - { de: "Neben der Schule werden drei neue Wohnhäuser gebaut.", en: "Three new residential buildings are being built next to the school.", tags: [plural, Passiv, Präsens] }
-      - { de: "In dem alten Wohnhaus hatte früher ein Arzt gewohnt.", en: "A doctor had once lived in the old house.", tags: [singular, Plusquamperfekt] }
+      - { de: "Bevor die Familie einzog, hatte ein Arzt in dem alten Wohnhaus gewohnt.", en: "Before the family moved in, a doctor had lived in the old house.", tags: [singular, Plusquamperfekt] }
   - id: noun-hochhaus
     type: noun
     lemma: Hochhaus
@@ -12684,7 +12688,7 @@ records:
       plural: Mietwohnungen
     examples:
       - { de: "Wir suchen eine Mietwohnung mit drei Zimmern.", en: "We are looking for a three-room rented flat.", tags: [singular, Präsens] }
-      - { de: "In Deutschland leben mehr Menschen in Mietwohnungen als im Eigentum.", en: "In Germany, more people live in rented flats than in homes they own.", tags: [plural, Präsens] }
+      - { de: "In Deutschland leben mehr Menschen in Mietwohnungen als in Wohneigentum.", en: "In Germany, more people live in rented flats than in homes they own.", tags: [plural, Präsens] }
       - { de: "Ihre erste Mietwohnung war winzig, aber gemütlich.", en: "Her first rented flat was tiny but cosy.", tags: [singular, Präteritum] }
   - id: noun-eigentumswohnung
     type: noun
@@ -12798,7 +12802,7 @@ records:
     examples:
       - { de: "Der Mieter hat sich über den Lärm beschwert.", en: "The tenant complained about the noise.", tags: [singular, Perfekt] }
       - { de: "Die Mieter wehren sich gegen die Sanierung.", en: "The tenants are fighting the renovation.", tags: [plural, Präsens] }
-      - { de: "Die neue Mieterin war im März eingezogen.", en: "The new tenant had moved in in March.", tags: [singular, Plusquamperfekt] }
+      - { de: "Die neue Mieterin war schon eingezogen, als die Renovierung begann.", en: "The new tenant had already moved in when the renovation began.", tags: [singular, Plusquamperfekt] }
   - id: noun-bauprojekt
     type: noun
     lemma: Bauprojekt
@@ -13058,7 +13062,7 @@ records:
     examples:
       - { de: "Ein Fußgänger wurde von einem Radfahrer angefahren.", en: "A pedestrian was hit by a cyclist.", tags: [singular, Passiv, Präteritum] }
       - { de: "In der Altstadt haben Fußgänger Vorrang.", en: "Pedestrians have priority in the old town.", tags: [plural, Präsens] }
-      - { de: "Die Fußgängerin hatte das rote Licht übersehen.", en: "The pedestrian had not noticed the red light.", tags: [singular, Plusquamperfekt] }
+      - { de: "Die Fußgängerin hatte das rote Licht übersehen, als das Auto kam.", en: "The pedestrian had not noticed the red light when the car came.", tags: [singular, Plusquamperfekt] }
   - id: noun-fussgaengerzone
     type: noun
     lemma: Fußgängerzone
@@ -13178,7 +13182,7 @@ records:
     examples:
       - { de: "Die Grünfläche hinter dem Haus soll bebaut werden.", en: "The green space behind the house is to be built on.", tags: [singular, Passiv, Präsens] }
       - { de: "Städte brauchen mehr Grünflächen gegen die Hitze.", en: "Cities need more green spaces to combat the heat.", tags: [plural, Präsens] }
-      - { de: "Viele Grünflächen waren im Sommer völlig vertrocknet.", en: "Many green spaces had completely dried out in the summer.", tags: [plural, Plusquamperfekt] }
+      - { de: "Als es endlich regnete, waren viele Grünflächen schon vertrocknet.", en: "By the time it finally rained, many green spaces had already dried out.", tags: [plural, Plusquamperfekt] }
   - id: noun-park
     type: noun
     lemma: Park
@@ -13230,7 +13234,7 @@ records:
     examples:
       - { de: "Die Müllabfuhr kommt jeden Dienstag.", en: "The bin men come every Tuesday.", tags: [singular, Präsens] }
       - { de: "Wegen des Feiertags kommt die Müllabfuhr einen Tag später.", en: "Because of the public holiday, refuse collection is a day later.", tags: [singular, Präsens] }
-      - { de: "Die Müllabfuhr hat den Sperrmüll noch nicht abgeholt.", en: "The refuse collection hasn't picked up the bulky waste yet.", tags: [singular, Perfekt] }
+      - { de: "Die Müllabfuhr hat den Sperrmüll noch nicht abgeholt.", en: "The bin men haven't collected the bulky waste yet.", tags: [singular, Perfekt] }
   - id: noun-abfallentsorgung
     type: noun
     lemma: Abfallentsorgung
@@ -13264,7 +13268,7 @@ records:
     examples:
       - { de: "Die Wasserversorgung ist nach dem Sturm unterbrochen.", en: "The water supply has been interrupted after the storm.", tags: [singular, Präsens] }
       - { de: "In trockenen Sommern wird die Wasserversorgung zum Problem.", en: "In dry summers the water supply becomes a problem.", tags: [singular, Präsens] }
-      - { de: "Die Römer hatten eine erstaunliche Wasserversorgung gebaut.", en: "The Romans had built an astonishing water supply system.", tags: [singular, Plusquamperfekt] }
+      - { de: "Bevor das Wasserwerk gebaut wurde, hatte es hier keine Wasserversorgung gegeben.", en: "Before the waterworks was built, there had been no water supply here.", tags: [singular, Plusquamperfekt] }
   - id: noun-stromversorgung
     type: noun
     lemma: Stromversorgung
@@ -13365,7 +13369,7 @@ records:
       plural: null
     examples:
       - { de: "Bei der Verkehrsplanung stehen Radfahrer heute stärker im Fokus.", en: "Cyclists are more of a focus in transport planning today.", tags: [singular, Präsens] }
-      - { de: "Die Verkehrsplanung hatte das Wachstum der Stadt unterschätzt.", en: "Transport planning had underestimated the city's growth.", tags: [singular, Plusquamperfekt] }
+      - { de: "Die Verkehrsplanung hatte das Wachstum unterschätzt, deshalb gab es bald Staus.", en: "Transport planning had underestimated the growth, so there were soon traffic jams.", tags: [singular, Plusquamperfekt] }
       - { de: "Bürger sollen stärker an der Verkehrsplanung beteiligt werden.", en: "Citizens are to be more involved in transport planning.", tags: [singular, Passiv, Präsens] }
   - id: noun-lebensqualitaet
     type: noun
@@ -13388,7 +13392,8 @@ records:
     type: noun
     lemma: Mietpreisbremse
     gloss:
-      - rent cap
+      - rent brake
+      - rent control
     categories:
       - infrastructure-and-urban-life
     status: enriched
@@ -13508,7 +13513,7 @@ records:
         praeteritum: "wandte ein"
         partizip2: "eingewandt"
     examples:
-      - { de: "Dagegen wende ich ein, dass die Kosten zu hoch sind.", en: "I object to that because the costs are too high.", tags: [separated, Präsens] }
+      - { de: "Dagegen wende ich ein, dass die Kosten zu hoch sind.", en: "My objection to that is that the costs are too high.", tags: [separated, Präsens] }
       - { de: "Sie hat eingewandt, dass die Daten veraltet sind.", en: "She objected that the data was out of date.", tags: [Perfekt] }
       - { de: "Niemand wandte etwas gegen den Plan ein.", en: "Nobody raised any objection to the plan.", tags: [separated, Präteritum] }
   - id: noun-widerspruch
@@ -13689,7 +13694,7 @@ records:
       plural: Behauptungen
     examples:
       - { de: "Das ist eine bloße Behauptung ohne Beweise.", en: "That's a mere claim without any evidence.", tags: [singular, Präsens] }
-      - { de: "Seine Behauptungen hatten sich als falsch erwiesen.", en: "His claims had turned out to be false.", tags: [plural, Plusquamperfekt] }
+      - { de: "Seine Behauptungen hatten sich als falsch erwiesen, bevor er sich entschuldigte.", en: "His claims had turned out to be false before he apologised.", tags: [plural, Plusquamperfekt] }
       - { de: "Die Firma wies die Behauptung entschieden zurück.", en: "The company firmly rejected the claim.", tags: [singular, Präteritum] }
   - id: verb-behaupten
     type: verb
@@ -13952,7 +13957,7 @@ records:
     examples:
       - { de: "„Das Leben ist eine Reise“ ist eine bekannte Metapher.", en: "\"Life is a journey\" is a well-known metaphor.", tags: [singular, Präsens] }
       - { de: "Der Dichter verwendet viele Metaphern aus der Natur.", en: "The poet uses many metaphors from nature.", tags: [plural, Präsens] }
-      - { de: "Die Schüler hatten die Metapher im Gedicht nicht erkannt.", en: "The pupils had not recognised the metaphor in the poem.", tags: [singular, Plusquamperfekt] }
+      - { de: "Die Schüler hatten die Metapher nicht erkannt, bis die Lehrerin sie erklärte.", en: "The pupils had not recognised the metaphor until the teacher explained it.", tags: [singular, Plusquamperfekt] }
   - id: noun-ironie
     type: noun
     lemma: Ironie
@@ -14004,7 +14009,7 @@ records:
     examples:
       - { de: "Die Gegenüberstellung von Vor- und Nachteilen hilft bei der Entscheidung.", en: "Setting the pros and cons side by side helps with the decision.", tags: [singular, Präsens] }
       - { de: "Der Aufsatz lebt von der Gegenüberstellung zweier Lebenswelten.", en: "The essay thrives on the contrast between two worlds.", tags: [singular, Präsens] }
-      - { de: "In der Tabelle finden Sie mehrere Gegenüberstellungen von Preisen.", en: "In the table you'll find several comparisons of prices.", tags: [plural, Präsens] }
+      - { de: "Grafische Gegenüberstellungen machen Unterschiede sofort sichtbar.", en: "Side-by-side comparisons in charts make differences visible at once.", tags: [plural, Präsens] }
   - id: noun-umwelt
     type: noun
     lemma: Umwelt
@@ -14056,24 +14061,26 @@ records:
     examples:
       - { de: "Die Erderwärmung lässt das Eis an den Polen schmelzen.", en: "Global warming is making the ice at the poles melt.", tags: [singular, Präsens] }
       - { de: "Die Erderwärmung soll deutlich unter zwei Grad bleiben.", en: "Global warming is to be kept well below two degrees.", tags: [singular, Präsens] }
-      - { de: "Wissenschaftler hatten schon früh vor der Erderwärmung gewarnt.", en: "Scientists had warned of global warming early on.", tags: [singular, Plusquamperfekt] }
+      - { de: "Forscher hatten vor der Erderwärmung gewarnt, lange bevor die Politik reagierte.", en: "Researchers had warned of global warming long before politicians reacted.", tags: [singular, Plusquamperfekt] }
   - id: noun-co-emission
     type: noun
-    lemma: CO₂-Emission
+    lemma: CO₂-Emissionen
     gloss:
-      - CO₂ emission
+      - CO₂ emissions
     categories:
       - global-issues-and-sustainability
     status: enriched
     source_lines:
       - 2170
+    source_note: "made plural-only (lemma CO₂-Emissionen): the singular is not used naturally"
     noun:
       gender: f
-      plural: CO₂-Emissionen
+      plural: null
+      plural_only: true
     examples:
       - { de: "Der Verkehr verursacht einen großen Teil der CO₂-Emissionen.", en: "Transport causes a large share of CO₂ emissions.", tags: [plural, Präsens] }
       - { de: "Die EU will die CO₂-Emissionen bis 2030 deutlich senken.", en: "The EU wants to cut CO₂ emissions significantly by 2030.", tags: [plural, Präsens] }
-      - { de: "Jede eingesparte CO₂-Emission hilft dem Klima.", en: "Every CO₂ emission saved helps the climate.", tags: [singular, Präsens] }
+      - { de: "Flugreisen verursachen besonders hohe CO₂-Emissionen.", en: "Air travel causes particularly high CO₂ emissions.", tags: [plural, Präsens] }
   - id: noun-co-ausstoss
     type: noun
     lemma: CO₂-Ausstoß
@@ -14140,7 +14147,7 @@ records:
       plural: Klimagipfel
     examples:
       - { de: "Auf dem Klimagipfel wurde bis tief in die Nacht verhandelt.", en: "Negotiations at the climate summit went on late into the night.", tags: [singular, Passiv, Präteritum] }
-      - { de: "Der Klimagipfel 2025 fand in Brasilien statt.", en: "The 2025 climate summit took place in Brazil.", tags: [singular, Präteritum] }
+      - { de: "Der Klimagipfel endete mit einem schwachen Kompromiss.", en: "The climate summit ended with a weak compromise.", tags: [singular, Präteritum] }
       - { de: "Die Ergebnisse der letzten Klimagipfel waren enttäuschend.", en: "The results of the last climate summits were disappointing.", tags: [plural, Präteritum] }
   - id: noun-energiewende
     type: noun
@@ -14175,7 +14182,7 @@ records:
       plural: null
       plural_only: true
     examples:
-      - { de: "Die erneuerbaren Energien liefern über die Hälfte des deutschen Stroms.", en: "Renewables supply more than half of Germany's electricity.", tags: [plural, Präsens] }
+      - { de: "Der Anteil der erneuerbaren Energien am Strom wächst.", en: "The share of renewables in electricity generation is growing.", tags: [plural, Präsens] }
       - { de: "Die Regierung will den Ausbau der erneuerbaren Energien beschleunigen.", en: "The government wants to speed up the expansion of renewable energy.", tags: [plural, Präsens] }
       - { de: "In erneuerbare Energien wurde lange zu wenig investiert.", en: "For a long time too little was invested in renewable energy.", tags: [plural, Passiv, Präteritum] }
   - id: noun-solarenergie
@@ -14211,7 +14218,7 @@ records:
     examples:
       - { de: "An der Küste wird viel Strom aus Windkraft erzeugt.", en: "A lot of electricity is generated from wind power on the coast.", tags: [singular, Passiv, Präsens] }
       - { de: "Viele Anwohner wehren sich gegen den Ausbau der Windkraft.", en: "Many residents oppose the expansion of wind power.", tags: [singular, Präsens] }
-      - { de: "Windkraft ist heute die wichtigste Stromquelle in Deutschland.", en: "Wind power is now the most important source of electricity in Germany.", tags: [singular, Präsens] }
+      - { de: "Windkraft ist eine der wichtigsten Stromquellen.", en: "Wind power is one of the most important sources of electricity.", tags: [singular, Präsens] }
   - id: noun-wasserkraft
     type: noun
     lemma: Wasserkraft
@@ -14370,7 +14377,7 @@ records:
     examples:
       - { de: "Die Wasserverschmutzung durch Dünger ist ein großes Problem.", en: "Water pollution caused by fertiliser is a big problem.", tags: [singular, Präsens] }
       - { de: "Die Fabrik wurde wegen Wasserverschmutzung geschlossen.", en: "The factory was closed because of water pollution.", tags: [singular, Passiv, Präteritum] }
-      - { de: "Die Wasserverschmutzung hatte zum Tod vieler Fische geführt.", en: "The water pollution had led to the death of many fish.", tags: [singular, Plusquamperfekt] }
+      - { de: "Bevor die Fabrik schloss, hatte die Wasserverschmutzung viele Fische getötet.", en: "Before the factory closed, the water pollution had killed many fish.", tags: [singular, Plusquamperfekt] }
   - id: noun-artenvielfalt
     type: noun
     lemma: Artenvielfalt
@@ -14449,13 +14456,14 @@ records:
     status: enriched
     source_lines:
       - 2214
+    source_note: "plural ökologischen Fußabdrücke removed: almost always used in the singular"
     noun:
       gender: m
-      plural: ökologischen Fußabdrücke
+      plural: null
     examples:
       - { de: "Mit diesem Rechner kannst du deinen ökologischen Fußabdruck berechnen.", en: "You can calculate your ecological footprint with this calculator.", tags: [singular, Präsens] }
       - { de: "Wer weniger fliegt, verkleinert seinen ökologischen Fußabdruck.", en: "Flying less reduces your ecological footprint.", tags: [singular, Präsens] }
-      - { de: "Die ökologischen Fußabdrücke reicher Länder sind besonders groß.", en: "The ecological footprints of rich countries are particularly large.", tags: [plural, Präsens] }
+      - { de: "Reiche Länder haben einen besonders großen ökologischen Fußabdruck.", en: "Rich countries have a particularly large ecological footprint.", tags: [singular, Präsens] }
   - id: noun-ressourcen
     type: noun
     lemma: Ressource
@@ -14473,7 +14481,7 @@ records:
     examples:
       - { de: "Wasser ist eine wertvolle Ressource.", en: "Water is a valuable resource.", tags: [singular, Präsens] }
       - { de: "Wir müssen sparsamer mit unseren Ressourcen umgehen.", en: "We have to use our resources more economically.", tags: [plural, Präsens] }
-      - { de: "Die Firma hatte nicht genug Ressourcen für das Projekt eingeplant.", en: "The company had not planned enough resources for the project.", tags: [plural, Plusquamperfekt] }
+      - { de: "Die Firma hatte zu wenig Ressourcen eingeplant und musste das Projekt stoppen.", en: "The company had planned too few resources and had to stop the project.", tags: [plural, Plusquamperfekt] }
   - id: noun-energieeffizienz
     type: noun
     lemma: Energieeffizienz
@@ -16836,7 +16844,7 @@ records:
     examples:
       - { de: "Jeder sollte wissen, wie man Erste Hilfe leistet.", en: "Everyone should know how to give first aid.", tags: [singular, Konjunktiv II] }
       - { de: "Für den Führerschein muss man einen Kurs in Erster Hilfe machen.", en: "For a driving licence you have to do a first aid course.", tags: [singular, Präsens] }
-      - { de: "Ein Passant hatte sofort Erste Hilfe geleistet.", en: "A passer-by had given first aid immediately.", tags: [singular, Plusquamperfekt] }
+      - { de: "Ein Passant hatte schon Erste Hilfe geleistet, als der Notarzt kam.", en: "A passer-by had already given first aid when the emergency doctor arrived.", tags: [singular, Plusquamperfekt] }
   - id: phrase-versichert-sein
     type: phrase
     lemma: versichert sein
@@ -16919,7 +16927,7 @@ records:
       comparative: "gerechter"
       superlative: "am gerechtesten"
     examples:
-      - { de: "Das Urteil war hart, aber gerecht.", en: "The verdict was harsh but fair.", tags: [Präsens] }
+      - { de: "Das Urteil war hart, aber gerecht.", en: "The verdict was harsh but fair.", tags: [Präteritum] }
       - { de: "Viele wünschen sich eine gerechte Verteilung des Wohlstands.", en: "Many people want a fair distribution of wealth.", tags: [attributive, Präsens] }
       - { de: "Das neue Steuersystem soll gerechter sein als das alte.", en: "The new tax system is supposed to be fairer than the old one.", tags: [comparative, Präsens] }
   - id: adjective-ungerecht
@@ -17151,7 +17159,7 @@ records:
       gender: f
       plural: null
     examples:
-      - { de: "Die Europäische Union hat 27 Mitgliedstaaten.", en: "The European Union has 27 member states.", tags: [singular, Präsens] }
+      - { de: "Die Mitgliedstaaten der Europäischen Union verhandeln über den Haushalt.", en: "The member states of the European Union are negotiating the budget.", tags: [singular, Präsens] }
       - { de: "Großbritannien ist 2020 aus der Europäischen Union ausgetreten.", en: "The United Kingdom left the European Union in 2020.", tags: [singular, Perfekt] }
       - { de: "Die Bürger der Europäischen Union können frei reisen.", en: "Citizens of the European Union can travel freely.", tags: [singular, Präsens] }
   - id: noun-warmmiete
@@ -17187,7 +17195,7 @@ records:
     examples:
       - { de: "Die Kaltmiete für die Wohnung liegt bei 800 Euro.", en: "The basic rent for the flat is 800 euros.", tags: [singular, Präsens] }
       - { de: "Die Kaltmieten in Hamburg sind im letzten Jahr gestiegen.", en: "Basic rents in Hamburg rose last year.", tags: [plural, Perfekt] }
-      - { de: "Der Vermieter hatte die Kaltmiete ohne Begründung erhöht.", en: "The landlord had raised the basic rent without giving a reason.", tags: [singular, Plusquamperfekt] }
+      - { de: "Nachdem der Vermieter die Kaltmiete erhöht hatte, zogen wir aus.", en: "After the landlord had raised the basic rent, we moved out.", tags: [singular, Plusquamperfekt] }
   - id: phrase-meiner-meinung-nach
     type: phrase
     lemma: meiner Meinung nach
@@ -17269,7 +17277,7 @@ records:
     examples:
       - { de: "Ich bin mit dem Vorschlag einverstanden.", en: "I agree with the proposal.", tags: [Präsens] }
       - { de: "Wenn du einverstanden bist, buche ich die Tickets.", en: "If you agree, I'll book the tickets.", tags: [Präsens] }
-      - { de: "Ich bin einverstanden, dass wir den Termin verschieben.", en: "I agree that we should postpone the appointment.", tags: [Präsens] }
+      - { de: "Ich bin damit einverstanden, dass wir den Termin verschieben.", en: "I agree that we should postpone the appointment.", tags: [Präsens] }
   - id: verb-ablehnen
     type: verb
     lemma: ablehnen
@@ -17421,7 +17429,7 @@ records:
     lemma: unsachlich
     gloss:
       - biased
-      - unobjective
+      - not objective
     categories:
       - rhetoric-and-argumentation
     status: enriched
