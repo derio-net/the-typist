@@ -30,3 +30,127 @@ schema_version: 3
 org: derio-net
 repo: the-typist
 rows:
+  - id: list-schema
+    capability: Lists
+    acceptance: A YAML list of typed Records is accepted only if it satisfies the schema
+      and per-type example rules; violations are reported per record.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R1
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R2
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R3
+    levels: {}
+    status: not-implemented
+    notes: ''
+  - id: list-loading
+    capability: Lists
+    acceptance: Repo lists are validated at build and playable on the hosted site, and
+      a player can load their own YAML list, which is rejected with errors if invalid.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R11
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R12
+    levels: {}
+    status: not-implemented
+    notes: ''
+    verify: post-merge
+    visual:
+      states:
+      - load-list-picker
+      - invalid-list-errors
+      interactions:
+      - load-valid-list-and-play
+  - id: record-ships
+    capability: Gameplay
+    acceptance: Each Record enters play as a mothership showing its display form and
+      gloss, which on destruction releases a forms ship and one ship per example sentence.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R4
+    levels: {}
+    status: not-implemented
+    notes: ''
+    visual:
+      states:
+      - mothership-with-gloss
+      - escorts-spawned
+      - locked-ship-typed-prefix
+      interactions:
+      - destroy-mothership-releases-escorts
+  - id: typing-rules
+    capability: Gameplay
+    acceptance: Typing locks onto one ship, requires exact case and umlauts while accepting
+      ae/oe/ue/ss and Mac dead-key input, and does not require final punctuation.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R5
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R6
+    levels: {}
+    status: not-implemented
+    notes: ''
+  - id: degraded-states
+    capability: Gameplay
+    acceptance: The game stays playable when nothing is due, when browser storage is
+      unavailable, or when no German voice exists, telling the player what is limited.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R13
+    levels: {}
+    status: not-implemented
+    notes: ''
+    visual:
+      states:
+      - empty-study-offers-free-play
+      - storage-warning-banner
+      - tts-toggle-disabled-note
+  - id: srs-sessions
+    capability: Learning
+    acceptance: Study sessions serve due plus capped new Records in category waves,
+      free play covers a chosen category, and both reschedule Records via FSRS from
+      typing performance.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R7
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R8
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R9
+    levels: {}
+    status: not-implemented
+    notes: ''
+  - id: learning-aids
+    capability: Learning
+    acceptance: Grammar chips, sentence translations, German TTS and post-wave recap
+      cards are each available and individually switchable, and the choice persists.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R10
+    levels: {}
+    status: not-implemented
+    notes: ''
+    visual:
+      states:
+      - settings-four-toggles
+      - sentence-ship-chip-and-translation
+      - recap-card
+      interactions:
+      - toggle-aid-persists-after-reload
+  - id: structure-skill
+    capability: Authoring
+    acceptance: A raw word list can be turned into a valid raw-status Record list by
+      the structure skill, with unparseable lines resolved and categories derived or
+      proposed.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R14
+    levels: {}
+    status: not-implemented
+    notes: ''
+  - id: enrich-skill
+    capability: Authoring
+    acceptance: The enrich skill turns raw Records into enriched ones that pass validation,
+      in resumable batches, without ever marking them reviewed.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R15
+    levels: {}
+    status: not-implemented
+    notes: ''
+  - id: seed-list
+    capability: Content
+    acceptance: The game ships a validated, fully enriched list of the 1000 German B2
+      seed words in their 20 categories.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R16
+    levels: {}
+    status: not-implemented
+    notes: ''
