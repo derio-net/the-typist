@@ -252,3 +252,8 @@ Operator asked for a manual UX phase after the typing core, before the rest of t
 ### motion-break-up-bounce · decision · Children burst out with random sideways velocity and bounce off edges and siblings; slower descent
 
 Operator feedback after playing the phase-3 core: elements should go slower, break up once the mothership is shot (random left/right speed) and bounce off the screen edges. Operator approved the proposal incl. sibling bouncing; implemented as a follow-up to phase 3 before phase 4.
+
+<!-- fr:journal kind=decision scope=spec id=motion-break-up-bounce-2 created=2026-10-05T11:26:39+00:00 -->
+### motion-break-up-bounce-2 · decision · One record on screen at a time; children burst into horizontal bands, slow sideways drift, edge-only bounce, stronger upward kick
+
+Operator feedback on the first break-up motion: sideways movement must be much slower, only one mothership should descend (too crowded), children rebound only on the edges, each fragment occupies a horizontal band so no collisions are needed, and the explosion should go further up. Supersedes motion-break-up-bounce.
