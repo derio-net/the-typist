@@ -599,3 +599,99 @@ content-only task: the deliverable is lists/de-b2-1000.yaml built by the parse/m
 ### no-refactor-p5-t2 · discovery · no-refactor-because P5.T2 (phase 5)
 
 content-only task: enrichment is targeted per-record YAML edits committed per batch; no code was written, so nothing to clean
+
+<!-- fr:journal kind=finding scope=plan id=p5-r1 created=2026-10-05T19:29:01+00:00 phase=5 state=open review_scope=in -->
+### p5-r1 · finding [open] (reviewer: in scope) · bitten/fragen gloss confusion in phrase-darf-ich-sie-um-etwas-bitten (phase 5)
+
+<!-- fr:journal kind=finding scope=plan id=p5-r2 created=2026-10-05T19:29:01+00:00 phase=5 state=open review_scope=in -->
+### p5-r2 · finding [open] (reviewer: in scope) · Kirschen idiom lemma not a valid citation form (phase 5)
+
+<!-- fr:journal kind=finding scope=plan id=p5-r3 created=2026-10-05T19:29:01+00:00 phase=5 state=open review_scope=in -->
+### p5-r3 · finding [open] (reviewer: in scope) · False plural_only duplicates Menschenrechte/Symptome; questionable plural_only on Plattformrichtlinien/Ressourcen (phase 5)
+
+<!-- fr:journal kind=finding scope=plan id=p5-r4 created=2026-10-05T19:29:01+00:00 phase=5 state=open review_scope=in -->
+### p5-r4 · finding [open] (reviewer: in scope) · Forced unnatural plural examples (phase 5)
+
+<!-- fr:journal kind=finding scope=plan id=p5-r5 created=2026-10-05T19:29:01+00:00 phase=5 state=open review_scope=in -->
+### p5-r5 · finding [open] (reviewer: in scope) · Example senses drift from glosses (phase 5)
+
+<!-- fr:journal kind=finding scope=plan id=p5-r6 created=2026-10-05T19:29:01+00:00 phase=5 state=open review_scope=in -->
+### p5-r6 · finding [open] (reviewer: in scope) · English mistranslations (phase 5)
+
+<!-- fr:journal kind=finding scope=plan id=p5-r7 created=2026-10-05T19:29:01+00:00 phase=5 state=open review_scope=in -->
+### p5-r7 · finding [open] (reviewer: in scope) · Numerus clausus spelling (phase 5)
+
+<!-- fr:journal kind=finding scope=plan id=p5-r8 created=2026-10-05T19:29:01+00:00 phase=5 state=open review_scope=in -->
+### p5-r8 · finding [open] (reviewer: in scope) · sich verabschieden only under separable verbs (phase 5)
+
+<!-- fr:journal kind=finding scope=plan id=p5-r9 created=2026-10-05T19:29:01+00:00 phase=5 state=open review_scope=in -->
+### p5-r9 · finding [open] (reviewer: in scope) · Korb lemma lacks jemandem; examples not instantiating lemma (phase 5)
+
+<!-- fr:journal kind=finding scope=plan id=p5-r10 created=2026-10-05T19:29:01+00:00 phase=5 state=open review_scope=in -->
+### p5-r10 · finding [open] (reviewer: in scope) · Mahler symphony count (phase 5)
+
+<!-- fr:journal kind=finding scope=plan id=p5-r11 created=2026-10-05T19:29:01+00:00 phase=5 state=open review_scope=out -->
+### p5-r11 · finding [open] (reviewer: out of scope) · Journal overstates source_note coverage (197 filled plurals, noun-burnout have none) (phase 5)
+
+<!-- fr:journal kind=decision scope=plan id=p5-drop-plural-only-ids created=2026-10-05T19:29:01+00:00 phase=5 -->
+### p5-drop-plural-only-ids · decision · Dropped ids noun-menschenrechte and noun-symptome when merging into their singular records (phase 5)
+
+The list has never shipped, so no SRS state is keyed on these ids; id freezing protects learner state and does not apply before release.
+
+<!-- fr:journal kind=review scope=plan id=p5-review created=2026-10-05T19:29:01+00:00 phase=5 -->
+### p5-review · review · phase 5 content review: all 487 enriched records read, no German grammar errors; 10 in-scope fixes applied; 968 records (phase 5)
+
+<!-- fr:journal kind=finding scope=plan id=p5-r1-resolved created=2026-10-05T19:29:01+00:00 phase=5 state=fixed resolves=p5-r1 -->
+### p5-r1-resolved · finding [fixed] · resolves p5-r1: bitten/fragen gloss confusion in phrase-darf-ich-sie-um-etwas-bitten (phase 5)
+
+Gloss and examples 1/3 now "ask you a favour".
+
+<!-- fr:journal kind=finding scope=plan id=p5-r2-resolved created=2026-10-05T19:29:01+00:00 phase=5 state=fixed resolves=p5-r2 -->
+### p5-r2-resolved · finding [fixed] · resolves p5-r2: Kirschen idiom lemma not a valid citation form (phase 5)
+
+Lemma "mit jemandem ist nicht gut Kirschen essen"; id unchanged; source_note.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r3-resolved created=2026-10-05T19:29:01+00:00 phase=5 state=fixed resolves=p5-r3 -->
+### p5-r3-resolved · finding [fixed] · resolves p5-r3: False plural_only duplicates Menschenrechte/Symptome; questionable plural_only on Plattformrichtlinien/Ressourcen (phase 5)
+
+Merged into noun-menschenrecht (enriched) and noun-symptom (raw, phase 6); plural-only ids dropped (list never shipped, no SRS state). Ressource made singular; Plattformrichtlinien keeps plural_only with source_note.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r4-resolved created=2026-10-05T19:29:01+00:00 phase=5 state=fixed resolves=p5-r4 -->
+### p5-r4-resolved · finding [fixed] · resolves p5-r4: Forced unnatural plural examples (phase 5)
+
+Anspannung/Buchhaltung/Opposition/Tonfall plural null + natural singular examples; Anmeldung natural plural example.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r5-resolved created=2026-10-05T19:29:01+00:00 phase=5 state=fixed resolves=p5-r5 -->
+### p5-r5-resolved · finding [fixed] · resolves p5-r5: Example senses drift from glosses (phase 5)
+
+Glosses widened (Frau, Distanz, Erzählung, Anmeldung).
+
+<!-- fr:journal kind=finding scope=plan id=p5-r6-resolved created=2026-10-05T19:29:01+00:00 phase=5 state=fixed resolves=p5-r6 -->
+### p5-r6-resolved · finding [fixed] · resolves p5-r6: English mistranslations (phase 5)
+
+Fixed ausgehen, haten, klagen, unsicher; Lohnsteuer = wage tax with matching examples.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r7-resolved created=2026-10-05T19:29:01+00:00 phase=5 state=fixed resolves=p5-r7 -->
+### p5-r7-resolved · finding [fixed] · resolves p5-r7: Numerus clausus spelling (phase 5)
+
+Lowercase c in lemma and examples.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r8-resolved created=2026-10-05T19:29:01+00:00 phase=5 state=fixed resolves=p5-r8 -->
+### p5-r8-resolved · finding [fixed] · resolves p5-r8: sich verabschieden only under separable verbs (phase 5)
+
+Primary category formal-and-informal-address.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r9-resolved created=2026-10-05T19:29:01+00:00 phase=5 state=fixed resolves=p5-r9 -->
+### p5-r9-resolved · finding [fixed] · resolves p5-r9: Korb lemma lacks jemandem; examples not instantiating lemma (phase 5)
+
+Lemma fixed; Griff and Nuss examples instantiate the phrase.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r10-resolved created=2026-10-05T19:29:01+00:00 phase=5 state=fixed resolves=p5-r10 -->
+### p5-r10-resolved · finding [fixed] · resolves p5-r10: Mahler symphony count (phase 5)
+
+Nine.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r11-resolved created=2026-10-05T19:29:01+00:00 phase=5 state=open resolves=p5-r11 out_of_scope=true -->
+### p5-r11-resolved · finding [out-of-scope] · resolves p5-r11: Journal overstates source_note coverage (197 filled plurals, noun-burnout have none) (phase 5)
+
+Filling a null plural is not a correction of the source; journal wording only.
