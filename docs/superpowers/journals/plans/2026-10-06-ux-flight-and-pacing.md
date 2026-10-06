@@ -310,3 +310,8 @@ b7da34c: a same-file-twice panel test kills the picker.value mutant.
 ### p3-r7-resolved · finding [fixed] · resolves p3-r7: E2E round trip checks only keys, not values (phase 3)
 
 ab932fa: the e2e asserts Date instances and counter values in IndexedDB after the import.
+
+<!-- fr:journal kind=discovery scope=plan id=operator-feedback-pr10 created=2026-10-06T18:58:25+00:00 phase=3 -->
+### operator-feedback-pr10 · discovery · Operator play-test of PR #10: motherships too fast, no music, compact Anna mangles German (phase 3)
+
+Operator chose: 3 s reading time per ship; the CC0 'Space Shooter (Loop)' track by Alex McCulloch; Eddy tolerable, so the adult Eloquence voices rank above Anna. Commits 5649813, fbec3b7, 241c893, 56e7ad6, plus a tts fixture fix.
