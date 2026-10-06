@@ -40,7 +40,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - `keyboard.ts`: a hidden input with IME composition handling, so macOS dead keys work.
   - `settings.ts`: aid, audio and recap toggles, persisted in localStorage.
   - `tts.ts`: German speech synthesis, spoken when a ship is locked, with a ranked voice list (`voices.ts`), a saved voice choice and a degraded state when no voice exists.
-  - `audio.ts`: sound effects and looping music.
+  - `audio.ts`: sound effects and looping music (`public/assets/audio/music-game.mp3`, a CC0 track credited in `CREDITS.md`).
 - **`src/render/` also holds** `canvas-size.ts` (sharp, narrow-window-safe playfield sizing), `feedback.ts` (typo flash, pending digraph prefix, muzzle effects) and `stars.ts` (the backdrop).
 - **`src/layout/`:** playfield metrics and the sprite atlas.
 - **`src/srs/`:** grading (`grade.ts`), the ts-fsrs scheduler and the IndexedDB card store (database `typist`, store `cards`, keys `[listId, recordId]`), with a memory fallback. A `meta` store holds the per-day new-card counts under keys `['new', listId, day]`. `exportAll` and `importAll` move progress between browsers: `portable.ts` holds the progress file format (zod-validated, ISO dates) and the merge rules (a card is replaced only by a later `last_review`; counts take the max; the typing-rate estimate is taken when it has seen more characters). The import runs in one IndexedDB transaction. Settings offers Export and Import from the title only, and asks the browser for persistent storage at startup.

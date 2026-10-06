@@ -33,10 +33,10 @@ New rows cover R1–R10, and a `verify: post-merge` row covers the Test Plan.
 R1. A destroyed mothership releases its children as a stack of horizontal bands, top to bottom: the sentence ships ordered by text length, longest first (equal lengths keep their example order), then the forms ship, which is always the lowest.
 R2. On release, the whole stack is kicked upward so that, at the top of the kick, the top band's hull top is at the bottom of the HUD (`WORLD.minY`, within 4 px), never above it. The bands keep their gap, share one descent speed and never cross. When the stack is too tall to fit between the HUD and the reaction distance above the player line, plan 2's R13 fallback still applies.
 R3. The game keeps a typing-rate estimate in seconds per character. Each destroyed ship contributes a sample: its required characters (`requiredLength`, without pre-typed final punctuation) and its lock-to-destruction time. The first 50 observed characters calibrate it: a cumulative average of the samples and a prior worth 10 characters (2.0 characters per second when nothing is remembered); the prior does not count toward the 50. After 50 observed characters it is an exponentially weighted average with an effective window of 50 characters. A single sample is clamped to 0.05–5 seconds per character.
-R4. Ship speed is set when a ship spawns, from the current estimate, with a slack of 1.5; "characters" means a ship's required characters (`requiredLength`). A destroyed mothership's own sample updates the estimate before its children spawn. A mothership descends at (its distance to the player line) ÷ (1.5 × (its characters × seconds per character + 0.6 s)). A released stack descends at the minimum, over each band counted from the bottom, of (that band's distance to the player line at the top of the kick) ÷ (1.5 × the sum, over that band and every band below it, of (characters × seconds per character + 0.6 s)). Speeds are clamped to 8–140 px/s. The wave number no longer changes speed.
+R4. Ship speed is set when a ship spawns, from the current estimate, with a slack of 1.5; "characters" means a ship's required characters (`requiredLength`). A destroyed mothership's own sample updates the estimate before its children spawn. A mothership descends at (its distance to the player line) ÷ (1.5 × (its characters × seconds per character + 3 s)). A released stack descends at the minimum, over each band counted from the bottom, of (that band's distance to the player line at the top of the kick) ÷ (1.5 × the sum, over that band and every band below it, of (characters × seconds per character + 3 s)). Speeds are clamped to 8–140 px/s. The wave number no longer changes speed.
 R5. The estimate carries over between waves, is saved to `localStorage` each time a Record resolves, and is the starting point of the next session. A missing or corrupt saved estimate means a fresh calibration.
 R6. Speech for a ship (mothership, forms or sentence) starts when the ship is locked, at the first correct keystroke, instead of when it is destroyed — including a ship locked and destroyed by the same keystroke. A ship is spoken at most once. Speaking cancels whatever was being said.
-R7. Without a chosen voice, the game uses the best available German voice, ranked: Premium, Enhanced, Natural, Neural or Online voices first; then Google Deutsch; then other voices; the novelty voices (Eddy, Flo, Grandma, Grandpa, Reed, Rocko, Sandy, Shelley) last. Within a rank, `de-DE` comes before other German locales, then by name.
+R7. Without a chosen voice, the game uses the best available German voice, ranked: Premium, Enhanced, Natural, Neural or Online voices first (by name or voiceURI); then Google Deutsch; then the adult macOS Eloquence voices (Eddy, Flo, Reed, Sandy, Shelley), which the operator found speak German better than the compact Anna; then other voices; the character voices (Grandma, Grandpa, Rocko) last. Within a rank, `de-DE` comes before other German locales, then by name.
 R8. Settings has a voice picker that lists the German voices in rank order after an "Automatic (best available)" default, a Test button that speaks a sample sentence in the selected voice even when the TTS aid is off, and a short hint on installing a better German voice on macOS, Windows and in Chrome or Edge. The choice is saved in the settings. A saved voice that is no longer available falls back to Automatic. When no German voice exists, the picker and Test button are disabled with plan 2's reason.
 R9. When IndexedDB works, the game asks the browser for persistent storage (`navigator.storage.persist()`) at startup, and Settings states whether progress is protected from cleanup, may be cleared by the browser, or (in-memory stores) will not be saved.
 R10. Settings opened from the title screen (not from pause) has Export progress, which downloads a JSON file (`typist-progress-<yyyy-mm-dd>.json`) holding every list's cards, the daily new-card counts and the typing-rate estimate. It also has Import progress, which reads such a file. An invalid file changes nothing and shows why it was rejected. A valid file's cards and counts are merged in one IndexedDB transaction: an imported card replaces the local one when the local one is missing or was last reviewed earlier; new-card counts take the larger value. After that transaction commits, the imported estimate replaces the local one when it has seen more characters. A message then reports how many cards were imported.
@@ -129,7 +129,7 @@ src/ui/panels/settings.ts  voice picker, Test, hint, storage line, Export/Import
   `destroyed` before anything else that event triggers, so a mothership's
   sample is observed before `spawnChildren` runs, and uses the current value
   whenever it spawns a ship.
-  Speed constants live in `WORLD`: `slack: 1.5`, `retargetS: 0.6`,
+  Speed constants live in `WORLD`: `slack: 1.5`, `readS: 3` (reading and retargeting time per ship; 0.6 s at delivery, raised to 3 s after the operator found motherships fell too fast),
   `minSpeed: 8`, `maxSpeed: 140`. `baseSpeed`, `speedPerWave`,
   `referenceLength` and `shipSpeed`'s `wave` argument go.
 - Stack speed follows R4. Band distances are measured from the apex
@@ -159,8 +159,9 @@ src/ui/panels/settings.ts  voice picker, Test, hint, storage line, Export/Import
 
 - `voices.ts`: `rankGermanVoices(voices)` filters `lang` starting with `de`
   and sorts by rank (quality markers in the name: `Premium`, `Enhanced`,
-  `Natural`, `Neural`, `Online`; then `Google Deutsch`; then the rest; then
-  the novelty names), then `de-DE` first, then name.
+  `Natural`, `Neural`, `Online`, in the name or the voiceURI; then `Google
+  Deutsch`; then Eddy, Flo, Reed, Sandy and Shelley; then the rest; then
+  Grandma, Grandpa and Rocko), then `de-DE` first, then name.
 - `tts.ts`:
   - `SynthLike.getVoices()` widens to `{ name, voiceURI, lang }`.
   - `voices()` returns the ranked list (`{ uri, name, lang }`).
@@ -210,6 +211,14 @@ src/ui/panels/settings.ts  voice picker, Test, hint, storage line, Export/Import
   import. The import parses and validates the file before opening the
   transaction, merges cards and counts in one IndexedDB transaction, and
   calls `savePace` after it commits.
+
+### Music (operator feedback on PR #10)
+
+- Plan 2's audio loops `assets/audio/music-game.mp3` when the file exists,
+  but no track ever shipped. The operator chose the CC0 track "Space Shooter
+  (Loop)" by Alex McCulloch (opengameart.org). It ships re-encoded at
+  128 kbps (about 1.3 MB) and is credited in `CREDITS.md`, as its author
+  asks. A test pins the file and the credit.
 
 ### Testing
 
@@ -275,7 +284,7 @@ Post-merge, operator-driven, on https://derio-net.github.io/the-typist/:
    ship.
 2. After about 50 letters, the ships' speed should feel matched to your
    typing: hard, but with time to finish everything.
-3. In Settings, check that the automatically chosen voice is not a novelty
+3. In Settings, check that the automatically chosen voice is not a character
    voice, that the picker lists the German voices, and that Test speaks.
 4. Reload the page: progress and the calibrated speed survive. Export
    progress, then import it in another browser and see the cards there.
