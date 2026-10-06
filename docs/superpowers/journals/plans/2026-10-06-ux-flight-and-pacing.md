@@ -193,3 +193,43 @@ Declined to judge: speech over the between-wave panel (predates phase 2); the re
 ### p2-r3-resolved · finding [fixed] · resolves p2-r3: Quality ranking reads only name (phase 2)
 
 04dcb07: the quality marker is also matched against voiceURI; the test failed first.
+
+<!-- fr:journal kind=discovery scope=plan id=p3-idb-await-rule created=2026-10-06T17:30:55+00:00 phase=3 -->
+### p3-idb-await-rule · discovery · IDB import awaits only IndexedDB requests (phase 3)
+
+importAll reads each local card with done(get) inside the readwrite transaction and puts after it; the file is parsed and validated in app.ts before the transaction opens, and savePace runs only after importAll resolves. A mutant that skips tx.abort() on a mid-import failure is killed by the one-transaction test (an uncloneable card is the injected failure, in both stores).
+
+<!-- fr:journal kind=discovery scope=plan id=p3-persist-nonblocking created=2026-10-06T17:30:55+00:00 phase=3 -->
+### p3-persist-nonblocking · discovery · persist() is not awaited at startup (phase 3)
+
+Firefox may show a prompt for persist(), so startApp does not wait for it: it is tracked via track() and the Settings panel re-renders when the answer arrives. Status is protected when persist() or persisted() is true, else may-be-cleared; memory stores never call it.
+
+<!-- fr:journal kind=discovery scope=plan id=p3-surviving-mutant created=2026-10-06T17:30:55+00:00 phase=3 -->
+### p3-surviving-mutant · discovery · A meta-key range mutant survived until a stray-key test (phase 3)
+
+Removing the ['new'] key range from the IDB meta cursor survived because the probe key is deleted after use. Added a test that writes stray string meta keys through the raw factory; the mutant is now killed. The picker.value reset after a file choice has no unit test (jsdom cannot assert it).
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p3-t1 created=2026-10-06T17:30:55+00:00 phase=3 -->
+### no-refactor-p3-t1 · discovery · no-refactor-because P3.T1 (phase 3)
+
+portable.ts was written once to a final shape; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p3-t2 created=2026-10-06T17:30:55+00:00 phase=3 -->
+### no-refactor-p3-t2 · discovery · no-refactor-because P3.T2 (phase 3)
+
+the IDB and memory implementations share only the merge helpers from portable.ts, already factored.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p3-t3 created=2026-10-06T17:30:55+00:00 phase=3 -->
+### no-refactor-p3-t3 · discovery · no-refactor-because P3.T3 (phase 3)
+
+one status variable and one request function; nothing duplicated.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p3-t4 created=2026-10-06T17:30:55+00:00 phase=3 -->
+### no-refactor-p3-t4 · discovery · no-refactor-because P3.T4 (phase 3)
+
+the panel report helper serves both Export and Import; the app functions are single-purpose.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p3-t6 created=2026-10-06T17:30:55+00:00 phase=3 -->
+### no-refactor-p3-t6 · discovery · no-refactor-because P3.T6 (phase 3)
+
+capture script, matrix and docs only; no code to clean.
