@@ -1,0 +1,73 @@
+schema_version: 7
+run: 2026-10-06-feat-ux-flight-and-pacing
+step: brainstorm
+outcome: done
+questions: {rounds: 1}
+journal:
+  - kind: discovery
+    input: true
+    id: operator-brief
+    title: Operator brief (verbatim)
+    body: |
+      I want a few UX improvements. The explosion once the mothership is destroyed should push the children all the way up to the top of the screen (while still keeping to their own horizontal bands). The plural/secondary ship that is not a sentence should be the lowest down, not the highest up. The sentences should be higher up, the longer they are. The speed of the ships must be calculated on the fly, by the typing speed of the typist, calibrated over the first 50 letters or so. The goal is to give the typist a good chance to type everything. The TTS should come when a ship is first attacked, not once it is destroyed. Questions: The voice is pretty awful, isn't anything better available? Is it possible to have persistence when playing via the github published page? How?
+  - kind: decision
+    id: q1-speed-model
+    title: Speed model is a bottom-up stack budget
+    body: Each released stack descends at a speed where typing it bottom-up at the measured rate, with slack, finishes before each band lands; motherships get the same rule. Set at spawn. (R4)
+  - kind: decision
+    id: q2-calibration-memory
+    title: Calibrated rate is remembered across sessions
+    body: Stored in localStorage; a fresh browser starts from a 2.0 chars/s prior and calibrates over the first 50 letters. (R3, R5)
+  - kind: decision
+    id: q3-slack
+    title: Slack 1.5x typing time
+    body: Fixed, no setting. (R4)
+  - kind: decision
+    id: q4-no-wave-ramp
+    title: No difficulty ramp across waves
+    body: Speed tracks only the typing rate; the wave number no longer changes speed. (R4)
+  - kind: decision
+    id: q5-voice
+    title: Voice ranking, picker with Test, and install hint
+    body: Rank German voices (quality markers, Google Deutsch, others, novelty last); Settings voice picker with Test and an install hint. Pre-recorded neural audio declined. (R7, R8)
+  - kind: decision
+    id: q6-persistence
+    title: persist() plus export/import progress
+    body: Progress already persists per browser on Pages (IndexedDB). Add navigator.storage.persist() and Export/Import of a JSON progress file. Cloud sync out of scope. (R9, R10)
+  - kind: decision
+    id: q7-test-plan
+    title: Post-merge Test Plan is one live session on Pages
+    body: Operator plays one session on the live site per the spec's Test Plan.
+acceptance:
+  - id: stack-flight
+    capability: play-feel
+    acceptance: A destroyed mothership's children fly up to just below the HUD in bands, the forms ship lowest and the sentences above it longest-first, and they never overlap the HUD.
+    origin: [the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R1, the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R2]
+    status: not-implemented
+    visual: "release from a high and a low mothership: top band's hull at the HUD at the apex; forms ship lowest; longest sentence highest; a record with no forms ship; a record with no examples"
+  - id: adaptive-pace
+    capability: play-feel
+    acceptance: Ship speed follows the player's measured typing rate, calibrated over the first 50 letters and remembered between sessions, so that every ship of a stack can be typed with 1.5x slack; waves do not speed ships up.
+    origin: [the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R3, the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R4, the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R5]
+    status: not-implemented
+  - id: speech-on-attack
+    capability: learning-aids
+    acceptance: A ship's German text is spoken once, when the player first attacks it, not when it is destroyed.
+    origin: [the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R6]
+    status: not-implemented
+  - id: voice-choice
+    capability: learning-aids
+    acceptance: The game speaks with the best German voice available, and the player can pick and test another voice in Settings, with a hint on installing better ones.
+    origin: [the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R7, the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R8]
+    status: not-implemented
+    visual: "Settings panel: voice picker with Automatic first and ranked voices, Test button, install hint; no-German-voice state with picker and Test disabled and the reason shown"
+  - id: progress-portability
+    capability: srs-persistence
+    acceptance: Progress is protected from browser cleanup where the browser allows, Settings says whether it is, and the player can export progress to a file and import it in another browser, with invalid files rejected without changes.
+    origin: [the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R9, the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R10]
+    status: not-implemented
+    visual: "Settings panel: storage line in protected / may-be-cleared / memory states; Export and Import buttons; import success message; import error message for an invalid file"
+resolves: []
+emitted:
+  spec: docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md
+evidence: {}
