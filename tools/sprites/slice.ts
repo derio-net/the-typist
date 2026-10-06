@@ -1,7 +1,7 @@
 /**
  * Cuts public/assets/sprites/sheet.png (magenta-keyed sprite sheet, layout in
  * docs/ux/sprite-prompts.md) into one transparent PNG per sprite plus
- * src/render/sprite-atlas.json (sizes and each hull's text strip). Sprites are found by outline, not by a fixed grid: rows are split
+ * src/layout/sprite-atlas.json (sizes and each hull's text strip). Sprites are found by outline, not by a fixed grid: rows are split
  * at empty horizontal gaps, sprites within a row at empty vertical gaps.
  *
  *   npm run sprites
@@ -11,7 +11,7 @@ import { join } from 'node:path';
 import { PNG } from 'pngjs';
 
 const DIR = 'public/assets/sprites';
-const ATLAS = 'src/render/sprite-atlas.json';
+const ATLAS = 'src/layout/sprite-atlas.json';
 /** Names in sheet order: row by row, left to right. */
 export const LAYOUT: string[][] = [
   ['mothership'],

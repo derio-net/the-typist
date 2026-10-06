@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { sizes } from '../../src/render/theme';
+import { sizes } from '../../src/layout/metrics';
 import { parseList, displayForm, formsText, type VocabRecord } from '../../src/schema';
 import {
   STEP_MS, WORLD, advance, createWorld, shipBounds, shipSpeed, tick, typeChar, type World, type WorldEvent,

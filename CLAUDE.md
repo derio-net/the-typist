@@ -27,7 +27,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - `dupes`, `merge-dupes [--skip id…]`, `merge <list> <id> <id>…`
   - `next-batch <list> [--n 25] [--category <id>]`
   - `stats <list>`
-- `npm run sprites`: cuts `public/assets/sprites/sheet.png` into sprites and writes `src/render/sprite-atlas.json`.
+- `npm run sprites`: cuts `public/assets/sprites/sheet.png` into sprites and writes `src/layout/sprite-atlas.json`.
 
 ## Architecture
 

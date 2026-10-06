@@ -1,6 +1,6 @@
 import { displayForm, formsText } from '../schema/display';
 import { RECOGNISED_TAGS, type VocabRecord } from '../schema/record';
-import { charWidths, hullExtent, sizes, type MeasureFont } from '../render/theme';
+import { charWidths, hullExtent, sizes, type MeasureFont } from '../layout/metrics';
 import {
   addShip, createTyping, removeShip, setPositions, step, type TypingEvent, type TypingState,
 } from './typing';
