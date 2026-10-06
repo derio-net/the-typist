@@ -1,5 +1,6 @@
 import type { Card } from 'ts-fsrs';
 import type { RecordStats } from '../engine/world';
+import { mergeCard, mergeCount, type ImportReport, type ProgressData } from './portable';
 
 /** A Record's FSRS card plus lifetime counters. */
 export interface StoredCard {
@@ -32,6 +33,10 @@ export interface CardStore {
   bumpNew(listId: string, day: string): Promise<void>;
   /** Writes the card and, when `isNew`, bumps the day's new count, atomically (one transaction). */
   putGraded(listId: string, recordId: string, stored: StoredCard, day: string, isNew: boolean): Promise<void>;
+  /** Every list's cards and the daily new-card counts (the typing-rate estimate lives elsewhere). */
+  exportAll(): Promise<ProgressData>;
+  /** Merges `data` in atomically: all of it is written, or none. The caller validates the data first. */
+  importAll(data: ProgressData): Promise<ImportReport>;
 }
 
 export interface Stores {
@@ -79,6 +84,33 @@ export function createMemoryStore(): CardStore {
     async putGraded(l, r, stored, day, isNew) {
       put(l, r, stored);
       if (isNew) bump(l, day);
+    },
+    async exportAll() {
+      const newCounts: ProgressData['newCounts'] = [];
+      for (const [k, count] of meta) {
+        const [, listId, day] = JSON.parse(k) as [string, string, string];
+        newCounts.push({ listId, day, count });
+      }
+      return { cards: [...cards.values()].map((e) => ({ listId: e.listId, recordId: e.recordId, stored: clone(e.value) })), newCounts };
+    },
+    async importAll(data) {
+      // decide and clone everything first, so a failure part-way leaves the maps untouched
+      const writes: [string, { listId: string; recordId: string; value: StoredCard }][] = [];
+      let replaced = 0;
+      for (const { listId, recordId, stored } of data.cards) {
+        const k = id(cardKey(listId, recordId));
+        const local = cards.get(k)?.value;
+        if (mergeCard(local, stored) !== 'import') continue;
+        if (local) replaced++;
+        writes.push([k, { listId, recordId, value: clone(stored) }]);
+      }
+      const counts: [string, number][] = data.newCounts.map((c) => {
+        const k = id(newKey(c.listId, c.day));
+        return [k, mergeCount(meta.get(k) ?? 0, c.count)];
+      });
+      for (const [k, v] of writes) cards.set(k, v);
+      for (const [k, v] of counts) meta.set(k, v);
+      return { imported: writes.length, replaced };
     },
   };
 }
@@ -153,6 +185,69 @@ export function createIdbStore(factory: IDBFactory = indexedDB): IdbStore {
         meta.put(n + 1, newKey(l, day));
       }
       await finished;
+    },
+    async exportAll() {
+      const db = await database();
+      const tx = db.transaction(['cards', 'meta'], 'readonly');
+      const each = (req: IDBRequest<IDBCursorWithValue | null>, f: (c: IDBCursorWithValue) => void) =>
+        new Promise<void>((resolve, reject) => {
+          req.onsuccess = () => {
+            const c = req.result;
+            if (!c) return resolve();
+            f(c);
+            c.continue();
+          };
+          req.onerror = () => reject(req.error);
+        });
+      const out: ProgressData = { cards: [], newCounts: [] };
+      await Promise.all([
+        each(tx.objectStore('cards').openCursor(), (c) => {
+          const [listId, recordId] = c.key as [string, string];
+          out.cards.push({ listId, recordId, stored: c.value as StoredCard });
+        }),
+        // ['new', list, day] keys only: every other meta key is a string
+        each(tx.objectStore('meta').openCursor(IDBKeyRange.bound(['new'], ['new', []])), (c) => {
+          const [, listId, day] = c.key as [string, string, string];
+          out.newCounts.push({ listId, day, count: c.value as number });
+        }),
+      ]);
+      return out;
+    },
+    async importAll(data) {
+      const tx = (await database()).transaction(['cards', 'meta'], 'readwrite');
+      const finished = new Promise<void>((resolve, reject) => {
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+        tx.onabort = () => reject(tx.error ?? new Error('transaction aborted'));
+      });
+      let imported = 0;
+      let replaced = 0;
+      try {
+        // inside the transaction, only IndexedDB requests are awaited: anything else would let it auto-commit early
+        const cards = tx.objectStore('cards');
+        const meta = tx.objectStore('meta');
+        for (const { listId, recordId, stored } of data.cards) {
+          const local = (await done(cards.get(cardKey(listId, recordId)))) as StoredCard | undefined;
+          if (mergeCard(local, stored) !== 'import') continue;
+          cards.put(stored, cardKey(listId, recordId));
+          imported++;
+          if (local) replaced++;
+        }
+        for (const { listId, day, count } of data.newCounts) {
+          const local = ((await done(meta.get(newKey(listId, day)))) as number | undefined) ?? 0;
+          meta.put(mergeCount(local, count), newKey(listId, day));
+        }
+      } catch (e) {
+        finished.catch(() => undefined);
+        try {
+          tx.abort();
+        } catch {
+          /* already finished */
+        }
+        throw e;
+      }
+      await finished;
+      return { imported, replaced };
     },
     async probe() {
       try {
