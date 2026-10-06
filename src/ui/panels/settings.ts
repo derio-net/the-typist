@@ -64,7 +64,8 @@ export function settingsPanel(root: HTMLElement, props: SettingsProps, handlers:
       toggle('Sound effects', 'sfx', s.sfx, (v) => ({ sfx: v })),
       toggle('Music', 'music', s.music, (v) => ({ music: v })),
       h('label', {}, 'New records per day', cap),
-      h('label', {}, 'Voice ', pick, ' ', test, off && h('span', { class: 'muted' }, ` (${props.ttsUnavailable})`)),
+      h('label', {}, 'Voice ', pick, ' ', test),
+      off && h('p', { class: 'muted' }, `Voice choice unavailable: ${props.ttsUnavailable}`),
       h('p', { class: 'muted', 'data-slot': 'voice-hint' }, VOICE_HINT)),
     h('div', { class: 'stack' }, button('Close', handlers.onClose, { 'data-action': 'close' })),
   );
