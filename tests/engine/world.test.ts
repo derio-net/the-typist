@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { hullExtent, sizes } from '../../src/layout/metrics';
 import { parseList, displayForm, formsText, type VocabRecord } from '../../src/schema';
 import {
-  STEP_MS, WORLD, advance, defaultMeasure, createWorld, shipBounds, shipSpeed, tick, typeChar, type World, type WorldEvent,
+  STEP_MS, WORLD, advance, defaultMeasure, placeStack, createWorld, shipBounds, shipSpeed, tick, typeChar, type World, type WorldEvent,
 } from '../../src/engine/world';
 
 const fixture = parseList(readFileSync('tests/fixtures/lists/two-records.yaml', 'utf8'));
@@ -459,5 +459,80 @@ describe('player ship drifts toward its locked target (P2.T3)', () => {
     w = typeChar(w, w.ships[0].text[0]);
     w = { ...w, playerX: 0 };
     expect(tick(w).playerX).toBeGreaterThanOrEqual(0);
+  });
+});
+
+describe('released rows clear the HUD and keep a gap (P2.T4)', () => {
+  const burst = (opts: Parameters<typeof createWorld>[1] = {}, y?: number) => {
+    let w = createWorld([boerse, anlegen], opts);
+    if (y !== undefined) w = { ...w, ships: w.ships.map((s) => ({ ...s, y })) };
+    return typeText(w, w.ships[0].text);
+  };
+  const kidsOf = (w: World) => w.ships.filter((s) => s.kind !== 'mothership').sort((a, b) => a.y - b.y);
+  const topOverTime = (w: World) => {
+    const first = kidsOf(w)[0].id;
+    let top = Infinity;
+    for (let i = 0; i < 90; i++) {
+      w = tick(w);
+      const s = w.ships.find((x) => x.id === first)!;
+      top = Math.min(top, s.y - s.above);
+    }
+    return top;
+  };
+
+  it.each([1, 2, 3, 4])('the first row never rises above the HUD, even right under it (seed %i)', (seed) => {
+    const w = burst({ seed });
+    expect(topOverTime(w)).toBeGreaterThanOrEqual(WORLD.minY - 1e-6);
+  });
+
+  it.each([1, 2, 3])('consecutive rows are separated by at least bandGap (seed %i)', (seed) => {
+    const b = kidsOf(burst({ seed })).map(shipBounds);
+    expect(b.length).toBeGreaterThan(2);
+    for (let i = 1; i < b.length; i++) expect(b[i].y0 - b[i - 1].y1).toBeGreaterThanOrEqual(WORLD.bandGap - 1e-6);
+  });
+
+  it('when the reaction distance and the HUD conflict, the reaction distance wins and the kick shrinks (never below 0)', () => {
+    const w = burst({ seed: 2, minReactionS: 20 });
+    const kids = kidsOf(w);
+    const last = kids[kids.length - 1];
+    expect(last.y).toBeLessThanOrEqual(WORLD.playerY - last.speed * 20 + 1e-6);
+    for (const k of kids) {
+      expect(k.vy).toBeLessThanOrEqual(0);
+      expect(k.vy).toBeGreaterThan(-WORLD.burstKick);
+    }
+    expect(topOverTime(w)).toBeGreaterThanOrEqual(WORLD.minY - 1e-6);
+  });
+});
+
+describe('placeStack', () => {
+  const rows = [{ above: 10, below: 10 }, { above: 12, below: 20 }, { above: 8, below: 8 }];
+  const base = { rows, wreckY: 300, speed: 20, minReactionS: 3 };
+
+  it('spaces row centres by below + bandGap + above', () => {
+    const { ys } = placeStack(base);
+    expect(ys[1] - ys[0]).toBe(10 + WORLD.bandGap + 12);
+    expect(ys[2] - ys[1]).toBe(20 + WORLD.bandGap + 8);
+  });
+
+  it('centres the stack on the wreck when nothing constrains it', () => {
+    const { ys, kick } = placeStack(base);
+    const top = ys[0] - 10;
+    const bottom = ys[2] + 8;
+    expect((top + bottom) / 2).toBeCloseTo(300, 6);
+    expect(kick).toBe(WORLD.burstKick);
+  });
+
+  it('keeps the apex hull top below the HUD', () => {
+    const { ys, kick } = placeStack({ ...base, wreckY: 60 });
+    expect(ys[0] - 10 - kick * WORLD.kickDecayS).toBeGreaterThanOrEqual(WORLD.minY - 1e-9);
+  });
+
+  it('reaction distance wins over the HUD: the kick is reduced, never negative', () => {
+    const { ys, kick } = placeStack({ ...base, minReactionS: 26 });
+    expect(ys[2]).toBeLessThanOrEqual(WORLD.playerY - 20 * 26 + 1e-9);
+    expect(kick).toBeGreaterThanOrEqual(0);
+    expect(kick).toBeLessThan(WORLD.burstKick);
+    const huge = placeStack({ ...base, minReactionS: 1000 });
+    expect(huge.kick).toBe(0);
   });
 });

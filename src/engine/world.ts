@@ -245,26 +245,47 @@ function spawnChildren(w: Draft, m: WorldShip) {
   if (children.length === 0) return;
   // One shared speed and kick, so the bands move as one and never cross.
   const speed = Math.min(...children.map((c) => c.speed));
-  const stack = children.reduce((a, c) => a + c.above + c.below, 0) + WORLD.bandGap * (children.length - 1);
-  const first = children[0];
-  const last = children[children.length - 1];
-  const lastOffset = stack - first.above - last.below; // first centre → last centre
-  const rise = WORLD.burstKick * WORLD.kickDecayS; // total upward travel of the kick
-  // centre of the first band: around the wreck, low enough that the kick keeps it below the HUD,
-  // high enough that the last band keeps the reaction distance (that one wins)
-  let y = m.y - stack / 2 + first.above;
-  y = Math.max(y, WORLD.minY + rise);
-  y = Math.min(y, WORLD.playerY - speed * w.minReactionS - lastOffset);
+  const { ys, kick } = placeStack({ rows: children, wreckY: m.y, speed, minReactionS: w.minReactionS });
   children.forEach((child, k) => {
     let u: number;
     let side: number;
     [u, w.rng] = random(w.rng);
     [side, w.rng] = random(w.rng);
     const vx = (side < 0.5 ? -1 : 1) * (WORLD.burstMinVx + u * (WORLD.burstMaxVx - WORLD.burstMinVx));
-    spawn(w, keepInside(w.width, { ...child, speed, x: m.x, y, vx, vy: -WORLD.burstKick }));
-    const next = children[k + 1];
-    if (next) y += child.below + WORLD.bandGap + next.above;
+    spawn(w, keepInside(w.width, { ...child, speed, x: m.x, y: ys[k], vx, vy: -kick }));
   });
+}
+
+export interface StackRow { above: number; below: number }
+
+/**
+ * Places a released stack of rows (top to bottom) around a destroyed mothership at `wreckY`.
+ * Returns each row's centre y and the shared upward kick speed (px/s, >= 0). Rules, in order:
+ *
+ * 1. Spacing: consecutive rows' boxes (`above` + `below` around the centre) are `WORLD.bandGap` apart.
+ * 2. Position: the stack is centred on the wreck.
+ * 3. HUD: the first row's hull top, at the apex of the full kick (`burstKick * kickDecayS` of travel),
+ *    stays at or below `WORLD.minY`; the whole stack shifts down to make it so.
+ * 4. Reaction distance: the last row stays `minReactionS` seconds of descent above the player line.
+ *    This wins over rule 3: the stack moves up again if needed.
+ * 5. Fallback: when 4 undid 3, the kick is reduced (never below 0) so the apex still clears the HUD.
+ */
+export function placeStack(
+  p: { rows: StackRow[]; wreckY: number; speed: number; minReactionS: number },
+): { ys: number[]; kick: number } {
+  const { rows } = p;
+  if (rows.length === 0) return { ys: [], kick: WORLD.burstKick };
+  const first = rows[0];
+  const offsets = [0];
+  for (let k = 1; k < rows.length; k++) offsets.push(offsets[k - 1] + rows[k - 1].below + WORLD.bandGap + rows[k].above);
+  const stack = rows.reduce((a, r) => a + r.above + r.below, 0) + WORLD.bandGap * (rows.length - 1);
+  const rise = WORLD.burstKick * WORLD.kickDecayS;
+  let y = p.wreckY - stack / 2 + first.above;
+  y = Math.max(y, WORLD.minY + first.above + rise);
+  y = Math.min(y, WORLD.playerY - p.speed * p.minReactionS - offsets[offsets.length - 1]);
+  const room = Math.max(0, y - first.above - WORLD.minY);
+  const kick = Math.min(WORLD.burstKick, room / WORLD.kickDecayS);
+  return { ys: offsets.map((o) => y + o), kick };
 }
 
 /** Marks one of the record's ships as done; resolves the record when it was the last. */
