@@ -609,10 +609,17 @@ describe('kick to the top (R2)', () => {
     return { min, w };
   };
 
-  it.each([120, 300, 520])('a wreck at y=%i: the top hull reaches the HUD at the apex', (y) => {
+  it.each([[120, 'the rise-0 floor case'], [300, 'a kicked stack'], [520, 'a kicked stack']])('a wreck at y=%i (%s): the top hull reaches the HUD at the apex', (y) => {
     const { min } = apexTop(y);
     expect(min).toBeGreaterThanOrEqual(WORLD.minY - 1e-6);
     expect(min).toBeLessThanOrEqual(WORLD.minY + 4);
+  });
+
+  it.each([300, 520])('a wreck at y=%i kicks the stack upward at spawn (p1-r5)', (y) => {
+    let w = createWorld([boerse, anlegen], { seed: 3 });
+    w = { ...w, ships: w.ships.map((s) => ({ ...s, y })) };
+    w = typeText(w, w.ships[0].text);
+    for (const k of w.ships.filter((s) => s.kind !== 'mothership')) expect(k.vy).toBeLessThan(0);
   });
 
   it('a wreck right under the HUD spawns the stack at or below it, without a kick', () => {
@@ -663,22 +670,51 @@ describe('pace-driven speeds (R4)', () => {
     expect(slow).toBeLessThan(fast);
   });
 
-  it('the destroyed mothership updates the pace before its children get their speed', () => {
-    let w = createWorld([boerse], { seed: 4, pace });
+  it('the destroyed mothership updates the pace before its children get their speed (p1-r1)', () => {
+    const fast = { spc: 0.1, chars: 100 };
+    let w = createWorld([boerse], { seed: 4, pace: fast });
+    w = { ...w, ships: w.ships.map((s) => ({ ...s, y: 300 })) };
     const m = w.ships[0];
     w = typeChar(w, m.text[0]);
-    w = { ...w, time: w.time + 2000 };
+    w = { ...w, time: w.time + 4000 };
     w = typeText(w, m.text.slice(1));
-    const chars = requiredLength(m.text);
-    const expected = observe(pace, chars, 2000);
+    const expected = observe(fast, requiredLength(m.text), 4000);
     expect(w.pace.spc).toBeCloseTo(expected.spc, 9);
     expect(w.pace.chars).toBe(expected.chars);
-    const kids = w.ships.filter((s) => s.kind !== 'mothership');
-    const rows = kids.sort((a, b) => a.y - b.y);
-    const rise = kickApex(rows[0].vy === 0 ? 0 : -rows[0].vy, rows[0].speed);
-    const want = Math.min(...rows.map((_, i) => budgetSpeed(
-      WORLD.playerY - (rows[i].y - rise), rows.slice(i).map((r) => requiredLength(r.text)), expected,
+    const rows = w.ships.filter((s) => s.kind !== 'mothership').sort((a, b) => a.y - b.y);
+    const rise = kickApex(-rows[0].vy, rows[0].speed);
+    const speedFor = (p: typeof fast) => Math.min(...rows.map((_, i) => budgetSpeed(
+      WORLD.playerY - (rows[i].y - rise), rows.slice(i).map((r) => requiredLength(r.text)), p,
     )));
-    expect(rows[0].speed).toBeCloseTo(want, 3);
+    expect(rows[0].speed).toBeGreaterThan(WORLD.minSpeed + 1); // not clamped: the pace matters
+    expect(rows[0].speed).toBeCloseTo(speedFor(expected), 3);
+    expect(Math.abs(rows[0].speed - speedFor(fast))).toBeGreaterThan(0.5);
+  });
+
+  it('budgets count required characters, not the pre-typed final punctuation (p1-r2)', () => {
+    const p = { spc: 0.5, chars: 100 };
+    const text = 'Guten Tag, bis bald!';
+    const rec: VocabRecord = { ...phrase, id: 'phrase-bald', lemma: text, examples: [] };
+    const m = createWorld([rec], { pace: p }).ships[0];
+    expect(requiredLength(text)).toBe(text.length - 1);
+    const want = budgetSpeed(WORLD.playerY - m.y, [text.length - 1], p);
+    expect(m.speed).toBeCloseTo(want, 9);
+    expect(m.speed).not.toBeCloseTo(budgetSpeed(WORLD.playerY - m.y, [text.length], p), 3);
+  });
+
+  it('a stack budgets required characters too (p1-r2)', () => {
+    const p = { spc: 0.1, chars: 100 };
+    let w = createWorld([boerse], { seed: 4, pace: p });
+    w = { ...w, ships: w.ships.map((s) => ({ ...s, y: 300 })) };
+    w = typeText(w, w.ships[0].text);
+    const rows = w.ships.filter((s) => s.kind !== 'mothership').sort((a, b) => a.y - b.y);
+    expect(rows.some((r) => requiredLength(r.text) < r.text.length)).toBe(true);
+    const rise = kickApex(-rows[0].vy, rows[0].speed);
+    const at = (len: (t: string) => number) => Math.min(...rows.map((_, i) => budgetSpeed(
+      WORLD.playerY - (rows[i].y - rise), rows.slice(i).map((r) => len(r.text)), w.pace,
+    )));
+    expect(rows[0].speed).toBeGreaterThan(WORLD.minSpeed + 1);
+    expect(rows[0].speed).toBeCloseTo(at(requiredLength), 3);
+    expect(rows[0].speed).not.toBeCloseTo(at((t) => t.length), 3);
   });
 });
