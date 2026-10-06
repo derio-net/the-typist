@@ -333,3 +333,6 @@ Tuning call; the post-merge Test Plan item 2 settles it.
 ### p3-r10 · finding [open] (reviewer: out of scope) · Music credit lives only in CREDITS.md, not in the game UI (phase 3)
 
 Courtesy only (CC0); the operator decides.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r11 created=2026-10-06T19:01:19+00:00 phase=3 state=open review_scope=out -->
+### p3-r11 · finding [open] (reviewer: out of scope) · The bundled-music test resolves paths against the cwd (phase 3)
