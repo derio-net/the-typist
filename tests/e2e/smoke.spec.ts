@@ -121,4 +121,34 @@ test('load a list, free-play it, and persist both Records', async ({ page }) => 
       }),
   );
   expect(back).toEqual(expect.arrayContaining([['fixture-two', 'noun-boerse'], ['fixture-two', 'verb-anlegen']]));
+
+  // the revived cards are real: dates are Dates, counters and the day count survive with their values
+  const revived = await page.evaluate(
+    () =>
+      new Promise<{ dueIsDate: boolean; lastReviewIsDate: boolean; seen: number[]; typos: number[]; counts: unknown[] }>((resolve, reject) => {
+        const open = indexedDB.open('typist');
+        open.onerror = () => reject(open.error);
+        open.onsuccess = () => {
+          const tx = open.result.transaction(['cards', 'meta'], 'readonly');
+          const cards = tx.objectStore('cards').getAll();
+          const counts = tx.objectStore('meta').getAll(IDBKeyRange.bound(['new'], ['new', []]));
+          tx.oncomplete = () => {
+            const all = cards.result as { card: { due: unknown; last_review?: unknown }; seen: number; typos: number }[];
+            resolve({
+              dueIsDate: all.every((c) => c.card.due instanceof Date),
+              lastReviewIsDate: all.every((c) => c.card.last_review instanceof Date),
+              seen: all.map((c) => c.seen),
+              typos: all.map((c) => c.typos),
+              counts: counts.result,
+            });
+          };
+          tx.onerror = () => reject(tx.error);
+        };
+      }),
+  );
+  expect(revived.dueIsDate).toBe(true);
+  expect(revived.lastReviewIsDate).toBe(true);
+  expect(revived.seen).toEqual(exported.cards.map((c: { stored: { seen: number } }) => c.stored.seen).sort());
+  expect(revived.typos.reduce((a, b) => a + b, 0)).toBe(exported.cards.reduce((a: number, c: { stored: { typos: number } }) => a + c.stored.typos, 0));
+  expect(revived.counts).toEqual(exported.newCounts.map((c: { count: number }) => c.count));
 });
