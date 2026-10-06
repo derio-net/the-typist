@@ -796,6 +796,11 @@ describe('storage protection and portable progress (R9, R10)', () => {
     click('Settings');
     expect(storageLine()).toBe('The browser may clear progress if the site goes unused.');
   });
+  it('when persist() throws, persisted() is still tried (p3-r5)', async () => {
+    await bootWith({ storage: { persist: () => Promise.reject(new Error('nope')), persisted: async () => true } });
+    click('Settings');
+    expect(storageLine()).toBe('Progress is protected from browser cleanup.');
+  });
   it('a rejecting persist() does not break startup (R9)', async () => {
     await bootWith({ storage: { persist: () => Promise.reject(new Error('nope')) } });
     expect(app.state()).toBe('title');
@@ -900,5 +905,57 @@ describe('storage protection and portable progress (R9, R10)', () => {
     choose(new File([text], 'p.json'));
     await vi.waitFor(() => expect(status().dataset.state).toBe('ok'));
     expect(await fresh.get('fixture-two', 'noun-boerse')).toEqual(await cards.get('fixture-two', 'noun-boerse'));
+  });
+
+  describe('a transfer in flight', () => {
+    const gatedStore = () => {
+      let release!: () => void;
+      const gate = new Promise<void>((r) => (release = r));
+      const store = { ...cards, importAll: async (d: Parameters<typeof cards.importAll>[0]) => { await gate; return cards.importAll(d); } } as typeof cards;
+      return { store, release };
+    };
+    it('shows Importing… and disables Export and Import until it finishes (p3-r3)', async () => {
+      const { store, release } = gatedStore();
+      await bootWith({ cards: store });
+      click('Settings');
+      choose(progressFile(validFile()));
+      await vi.waitFor(() => expect(status().textContent).toBe('Importing…'));
+      expect(root.querySelector<HTMLButtonElement>('[data-action="export-progress"]')!.disabled).toBe(true);
+      expect(root.querySelector<HTMLButtonElement>('[data-action="import-progress"]')!.disabled).toBe(true);
+      release();
+      await vi.waitFor(() => expect(status().dataset.state).toBe('ok'));
+      expect(root.querySelector<HTMLButtonElement>('[data-action="export-progress"]')!.disabled).toBe(false);
+    });
+    it('a Settings re-render mid-import keeps the busy text and then shows the result (p3-r2)', async () => {
+      const { store, release } = gatedStore();
+      await bootWith({ cards: store });
+      click('Settings');
+      choose(progressFile(validFile()));
+      await vi.waitFor(() => expect(status().textContent).toBe('Importing…'));
+      ttsListeners.forEach((cb) => cb(ttsStatus)); // re-renders the open panel
+      expect(status().textContent).toBe('Importing…');
+      release();
+      await vi.waitFor(() => expect(status().textContent).toMatch(/Imported 1 card\b/));
+    });
+    it('a result that arrives while the panel was re-rendered is still shown (p3-r2)', async () => {
+      await bootWith();
+      click('Settings');
+      choose(progressFile(validFile({ version: 5 })));
+      await vi.waitFor(() => expect(status().dataset.state).toBe('error'));
+      ttsListeners.forEach((cb) => cb(ttsStatus));
+      expect(status().dataset.state).toBe('error');
+      expect(status().textContent).toMatch(/^Not imported/);
+    });
+    it('rejects a file over 50 MB before reading it (p3-r3)', async () => {
+      const spy = vi.spyOn(cards, 'importAll');
+      click('Settings');
+      const big = progressFile(validFile());
+      Object.defineProperty(big, 'size', { value: 51 * 1024 * 1024 });
+      const read = vi.spyOn(big, 'text');
+      choose(big);
+      await vi.waitFor(() => expect(status().textContent).toMatch(/Not imported: .*too large/));
+      expect(read).not.toHaveBeenCalled();
+      expect(spy).not.toHaveBeenCalled();
+    });
   });
 });

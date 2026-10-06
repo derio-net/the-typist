@@ -15,7 +15,7 @@ import { buildFreePlay, buildStudy, isPlayable, seededRng, type Built } from '..
 import { localDay, openStores, type StoredCard, type Stores } from '../srs/store';
 import type { Panel } from './dom';
 import { h } from './dom';
-import type { StorageStatus, TransferResult } from './panels/settings';
+import type { StorageStatus, TransferResult, TransferState } from './panels/settings';
 import {
   bannerPanel, betweenWavePanel, categoryPanel, loadErrorsPanel, modePanel, pausePanel, settingsPanel, summaryPanel, titlePanel,
 } from './panels';
@@ -43,6 +43,7 @@ function downloadBlob(name: string, blob: Blob) {
   setTimeout(() => URL.revokeObjectURL(url), 0);
 }
 
+const MAX_PROGRESS_BYTES = 50 * 1024 * 1024;
 const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
 
 export interface AppDeps {
@@ -115,6 +116,13 @@ export async function startApp(deps: AppDeps): Promise<App> {
   let settingsReturn: AppState = 'title';
   let list: VocabList | undefined;
 
+  /** The import or export in flight, or the last result: kept here so a Settings re-render still shows it. */
+  let transfer: TransferState = {};
+  const setTransfer = (t: TransferState) => {
+    transfer = t;
+    if (state === 'settings') openSettings(settingsReturn);
+  };
+
   const warn = () => {
     if (banner) return;
     banner = bannerPanel(root, { message: STORAGE_WARNING });
@@ -126,11 +134,19 @@ export async function startApp(deps: AppDeps): Promise<App> {
   let storageStatus: StorageStatus | undefined = stores.persistent ? undefined : 'memory';
   async function requestPersistence() {
     const mgr = deps.storage ?? (typeof navigator === 'undefined' ? undefined : navigator.storage);
+    // each in its own try: a persist() that throws must not stop persisted() from being asked
     let granted = false;
     try {
-      granted = (await mgr?.persist?.()) === true || (await mgr?.persisted?.()) === true;
+      granted = (await mgr?.persist?.()) === true;
     } catch {
       /* a refused or failing request just leaves progress unprotected */
+    }
+    if (!granted) {
+      try {
+        granted = (await mgr?.persisted?.()) === true;
+      } catch {
+        /* same */
+      }
     }
     if (disposed) return;
     storageStatus = granted ? 'protected' : 'may-be-cleared';
@@ -355,15 +371,18 @@ export async function startApp(deps: AppDeps): Promise<App> {
 
   function openSettings(from: AppState) {
     settingsReturn = from;
+    // a result belongs to the visit that produced it
+    if (state !== 'settings') transfer = {};
     show('settings', () =>
       settingsPanel(root, {
         settings: settings.get(), voices: tts.voices(), ttsUnavailable: tts.status().available ? undefined : tts.status().reason,
         storage: storageStatus,
         // from pause a live World's next `resolved` would save its pace over an import
         portable: from === 'title',
+        transfer,
       }, {
-        onExport: exportProgress,
-        onImport: importProgress,
+        onExport: () => void runTransfer('Exporting…', exportProgress),
+        onImport: (f) => void runTransfer('Importing…', () => importProgress(f)),
         onChange: (patch) => {
           const next = settings.set(patch);
           tts.setVoice(next.voice);
@@ -375,6 +394,13 @@ export async function startApp(deps: AppDeps): Promise<App> {
         onClose: closeSettings,
       }));
   }
+  async function runTransfer(busy: string, run: () => Promise<TransferResult>) {
+    if (transfer.busy) return;
+    setTransfer({ busy });
+    const result = await run();
+    if (!disposed) setTransfer({ result });
+  }
+
   async function exportProgress(): Promise<TransferResult> {
     try {
       const data = { ...(await stores.cards.exportAll()), pace: loadPace(deps.paceStorage) };
@@ -388,6 +414,7 @@ export async function startApp(deps: AppDeps): Promise<App> {
 
   async function importProgress(file: File): Promise<TransferResult> {
     // read and validate everything before any transaction opens
+    if (file.size > MAX_PROGRESS_BYTES) return { ok: false, message: 'Not imported: the file is too large to be a progress file.' };
     let text: string;
     try {
       text = await file.text();

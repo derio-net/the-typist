@@ -295,29 +295,48 @@ describe('panels (R5, R8, R10)', () => {
       expect(withIt.el.querySelector('[data-action="import-progress"]')?.textContent).toBe('Import progress');
       expect(withIt.el.querySelector('input[type="file"]')).not.toBeNull();
     });
-    it('Export runs the handler and shows its message', async () => {
-      const onExport = vi.fn(async () => ({ ok: true, message: 'Exported 3 cards.' }));
+    it('Export calls its handler', () => {
+      const onExport = vi.fn();
       const p = mount({ portable: true }, { onExport });
       p.el.querySelector<HTMLButtonElement>('[data-action="export-progress"]')!.click();
-      await vi.waitFor(() => expect(p.el.querySelector('[data-slot="transfer-status"]')?.textContent).toBe('Exported 3 cards.'));
       expect(onExport).toHaveBeenCalledTimes(1);
     });
-    it('choosing a file passes it to Import and shows the success or the error', async () => {
-      const onImport = vi.fn(async (f: File) => (f.name === 'good.json' ? { ok: true, message: 'Imported 2 cards.' } : { ok: false, message: 'Not imported: bad file' }));
+    it('shows the result it is given, as ok or error (p3-r2)', () => {
+      const ok = mount({ portable: true, transfer: { result: { ok: true, message: 'Imported 2 cards.' } } });
+      expect(ok.el.querySelector<HTMLElement>('[data-slot="transfer-status"]')?.textContent).toBe('Imported 2 cards.');
+      expect(ok.el.querySelector<HTMLElement>('[data-slot="transfer-status"]')?.dataset.state).toBe('ok');
+      root.innerHTML = '';
+      const bad = mount({ portable: true, transfer: { result: { ok: false, message: 'Not imported: bad file' } } });
+      expect(bad.el.querySelector<HTMLElement>('[data-slot="transfer-status"]')?.dataset.state).toBe('error');
+    });
+    it('while a transfer runs it shows the busy text and disables Export and Import (p3-r3)', () => {
+      const onExport = vi.fn();
+      const p = mount({ portable: true, transfer: { busy: 'Importing…' } }, { onExport });
+      expect(p.el.querySelector('[data-slot="transfer-status"]')?.textContent).toBe('Importing…');
+      const ex = p.el.querySelector<HTMLButtonElement>('[data-action="export-progress"]')!;
+      const im = p.el.querySelector<HTMLButtonElement>('[data-action="import-progress"]')!;
+      expect([ex.disabled, im.disabled]).toEqual([true, true]);
+      ex.click();
+      expect(onExport).not.toHaveBeenCalled();
+    });
+    it('choosing a file passes it to Import; choosing the same file again fires again (p3-r6)', () => {
+      const onImport = vi.fn();
       const p = mount({ portable: true }, { onImport });
       const input = p.el.querySelector<HTMLInputElement>('input[type="file"]')!;
-      const choose = (f: File) => {
-        Object.defineProperty(input, 'files', { value: [f], configurable: true });
+      const file = new File(['{}'], 'good.json');
+      // a real input keeps `value` until reset: model it, since jsdom cannot set files from a script
+      let value = '';
+      Object.defineProperty(input, 'value', { get: () => value, set: (v: string) => (value = v), configurable: true });
+      Object.defineProperty(input, 'files', { value: [file], configurable: true });
+      const pick = () => {
+        value = 'C:\\fakepath\\good.json';
         input.dispatchEvent(new Event('change'));
       };
-      const status = () => p.el.querySelector<HTMLElement>('[data-slot="transfer-status"]')!;
-      choose(new File(['{}'], 'good.json'));
-      await vi.waitFor(() => expect(status().textContent).toBe('Imported 2 cards.'));
-      expect(status().dataset.state).toBe('ok');
-      choose(new File(['{}'], 'bad.json'));
-      await vi.waitFor(() => expect(status().textContent).toBe('Not imported: bad file'));
-      expect(status().dataset.state).toBe('error');
+      pick();
+      expect(value).toBe('');
+      pick();
       expect(onImport).toHaveBeenCalledTimes(2);
+      expect(onImport).toHaveBeenCalledWith(file);
     });
   });
 
