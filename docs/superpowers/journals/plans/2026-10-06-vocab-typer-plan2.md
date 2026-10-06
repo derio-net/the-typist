@@ -599,3 +599,88 @@ One new self-contained module wired through a single react() helper; nothing to 
 ### no-refactor-p5-t4 · discovery · no-refactor-because P5.T4 (phase 5)
 
 One new self-contained module whose effect table lives in theme.ts; nothing to clean.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r1 created=2026-10-06T06:39:27+00:00 phase=5 state=open review_scope=in -->
+### p5-r1 · finding [open] (reviewer: in scope) · Speech never cancelled on pause, quit, session end or dispose (phase 5)
+
+Speech never cancelled on pause, quit, session end or dispose
+
+<!-- fr:journal kind=finding scope=plan id=p5-r2 created=2026-10-06T06:39:27+00:00 phase=5 state=open review_scope=in -->
+### p5-r2 · finding [open] (reviewer: in scope) · Suspended or interrupted AudioContext never resumed (phase 5)
+
+Suspended or interrupted AudioContext never resumed
+
+<!-- fr:journal kind=finding scope=plan id=p5-r3 created=2026-10-06T06:39:27+00:00 phase=5 state=open review_scope=in -->
+### p5-r3 · finding [open] (reviewer: in scope) · react() ran before the controller and say was unguarded, so a speech throw skipped grading (phase 5)
+
+react() ran before the controller and say was unguarded, so a speech throw skipped grading
+
+<!-- fr:journal kind=finding scope=plan id=p5-r4 created=2026-10-06T06:39:27+00:00 phase=5 state=open review_scope=in -->
+### p5-r4 · finding [open] (reviewer: in scope) · First voiceschanged or the timeout settled TTS for good (phase 5)
+
+First voiceschanged or the timeout settled TTS for good
+
+<!-- fr:journal kind=finding scope=plan id=p5-r5 created=2026-10-06T06:39:27+00:00 phase=5 state=open review_scope=in -->
+### p5-r5 · finding [open] (reviewer: in scope) · Disabled TTS toggle still showed checked (phase 5)
+
+Disabled TTS toggle still showed checked
+
+<!-- fr:journal kind=finding scope=plan id=p5-r6 created=2026-10-06T06:39:27+00:00 phase=5 state=open review_scope=in -->
+### p5-r6 · finding [open] (reviewer: in scope) · Recap-off panel repeated Wave cleared (phase 5)
+
+Recap-off panel repeated Wave cleared
+
+<!-- fr:journal kind=finding scope=plan id=p5-r7 created=2026-10-06T06:39:27+00:00 phase=5 state=open review_scope=in -->
+### p5-r7 · finding [open] (reviewer: in scope) · Recap slot clipped with no sign of more cards (phase 5)
+
+Recap slot clipped with no sign of more cards
+
+<!-- fr:journal kind=finding scope=plan id=p5-r8 created=2026-10-06T06:39:27+00:00 phase=5 state=open review_scope=in -->
+### p5-r8 · finding [open] (reviewer: in scope) · Music audible flag desynced on late superseded play() rejection (phase 5)
+
+Music audible flag desynced on late superseded play() rejection
+
+<!-- fr:journal kind=review scope=plan id=p5-review created=2026-10-06T06:39:27+00:00 phase=5 -->
+### p5-review · review · phase 5 code review: 2 important and 6 minor findings, all fixed (phase 5)
+
+Independent reviewer read b15bc76..cfc34fe (R6, R7, R10 TTS), ran npm test, and drove the UI with review-p5.js, including all aids off, long recaps at 560px, a translation toggle from pause, a recording speechSynthesis stub (cancel before each speak, interruption, de-DE, the article spoken) and an AudioContext stub (one context, every oscillator stopped), opening every shot. Important: p5-r1 speech outlives pause/quit, p5-r2 suspended audio never resumed; Minor p5-r3..p5-r8. All fixed in edf4ca5 and 7abe5ca; the suite (489 tests) and the build are green.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r1-resolved created=2026-10-06T06:39:27+00:00 phase=5 state=fixed resolves=p5-r1 -->
+### p5-r1-resolved · finding [fixed] · resolves p5-r1: Speech never cancelled on pause, quit, session end or dispose (phase 5)
+
+edf4ca5: Tts.stop() called in every non-play state and dispose; tts and app tests seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r2-resolved created=2026-10-06T06:39:27+00:00 phase=5 state=fixed resolves=p5-r2 -->
+### p5-r2-resolved · finding [fixed] · resolves p5-r2: Suspended or interrupted AudioContext never resumed (phase 5)
+
+edf4ca5: unlock() resumes a non-running context on every gesture; stub test seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r3-resolved created=2026-10-06T06:39:27+00:00 phase=5 state=fixed resolves=p5-r3 -->
+### p5-r3-resolved · finding [fixed] · resolves p5-r3: react() ran before the controller and say was unguarded, so a speech throw skipped grading (phase 5)
+
+edf4ca5/7abe5ca: the controller runs before react(); say/stop are try/caught and react() catches per event; tts and app tests seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r4-resolved created=2026-10-06T06:39:27+00:00 phase=5 state=fixed resolves=p5-r4 -->
+### p5-r4-resolved · finding [fixed] · resolves p5-r4: First voiceschanged or the timeout settled TTS for good (phase 5)
+
+edf4ca5: keeps listening after the timeout; a later German voice upgrades availability via Tts.onChange and the open settings panel re-renders; tests seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r5-resolved created=2026-10-06T06:39:27+00:00 phase=5 state=fixed resolves=p5-r5 -->
+### p5-r5-resolved · finding [fixed] · resolves p5-r5: Disabled TTS toggle still showed checked (phase 5)
+
+edf4ca5: rendered unchecked while disabled, stored preference untouched; panel test seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r6-resolved created=2026-10-06T06:39:27+00:00 phase=5 state=fixed resolves=p5-r6 -->
+### p5-r6-resolved · finding [fixed] · resolves p5-r6: Recap-off panel repeated Wave cleared (phase 5)
+
+edf4ca5: the empty line reads 'No words to review', with a single cleared heading; tests updated.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r7-resolved created=2026-10-06T06:39:27+00:00 phase=5 state=fixed resolves=p5-r7 -->
+### p5-r7-resolved · finding [fixed] · resolves p5-r7: Recap slot clipped with no sign of more cards (phase 5)
+
+edf4ca5: theme-token scroll-shadow fades, scrollbar-gutter stable, a thin styled scrollbar and bottom padding; CSS test plus shots.
+
+<!-- fr:journal kind=finding scope=plan id=p5-r8-resolved created=2026-10-06T06:39:27+00:00 phase=5 state=fixed resolves=p5-r8 -->
+### p5-r8-resolved · finding [fixed] · resolves p5-r8: Music audible flag desynced on late superseded play() rejection (phase 5)
+
+edf4ca5: a generation counter ignores superseded rejections; the stub test fails without the fix.
