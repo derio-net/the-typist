@@ -149,8 +149,10 @@ steps:
     exit: 0
     stdout: ''
   deliver:
-    state: running
-    at: '2026-10-06T17:46:53+00:00'
+    state: done
+    at: '2026-10-06T17:51:17+00:00'
+    emitted:
+      pr: https://github.com/derio-net/the-typist/pull/10
     units:
       step/deliver:
         attempts:
@@ -158,3 +160,9 @@ steps:
           harness: claude-code
           model: claude-opus-5-5
           session: 2bf630d7-2f45-41fc-bcd7-74d8fb4b1552
+          returned: '2026-10-06T17:51:13+00:00'
+          outcome: done
+        evidence:
+          tests: full-suite.log@85dca07c69fb
+          proportionality: eb8d5871efbecc4224d348506a924837f971032e:e994117f8ef04819902a46b7e192bf641a26133f4191405531c843246130b430
+          visual: stack-flight:6:9c2635a5ee58,voice-choice:4:b492c1f77674,progress-portability:6:a1837fb5cc43
