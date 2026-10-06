@@ -171,6 +171,9 @@ export async function startApp(deps: AppDeps): Promise<App> {
     } else if (e.type === 'destroyed') {
       const ship = prev?.ships.find((s) => s.id === e.shipId);
       audio.play(ship?.kind === 'mothership' ? 'explode-big' : 'explode-small');
+    } else if (e.type === 'lock') {
+      // a ship is spoken when the player locks it; a lock lasts until destruction, so once per ship
+      const ship = prev?.ships.find((s) => s.id === e.shipId);
       if (ship) {
         tts.setEnabled(settings.get().aids.tts);
         tts.say(ship.text);

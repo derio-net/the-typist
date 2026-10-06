@@ -498,16 +498,55 @@ describe('learning aids and audio (R6, R7, R10)', () => {
     expect(reads.filter((k) => k === PACE_KEY)).toHaveLength(1);
   });
 
-  it('every destroyed ship speaks its full text, interrupting through say', async () => {
+  it('a ship is spoken once, when it is locked, not when it is destroyed (R6)', async () => {
+    await startStudy();
+    typeUntil(() => app.state() !== 'play' || (app.world()?.results && Object.keys(app.world()!.results).length === 2) === true);
+    const events = pushes.flat() as { type: string; shipId?: string }[];
+    const locks = events.filter((e) => e.type === 'lock');
+    const destroyed = events.filter((e) => e.type === 'destroyed');
+    expect(destroyed.length).toBeGreaterThan(2);
+    expect(new Set(locks.map((e) => e.shipId)).size).toBe(locks.length);
+    expect(said).toHaveLength(locks.length);
+    // every destroyed ship was locked first (a one-keystroke ship locks and dies in one step), so none is spoken twice or missed
+    expect(locks.length).toBeGreaterThanOrEqual(destroyed.length);
+    const l = fixtureList();
+    for (const r of l.records) for (const e of r.examples ?? []) expect(said).toContain(e.de);
+    expect(said).toContain('die Börsen');
+    expect(said).toContain('die Börse');
+  });
+
+  it('speech starts at the first keystroke on a ship, before it is destroyed (R6)', async () => {
+    await startStudy();
+    expect(said).toHaveLength(0);
+    const w = app.world()!;
+    const ship = w.typing.ships[0];
+    const text = w.ships.find((s) => s.id === ship.id)!.text;
+    input().dispatchEvent(new InputEvent('input', { data: text[0], inputType: 'insertText', bubbles: true }));
+    run(16);
+    expect(said).toEqual([text]);
+    const more = app.world()!.typing.ships.find((t) => t.id === ship.id)!;
+    expect(more.pos).toBeGreaterThan(0);
+    expect(more.pos).toBeLessThan(more.required);
+    input().dispatchEvent(new InputEvent('input', { data: text[1], inputType: 'insertText', bubbles: true }));
+    run(16);
+    expect(said).toEqual([text]);
+  });
+
+  it('a ship locked and destroyed by one keystroke is still spoken, once (R6)', async () => {
+    app.dispose();
+    const l = fixtureList();
+    for (const r of l.records) for (const e of r.examples ?? []) e.de = 'A.'; // "A." needs one keystroke: the full stop is pre-typed
+    app = await startApp({
+      root, bundled: [l], stores: { cards, persistent }, settings: createSettings(storage), paceStorage: storage,
+      now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: () => fakeRenderer(), seed: 7,
+      tts: fakeTts(), audio: fakeAudio(),
+    });
     await startStudy();
     typeUntil(() => app.state() !== 'play' || (app.world()?.results && Object.keys(app.world()!.results).length === 2) === true);
     const destroyed = pushes.flat().filter((e) => (e as { type: string }).type === 'destroyed').length;
     expect(destroyed).toBeGreaterThan(2);
+    expect(said.filter((t) => t === 'A.').length).toBeGreaterThanOrEqual(2);
     expect(said).toHaveLength(destroyed);
-    const l = fixtureList();
-    for (const r of l.records) for (const e of r.examples ?? []) expect(said).toContain(e.de); // escorts
-    expect(said).toContain('die Börsen'); // a forms ship
-    expect(said).toContain('die Börse'); // a mothership
   });
 
   it('TTS is told the setting before each utterance; off means the toggle is passed on', async () => {
@@ -622,7 +661,7 @@ describe('learning aids and audio (R6, R7, R10)', () => {
     expect(stops.length).toBeGreaterThan(0);
   });
 
-  it('a speech failure does not skip grading (p5-r3)', async () => {
+  it('a speech failure on lock does not skip grading or break the loop (p5-r3, R6)', async () => {
     app.dispose();
     const orig = fakeTts;
     const bad = (): Tts => ({ ...orig(), say: () => { throw new Error('speech down'); } });
@@ -648,13 +687,5 @@ describe('learning aids and audio (R6, R7, R10)', () => {
     ttsListeners.forEach((cb) => cb(ttsStatus));
     expect(box().disabled).toBe(false);
     expect(box().checked).toBe(true);
-  });
-
-  it('grading happens before sound and speech (p5-r3)', async () => {
-    const order: string[] = [];
-    said.push = ((t: string) => (order.push('say'), said.length)) as never;
-    await startStudy();
-    typeUntil(() => order.length > 0, 2000);
-    expect(order[0]).toBe('say');
   });
 });
