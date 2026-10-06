@@ -191,7 +191,7 @@ rows:
       each switchable and remembered.
     origin:
     - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R7
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md
     levels:
       unit:
       - the-typist:tests/platform/audio.test.ts
@@ -254,8 +254,8 @@ rows:
       the forms ship lowest and the sentences above it longest-first, and they never
       overlap the HUD.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R1
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R2
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R1
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R2
     levels:
       unit:
       - the-typist:tests/engine/world.test.ts
@@ -277,9 +277,9 @@ rows:
       the first 50 letters and remembered between sessions, so that every ship of a
       stack can be typed with 1.5x slack; waves do not speed ships up.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R3
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R4
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R5
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R3
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R4
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R5
     levels:
       unit:
       - the-typist:tests/engine/world.test.ts
@@ -295,8 +295,8 @@ rows:
       order, speech on attack, typing-matched speed, a non-character voice, and progress
       and pace surviving a reload and moving between browsers by export and import.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R1
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R10
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R1
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R10
     levels: {}
     status: not-implemented
     notes: ''
@@ -334,9 +334,9 @@ rows:
     origin:
     - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R10
     - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R6
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R6
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R7
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R8
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R6
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R7
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R8
     levels:
       unit:
       - the-typist:tests/platform/tts.test.ts
@@ -363,7 +363,7 @@ rows:
     acceptance: A ship's German text is spoken once, when the player first attacks it,
       not when it is destroyed.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R6
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R6
     levels:
       unit:
       - the-typist:tests/ui/app.test.ts
@@ -377,8 +377,8 @@ rows:
       can pick and test another voice in Settings, with a hint on installing better
       ones.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R7
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R8
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R7
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R8
     levels:
       unit:
       - the-typist:tests/platform/voices.test.ts
@@ -403,8 +403,8 @@ rows:
       Settings says whether it is, and the player can export progress to a file and
       import it in another browser, with invalid files rejected without changes.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R9
-    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R10
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R9
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R10
     levels:
       unit:
       - the-typist:tests/srs/portable.test.ts
