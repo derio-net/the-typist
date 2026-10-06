@@ -74,15 +74,6 @@ visual:
   - path: /Users/derio/.cache/fr/worktrees/the-typist/shots/p4/load-valid-list-and-play.png
     shows:
     - load-valid-list-and-play
-- row: degraded-states
-  script: /Users/derio/.cache/fr/worktrees/the-typist/shots/scratch/p4capture.js
-  shots:
-  - path: /Users/derio/.cache/fr/worktrees/the-typist/shots/p4/empty-study-offers-free-play.png
-    shows:
-    - empty-study-offers-free-play
-  - path: /Users/derio/.cache/fr/worktrees/the-typist/shots/p4/storage-warning-banner.png
-    shows:
-    - storage-warning-banner
 - row: learning-aids
   script: /Users/derio/.cache/fr/worktrees/the-typist/shots/scratch/p5capture.js
   shots:
@@ -99,8 +90,13 @@ visual:
     shows:
     - toggle-aid-persists-after-reload
 - row: degraded-states
-  script: /Users/derio/.cache/fr/worktrees/the-typist/shots/scratch/p5capture.js
   shots:
+  - path: /Users/derio/.cache/fr/worktrees/the-typist/shots/p4/empty-study-offers-free-play.png
+    shows:
+    - empty-study-offers-free-play
+  - path: /Users/derio/.cache/fr/worktrees/the-typist/shots/p4/storage-warning-banner.png
+    shows:
+    - storage-warning-banner
   - path: /Users/derio/.cache/fr/worktrees/the-typist/shots/p5/tts-toggle-disabled-note.png
     shows:
     - tts-toggle-disabled-note
