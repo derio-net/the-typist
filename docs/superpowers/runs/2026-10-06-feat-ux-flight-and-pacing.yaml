@@ -71,13 +71,20 @@ steps:
           tests: p1-suite.log@24d7445a9647;tree=466e6dec26b3956213195c654e7271895116d235d8021776ec1601cc02db1109
           visual: stack-flight:7:2039f62b7081
       phase/1/review-phase:
-        state: running
+        state: done
         attempts:
         - dispatched: '2026-10-06T16:41:14+00:00'
           agent: a2cdae52aa70a7b17
           harness: claude-code
-          model: opus
+          model: claude-opus-5-5
           session: 2bf630d7-2f45-41fc-bcd7-74d8fb4b1552
+          returned: '2026-10-06T16:59:45+00:00'
+          outcome: done
+        evidence:
+          review: p1-review-1
+          reviewer: a2cdae52aa70a7b17
+          visual: stack-flight:6:97c6b9a6796b
+          findings: p1-r1,p1-r2,p1-r3,p1-r4,p1-r5
   journal-check:
     state: pending
   deliver:
