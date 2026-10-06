@@ -135,10 +135,9 @@ rows:
       - the-typist:tests/srs/store.test.ts
       - the-typist:tests/platform/tts.test.ts
       - the-typist:tests/ui/app.test.ts
-    status: not-implemented
-    notes: Owed by plan 2 (same spec, built after the manual UX pass); marked post-merge
-      so plan 1's deliver does not demand screenshots of screens that do not exist yet.
-      Operator decision 2026-10-05.
+    status: skipped
+    notes: Verified by vitest unit tests and the Playwright smoke; the suite runs in
+      the Pages workflow on main, not on PRs, so the row is not ci.
     verify: post-merge
     visual:
       states:
