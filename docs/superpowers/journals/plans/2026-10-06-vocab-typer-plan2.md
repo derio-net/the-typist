@@ -241,3 +241,39 @@ fd3fb02: the overlay draws the same typed/pending/rest runs at their positions; 
 ### p2-r8-resolved · finding [fixed] · resolves p2-r8: palette.pending barely distinct from the text colour (phase 2)
 
 fd3fb02: palette.pending is amber #ffb347; verified in the re-captured pending-digraph shot.
+
+<!-- fr:journal kind=decision scope=plan id=p3-controller-api created=2026-10-06T05:37:46+00:00 phase=3 -->
+### p3-controller-api · decision · Controller takes the World's lives/score as a second argument and writes through a queue (phase 3)
+
+onWorldEvents(events, {lives, score}) so the controller never holds the World; store writes
+are chained on a promise queue (flush() awaits it) so grading stays synchronous for the UI,
+and a failed write is swallowed without stopping later ones. nextWave() returns undefined
+and emits the summary after the last wave's between-wave; the summary has a reason
+(finished, game-over, quit).
+
+<!-- fr:journal kind=decision scope=plan id=p3-store-shape created=2026-10-06T05:37:46+00:00 phase=3 -->
+### p3-store-shape · decision · Store API: get/put/all/newCount/bumpNew plus a pure withGrade for the counters (phase 3)
+
+openStores(factory) takes an IDBFactory or null (tests inject fake-indexeddb); the IDB
+store has a probe() that writes, reads back and deletes a meta key. Accuracy in the summary
+is expected / (expected + typos).
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p3-t1 created=2026-10-06T05:37:46+00:00 phase=3 -->
+### no-refactor-p3-t1 · discovery · no-refactor-because P3.T1 (phase 3)
+
+One small pure function; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p3-t2 created=2026-10-06T05:37:46+00:00 phase=3 -->
+### no-refactor-p3-t2 · discovery · no-refactor-because P3.T2 (phase 3)
+
+Thin wrapper over ts-fsrs; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p3-t3 created=2026-10-06T05:37:46+00:00 phase=3 -->
+### no-refactor-p3-t3 · discovery · no-refactor-because P3.T3 (phase 3)
+
+Written once as a shared contract over both stores; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p3-t4 created=2026-10-06T05:37:46+00:00 phase=3 -->
+### no-refactor-p3-t4 · discovery · no-refactor-because P3.T4 (phase 3)
+
+Pure builders sharing helpers from the start; nothing to clean.
