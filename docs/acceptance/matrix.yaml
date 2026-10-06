@@ -67,8 +67,10 @@ rows:
       ui:
       - the-typist:tests/e2e/smoke.spec.ts
     status: skipped
-    notes: Verified by vitest unit tests and the Playwright smoke; the suite runs in
-      the Pages workflow on main, not on PRs, so the row is not ci.
+    notes: Verified by vitest unit tests (bundled lists, picker, vite plugin, parser,
+      app) and the Playwright smoke (loads a list through the file input and plays it).
+      The suite runs in the Pages workflow on pushes to main, not on PRs, so the row
+      is not ci.
     verify: post-merge
     visual:
       states:
