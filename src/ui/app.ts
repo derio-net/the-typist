@@ -1,0 +1,307 @@
+import type { VocabList } from '../schema';
+import { advance, typeChar, type World } from '../engine/world';
+import { createKeyboard, type Keyboard } from '../platform/keyboard';
+import { createSettings, type SettingsStore } from '../platform/settings';
+import { loadFile } from '../content/picker';
+import { bundledLists } from '../content/bundled';
+import { createRenderer, type Renderer } from '../render/renderer';
+import { pickWidth } from '../render/canvas-size';
+import { createController, type Controller, type SessionMode } from '../session/controller';
+import { buildFreePlay, buildStudy, isPlayable, seededRng, type Built } from '../session/build';
+import { localDay, openStores, type StoredCard, type Stores } from '../srs/store';
+import type { Panel } from './dom';
+import { h } from './dom';
+import {
+  bannerPanel, betweenWavePanel, categoryPanel, loadErrorsPanel, modePanel, pausePanel, settingsPanel, summaryPanel, titlePanel,
+} from './panels';
+import { injectStyle } from './style';
+
+export type AppState = 'title' | 'mode' | 'category' | 'settings' | 'play' | 'pause' | 'between-wave' | 'summary';
+
+export const STORAGE_WARNING = "Progress and settings won't be saved: browser storage is unavailable.";
+
+export interface AppDeps {
+  root: HTMLElement;
+  bundled?: VocabList[];
+  stores?: Stores;
+  settings?: SettingsStore;
+  now?: () => Date;
+  /** Frame scheduler; defaults to `requestAnimationFrame`. */
+  raf?: (cb: (t: number) => void) => number;
+  caf?: (id: number) => void;
+  makeRenderer?: (canvas: HTMLCanvasElement, width: number) => Renderer;
+  /** Seeds the shuffles and the Worlds; defaults to a random seed per session. */
+  seed?: number;
+  /** Max milliseconds of one frame fed to the World (a stalled tab must not warp the game). */
+  maxFrameMs?: number;
+}
+
+export interface App {
+  state(): AppState;
+  world(): World | undefined;
+  /** Resolves once every pending async transition (store reads, session writes) has settled. */
+  settled(): Promise<void>;
+  dispose(): void;
+}
+
+/** The app: a state machine wiring keyboard, renderer, World, controller, stores and settings. Markup lives in the panels. */
+export async function startApp(deps: AppDeps): Promise<App> {
+  const { root } = deps;
+  const now = deps.now ?? (() => new Date());
+  const raf = deps.raf ?? ((cb) => requestAnimationFrame(cb));
+  const caf = deps.caf ?? ((id) => cancelAnimationFrame(id));
+  const maxFrameMs = deps.maxFrameMs ?? 250;
+  const bundled = deps.bundled ?? bundledLists();
+  const loaded: VocabList[] = [];
+  const settings = deps.settings ?? createSettings();
+  const stores = deps.stores ?? (await openStores());
+
+  injectStyle(root.ownerDocument);
+  root.textContent = '';
+  const canvas = h('canvas');
+  const input = h('input', { autocomplete: 'off', 'aria-label': 'typing input', style: 'position:absolute;opacity:0;left:0;top:0;width:1px;height:1px' });
+  root.append(canvas, input);
+  const width = () => pickWidth(window.innerWidth, window.innerHeight);
+  const renderer = (deps.makeRenderer ?? createRenderer)(canvas, width());
+
+  let state: AppState = 'title';
+  let world: World | undefined;
+  let controller: Controller | undefined;
+  let unsubscribe: (() => void) | undefined;
+  let panel: Panel | undefined;
+  let banner: Panel | undefined;
+  let pending: Promise<void> = Promise.resolve();
+  let lastNow = 0;
+  let frameId = 0;
+  let disposed = false;
+  let settingsReturn: AppState = 'title';
+  let list: VocabList | undefined;
+
+  const warn = () => {
+    if (!banner) banner = bannerPanel(root, { message: STORAGE_WARNING });
+  };
+  if (!stores.persistent || !settings.persistent) warn();
+
+  const keyboard: Keyboard = createKeyboard(input, (c) => {
+    if (state !== 'play' || !world || world.status !== 'playing') return;
+    step(typeChar(world, c), lastNow);
+  }, { onEscape: () => onEscape() });
+
+  const setState = (s: AppState) => {
+    state = s;
+    keyboard.setEnabled(s === 'play');
+  };
+  const show = (s: AppState, make?: () => Panel) => {
+    panel?.close();
+    panel = make?.();
+    setState(s);
+  };
+  const track = (p: Promise<void>) => {
+    pending = pending.then(() => p).catch(() => undefined);
+  };
+
+  /** Takes a new World: draws its effects and hands its events to the controller. */
+  function step(next: World, at: number) {
+    world = next;
+    renderer.push(next.events, at);
+    controller?.onWorldEvents(next.events, next);
+  }
+
+  // ---- screens ----
+  const title = () =>
+    show('title', () =>
+      titlePanel(root, { bundled, loaded }, {
+        onChoose: (l) => track(chooseList(l)),
+        onLoadFile: (f) => track(loadList(f)),
+        onSettings: () => openSettings('title'),
+      }));
+
+  async function loadList(file: File) {
+    const res = await loadFile(file);
+    if (!res.ok) {
+      show('title', () => loadErrorsPanel(root, { fileName: file.name, errors: res.errors }, { onClose: title }));
+      return;
+    }
+    const at = loaded.findIndex((l) => l.list.id === res.list.list.id);
+    if (at >= 0) loaded[at] = res.list;
+    else loaded.push(res.list);
+    title();
+  }
+
+  async function cardsOf(l: VocabList): Promise<{ cards: Record<string, StoredCard>; newToday: number }> {
+    try {
+      const [cards, newToday] = await Promise.all([stores.cards.all(l.list.id), stores.cards.newCount(l.list.id, localDay(now()))]);
+      return { cards, newToday };
+    } catch {
+      warn();
+      return { cards: {}, newToday: 0 };
+    }
+  }
+
+  async function chooseList(l: VocabList) {
+    list = l;
+    const { cards, newToday } = await cardsOf(l);
+    if (disposed) return;
+    const playable = l.records.filter(isPlayable);
+    const t = now().getTime();
+    const due = playable.filter((r) => cards[r.id] && cards[r.id].card.due.getTime() <= t).length;
+    const fresh = Math.min(Math.max(0, settings.get().newCap - newToday), playable.filter((r) => !cards[r.id]).length);
+    show('mode', () =>
+      modePanel(root, { listTitle: l.list.title, due, fresh, playable: playable.length, empty: playable.length > 0 && due + fresh === 0 ? 'nothing-due' : undefined }, {
+        onStudy: () => track(study(l)),
+        onFreePlay: () => freePlay(l),
+        onBack: title,
+      }));
+  }
+
+  async function study(l: VocabList) {
+    const { cards, newToday } = await cardsOf(l);
+    if (disposed) return;
+    const built = buildStudy(l, cards, newToday, settings.get().newCap, now(), seededRng(deps.seed ?? (Math.random() * 2 ** 31) | 0));
+    if (built.empty) return chooseList(l);
+    begin(l, 'study', built);
+  }
+
+  function freePlay(l: VocabList) {
+    const cats = l.categories ?? [];
+    if (cats.length === 0) return play(l, null);
+    const playable = l.records.filter(isPlayable);
+    show('category', () =>
+      categoryPanel(root, {
+        categories: [...cats].sort((a, b) => a.order - b.order).map((c) => ({
+          id: c.id, title: c.title, playable: playable.filter((r) => (r.categories ?? []).includes(c.id)).length,
+        })),
+      }, { onPick: (id) => play(l, id), onBack: () => track(chooseList(l)) }));
+  }
+
+  function play(l: VocabList, categoryId: string | null) {
+    const built = buildFreePlay(l, categoryId, seededRng(deps.seed ?? (Math.random() * 2 ** 31) | 0));
+    if (built.empty) {
+      track(chooseList(l));
+      return;
+    }
+    begin(l, 'free-play', built);
+  }
+
+  function begin(l: VocabList, mode: SessionMode, built: Built) {
+    const { aids } = settings.get();
+    unsubscribe?.();
+    controller = createController({
+      waves: built.waves!,
+      store: stores.cards,
+      listId: l.list.id,
+      mode,
+      now,
+      worldOptions: {
+        width: width(),
+        measure: renderer.measure,
+        aids: { chip: aids.chip, translation: aids.translation },
+        seed: deps.seed ?? (Math.random() * 2 ** 31) | 0,
+      },
+    });
+    unsubscribe = controller.subscribe((e) => {
+      if (e.type === 'storage-error') warn();
+      else if (e.type === 'between-wave') {
+        show('between-wave', () =>
+          betweenWavePanel(root, { wave: e.wave, more: e.more, lives: e.lives, score: e.score, weak: e.weak }, {
+            onContinue: continueFromWave,
+          }));
+      } else if (e.type === 'summary') {
+        const done = e.summary;
+        show('summary', () => summaryPanel(root, { summary: done }, { onClose: () => (list ? track(chooseList(list)) : title()) }));
+      }
+    });
+    world = controller.start();
+    show('play');
+  }
+
+  function continueFromWave() {
+    const next = controller?.nextWave();
+    if (next) {
+      world = next;
+      show('play');
+    } else {
+      // the summary follows the last grade's write
+      panel?.close();
+      panel = undefined;
+      track(controller?.flush() ?? Promise.resolve());
+    }
+  }
+
+  function openSettings(from: AppState) {
+    settingsReturn = from;
+    show('settings', () =>
+      settingsPanel(root, { settings: settings.get() }, {
+        onChange: (patch) => {
+          const next = settings.set(patch);
+          if (!settings.persistent) warn();
+          return next;
+        },
+        onClose: closeSettings,
+      }));
+  }
+  function closeSettings() {
+    if (settingsReturn === 'pause') pause();
+    else title();
+  }
+
+  function pause() {
+    show('pause', () =>
+      pausePanel(root, {}, {
+        onResume: resume,
+        onSettings: () => openSettings('pause'),
+        onQuit: () => {
+          controller?.quit(world);
+          panel?.close();
+          panel = undefined;
+          track(controller?.flush() ?? Promise.resolve());
+        },
+      }));
+  }
+  function resume() {
+    show('play');
+  }
+
+  function onEscape() {
+    if (state === 'play') pause();
+    else if (state === 'pause') resume();
+    else if (state === 'settings') closeSettings();
+  }
+
+  // ---- frame loop: the World only advances while playing, so a pause never counts as typing time ----
+  let prev: number | undefined;
+  const frame = (t: number) => {
+    lastNow = t;
+    if (world) {
+      if (state === 'play' && prev !== undefined && world.status === 'playing') step(advance(world, Math.min(t - prev, maxFrameMs)), t);
+      renderer.draw(world, t);
+    }
+    prev = t;
+    if (!disposed) frameId = raf(frame);
+  };
+  frameId = raf(frame);
+
+  title();
+  return {
+    state: () => state,
+    world: () => world,
+    settled: async () => {
+      let p: Promise<void>;
+      do {
+        p = pending;
+        await p;
+        await controller?.flush();
+      } while (p !== pending);
+    },
+    dispose() {
+      disposed = true;
+      caf(frameId);
+      unsubscribe?.();
+      keyboard.dispose();
+      renderer.dispose();
+      panel?.close();
+      banner?.close();
+      root.textContent = '';
+    },
+  };
+}

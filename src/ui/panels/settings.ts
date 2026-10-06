@@ -8,7 +8,8 @@ export interface SettingsProps {
   ttsUnavailable?: string;
 }
 export interface SettingsHandlers {
-  onChange(patch: SettingsPatch): void;
+  /** May return the stored (clamped) settings, which the panel shows. */
+  onChange(patch: SettingsPatch): Settings | void;
   onClose(): void;
 }
 
@@ -21,7 +22,10 @@ export function settingsPanel(root: HTMLElement, props: SettingsProps, handlers:
     return h('label', {}, box, label, disabled && h('span', { class: 'muted' }, ` (${disabled})`));
   };
   const cap = h('input', { type: 'number', min: String(NEW_CAP_MIN), max: String(NEW_CAP_MAX), value: String(s.newCap), 'data-setting': 'newCap', 'aria-label': 'new records per day' });
-  cap.addEventListener('change', () => handlers.onChange({ newCap: cap.valueAsNumber }));
+  cap.addEventListener('change', () => {
+    const stored = handlers.onChange({ newCap: cap.valueAsNumber });
+    if (stored) cap.value = String(stored.newCap);
+  });
   return mountPanel(
     root, 'settings', 'Settings',
     h('div', { class: 'stack' },
