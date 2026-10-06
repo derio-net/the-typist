@@ -184,6 +184,21 @@ describe.each(impls)('CardStore contract: %s', (_n, make) => {
   });
 });
 
+describe('idb importAll reads existing cards in bulk (p3-r3)', () => {
+  it('does not issue one get per card', async () => {
+    const s = createIdbStore(new IDBFactory());
+    const c = withGrade(undefined, createEmptyCard(now), stats());
+    await s.put('L', 'old', c);
+    const spy = vi.spyOn(IDBObjectStore.prototype, 'get');
+    const cards = Array.from({ length: 200 }, (_x, i) => ({ listId: 'L', recordId: `r${i}`, stored: c }));
+    const rep = await s.importAll({ cards, newCounts: [{ listId: 'L', day: 'd', count: 1 }, { listId: 'L', day: 'e', count: 1 }] });
+    expect(rep.imported).toBe(200);
+    expect(spy).not.toHaveBeenCalled();
+    spy.mockRestore();
+    expect(Object.keys(await s.all('L')).length).toBe(201);
+  });
+});
+
 describe('idb exportAll', () => {
   it('ignores meta keys that are not new-card counts', async () => {
     const factory = new IDBFactory();

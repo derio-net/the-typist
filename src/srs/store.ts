@@ -115,6 +115,8 @@ export function createMemoryStore(): CardStore {
   };
 }
 
+// ['new', list, day] keys only: every other meta key is a string
+const NEW_RANGE = () => IDBKeyRange.bound(['new'], ['new', []]);
 const DB_NAME = 'typist';
 const DB_VERSION = 1;
 
@@ -206,7 +208,7 @@ export function createIdbStore(factory: IDBFactory = indexedDB): IdbStore {
           out.cards.push({ listId, recordId, stored: c.value as StoredCard });
         }),
         // ['new', list, day] keys only: every other meta key is a string
-        each(tx.objectStore('meta').openCursor(IDBKeyRange.bound(['new'], ['new', []])), (c) => {
+        each(tx.objectStore('meta').openCursor(NEW_RANGE()), (c) => {
           const [, listId, day] = c.key as [string, string, string];
           out.newCounts.push({ listId, day, count: c.value as number });
         }),
@@ -226,16 +228,25 @@ export function createIdbStore(factory: IDBFactory = indexedDB): IdbStore {
         // inside the transaction, only IndexedDB requests are awaited: anything else would let it auto-commit early
         const cards = tx.objectStore('cards');
         const meta = tx.objectStore('meta');
+        // two bulk reads, not a get per card: 100k cards would otherwise take half a minute
+        const [cardKeys, cardValues, countKeys, countValues] = await Promise.all([
+          done(cards.getAllKeys()),
+          done(cards.getAll()),
+          done(meta.getAllKeys(NEW_RANGE())),
+          done(meta.getAll(NEW_RANGE())),
+        ]);
+        const id = (k: unknown) => JSON.stringify(k);
+        const existing = new Map(cardKeys.map((k, i) => [id(k), cardValues[i] as StoredCard]));
+        const counts = new Map(countKeys.map((k, i) => [id(k), countValues[i] as number]));
         for (const { listId, recordId, stored } of data.cards) {
-          const local = (await done(cards.get(cardKey(listId, recordId)))) as StoredCard | undefined;
+          const local = existing.get(id(cardKey(listId, recordId)));
           if (mergeCard(local, stored) !== 'import') continue;
           cards.put(stored, cardKey(listId, recordId));
           imported++;
           if (local) replaced++;
         }
         for (const { listId, day, count } of data.newCounts) {
-          const local = ((await done(meta.get(newKey(listId, day)))) as number | undefined) ?? 0;
-          meta.put(mergeCount(local, count), newKey(listId, day));
+          meta.put(mergeCount(counts.get(id(newKey(listId, day))) ?? 0, count), newKey(listId, day));
         }
       } catch (e) {
         finished.catch(() => undefined);
