@@ -404,9 +404,18 @@ rows:
     origin:
     - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R9
     - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R10
-    levels: {}
-    status: not-implemented
-    notes: ''
+    levels:
+      unit:
+      - the-typist:tests/srs/portable.test.ts
+      - the-typist:tests/srs/store.test.ts
+      - the-typist:tests/ui/panels.test.ts
+      - the-typist:tests/ui/app.test.ts
+      ui:
+      - the-typist:tests/e2e/smoke.spec.ts
+    status: skipped
+    notes: Verified by vitest unit tests and the Playwright export/clear/import round
+      trip; the suite runs in the Pages workflow on pushes to main, not on PRs, so the
+      row is not ci.
     visual:
       states:
       - storage-line-protected
