@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { sizes } from '../../src/render/theme';
+import { hullExtent, sizes } from '../../src/layout/metrics';
 import { parseList, displayForm, formsText, type VocabRecord } from '../../src/schema';
 import {
-  STEP_MS, WORLD, advance, createWorld, shipBounds, shipSpeed, tick, typeChar, type World, type WorldEvent,
+  STEP_MS, WORLD, advance, defaultMeasure, placeStack, createWorld, shipBounds, shipSpeed, tick, typeChar, type World, type WorldEvent,
 } from '../../src/engine/world';
 
 const fixture = parseList(readFileSync('tests/fixtures/lists/two-records.yaml', 'utf8'));
@@ -352,5 +352,198 @@ describe('one record at a time, banded break-up', () => {
         expect(b.x1).toBeLessThanOrEqual(WORLD.width + 1e-9);
       }
     }
+  });
+});
+
+describe('world options: score, width, aids (P2.T1)', () => {
+  const burstOf = (w: World) => typeText(w, w.ships.find((s) => s.kind === 'mothership')!.text);
+
+  it('starts at the given score and defaults to width 960 with both aids on', () => {
+    expect(createWorld([boerse], { score: 120 }).score).toBe(120);
+    const d = createWorld([boerse]);
+    expect(d.score).toBe(0);
+    expect(d.width).toBe(960);
+    expect(d.aids).toEqual({ chip: true, translation: true });
+  });
+
+  it('a narrower width bounds mothership entry and child edge bounces', () => {
+    for (let seed = 1; seed < 12; seed++) {
+      const w0 = createWorld([boerse], { width: 720, seed });
+      const m = w0.ships[0];
+      expect(m.x).toBeGreaterThanOrEqual(m.w / 2);
+      expect(m.x).toBeLessThanOrEqual(720 - m.w / 2);
+      let w = burstOf(w0);
+      for (let i = 0; i < 60; i++) {
+        w = advance(w, 250);
+        for (const s of w.ships) expect(shipBounds(s).x1).toBeLessThanOrEqual(720 + 1e-6);
+      }
+    }
+  });
+
+  it('with aids off escorts carry no chip or translation and are no wider than their text', () => {
+    const w = burstOf(createWorld([boerse], { aids: { chip: false, translation: false } }));
+    const escorts = byKind(w, 'escort');
+    expect(escorts.length).toBeGreaterThan(0);
+    for (const e of escorts) {
+      expect(e.chip).toBeUndefined();
+      expect(e.translation).toBeUndefined();
+      expect(e.w).toBeCloseTo(defaultMeasure(e.text) + 2 * hullExtent('escort').side, 6);
+    }
+    const on = byKind(burstOf(createWorld([boerse])), 'escort');
+    expect(on[0].translation).toBeDefined();
+    expect(on[0].w).toBeGreaterThan(escorts[0].w - 1e-9);
+  });
+});
+
+describe('game over grades on-screen records with an escaped ship (P2.T2)', () => {
+  it('resolves the record (escaped) before game-over; a record without an escape is not resolved', () => {
+    let w = createWorld([boerse], { lives: 1, seed: 3 });
+    w = typeText(w, w.ships[0].text);
+    expect(w.ships.length).toBeGreaterThan(1);
+    const events: WorldEvent[] = [];
+    for (let i = 0; i < 100000 && w.status === 'playing'; i++) {
+      w = tick(w);
+      events.push(...w.events);
+    }
+    expect(w.status).toBe('game-over');
+    const resolved = events.filter((e) => e.type === 'resolved');
+    expect(resolved).toHaveLength(1);
+    expect(resolved[0]).toMatchObject({ recordId: boerse.id, stats: { escaped: true } });
+    expect(events.findIndex((e) => e.type === 'resolved')).toBeLessThan(events.findIndex((e) => e.type === 'game-over'));
+    expect(w.results[boerse.id].escaped).toBe(true);
+  });
+
+  it('at game over only the on-screen record with an escaped ship resolves; another open record does not', () => {
+    let w = createWorld([boerse, phrase], { lives: 1, seed: 3 });
+    w = typeText(w, w.ships[0].text); // boerse breaks up: open ships
+    // phrase is also on screen with an open ship and no escape
+    w = { ...w, queue: [], records: { ...w.records, [phrase.id]: { ...w.records[phrase.id], open: 1 } } };
+    expect(w.records[boerse.id].open).toBeGreaterThan(0);
+    const events: WorldEvent[] = [];
+    for (let i = 0; i < 100000 && w.status === 'playing'; i++) {
+      w = tick(w);
+      events.push(...w.events);
+    }
+    expect(w.status).toBe('game-over');
+    const resolved = events.filter((e) => e.type === 'resolved');
+    expect(resolved).toHaveLength(1);
+    expect(resolved[0]).toMatchObject({ recordId: boerse.id, stats: { escaped: true } });
+    expect(w.results[phrase.id]).toBeUndefined();
+    expect(events.findIndex((e) => e.type === 'resolved')).toBeLessThan(events.findIndex((e) => e.type === 'game-over'));
+  });
+});
+
+describe('player ship drifts toward its locked target (P2.T3)', () => {
+  const at = (w: World, x: number): World => ({ ...w, ships: w.ships.map((s) => ({ ...s, x })) });
+  const seconds = (w: World, n: number) => {
+    for (let i = 0; i < n * 60; i++) w = tick(w);
+    return w;
+  };
+
+  it('drift speed is the burst top speed', () => {
+    expect(WORLD.playerDriftVx).toBe(WORLD.burstMaxVx);
+  });
+
+  it('starts centred and stays put without a lock', () => {
+    const w = createWorld([boerse], { width: 720 });
+    expect(w.playerX).toBe(360);
+    expect(seconds(w, 3).playerX).toBe(360);
+  });
+
+  it('moves toward the locked ship by at most the drift speed, never overshooting', () => {
+    let w = at(createWorld([boerse]), 100);
+    w = typeChar(w, w.ships[0].text[0]);
+    expect(w.typing.lock).not.toBeNull();
+    const start = w.playerX;
+    const after = seconds(w, 1);
+    expect(start - after.playerX).toBeGreaterThan(0);
+    expect(start - after.playerX).toBeLessThanOrEqual(WORLD.playerDriftVx + 1e-6);
+    expect(seconds(w, 2).playerX).toBeLessThan(after.playerX);
+    // a very near target is reached exactly, not overshot
+    const near = at({ ...w }, w.playerX - 0.1);
+    expect(tick(near).playerX).toBeCloseTo(w.playerX - 0.1, 9);
+  });
+
+  it('is clamped to the canvas', () => {
+    let w = at(createWorld([boerse], { width: 100 }), 50);
+    w = typeChar(w, w.ships[0].text[0]);
+    expect(w.typing.lock).not.toBeNull();
+    expect(tick({ ...w, playerX: 500 }).playerX).toBe(100); // target inside, player outside on the right
+    expect(tick({ ...w, playerX: -400 }).playerX).toBe(0); // and on the left
+  });
+});
+
+describe('released rows clear the HUD and keep a gap (P2.T4)', () => {
+  const burst = (opts: Parameters<typeof createWorld>[1] = {}, y?: number) => {
+    let w = createWorld([boerse, anlegen], opts);
+    if (y !== undefined) w = { ...w, ships: w.ships.map((s) => ({ ...s, y })) };
+    return typeText(w, w.ships[0].text);
+  };
+  const kidsOf = (w: World) => w.ships.filter((s) => s.kind !== 'mothership').sort((a, b) => a.y - b.y);
+  const topOverTime = (w: World) => {
+    const first = kidsOf(w)[0].id;
+    let top = Infinity;
+    for (let i = 0; i < 90; i++) {
+      w = tick(w);
+      const s = w.ships.find((x) => x.id === first)!;
+      top = Math.min(top, s.y - s.above);
+    }
+    return top;
+  };
+
+  it.each([1, 2, 3, 4])('the first row never rises above the HUD, even right under it (seed %i)', (seed) => {
+    const w = burst({ seed });
+    expect(topOverTime(w)).toBeGreaterThanOrEqual(WORLD.minY - 1e-6);
+  });
+
+  it.each([1, 2, 3])('consecutive rows are separated by at least bandGap (seed %i)', (seed) => {
+    const b = kidsOf(burst({ seed })).map(shipBounds);
+    expect(b.length).toBeGreaterThan(2);
+    for (let i = 1; i < b.length; i++) expect(b[i].y0 - b[i - 1].y1).toBeGreaterThanOrEqual(WORLD.bandGap - 1e-6);
+  });
+
+  it('when the reaction distance and the HUD conflict, the reaction distance wins and the kick shrinks (never below 0)', () => {
+    const w = burst({ seed: 2, minReactionS: 20 });
+    const kids = kidsOf(w);
+    const last = kids[kids.length - 1];
+    expect(last.y).toBeLessThanOrEqual(WORLD.playerY - last.speed * 20 + 1e-6);
+    for (const k of kids) {
+      expect(k.vy).toBeLessThanOrEqual(0);
+      expect(k.vy).toBeGreaterThan(-WORLD.burstKick);
+    }
+    expect(topOverTime(w)).toBeGreaterThanOrEqual(WORLD.minY - 1e-6);
+  });
+});
+
+describe('placeStack', () => {
+  const rows = [{ above: 10, below: 10 }, { above: 12, below: 20 }, { above: 8, below: 8 }];
+  const base = { rows, wreckY: 300, speed: 20, minReactionS: 3 };
+
+  it('spaces row centres by below + bandGap + above', () => {
+    const { ys } = placeStack(base);
+    expect(ys[1] - ys[0]).toBe(10 + WORLD.bandGap + 12);
+    expect(ys[2] - ys[1]).toBe(20 + WORLD.bandGap + 8);
+  });
+
+  it('centres the stack on the wreck when nothing constrains it', () => {
+    const { ys, kick } = placeStack(base);
+    const top = ys[0] - 10;
+    const bottom = ys[2] + 8;
+    expect((top + bottom) / 2).toBeCloseTo(300, 6);
+    expect(kick).toBe(WORLD.burstKick);
+  });
+
+  it('keeps the apex hull top below the HUD', () => {
+    const { ys, kick } = placeStack({ ...base, wreckY: 60 });
+    expect(ys[0] - 10 - kick * WORLD.kickDecayS).toBeGreaterThanOrEqual(WORLD.minY - 1e-9);
+  });
+
+  it('reaction distance wins over the HUD: the kick is reduced, never negative', () => {
+    const { ys, kick } = placeStack({ ...base, minReactionS: 26 });
+    expect(ys[2]).toBeLessThanOrEqual(WORLD.playerY - 20 * 26 + 1e-9);
+    expect(kick).toBeGreaterThanOrEqual(0);
+    expect(kick).toBeLessThan(WORLD.burstKick);
+    const huge = placeStack({ ...base, minReactionS: 1000 });
+    expect(huge.kick).toBe(0);
   });
 });

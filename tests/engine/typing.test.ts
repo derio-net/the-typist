@@ -128,7 +128,31 @@ describe('matchChar', () => {
     ['–', '', '-', 'advance'],
     ['₂', '', '2', 'advance'],
     ['b', 'a', 'b', 'miss'],
+    ['ö', 'o', 'ö', 'advance'],
+    ['ä', 'a', 'ä', 'advance'],
+    ['é', '', 'é', 'advance'],
+    ['é', '', 'e', 'advance'],
+    ['É', '', 'E', 'advance'],
+    ['É', '', 'É', 'advance'],
+    ['é', '', 'x', 'miss'],
+    ['ç', '', 'c', 'advance'],
   ])('matchChar(%j, pending %j, typed %j) -> %s', (e, p, t, want) => {
     expect(matchChar(e, p, t)).toBe(want);
+  });
+});
+
+describe('pre-typed closing quotes and brackets (R14)', () => {
+  it('a closing ’ and . are pre-typed', () => {
+    const r = run(make([{ id: 'a', text: 'Er sagte ‘ja’.' }]), 'Er sagte ‘ja');
+    expect(kinds(r.events)).toContain('destroyed');
+  });
+  it('a closing ) is pre-typed', () => {
+    const r = run(make([{ id: 'a', text: '(siehe oben)' }]), '(siehe oben');
+    expect(kinds(r.events)).toContain('destroyed');
+  });
+  it('a mid-sentence ’ still has to be typed', () => {
+    const r = run(make([{ id: 'a', text: 'Das ’ja’ sagt er.' }]), 'Das ’ja');
+    expect(kinds(r.events)).not.toContain('destroyed');
+    expect(ship(r.state, 'a').pos).toBe(7);
   });
 });

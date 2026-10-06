@@ -1,10 +1,10 @@
-import { EQUIVALENCES } from '../schema/typeable';
+import { typedEquivalent } from '../schema/typeable';
 
 const DIGRAPHS: Readonly<Record<string, string>> = {
   ä: 'ae', Ä: 'Ae', ö: 'oe', Ö: 'Oe', ü: 'ue', Ü: 'Ue', ß: 'ss',
 };
 /** Trailing characters that are pre-typed at spawn. */
-const PRETYPED = new Set(['.', '!', '?', '…', '"', '“', '”', '«', '»']);
+const PRETYPED = new Set(['.', '!', '?', '…', '"', '“', '”', '«', '»', '‘', '’', ')']);
 
 export interface TypingShip {
   id: string;
@@ -82,8 +82,10 @@ export type Match = 'advance' | 'pending' | 'miss';
  * towards it? 'pending' means the first half of an ae/oe/ue/ss digraph.
  */
 export function matchChar(expected: string, pending: string, typed: string): Match {
+  // The exact letter always works, even half-way into its digraph (a pending 'o' then 'ö').
+  if (expected === typed && (pending === '' || DIGRAPHS[expected])) return 'advance';
   if (pending === '') {
-    if (expected === typed || EQUIVALENCES[expected] === typed) return 'advance';
+    if (typedEquivalent(expected, typed)) return 'advance';
     const digraph = DIGRAPHS[expected];
     return digraph && digraph[0] === typed ? 'pending' : 'miss';
   }

@@ -1,12 +1,13 @@
 import { displayForm, formsText } from '../schema/display';
 import { RECOGNISED_TAGS, type VocabRecord } from '../schema/record';
-import { charWidths, hullExtent, sizes, type MeasureFont } from '../render/theme';
+import { charWidths, hullExtent, sizes, type MeasureFont } from '../layout/metrics';
 import {
   addShip, createTyping, removeShip, setPositions, step, type TypingEvent, type TypingState,
 } from './typing';
 
 /** Fixed simulation step: 60 Hz. */
 export const STEP_MS = 1000 / 60;
+const BURST_MAX_VX = 22;
 export const WORLD = {
   width: 960,
   height: 640,
@@ -25,10 +26,12 @@ export const WORLD = {
   entryGap: 4,
   /** Break-up: each child slides sideways at a random speed in this range (px/s)... */
   burstMinVx: 8,
-  burstMaxVx: 22,
+  burstMaxVx: BURST_MAX_VX,
   /** ...after one shared upward kick (px/s) that decays with this time constant (s). */
   burstKick: 220,
   kickDecayS: 0.45,
+  /** Sideways speed (px/s) of the player ship toward the ship it has locked: as fast as the fastest burst child (`burstMaxVx`). */
+  playerDriftVx: BURST_MAX_VX,
   /** Vertical gap between the children's bands. */
   bandGap: 6,
 } as const;
@@ -118,13 +121,27 @@ export interface World {
   events: WorldEvent[];
   measure: Measure;
   minReactionS: number;
+  /** Player ship x: drifts toward the locked ship. */
+  playerX: number;
+  /** Logical canvas width (the height is fixed): ships stay inside [0, width]. */
+  width: number;
+  /** Which learning aids escorts carry. */
+  aids: Aids;
   /** Seeded PRNG state: all randomness in the world comes from here. */
   rng: number;
   /** Records whose mothership has not entered yet, in order. */
   queue: string[];
 }
 
+/** Learning aids shown on escorts: the grammar chip and the English translation. */
+export interface Aids { chip: boolean; translation: boolean }
+
 export interface WorldOptions {
+  /** Starting score (carried between waves). */
+  score?: number;
+  /** Logical canvas width; defaults to `WORLD.width`. */
+  width?: number;
+  aids?: Partial<Aids>;
   wave?: number;
   lives?: number;
   /** Text measurer; the renderer supplies real glyph widths. */
@@ -166,7 +183,7 @@ export function createWorld(records: VocabRecord[], opts: WorldOptions = {}): Wo
   const wave = opts.wave ?? 0;
   const measure = opts.measure ?? defaultMeasure;
   const w: Draft = {
-    time: 0, acc: 0, wave, lives: opts.lives ?? WORLD.lives, score: 0, status: 'playing',
+    time: 0, acc: 0, wave, lives: opts.lives ?? WORLD.lives, score: opts.score ?? 0, status: 'playing',
     ships: [],
     typing: createTyping([]),
     records: Object.fromEntries(
@@ -176,6 +193,9 @@ export function createWorld(records: VocabRecord[], opts: WorldOptions = {}): Wo
     events: [],
     measure,
     minReactionS: opts.minReactionS ?? WORLD.minReactionS,
+    width: opts.width ?? WORLD.width,
+    playerX: (opts.width ?? WORLD.width) / 2,
+    aids: { chip: opts.aids?.chip ?? true, translation: opts.aids?.translation ?? true },
     rng: opts.seed ?? 1,
     queue: records.map((r) => r.id),
   };
@@ -205,9 +225,9 @@ function enterNext(w: Draft) {
   let u: number;
   [u, w.rng] = random(w.rng);
   const lo = m.w / 2;
-  const hi = WORLD.width - m.w / 2;
+  const hi = w.width - m.w / 2;
   // enters with its whole hull below the HUD
-  spawn(w, { ...m, x: lo > hi ? WORLD.width / 2 : lo + u * (hi - lo), y: WORLD.minY + WORLD.entryGap + m.above });
+  spawn(w, { ...m, x: lo > hi ? w.width / 2 : lo + u * (hi - lo), y: WORLD.minY + WORLD.entryGap + m.above });
 }
 
 function spawnChildren(w: Draft, m: WorldShip) {
@@ -218,33 +238,54 @@ function spawnChildren(w: Draft, m: WorldShip) {
   (record.examples ?? []).forEach((e, k) => {
     const chip = e.tags.filter((t) => (RECOGNISED_TAGS as readonly string[]).includes(t)).join(', ');
     children.push(makeShip(w.measure, `${record.id}:e${k}`, record.id, 'escort', e.de, m.x, m.y, w.wave, {
-      translation: e.en,
-      ...(chip ? { chip } : {}),
+      ...(w.aids.translation ? { translation: e.en } : {}),
+      ...(w.aids.chip && chip ? { chip } : {}),
     }));
   });
   if (children.length === 0) return;
   // One shared speed and kick, so the bands move as one and never cross.
   const speed = Math.min(...children.map((c) => c.speed));
-  const stack = children.reduce((a, c) => a + c.above + c.below, 0) + WORLD.bandGap * (children.length - 1);
-  const first = children[0];
-  const last = children[children.length - 1];
-  const lastOffset = stack - first.above - last.below; // first centre → last centre
-  const rise = WORLD.burstKick * WORLD.kickDecayS; // total upward travel of the kick
-  // centre of the first band: around the wreck, low enough that the kick keeps it below the HUD,
-  // high enough that the last band keeps the reaction distance (that one wins)
-  let y = m.y - stack / 2 + first.above;
-  y = Math.max(y, WORLD.minY + rise);
-  y = Math.min(y, WORLD.playerY - speed * w.minReactionS - lastOffset);
+  const { ys, kick } = placeStack({ rows: children, wreckY: m.y, speed, minReactionS: w.minReactionS });
   children.forEach((child, k) => {
     let u: number;
     let side: number;
     [u, w.rng] = random(w.rng);
     [side, w.rng] = random(w.rng);
     const vx = (side < 0.5 ? -1 : 1) * (WORLD.burstMinVx + u * (WORLD.burstMaxVx - WORLD.burstMinVx));
-    spawn(w, keepInside({ ...child, speed, x: m.x, y, vx, vy: -WORLD.burstKick }));
-    const next = children[k + 1];
-    if (next) y += child.below + WORLD.bandGap + next.above;
+    spawn(w, keepInside(w.width, { ...child, speed, x: m.x, y: ys[k], vx, vy: -kick }));
   });
+}
+
+export interface StackRow { above: number; below: number }
+
+/**
+ * Places a released stack of rows (top to bottom) around a destroyed mothership at `wreckY`.
+ * Returns each row's centre y and the shared upward kick speed (px/s, >= 0). Rules, in order:
+ *
+ * 1. Spacing: consecutive rows' boxes (`above` + `below` around the centre) are `WORLD.bandGap` apart.
+ * 2. Position: the stack is centred on the wreck.
+ * 3. HUD: the first row's hull top, at the apex of the full kick (`burstKick * kickDecayS` of travel),
+ *    stays at or below `WORLD.minY`; the whole stack shifts down to make it so.
+ * 4. Reaction distance: the last row stays `minReactionS` seconds of descent above the player line.
+ *    This wins over rule 3: the stack moves up again if needed.
+ * 5. Fallback: when 4 undid 3, the kick is reduced (never below 0) so the apex still clears the HUD.
+ */
+export function placeStack(
+  p: { rows: StackRow[]; wreckY: number; speed: number; minReactionS: number },
+): { ys: number[]; kick: number } {
+  const { rows } = p;
+  if (rows.length === 0) return { ys: [], kick: WORLD.burstKick };
+  const first = rows[0];
+  const offsets = [0];
+  for (let k = 1; k < rows.length; k++) offsets.push(offsets[k - 1] + rows[k - 1].below + WORLD.bandGap + rows[k].above);
+  const stack = rows.reduce((a, r) => a + r.above + r.below, 0) + WORLD.bandGap * (rows.length - 1);
+  const rise = WORLD.burstKick * WORLD.kickDecayS;
+  let y = p.wreckY - stack / 2 + first.above;
+  y = Math.max(y, WORLD.minY + first.above + rise);
+  y = Math.min(y, WORLD.playerY - p.speed * p.minReactionS - offsets[offsets.length - 1]);
+  const room = Math.max(0, y - first.above - WORLD.minY);
+  const kick = Math.min(WORLD.burstKick, room / WORLD.kickDecayS);
+  return { ys: offsets.map((o) => y + o), kick };
 }
 
 /** Marks one of the record's ships as done; resolves the record when it was the last. */
@@ -266,6 +307,12 @@ function shipDone(w: Draft, recordId: string, patch: Partial<RecordStats>, add: 
 function finish(w: Draft): World {
   if (w.status === 'playing') {
     if (w.lives <= 0) {
+      // records still on screen with an escaped ship are graded now: the session ends before they resolve
+      for (const [recordId, rs] of Object.entries(w.records)) {
+        if (!rs.stats.escaped || rs.open <= 0) continue;
+        w.results[recordId] = rs.stats;
+        w.events.push({ type: 'resolved', recordId, stats: rs.stats });
+      }
       w.status = 'game-over';
       w.events.push({ type: 'game-over' });
     } else if (w.queue.length === 0 && Object.values(w.records).every((r) => r.open === 0)) {
@@ -289,8 +336,14 @@ export function tick(world: World): World {
   const decay = Math.exp(-dt / WORLD.kickDecayS);
   w.ships = w.ships.map((s) => {
     const vy = s.vy * decay;
-    return keepInside({ ...s, x: s.x + s.vx * dt, vy, y: s.y + (s.speed + vy) * dt });
+    return keepInside(w.width, { ...s, x: s.x + s.vx * dt, vy, y: s.y + (s.speed + vy) * dt });
   });
+  const target = w.typing.lock ? w.ships.find((s) => s.id === w.typing.lock) : undefined;
+  if (target) {
+    const reach = WORLD.playerDriftVx * dt;
+    const gap = target.x - w.playerX;
+    w.playerX = Math.min(w.width, Math.max(0, w.playerX + Math.sign(gap) * Math.min(Math.abs(gap), reach)));
+  }
   const ys: Record<string, number> = {};
   for (const s of w.ships) ys[s.id] = s.y;
   w.typing = setPositions(w.typing, ys);
@@ -305,10 +358,10 @@ export function tick(world: World): World {
 }
 
 /** Keeps a ship inside the canvas, reflecting its sideways velocity at the edges. */
-function keepInside(s: WorldShip): WorldShip {
+function keepInside(width: number, s: WorldShip): WorldShip {
   const lo = s.w / 2;
-  const hi = WORLD.width - s.w / 2;
-  if (lo > hi) return { ...s, x: WORLD.width / 2, vx: 0 };
+  const hi = width - s.w / 2;
+  if (lo > hi) return { ...s, x: width / 2, vx: 0 };
   if (s.x < lo) return { ...s, x: lo, vx: Math.abs(s.vx) };
   if (s.x > hi) return { ...s, x: hi, vx: -Math.abs(s.vx) };
   return s;

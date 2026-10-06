@@ -1,5 +1,7 @@
-import atlas from './sprite-atlas.json';
-import { currentSprites, drawHull, type SpriteName, type SpriteInfo } from './sprites';
+import { currentSprites, drawHull } from './sprites';
+import { sizes, hullSprite, type ShipKindName } from '../layout/metrics';
+
+export { sizes, charWidths, hullSprite, hullExtent, type MeasureFont, type ShipKindName, type HullExtent } from '../layout/metrics';
 
 /**
  * Every visual constant of the game lives here. Placeholder values; the renderer
@@ -11,6 +13,10 @@ export const palette = {
   star: '#2a3556',
   text: '#e8ecf8',
   typed: '#5df2a0',
+  /** ASCII prefix typed towards a digraph (the `o` of `oe`). */
+  pending: '#ffb347',
+  /** Tint of a locked ship's hull and text right after a typo. */
+  typoFlash: '#ff5d6c',
   gloss: '#ffd970',
   chip: '#b9e4ff',
   translation: '#e3e8f8',
@@ -44,65 +50,33 @@ export const fonts = {
   banner: '32px system-ui, sans-serif',
 } as const;
 
-export const sizes = {
-  shipPaddingX: 10,
-  /** Height of the hull's text strip; the whole hull scales from it. */
-  shipHeight: 21,
-  /** Gap between the strip and the gloss / chip / translation printed on the hull. */
-  onHullGap: 8,
-  /** Plate behind on-hull text: height, horizontal padding, corner radius. */
-  plateHeight: 15,
-  platePadX: 6,
-  plateRadius: 4,
-  /** End caps are squashed horizontally by this factor so short words don't get huge ships. */
-  capSquash: 0.5,
-  /** Source pixels of the strip each cap overlaps, so the seams don't show. */
-  capBleed: 6,
-  playerSpriteHeight: 63,
-  playerSpriteOffsetY: 7,
-  bulletSpriteHeight: 32,
-  reticleSize: 12,
-  reticleInset: 6,
-  explosionSize: { mothership: 150, forms: 105, escort: 105 },
-  debrisCount: 3,
-  debrisHeight: 26,
-  debrisSpeed: 170,
-  debrisSpin: 6,
-  textShadowBlur: 4,
-  shipCorner: 8,
-  lockLineWidth: 2,
-  shipLineWidth: 1.5,
-  glossGap: 8,
-  chipGap: 10,
-  translationGap: 16,
-  bulletRadius: 3,
-  explosionMaxRadius: 46,
-  playerWidth: 36,
-  playerHeight: 22,
-  hudMargin: 16,
-  hudLineHeight: 22,
-  lifeSize: 10,
-  starCount: 60,
-  starSize: 2,
-  lockInset: 3,
-  glossHeight: 14,
-  glossBaseline: 6,
-  rowHalf: 8,
-  lifeGap: 6,
-  starSeedX: 7919,
-  starSeedY: 104729,
-} as const;
-
-/** Estimated glyph widths (px/char) for the fonts above; the renderer measures for real. */
-export const charWidths = { ship: 8.4, gloss: 6.2, chip: 6, translation: 6 } as const;
-
 export const effects = {
   bulletMs: 120,
+  /** A typo flash fades out over this long; `typoFlashAlpha` is its strongest hull tint. */
+  typoFlashMs: 260,
+  typoFlashAlpha: 0.55,
   explosionMs: 560,
   explosionFrames: 8,
   debrisMs: 900,
   msPerSecond: 1000,
 } as const;
+
+/** One synthesized sound effect: an oscillator sweeping `from` to `to` Hz over `ms`, at `gain`. */
+export interface Sound { wave: 'sine' | 'square' | 'sawtooth' | 'triangle'; from: number; to: number; ms: number; gain: number }
+
+/** The effect table the audio module plays; tune the game's sound here. */
+export const sounds = {
+  hit: { wave: 'square', from: 880, to: 660, ms: 50, gain: 0.05 },
+  typo: { wave: 'sawtooth', from: 160, to: 110, ms: 140, gain: 0.08 },
+  'explode-small': { wave: 'sawtooth', from: 320, to: 60, ms: 220, gain: 0.1 },
+  'explode-big': { wave: 'sawtooth', from: 200, to: 35, ms: 520, gain: 0.14 },
+  escape: { wave: 'triangle', from: 440, to: 120, ms: 360, gain: 0.1 },
+  'wave-clear': { wave: 'sine', from: 520, to: 1040, ms: 420, gain: 0.1 },
+  'mothership-enter': { wave: 'triangle', from: 90, to: 180, ms: 600, gain: 0.08 },
+} as const satisfies Record<string, Sound>;
+
+/** Audio tunables: the music loop's volume, and the milliseconds-per-second conversion for effect durations. */
+export const audioLevels = { music: 0.35, msPerSecond: 1000 } as const;
 
 export const labels = {
   score: 'Score',
@@ -111,9 +85,17 @@ export const labels = {
   gameOver: 'Game over',
 } as const;
 
-export type MeasureFont = 'ship' | 'gloss' | 'chip' | 'translation';
+/**
+ * Where the player sprite's twin cannon tips are, relative to its x and to `WORLD.playerY`: the cannons
+ * sit +-25 of 180 source px from the centre, at the very top of the sprite, whose top edge is
+ * `playerSpriteOffsetY - playerSpriteHeight` (-56) above the player line.
+ */
+export const muzzle = { dx: 7.5, dy: -55 } as const;
 
-export type ShipKindName = 'mothership' | 'forms' | 'escort';
+/** Start of the next bullet: the left gun on even shots, the right gun on odd ones (`y` is relative to the player line). */
+export function muzzles(playerX: number, shotIndex: number): { x: number; y: number } {
+  return { x: playerX + (shotIndex % 2 === 0 ? -muzzle.dx : muzzle.dx), y: muzzle.dy };
+}
 
 export interface ShipBox {
   /** Top-left corner and size. */
@@ -121,22 +103,6 @@ export interface ShipBox {
   y: number;
   w: number;
   h: number;
-}
-
-/** Which hull sprite each ship kind uses. */
-export const hullSprite: Record<ShipKindName, SpriteName> = { mothership: 'mothership', forms: 'forms', escort: 'sentence' };
-
-/** How far a kind's drawn hull reaches beyond its text strip: up and down from the strip's centre, and out from each side. */
-export interface HullExtent { above: number; below: number; side: number }
-
-/** Hull extents from the sprite atlas, so layout, bands and edge bounces match what is drawn. */
-export function hullExtent(kind: ShipKindName): HullExtent {
-  const s = atlas[hullSprite[kind]] as SpriteInfo;
-  const strip = s.strip!;
-  const k = sizes.shipHeight / (strip.y1 - strip.y0);
-  const cy = (strip.y0 + strip.y1) / 2;
-  const capSrc = Math.max(strip.x0, s.w - strip.x1);
-  return { above: cy * k, below: (s.h - cy) * k, side: capSrc * k * sizes.capSquash };
 }
 
 /**
@@ -168,3 +134,6 @@ export function drawShip(ctx: CanvasRenderingContext2D, kind: ShipKindName, box:
   ctx.fill();
   ctx.stroke();
 }
+
+/** Every token in one object. */
+export const theme = { palette, fonts, effects, sounds, labels, sizes, muzzle } as const;

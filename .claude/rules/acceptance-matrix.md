@@ -43,6 +43,7 @@ backfill owed) · `not-implemented` (nothing exists — warning) · `failing`
   acceptance report` (no flag) writes it git-stamped honoring `--link-mode`
   (github in CI, local otherwise); links resolve relative to sibling checkouts
   (`--sibling-root`, default `..`).
-- CI: none is configured. `fr acceptance check` runs locally, and no row may
-  move to `ci` until the repo has a CI config (`fr acceptance init --with-ci`
-  scaffolds one).
+- CI: the suite (`npm test`, build, `npm run e2e`) runs in the Pages workflow
+  (`.github/workflows/pages.yml`) on pushes to main, not on PRs, so no row is
+  `ci`. `fr acceptance check` runs locally; move a row to `ci` only once a PR
+  workflow runs its checks (`fr acceptance init --with-ci` scaffolds one).

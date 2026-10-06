@@ -23,6 +23,7 @@
   "include": [
     "tests",
     "tools",
-    "vite.config.ts"
+    "vite.config.ts",
+    "playwright.config.ts"
   ]
 }

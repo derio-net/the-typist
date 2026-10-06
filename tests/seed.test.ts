@@ -18,10 +18,16 @@ describe('seed list de-b2-1000', () => {
     expect((parsed.list.categories ?? []).map((c) => c.id)).toEqual(headerIds);
   });
 
-  it('has every record enriched', () => {
+  it('has every record enriched or reviewed', () => {
     if (!parsed.ok) throw new Error('list does not parse');
-    const notEnriched = parsed.list.records.filter((r) => r.status !== 'enriched').map((r) => r.id);
+    const notEnriched = parsed.list.records.filter((r) => !['enriched', 'reviewed'].includes(r.status)).map((r) => r.id);
     expect(notEnriched).toEqual([]);
+  });
+
+  it('records the Burnout gender/spelling decision in noun-burnout', () => {
+    if (!parsed.ok) throw new Error('list does not parse');
+    const r = parsed.list.records.find((x) => x.id === 'noun-burnout');
+    expect(r?.source_note?.trim()).toBeTruthy();
   });
 
   it("covers exactly the 1000 source lines containing ' – '", () => {

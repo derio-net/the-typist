@@ -1,6 +1,6 @@
 # Acceptance matrix — the registry of business-level acceptance tests and
-# where each is verified. Rendered by `fr acceptance report`; no CI is configured,
-# so `fr acceptance check` runs locally and no row is `ci`.
+# where each is verified. Rendered by `fr acceptance report`; the suite runs in the Pages workflow on
+# pushes to main (not on PRs), so no row is `ci`.
 #
 # Row schema:
 #   id:         kebab-case, stable
@@ -35,9 +35,9 @@ rows:
     acceptance: A YAML list of typed Records is accepted only if it satisfies the schema
       and per-type example rules; violations are reported per record.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R1
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R2
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R3
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R1
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R2
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R3
     levels:
       unit:
       - the-typist:tests/schema/record.test.ts
@@ -46,19 +46,31 @@ rows:
       - the-typist:tests/schema/strictness.test.ts
       - the-typist:tests/tools/validate.test.ts
     status: skipped
-    notes: Built in plan 1 (phases 1, 5); unit tests run locally via npm test, no CI
-      configured. Build-time half of R11 (vite plugin) covered; runtime file-picker
-      half is plan 2.
+    notes: Built in plan 1 (phases 1, 5); unit tests run locally via npm test, The suite runs in the Pages workflow on pushes to main, not on PRs. Build-time half of R11 (vite plugin) covered; runtime file-picker
+      half is the list-loading row.
   - id: list-loading
     capability: Lists
     acceptance: Repo lists are validated at build and playable on the hosted site, and
       a player can load their own YAML list, which is rejected with errors if invalid.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R11
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R12
-    levels: {}
-    status: not-implemented
-    notes: ''
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R11
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R12
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R8
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R18
+    levels:
+      unit:
+      - the-typist:tests/content/bundled.test.ts
+      - the-typist:tests/content/picker.test.ts
+      - the-typist:tests/tools/vite-plugin.test.ts
+      - the-typist:tests/schema/parse-list.test.ts
+      - the-typist:tests/ui/app.test.ts
+      ui:
+      - the-typist:tests/e2e/smoke.spec.ts
+    status: skipped
+    notes: Verified by vitest unit tests (bundled lists, picker, vite plugin, parser,
+      app) and the Playwright smoke (loads a list through the file input and plays it).
+      The suite runs in the Pages workflow on pushes to main, not on PRs, so the row
+      is not ci.
     verify: post-merge
     visual:
       states:
@@ -66,18 +78,32 @@ rows:
       - invalid-list-errors
       interactions:
       - load-valid-list-and-play
+  - id: list-errors-one-pass
+    capability: Lists
+    acceptance: An invalid list reports all its record-level and list-level errors together,
+      so its author can fix everything in one pass.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R9
+    levels:
+      unit:
+      - the-typist:tests/schema/parse-list.test.ts
+      - the-typist:tests/schema/list.test.ts
+      - the-typist:tests/schema/record.test.ts
+    status: skipped
+    notes: Verified by vitest unit tests (parse-list, list, record schemas). The suite
+      runs in the Pages workflow on pushes to main, not on PRs, so the row is not ci.
   - id: record-ships
     capability: Gameplay
     acceptance: Each Record enters play as a mothership showing its display form and
       gloss, which on destruction releases a forms ship and one ship per example sentence.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R4
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R4
     levels:
       unit:
       - the-typist:tests/engine/world.test.ts
     status: skipped
     notes: Built in plan 1 phase 3 (+ operator-directed motion and sprites); World tests
-      run locally; visual states captured headlessly in phase 3 review. No CI configured.
+      run locally; visual states captured headlessly in phase 3 review. The suite runs in the Pages workflow on pushes to main, not on PRs.
     visual:
       states:
       - mothership-with-gloss
@@ -90,56 +116,179 @@ rows:
     acceptance: Typing locks onto one ship, requires exact case and umlauts while accepting
       ae/oe/ue/ss and Mac dead-key input, and does not require final punctuation.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R5
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R6
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R5
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R6
     levels:
       unit:
       - the-typist:tests/engine/typing.test.ts
       - the-typist:tests/platform/keyboard.test.ts
+      ui:
+      - the-typist:tests/e2e/smoke.spec.ts
     status: skipped
-    notes: Built in plan 1 phase 3; engine and keyboard (jsdom composition) tests run
-      locally; real dead-key composition verified via CDP IME in headless Chrome. No
-      CI configured.
+    notes: Built in plan 1 phase 3; engine and keyboard (jsdom composition) unit tests,
+      plus the Playwright smoke (typing with the oe fallback and typos); real dead-key
+      composition verified via CDP IME in headless Chrome. The suite runs in the Pages
+      workflow on pushes to main, not on PRs, so the row is not ci.
   - id: degraded-states
     capability: Gameplay
     acceptance: The game stays playable when nothing is due, when browser storage is
       unavailable, or when no German voice exists, telling the player what is limited.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R13
-    levels: {}
-    status: not-implemented
-    notes: Owed by plan 2 (same spec, built after the manual UX pass); marked post-merge
-      so plan 1's deliver does not demand screenshots of screens that do not exist yet.
-      Operator decision 2026-10-05.
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R13
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R10
+    levels:
+      unit:
+      - the-typist:tests/srs/store.test.ts
+      - the-typist:tests/platform/tts.test.ts
+      - the-typist:tests/ui/app.test.ts
+    status: skipped
+    notes: Verified by vitest unit tests (store fallback, TTS availability, app banners).
+      The suite runs in the Pages workflow on pushes to main, not on PRs, so the row
+      is not ci.
     verify: post-merge
     visual:
       states:
       - empty-study-offers-free-play
       - storage-warning-banner
       - tts-toggle-disabled-note
+  - id: session-screens
+    capability: Gameplay
+    acceptance: A player picks a list and a mode from menus, plays a session of waves
+      with shared lives, can pause and resume without losing typing speed, and ends
+      on a summary of their grades.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R4
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R5
+    levels:
+      unit:
+      - the-typist:tests/ui/panels.test.ts
+      - the-typist:tests/ui/app.test.ts
+      - the-typist:tests/session/controller.test.ts
+      ui:
+      - the-typist:tests/e2e/smoke.spec.ts
+    status: skipped
+    notes: Verified by vitest unit tests (panels, app, controller) and the Playwright
+      smoke (menus, wave, summary). The suite runs in the Pages workflow on pushes to
+      main, not on PRs, so the row is not ci.
+    visual:
+      states:
+      - title-and-list-screen
+      - mode-choice-with-due-and-new-counts
+      - category-picker
+      - pause-panel
+      - between-wave-panel
+      - session-summary
+      interactions:
+      - esc-pause-then-resume-keeps-typing-focus
+      - study-session-runs-to-summary
+      - session-ends-at-zero-lives
+  - id: game-audio
+    capability: Gameplay
+    acceptance: Play has sound effects for hits, typos, explosions, escapes, cleared
+      waves and entering motherships, plus looping music when a track is supplied, each
+      switchable and remembered.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R7
+    levels:
+      unit:
+      - the-typist:tests/platform/audio.test.ts
+      - the-typist:tests/platform/settings.test.ts
+      - the-typist:tests/ui/app.test.ts
+    status: skipped
+    notes: Verified by vitest unit tests (audio, settings, app). The suite runs in the
+      Pages workflow on pushes to main, not on PRs, so the row is not ci.
+  - id: play-feel
+    capability: Gameplay
+    acceptance: The player ship fires from its front guns and drifts toward its target,
+      typos and pending ae/oe/ue/ss prefixes are visible on the locked ship, and the
+      playfield stays sharp, fits narrow windows and never hides the HUD.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R11
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R12
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R13
+    levels:
+      unit:
+      - the-typist:tests/render/feedback.test.ts
+      - the-typist:tests/render/muzzles.test.ts
+      - the-typist:tests/render/canvas-size.test.ts
+      - the-typist:tests/render/renderer.test.ts
+      - the-typist:tests/render/stars.test.ts
+      - the-typist:tests/engine/world.test.ts
+    status: skipped
+    notes: Verified by vitest unit tests (feedback, muzzles, canvas size, renderer,
+      stars, world). The suite runs in the Pages workflow on pushes to main, not on
+      PRs, so the row is not ci.
+    visual:
+      states:
+      - bullets-leave-front-guns
+      - player-tracks-locked-ship
+      - typo-flash-on-locked-ship
+      - pending-digraph-prefix-shown
+      - narrow-window-fit-no-horizontal-scroll
+      - released-ships-clear-of-hud
+      interactions:
+      - lock-then-player-drifts-to-target
+  - id: typing-edge-cases
+    capability: Gameplay
+    acceptance: A precomposed umlaut typed mid-digraph is accepted, closing quotes and
+      brackets at a sentence end need not be typed, and loanwords with accented letters
+      are typeable with the accent or its base letter.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R14
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R15
+    levels:
+      unit:
+      - the-typist:tests/engine/typing.test.ts
+      - the-typist:tests/schema/typeable.test.ts
+      - the-typist:tests/platform/keyboard.test.ts
+    status: skipped
+    notes: Verified by vitest unit tests (typing engine, typeable, keyboard). The suite
+      runs in the Pages workflow on pushes to main, not on PRs, so the row is not ci.
   - id: srs-sessions
     capability: Learning
     acceptance: Study sessions serve due plus capped new Records in category waves,
       free play covers a chosen category, and both reschedule Records via FSRS from
       typing performance.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R7
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R8
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R9
-    levels: {}
-    status: not-implemented
-    notes: ''
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R7
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R8
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R9
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R1
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R2
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R3
+    levels:
+      unit:
+      - the-typist:tests/srs/grade.test.ts
+      - the-typist:tests/srs/scheduler.test.ts
+      - the-typist:tests/srs/store.test.ts
+      - the-typist:tests/session/build.test.ts
+      - the-typist:tests/session/controller.test.ts
+      ui:
+      - the-typist:tests/e2e/smoke.spec.ts
+    status: skipped
+    notes: Verified by vitest unit tests (grading, scheduler, store, wave building,
+      controller) and the Playwright smoke (free play to summary, cards persisted).
+      The suite runs in the Pages workflow on pushes to main, not on PRs, so the row
+      is not ci.
   - id: learning-aids
     capability: Learning
     acceptance: Grammar chips, sentence translations, German TTS and post-wave recap
       cards are each available and individually switchable, and the choice persists.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R10
-    levels: {}
-    status: not-implemented
-    notes: Owed by plan 2 (same spec, built after the manual UX pass); marked post-merge
-      so plan 1's deliver does not demand screenshots of screens that do not exist yet.
-      Operator decision 2026-10-05.
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R10
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R6
+    levels:
+      unit:
+      - the-typist:tests/platform/tts.test.ts
+      - the-typist:tests/platform/settings.test.ts
+      - the-typist:tests/ui/panels.test.ts
+      - the-typist:tests/ui/app.test.ts
+      ui:
+      - the-typist:tests/e2e/smoke.spec.ts
+    status: skipped
+    notes: Verified by vitest unit tests (settings, TTS, panels, app) and the Playwright
+      smoke (recap card after a Hard Record). The suite runs in the Pages workflow on
+      pushes to main, not on PRs, so the row is not ci.
     verify: post-merge
     visual:
       states:
@@ -154,7 +303,7 @@ rows:
       the structure skill, with unparseable lines resolved and categories derived or
       proposed.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R14
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R14
     levels:
       unit:
       - the-typist:tests/tools/parse-shapes.test.ts
@@ -162,28 +311,28 @@ rows:
       - the-typist:tests/tools/parse-lines.test.ts
     status: skipped
     notes: Built in plan 1 phase 2; parser tests run locally; skill exercised on the
-      full seed in phase 5. No CI configured.
+      full seed in phase 5. The suite runs in the Pages workflow on pushes to main, not on PRs.
   - id: enrich-skill
     capability: Authoring
     acceptance: The enrich skill turns raw Records into enriched ones that pass validation,
       in resumable batches, without ever marking them reviewed.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R15
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R15
     levels:
       unit:
       - the-typist:tests/tools/organise.test.ts
     status: skipped
     notes: Built in plan 1 phase 4; organise helper tests run locally; skill exercised
-      on all 968 seed records in phases 5-6. No CI configured.
+      on all 968 seed records in phases 5-6. The suite runs in the Pages workflow on pushes to main, not on PRs.
   - id: seed-list
     capability: Content
     acceptance: The game ships a validated, fully enriched list of the 1000 German B2
       seed words in their 20 categories.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R16
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R16
     levels:
       unit:
       - the-typist:tests/seed.test.ts
     status: skipped
     notes: 'lists/de-b2-1000.yaml: 968 enriched records covering all 1000 source lines
-      in 20 categories; seed test runs locally. No CI configured.'
+      in 20 categories; seed test runs locally. The suite runs in the Pages workflow on pushes to main, not on PRs.'

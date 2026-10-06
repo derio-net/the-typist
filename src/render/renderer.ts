@@ -1,9 +1,12 @@
 import { WORLD, type World, type WorldEvent, type WorldShip } from '../engine/world';
-import { drawShip, effects, fonts, labels, palette, sizes, type MeasureFont, type ShipBox } from './theme';
+import { drawShip, effects, fonts, labels, muzzles, palette, sizes, type MeasureFont, type ShipBox } from './theme';
+import { starField } from './stars';
+import { canvasSize } from './canvas-size';
+import { flashLevel, splitText } from './feedback';
 import { currentSprites, drawCentred, drawReticle, type SpriteName } from './sprites';
 import type { ShipKind } from '../engine/world';
 
-interface Bullet { shipId: string; fromX: number; at: number; lastX: number; lastY: number }
+interface Bullet { shipId: string; fromX: number; fromY: number; at: number; lastX: number; lastY: number }
 interface Explosion { x: number; y: number; at: number; kind: ShipKind }
 interface Debris { x: number; y: number; vx: number; vy: number; spin: number; at: number; sprite: SpriteName }
 
@@ -18,22 +21,62 @@ export interface Renderer {
   /** Feed events from `tick` / `typeChar` so effects can be spawned. */
   push(events: WorldEvent[], now: number): void;
   draw(world: World, now: number): void;
+  /** Drops every transient effect (bullets, explosions, debris, flashes): call when a wave or session starts. */
+  reset(): void;
+  /** Paints the background and stars only, for when no World is on screen. */
+  clear(): void;
+  /** Re-fits the canvas to the window, after the space available to it changed. */
+  refit(): void;
+  /** Removes the window and device-pixel-ratio listeners. */
+  dispose(): void;
 }
 
-export function createRenderer(canvas: HTMLCanvasElement): Renderer {
-  const ctx = canvas.getContext('2d')!;
-  canvas.width = WORLD.width;
-  canvas.height = WORLD.height;
+/** `initialWidth` is the world's width (see `pickWidth`); the canvas is fitted to the window and sharp at any DPR. */
+export interface RendererOptions {
+  /** CSS pixels of height the canvas may use; defaults to the window's (a banner above it takes some). */
+  availableHeight?: () => number;
+}
 
-  const stars = Array.from({ length: sizes.starCount }, (_, i) => ({
-    x: (i * sizes.starSeedX) % WORLD.width,
-    y: (i * sizes.starSeedY) % WORLD.height,
-  }));
+export function createRenderer(canvas: HTMLCanvasElement, initialWidth: number = WORLD.width, opts: RendererOptions = {}): Renderer {
+  const ctx = canvas.getContext('2d')!;
+  let logicalWidth = initialWidth;
+  /** Backing pixels per logical pixel: fit scale x device pixel ratio. */
+  let pixelScale = 1;
+  let stars = starField(logicalWidth, WORLD.height);
+  const resize = () => {
+    const fit = canvasSize(window.innerWidth, opts.availableHeight?.() ?? window.innerHeight, window.devicePixelRatio || 1, logicalWidth, WORLD.height);
+    canvas.width = fit.backing.width;
+    canvas.height = fit.backing.height;
+    canvas.style.width = `${fit.css.width}px`;
+    canvas.style.height = `${fit.css.height}px`;
+    pixelScale = fit.backing.width / logicalWidth;
+  };
+  document.body.style.background = palette.background;
+  resize();
+  window.addEventListener('resize', resize);
+
+  // a change of device pixel ratio alone (moving between screens, browser zoom) fires no resize event
+  let dpr: MediaQueryList | undefined;
+  const onDprChange = () => {
+    dpr?.removeEventListener('change', onDprChange);
+    resize();
+    watchDpr();
+  };
+  function watchDpr() {
+    dpr = window.matchMedia?.(`(resolution: ${window.devicePixelRatio || 1}dppx)`);
+    dpr?.addEventListener('change', onDprChange);
+  }
+  watchDpr();
+
   const lastPos = new Map<string, { x: number; y: number; kind: ShipKind }>();
   let bullets: Bullet[] = [];
   let explosions: Explosion[] = [];
   let debris: Debris[] = [];
-  const playerX = WORLD.width / 2;
+  /** Where the player is now (the world's `playerX` as of the last `draw`), and how many shots were fired. */
+  let playerX = logicalWidth / 2;
+  let shots = 0;
+  /** When each ship last took a typo (the renderer's clock), for the flash. */
+  const typoAt = new Map<string, number>();
 
   /** Pixel width of `text` in the given font; ship text includes the strip's padding. */
   const measure = (text: string, font: MeasureFont = 'ship'): number => {
@@ -73,22 +116,39 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
     ctx.fillText(text, x, y);
   }
 
-  function drawShipText(ship: WorldShip, world: World, locked: boolean) {
+  /** Tints the hull strip of a ship that just took a typo. */
+  function flashHull(box: ShipBox, level: number) {
+    if (level <= 0) return;
+    ctx.globalAlpha = level * effects.typoFlashAlpha;
+    ctx.fillStyle = palette.typoFlash;
+    ctx.fillRect(box.x, box.y, box.w, box.h);
+    ctx.globalAlpha = 1;
+  }
+
+  function drawShipText(ship: WorldShip, world: World, locked: boolean, now: number) {
     const box = boxOf(ship);
     if (locked) drawLock(box);
     ctx.shadowColor = palette.textShadow;
     ctx.shadowBlur = sizes.textShadowBlur;
     const typing = world.typing.ships.find((s) => s.id === ship.id);
-    const pos = typing?.pos ?? 0;
     ctx.font = fonts.ship;
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'left';
-    const typed = ship.text.slice(0, pos);
-    const left = box.x + sizes.shipPaddingX;
-    ctx.fillStyle = palette.typed;
-    ctx.fillText(typed, left, ship.y);
-    ctx.fillStyle = palette.text;
-    ctx.fillText(ship.text.slice(pos), left + ctx.measureText(typed).width, ship.y);
+    const parts = splitText({ text: ship.text, pos: typing?.pos ?? 0, pending: typing?.pending ?? '' });
+    const runs = [[parts.typed, palette.typed], [parts.pending, palette.pending], [parts.rest, palette.text]] as const;
+    const level = flashLevel(typoAt.get(ship.id), now);
+    // base text, then the typo tint over the very same runs
+    for (const [alpha, tint] of [[1, undefined], [level, palette.typoFlash]] as const) {
+      if (alpha <= 0) continue;
+      ctx.globalAlpha = alpha;
+      let left = box.x + sizes.shipPaddingX;
+      for (const [run, colour] of runs) {
+        ctx.fillStyle = tint ?? colour;
+        ctx.fillText(run, left, ship.y);
+        left += ctx.measureText(run).width;
+      }
+    }
+    ctx.globalAlpha = 1;
 
     // gloss and translation go on the hull below the strip, the grammar chip above it
     ctx.textAlign = 'center';
@@ -102,12 +162,39 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
     ctx.shadowBlur = 0;
   }
 
+  function paintBackground(width: number) {
+    ctx.setTransform(pixelScale, 0, 0, pixelScale, 0, 0);
+    ctx.fillStyle = palette.background;
+    ctx.fillRect(0, 0, width, WORLD.height);
+    ctx.fillStyle = palette.star;
+    for (const s of stars) ctx.fillRect(s.x, s.y, sizes.starSize, sizes.starSize);
+  }
+
   return {
     measure,
+    reset() {
+      bullets = [];
+      explosions = [];
+      debris = [];
+      lastPos.clear();
+      typoAt.clear();
+      shots = 0;
+    },
+    clear: () => paintBackground(logicalWidth),
+    refit: resize,
+    dispose() {
+      window.removeEventListener('resize', resize);
+      dpr?.removeEventListener('change', onDprChange);
+    },
     push(events, now) {
       for (const ev of events) {
         const p = 'shipId' in ev ? lastPos.get(ev.shipId) : undefined;
-        if (ev.type === 'hit' && p) bullets.push({ shipId: ev.shipId, fromX: playerX, at: now, lastX: p.x, lastY: p.y });
+        if (ev.type === 'typo') typoAt.set(ev.shipId, now);
+        if (ev.type === 'hit' && p) {
+          const gun = muzzles(playerX, shots++);
+          bullets.push({ shipId: ev.shipId, fromX: gun.x, fromY: WORLD.playerY + gun.y, at: now, lastX: p.x, lastY: p.y });
+        }
+        if (ev.type === 'destroyed') typoAt.delete(ev.shipId);
         if (ev.type === 'destroyed' && p) {
           explosions.push({ x: p.x, y: p.y, at: now, kind: p.kind });
           for (let i = 0; i < sizes.debrisCount; i++) {
@@ -123,16 +210,20 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
       }
     },
     draw(world, now) {
-      ctx.fillStyle = palette.background;
-      ctx.fillRect(0, 0, WORLD.width, WORLD.height);
-      ctx.fillStyle = palette.star;
-      for (const s of stars) ctx.fillRect(s.x, s.y, sizes.starSize, sizes.starSize);
+      if (world.width !== logicalWidth) {
+        // a later wave can have another width: refit the canvas and respread the stars
+        logicalWidth = world.width;
+        stars = starField(logicalWidth, WORLD.height);
+        resize();
+      }
+      paintBackground(world.width);
 
       for (const s of world.ships) lastPos.set(s.id, { x: s.x, y: s.y, kind: s.kind });
       const sprites = currentSprites();
       const byId = new Map(world.ships.map((s) => [s.id, s]));
 
       // player
+      playerX = world.playerX;
       if (sprites) {
         drawCentred(ctx, sprites.player, playerX, WORLD.playerY + sizes.playerSpriteOffsetY - sizes.playerSpriteHeight / 2, sizes.playerSpriteHeight);
       } else {
@@ -149,8 +240,11 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
       // the locked ship goes last in each pass
       const lock = world.typing.lock;
       const order = [...world.ships.filter((s) => s.id !== lock), ...world.ships.filter((s) => s.id === lock)];
-      for (const s of order) drawShip(ctx, s.kind, boxOf(s));
-      for (const s of order) drawShipText(s, world, s.id === lock);
+      for (const s of order) {
+        drawShip(ctx, s.kind, boxOf(s));
+        flashHull(boxOf(s), flashLevel(typoAt.get(s.id), now));
+      }
+      for (const s of order) drawShipText(s, world, s.id === lock, now);
 
       bullets = bullets.filter((b) => now - b.at < effects.bulletMs);
       ctx.fillStyle = palette.bullet;
@@ -160,10 +254,10 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
         const ty = target?.y ?? b.lastY;
         const t = (now - b.at) / effects.bulletMs;
         const bx = b.fromX + (tx - b.fromX) * t;
-        const by = WORLD.playerY + (ty - WORLD.playerY) * t;
+        const by = b.fromY + (ty - b.fromY) * t;
         if (sprites) {
           ctx.globalCompositeOperation = 'lighter';
-          drawCentred(ctx, sprites.bullet, bx, by, sizes.bulletSpriteHeight, Math.atan2(ty - WORLD.playerY, tx - b.fromX) + Math.PI / 2);
+          drawCentred(ctx, sprites.bullet, bx, by, sizes.bulletSpriteHeight, Math.atan2(ty - b.fromY, tx - b.fromX) + Math.PI / 2);
           ctx.globalCompositeOperation = 'source-over';
         } else {
           ctx.beginPath();
@@ -208,14 +302,14 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
       ctx.fillText(`${labels.wave} ${world.wave + 1}`, sizes.hudMargin, sizes.hudMargin + sizes.hudLineHeight);
       ctx.fillStyle = palette.hudLife;
       for (let i = 0; i < world.lives; i++) {
-        ctx.fillRect(WORLD.width - sizes.hudMargin - (i + 1) * (sizes.lifeSize + sizes.lifeGap), sizes.hudMargin, sizes.lifeSize, sizes.lifeSize);
+        ctx.fillRect(world.width - sizes.hudMargin - (i + 1) * (sizes.lifeSize + sizes.lifeGap), sizes.hudMargin, sizes.lifeSize, sizes.lifeSize);
       }
       if (world.status !== 'playing') {
         ctx.font = fonts.banner;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillStyle = palette.hud;
-        ctx.fillText(world.status === 'game-over' ? labels.gameOver : labels.waveComplete, WORLD.width / 2, WORLD.height / 2);
+        ctx.fillText(world.status === 'game-over' ? labels.gameOver : labels.waveComplete, world.width / 2, WORLD.height / 2);
       }
     },
   };

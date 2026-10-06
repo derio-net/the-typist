@@ -1,0 +1,32 @@
+schema_version: 2
+phase:
+  number: 7
+  title: '[manual] Publish — make the repo public and enable Pages'
+  tag: manual
+  depends_on:
+  - 6
+  tracking_issue: null
+tasks:
+- number: 1
+  title: Operator publishes
+  steps:
+  - id: P7.T1.S1
+    text: |-
+      Operator: review the identifier-sweep diff from phase 6 (`git log -p -- $(git diff --name-only origin/main...HEAD)` around P6.T3), and accept that git history is published as is.
+  - id: P7.T1.S2
+    text: |-
+      Operator: run `bash scripts/publish-pages.sh` (making the repo public and enabling Pages from Actions). After the PR merges, the Pages workflow deploys to https://derio-net.github.io/the-typist/.
+state:
+  steps:
+    P7.T1.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P7.T1.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+  completion:
+    at: null
+    note: null
+    observed_prs: []

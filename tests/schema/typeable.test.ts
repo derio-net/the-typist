@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { parse } from 'yaml';
 import { readFileSync } from 'node:fs';
-import { EQUIVALENCES, isTypeable, normaliseTyped } from '../../src/schema/typeable';
+import { ACCENTS, EQUIVALENCES, isTypeable, normaliseTyped } from '../../src/schema/typeable';
 import { RecordSchema } from '../../src/schema/record';
 
 describe('normaliseTyped', () => {
@@ -47,5 +47,18 @@ describe('record typeability', () => {
     const r = JSON.parse(JSON.stringify(fixture.records[0]));
     r.lemma = 'Bör·se';
     expect(RecordSchema.safeParse(r).success).toBe(false);
+  });
+});
+
+describe('accented loanword letters (R15)', () => {
+  it.each(['Café', 'Crème brûlée', 'Señor', 'Façade', 'naïv', 'É', 'À', 'Ç'])('%s is typeable', (w) => {
+    expect(isTypeable(w)).toBe(true);
+  });
+  it('a letter outside the table still fails', () => {
+    expect(isTypeable('Smørrebrød')).toBe(false);
+  });
+  it('ACCENTS maps to base letters', () => {
+    expect(ACCENTS['é']).toBe('e');
+    expect(ACCENTS['Ç']).toBe('C');
   });
 });

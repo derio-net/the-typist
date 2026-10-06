@@ -1,10 +1,7 @@
-import atlas from './sprite-atlas.json';
+import atlas from '../layout/sprite-atlas.json';
+import type { SpriteName, SpriteInfo, StripRect } from '../layout/metrics';
 
-/** Sprite names produced by `npm run sprites` from public/assets/sprites/sheet.png. */
-export type SpriteName = keyof typeof atlas;
-
-export interface StripRect { x0: number; y0: number; x1: number; y1: number }
-export interface SpriteInfo { w: number; h: number; strip?: StripRect }
+export type { SpriteName, SpriteInfo, StripRect };
 
 export interface Sprite extends SpriteInfo {
   img: CanvasImageSource;

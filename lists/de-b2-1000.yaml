@@ -5407,6 +5407,7 @@ records:
     lemma: Burnout
     gloss:
       - burnout
+    source_note: "Source line 847 has 'der Burnout'. Duden prefers 'das Burn-out' (neuter, hyphenated), and 'der Burnout' is also in common use. This record keeps the source's masculine 'der Burnout' and the unhyphenated spelling, so the lemma matches the source line and is typed without a hyphen; the examples use masculine 'ein/der Burnout' to agree."
     categories:
       - emotions-and-psychology
     status: enriched
