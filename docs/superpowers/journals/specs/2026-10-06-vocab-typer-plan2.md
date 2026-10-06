@@ -208,3 +208,6 @@ Restored the full text of ux-pass-is-issue-2, issues-in-scope and design-default
 
 <!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-06-vocab-typer-plan2-p5 created=2026-10-06T03:47:33+00:00 -->
 ### phase-split-2026-10-06-vocab-typer-plan2-p5 · decision · ask: learning aids and audio (R6, R7)
+
+<!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-06-vocab-typer-plan2-p6 created=2026-10-06T03:47:36+00:00 -->
+### phase-split-2026-10-06-vocab-typer-plan2-p6 · decision · ask: hosting, smoke test and docs (R18-R20)
