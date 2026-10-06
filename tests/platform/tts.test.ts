@@ -35,7 +35,7 @@ function fakeSynth(initial: Voice[]) {
 const EN = { lang: 'en-US', name: 'Sam', voiceURI: 'u:sam' };
 const DE = { lang: 'de-DE', name: 'Anna', voiceURI: 'u:anna' };
 const DE2 = { lang: 'de-AT', name: 'Max', voiceURI: 'u:max' };
-const EDDY = { lang: 'de-DE', name: 'Eddy', voiceURI: 'u:eddy' };
+const ROCKO = { lang: 'de-DE', name: 'Rocko', voiceURI: 'u:rocko' };
 const GOOGLE = { lang: 'de-DE', name: 'Google Deutsch', voiceURI: 'u:google' };
 const PREMIUM = { lang: 'de-DE', name: 'Zoe Premium', voiceURI: 'u:zoe' };
 
@@ -143,25 +143,25 @@ describe('tts (R6, R10)', () => {
   });
 
   it('voices() lists the ranked German voices as { uri, name, lang }; the default is the top one (R7)', async () => {
-    const f = fakeSynth([EN, EDDY, DE2, DE]);
+    const f = fakeSynth([EN, ROCKO, DE2, DE]);
     const tts = createTts({ synth: f.synth, Utterance: Utt as never });
     await tts.ready;
     expect(tts.voices()).toEqual([
       { uri: 'u:anna', name: 'Anna', lang: 'de-DE' },
       { uri: 'u:max', name: 'Max', lang: 'de-AT' },
-      { uri: 'u:eddy', name: 'Eddy', lang: 'de-DE' },
+      { uri: 'u:rocko', name: 'Rocko', lang: 'de-DE' },
     ]);
     tts.say('Haus');
     expect(f.spoken[0].voice).toBe(DE);
   });
 
   it('setVoice selects a voice; an unknown uri or null falls back to the top voice (R8)', async () => {
-    const f = fakeSynth([DE, DE2, EDDY]);
+    const f = fakeSynth([DE, DE2, ROCKO]);
     const tts = createTts({ synth: f.synth, Utterance: Utt as never });
     await tts.ready;
-    tts.setVoice('u:eddy');
+    tts.setVoice('u:rocko');
     tts.say('a');
-    expect(f.spoken.at(-1)!.voice).toBe(EDDY);
+    expect(f.spoken.at(-1)!.voice).toBe(ROCKO);
     tts.setVoice('u:gone');
     tts.say('b');
     expect(f.spoken.at(-1)!.voice).toBe(DE);
@@ -176,25 +176,25 @@ describe('tts (R6, R10)', () => {
   });
 
   it('a chosen voice that disappears falls back to the top voice (R8)', async () => {
-    const f = fakeSynth([DE, EDDY]);
+    const f = fakeSynth([DE, ROCKO]);
     const tts = createTts({ synth: f.synth, Utterance: Utt as never });
     await tts.ready;
-    tts.setVoice('u:eddy');
+    tts.setVoice('u:rocko');
     f.setVoices([DE]);
     tts.say('x');
     expect(f.spoken.at(-1)!.voice).toBe(DE);
   });
 
   it('preview speaks while disabled, in the selected voice (R8)', async () => {
-    const f = fakeSynth([DE, EDDY]);
+    const f = fakeSynth([DE, ROCKO]);
     const tts = createTts({ synth: f.synth, Utterance: Utt as never });
     await tts.ready;
     tts.setEnabled(false);
-    tts.setVoice('u:eddy');
+    tts.setVoice('u:rocko');
     tts.preview('Guten Tag');
     expect(f.calls).toEqual(['cancel', 'speak']);
     expect(f.spoken[0].text).toBe('Guten Tag');
-    expect(f.spoken[0].voice).toBe(EDDY);
+    expect(f.spoken[0].voice).toBe(ROCKO);
     tts.say('nope');
     expect(f.spoken).toHaveLength(1);
   });
