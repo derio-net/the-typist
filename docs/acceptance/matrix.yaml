@@ -88,8 +88,9 @@ rows:
       - the-typist:tests/schema/parse-list.test.ts
       - the-typist:tests/schema/list.test.ts
       - the-typist:tests/schema/record.test.ts
-    status: not-implemented
-    notes: ''
+    status: skipped
+    notes: Verified by vitest unit tests and the Playwright smoke; the suite runs in
+      the Pages workflow on main, not on PRs, so the row is not ci.
   - id: record-ships
     capability: Gameplay
     acceptance: Each Record enters play as a mothership showing its display form and
