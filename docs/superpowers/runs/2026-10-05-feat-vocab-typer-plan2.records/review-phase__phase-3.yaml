@@ -1,0 +1,170 @@
+schema_version: 7
+run: 2026-10-05-feat-vocab-typer-plan2
+step: review-phase
+item: phase/3
+outcome: done
+journal:
+- kind: finding
+  id: p3-r1
+  phase: 3
+  review_scope: in
+  title: Controller had no guard against duplicate resolved events; a test codified double grading
+  body: 'Controller had no guard against duplicate resolved events; a test codified double grading
+
+    '
+- kind: finding
+  id: p3-r2
+  phase: 3
+  review_scope: in
+  title: openStores hangs forever if indexedDB.open never settles
+  body: 'openStores hangs forever if indexedDB.open never settles
+
+    '
+- kind: finding
+  id: p3-r3
+  phase: 3
+  review_scope: in
+  title: Store write failures swallowed silently
+  body: 'Store write failures swallowed silently
+
+    '
+- kind: finding
+  id: p3-r4
+  phase: 3
+  review_scope: in
+  title: Store keys collide when ids contain ':'; all() leaks other lists' cards
+  body: 'Store keys collide when ids contain '':''; all() leaks other lists'' cards
+
+    '
+- kind: finding
+  id: p3-r5
+  phase: 3
+  review_scope: in
+  title: Summary emitted before queued grade writes land
+  body: 'Summary emitted before queued grade writes land
+
+    '
+- kind: finding
+  id: p3-r6
+  phase: 3
+  review_scope: in
+  title: now read at write time, not resolve time
+  body: 'now read at write time, not resolve time
+
+    '
+- kind: finding
+  id: p3-r7
+  phase: 3
+  review_scope: in
+  title: put and bumpNew in separate transactions
+  body: 'put and bumpNew in separate transactions
+
+    '
+- kind: finding
+  id: p3-r8
+  phase: 3
+  review_scope: in
+  title: Real-World controller test dropped advance() events
+  body: 'Real-World controller test dropped advance() events
+
+    '
+- kind: finding
+  id: p3-r9
+  phase: 3
+  review_scope: in
+  title: ControllerOptions.mode unused
+  body: 'ControllerOptions.mode unused
+
+    '
+- kind: finding
+  id: p3-r10
+  phase: 3
+  review_scope: in
+  title: 'start() unguarded: empty waves crash, re-start keeps stale counts'
+  body: 'start() unguarded: empty waves crash, re-start keeps stale counts
+
+    '
+- kind: finding
+  id: p3-r11
+  phase: 3
+  review_scope: in
+  title: buildStudy copied arrays per push and recomputed overdue in the comparator
+  body: 'buildStudy copied arrays per push and recomputed overdue in the comparator
+
+    '
+- kind: finding
+  id: p3-r12
+  phase: 3
+  review_scope: in
+  title: openStores read globalThis.indexedDB outside its try
+  body: 'openStores read globalThis.indexedDB outside its try
+
+    '
+- kind: finding
+  id: p3-r13
+  phase: 3
+  review_scope: in
+  title: Summary accuracy and chars/s skewed by escaped ships and activeMs-0 records
+  body: 'Summary accuracy and chars/s skewed by escaped ships and activeMs-0 records
+
+    '
+- kind: review
+  id: p3-review
+  phase: 3
+  title: 'phase 3 code review: 3 important and 10 minor findings, all fixed'
+  body: 'Independent reviewer read fd3fb02..224b933 (R1-R4, R10 storage fallback) and ran npm test. Important: p3-r1 duplicate
+    grading, p3-r2 open hang, p3-r3 silent write failures; Minor p3-r4..p3-r13. All in scope and fixed in 9f02190, 8402713
+    and ffa42cd, with red-first tests where testable; the suite (387 tests) and the build are green.
+
+    '
+resolves:
+- id: p3-r1
+  state: fixed
+  body: '8402713: per-session Set of graded ids; the test is rewritten (a repeat gives seen 1, reps 1) plus a pre-seeded-card-is-not-new
+    test; seen red.'
+- id: p3-r2
+  state: fixed
+  body: '9f02190: open+probe raced against a 2000 ms timeout (injectable) with memory fallback; tests for a never-settling
+    open and an async onerror.'
+- id: p3-r3
+  state: fixed
+  body: '8402713: the queue continues; the controller counts writeErrors, emits storage-error once, and the summary carries
+    writeErrors; test with a rejecting store, seen red.'
+- id: p3-r4
+  state: fixed
+  body: '9f02190: IDB array keys [l,r] and [''new'',l,day], all() via IDBKeyRange.bound; memory store keys on JSON of the
+    same arrays; contract test on both stores, seen red.'
+- id: p3-r5
+  state: fixed
+  body: '8402713: the summary emit is chained onto the write queue; a test reads the store inside the summary listener, seen
+    red.'
+- id: p3-r6
+  state: fixed
+  body: '8402713: now captured in onResolved and passed to the write; midnight test seen red.'
+- id: p3-r7
+  state: fixed
+  body: '9f02190/8402713: putGraded writes the card and the meta bump in one readwrite transaction (both stores); contract
+    test seen red.'
+- id: p3-r8
+  state: fixed
+  body: '8402713: every advance/typeChar step''s events are fed to the controller (it was green before the change).'
+- id: p3-r9
+  state: fixed
+  body: '8402713: mode labels the summary (summary.mode), asserted in the study test.'
+- id: p3-r10
+  state: fixed
+  body: '8402713: start() throws on no waves, on a second call and after the session ended; seen red.'
+- id: p3-r11
+  state: fixed
+  body: 'ffa42cd: in-place push and oldest due computed once per category; existing build tests green before and after.'
+- id: p3-r12
+  state: fixed
+  body: '9f02190: read inside the try; a throwing-getter test falls back to memory, seen red.'
+- id: p3-r13
+  state: fixed
+  body: '8402713: accuracy over non-escaped records; chars/s over non-escaped records with activeMs > 0; definitions in a
+    doc comment; seen red.'
+evidence:
+  review: p3-review
+  reviewer: aaafef1442c8d0abb
+  model: claude-opus-5-5
