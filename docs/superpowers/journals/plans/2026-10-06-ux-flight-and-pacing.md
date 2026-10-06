@@ -233,3 +233,80 @@ the panel report helper serves both Export and Import; the app functions are sin
 ### no-refactor-p3-t6 · discovery · no-refactor-because P3.T6 (phase 3)
 
 capture script, matrix and docs only; no code to clean.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r1 created=2026-10-06T17:46:48+00:00 phase=3 state=open review_scope=in -->
+### p3-r1 · finding [open] (reviewer: in scope) · Card schema accepts nonsense FSRS values and a future last_review; a corrupt card permanently wins merges (phase 3)
+
+portable.ts:26-38. stability -5 with last_review 115 days ahead imported and replaced good progress; the loose-schema mutant survived.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r2 created=2026-10-06T17:46:48+00:00 phase=3 state=open review_scope=in -->
+### p3-r2 · finding [open] (reviewer: in scope) · A Settings re-render detaches the transfer status, so an in-flight result is lost (phase 3)
+
+app.ts:137,157 (requestPersistence and tts onChange re-render).
+
+<!-- fr:journal kind=finding scope=plan id=p3-r3 created=2026-10-06T17:46:48+00:00 phase=3 state=open review_scope=in -->
+### p3-r3 · finding [open] (reviewer: in scope) · importAll does one awaited get per card; 100k cards take 34 s with no busy state (phase 3)
+
+store.ts:229.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r4 created=2026-10-06T17:46:48+00:00 phase=3 state=open review_scope=in -->
+### p3-r4 · finding [open] (reviewer: in scope) · Duplicate entries in a file make the IDB and memory stores diverge (phase 3)
+
+store.ts:100 vs :229.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r5 created=2026-10-06T17:46:48+00:00 phase=3 state=open review_scope=in -->
+### p3-r5 · finding [open] (reviewer: in scope) · persisted() is skipped when persist() throws (phase 3)
+
+app.ts:131.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r6 created=2026-10-06T17:46:48+00:00 phase=3 state=open review_scope=in -->
+### p3-r6 · finding [open] (reviewer: in scope) · No test that the file input resets for re-choosing the same file (phase 3)
+
+settings.ts:99; the picker.value mutant survived.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r7 created=2026-10-06T17:46:48+00:00 phase=3 state=open review_scope=in -->
+### p3-r7 · finding [open] (reviewer: in scope) · E2E round trip checks only keys, not values (phase 3)
+
+tests/e2e/smoke.spec.ts R10 block.
+
+<!-- fr:journal kind=review scope=plan id=p3-review-1 created=2026-10-06T17:46:48+00:00 phase=3 -->
+### p3-review-1 · review · Phase 3 review (6ad1c14^..d71e975): 7 findings, all in scope, all fixed (phase 3)
+
+The reviewer was an independent general-purpose agent on opus. It checked R9–R10, with data safety first: validation runs before any write; the IDB import is one transaction awaiting only IDB requests; the pace is saved after the commit; ties keep the local card; dates round-trip in real Chromium; there is no injection or prototype pollution; and Export/Import are title-only. The suite passed 602/602 and the build and e2e passed. It ran 25 mutants on a copy; 23 were killed (survivors M8 and M23). It took 14 fresh shots covering all 7 declared names plus the limits: non-JSON, empty, future-version, injection, __proto__ and a 100k-card file at 390 px.
+Findings p3-r1 (Important) and p3-r2 to p3-r7 (Minor) are all in scope. The fixes are 23568dc (r1, r4), a4bc6b6 and b7da34c (r2, r3, r5, r6) and ab932fa (r7), each with a red-then-green test. After the fixes the suite passes 625/625 (scratchpad/p3-fix-suite.log), and the build and e2e pass. One residual: the runTransfer busy guard is untested, but it is redundant with the disabled buttons, which are tested.
+Declined to judge: Export/Import in memory mode; error wording; empty-file wording; cross-device clock skew; the Firefox persist prompt; the memory line duplicating the banner.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r1-resolved created=2026-10-06T17:46:48+00:00 phase=3 state=fixed resolves=p3-r1 -->
+### p3-r1-resolved · finding [fixed] · resolves p3-r1: Card schema accepts nonsense FSRS values and a future last_review; a corrupt card permanently wins merges (phase 3)
+
+23568dc: bounded FSRS fields, int counters, state 0..3; last_review must be at most exportedAt + 1 day, and exportedAt at most now + 1 day; a strict-schema extra-key test kills the mutant.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r2-resolved created=2026-10-06T17:46:48+00:00 phase=3 state=fixed resolves=p3-r2 -->
+### p3-r2-resolved · finding [fixed] · resolves p3-r2: A Settings re-render detaches the transfer status, so an in-flight result is lost (phase 3)
+
+b7da34c: the app owns the transfer state, so a re-render keeps Importing… and the result.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r3-resolved created=2026-10-06T17:46:48+00:00 phase=3 state=fixed resolves=p3-r3 -->
+### p3-r3-resolved · finding [fixed] · resolves p3-r3: importAll does one awaited get per card; 100k cards take 34 s with no busy state (phase 3)
+
+a4bc6b6: getAll/getAllKeys in the same transaction, with a test asserting no per-card get. b7da34c: the busy state, disabled buttons and a 50 MB cap.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r4-resolved created=2026-10-06T17:46:48+00:00 phase=3 state=fixed resolves=p3-r4 -->
+### p3-r4-resolved · finding [fixed] · resolves p3-r4: Duplicate entries in a file make the IDB and memory stores diverge (phase 3)
+
+23568dc: parseProgress deduplicates (latest last_review, max count); both stores give the same result.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r5-resolved created=2026-10-06T17:46:48+00:00 phase=3 state=fixed resolves=p3-r5 -->
+### p3-r5-resolved · finding [fixed] · resolves p3-r5: persisted() is skipped when persist() throws (phase 3)
+
+b7da34c: persisted() runs in its own try block.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r6-resolved created=2026-10-06T17:46:48+00:00 phase=3 state=fixed resolves=p3-r6 -->
+### p3-r6-resolved · finding [fixed] · resolves p3-r6: No test that the file input resets for re-choosing the same file (phase 3)
+
+b7da34c: a same-file-twice panel test kills the picker.value mutant.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r7-resolved created=2026-10-06T17:46:48+00:00 phase=3 state=fixed resolves=p3-r7 -->
+### p3-r7-resolved · finding [fixed] · resolves p3-r7: E2E round trip checks only keys, not values (phase 3)
+
+ab932fa: the e2e asserts Date instances and counter values in IndexedDB after the import.
