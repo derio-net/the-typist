@@ -1,0 +1,33 @@
+schema_version: 7
+run: 2026-10-06-feat-ux-flight-and-pacing
+step: deliver
+outcome: done
+journal: []
+resolves: []
+emitted:
+  pr: https://github.com/derio-net/the-typist/pull/10
+evidence:
+  tests: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/full-suite.log
+visual:
+  - row: stack-flight
+    shots:
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/high-wreck.png, shows: [stack-apex-at-hud-from-high-wreck, longest-sentence-highest, forms-ship-lowest]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/low-wreck.png, shows: [stack-apex-at-hud-from-low-wreck, longest-sentence-highest, forms-ship-lowest]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/no-forms.png, shows: [record-without-forms]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/no-examples.png, shows: [record-without-examples]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/seq-2-mid-kick.png, shows: [destroy-mothership-stack-flies-to-top]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/seq-3-apex.png, shows: [destroy-mothership-stack-flies-to-top]}
+  - row: voice-choice
+    shots:
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/voice-picker-ranked-open.png, shows: [voice-picker-automatic-first-ranked]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/voice-install-hint.png, shows: [voice-install-hint]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/pick-voice-after-test.png, shows: [pick-voice-and-test]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/no-german-voice-picker-disabled.png, shows: [no-german-voice-picker-disabled]}
+  - row: progress-portability
+    shots:
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/p3/storage-line-protected.png, shows: [storage-line-protected]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/p3/storage-line-may-be-cleared.png, shows: [storage-line-may-be-cleared]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/p3/storage-line-memory.png, shows: [storage-line-memory]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/p3/import-success-message.png, shows: [import-success-message, import-progress-file]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/p3/import-invalid-file-error.png, shows: [import-invalid-file-error]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/deliver-shots/p3/export-progress-download.png, shows: [export-progress-download]}
