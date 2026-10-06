@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createTts } from '../../src/platform/tts';
 
-type Voice = { lang: string; name: string };
+type Voice = { lang: string; name: string; voiceURI: string };
 class Utt {
   lang = '';
   voice: Voice | null = null;
@@ -32,9 +32,12 @@ function fakeSynth(initial: Voice[]) {
     },
   };
 }
-const EN = { lang: 'en-US', name: 'Sam' };
-const DE = { lang: 'de-DE', name: 'Anna' };
-const DE2 = { lang: 'de-AT', name: 'Max' };
+const EN = { lang: 'en-US', name: 'Sam', voiceURI: 'u:sam' };
+const DE = { lang: 'de-DE', name: 'Anna', voiceURI: 'u:anna' };
+const DE2 = { lang: 'de-AT', name: 'Max', voiceURI: 'u:max' };
+const EDDY = { lang: 'de-DE', name: 'Eddy', voiceURI: 'u:eddy' };
+const GOOGLE = { lang: 'de-DE', name: 'Google Deutsch', voiceURI: 'u:google' };
+const PREMIUM = { lang: 'de-DE', name: 'Zoe Premium', voiceURI: 'u:zoe' };
 
 beforeEach(() => vi.useFakeTimers());
 afterEach(() => vi.useRealTimers());
@@ -137,5 +140,99 @@ describe('tts (R6, R10)', () => {
     expect(seen.at(-1)).toBe(true);
     tts.say('Haus');
     expect(f.spoken[0].voice).toBe(DE);
+  });
+
+  it('voices() lists the ranked German voices as { uri, name, lang }; the default is the top one (R7)', async () => {
+    const f = fakeSynth([EN, EDDY, DE2, DE]);
+    const tts = createTts({ synth: f.synth, Utterance: Utt as never });
+    await tts.ready;
+    expect(tts.voices()).toEqual([
+      { uri: 'u:anna', name: 'Anna', lang: 'de-DE' },
+      { uri: 'u:max', name: 'Max', lang: 'de-AT' },
+      { uri: 'u:eddy', name: 'Eddy', lang: 'de-DE' },
+    ]);
+    tts.say('Haus');
+    expect(f.spoken[0].voice).toBe(DE);
+  });
+
+  it('setVoice selects a voice; an unknown uri or null falls back to the top voice (R8)', async () => {
+    const f = fakeSynth([DE, DE2, EDDY]);
+    const tts = createTts({ synth: f.synth, Utterance: Utt as never });
+    await tts.ready;
+    tts.setVoice('u:eddy');
+    tts.say('a');
+    expect(f.spoken.at(-1)!.voice).toBe(EDDY);
+    tts.setVoice('u:gone');
+    tts.say('b');
+    expect(f.spoken.at(-1)!.voice).toBe(DE);
+    tts.setVoice('u:max');
+    tts.setVoice(null);
+    tts.say('c');
+    expect(f.spoken.at(-1)!.voice).toBe(DE);
+    tts.setVoice('u:max');
+    tts.say('d');
+    expect(f.spoken.at(-1)!.voice).toBe(DE2);
+    expect(f.spoken.at(-1)!.lang).toBe('de-AT');
+  });
+
+  it('a chosen voice that disappears falls back to the top voice (R8)', async () => {
+    const f = fakeSynth([DE, EDDY]);
+    const tts = createTts({ synth: f.synth, Utterance: Utt as never });
+    await tts.ready;
+    tts.setVoice('u:eddy');
+    f.setVoices([DE]);
+    tts.say('x');
+    expect(f.spoken.at(-1)!.voice).toBe(DE);
+  });
+
+  it('preview speaks while disabled, in the selected voice (R8)', async () => {
+    const f = fakeSynth([DE, EDDY]);
+    const tts = createTts({ synth: f.synth, Utterance: Utt as never });
+    await tts.ready;
+    tts.setEnabled(false);
+    tts.setVoice('u:eddy');
+    tts.preview('Guten Tag');
+    expect(f.calls).toEqual(['cancel', 'speak']);
+    expect(f.spoken[0].text).toBe('Guten Tag');
+    expect(f.spoken[0].voice).toBe(EDDY);
+    tts.say('nope');
+    expect(f.spoken).toHaveLength(1);
+  });
+
+  it('preview does nothing and never throws without a German voice (R8)', async () => {
+    const f = fakeSynth([EN]);
+    const tts = createTts({ synth: f.synth, Utterance: Utt as never });
+    vi.advanceTimersByTime(1600);
+    await tts.ready;
+    expect(() => tts.preview('x')).not.toThrow();
+    expect(f.spoken).toHaveLength(0);
+    expect(tts.voices()).toEqual([]);
+  });
+
+  it('a late voiceschanged adding Google Deutsch re-ranks, moves the automatic choice and notifies, even when a German voice was there from the start (R7)', async () => {
+    const f = fakeSynth([DE]);
+    const tts = createTts({ synth: f.synth, Utterance: Utt as never });
+    await tts.ready;
+    let changes = 0;
+    tts.onChange(() => changes++);
+    f.setVoices([DE, GOOGLE]);
+    expect(changes).toBe(1);
+    expect(tts.voices().map((x) => x.name)).toEqual(['Google Deutsch', 'Anna']);
+    tts.say('x');
+    expect(f.spoken.at(-1)!.voice).toBe(GOOGLE);
+    f.setVoices([DE, GOOGLE, PREMIUM]);
+    expect(changes).toBe(2);
+    tts.say('y');
+    expect(f.spoken.at(-1)!.voice).toBe(PREMIUM);
+  });
+
+  it('voiceschanged with an unchanged list does not notify (R7)', async () => {
+    const f = fakeSynth([DE]);
+    const tts = createTts({ synth: f.synth, Utterance: Utt as never });
+    await tts.ready;
+    let changes = 0;
+    tts.onChange(() => changes++);
+    f.setVoices([DE]);
+    expect(changes).toBe(0);
   });
 });
