@@ -156,3 +156,40 @@ the panel additions are one block; the no-voice reason was moved under the picke
 ### no-refactor-p2-t6 · discovery · no-refactor-because P2.T6 (phase 2)
 
 matrix, docs and capture only; no code to clean.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r1 created=2026-10-06T17:19:13+00:00 phase=2 state=open review_scope=in -->
+### p2-r1 · finding [open] (reviewer: in scope) · Voice select has no width constraint; long (real Edge) names push Test off the panel; select unstyled (phase 2)
+
+src/ui/panels/settings.ts:50,67. At 1000/1280px Test wraps and spills; at 390px Test sits at x=483, off-screen.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r2 created=2026-10-06T17:19:13+00:00 phase=2 state=open review_scope=in -->
+### p2-r2 · finding [open] (reviewer: in scope) · The 'saved voice gone shows Automatic' test also passes a blank select (phase 2)
+
+tests/ui/panels.test.ts:223 asserts value===''; the mutant pick.value = s.voice ?? '' survives.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r3 created=2026-10-06T17:19:13+00:00 phase=2 state=open review_scope=in -->
+### p2-r3 · finding [open] (reviewer: in scope) · Quality ranking reads only name (phase 2)
+
+src/platform/voices.ts:8,12-17. Apple premium/enhanced voiceURIs carry the marker even when the name is localized.
+
+<!-- fr:journal kind=review scope=plan id=p2-review-1 created=2026-10-06T17:19:13+00:00 phase=2 -->
+### p2-review-1 · review · Phase 2 review (311a9f8^..c0a016b): 3 findings, all in scope, all fixed (phase 2)
+
+The reviewer was an independent general-purpose agent on opus. It checked R6–R8, ran the suite (550/550) and the build, and ran 17 mutants on a copy; 16 were killed. It checked the real-browser concerns: Chrome's late voiceschanged, voiceURI stability across a reload, Safari's fallback timeout, the open-panel refresh, Test while unavailable, and the speech cut-off, which R6 allows. It drove the UI itself and took 13 fresh shots, covering all four voice-choice names plus the limits.
+Findings: p2-r1 (Important), p2-r2 and p2-r3 (Minor), all in scope. The fixes are 496dedf (r1: voiceLabel, styled and width-constrained select, wrapping row; re-captured at 1280 and 390 px with no horizontal scroll), 8559446 (r2; the mutant now killed) and 04dcb07 (r3). After the fixes the suite passes 553/553 (scratchpad/p2-fix-suite.log), and the build passes.
+Declined to judge: speech over the between-wave panel (predates phase 2); the reason shown twice (an R8 design choice); duplicate voiceURIs (speculative); focus reset on re-render (the spec asks for the refresh); the chunk-size warning.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r1-resolved created=2026-10-06T17:19:13+00:00 phase=2 state=fixed resolves=p2-r1 -->
+### p2-r1-resolved · finding [fixed] · resolves p2-r1: Voice select has no width constraint; long (real Edge) names push Test off the panel; select unstyled (phase 2)
+
+496dedf: voiceLabel drops a redundant (lang) suffix; the .panel select is styled with min-width 0 / max-width 100% / flex 1; the voice row wraps and Test is nowrap. The tests failed first. Shots at 1280 and 390 px show no overflow.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r2-resolved created=2026-10-06T17:19:13+00:00 phase=2 state=fixed resolves=p2-r2 -->
+### p2-r2-resolved · finding [fixed] · resolves p2-r2: The 'saved voice gone shows Automatic' test also passes a blank select (phase 2)
+
+8559446: asserts selectedIndex 0 and the option text 'Automatic (best available)'; the mutant now fails.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r3-resolved created=2026-10-06T17:19:13+00:00 phase=2 state=fixed resolves=p2-r3 -->
+### p2-r3-resolved · finding [fixed] · resolves p2-r3: Quality ranking reads only name (phase 2)
+
+04dcb07: the quality marker is also matched against voiceURI; the test failed first.
