@@ -11,6 +11,8 @@ export interface Settings {
   music: boolean;
   /** New Records introduced per day by Study, 1-50. */
   newCap: number;
+  /** The chosen speech voice's uri; null means the best available German voice. */
+  voice: string | null;
 }
 
 export type SettingsPatch = Partial<Omit<Settings, 'aids'>> & { aids?: Partial<Aids> };
@@ -24,6 +26,7 @@ export const DEFAULT_SETTINGS: Settings = {
   sfx: true,
   music: true,
   newCap: 10,
+  voice: null,
 };
 
 export interface SettingsStore {
@@ -48,6 +51,7 @@ function merge(base: Settings, raw: unknown): Settings {
   if (typeof r.sfx === 'boolean') out.sfx = r.sfx;
   if (typeof r.music === 'boolean') out.music = r.music;
   if (typeof r.newCap === 'number') out.newCap = clampCap(r.newCap);
+  if (typeof r.voice === 'string' || r.voice === null) out.voice = r.voice;
   if (typeof r.aids === 'object' && r.aids !== null) {
     const a = r.aids as Record<string, unknown>;
     for (const k of Object.keys(out.aids) as (keyof Aids)[]) if (typeof a[k] === 'boolean') out.aids[k] = a[k];

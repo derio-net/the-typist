@@ -46,6 +46,9 @@ let ttsStatus: { available: boolean; reason?: string };
 let audioOpts: { sfx: boolean; music: boolean }[];
 let unlocks: number;
 let stops: string[];
+let voiceSets: (string | null)[];
+let ttsVoices: { uri: string; name: string; lang: string }[];
+let previews: string[];
 let ttsListeners: ((s: { available: boolean; reason?: string }) => void)[];
 
 const fakeTts = (): Tts => ({
@@ -53,6 +56,9 @@ const fakeTts = (): Tts => ({
   ready: Promise.resolve(ttsStatus),
   setEnabled: (on) => void ttsOn.push(on),
   say: (t) => void said.push(t),
+  preview: (t) => void previews.push(t),
+  voices: () => ttsVoices,
+  setVoice: (u) => void voiceSets.push(u),
   stop: () => void stops.push('stop'),
   onChange: (cb) => {
     ttsListeners.push(cb);
@@ -125,6 +131,9 @@ beforeEach(async () => {
   persistent = true;
   storage = fakeStorage();
   said = [];
+  voiceSets = [];
+  previews = [];
+  ttsVoices = [{ uri: 'u:anna', name: 'Anna', lang: 'de-DE' }, { uri: 'u:eddy', name: 'Eddy', lang: 'de-DE' }];
   played = [];
   music = [];
   ttsOn = [];
@@ -547,6 +556,36 @@ describe('learning aids and audio (R6, R7, R10)', () => {
     expect(destroyed).toBeGreaterThan(2);
     expect(said.filter((t) => t === 'A.').length).toBeGreaterThanOrEqual(2);
     expect(said).toHaveLength(destroyed);
+  });
+
+  it('applies the saved voice at startup and after a settings change (R8)', async () => {
+    app.dispose();
+    storage.setItem('typist.settings', JSON.stringify({ voice: 'u:eddy' }));
+    voiceSets = [];
+    await boot();
+    expect(voiceSets).toEqual(['u:eddy']);
+    esc();
+    click('Settings');
+    const pick = root.querySelector<HTMLSelectElement>('[data-setting="voice"]')!;
+    expect(pick.value).toBe('u:eddy');
+    pick.value = 'u:anna';
+    pick.dispatchEvent(new Event('change'));
+    expect(voiceSets.at(-1)).toBe('u:anna');
+    pick.value = '';
+    pick.dispatchEvent(new Event('change'));
+    expect(voiceSets.at(-1)).toBeNull();
+  });
+
+  it('the Test button previews the sample sentence, and the voice list refreshes when it changes (R8)', async () => {
+    click('Settings');
+    click('Test voice');
+    expect(previews).toEqual(['Guten Tag! So klingt diese Stimme.']);
+    const options = () => [...root.querySelectorAll<HTMLOptionElement>('[data-setting="voice"] option')].map((o) => o.textContent);
+    expect(options()).toHaveLength(3);
+    ttsVoices = [{ uri: 'u:g', name: 'Google Deutsch', lang: 'de-DE' }, ...ttsVoices];
+    ttsListeners.forEach((cb) => cb(ttsStatus));
+    expect(options()).toHaveLength(4);
+    expect(options()[1]).toContain('Google Deutsch');
   });
 
   it('TTS is told the setting before each utterance; off means the toggle is passed on', async () => {

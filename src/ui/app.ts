@@ -62,6 +62,7 @@ export async function startApp(deps: AppDeps): Promise<App> {
   const loaded: VocabList[] = [];
   const settings = deps.settings ?? createSettings();
   const tts = deps.tts ?? createTts();
+  tts.setVoice(settings.get().voice);
   const audio = deps.audio ?? createAudio();
   const stores = deps.stores ?? (await openStores());
 
@@ -314,13 +315,15 @@ export async function startApp(deps: AppDeps): Promise<App> {
   function openSettings(from: AppState) {
     settingsReturn = from;
     show('settings', () =>
-      settingsPanel(root, { settings: settings.get(), ttsUnavailable: tts.status().available ? undefined : tts.status().reason }, {
+      settingsPanel(root, { settings: settings.get(), voices: tts.voices(), ttsUnavailable: tts.status().available ? undefined : tts.status().reason }, {
         onChange: (patch) => {
           const next = settings.set(patch);
+          tts.setVoice(next.voice);
           syncAudio();
           if (!settings.persistent) warn();
           return next;
         },
+        onTestVoice: (text) => tts.preview(text),
         onClose: closeSettings,
       }));
   }

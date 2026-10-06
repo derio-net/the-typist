@@ -205,6 +205,53 @@ describe('panels (R5, R8, R10)', () => {
     expect(p.el.textContent).toContain('no German voice');
   });
 
+  it('settings lists Automatic first, then the ranked voices, with the saved one selected (R8)', () => {
+    const voices = [{ uri: 'u:a', name: 'Anna', lang: 'de-DE' }, { uri: 'u:m', name: 'Max', lang: 'de-AT' }];
+    const onChange = vi.fn();
+    const p = settingsPanel(root, { settings: { ...DEFAULT_SETTINGS, voice: 'u:m' }, voices }, { onChange, onClose: vi.fn(), onTestVoice: vi.fn() });
+    const sel = p.el.querySelector<HTMLSelectElement>('select[data-setting="voice"]')!;
+    expect([...sel.options].map((o) => o.textContent)).toEqual(['Automatic (best available)', 'Anna (de-DE)', 'Max (de-AT)']);
+    expect(sel.value).toBe('u:m');
+    sel.value = 'u:a';
+    sel.dispatchEvent(new Event('change'));
+    expect(onChange).toHaveBeenLastCalledWith({ voice: 'u:a' });
+    sel.value = '';
+    sel.dispatchEvent(new Event('change'));
+    expect(onChange).toHaveBeenLastCalledWith({ voice: null });
+  });
+
+  it('a saved voice that is gone shows Automatic (R8)', () => {
+    const p = settingsPanel(root, { settings: { ...DEFAULT_SETTINGS, voice: 'u:gone' }, voices: [{ uri: 'u:a', name: 'Anna', lang: 'de-DE' }] }, { onChange: vi.fn(), onClose: vi.fn(), onTestVoice: vi.fn() });
+    expect(p.el.querySelector<HTMLSelectElement>('[data-setting="voice"]')!.value).toBe('');
+  });
+
+  it('the Test button hands the sample sentence to the preview handler (R8)', () => {
+    const onTestVoice = vi.fn();
+    const p = settingsPanel(root, { settings: DEFAULT_SETTINGS, voices: [{ uri: 'u:a', name: 'Anna', lang: 'de-DE' }] }, { onChange: vi.fn(), onClose: vi.fn(), onTestVoice });
+    p.el.querySelector<HTMLButtonElement>('[data-action="test-voice"]')!.click();
+    expect(onTestVoice).toHaveBeenCalledWith('Guten Tag! So klingt diese Stimme.');
+  });
+
+  it('the hint names macOS, Windows and Chrome/Edge (R8)', () => {
+    const p = settingsPanel(root, { settings: DEFAULT_SETTINGS, voices: [] }, { onChange: vi.fn(), onClose: vi.fn(), onTestVoice: vi.fn() });
+    const hint = p.el.querySelector('[data-slot="voice-hint"]')!.textContent!;
+    expect(hint).toMatch(/macOS/);
+    expect(hint).toMatch(/Windows/);
+    expect(hint).toMatch(/Chrome/);
+    expect(hint).toMatch(/Edge/);
+  });
+
+  it('with no German voice the picker and Test are disabled and the reason is shown (R8)', () => {
+    const onTestVoice = vi.fn();
+    const p = settingsPanel(root, { settings: DEFAULT_SETTINGS, voices: [], ttsUnavailable: 'no German voice installed on this device' }, { onChange: vi.fn(), onClose: vi.fn(), onTestVoice });
+    expect(p.el.querySelector<HTMLSelectElement>('[data-setting="voice"]')!.disabled).toBe(true);
+    const test = p.el.querySelector<HTMLButtonElement>('[data-action="test-voice"]')!;
+    expect(test.disabled).toBe(true);
+    test.click();
+    expect(onTestVoice).not.toHaveBeenCalled();
+    expect(p.el.textContent).toContain('no German voice installed');
+  });
+
   it('banner shows the storage warning and closes', () => {
     const p = bannerPanel(root, { message: 'Progress and settings will not be saved.' });
     expect(root.textContent).toContain('will not be saved');
