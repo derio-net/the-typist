@@ -8,7 +8,8 @@
     "build": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json && vite build",
     "test": "vitest run",
     "typist": "tsx tools/cli.ts",
-    "sprites": "tsx tools/sprites/slice.ts"
+    "sprites": "tsx tools/sprites/slice.ts",
+    "e2e": "playwright test"
   },
   "dependencies": {
     "ts-fsrs": "^5.4.2",
@@ -16,6 +17,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@types/node": "^26.6.4",
     "@types/pngjs": "^6.0.5",
     "fake-indexeddb": "^6.2.5",
