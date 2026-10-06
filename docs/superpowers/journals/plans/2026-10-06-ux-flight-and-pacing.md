@@ -371,3 +371,8 @@ Filed at closeout as #12.
 ### p3-r11-resolved-2 · finding [fixed] · resolves p3-r11: The bundled-music test resolves paths against the cwd
 
 Fixed in 32478bc (merged in #10): the bundled-music test resolves paths via import.meta.url, verified with --root from /tmp.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r11-resolved-3 created=2026-10-06T19:35:46+00:00 state=fixed resolves=p3-r11 answered_by=operator -->
+### p3-r11-resolved-3 · finding [fixed] · resolves p3-r11: The bundled-music test resolves paths against the cwd
+
+Operator authorized at closeout: fixed in 32478bc (merged in #10), the test resolves paths via import.meta.url.
