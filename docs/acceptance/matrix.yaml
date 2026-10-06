@@ -35,9 +35,9 @@ rows:
     acceptance: A YAML list of typed Records is accepted only if it satisfies the schema
       and per-type example rules; violations are reported per record.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R1
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R2
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R3
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R1
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R2
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R3
     levels:
       unit:
       - the-typist:tests/schema/record.test.ts
@@ -54,8 +54,10 @@ rows:
     acceptance: Repo lists are validated at build and playable on the hosted site, and
       a player can load their own YAML list, which is rejected with errors if invalid.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R11
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R12
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R11
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R12
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R8
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R18
     levels: {}
     status: not-implemented
     notes: ''
@@ -80,7 +82,7 @@ rows:
     acceptance: Each Record enters play as a mothership showing its display form and
       gloss, which on destruction releases a forms ship and one ship per example sentence.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R4
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R4
     levels:
       unit:
       - the-typist:tests/engine/world.test.ts
@@ -99,8 +101,8 @@ rows:
     acceptance: Typing locks onto one ship, requires exact case and umlauts while accepting
       ae/oe/ue/ss and Mac dead-key input, and does not require final punctuation.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R5
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R6
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R5
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R6
     levels:
       unit:
       - the-typist:tests/engine/typing.test.ts
@@ -114,7 +116,8 @@ rows:
     acceptance: The game stays playable when nothing is due, when browser storage is
       unavailable, or when no German voice exists, telling the player what is limited.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R13
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R13
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R10
     levels: {}
     status: not-implemented
     notes: Owed by plan 2 (same spec, built after the manual UX pass); marked post-merge
@@ -198,9 +201,12 @@ rows:
       free play covers a chosen category, and both reschedule Records via FSRS from
       typing performance.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R7
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R8
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R9
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R7
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R8
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R9
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R1
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R2
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R3
     levels: {}
     status: not-implemented
     notes: ''
@@ -209,7 +215,8 @@ rows:
     acceptance: Grammar chips, sentence translations, German TTS and post-wave recap
       cards are each available and individually switchable, and the choice persists.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R10
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R10
+    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R6
     levels: {}
     status: not-implemented
     notes: Owed by plan 2 (same spec, built after the manual UX pass); marked post-merge
@@ -229,7 +236,7 @@ rows:
       the structure skill, with unparseable lines resolved and categories derived or
       proposed.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R14
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R14
     levels:
       unit:
       - the-typist:tests/tools/parse-shapes.test.ts
@@ -243,7 +250,7 @@ rows:
     acceptance: The enrich skill turns raw Records into enriched ones that pass validation,
       in resumable batches, without ever marking them reviewed.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R15
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R15
     levels:
       unit:
       - the-typist:tests/tools/organise.test.ts
@@ -255,7 +262,7 @@ rows:
     acceptance: The game ships a validated, fully enriched list of the 1000 German B2
       seed words in their 20 categories.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md#R16
+    - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R16
     levels:
       unit:
       - the-typist:tests/seed.test.ts

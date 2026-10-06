@@ -83,10 +83,8 @@ tasks:
   steps:
   - id: P6.T5.S1
     text: |-
-      In `docs/acceptance/matrix.yaml`:
-      - Replace every `the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md` origin with `the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md`.
-      - Add plan-2 spec origins: `srs-sessions` gets `#R1 #R2 #R3`, `learning-aids` `#R6`, `degraded-states` `#R10`, `list-loading` `#R8 #R18`.
-      - For each row this plan built (srs-sessions, learning-aids, degraded-states, list-loading, session-screens, game-audio, play-feel, typing-edge-cases, list-errors-one-pass), add its unit and e2e test refs under `levels` and move `status` to `skipped` with `fr acceptance set-status <id> skipped --reason "<why>"`. The suite runs in the Pages workflow on main, not on PRs, so no row is `ci`.
+      In `docs/acceptance/matrix.yaml` (stale origins were already re-pointed and the plan-2 origins added at planning time):
+            - For each row this plan built (srs-sessions, learning-aids, degraded-states, list-loading, session-screens, game-audio, play-feel, typing-edge-cases, list-errors-one-pass), add its unit and e2e test refs under `levels` and move `status` to `skipped` with `fr acceptance set-status <id> skipped --reason "<why>"`. The suite runs in the Pages workflow on main, not on PRs, so no row is `ci`.
       - Keep `verify: post-merge` on `list-loading` (hosted site).
 
       Then run `fr acceptance report --deterministic` and `fr acceptance check` (expected: exit 0, no stale-ref warnings).

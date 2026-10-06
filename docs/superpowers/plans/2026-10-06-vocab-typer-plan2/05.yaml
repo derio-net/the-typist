@@ -60,7 +60,7 @@ tasks:
   - id: P5.T4.S1
     text: |-
       RED: `tests/platform/audio.test.ts` with a stub `AudioContext` and stub `fetch`:
-      - No context exists before `unlock()` (first keydown or click).
+      - No context exists before `unlock()` (first keydown or pointer press).
       - After unlocking, `play('hit')` creates an oscillator from the effect table, and each of `hit typo explode-small explode-big escape wave-clear mothership-enter` has an entry.
       - With SFX off, `play` is a no-op.
       - `HEAD music-game.mp3` returning 404 means no audio element and no error; a 200 creates a looping `<audio>` that plays during play, pauses on pause, and respects the music toggle.
