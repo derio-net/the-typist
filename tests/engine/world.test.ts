@@ -2,8 +2,10 @@ import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { hullExtent, sizes } from '../../src/layout/metrics';
 import { parseList, displayForm, formsText, type VocabRecord } from '../../src/schema';
+import { createPace, observe } from '../../src/engine/pace';
+import { requiredLength } from '../../src/engine/typing';
 import {
-  STEP_MS, WORLD, advance, defaultMeasure, placeStack, createWorld, shipBounds, shipSpeed, tick, typeChar, type World, type WorldEvent,
+  STEP_MS, WORLD, advance, defaultMeasure, placeStack, createWorld, shipBounds, budgetSpeed, kickApex, tick, typeChar, type World, type WorldEvent,
 } from '../../src/engine/world';
 
 const fixture = parseList(readFileSync('tests/fixtures/lists/two-records.yaml', 'utf8'));
@@ -63,17 +65,11 @@ describe('spawning', () => {
 });
 
 describe('movement', () => {
-  it('ships descend; longer texts slower (by the square root of length); speed scales per wave', () => {
-    expect(shipSpeed(48, 0)).toBeLessThan(shipSpeed(10, 0));
-    expect(shipSpeed(24, 0) / shipSpeed(48, 0)).toBeCloseTo(Math.SQRT2);
-    expect(shipSpeed(10, 0)).toBe(shipSpeed(12, 0));
-    expect(shipSpeed(10, 2)).toBeGreaterThan(shipSpeed(10, 0));
+  it('ships descend', () => {
     const w0 = createWorld([boerse]);
     const w1 = tick(w0);
     expect(w1.ships[0].y).toBeGreaterThan(w0.ships[0].y);
     expect(w1.time).toBeCloseTo(STEP_MS);
-    const fast = tick(createWorld([boerse], { wave: 3 }));
-    expect(fast.ships[0].y - w0.ships[0].y).toBeGreaterThan(w1.ships[0].y - w0.ships[0].y);
   });
 
   it('advance runs whole 60 Hz steps and keeps the remainder', () => {
@@ -268,17 +264,17 @@ describe('escapes (r13)', () => {
 describe('one record at a time, banded break-up', () => {
   const kids = (w: World) => w.ships.filter((s) => s.kind !== 'mothership');
   const burst = (seed: number) => typeText(createWorld([boerse, anlegen], { seed }), displayForm(boerse));
+  const lowBurst = (seed: number) => {
+    let w = createWorld([boerse, anlegen], { seed });
+    w = { ...w, ships: w.ships.map((s) => ({ ...s, y: 300 })) };
+    return typeText(w, w.ships[0].text);
+  };
   const bands = (w: World) =>
     kids(w).map(shipBounds).sort((a, b) => a.y0 - b.y0);
   const disjointRows = (w: World) => {
     const b = bands(w);
     for (let i = 1; i < b.length; i++) expect(b[i].y0).toBeGreaterThanOrEqual(b[i - 1].y1 - 1e-6);
   };
-
-  it('descends slower than before: a short mothership falls at the base speed, ≤ 21 px/s on wave 0', () => {
-    expect(WORLD.baseSpeed).toBeLessThanOrEqual(21);
-    expect(shipSpeed(5, 0)).toBe(WORLD.baseSpeed);
-  });
 
   it('only the first record\'s mothership is on screen at the start', () => {
     const w = createWorld([boerse, anlegen], { seed: 1 });
@@ -327,7 +323,7 @@ describe('one record at a time, banded break-up', () => {
   });
 
   it('children all share one speed and get a strong upward kick, without being pushed into the HUD', () => {
-    let w = burst(5);
+    let w = lowBurst(5);
     const before = kids(w);
     expect(new Set(before.map((k) => k.speed)).size).toBe(1);
     w = advance(w, 400);
@@ -509,15 +505,15 @@ describe('released rows clear the HUD and keep a gap (P2.T4)', () => {
     expect(last.y).toBeLessThanOrEqual(WORLD.playerY - last.speed * 20 + 1e-6);
     for (const k of kids) {
       expect(k.vy).toBeLessThanOrEqual(0);
-      expect(k.vy).toBeGreaterThan(-WORLD.burstKick);
     }
     expect(topOverTime(w)).toBeGreaterThanOrEqual(WORLD.minY - 1e-6);
   });
 });
 
 describe('placeStack', () => {
-  const rows = [{ above: 10, below: 10 }, { above: 12, below: 20 }, { above: 8, below: 8 }];
-  const base = { rows, wreckY: 300, speed: 20, minReactionS: 3 };
+  const rows = [{ above: 10, below: 10, chars: 30 }, { above: 12, below: 20, chars: 20 }, { above: 8, below: 8, chars: 8 }];
+  const pace = createPace();
+  const base = { rows, wreckY: 300, pace, minReactionS: 3 };
 
   it('spaces row centres by below + bandGap + above', () => {
     const { ys } = placeStack(base);
@@ -526,24 +522,163 @@ describe('placeStack', () => {
   });
 
   it('centres the stack on the wreck when nothing constrains it', () => {
-    const { ys, kick } = placeStack(base);
-    const top = ys[0] - 10;
-    const bottom = ys[2] + 8;
-    expect((top + bottom) / 2).toBeCloseTo(300, 6);
-    expect(kick).toBe(WORLD.burstKick);
+    const { ys } = placeStack(base);
+    expect((ys[0] - 10 + ys[2] + 8) / 2).toBeCloseTo(300, 6);
   });
 
-  it('keeps the apex hull top below the HUD', () => {
-    const { ys, kick } = placeStack({ ...base, wreckY: 60 });
-    expect(ys[0] - 10 - kick * WORLD.kickDecayS).toBeGreaterThanOrEqual(WORLD.minY - 1e-9);
+  it('solves the kick so the apex puts the top hull at the HUD, within 4 px and never above', () => {
+    for (const wreckY of [120, 300, 520]) {
+      const { ys, kick, speed } = placeStack({ ...base, wreckY });
+      expect(kick).toBeGreaterThan(0);
+      const top = ys[0] - 10 - kickApex(kick, speed);
+      expect(top).toBeGreaterThanOrEqual(WORLD.minY - 1e-6);
+      expect(top).toBeLessThanOrEqual(WORLD.minY + 4);
+    }
   });
 
-  it('reaction distance wins over the HUD: the kick is reduced, never negative', () => {
-    const { ys, kick } = placeStack({ ...base, minReactionS: 26 });
-    expect(ys[2]).toBeLessThanOrEqual(WORLD.playerY - 20 * 26 + 1e-9);
+  it('rise-0 floor: a wreck under the HUD keeps the stack below it with no kick', () => {
+    const { ys, kick } = placeStack({ ...base, wreckY: WORLD.minY + 14 });
+    expect(ys[0] - 10).toBeGreaterThanOrEqual(WORLD.minY - 1e-9);
+    expect(kick).toBe(0);
+  });
+
+  it('reaction distance wins over the HUD: the kick is 0 when the stack cannot fit', () => {
+    const { ys, speed, kick } = placeStack({ ...base, minReactionS: 26 });
+    expect(ys[2]).toBeLessThanOrEqual(WORLD.playerY - speed * 26 + 1e-6);
     expect(kick).toBeGreaterThanOrEqual(0);
-    expect(kick).toBeLessThan(WORLD.burstKick);
-    const huge = placeStack({ ...base, minReactionS: 1000 });
-    expect(huge.kick).toBe(0);
+    expect(placeStack({ ...base, minReactionS: 1000 }).kick).toBe(0);
+  });
+
+  it('takes the speed from the apex distances, bottom-up', () => {
+    const { ys, kick, speed } = placeStack(base);
+    const rise = kickApex(kick, speed);
+    const want = Math.min(...rows.map((_, i) => budgetSpeed(
+      WORLD.playerY - (ys[i] - rise), rows.slice(i).map((r) => r.chars), pace,
+    )));
+    expect(speed).toBeCloseTo(want, 3);
+  });
+});
+
+describe('stack order (R1)', () => {
+  const rec = (examples: string[]): VocabRecord => ({ ...anlegen, examples: examples.map((e) => ex(e)) });
+  const released = (r: VocabRecord) => {
+    const w = createWorld([r], { seed: 1 });
+    return typeText(w, w.ships[0].text);
+  };
+  const topToBottom = (w: World) => [...w.ships].sort((a, b) => a.y - b.y);
+  const s20 = 'a'.repeat(19) + '.';
+  const s45 = 'b'.repeat(44) + '.';
+  const s30 = 'c'.repeat(29) + '.';
+
+  it('sentences longest first, then the forms ship lowest', () => {
+    const w = released(rec([s20, s45, s30]));
+    expect(topToBottom(w).map((s) => s.text.length)).toEqual([45, 30, 20, formsText(anlegen)!.length]);
+    expect(topToBottom(w).map((s) => s.kind)).toEqual(['escort', 'escort', 'escort', 'forms']);
+  });
+
+  it('equal lengths keep their example order', () => {
+    const w = released(rec(['x'.repeat(9) + '1', 'y'.repeat(9) + '2', 'z'.repeat(9) + '3']));
+    expect(topToBottom(w).filter((s) => s.kind === 'escort').map((s) => s.id.slice(-2))).toEqual(['e0', 'e1', 'e2']);
+  });
+
+  it('a Record without forms spawns only sentences, longest first', () => {
+    const w = released({ ...phrase, examples: [ex('kurz'), ex('ein viel längerer Satz')] });
+    expect(topToBottom(w).map((s) => s.text)).toEqual(['ein viel längerer Satz', 'kurz']);
+  });
+
+  it('a Record without examples spawns only the forms ship', () => {
+    const w = released(rec([]));
+    expect(w.ships.map((s) => s.kind)).toEqual(['forms']);
+  });
+});
+
+describe('kick to the top (R2)', () => {
+  const apexTop = (wreckY: number) => {
+    let w = createWorld([boerse, anlegen], { seed: 3 });
+    w = { ...w, ships: w.ships.map((s) => ({ ...s, y: wreckY })) };
+    w = typeText(w, w.ships[0].text);
+    const kids = w.ships.filter((s) => s.kind !== 'mothership').sort((a, b) => a.y - b.y);
+    const top = kids[0].id;
+    let min = Infinity;
+    for (let i = 0; i < 600 && w.status === 'playing'; i++) {
+      w = tick(w);
+      const s = w.ships.find((x) => x.id === top)!;
+      min = Math.min(min, s.y - s.above);
+      if (w.ships.filter((k) => k.kind !== 'mothership').every((k) => k.vy + k.speed >= 0)) break;
+    }
+    return { min, w };
+  };
+
+  it.each([120, 300, 520])('a wreck at y=%i: the top hull reaches the HUD at the apex', (y) => {
+    const { min } = apexTop(y);
+    expect(min).toBeGreaterThanOrEqual(WORLD.minY - 1e-6);
+    expect(min).toBeLessThanOrEqual(WORLD.minY + 4);
+  });
+
+  it('a wreck right under the HUD spawns the stack at or below it, without a kick', () => {
+    let w = createWorld([boerse]);
+    w = typeText(w, w.ships[0].text);
+    const kids = w.ships.filter((s) => s.kind !== 'mothership');
+    for (const k of kids) {
+      expect(Math.abs(k.vy)).toBe(0);
+      expect(k.y - k.above).toBeGreaterThanOrEqual(WORLD.minY - 1e-6);
+    }
+  });
+
+  it('bands keep their gap and never cross during the flight', () => {
+    let { w } = apexTop(300);
+    for (let i = 0; i < 200; i++) {
+      w = tick(w);
+      const b = w.ships.filter((s) => s.kind !== 'mothership').map(shipBounds).sort((p, q) => p.y0 - q.y0);
+      for (let k = 1; k < b.length; k++) expect(b[k].y0 - b[k - 1].y1).toBeGreaterThanOrEqual(WORLD.bandGap - 1e-6);
+    }
+  });
+});
+
+describe('pace-driven speeds (R4)', () => {
+  const pace = { spc: 0.5, chars: 100 };
+
+  it('a mothership descends at distance / (1.5 x (chars x spc + 0.6))', () => {
+    const w = createWorld([boerse], { pace });
+    const m = w.ships[0];
+    const chars = requiredLength(m.text);
+    expect(m.speed).toBeCloseTo(
+      Math.min(WORLD.maxSpeed, Math.max(WORLD.minSpeed, (WORLD.playerY - m.y) / (1.5 * (chars * 0.5 + 0.6)))), 9,
+    );
+  });
+
+  it('budgetSpeed sums the ships below and clamps to 8..140', () => {
+    expect(budgetSpeed(300, [8, 10], pace)).toBeCloseTo(300 / (1.5 * (8 * 0.5 + 0.6 + 10 * 0.5 + 0.6)), 9);
+    expect(budgetSpeed(1, [50], pace)).toBe(WORLD.minSpeed);
+    expect(budgetSpeed(1e6, [1], pace)).toBe(WORLD.maxSpeed);
+  });
+
+  it('the wave number changes nothing', () => {
+    expect(createWorld([boerse], { pace, wave: 5 }).ships[0].speed).toBe(createWorld([boerse], { pace }).ships[0].speed);
+  });
+
+  it('a slower typist gets slower ships', () => {
+    const fast = createWorld([boerse], { pace: { spc: 0.2, chars: 100 } }).ships[0].speed;
+    const slow = createWorld([boerse], { pace: { spc: 1, chars: 100 } }).ships[0].speed;
+    expect(slow).toBeLessThan(fast);
+  });
+
+  it('the destroyed mothership updates the pace before its children get their speed', () => {
+    let w = createWorld([boerse], { seed: 4, pace });
+    const m = w.ships[0];
+    w = typeChar(w, m.text[0]);
+    w = { ...w, time: w.time + 2000 };
+    w = typeText(w, m.text.slice(1));
+    const chars = requiredLength(m.text);
+    const expected = observe(pace, chars, 2000);
+    expect(w.pace.spc).toBeCloseTo(expected.spc, 9);
+    expect(w.pace.chars).toBe(expected.chars);
+    const kids = w.ships.filter((s) => s.kind !== 'mothership');
+    const rows = kids.sort((a, b) => a.y - b.y);
+    const rise = kickApex(rows[0].vy === 0 ? 0 : -rows[0].vy, rows[0].speed);
+    const want = Math.min(...rows.map((_, i) => budgetSpeed(
+      WORLD.playerY - (rows[i].y - rise), rows.slice(i).map((r) => requiredLength(r.text)), expected,
+    )));
+    expect(rows[0].speed).toBeCloseTo(want, 3);
   });
 });
