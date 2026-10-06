@@ -728,3 +728,177 @@ describe('learning aids and audio (R6, R7, R10)', () => {
     expect(box().checked).toBe(true);
   });
 });
+
+describe('storage protection and portable progress (R9, R10)', () => {
+  type Mgr = { persist?: () => Promise<boolean>; persisted?: () => Promise<boolean> };
+  let downloads: { name: string; blob: Blob }[];
+  const progressFile = (o: object, name = 'p.json') => new File([JSON.stringify(o)], name, { type: 'application/json' });
+
+  async function bootWith(extra: { storage?: Mgr; cards?: typeof cards } = {}) {
+    app.dispose();
+    app = await startApp({
+      root, bundled: [fixtureList()], stores: { cards: extra.cards ?? cards, persistent }, settings: createSettings(storage), paceStorage: storage,
+      now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: () => fakeRenderer(), seed: 7,
+      tts: fakeTts(), audio: fakeAudio(), storage: extra.storage, download: (name, blob) => void downloads.push({ name, blob }),
+    });
+    await app.settled();
+  }
+  const storageLine = () => root.querySelector('[data-slot="storage-line"]')?.textContent ?? null;
+  const status = () => root.querySelector<HTMLElement>('[data-slot="transfer-status"]')!;
+  const choose = (f: File) => {
+    const input = root.querySelector<HTMLInputElement>('input[type="file"][data-testid="progress-file"]')!;
+    Object.defineProperty(input, 'files', { value: [f], configurable: true });
+    input.dispatchEvent(new Event('change'));
+  };
+  const stored = (reviewed: string, seen: number) => ({
+    card: { due: NOW.toISOString(), stability: 1, difficulty: 5, elapsed_days: 0, scheduled_days: 0, learning_steps: 0, reps: 1, lapses: 0, state: 1, last_review: reviewed },
+    seen, typos: 0, escapes: 0,
+  });
+  const validFile = (over: object = {}) => ({
+    format: 'the-typist-progress', version: 1, exportedAt: NOW.toISOString(),
+    cards: [{ listId: 'fixture-two', recordId: 'noun-boerse', stored: stored('2026-10-05T00:00:00.000Z', 3) }],
+    newCounts: [{ listId: 'fixture-two', day: '2026-10-06', count: 2 }],
+    pace: { spc: 0.4, chars: 500 },
+    ...over,
+  });
+
+  beforeEach(() => {
+    downloads = [];
+  });
+
+  it('asks for persistent storage once at startup, with IndexedDB stores (R9)', async () => {
+    const persist = vi.fn(async () => true);
+    await bootWith({ storage: { persist, persisted: async () => false } });
+    expect(persist).toHaveBeenCalledTimes(1);
+    click('Settings');
+    expect(storageLine()).toBe('Progress is protected from browser cleanup.');
+  });
+  it('does not ask with memory stores, and says progress will not be saved (R9)', async () => {
+    persistent = false;
+    const persist = vi.fn(async () => true);
+    await bootWith({ storage: { persist, persisted: async () => true } });
+    expect(persist).not.toHaveBeenCalled();
+    click('Settings');
+    expect(storageLine()).toBe("Progress and settings won't be saved: browser storage is unavailable.");
+  });
+  it('says the browser may clear progress when persist is refused (R9)', async () => {
+    await bootWith({ storage: { persist: async () => false, persisted: async () => false } });
+    click('Settings');
+    expect(storageLine()).toBe('The browser may clear progress if the site goes unused.');
+  });
+  it('says protected when persisted() is already true (R9)', async () => {
+    await bootWith({ storage: { persist: async () => false, persisted: async () => true } });
+    click('Settings');
+    expect(storageLine()).toBe('Progress is protected from browser cleanup.');
+  });
+  it('copes with a browser without the storage API (R9)', async () => {
+    await bootWith({ storage: {} });
+    click('Settings');
+    expect(storageLine()).toBe('The browser may clear progress if the site goes unused.');
+  });
+  it('a rejecting persist() does not break startup (R9)', async () => {
+    await bootWith({ storage: { persist: () => Promise.reject(new Error('nope')) } });
+    expect(app.state()).toBe('title');
+  });
+
+  it('Export and Import are offered from the title and absent from pause (R10)', async () => {
+    click('Settings');
+    expect(root.querySelector('[data-action="export-progress"]')).not.toBeNull();
+    expect(root.querySelector('[data-action="import-progress"]')).not.toBeNull();
+    click('Close');
+    await startStudy();
+    esc();
+    click('Settings');
+    expect(panelName()).toBe('settings');
+    expect(root.querySelector('[data-action="export-progress"]')).toBeNull();
+    expect(root.querySelector('[data-action="import-progress"]')).toBeNull();
+    expect(root.querySelector('input[type="file"]')).toBeNull();
+  });
+
+  it('Export downloads typist-progress-<yyyy-mm-dd>.json with cards, counts and pace (R10)', async () => {
+    await cards.put('fixture-two', 'noun-boerse', { card: schedule(undefined, 'Good', NOW), seen: 1, typos: 0, escapes: 0 });
+    await cards.bumpNew('fixture-two', '2026-10-06');
+    storage.setItem(PACE_KEY, JSON.stringify({ spc: 0.4, chars: 500 }));
+    await bootWith();
+    click('Settings');
+    click('Export progress');
+    await vi.waitFor(() => expect(downloads.length).toBe(1));
+    expect(downloads[0].name).toBe('typist-progress-2026-10-06.json');
+    const file = JSON.parse(await downloads[0].blob.text());
+    expect(file.format).toBe('the-typist-progress');
+    expect(file.cards.map((c: { recordId: string }) => c.recordId)).toEqual(['noun-boerse']);
+    expect(file.newCounts).toEqual([{ listId: 'fixture-two', day: '2026-10-06', count: 1 }]);
+    expect(file.pace).toEqual({ spc: 0.4, chars: 500 });
+    await vi.waitFor(() => expect(status().textContent).toMatch(/Exported 1 card\b/));
+  });
+
+  it('importing a valid file merges it, saves the pace after the commit and says how many cards (R10)', async () => {
+    storage.setItem(PACE_KEY, JSON.stringify({ spc: 1, chars: 10 }));
+    let release!: () => void;
+    const gate = new Promise<void>((r) => (release = r));
+    const gated = { ...cards, importAll: async (d: Parameters<typeof cards.importAll>[0]) => { await gate; return cards.importAll(d); } } as typeof cards;
+    await bootWith({ cards: gated });
+    click('Settings');
+    choose(progressFile(validFile()));
+    await Promise.resolve();
+    // the transaction has not committed: the estimate must still be the old one
+    expect(JSON.parse(storage.getItem(PACE_KEY)!)).toEqual({ spc: 1, chars: 10 });
+    release();
+    await vi.waitFor(() => expect(status().textContent).toMatch(/Imported 1 card\b/));
+    expect(status().dataset.state).toBe('ok');
+    expect((await cards.get('fixture-two', 'noun-boerse'))?.seen).toBe(3);
+    expect(await cards.newCount('fixture-two', '2026-10-06')).toBe(2);
+    expect(JSON.parse(storage.getItem(PACE_KEY)!)).toEqual({ spc: 0.4, chars: 500 });
+  });
+
+  it('keeps the local pace when the imported one has seen fewer characters (R10)', async () => {
+    storage.setItem(PACE_KEY, JSON.stringify({ spc: 1, chars: 900 }));
+    click('Settings');
+    choose(progressFile(validFile()));
+    await vi.waitFor(() => expect(status().dataset.state).toBe('ok'));
+    expect(JSON.parse(storage.getItem(PACE_KEY)!)).toEqual({ spc: 1, chars: 900 });
+  });
+
+  it('a failed import transaction changes neither the stores nor the pace, and says so (R10)', async () => {
+    storage.setItem(PACE_KEY, JSON.stringify({ spc: 1, chars: 10 }));
+    const failing = { ...cards, importAll: () => Promise.reject(new Error('quota')) } as typeof cards;
+    await bootWith({ cards: failing });
+    click('Settings');
+    choose(progressFile(validFile()));
+    await vi.waitFor(() => expect(status().dataset.state).toBe('error'));
+    expect(status().textContent).toMatch(/nothing was changed/i);
+    expect(await cards.get('fixture-two', 'noun-boerse')).toBeUndefined();
+    expect(JSON.parse(storage.getItem(PACE_KEY)!)).toEqual({ spc: 1, chars: 10 });
+  });
+
+  it.each([
+    ['not JSON', () => new File(['{nope'], 'x.json')],
+    ['a wrong version', () => progressFile(validFile({ version: 9 }))],
+    ['a bad date', () => progressFile(validFile({ exportedAt: 'never' }))],
+  ])('an invalid file (%s) shows why and changes nothing (R10)', async (_n, make) => {
+    storage.setItem(PACE_KEY, JSON.stringify({ spc: 1, chars: 10 }));
+    const spy = vi.spyOn(cards, 'importAll');
+    click('Settings');
+    choose(make());
+    await vi.waitFor(() => expect(status().dataset.state).toBe('error'));
+    expect(status().textContent).toMatch(/^Not imported: .+/);
+    expect(spy).not.toHaveBeenCalled();
+    expect(await cards.all('fixture-two')).toEqual({});
+    expect(JSON.parse(storage.getItem(PACE_KEY)!)).toEqual({ spc: 1, chars: 10 });
+  });
+
+  it('export then import round-trips into an empty store (R10)', async () => {
+    await cards.put('fixture-two', 'noun-boerse', { card: schedule(undefined, 'Good', NOW), seen: 4, typos: 1, escapes: 0 });
+    await bootWith();
+    click('Settings');
+    click('Export progress');
+    await vi.waitFor(() => expect(downloads.length).toBe(1));
+    const text = await downloads[0].blob.text();
+    const fresh = createMemoryStore();
+    await bootWith({ cards: fresh });
+    click('Settings');
+    choose(new File([text], 'p.json'));
+    await vi.waitFor(() => expect(status().dataset.state).toBe('ok'));
+    expect(await fresh.get('fixture-two', 'noun-boerse')).toEqual(await cards.get('fixture-two', 'noun-boerse'));
+  });
+});

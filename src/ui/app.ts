@@ -4,6 +4,7 @@ import { createKeyboard, type Keyboard } from '../platform/keyboard';
 import { createTts, type Tts } from '../platform/tts';
 import { createAudio, type Audio } from '../platform/audio';
 import { loadPace, savePace } from '../platform/pace-store';
+import { mergePace, parseProgress, serializeProgress } from '../srs/portable';
 import { createSettings, type SettingsStore } from '../platform/settings';
 import { loadFile } from '../content/picker';
 import { bundledLists } from '../content/bundled';
@@ -14,6 +15,7 @@ import { buildFreePlay, buildStudy, isPlayable, seededRng, type Built } from '..
 import { localDay, openStores, type StoredCard, type Stores } from '../srs/store';
 import type { Panel } from './dom';
 import { h } from './dom';
+import type { StorageStatus, TransferResult } from './panels/settings';
 import {
   bannerPanel, betweenWavePanel, categoryPanel, loadErrorsPanel, modePanel, pausePanel, settingsPanel, summaryPanel, titlePanel,
 } from './panels';
@@ -23,11 +25,35 @@ export type AppState = 'title' | 'mode' | 'category' | 'settings' | 'play' | 'pa
 
 export const STORAGE_WARNING = "Progress and settings won't be saved: browser storage is unavailable.";
 
+/** The part of `navigator.storage` the game uses. */
+export interface StorageManagerLike {
+  persist?(): Promise<boolean>;
+  persisted?(): Promise<boolean>;
+}
+
+/** Hands the browser a file to save. */
+export type Download = (name: string, blob: Blob) => void;
+
+function downloadBlob(name: string, blob: Blob) {
+  const url = URL.createObjectURL(blob);
+  const a = h('a', { href: url, download: name });
+  document.body.append(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 0);
+}
+
+const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
+
 export interface AppDeps {
   root: HTMLElement;
   bundled?: VocabList[];
   stores?: Stores;
   settings?: SettingsStore;
+  /** Persistent-storage requests; defaults to `navigator.storage` (absent in some browsers). */
+  storage?: StorageManagerLike;
+  /** Saves the exported progress file; defaults to a download link. */
+  download?: Download;
   /** Storage for the typing-rate estimate; defaults to `localStorage`. */
   paceStorage?: Storage;
   now?: () => Date;
@@ -95,6 +121,21 @@ export async function startApp(deps: AppDeps): Promise<App> {
     renderer.refit();
   };
   if (!stores.persistent || !settings.persistent) warn();
+
+  // R9: ask for persistent storage once, and only when progress really goes to IndexedDB
+  let storageStatus: StorageStatus | undefined = stores.persistent ? undefined : 'memory';
+  async function requestPersistence() {
+    const mgr = deps.storage ?? (typeof navigator === 'undefined' ? undefined : navigator.storage);
+    let granted = false;
+    try {
+      granted = (await mgr?.persist?.()) === true || (await mgr?.persisted?.()) === true;
+    } catch {
+      /* a refused or failing request just leaves progress unprotected */
+    }
+    if (disposed) return;
+    storageStatus = granted ? 'protected' : 'may-be-cleared';
+    if (state === 'settings') openSettings(settingsReturn);
+  }
 
   const keyboard: Keyboard = createKeyboard(input, (c) => {
     if (state !== 'play' || !world || world.status !== 'playing') return;
@@ -315,7 +356,14 @@ export async function startApp(deps: AppDeps): Promise<App> {
   function openSettings(from: AppState) {
     settingsReturn = from;
     show('settings', () =>
-      settingsPanel(root, { settings: settings.get(), voices: tts.voices(), ttsUnavailable: tts.status().available ? undefined : tts.status().reason }, {
+      settingsPanel(root, {
+        settings: settings.get(), voices: tts.voices(), ttsUnavailable: tts.status().available ? undefined : tts.status().reason,
+        storage: storageStatus,
+        // from pause a live World's next `resolved` would save its pace over an import
+        portable: from === 'title',
+      }, {
+        onExport: exportProgress,
+        onImport: importProgress,
         onChange: (patch) => {
           const next = settings.set(patch);
           tts.setVoice(next.voice);
@@ -327,6 +375,40 @@ export async function startApp(deps: AppDeps): Promise<App> {
         onClose: closeSettings,
       }));
   }
+  async function exportProgress(): Promise<TransferResult> {
+    try {
+      const data = { ...(await stores.cards.exportAll()), pace: loadPace(deps.paceStorage) };
+      const blob = new Blob([serializeProgress(data, now())], { type: 'application/json' });
+      (deps.download ?? downloadBlob)(`typist-progress-${localDay(now())}.json`, blob);
+      return { ok: true, message: `Exported ${plural(data.cards.length, 'card')}.` };
+    } catch {
+      return { ok: false, message: 'Export failed: the progress could not be read.' };
+    }
+  }
+
+  async function importProgress(file: File): Promise<TransferResult> {
+    // read and validate everything before any transaction opens
+    let text: string;
+    try {
+      text = await file.text();
+    } catch {
+      return { ok: false, message: 'Not imported: the file could not be read.' };
+    }
+    const parsed = parseProgress(text);
+    if (!parsed.ok) return { ok: false, message: `Not imported: ${parsed.reason}` };
+    let report;
+    try {
+      report = await stores.cards.importAll(parsed.data);
+    } catch {
+      return { ok: false, message: 'Import failed: browser storage refused the write, so nothing was changed.' };
+    }
+    // only after the transaction committed
+    const better = mergePace(loadPace(deps.paceStorage), parsed.data.pace);
+    if (better) savePace(better, deps.paceStorage);
+    const replaced = report.replaced > 0 ? ` (${report.replaced} replaced older progress)` : '';
+    return { ok: true, message: `Imported ${plural(report.imported, 'card')}${replaced}.` };
+  }
+
   function closeSettings() {
     if (settingsReturn === 'pause') pause();
     else title();
@@ -368,6 +450,7 @@ export async function startApp(deps: AppDeps): Promise<App> {
   };
   frameId = raf(frame);
 
+  if (stores.persistent) track(requestPersistence());
   title();
   return {
     state: () => state,

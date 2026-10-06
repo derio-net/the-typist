@@ -269,6 +269,58 @@ describe('panels (R5, R8, R10)', () => {
     expect(p.el.textContent).toContain('no German voice installed');
   });
 
+  describe('storage line and progress transfer (R9, R10)', () => {
+    const mount = (props: Partial<Parameters<typeof settingsPanel>[1]> = {}, handlers: Partial<Parameters<typeof settingsPanel>[2]> = {}) =>
+      settingsPanel(root, { settings: DEFAULT_SETTINGS, ...props }, { onChange: vi.fn(), onClose: vi.fn(), ...handlers });
+    const line = (el: HTMLElement) => el.querySelector('[data-slot="storage-line"]');
+
+    it('shows the protected, may-be-cleared and memory lines', () => {
+      expect(line(mount({ storage: 'protected' }).el)?.textContent).toBe('Progress is protected from browser cleanup.');
+      root.innerHTML = '';
+      expect(line(mount({ storage: 'may-be-cleared' }).el)?.textContent).toBe('The browser may clear progress if the site goes unused.');
+      root.innerHTML = '';
+      expect(line(mount({ storage: 'memory' }).el)?.textContent).toBe("Progress and settings won't be saved: browser storage is unavailable.");
+    });
+    it('shows no line while the status is unknown', () => {
+      expect(line(mount().el)).toBeNull();
+    });
+    it('offers Export and Import only when portable', () => {
+      const without = mount();
+      expect(without.el.querySelector('[data-action="export-progress"]')).toBeNull();
+      expect(without.el.querySelector('[data-action="import-progress"]')).toBeNull();
+      expect(without.el.querySelector('input[type="file"]')).toBeNull();
+      root.innerHTML = '';
+      const withIt = mount({ portable: true });
+      expect(withIt.el.querySelector('[data-action="export-progress"]')?.textContent).toBe('Export progress');
+      expect(withIt.el.querySelector('[data-action="import-progress"]')?.textContent).toBe('Import progress');
+      expect(withIt.el.querySelector('input[type="file"]')).not.toBeNull();
+    });
+    it('Export runs the handler and shows its message', async () => {
+      const onExport = vi.fn(async () => ({ ok: true, message: 'Exported 3 cards.' }));
+      const p = mount({ portable: true }, { onExport });
+      p.el.querySelector<HTMLButtonElement>('[data-action="export-progress"]')!.click();
+      await vi.waitFor(() => expect(p.el.querySelector('[data-slot="transfer-status"]')?.textContent).toBe('Exported 3 cards.'));
+      expect(onExport).toHaveBeenCalledTimes(1);
+    });
+    it('choosing a file passes it to Import and shows the success or the error', async () => {
+      const onImport = vi.fn(async (f: File) => (f.name === 'good.json' ? { ok: true, message: 'Imported 2 cards.' } : { ok: false, message: 'Not imported: bad file' }));
+      const p = mount({ portable: true }, { onImport });
+      const input = p.el.querySelector<HTMLInputElement>('input[type="file"]')!;
+      const choose = (f: File) => {
+        Object.defineProperty(input, 'files', { value: [f], configurable: true });
+        input.dispatchEvent(new Event('change'));
+      };
+      const status = () => p.el.querySelector<HTMLElement>('[data-slot="transfer-status"]')!;
+      choose(new File(['{}'], 'good.json'));
+      await vi.waitFor(() => expect(status().textContent).toBe('Imported 2 cards.'));
+      expect(status().dataset.state).toBe('ok');
+      choose(new File(['{}'], 'bad.json'));
+      await vi.waitFor(() => expect(status().textContent).toBe('Not imported: bad file'));
+      expect(status().dataset.state).toBe('error');
+      expect(onImport).toHaveBeenCalledTimes(2);
+    });
+  });
+
   it('banner shows the storage warning and closes', () => {
     const p = bannerPanel(root, { message: 'Progress and settings will not be saved.' });
     expect(root.textContent).toContain('will not be saved');

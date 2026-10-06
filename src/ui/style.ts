@@ -41,6 +41,8 @@ const RULES = `
   border: 1px solid var(--c-ship-stroke-escort); border-radius: 4px; padding: 4px 6px; }
 .panel [data-slot=voice-row] { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .panel [data-slot=voice-row] select { flex: 1 1 12em; }
+.panel [data-slot=transfer-row] { display: flex; flex-wrap: wrap; gap: 8px; }
+.panel [data-slot=transfer-status][data-state=error] { color: var(--c-typo-flash); opacity: 1; }
 .panel [data-slot=voice-row] button { white-space: nowrap; }
 .panel label { display: flex; gap: 8px; align-items: center; }
 /* Scrolling cue: shadows at the clipped edges (background-attachment: local hides them at the ends), and a visible scrollbar */
