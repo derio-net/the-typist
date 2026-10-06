@@ -3,6 +3,7 @@ import { advance, typeChar, type World, type WorldEvent } from '../engine/world'
 import { createKeyboard, type Keyboard } from '../platform/keyboard';
 import { createTts, type Tts } from '../platform/tts';
 import { createAudio, type Audio } from '../platform/audio';
+import { loadPace, savePace } from '../platform/pace-store';
 import { createSettings, type SettingsStore } from '../platform/settings';
 import { loadFile } from '../content/picker';
 import { bundledLists } from '../content/bundled';
@@ -27,6 +28,8 @@ export interface AppDeps {
   bundled?: VocabList[];
   stores?: Stores;
   settings?: SettingsStore;
+  /** Storage for the typing-rate estimate; defaults to `localStorage`. */
+  paceStorage?: Storage;
   now?: () => Date;
   /** Frame scheduler; defaults to `requestAnimationFrame`. */
   raf?: (cb: (t: number) => void) => number;
@@ -144,6 +147,7 @@ export async function startApp(deps: AppDeps): Promise<App> {
     renderer.push(next.events, at);
     // grading first: a sound or speech failure must never cost a grade
     controller?.onWorldEvents(next.events, next);
+    if (next.events.some((e) => e.type === 'resolved')) savePace(next.pace, deps.paceStorage);
     react(next.events, prev);
   }
 
@@ -259,6 +263,7 @@ export async function startApp(deps: AppDeps): Promise<App> {
       listId: l.list.id,
       mode,
       now,
+      pace: loadPace(deps.paceStorage),
       // evaluated as each wave starts: the window and the aid settings may have changed since the last one
       worldOptions: () => ({
         width: width(),

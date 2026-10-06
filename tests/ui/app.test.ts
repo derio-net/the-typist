@@ -9,6 +9,7 @@ import { schedule } from '../../src/srs/scheduler';
 import type { Renderer, RendererOptions } from '../../src/render/renderer';
 import type { Tts } from '../../src/platform/tts';
 import type { Audio, EffectName } from '../../src/platform/audio';
+import { PACE_KEY } from '../../src/platform/pace-store';
 import { startApp, STORAGE_WARNING, type App } from '../../src/ui/app';
 
 const twoText = readFileSync('tests/fixtures/lists/two-records.yaml', 'utf8');
@@ -88,7 +89,7 @@ function run(ms: number) {
 
 async function boot() {
   app = await startApp({
-    root, bundled: [fixtureList()], stores: { cards, persistent }, settings: createSettings(storage),
+    root, bundled: [fixtureList()], stores: { cards, persistent }, settings: createSettings(storage), paceStorage: storage,
     now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: (_c, _w, o) => ((rendererOpts = o), fakeRenderer()), seed: 7,
     tts: fakeTts(), audio: fakeAudio(),
   });
@@ -310,7 +311,7 @@ function typeUntil(stop: () => boolean, limit = 20000) {
 async function bootBig(n: number) {
   app.dispose();
   app = await startApp({
-    root, bundled: [bigList(n)], stores: { cards, persistent }, settings: createSettings(storage),
+    root, bundled: [bigList(n)], stores: { cards, persistent }, settings: createSettings(storage), paceStorage: storage,
     now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: (_c, _w, o) => ((rendererOpts = o), fakeRenderer()), seed: 7,
     tts: fakeTts(), audio: fakeAudio(),
   });
@@ -396,7 +397,7 @@ describe('review fixes (p4-r1..r10)', () => {
     const failing = { ...cards, putGraded: () => Promise.reject(new Error('disk full')) };
     app.dispose();
     app = await startApp({
-      root, bundled: [fixtureList()], stores: { cards: failing as typeof cards, persistent: true }, settings: createSettings(storage),
+      root, bundled: [fixtureList()], stores: { cards: failing as typeof cards, persistent: true }, settings: createSettings(storage), paceStorage: storage,
       now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: () => fakeRenderer(), seed: 7,
     });
     expect(root.querySelector('.banner')).toBeNull();
@@ -472,6 +473,29 @@ describe('learning aids and audio (R6, R7, R10)', () => {
     expect(app.world()!.aids.chip).toBe(true);
     typeUntil(() => app.world()!.ships.some((s) => s.kind === 'escort'));
     expect(shipTexts(app.world()!).every((s) => s.t === undefined)).toBe(true);
+  });
+
+  it('saves the World pace when a Record resolves, and the next session starts from it (R5)', async () => {
+    await startStudy();
+    expect(storage.getItem(PACE_KEY)).toBeNull();
+    typeUntil(() => storage.getItem(PACE_KEY) !== null || app.state() !== 'play');
+    const saved = JSON.parse(storage.getItem(PACE_KEY)!);
+    expect(saved.chars).toBeGreaterThan(0);
+    expect(saved).toEqual({ spc: app.world()!.pace.spc, chars: app.world()!.pace.chars });
+    app.dispose();
+    const reads: string[] = [];
+    const spy: Storage = { ...storage, getItem: (k) => (reads.push(k), storage.getItem(k)) } as Storage;
+    app = await startApp({
+      root, bundled: [fixtureList()], stores: { cards, persistent }, settings: createSettings(storage), paceStorage: spy,
+      now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: (_c, _w, o) => ((rendererOpts = o), fakeRenderer()), seed: 7,
+      tts: fakeTts(), audio: fakeAudio(),
+    });
+    click('Two-record');
+    await app.settled();
+    click('Study');
+    await app.settled();
+    expect(app.world()!.pace).toEqual(saved);
+    expect(reads.filter((k) => k === PACE_KEY)).toHaveLength(1);
   });
 
   it('every destroyed ship speaks its full text, interrupting through say', async () => {
@@ -603,7 +627,7 @@ describe('learning aids and audio (R6, R7, R10)', () => {
     const orig = fakeTts;
     const bad = (): Tts => ({ ...orig(), say: () => { throw new Error('speech down'); } });
     app = await startApp({
-      root, bundled: [fixtureList()], stores: { cards, persistent }, settings: createSettings(storage),
+      root, bundled: [fixtureList()], stores: { cards, persistent }, settings: createSettings(storage), paceStorage: storage,
       now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: () => fakeRenderer(), seed: 7,
       tts: bad(), audio: fakeAudio(),
     });
