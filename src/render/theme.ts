@@ -46,8 +46,6 @@ export const fonts = {
   banner: '32px system-ui, sans-serif',
 } as const;
 
-
-
 export const effects = {
   bulletMs: 120,
   explosionMs: 560,

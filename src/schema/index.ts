@@ -6,7 +6,8 @@ import { RecordBase, checkEnriched } from './record';
 /** The document's top level, validated loosely: header, categories and records are checked on their own. */
 const Top = z.strictObject({
   schema: z.literal(1),
-  list: z.unknown(),
+  // optional here so a missing header is reported once, by ListHeader below
+  list: z.unknown().optional(),
   categories: z.unknown().optional(),
   records: z.array(z.unknown()),
 });
@@ -46,8 +47,11 @@ export function parseList(text: string): ParseResult {
     .filter((id): id is string => typeof id === 'string')
     .map((id) => ({ id }));
 
+  // An invalid categories block is reported above; checking each record against it would only repeat that error.
+  const categoriesKnown = cats.success;
+
   const rawRecords = Array.isArray(doc.records) ? doc.records : [];
-  const listLevel: { id: string; categories?: string[] }[] = [];
+  const listLevel: { id: string; categories?: string[] | null }[] = [];
   rawRecords.forEach((raw, idx) => {
     const id = (raw as { id?: unknown } | null)?.id;
     const label = `records[${idx}] (${typeof id === 'string' ? id : '?'})`;
@@ -59,15 +63,19 @@ export function parseList(text: string): ParseResult {
       }
       return;
     }
-    listLevel[idx] = rec.data;
+    listLevel[idx] = categoriesKnown ? rec.data : { id: rec.data.id, categories: null };
     for (const message of checkEnriched(rec.data, rules)) errors.push(`${label}: ${message}`);
   });
-  // Records that failed their own schema still take part in the list-level checks when their id is readable.
+  // Records that failed their own schema still take part in the duplicate-id check when their id is readable.
+  // Their category checks run only when their categories field is a well-formed string list; otherwise the
+  // record's own error already covers it (null = unknown, skipped).
   rawRecords.forEach((raw, idx) => {
     if (listLevel[idx]) return;
     const r = raw as { id?: unknown; categories?: unknown } | null;
-    if (typeof r?.id === 'string')
-      listLevel[idx] = { id: r.id, ...(Array.isArray(r.categories) ? { categories: r.categories.filter((c): c is string => typeof c === 'string') } : {}) };
+    if (typeof r?.id !== 'string') return;
+    const c = r.categories;
+    const wellFormed = c === undefined || (Array.isArray(c) && c.every((x) => typeof x === 'string'));
+    listLevel[idx] = { id: r.id, categories: categoriesKnown && wellFormed ? (c as string[] | undefined) : null };
   });
   // Check only the records with a readable id, keeping their original positions for the messages.
   const present = listLevel.map((r, i) => ({ r, i })).filter((x) => x.r);

@@ -22,13 +22,14 @@ export const ListHeader = z.strictObject({
   rules: Rules.optional(),
 });
 
-/** A list-level problem: `index` is the record it concerns, or null for a category. */
+/** A list-level problem: `index` is the position of the record or category (per `where`) it concerns. */
 export interface ListIssue { index: number; message: string; where: 'records' | 'categories' }
 
 /** List-level checks (unique ids, declared categories, categorised records) shared by `ListSchema` and `parseList`. */
 export function checkListLevel(
   categories: readonly { id: string }[],
-  records: readonly { id: string; categories?: string[] | undefined }[],
+  /** `categories: null` means unknown (it failed its own check): the record's category checks are skipped. */
+  records: readonly { id: string; categories?: string[] | null | undefined }[],
 ): ListIssue[] {
   const out: ListIssue[] = [];
   const declared = new Set<string>();
@@ -41,6 +42,7 @@ export function checkListLevel(
     const add = (message: string) => out.push({ where: 'records', index: i, message });
     if (seen.has(r.id)) add(`duplicate id '${r.id}'`);
     seen.add(r.id);
+    if (r.categories === null) return;
     for (const c of r.categories ?? []) if (!declared.has(c)) add(`undeclared category '${c}'`);
     if (declared.size > 0 && (r.categories ?? []).length === 0)
       add('record needs at least one category (the list declares categories)');

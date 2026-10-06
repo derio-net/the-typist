@@ -48,6 +48,33 @@ describe('parseList', () => {
       );
       expect(e).toHaveLength(4);
     });
+    it('a missing header is reported once (p1-r1)', () => {
+      const l = base();
+      delete l.list;
+      const e = errs(l).filter((m) => m.startsWith('list'));
+      expect(e).toHaveLength(1);
+      expect(e[0]).not.toMatch(/nonoptional/);
+    });
+    it('a malformed categories field on a record gives no extra category errors (p1-r2)', () => {
+      const l = base();
+      l.records[0].categories = 'economics-finance';
+      const e = errs(l);
+      expect(e).toHaveLength(1);
+      expect(e[0]).toMatch(/^records\[0\] \(noun-boerse\): categories: /);
+    });
+    it('a failed record still takes part in the duplicate-id check', () => {
+      const l = base();
+      delete l.records[0].gloss;
+      l.records[1].id = l.records[0].id;
+      expect(errs(l).join('\n')).toMatch(/records\[1\] \(noun-boerse\): duplicate id/);
+    });
+    it('an invalid categories block does not flood every record (p1-r3)', () => {
+      const l = base();
+      l.categories = null;
+      const e = errs(l);
+      expect(e.filter((m) => /undeclared category|needs at least one category/.test(m))).toEqual([]);
+      expect(e.some((m) => m.startsWith('categories'))).toBe(true);
+    });
     it('header rules still apply to enriched records', () => {
       const l = base();
       l.list.rules = { noun_examples: 4 };
