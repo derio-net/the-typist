@@ -149,3 +149,8 @@ The Goal lists the superseded plan-1 and plan-2 parts and the matrix rows to upd
 ### phase-split-2026-10-06-ux-flight-and-pacing-p2 · decision · ask: speech on attack and a better voice (R6–R8) is its own ask, reviewable apart from the engine
 
 Operator asked separately for TTS timing and about the voice.
+
+<!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-06-ux-flight-and-pacing-p3 created=2026-10-06T16:30:54+00:00 -->
+### phase-split-2026-10-06-ux-flight-and-pacing-p3 · decision · ask: persistence on the published page (R9–R10) is its own ask
+
+Operator asked separately about persistence on GitHub Pages.
