@@ -1,0 +1,28 @@
+schema_version: 8
+run: 2026-10-06-feat-ux-flight-and-pacing
+step: implement-phase
+item: phase/3
+outcome: done
+ticks: [P3.T1.S1, P3.T1.S2, P3.T2.S1, P3.T2.S2, P3.T3.S1, P3.T3.S2, P3.T4.S1, P3.T4.S2, P3.T5.S1, P3.T6.S1, P3.T6.S2, P3.T6.S3]
+refactor:
+  P3.T1: "portable.ts was written once to a final shape; nothing to clean."
+  P3.T2: "the IDB and memory implementations share only the merge helpers from portable.ts, already factored."
+  P3.T3: "one status variable and one request function; nothing duplicated."
+  P3.T4: "the panel report helper serves both Export and Import; the app functions are single-purpose."
+  P3.T6: "capture script, matrix and docs only; no code to clean."
+journal:
+  - {kind: discovery, id: p3-idb-await-rule, phase: 3, title: "IDB import awaits only IndexedDB requests", body: "importAll reads each local card with done(get) inside the readwrite transaction and puts after it; the file is parsed and validated in app.ts before the transaction opens, and savePace runs only after importAll resolves. A mutant that skips tx.abort() on a mid-import failure is killed by the one-transaction test (an uncloneable card is the injected failure, in both stores)."}
+  - {kind: discovery, id: p3-persist-nonblocking, phase: 3, title: "persist() is not awaited at startup", body: "Firefox may show a prompt for persist(), so startApp does not wait for it: it is tracked via track() and the Settings panel re-renders when the answer arrives. Status is protected when persist() or persisted() is true, else may-be-cleared; memory stores never call it."}
+  - {kind: discovery, id: p3-surviving-mutant, phase: 3, title: "A meta-key range mutant survived until a stray-key test", body: "Removing the ['new'] key range from the IDB meta cursor survived because the probe key is deleted after use. Added a test that writes stray string meta keys through the raw factory; the mutant is now killed. The picker.value reset after a file choice has no unit test (jsdom cannot assert it)."}
+resolves: []
+evidence: {tests: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p3-suite.log}
+visual:
+  - row: progress-portability
+    script: scripts/tmp/p3-capture.mjs
+    shots:
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p3-shots/storage-line-protected.png, shows: [storage-line-protected]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p3-shots/storage-line-may-be-cleared.png, shows: [storage-line-may-be-cleared]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p3-shots/storage-line-memory.png, shows: [storage-line-memory]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p3-shots/import-success-message.png, shows: [import-success-message, import-progress-file]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p3-shots/import-invalid-file-error.png, shows: [import-invalid-file-error]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p3-shots/export-progress-download.png, shows: [export-progress-download]}
