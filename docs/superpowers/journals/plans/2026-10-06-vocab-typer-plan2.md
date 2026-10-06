@@ -156,3 +156,88 @@ Two pure helpers and token additions; nothing to clean.
 ### no-refactor-p2-t6 · discovery · no-refactor-because P2.T6 (phase 2)
 
 Two pure helpers and a resize hook; nothing to clean.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r1 created=2026-10-06T05:32:24+00:00 phase=2 state=open review_scope=in -->
+### p2-r1 · finding [open] (reviewer: in scope) · starfield collapses to a right-edge strip at widths 720/800/880 (phase 2)
+
+starfield collapses to a right-edge strip at widths 720/800/880
+
+<!-- fr:journal kind=finding scope=plan id=p2-r2 created=2026-10-06T05:32:24+00:00 phase=2 state=open review_scope=in -->
+### p2-r2 · finding [open] (reviewer: in scope) · muzzle dy -23 starts bullets ~33px below the gun tips (phase 2)
+
+muzzle dy -23 starts bullets ~33px below the gun tips
+
+<!-- fr:journal kind=finding scope=plan id=p2-r3 created=2026-10-06T05:32:24+00:00 phase=2 state=open review_scope=in -->
+### p2-r3 · finding [open] (reviewer: in scope) · renderer logical width fixed at creation while World width can change per wave (phase 2)
+
+renderer logical width fixed at creation while World width can change per wave
+
+<!-- fr:journal kind=finding scope=plan id=p2-r4 created=2026-10-06T05:32:24+00:00 phase=2 state=open review_scope=in -->
+### p2-r4 · finding [open] (reviewer: in scope) · resize listener never removed; DPR-only changes not observed (phase 2)
+
+resize listener never removed; DPR-only changes not observed
+
+<!-- fr:journal kind=finding scope=plan id=p2-r5 created=2026-10-06T05:32:24+00:00 phase=2 state=open review_scope=in -->
+### p2-r5 · finding [open] (reviewer: in scope) · index.html hard-codes #0b1020 outside theme.ts (phase 2)
+
+index.html hard-codes #0b1020 outside theme.ts
+
+<!-- fr:journal kind=finding scope=plan id=p2-r6 created=2026-10-06T05:32:24+00:00 phase=2 state=open review_scope=in -->
+### p2-r6 · finding [open] (reviewer: in scope) · typo-flash overlay redraws ship.text as one run, misaligned with the pending split (phase 2)
+
+typo-flash overlay redraws ship.text as one run, misaligned with the pending split
+
+<!-- fr:journal kind=finding scope=plan id=p2-r7 created=2026-10-06T05:32:24+00:00 phase=2 state=open review_scope=in -->
+### p2-r7 · finding [open] (reviewer: in scope) · game-over no-escape test never had an escaped record; clamp test could not fail (phase 2)
+
+game-over no-escape test never had an escaped record; clamp test could not fail
+
+<!-- fr:journal kind=finding scope=plan id=p2-r8 created=2026-10-06T05:32:24+00:00 phase=2 state=open review_scope=in -->
+### p2-r8 · finding [open] (reviewer: in scope) · palette.pending barely distinct from the text colour (phase 2)
+
+palette.pending barely distinct from the text colour
+
+<!-- fr:journal kind=review scope=plan id=p2-review created=2026-10-06T05:32:24+00:00 phase=2 -->
+### p2-review · review · phase 2 code review: 8 minor findings, all fixed (phase 2)
+
+Independent reviewer read 112eac1..175f2e3 (R11-R13, WorldOptions, game-over grading), ran npm test, and re-captured every play-feel state itself under shots/review-p2/ (including 360px at DPR3, a 1280-wide lock and a resize round trip), opening each shot. No Critical or Important issues; p2-r1..p2-r8 Minor, all in scope, all fixed in 21b7445 and fd3fb02 (suite 328 tests and the build green).
+
+<!-- fr:journal kind=finding scope=plan id=p2-r1-resolved created=2026-10-06T05:32:24+00:00 phase=2 state=fixed resolves=p2-r1 -->
+### p2-r1-resolved · finding [fixed] · resolves p2-r1: starfield collapses to a right-edge strip at widths 720/800/880 (phase 2)
+
+fd3fb02: pure starField(width,height) wraps seeds at 960 and scales to width; tests/render/stars.test.ts checks ≥80% span at 720/800/880/960/1280; re-captured at 600px DPR2 and 360px DPR3.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r2-resolved created=2026-10-06T05:32:24+00:00 phase=2 state=fixed resolves=p2-r2 -->
+### p2-r2-resolved · finding [fixed] · resolves p2-r2: muzzle dy -23 starts bullets ~33px below the gun tips (phase 2)
+
+fd3fb02: muzzle.dy -55 fitted to the sprite top (-56), comment fixed; tests/render/muzzles.test.ts asserts within 3px.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r3-resolved created=2026-10-06T05:32:24+00:00 phase=2 state=fixed resolves=p2-r3 -->
+### p2-r3-resolved · finding [fixed] · resolves p2-r3: renderer logical width fixed at creation while World width can change per wave (phase 2)
+
+fd3fb02: draw() refits the canvas and rebuilds stars when world.width changes; tests/render/renderer.test.ts.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r4-resolved created=2026-10-06T05:32:24+00:00 phase=2 state=fixed resolves=p2-r4 -->
+### p2-r4-resolved · finding [fixed] · resolves p2-r4: resize listener never removed; DPR-only changes not observed (phase 2)
+
+fd3fb02: Renderer.dispose() removes the resize and matchMedia resolution listeners; the DPR listener re-arms on change; tests in tests/render/renderer.test.ts.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r5-resolved created=2026-10-06T05:32:24+00:00 phase=2 state=fixed resolves=p2-r5 -->
+### p2-r5-resolved · finding [fixed] · resolves p2-r5: index.html hard-codes #0b1020 outside theme.ts (phase 2)
+
+fd3fb02: hex removed from index.html; renderer sets body background from palette.background; a test asserts both.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r6-resolved created=2026-10-06T05:32:24+00:00 phase=2 state=fixed resolves=p2-r6 -->
+### p2-r6-resolved · finding [fixed] · resolves p2-r6: typo-flash overlay redraws ship.text as one run, misaligned with the pending split (phase 2)
+
+fd3fb02: the overlay draws the same typed/pending/rest runs at their positions; verified visually in the re-captured typo-flash shot (rendering only, no unit test).
+
+<!-- fr:journal kind=finding scope=plan id=p2-r7-resolved created=2026-10-06T05:32:24+00:00 phase=2 state=fixed resolves=p2-r7 -->
+### p2-r7-resolved · finding [fixed] · resolves p2-r7: game-over no-escape test never had an escaped record; clamp test could not fail (phase 2)
+
+21b7445: the game-over test has Record A (escaped, open) and Record B (open, no escape) and asserts only A resolves before game-over; the clamp test uses width 100 with playerX forced outside. Orchestrator confirmed the clamp test fails with the clamp removed.
+
+<!-- fr:journal kind=finding scope=plan id=p2-r8-resolved created=2026-10-06T05:32:24+00:00 phase=2 state=fixed resolves=p2-r8 -->
+### p2-r8-resolved · finding [fixed] · resolves p2-r8: palette.pending barely distinct from the text colour (phase 2)
+
+fd3fb02: palette.pending is amber #ffb347; verified in the re-captured pending-digraph shot.
