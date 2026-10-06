@@ -205,3 +205,6 @@ Restored the full text of ux-pass-is-issue-2, issues-in-scope and design-default
 
 <!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-06-vocab-typer-plan2-p4 created=2026-10-06T03:47:31+00:00 -->
 ### phase-split-2026-10-06-vocab-typer-plan2-p4 · decision · ask: screens, list loading and degraded states (R5, R8, R10)
+
+<!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-06-vocab-typer-plan2-p5 created=2026-10-06T03:47:33+00:00 -->
+### phase-split-2026-10-06-vocab-typer-plan2-p5 · decision · ask: learning aids and audio (R6, R7)
