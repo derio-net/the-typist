@@ -18,6 +18,7 @@ steps:
       step/spec-review:
         attempts:
         - dispatched: '2026-10-05T22:03:33+00:00'
+          agent: a8e4a2e53c2f54b0d
           agent_type: super-fr:fr-spec-reviewer
           harness: claude-code
           model: opus
