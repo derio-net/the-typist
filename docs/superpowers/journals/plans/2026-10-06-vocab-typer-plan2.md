@@ -720,3 +720,133 @@ not use window.__typist (dev only) and reads IndexedDB cards via getAllKeys.
 ### no-refactor-p6-t1 · discovery · no-refactor-because P6.T1 (phase 6)
 
 Task adds a config and one new spec; no existing code to clean.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r1 created=2026-10-06T06:56:21+00:00 phase=6 state=open review_scope=in -->
+### p6-r1 · finding [open] (reviewer: in scope) · publish-pages.sh never triggers a deploy; the first-push failure is undocumented (phase 6)
+
+publish-pages.sh never triggers a deploy; the first-push failure is undocumented
+
+<!-- fr:journal kind=finding scope=plan id=p6-r2 created=2026-10-06T06:56:21+00:00 phase=6 state=open review_scope=in -->
+### p6-r2 · finding [open] (reviewer: in scope) · e2e webServer rebuilt in CI after the workflow's build (phase 6)
+
+e2e webServer rebuilt in CI after the workflow's build
+
+<!-- fr:journal kind=finding scope=plan id=p6-r3 created=2026-10-06T06:56:21+00:00 phase=6 state=open review_scope=in -->
+### p6-r3 · finding [open] (reviewer: in scope) · pages/id-token write granted workflow-wide (phase 6)
+
+pages/id-token write granted workflow-wide
+
+<!-- fr:journal kind=finding scope=plan id=p6-r4 created=2026-10-06T06:56:21+00:00 phase=6 state=open review_scope=in -->
+### p6-r4 · finding [open] (reviewer: in scope) · workflow_dispatch could deploy from any branch (phase 6)
+
+workflow_dispatch could deploy from any branch
+
+<!-- fr:journal kind=finding scope=plan id=p6-r5 created=2026-10-06T06:56:21+00:00 phase=6 state=open review_scope=in -->
+### p6-r5 · finding [open] (reviewer: in scope) · Action majors on the Node 20 runtime (phase 6)
+
+Action majors on the Node 20 runtime
+
+<!-- fr:journal kind=finding scope=plan id=p6-r6 created=2026-10-06T06:56:21+00:00 phase=6 state=open review_scope=in -->
+### p6-r6 · finding [open] (reviewer: in scope) · No trace, forbidOnly or failure artifacts (phase 6)
+
+No trace, forbidOnly or failure artifacts
+
+<!-- fr:journal kind=finding scope=plan id=p6-r7 created=2026-10-06T06:56:21+00:00 phase=6 state=open review_scope=in -->
+### p6-r7 · finding [open] (reviewer: in scope) · Smoke test fixed sleeps, dead category branch, misleading comment (phase 6)
+
+Smoke test fixed sleeps, dead category branch, misleading comment
+
+<!-- fr:journal kind=finding scope=plan id=p6-r8 created=2026-10-06T06:56:21+00:00 phase=6 state=open review_scope=in -->
+### p6-r8 · finding [open] (reviewer: in scope) · Matrix notes claimed smoke coverage not in levels (phase 6)
+
+Matrix notes claimed smoke coverage not in levels
+
+<!-- fr:journal kind=finding scope=plan id=p6-r9 created=2026-10-06T06:56:21+00:00 phase=6 state=open review_scope=in -->
+### p6-r9 · finding [open] (reviewer: in scope) · Older notes and the matrix rule said no CI (phase 6)
+
+Older notes and the matrix rule said no CI
+
+<!-- fr:journal kind=finding scope=plan id=p6-r10 created=2026-10-06T06:56:21+00:00 phase=6 state=open review_scope=in -->
+### p6-r10 · finding [open] (reviewer: in scope) · CLAUDE.md architecture incomplete for plan 2 (phase 6)
+
+CLAUDE.md architecture incomplete for plan 2
+
+<!-- fr:journal kind=finding scope=plan id=p6-r11 created=2026-10-06T06:56:21+00:00 phase=6 state=open review_scope=in -->
+### p6-r11 · finding [open] (reviewer: in scope) · playwright.config.ts never type-checked (phase 6)
+
+playwright.config.ts never type-checked
+
+<!-- fr:journal kind=finding scope=plan id=p6-r12 created=2026-10-06T06:56:21+00:00 phase=6 state=open review_scope=in -->
+### p6-r12 · finding [open] (reviewer: in scope) · publish-pages.sh lacked preflight and full verification (phase 6)
+
+publish-pages.sh lacked preflight and full verification
+
+<!-- fr:journal kind=discovery scope=plan id=p6-audible-browser-runs created=2026-10-06T06:56:21+00:00 phase=6 -->
+### p6-audible-browser-runs · discovery · Headless browser runs were audible on the operator machine; now muted (phase 6)
+
+The operator reported game audio and TTS from parallel test runs (the phase-6 reviewer ran the smoke test --repeat-each 6 --workers 3). c8abbe9 adds --mute-audio to playwright.config.ts and a speechSynthesis stub (macOS system TTS is not covered by the flag) to the smoke test and to every capture script; e2e now runs once.
+
+<!-- fr:journal kind=review scope=plan id=p6-review created=2026-10-06T06:56:21+00:00 phase=6 -->
+### p6-review · review · phase 6 code review: 1 important and 11 minor findings, all fixed (phase 6)
+
+Independent reviewer read 7abe5ca..2c030a2 (R18-R20), ran npm test, npm run e2e and a repeat run for flakiness (6/6), ran fr acceptance check, and did its own identifier grep (clean apart from placeholders and the accepted org/repo names). Important: p6-r1 publish without deploy; Minor p6-r2..p6-r12. All fixed in c8abbe9, 0fc2328, dc52bad and the fr set-status commits; suite 489, build and e2e green.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r1-resolved created=2026-10-06T06:56:21+00:00 phase=6 state=fixed resolves=p6-r1 -->
+### p6-r1-resolved · finding [fixed] · resolves p6-r1: publish-pages.sh never triggers a deploy; the first-push failure is undocumented (phase 6)
+
+0fc2328/dc52bad: the script ends with gh workflow run pages.yml when the workflow is on main, else says it deploys on the next push; CLAUDE.md documents the order and the redeploy.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r2-resolved created=2026-10-06T06:56:21+00:00 phase=6 state=fixed resolves=p6-r2 -->
+### p6-r2-resolved · finding [fixed] · resolves p6-r2: e2e webServer rebuilt in CI after the workflow's build (phase 6)
+
+c8abbe9: under CI the webServer is vite preview only; reuseExistingServer is !CI.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r3-resolved created=2026-10-06T06:56:21+00:00 phase=6 state=fixed resolves=p6-r3 -->
+### p6-r3-resolved · finding [fixed] · resolves p6-r3: pages/id-token write granted workflow-wide (phase 6)
+
+0fc2328: top-level contents read; pages and id-token write on the deploy job only.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r4-resolved created=2026-10-06T06:56:21+00:00 phase=6 state=fixed resolves=p6-r4 -->
+### p6-r4-resolved · finding [fixed] · resolves p6-r4: workflow_dispatch could deploy from any branch (phase 6)
+
+0fc2328: deploy job if github.ref == refs/heads/main.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r5-resolved created=2026-10-06T06:56:21+00:00 phase=6 state=fixed resolves=p6-r5 -->
+### p6-r5-resolved · finding [fixed] · resolves p6-r5: Action majors on the Node 20 runtime (phase 6)
+
+0fc2328: checkout v7, setup-node v7, upload-pages-artifact v5, upload-artifact v7, deploy-pages v5 — the orchestrator verified each is the current latest release upstream.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r6-resolved created=2026-10-06T06:56:21+00:00 phase=6 state=fixed resolves=p6-r6 -->
+### p6-r6-resolved · finding [fixed] · resolves p6-r6: No trace, forbidOnly or failure artifacts (phase 6)
+
+c8abbe9/0fc2328: trace retain-on-failure, forbidOnly in CI, upload-artifact on failure for playwright-report and test-results.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r7-resolved created=2026-10-06T06:56:21+00:00 phase=6 state=fixed resolves=p6-r7 -->
+### p6-r7-resolved · finding [fixed] · resolves p6-r7: Smoke test fixed sleeps, dead category branch, misleading comment (phase 6)
+
+c8abbe9: category branch removed, asserts no panel once play starts, per-ship sleeps dropped, comment fixed; two documented waits remain because mothership entry is canvas-only.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r8-resolved created=2026-10-06T06:56:21+00:00 phase=6 state=fixed resolves=p6-r8 -->
+### p6-r8-resolved · finding [fixed] · resolves p6-r8: Matrix notes claimed smoke coverage not in levels (phase 6)
+
+dc52bad + fr set-status commits: per-row notes match levels; smoke ref under ui on learning-aids and typing-rules (and the rows it exercises); reports regenerated; fr acceptance check exit 0.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r9-resolved created=2026-10-06T06:56:21+00:00 phase=6 state=fixed resolves=p6-r9 -->
+### p6-r9-resolved · finding [fixed] · resolves p6-r9: Older notes and the matrix rule said no CI (phase 6)
+
+dc52bad: notes, matrix header and .claude/rules/acceptance-matrix.md say the suite runs in the Pages workflow on main, not on PRs; statuses unchanged.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r10-resolved created=2026-10-06T06:56:21+00:00 phase=6 state=fixed resolves=p6-r10 -->
+### p6-r10-resolved · finding [fixed] · resolves p6-r10: CLAUDE.md architecture incomplete for plan 2 (phase 6)
+
+dc52bad: adds canvas-size, feedback and stars, the meta store key, localStorage settings, and e2e kept out of Vitest.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r11-resolved created=2026-10-06T06:56:21+00:00 phase=6 state=fixed resolves=p6-r11 -->
+### p6-r11-resolved · finding [fixed] · resolves p6-r11: playwright.config.ts never type-checked (phase 6)
+
+0fc2328: added to tsconfig.node.json include; npm run build type-checks it.
+
+<!-- fr:journal kind=finding scope=plan id=p6-r12-resolved created=2026-10-06T06:56:21+00:00 phase=6 state=fixed resolves=p6-r12 -->
+### p6-r12-resolved · finding [fixed] · resolves p6-r12: publish-pages.sh lacked preflight and full verification (phase 6)
+
+0fc2328: gh auth preflight, non-TTY refusal, 404 distinguished from other errors, prints visibility/build_type/status/html_url; bash -n only, never run.

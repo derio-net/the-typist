@@ -3,7 +3,7 @@ run: 2026-10-05-feat-vocab-typer-plan2
 workflow: fr-goal@1
 branch: feat/vocab-typer-plan2
 started: '2026-10-05T21:27:24+00:00'
-cursor: implement
+cursor: journal-check
 steps:
   brainstorm:
     state: done
@@ -50,8 +50,8 @@ steps:
     stdout: |
       self-review passed
   implement:
-    state: running
-    at: '2026-10-06T06:46:03+00:00'
+    state: done
+    at: '2026-10-06T06:56:22+00:00'
     members:
     - implement-phase
     - review-phase
@@ -224,13 +224,20 @@ steps:
           tests: p6-suite.log@af6ff8a5ba9f;tree=f4fcac5a50c76a477f9840fc6360d346adea5be6a690a7880a042ec9f6ef6e6b
           visual: none
       phase/6/review-phase:
-        state: running
+        state: done
         attempts:
         - dispatched: '2026-10-06T06:46:03+00:00'
           agent: a60cfe6ff6d67a976
           harness: claude-code
           model: claude-opus-5-5
           session: a18f67a9-740c-4d3a-8be2-7904ac5f9fad
+          returned: '2026-10-06T06:56:22+00:00'
+          outcome: done
+        evidence:
+          review: p6-review
+          reviewer: a60cfe6ff6d67a976
+          visual: none
+          findings: p6-r1,p6-r2,p6-r3,p6-r4,p6-r5,p6-r6,p6-r7,p6-r8,p6-r9,p6-r10,p6-r11,p6-r12
   journal-check:
     state: pending
   deliver:
