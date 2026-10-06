@@ -394,3 +394,31 @@ describe('world options: score, width, aids (P2.T1)', () => {
     expect(on[0].w).toBeGreaterThan(escorts[0].w - 1e-9);
   });
 });
+
+describe('game over grades on-screen records with an escaped ship (P2.T2)', () => {
+  it('resolves the record (escaped) before game-over; a record without an escape is not resolved', () => {
+    let w = createWorld([boerse], { lives: 1, seed: 3 });
+    w = typeText(w, w.ships[0].text);
+    expect(w.ships.length).toBeGreaterThan(1);
+    const events: WorldEvent[] = [];
+    for (let i = 0; i < 100000 && w.status === 'playing'; i++) {
+      w = tick(w);
+      events.push(...w.events);
+    }
+    expect(w.status).toBe('game-over');
+    const resolved = events.filter((e) => e.type === 'resolved');
+    expect(resolved).toHaveLength(1);
+    expect(resolved[0]).toMatchObject({ recordId: boerse.id, stats: { escaped: true } });
+    expect(events.findIndex((e) => e.type === 'resolved')).toBeLessThan(events.findIndex((e) => e.type === 'game-over'));
+    expect(w.results[boerse.id].escaped).toBe(true);
+  });
+
+  it('a record with no escape emits no resolved at game over', () => {
+    const w0 = createWorld([boerse, phrase], { lives: 1 });
+    // force game over with the first record untouched but another having an escape
+    let w = { ...w0, lives: 0 };
+    w = tick({ ...w, status: 'playing' });
+    expect(w.events.filter((e) => e.type === 'resolved')).toEqual([]);
+    expect(w.status).toBe('game-over');
+  });
+});

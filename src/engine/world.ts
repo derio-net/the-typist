@@ -280,6 +280,12 @@ function shipDone(w: Draft, recordId: string, patch: Partial<RecordStats>, add: 
 function finish(w: Draft): World {
   if (w.status === 'playing') {
     if (w.lives <= 0) {
+      // records still on screen with an escaped ship are graded now: the session ends before they resolve
+      for (const [recordId, rs] of Object.entries(w.records)) {
+        if (!rs.stats.escaped || rs.open <= 0) continue;
+        w.results[recordId] = rs.stats;
+        w.events.push({ type: 'resolved', recordId, stats: rs.stats });
+      }
       w.status = 'game-over';
       w.events.push({ type: 'game-over' });
     } else if (w.queue.length === 0 && Object.values(w.records).every((r) => r.open === 0)) {
