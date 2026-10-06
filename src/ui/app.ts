@@ -150,19 +150,26 @@ export async function startApp(deps: AppDeps): Promise<App> {
   /** Sound and speech for a step's events; the destroyed ship is looked up in the World before the step. */
   function react(events: readonly WorldEvent[], prev: World | undefined) {
     for (const e of events) {
-      if (e.type === 'hit') audio.play('hit');
-      else if (e.type === 'typo') audio.play('typo');
-      else if (e.type === 'escaped') audio.play('escape');
-      else if (e.type === 'wave-complete') audio.play('wave-clear');
-      else if (e.type === 'spawned') {
-        if (e.kind === 'mothership') audio.play('mothership-enter');
-      } else if (e.type === 'destroyed') {
-        const ship = prev?.ships.find((s) => s.id === e.shipId);
-        audio.play(ship?.kind === 'mothership' ? 'explode-big' : 'explode-small');
-        if (ship) {
-          tts.setEnabled(settings.get().aids.tts);
-          tts.say(ship.text);
-        }
+      try {
+        reactTo(e, prev);
+      } catch {
+        /* sound and speech are garnish: a failure must not reach the game loop */
+      }
+    }
+  }
+  function reactTo(e: WorldEvent, prev: World | undefined) {
+    if (e.type === 'hit') audio.play('hit');
+    else if (e.type === 'typo') audio.play('typo');
+    else if (e.type === 'escaped') audio.play('escape');
+    else if (e.type === 'wave-complete') audio.play('wave-clear');
+    else if (e.type === 'spawned') {
+      if (e.kind === 'mothership') audio.play('mothership-enter');
+    } else if (e.type === 'destroyed') {
+      const ship = prev?.ships.find((s) => s.id === e.shipId);
+      audio.play(ship?.kind === 'mothership' ? 'explode-big' : 'explode-small');
+      if (ship) {
+        tts.setEnabled(settings.get().aids.tts);
+        tts.say(ship.text);
       }
     }
   }
