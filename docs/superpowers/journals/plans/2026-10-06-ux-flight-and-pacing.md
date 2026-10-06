@@ -320,3 +320,8 @@ Operator chose: 3 s reading time per ship; the CC0 'Space Shooter (Loop)' track 
 ### p3-review-2 · review · Follow-up review of the operator-feedback commits (5649813^..56e7ad6): 4 minor findings (phase 3)
 
 An independent general-purpose reviewer on opus. All three changes are correct and pinned: the mutations readS back to 0.6, the Eloquence/other rank swap and the missing mp3 each fail tests. It checked the pace tables, the music file (82 s, 128 kbps, no edge silence, served and looped by audio.ts), the silent e2e, and the ranking on Windows, Android and iOS. Findings: p3-r9 (in); p3-r8, p3-r10 and p3-r11 (out).
+
+<!-- fr:journal kind=finding scope=plan id=p3-r8 created=2026-10-06T19:00:42+00:00 phase=3 state=open review_scope=out -->
+### p3-r8 · finding [open] (reviewer: out of scope) · readS sits inside the 1.5x slack; a fast typist's stack may lose tension (phase 3)
+
+Tuning call; the post-merge Test Plan item 2 settles it.
