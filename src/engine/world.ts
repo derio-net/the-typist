@@ -118,13 +118,25 @@ export interface World {
   events: WorldEvent[];
   measure: Measure;
   minReactionS: number;
+  /** Logical canvas width (the height is fixed): ships stay inside [0, width]. */
+  width: number;
+  /** Which learning aids escorts carry. */
+  aids: Aids;
   /** Seeded PRNG state: all randomness in the world comes from here. */
   rng: number;
   /** Records whose mothership has not entered yet, in order. */
   queue: string[];
 }
 
+/** Learning aids shown on escorts: the grammar chip and the English translation. */
+export interface Aids { chip: boolean; translation: boolean }
+
 export interface WorldOptions {
+  /** Starting score (carried between waves). */
+  score?: number;
+  /** Logical canvas width; defaults to `WORLD.width`. */
+  width?: number;
+  aids?: Partial<Aids>;
   wave?: number;
   lives?: number;
   /** Text measurer; the renderer supplies real glyph widths. */
@@ -166,7 +178,7 @@ export function createWorld(records: VocabRecord[], opts: WorldOptions = {}): Wo
   const wave = opts.wave ?? 0;
   const measure = opts.measure ?? defaultMeasure;
   const w: Draft = {
-    time: 0, acc: 0, wave, lives: opts.lives ?? WORLD.lives, score: 0, status: 'playing',
+    time: 0, acc: 0, wave, lives: opts.lives ?? WORLD.lives, score: opts.score ?? 0, status: 'playing',
     ships: [],
     typing: createTyping([]),
     records: Object.fromEntries(
@@ -176,6 +188,8 @@ export function createWorld(records: VocabRecord[], opts: WorldOptions = {}): Wo
     events: [],
     measure,
     minReactionS: opts.minReactionS ?? WORLD.minReactionS,
+    width: opts.width ?? WORLD.width,
+    aids: { chip: opts.aids?.chip ?? true, translation: opts.aids?.translation ?? true },
     rng: opts.seed ?? 1,
     queue: records.map((r) => r.id),
   };
@@ -205,9 +219,9 @@ function enterNext(w: Draft) {
   let u: number;
   [u, w.rng] = random(w.rng);
   const lo = m.w / 2;
-  const hi = WORLD.width - m.w / 2;
+  const hi = w.width - m.w / 2;
   // enters with its whole hull below the HUD
-  spawn(w, { ...m, x: lo > hi ? WORLD.width / 2 : lo + u * (hi - lo), y: WORLD.minY + WORLD.entryGap + m.above });
+  spawn(w, { ...m, x: lo > hi ? w.width / 2 : lo + u * (hi - lo), y: WORLD.minY + WORLD.entryGap + m.above });
 }
 
 function spawnChildren(w: Draft, m: WorldShip) {
@@ -218,8 +232,8 @@ function spawnChildren(w: Draft, m: WorldShip) {
   (record.examples ?? []).forEach((e, k) => {
     const chip = e.tags.filter((t) => (RECOGNISED_TAGS as readonly string[]).includes(t)).join(', ');
     children.push(makeShip(w.measure, `${record.id}:e${k}`, record.id, 'escort', e.de, m.x, m.y, w.wave, {
-      translation: e.en,
-      ...(chip ? { chip } : {}),
+      ...(w.aids.translation ? { translation: e.en } : {}),
+      ...(w.aids.chip && chip ? { chip } : {}),
     }));
   });
   if (children.length === 0) return;
@@ -241,7 +255,7 @@ function spawnChildren(w: Draft, m: WorldShip) {
     [u, w.rng] = random(w.rng);
     [side, w.rng] = random(w.rng);
     const vx = (side < 0.5 ? -1 : 1) * (WORLD.burstMinVx + u * (WORLD.burstMaxVx - WORLD.burstMinVx));
-    spawn(w, keepInside({ ...child, speed, x: m.x, y, vx, vy: -WORLD.burstKick }));
+    spawn(w, keepInside(w.width, { ...child, speed, x: m.x, y, vx, vy: -WORLD.burstKick }));
     const next = children[k + 1];
     if (next) y += child.below + WORLD.bandGap + next.above;
   });
@@ -289,7 +303,7 @@ export function tick(world: World): World {
   const decay = Math.exp(-dt / WORLD.kickDecayS);
   w.ships = w.ships.map((s) => {
     const vy = s.vy * decay;
-    return keepInside({ ...s, x: s.x + s.vx * dt, vy, y: s.y + (s.speed + vy) * dt });
+    return keepInside(w.width, { ...s, x: s.x + s.vx * dt, vy, y: s.y + (s.speed + vy) * dt });
   });
   const ys: Record<string, number> = {};
   for (const s of w.ships) ys[s.id] = s.y;
@@ -305,10 +319,10 @@ export function tick(world: World): World {
 }
 
 /** Keeps a ship inside the canvas, reflecting its sideways velocity at the edges. */
-function keepInside(s: WorldShip): WorldShip {
+function keepInside(width: number, s: WorldShip): WorldShip {
   const lo = s.w / 2;
-  const hi = WORLD.width - s.w / 2;
-  if (lo > hi) return { ...s, x: WORLD.width / 2, vx: 0 };
+  const hi = width - s.w / 2;
+  if (lo > hi) return { ...s, x: width / 2, vx: 0 };
   if (s.x < lo) return { ...s, x: lo, vx: Math.abs(s.vx) };
   if (s.x > hi) return { ...s, x: hi, vx: -Math.abs(s.vx) };
   return s;

@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { sizes } from '../../src/layout/metrics';
+import { hullExtent, sizes } from '../../src/layout/metrics';
 import { parseList, displayForm, formsText, type VocabRecord } from '../../src/schema';
 import {
-  STEP_MS, WORLD, advance, createWorld, shipBounds, shipSpeed, tick, typeChar, type World, type WorldEvent,
+  STEP_MS, WORLD, advance, defaultMeasure, createWorld, shipBounds, shipSpeed, tick, typeChar, type World, type WorldEvent,
 } from '../../src/engine/world';
 
 const fixture = parseList(readFileSync('tests/fixtures/lists/two-records.yaml', 'utf8'));
@@ -352,5 +352,45 @@ describe('one record at a time, banded break-up', () => {
         expect(b.x1).toBeLessThanOrEqual(WORLD.width + 1e-9);
       }
     }
+  });
+});
+
+describe('world options: score, width, aids (P2.T1)', () => {
+  const burstOf = (w: World) => typeText(w, w.ships.find((s) => s.kind === 'mothership')!.text);
+
+  it('starts at the given score and defaults to width 960 with both aids on', () => {
+    expect(createWorld([boerse], { score: 120 }).score).toBe(120);
+    const d = createWorld([boerse]);
+    expect(d.score).toBe(0);
+    expect(d.width).toBe(960);
+    expect(d.aids).toEqual({ chip: true, translation: true });
+  });
+
+  it('a narrower width bounds mothership entry and child edge bounces', () => {
+    for (let seed = 1; seed < 12; seed++) {
+      const w0 = createWorld([boerse], { width: 720, seed });
+      const m = w0.ships[0];
+      expect(m.x).toBeGreaterThanOrEqual(m.w / 2);
+      expect(m.x).toBeLessThanOrEqual(720 - m.w / 2);
+      let w = burstOf(w0);
+      for (let i = 0; i < 60; i++) {
+        w = advance(w, 250);
+        for (const s of w.ships) expect(shipBounds(s).x1).toBeLessThanOrEqual(720 + 1e-6);
+      }
+    }
+  });
+
+  it('with aids off escorts carry no chip or translation and are no wider than their text', () => {
+    const w = burstOf(createWorld([boerse], { aids: { chip: false, translation: false } }));
+    const escorts = byKind(w, 'escort');
+    expect(escorts.length).toBeGreaterThan(0);
+    for (const e of escorts) {
+      expect(e.chip).toBeUndefined();
+      expect(e.translation).toBeUndefined();
+      expect(e.w).toBeCloseTo(defaultMeasure(e.text) + 2 * hullExtent('escort').side, 6);
+    }
+    const on = byKind(burstOf(createWorld([boerse])), 'escort');
+    expect(on[0].translation).toBeDefined();
+    expect(on[0].w).toBeGreaterThan(escorts[0].w - 1e-9);
   });
 });
