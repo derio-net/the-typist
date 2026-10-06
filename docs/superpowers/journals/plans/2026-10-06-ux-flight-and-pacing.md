@@ -351,3 +351,8 @@ Tagged out by the reviewer, but this follow-up wrote the test. The paths now res
 ### p3-r8-resolved · finding [out-of-scope] · resolves p3-r8: readS sits inside the 1.5x slack; a fast typist's stack may lose tension (phase 3)
 
 Operator's tuning call: the operator chose 3 s per ship; flagged for the post-merge play-test.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r10-resolved created=2026-10-06T19:02:07+00:00 phase=3 state=open resolves=p3-r10 out_of_scope=true -->
+### p3-r10-resolved · finding [out-of-scope] · resolves p3-r10: Music credit lives only in CREDITS.md, not in the game UI (phase 3)
+
+CC0 imposes no attribution; CREDITS.md names the author as he asked. An in-game credit line is offered to the operator.
