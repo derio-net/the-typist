@@ -451,3 +451,108 @@ Two thin modules (File to parseList, import.meta.glob); nothing to clean.
 ### no-refactor-p4-t4 · discovery · no-refactor-because P4.T4 (phase 4)
 
 Panels share dom.ts helpers from the start; nothing to clean.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r1 created=2026-10-06T06:16:48+00:00 phase=4 state=open review_scope=in -->
+### p4-r1 · finding [open] (reviewer: in scope) · Waves after a resize keep the session-start width (phase 4)
+
+Waves after a resize keep the session-start width
+
+<!-- fr:journal kind=finding scope=plan id=p4-r2 created=2026-10-06T06:16:48+00:00 phase=4 state=open review_scope=in -->
+### p4-r2 · finding [open] (reviewer: in scope) · Storage banner fixed over the canvas hides the HUD (phase 4)
+
+Storage banner fixed over the canvas hides the HUD
+
+<!-- fr:journal kind=finding scope=plan id=p4-r3 created=2026-10-06T06:16:48+00:00 phase=4 state=open review_scope=in -->
+### p4-r3 · finding [open] (reviewer: in scope) · Finished World stays drawn under the menus (phase 4)
+
+Finished World stays drawn under the menus
+
+<!-- fr:journal kind=finding scope=plan id=p4-r4 created=2026-10-06T06:16:48+00:00 phase=4 state=open review_scope=in -->
+### p4-r4 · finding [open] (reviewer: in scope) · Long-lived renderer carries effects across waves and sessions (phase 4)
+
+Long-lived renderer carries effects across waves and sessions
+
+<!-- fr:journal kind=finding scope=plan id=p4-r5 created=2026-10-06T06:16:48+00:00 phase=4 state=open review_scope=in -->
+### p4-r5 · finding [open] (reviewer: in scope) · Aid toggles changed in pause never apply in the running session (phase 4)
+
+Aid toggles changed in pause never apply in the running session
+
+<!-- fr:journal kind=finding scope=plan id=p4-r6 created=2026-10-06T06:16:48+00:00 phase=4 state=open review_scope=in -->
+### p4-r6 · finding [open] (reviewer: in scope) · Empty or non-numeric cap input resets to the default (phase 4)
+
+Empty or non-numeric cap input resets to the default
+
+<!-- fr:journal kind=finding scope=plan id=p4-r7 created=2026-10-06T06:16:48+00:00 phase=4 state=open review_scope=in -->
+### p4-r7 · finding [open] (reviewer: in scope) · Panels never move focus into the dialog (phase 4)
+
+Panels never move focus into the dialog
+
+<!-- fr:journal kind=finding scope=plan id=p4-r8 created=2026-10-06T06:16:48+00:00 phase=4 state=open review_scope=in -->
+### p4-r8 · finding [open] (reviewer: in scope) · Title list count includes raw records (phase 4)
+
+Title list count includes raw records
+
+<!-- fr:journal kind=finding scope=plan id=p4-r9 created=2026-10-06T06:16:48+00:00 phase=4 state=open review_scope=in -->
+### p4-r9 · finding [open] (reviewer: in scope) · Load errors: inflated count, dangling colon, opaque message for non-list files (phase 4)
+
+Load errors: inflated count, dangling colon, opaque message for non-list files
+
+<!-- fr:journal kind=finding scope=plan id=p4-r10 created=2026-10-06T06:16:48+00:00 phase=4 state=open review_scope=in -->
+### p4-r10 · finding [open] (reviewer: in scope) · App tests lacked mid-session storage-error, quit/new-session and exactly-once delivery (phase 4)
+
+App tests lacked mid-session storage-error, quit/new-session and exactly-once delivery
+
+<!-- fr:journal kind=review scope=plan id=p4-review created=2026-10-06T06:16:48+00:00 phase=4 -->
+### p4-review · review · phase 4 code review: 2 important and 8 minor findings, all fixed (phase 4)
+
+Independent reviewer read ffa42cd..1d163ad (R4 wiring, R5, R8, R10), ran npm test, and drove the UI itself with review-p4.js, including limit cases (Esc spam, cap 0/99/abc, non-YAML/binary/empty files, hostile strings, resize between waves, quit then a new session, storage blocked and failing mid-session), opening every shot. Confirmed exactly-once events, a frozen pause clock, a single loop after quit, and no XSS path. Important: p4-r1 next wave keeps the old width; p4-r2 banner hides the HUD. Minor p4-r3..p4-r10. All fixed in 5917fbd, ff8f439, 84c2074, 1ba7045 and b15bc76; the suite (450 tests) and the build are green.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r1-resolved created=2026-10-06T06:16:48+00:00 phase=4 state=fixed resolves=p4-r1 -->
+### p4-r1-resolved · finding [fixed] · resolves p4-r1: Waves after a resize keep the session-start width (phase 4)
+
+ff8f439/b15bc76: controller worldOptions may be a function evaluated per wave; app passes pickWidth and the aids at wave start; controller and app tests seen red; browser shows 1006 → 720.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r2-resolved created=2026-10-06T06:16:48+00:00 phase=4 state=fixed resolves=p4-r2 -->
+### p4-r2-resolved · finding [fixed] · resolves p4-r2: Storage banner fixed over the canvas hides the HUD (phase 4)
+
+b15bc76/5917fbd: banner in the page flow above the canvas; the renderer fits to availableHeight (innerHeight − banner) and refits when it appears; renderer and app tests seen red; browser shows no overlap.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r3-resolved created=2026-10-06T06:16:48+00:00 phase=4 state=fixed resolves=p4-r3 -->
+### p4-r3-resolved · finding [fixed] · resolves p4-r3: Finished World stays drawn under the menus (phase 4)
+
+b15bc76/5917fbd: world cleared and renderer.clear() on title/mode/category; tests seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r4-resolved created=2026-10-06T06:16:48+00:00 phase=4 state=fixed resolves=p4-r4 -->
+### p4-r4-resolved · finding [fixed] · resolves p4-r4: Long-lived renderer carries effects across waves and sessions (phase 4)
+
+5917fbd/b15bc76: renderer.reset() called at session start and nextWave; tests seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r5-resolved created=2026-10-06T06:16:48+00:00 phase=4 state=fixed resolves=p4-r5 -->
+### p4-r5-resolved · finding [fixed] · resolves p4-r5: Aid toggles changed in pause never apply in the running session (phase 4)
+
+b15bc76: aids read per wave with p4-r1; app test seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r6-resolved created=2026-10-06T06:16:48+00:00 phase=4 state=fixed resolves=p4-r6 -->
+### p4-r6-resolved · finding [fixed] · resolves p4-r6: Empty or non-numeric cap input resets to the default (phase 4)
+
+1ba7045: non-finite input ignored and the field restored; test seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r7-resolved created=2026-10-06T06:16:48+00:00 phase=4 state=fixed resolves=p4-r7 -->
+### p4-r7-resolved · finding [fixed] · resolves p4-r7: Panels never move focus into the dialog (phase 4)
+
+1ba7045: mountPanel focuses button.primary, else the first enabled control; test seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r8-resolved created=2026-10-06T06:16:48+00:00 phase=4 state=fixed resolves=p4-r8 -->
+### p4-r8-resolved · finding [fixed] · resolves p4-r8: Title list count includes raw records (phase 4)
+
+1ba7045: shows the playable count; test seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r9-resolved created=2026-10-06T06:16:48+00:00 phase=4 state=fixed resolves=p4-r9 -->
+### p4-r9-resolved · finding [fixed] · resolves p4-r9: Load errors: inflated count, dangling colon, opaque message for non-list files (phase 4)
+
+84c2074: one entry per error, clean YAML syntax message, 'not a YAML list file' for non-mappings; 5 picker tests seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p4-r10-resolved created=2026-10-06T06:16:48+00:00 phase=4 state=fixed resolves=p4-r10 -->
+### p4-r10-resolved · finding [fixed] · resolves p4-r10: App tests lacked mid-session storage-error, quit/new-session and exactly-once delivery (phase 4)
+
+b15bc76: added as regression guards; they pass on the existing wiring (not red), and the width case is covered under p4-r1.
