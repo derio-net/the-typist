@@ -30,4 +30,4 @@ export function parseList(text: string): ParseResult {
 export { ListSchema, type VocabList } from './list';
 export { RecordSchema, type VocabRecord } from './record';
 export { displayForm, formsText } from './display';
-export { EQUIVALENCES, normaliseTyped, isTypeable } from './typeable';
+export { ACCENTS, EQUIVALENCES, typedEquivalent, normaliseTyped, isTypeable } from './typeable';
