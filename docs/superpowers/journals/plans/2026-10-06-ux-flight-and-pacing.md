@@ -356,3 +356,8 @@ Operator's tuning call: the operator chose 3 s per ship; flagged for the post-me
 ### p3-r10-resolved · finding [out-of-scope] · resolves p3-r10: Music credit lives only in CREDITS.md, not in the game UI (phase 3)
 
 CC0 imposes no attribution; CREDITS.md names the author as he asked. An in-game credit line is offered to the operator.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r8-resolved-2 created=2026-10-06T19:29:43+00:00 state=open resolves=p3-r8 tracked_by=#11 -->
+### p3-r8-resolved-2 · finding [deferred → #11] · resolves p3-r8: readS sits inside the 1.5x slack; a fast typist's stack may lose tension
+
+Filed at closeout as #11.
