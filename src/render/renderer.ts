@@ -1,5 +1,6 @@
 import { WORLD, type World, type WorldEvent, type WorldShip } from '../engine/world';
 import { drawShip, effects, fonts, labels, muzzles, palette, sizes, type MeasureFont, type ShipBox } from './theme';
+import { flashLevel, splitText } from './feedback';
 import { currentSprites, drawCentred, drawReticle, type SpriteName } from './sprites';
 import type { ShipKind } from '../engine/world';
 
@@ -36,6 +37,8 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
   /** Where the player is now (the world's `playerX` as of the last `draw`), and how many shots were fired. */
   let playerX = WORLD.width / 2;
   let shots = 0;
+  /** When each ship last took a typo (the renderer's clock), for the flash. */
+  const typoAt = new Map<string, number>();
 
   /** Pixel width of `text` in the given font; ship text includes the strip's padding. */
   const measure = (text: string, font: MeasureFont = 'ship'): number => {
@@ -75,22 +78,38 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
     ctx.fillText(text, x, y);
   }
 
-  function drawShipText(ship: WorldShip, world: World, locked: boolean) {
+  /** Tints the hull strip of a ship that just took a typo. */
+  function flashHull(box: ShipBox, level: number) {
+    if (level <= 0) return;
+    ctx.globalAlpha = level * effects.typoFlashAlpha;
+    ctx.fillStyle = palette.typoFlash;
+    ctx.fillRect(box.x, box.y, box.w, box.h);
+    ctx.globalAlpha = 1;
+  }
+
+  function drawShipText(ship: WorldShip, world: World, locked: boolean, now: number) {
     const box = boxOf(ship);
     if (locked) drawLock(box);
     ctx.shadowColor = palette.textShadow;
     ctx.shadowBlur = sizes.textShadowBlur;
     const typing = world.typing.ships.find((s) => s.id === ship.id);
-    const pos = typing?.pos ?? 0;
     ctx.font = fonts.ship;
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'left';
-    const typed = ship.text.slice(0, pos);
-    const left = box.x + sizes.shipPaddingX;
-    ctx.fillStyle = palette.typed;
-    ctx.fillText(typed, left, ship.y);
-    ctx.fillStyle = palette.text;
-    ctx.fillText(ship.text.slice(pos), left + ctx.measureText(typed).width, ship.y);
+    const parts = splitText({ text: ship.text, pos: typing?.pos ?? 0, pending: typing?.pending ?? '' });
+    let left = box.x + sizes.shipPaddingX;
+    for (const [run, colour] of [[parts.typed, palette.typed], [parts.pending, palette.pending], [parts.rest, palette.text]] as const) {
+      ctx.fillStyle = colour;
+      ctx.fillText(run, left, ship.y);
+      left += ctx.measureText(run).width;
+    }
+    const level = flashLevel(typoAt.get(ship.id), now);
+    if (level > 0) {
+      ctx.globalAlpha = level;
+      ctx.fillStyle = palette.typoFlash;
+      ctx.fillText(ship.text, box.x + sizes.shipPaddingX, ship.y);
+      ctx.globalAlpha = 1;
+    }
 
     // gloss and translation go on the hull below the strip, the grammar chip above it
     ctx.textAlign = 'center';
@@ -109,10 +128,12 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
     push(events, now) {
       for (const ev of events) {
         const p = 'shipId' in ev ? lastPos.get(ev.shipId) : undefined;
+        if (ev.type === 'typo') typoAt.set(ev.shipId, now);
         if (ev.type === 'hit' && p) {
           const gun = muzzles(playerX, shots++);
           bullets.push({ shipId: ev.shipId, fromX: gun.x, fromY: WORLD.playerY + gun.y, at: now, lastX: p.x, lastY: p.y });
         }
+        if (ev.type === 'destroyed') typoAt.delete(ev.shipId);
         if (ev.type === 'destroyed' && p) {
           explosions.push({ x: p.x, y: p.y, at: now, kind: p.kind });
           for (let i = 0; i < sizes.debrisCount; i++) {
@@ -155,8 +176,11 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
       // the locked ship goes last in each pass
       const lock = world.typing.lock;
       const order = [...world.ships.filter((s) => s.id !== lock), ...world.ships.filter((s) => s.id === lock)];
-      for (const s of order) drawShip(ctx, s.kind, boxOf(s));
-      for (const s of order) drawShipText(s, world, s.id === lock);
+      for (const s of order) {
+        drawShip(ctx, s.kind, boxOf(s));
+        flashHull(boxOf(s), flashLevel(typoAt.get(s.id), now));
+      }
+      for (const s of order) drawShipText(s, world, s.id === lock, now);
 
       bullets = bullets.filter((b) => now - b.at < effects.bulletMs);
       ctx.fillStyle = palette.bullet;

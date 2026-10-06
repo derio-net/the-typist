@@ -13,6 +13,10 @@ export const palette = {
   star: '#2a3556',
   text: '#e8ecf8',
   typed: '#5df2a0',
+  /** ASCII prefix typed towards a digraph (the `o` of `oe`). */
+  pending: '#9fd8ff',
+  /** Tint of a locked ship's hull and text right after a typo. */
+  typoFlash: '#ff5d6c',
   gloss: '#ffd970',
   chip: '#b9e4ff',
   translation: '#e3e8f8',
@@ -48,6 +52,9 @@ export const fonts = {
 
 export const effects = {
   bulletMs: 120,
+  /** A typo flash fades out over this long; `typoFlashAlpha` is its strongest hull tint. */
+  typoFlashMs: 260,
+  typoFlashAlpha: 0.55,
   explosionMs: 560,
   explosionFrames: 8,
   debrisMs: 900,
