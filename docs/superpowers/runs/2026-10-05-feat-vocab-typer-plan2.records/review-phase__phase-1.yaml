@@ -87,4 +87,3 @@ evidence:
   review: p1-review
   reviewer: a7a9ddca5291241a2
   model: claude-opus-5-5
-  tests: /Users/derio/.cache/fr/worktrees/the-typist/p1-review-suite.log
