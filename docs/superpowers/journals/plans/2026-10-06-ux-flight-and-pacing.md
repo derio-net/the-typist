@@ -336,3 +336,8 @@ Courtesy only (CC0); the operator decides.
 
 <!-- fr:journal kind=finding scope=plan id=p3-r11 created=2026-10-06T19:01:19+00:00 phase=3 state=open review_scope=out -->
 ### p3-r11 · finding [open] (reviewer: out of scope) · The bundled-music test resolves paths against the cwd (phase 3)
+
+<!-- fr:journal kind=finding scope=plan id=p3-r9-resolved created=2026-10-06T19:01:30+00:00 phase=3 state=fixed resolves=p3-r9 -->
+### p3-r9-resolved · finding [fixed] · resolves p3-r9: Matrix wording stale: game-audio 'when a track is supplied'; live-session-check 'non-novelty' (phase 3)
+
+game-audio reworded to a bundled CC0 track, with the ux-flight spec added as an origin; non-novelty becomes non-character; reports regenerated; fr acceptance check passes.
