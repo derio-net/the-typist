@@ -1,0 +1,56 @@
+schema_version: 7
+run: 2026-10-05-feat-vocab-typer-plan2
+step: implement-phase
+item: phase/3
+outcome: done
+ticks: [P3.T1.S1, P3.T1.S2, P3.T2.S1, P3.T2.S2, P3.T3.S1, P3.T3.S2, P3.T4.S1, P3.T4.S2, P3.T5.S1, P3.T5.S2, P3.T5.S3]
+refactor:
+  P3.T1: "One small pure function; nothing to clean."
+  P3.T2: "Thin wrapper over ts-fsrs; nothing to clean."
+  P3.T3: "Written once as a shared contract over both stores; nothing to clean."
+  P3.T4: "Pure builders sharing chunk/shuffle helpers from the start; nothing to clean."
+journal:
+  - kind: decision
+    id: p3-controller-api
+    phase: 3
+    title: "Controller takes the World's lives/score as a second argument and writes through a queue"
+    body: |
+      onWorldEvents(events, {lives, score}) so the controller never holds the World; store writes
+      are chained on a promise queue (flush() awaits it) so grading stays synchronous for the UI,
+      and a failed write is swallowed without stopping later ones. nextWave() returns undefined
+      and emits the summary after the last wave's between-wave; the summary has a reason
+      (finished, game-over, quit).
+  - kind: decision
+    id: p3-store-shape
+    phase: 3
+    title: "Store API: get/put/all/newCount/bumpNew plus a pure withGrade for the counters"
+    body: |
+      openStores(factory) takes an IDBFactory or null (tests inject fake-indexeddb); the IDB
+      store has a probe() that writes, reads back and deletes a meta key. Accuracy in the summary
+      is expected / (expected + typos).
+  - kind: discovery
+    id: no-refactor-p3-t1
+    phase: 3
+    title: "no-refactor-because P3.T1"
+    body: |
+      One small pure function; nothing to clean.
+  - kind: discovery
+    id: no-refactor-p3-t2
+    phase: 3
+    title: "no-refactor-because P3.T2"
+    body: |
+      Thin wrapper over ts-fsrs; nothing to clean.
+  - kind: discovery
+    id: no-refactor-p3-t3
+    phase: 3
+    title: "no-refactor-because P3.T3"
+    body: |
+      Written once as a shared contract over both stores; nothing to clean.
+  - kind: discovery
+    id: no-refactor-p3-t4
+    phase: 3
+    title: "no-refactor-because P3.T4"
+    body: |
+      Pure builders sharing helpers from the start; nothing to clean.
+resolves: []
+evidence: {tests: /Users/derio/.cache/fr/worktrees/the-typist/p3-suite.log}
