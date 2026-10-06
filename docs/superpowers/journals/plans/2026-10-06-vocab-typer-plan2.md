@@ -556,3 +556,46 @@ b15bc76: aids read per wave with p4-r1; app test seen red.
 ### p4-r10-resolved · finding [fixed] · resolves p4-r10: App tests lacked mid-session storage-error, quit/new-session and exactly-once delivery (phase 4)
 
 b15bc76: added as regression guards; they pass on the existing wiring (not red), and the width case is covered under p4-r1.
+
+<!-- fr:journal kind=decision scope=plan id=p5-react-helper created=2026-10-06T06:24:18+00:00 phase=5 -->
+### p5-react-helper · decision · Sound and speech are driven from one react() in app.ts, looking the destroyed ship up in the World before the step (phase 5)
+
+The destroyed event carries only a shipId, and the ship is gone from the World the step returns, so
+react() reads kind and text from the previous World. TTS is told the setting (setEnabled) before each say.
+
+<!-- fr:journal kind=decision scope=plan id=p5-music-probe created=2026-10-06T06:24:18+00:00 phase=5 -->
+### p5-music-probe · decision · The music probe treats a text/html 200 as no file (phase 5)
+
+Vite's dev server answers a missing file with its index.html at status 200, so HEAD ok is not enough;
+audio.ts also requires a non-html content-type. The effect table lives in theme.ts as sounds.
+
+<!-- fr:journal kind=discovery scope=plan id=p5-hard-needs-many-typos created=2026-10-06T06:24:18+00:00 phase=5 -->
+### p5-hard-needs-many-typos · discovery · A Hard grade needs a typo rate above 10 percent of the whole Record (phase 5)
+
+Two typos per ship was still Good (about 4 percent). The capture types one wrong key every fourth character.
+
+<!-- fr:journal kind=discovery scope=plan id=p5-tts-status-at-open created=2026-10-06T06:24:18+00:00 phase=5 -->
+### p5-tts-status-at-open · discovery · The settings panel reads the TTS status when it opens (phase 5)
+
+If voices arrive while settings is already open, the toggle stays as rendered; it is correct the next
+time the panel opens (voices settle within 1500 ms of page load).
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p5-t1 created=2026-10-06T06:24:18+00:00 phase=5 -->
+### no-refactor-p5-t1 · discovery · no-refactor-because P5.T1 (phase 5)
+
+Tests only: phase 4 already evaluated worldOptions at wave start, so no code changed.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p5-t2 created=2026-10-06T06:24:18+00:00 phase=5 -->
+### no-refactor-p5-t2 · discovery · no-refactor-because P5.T2 (phase 5)
+
+One new small module (recap.ts) written once; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p5-t3 created=2026-10-06T06:24:18+00:00 phase=5 -->
+### no-refactor-p5-t3 · discovery · no-refactor-because P5.T3 (phase 5)
+
+One new self-contained module wired through a single react() helper; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p5-t4 created=2026-10-06T06:24:18+00:00 phase=5 -->
+### no-refactor-p5-t4 · discovery · no-refactor-because P5.T4 (phase 5)
+
+One new self-contained module whose effect table lives in theme.ts; nothing to clean.
