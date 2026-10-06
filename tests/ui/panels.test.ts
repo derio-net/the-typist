@@ -223,7 +223,9 @@ describe('panels (R5, R8, R10)', () => {
 
   it('a saved voice that is gone shows Automatic (R8)', () => {
     const p = settingsPanel(root, { settings: { ...DEFAULT_SETTINGS, voice: 'u:gone' }, voices: [{ uri: 'u:a', name: 'Anna', lang: 'de-DE' }] }, { onChange: vi.fn(), onClose: vi.fn(), onTestVoice: vi.fn() });
-    expect(p.el.querySelector<HTMLSelectElement>('[data-setting="voice"]')!.value).toBe('');
+    const sel = p.el.querySelector<HTMLSelectElement>('[data-setting="voice"]')!;
+    expect(sel.selectedIndex).toBe(0);
+    expect(sel.selectedOptions[0].textContent).toBe('Automatic (best available)');
   });
 
   it('voice labels drop the locale suffix when the name already carries it (p2-r1)', () => {
