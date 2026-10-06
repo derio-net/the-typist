@@ -366,3 +366,8 @@ Filed at closeout as #11.
 ### p3-r10-resolved-2 · finding [deferred → #12] · resolves p3-r10: Music credit lives only in CREDITS.md, not in the game UI
 
 Filed at closeout as #12.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r11-resolved-2 created=2026-10-06T19:29:51+00:00 state=fixed resolves=p3-r11 -->
+### p3-r11-resolved-2 · finding [fixed] · resolves p3-r11: The bundled-music test resolves paths against the cwd
+
+Fixed in 32478bc (merged in #10): the bundled-music test resolves paths via import.meta.url, verified with --root from /tmp.
