@@ -413,13 +413,23 @@ describe('game over grades on-screen records with an escaped ship (P2.T2)', () =
     expect(w.results[boerse.id].escaped).toBe(true);
   });
 
-  it('a record with no escape emits no resolved at game over', () => {
-    const w0 = createWorld([boerse, phrase], { lives: 1 });
-    // force game over with the first record untouched but another having an escape
-    let w = { ...w0, lives: 0 };
-    w = tick({ ...w, status: 'playing' });
-    expect(w.events.filter((e) => e.type === 'resolved')).toEqual([]);
+  it('at game over only the on-screen record with an escaped ship resolves; another open record does not', () => {
+    let w = createWorld([boerse, phrase], { lives: 1, seed: 3 });
+    w = typeText(w, w.ships[0].text); // boerse breaks up: open ships
+    // phrase is also on screen with an open ship and no escape
+    w = { ...w, queue: [], records: { ...w.records, [phrase.id]: { ...w.records[phrase.id], open: 1 } } };
+    expect(w.records[boerse.id].open).toBeGreaterThan(0);
+    const events: WorldEvent[] = [];
+    for (let i = 0; i < 100000 && w.status === 'playing'; i++) {
+      w = tick(w);
+      events.push(...w.events);
+    }
     expect(w.status).toBe('game-over');
+    const resolved = events.filter((e) => e.type === 'resolved');
+    expect(resolved).toHaveLength(1);
+    expect(resolved[0]).toMatchObject({ recordId: boerse.id, stats: { escaped: true } });
+    expect(w.results[phrase.id]).toBeUndefined();
+    expect(events.findIndex((e) => e.type === 'resolved')).toBeLessThan(events.findIndex((e) => e.type === 'game-over'));
   });
 });
 
@@ -455,10 +465,11 @@ describe('player ship drifts toward its locked target (P2.T3)', () => {
   });
 
   it('is clamped to the canvas', () => {
-    let w = at(createWorld([boerse]), -500);
+    let w = at(createWorld([boerse], { width: 100 }), 50);
     w = typeChar(w, w.ships[0].text[0]);
-    w = { ...w, playerX: 0 };
-    expect(tick(w).playerX).toBeGreaterThanOrEqual(0);
+    expect(w.typing.lock).not.toBeNull();
+    expect(tick({ ...w, playerX: 500 }).playerX).toBe(100); // target inside, player outside on the right
+    expect(tick({ ...w, playerX: -400 }).playerX).toBe(0); // and on the left
   });
 });
 
