@@ -7,3 +7,4 @@ export { betweenWavePanel } from './between-wave';
 export { summaryPanel } from './summary';
 export { settingsPanel } from './settings';
 export { bannerPanel } from './banner';
+export { recapCard, recapContent, WAVE_CLEARED } from './recap';

@@ -1,6 +1,8 @@
 import type { VocabList } from '../schema';
-import { advance, typeChar, type World } from '../engine/world';
+import { advance, typeChar, type World, type WorldEvent } from '../engine/world';
 import { createKeyboard, type Keyboard } from '../platform/keyboard';
+import { createTts, type Tts } from '../platform/tts';
+import { createAudio, type Audio } from '../platform/audio';
 import { createSettings, type SettingsStore } from '../platform/settings';
 import { loadFile } from '../content/picker';
 import { bundledLists } from '../content/bundled';
@@ -30,6 +32,8 @@ export interface AppDeps {
   raf?: (cb: (t: number) => void) => number;
   caf?: (id: number) => void;
   makeRenderer?: (canvas: HTMLCanvasElement, width: number, opts?: RendererOptions) => Renderer;
+  tts?: Tts;
+  audio?: Audio;
   /** Seeds the shuffles and the Worlds; defaults to a random seed per session. */
   seed?: number;
   /** Max milliseconds of one frame fed to the World (a stalled tab must not warp the game). */
@@ -54,6 +58,8 @@ export async function startApp(deps: AppDeps): Promise<App> {
   const bundled = deps.bundled ?? bundledLists();
   const loaded: VocabList[] = [];
   const settings = deps.settings ?? createSettings();
+  const tts = deps.tts ?? createTts();
+  const audio = deps.audio ?? createAudio();
   const stores = deps.stores ?? (await openStores());
 
   injectStyle(root.ownerDocument);
@@ -91,9 +97,24 @@ export async function startApp(deps: AppDeps): Promise<App> {
     step(typeChar(world, c), lastNow);
   }, { onEscape: () => onEscape() });
 
+  // the AudioContext may only be made inside a user gesture
+  const doc = root.ownerDocument;
+  const unlock = () => audio.unlock();
+  doc.addEventListener('keydown', unlock, true);
+  doc.addEventListener('pointerdown', unlock, true);
+  const syncAudio = () => {
+    const { sfx, music } = settings.get();
+    audio.setOptions({ sfx, music });
+  };
+  syncAudio();
+
   const setState = (s: AppState) => {
     state = s;
     keyboard.setEnabled(s === 'play');
+    syncAudio();
+    // music runs only while playing: every other state, a pause included, silences it
+    if (s === 'play') void audio.startMusic();
+    else audio.pauseMusic();
   };
   const show = (s: AppState, make?: () => Panel) => {
     panel?.close();
@@ -111,9 +132,31 @@ export async function startApp(deps: AppDeps): Promise<App> {
 
   /** Takes a new World: draws its effects and hands its events to the controller. */
   function step(next: World, at: number) {
+    const prev = world;
     world = next;
     renderer.push(next.events, at);
+    react(next.events, prev);
     controller?.onWorldEvents(next.events, next);
+  }
+
+  /** Sound and speech for a step's events; the destroyed ship is looked up in the World before the step. */
+  function react(events: readonly WorldEvent[], prev: World | undefined) {
+    for (const e of events) {
+      if (e.type === 'hit') audio.play('hit');
+      else if (e.type === 'typo') audio.play('typo');
+      else if (e.type === 'escaped') audio.play('escape');
+      else if (e.type === 'wave-complete') audio.play('wave-clear');
+      else if (e.type === 'spawned') {
+        if (e.kind === 'mothership') audio.play('mothership-enter');
+      } else if (e.type === 'destroyed') {
+        const ship = prev?.ships.find((s) => s.id === e.shipId);
+        audio.play(ship?.kind === 'mothership' ? 'explode-big' : 'explode-small');
+        if (ship) {
+          tts.setEnabled(settings.get().aids.tts);
+          tts.say(ship.text);
+        }
+      }
+    }
   }
 
   // ---- screens ----
@@ -213,7 +256,7 @@ export async function startApp(deps: AppDeps): Promise<App> {
       if (e.type === 'storage-error') warn();
       else if (e.type === 'between-wave') {
         show('between-wave', () =>
-          betweenWavePanel(root, { wave: e.wave, more: e.more, lives: e.lives, score: e.score, weak: e.weak }, {
+          betweenWavePanel(root, { wave: e.wave, more: e.more, lives: e.lives, score: e.score, weak: e.weak, recap: recapRecords(e.weak) }, {
             onContinue: continueFromWave,
           }));
       } else if (e.type === 'summary') {
@@ -223,6 +266,12 @@ export async function startApp(deps: AppDeps): Promise<App> {
     });
     world = controller.start();
     show('play');
+  }
+
+  /** The weak Records' cards, unless the recap setting is off. */
+  function recapRecords(ids: readonly string[]) {
+    if (!settings.get().aids.recap || !list) return [];
+    return ids.flatMap((id) => list!.records.filter((r) => r.id === id));
   }
 
   function continueFromWave() {
@@ -242,9 +291,10 @@ export async function startApp(deps: AppDeps): Promise<App> {
   function openSettings(from: AppState) {
     settingsReturn = from;
     show('settings', () =>
-      settingsPanel(root, { settings: settings.get() }, {
+      settingsPanel(root, { settings: settings.get(), ttsUnavailable: tts.status().available ? undefined : tts.status().reason }, {
         onChange: (patch) => {
           const next = settings.set(patch);
+          syncAudio();
           if (!settings.persistent) warn();
           return next;
         },
@@ -309,6 +359,9 @@ export async function startApp(deps: AppDeps): Promise<App> {
       caf(frameId);
       unsubscribe?.();
       keyboard.dispose();
+      doc.removeEventListener('keydown', unlock, true);
+      doc.removeEventListener('pointerdown', unlock, true);
+      audio.pauseMusic();
       renderer.dispose();
       panel?.close();
       banner?.close();

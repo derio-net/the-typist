@@ -7,6 +7,8 @@ import { createSettings } from '../../src/platform/settings';
 import { createMemoryStore, localDay } from '../../src/srs/store';
 import { schedule } from '../../src/srs/scheduler';
 import type { Renderer, RendererOptions } from '../../src/render/renderer';
+import type { Tts } from '../../src/platform/tts';
+import type { Audio, EffectName } from '../../src/platform/audio';
 import { startApp, STORAGE_WARNING, type App } from '../../src/ui/app';
 
 const twoText = readFileSync('tests/fixtures/lists/two-records.yaml', 'utf8');
@@ -35,6 +37,27 @@ let pushes: unknown[][];
 let counts: { reset: number; clear: number; refit: number };
 let rendererOpts: RendererOptions | undefined;
 let storage: Storage;
+let said: string[];
+let played: EffectName[];
+let music: string[];
+let ttsOn: boolean[];
+let ttsStatus: { available: boolean; reason?: string };
+let audioOpts: { sfx: boolean; music: boolean }[];
+let unlocks: number;
+
+const fakeTts = (): Tts => ({
+  status: () => ttsStatus,
+  ready: Promise.resolve(ttsStatus),
+  setEnabled: (on) => void ttsOn.push(on),
+  say: (t) => void said.push(t),
+});
+const fakeAudio = (): Audio => ({
+  unlock: () => void (unlocks += 1),
+  play: (n) => void played.push(n),
+  setOptions: (o) => void audioOpts.push(o),
+  startMusic: async () => void music.push('start'),
+  pauseMusic: () => void music.push('pause'),
+});
 const NOW = new Date('2026-10-06T09:00:00');
 
 const fakeRenderer = (): Renderer => ({
@@ -60,6 +83,7 @@ async function boot() {
   app = await startApp({
     root, bundled: [fixtureList()], stores: { cards, persistent }, settings: createSettings(storage),
     now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: (_c, _w, o) => ((rendererOpts = o), fakeRenderer()), seed: 7,
+    tts: fakeTts(), audio: fakeAudio(),
   });
 }
 const click = (text: string) => {
@@ -92,6 +116,13 @@ beforeEach(async () => {
   cards = createMemoryStore();
   persistent = true;
   storage = fakeStorage();
+  said = [];
+  played = [];
+  music = [];
+  ttsOn = [];
+  audioOpts = [];
+  unlocks = 0;
+  ttsStatus = { available: true };
   await boot();
 });
 afterEach(() => app.dispose());
@@ -272,6 +303,7 @@ async function bootBig(n: number) {
   app = await startApp({
     root, bundled: [bigList(n)], stores: { cards, persistent }, settings: createSettings(storage),
     now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: (_c, _w, o) => ((rendererOpts = o), fakeRenderer()), seed: 7,
+    tts: fakeTts(), audio: fakeAudio(),
   });
 }
 
@@ -402,5 +434,144 @@ describe('review fixes (p4-r1..r10)', () => {
     const graded = Object.keys(await cards.all('fixture-two'));
     expect(graded.length).toBeLessThanOrEqual(2);
     expect(new Set(graded).size).toBe(graded.length);
+  });
+});
+
+describe('learning aids and audio (R6, R7, R10)', () => {
+  const setSetting = (key: string, on: boolean) => {
+    esc();
+    click('Settings');
+    const box = root.querySelector<HTMLInputElement>(`[data-setting="${key}"]`)!;
+    box.checked = on;
+    box.dispatchEvent(new Event('change'));
+    click('Close');
+    esc();
+  };
+  const shipTexts = (w: NonNullable<ReturnType<App['world']>>) => w.ships.filter((s) => s.kind === 'escort').map((s) => ({ t: s.translation, c: s.chip }));
+
+  it('the translation setting turns off the next wave, and a mid-wave toggle applies from the next wave', async () => {
+    await bootBig(7);
+    click('Big list');
+    await app.settled();
+    click('Study');
+    await app.settled();
+    setSetting('aids.translation', false);
+    expect(app.world()!.aids.translation).toBe(true); // this wave keeps what it started with
+    typeUntil(() => app.state() === 'between-wave');
+    click('Next wave');
+    expect(app.world()!.aids.translation).toBe(false);
+    expect(app.world()!.aids.chip).toBe(true);
+    typeUntil(() => app.world()!.ships.some((s) => s.kind === 'escort'));
+    expect(shipTexts(app.world()!).every((s) => s.t === undefined)).toBe(true);
+  });
+
+  it('every destroyed ship speaks its full text, interrupting through say', async () => {
+    await startStudy();
+    typeUntil(() => app.state() !== 'play' || (app.world()?.results && Object.keys(app.world()!.results).length === 2) === true);
+    const destroyed = pushes.flat().filter((e) => (e as { type: string }).type === 'destroyed').length;
+    expect(destroyed).toBeGreaterThan(2);
+    expect(said).toHaveLength(destroyed);
+    const l = fixtureList();
+    for (const r of l.records) for (const e of r.examples ?? []) expect(said).toContain(e.de); // escorts
+    expect(said).toContain('die Börsen'); // a forms ship
+    expect(said).toContain('die Börse'); // a mothership
+  });
+
+  it('TTS is told the setting before each utterance; off means the toggle is passed on', async () => {
+    await startStudy();
+    setSetting('aids.tts', false);
+    typeUntil(() => said.length > 0, 400);
+    expect(ttsOn.at(-1)).toBe(false);
+  });
+
+  it('settings shows the TTS toggle disabled with the reason when there is no German voice', async () => {
+    app.dispose();
+    ttsStatus = { available: false, reason: 'no German voice installed on this device' };
+    await boot();
+    click('Settings');
+    const box = root.querySelector<HTMLInputElement>('[data-setting="aids.tts"]')!;
+    expect(box.disabled).toBe(true);
+    expect(box.parentElement!.textContent).toContain('no German voice installed on this device');
+    expect(root.querySelector<HTMLInputElement>('[data-setting="aids.chip"]')!.disabled).toBe(false);
+  });
+
+  it('settings leaves TTS enabled when a voice exists', () => {
+    click('Settings');
+    expect(root.querySelector<HTMLInputElement>('[data-setting="aids.tts"]')!.disabled).toBe(false);
+  });
+
+  it('World events map to effects', async () => {
+    await startStudy();
+    typeUntil(() => app.state() !== 'play');
+    expect(played).toContain('mothership-enter');
+    expect(played).toContain('hit');
+    expect(played).toContain('explode-big');
+    expect(played).toContain('explode-small');
+    expect(played).toContain('wave-clear');
+    const destroyed = pushes.flat().filter((e) => (e as { type: string }).type === 'destroyed').length;
+    expect(played.filter((p) => p === 'explode-big' || p === 'explode-small')).toHaveLength(destroyed);
+  });
+
+  it('a typo plays the typo effect and an escape the escape effect', async () => {
+    await startStudy();
+    run(3000);
+    const w = app.world()!;
+    const ship = w.typing.ships[0];
+    const wrong = ship.text[0] === 'q' ? 'w' : 'q';
+    input().dispatchEvent(new InputEvent('input', { data: wrong, inputType: 'insertText', bubbles: true }));
+    expect(played).not.toContain('hit');
+    // nothing locks on a miss, so no typo event: lock first, then miss
+    input().dispatchEvent(new InputEvent('input', { data: ship.text[0], inputType: 'insertText', bubbles: true }));
+    input().dispatchEvent(new InputEvent('input', { data: wrong, inputType: 'insertText', bubbles: true }));
+    expect(played).toContain('typo');
+    for (let i = 0; i < 400 && app.state() === 'play'; i++) run(1000);
+    expect(played).toContain('escape');
+  });
+
+  it('unlocks audio on the first keydown or pointer press, once per kind of gesture', () => {
+    expect(unlocks).toBe(0);
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'a', bubbles: true }));
+    expect(unlocks).toBeGreaterThan(0);
+    const n = unlocks;
+    document.dispatchEvent(new Event('pointerdown', { bubbles: true }));
+    expect(unlocks).toBeGreaterThan(n);
+  });
+
+  it('music plays during play and pauses with the game; toggles reach the audio', async () => {
+    await startStudy();
+    expect(music.at(-1)).toBe('start');
+    esc();
+    expect(music.at(-1)).toBe('pause');
+    click('Settings');
+    const box = root.querySelector<HTMLInputElement>('[data-setting="music"]')!;
+    box.checked = false;
+    box.dispatchEvent(new Event('change'));
+    expect(audioOpts.at(-1)).toEqual({ sfx: true, music: false });
+    click('Close');
+    esc();
+    expect(music.at(-1)).toBe('start');
+  });
+
+  it('the recap lists the weak Records between waves, and only "Wave cleared" with recap off', async () => {
+    await startStudy();
+    // let both Records escape: both grade Again
+    for (let i = 0; i < 400 && app.state() === 'play'; i++) run(1000);
+    await app.settled();
+    expect(app.state()).toBe('between-wave');
+    const cardsText = root.querySelector('[data-slot=recap]')!.textContent!;
+    expect(root.querySelectorAll('[data-slot=recap] [data-card]')).toHaveLength(2);
+    expect(cardsText).toContain('stock exchange');
+    expect(cardsText).toContain('to invest');
+  });
+
+  it('with recap off the between-wave panel shows "Wave cleared" only', async () => {
+    createSettings(storage).set({ aids: { recap: false } });
+    app.dispose();
+    await boot();
+    await startStudy();
+    for (let i = 0; i < 400 && app.state() === 'play'; i++) run(1000);
+    await app.settled();
+    expect(app.state()).toBe('between-wave');
+    expect(root.querySelector('[data-slot=recap]')!.textContent).toBe('Wave cleared');
   });
 });

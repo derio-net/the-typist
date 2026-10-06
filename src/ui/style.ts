@@ -38,6 +38,11 @@ const RULES = `
 .panel input[type=number] { width: 5em; font: var(--f-hud); color: var(--c-text); background: var(--c-plate);
   border: 1px solid var(--c-ship-stroke-escort); border-radius: 4px; padding: 4px 6px; }
 .panel label { display: flex; gap: 8px; align-items: center; }
+[data-slot=recap] { max-height: 45vh; overflow: auto; }
+.recap-card { margin: 8px 0; padding: 8px 10px; border: 1px solid var(--c-ship-stroke-escort); border-radius: 4px; background: var(--c-plate); }
+.recap-card h3 { margin: 0; font: var(--f-hud); color: var(--c-typed); }
+.recap-card p { margin: 4px 0; }
+.recap-card ul { margin: 4px 0 0; padding-left: 16px; font: var(--f-gloss); }
 /* in the flow, above the canvas: it never covers the HUD */
 .banner { position: relative; z-index: 20; padding: 6px 12px; text-align: center;
   background: var(--c-pending); color: var(--c-background); font: var(--f-chip); }

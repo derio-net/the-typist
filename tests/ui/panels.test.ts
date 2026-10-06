@@ -116,6 +116,37 @@ describe('panels (R5, R8, R10)', () => {
     expect(buttons(last.el)).toEqual(['Finish']);
   });
 
+  it('between-wave panel shows one recap card per weak record (R6)', () => {
+    const recs = list('x', 'X').records;
+    const p = betweenWavePanel(root, { wave: 0, more: true, lives: 2, score: 9, weak: [recs[0].id, recs[1].id], recap: recs }, { onContinue: vi.fn() });
+    const cards = p.el.querySelectorAll('[data-slot=recap] [data-card]');
+    expect(cards).toHaveLength(2);
+    const first = cards[0].textContent!;
+    expect(first).toContain('die Börse');
+    expect(first).toContain('stock exchange');
+    expect(first).toContain('die Börsen');
+    for (const e of recs[0].examples!) {
+      expect(first).toContain(e.de);
+      expect(first).toContain(e.en);
+    }
+    expect(cards[1].textContent).toContain('legte an, hat angelegt');
+    expect(p.el.querySelector('[data-slot=recap]')!.textContent).not.toBe('Wave cleared');
+  });
+
+  it('recap shows "wave cleared" only when there is nothing to recap (recap off or no Again/Hard)', () => {
+    const none = betweenWavePanel(root, { wave: 0, more: true, lives: 2, score: 9, weak: [], recap: [] }, { onContinue: vi.fn() });
+    const slot = none.el.querySelector('[data-slot=recap]')!;
+    expect(slot.textContent).toBe('Wave cleared');
+    expect(slot.querySelector('[data-card]')).toBeNull();
+  });
+
+  it('recap cards put list strings in as text, never as markup', () => {
+    const rec = { ...list('x', 'X').records[0], gloss: ['<img src=x onerror=alert(1)>'] };
+    const p = betweenWavePanel(root, { wave: 0, more: true, lives: 2, score: 9, weak: [rec.id], recap: [rec] }, { onContinue: vi.fn() });
+    expect(p.el.querySelector('img')).toBeNull();
+    expect(p.el.textContent).toContain('<img src=x');
+  });
+
   it('summary shows grade counts, accuracy, chars/s and score', () => {
     const summary: Summary = {
       mode: 'study', counts: { Again: 1, Hard: 2, Good: 3, Easy: 4 }, graded: 10, accuracy: 0.9234, charsPerSecond: 3.456,

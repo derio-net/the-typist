@@ -61,6 +61,23 @@ export const effects = {
   msPerSecond: 1000,
 } as const;
 
+/** One synthesized sound effect: an oscillator sweeping `from` to `to` Hz over `ms`, at `gain`. */
+export interface Sound { wave: 'sine' | 'square' | 'sawtooth' | 'triangle'; from: number; to: number; ms: number; gain: number }
+
+/** The effect table the audio module plays; tune the game's sound here. */
+export const sounds = {
+  hit: { wave: 'square', from: 880, to: 660, ms: 50, gain: 0.05 },
+  typo: { wave: 'sawtooth', from: 160, to: 110, ms: 140, gain: 0.08 },
+  'explode-small': { wave: 'sawtooth', from: 320, to: 60, ms: 220, gain: 0.1 },
+  'explode-big': { wave: 'sawtooth', from: 200, to: 35, ms: 520, gain: 0.14 },
+  escape: { wave: 'triangle', from: 440, to: 120, ms: 360, gain: 0.1 },
+  'wave-clear': { wave: 'sine', from: 520, to: 1040, ms: 420, gain: 0.1 },
+  'mothership-enter': { wave: 'triangle', from: 90, to: 180, ms: 600, gain: 0.08 },
+} as const satisfies Record<string, Sound>;
+
+/** Audio tunables: the music loop's volume, and the milliseconds-per-second conversion for effect durations. */
+export const audioLevels = { music: 0.35, msPerSecond: 1000 } as const;
+
 export const labels = {
   score: 'Score',
   wave: 'Wave',
@@ -119,4 +136,4 @@ export function drawShip(ctx: CanvasRenderingContext2D, kind: ShipKindName, box:
 }
 
 /** Every token in one object. */
-export const theme = { palette, fonts, effects, labels, sizes, muzzle } as const;
+export const theme = { palette, fonts, effects, sounds, labels, sizes, muzzle } as const;
