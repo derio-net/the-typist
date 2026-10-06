@@ -34,4 +34,13 @@ describe('rankGermanVoices (R7)', () => {
     rankGermanVoices(input);
     expect(names(input)).toEqual(['Eddy', 'Anna']);
   });
+
+  it('reads the quality marker from the voiceURI too, so a localized name still ranks first (p2-r3)', () => {
+    const apple = { name: 'Anna (Deutsch)', voiceURI: 'com.apple.voice.premium.de-DE.Anna', lang: 'de-DE' };
+    const enh = { name: 'Zeta (Deutsch)', voiceURI: 'com.apple.voice.enhanced.de-DE.Zeta', lang: 'de-DE' };
+    const plain = { name: 'Aaron', voiceURI: 'com.apple.voice.compact.de-DE.Aaron', lang: 'de-DE' };
+    const r = rankGermanVoices([plain, v('Google Deutsch'), enh, apple]);
+    expect(names(r.slice(0, 2)).sort()).toEqual(['Anna (Deutsch)', 'Zeta (Deutsch)']);
+    expect(names(r).slice(2)).toEqual(['Google Deutsch', 'Aaron']);
+  });
 });
