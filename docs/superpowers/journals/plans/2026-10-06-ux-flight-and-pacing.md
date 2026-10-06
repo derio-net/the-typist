@@ -325,3 +325,6 @@ An independent general-purpose reviewer on opus. All three changes are correct a
 ### p3-r8 · finding [open] (reviewer: out of scope) · readS sits inside the 1.5x slack; a fast typist's stack may lose tension (phase 3)
 
 Tuning call; the post-merge Test Plan item 2 settles it.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r9 created=2026-10-06T19:00:55+00:00 phase=3 state=open review_scope=in -->
+### p3-r9 · finding [open] (reviewer: in scope) · Matrix wording stale: game-audio 'when a track is supplied'; live-session-check 'non-novelty' (phase 3)
