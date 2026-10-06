@@ -22,6 +22,32 @@ export const ListHeader = z.strictObject({
   rules: Rules.optional(),
 });
 
+/** A list-level problem: `index` is the record it concerns, or null for a category. */
+export interface ListIssue { index: number; message: string; where: 'records' | 'categories' }
+
+/** List-level checks (unique ids, declared categories, categorised records) shared by `ListSchema` and `parseList`. */
+export function checkListLevel(
+  categories: readonly { id: string }[],
+  records: readonly { id: string; categories?: string[] | undefined }[],
+): ListIssue[] {
+  const out: ListIssue[] = [];
+  const declared = new Set<string>();
+  categories.forEach((c, i) => {
+    if (declared.has(c.id)) out.push({ where: 'categories', index: i, message: `duplicate category id '${c.id}'` });
+    declared.add(c.id);
+  });
+  const seen = new Set<string>();
+  records.forEach((r, i) => {
+    const add = (message: string) => out.push({ where: 'records', index: i, message });
+    if (seen.has(r.id)) add(`duplicate id '${r.id}'`);
+    seen.add(r.id);
+    for (const c of r.categories ?? []) if (!declared.has(c)) add(`undeclared category '${c}'`);
+    if (declared.size > 0 && (r.categories ?? []).length === 0)
+      add('record needs at least one category (the list declares categories)');
+  });
+  return out;
+}
+
 export const ListSchema = z
   .strictObject({
     schema: z.literal(1),
@@ -30,21 +56,10 @@ export const ListSchema = z
     records: z.array(RecordBase),
   })
   .superRefine((l, ctx) => {
-    const declared = new Set<string>();
-    (l.categories ?? []).forEach((c, i) => {
-      if (declared.has(c.id))
-        ctx.addIssue({ code: 'custom', message: `duplicate category id '${c.id}'`, path: ['categories', i] });
-      declared.add(c.id);
-    });
-    const seen = new Set<string>();
+    for (const { where, index, message } of checkListLevel(l.categories ?? [], l.records))
+      ctx.addIssue({ code: 'custom', message, path: [where, index] });
     l.records.forEach((r, i) => {
-      const add = (message: string) => ctx.addIssue({ code: 'custom', message, path: ['records', i] });
-      if (seen.has(r.id)) add(`duplicate id '${r.id}'`);
-      seen.add(r.id);
-      for (const c of r.categories ?? []) if (!declared.has(c)) add(`undeclared category '${c}'`);
-      if (declared.size > 0 && (r.categories ?? []).length === 0)
-        add('record needs at least one category (the list declares categories)');
-      for (const message of checkEnriched(r, l.list.rules)) add(message);
+      for (const message of checkEnriched(r, l.list.rules)) ctx.addIssue({ code: 'custom', message, path: ['records', i] });
     });
   });
 
