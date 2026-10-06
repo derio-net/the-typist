@@ -2,46 +2,44 @@ import { expect, test } from '@playwright/test';
 
 const FIXTURE = 'tests/fixtures/lists/two-records.yaml';
 
-// Typed per ship. Final '.' is pre-typed by the game, so it is left out.
+// Once a ship is locked every non-matching key is a typo, which pushes the Record past the 10% Hard threshold.
 const WRONG_KEYS = 'q'.repeat(20);
 
 test('load a list, free-play it, and persist both Records', async ({ page }) => {
+  // German TTS must stay silent on the operator's machine (--mute-audio does not cover system TTS)
+  await page.addInitScript(() => {
+    const w = window as unknown as { __spoken: string[] };
+    w.__spoken = [];
+    speechSynthesis.speak = (u: SpeechSynthesisUtterance) => void w.__spoken.push(u.text);
+    speechSynthesis.cancel = () => undefined;
+  });
+
   await page.goto('./');
   await expect(page.locator('[data-panel=title]')).toBeVisible();
 
   await page.locator('[data-testid=list-file]').setInputFiles(FIXTURE);
   await page.locator('[data-list=fixture-two]').click();
   await page.locator('[data-action=free-play]').click();
-  // a list without categories goes straight to play; with categories, pick the first
-  const category = page.locator('[data-panel=category] [data-category]').first();
-  if (await category.isVisible({ timeout: 1000 }).catch(() => false)) await category.click();
+  // the fixture has no categories, so play starts straight away
+  await expect(page.locator('[data-panel]')).toHaveCount(0);
 
   const kb = page.keyboard;
-  const settle = () => page.waitForTimeout(700);
-
-  // Record 1 (noun, graded Hard): mothership with the oe fallback on the umlaut
+  // Ships live on a canvas, so entry is not observable in the DOM: a mothership enters shortly after play
+  // starts and keys typed before that are ignored. Children spawn synchronously when their mothership dies.
   await page.waitForTimeout(1500);
-  await kb.type('die Boerse');
-  await settle();
-  // forms ship, then the two ambiguous escorts (the lower ship locks first), then the third
+  await kb.type('die Boerse'); // oe fallback on the umlaut
   await kb.type('die Börsen');
-  await settle();
+  // two escorts share "Die Börse"; the lower ship locks first
   await kb.type('D' + WRONG_KEYS + 'ie Börsen in Asien öffnen früher');
-  await settle();
   await kb.type('Die Börse schloss gestern mit leichten Verlusten');
-  await settle();
   await kb.type('Sie arbeitet an der Börse');
 
-  // Record 2 (verb, clean)
+  // the next Record's mothership enters after the previous Record's last ship is gone (not observable)
   await page.waitForTimeout(2500);
   await kb.type('anlegen');
-  await settle();
   await kb.type('legte an, hat angelegt');
-  await settle();
   await kb.type('Er legte das Geld sicher an');
-  await settle();
   await kb.type('Wir haben viel Geld angelegt');
-  await settle();
   await kb.type('Sie legt ihr Geld in Aktien an');
 
   const between = page.locator('[data-panel=between-wave]');
