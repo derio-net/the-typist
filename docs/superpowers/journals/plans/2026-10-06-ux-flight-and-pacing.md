@@ -101,3 +101,58 @@ b62a92c adds the app.test.ts level; reports regenerated and fr acceptance check 
 ### p1-r5-resolved · finding [fixed] · resolves p1-r5: The high-wreck R2 case is the rise-0 floor, so the world-level test never exercises the solve (phase 1)
 
 b0d8221: 120 is labelled as the floor case, and kick > 0 is asserted for 300 and 520.
+
+<!-- fr:journal kind=discovery scope=plan id=p2-tdd-red-first created=2026-10-06T17:08:31+00:00 phase=2 -->
+### p2-tdd-red-first · discovery · Phase 2 was red-first with mutation checks (phase 2)
+
+Each task's tests were run and seen failing before the implementation. Mutants checked and killed: speak looked up in the new World instead of prev (needed a one-keystroke ship test, added), novelty/Google rank collapsed, de-DE order flipped, dropped list-change notify, preview gated on enabled, setVoice/startup wiring removed, Test not disabled with no voice. One equivalent mutant survives: a saved uri that is gone shows Automatic whether or not the panel checks, because a select assigned an unknown value reads empty.
+
+<!-- fr:journal kind=discovery scope=plan id=p2-stub-utterance created=2026-10-06T17:08:31+00:00 phase=2 -->
+### p2-stub-utterance · discovery · A browser stub needs its own SpeechSynthesisUtterance (phase 2)
+
+The real utterance's voice setter throws for a plain-object voice, which createTts swallows, so a stub that only fakes getVoices silently speaks nothing. scripts/tmp/capture-voices.mjs stubs the utterance class too.
+
+<!-- fr:journal kind=discovery scope=plan id=p2-lock-covers-one-key created=2026-10-06T17:08:31+00:00 phase=2 -->
+### p2-lock-covers-one-key · discovery · A one-keystroke ship emits lock and destroyed in the same step (phase 2)
+
+typing emits lock before destroyed, so speaking on lock covers it, but only if the ship is looked up in prev; the app test uses an A. example (one keystroke, final stop pre-typed) to pin it.
+
+<!-- fr:journal kind=discovery scope=plan id=p2-removed-order-test created=2026-10-06T17:08:31+00:00 phase=2 -->
+### p2-removed-order-test · discovery · The grading-before-speech test was removed (phase 2)
+
+It only asserted that say ran before anything else, which is vacuous once speech happens at lock; the throwing-say-on-lock test covers that speech failure cannot cost a grade.
+
+<!-- fr:journal kind=discovery scope=plan id=p2-no-voice-layout created=2026-10-06T17:08:31+00:00 phase=2 -->
+### p2-no-voice-layout · discovery · The no-voice reason squeezed the Test button onto two lines (phase 2)
+
+Seen in the screenshot; the reason now sits in its own line under the picker (a one-line change in settingsPanel).
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t1 created=2026-10-06T17:08:31+00:00 phase=2 -->
+### no-refactor-p2-t1 · discovery · no-refactor-because P2.T1 (phase 2)
+
+reactTo gained one branch and lost one; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t2 created=2026-10-06T17:08:31+00:00 phase=2 -->
+### no-refactor-p2-t2 · discovery · no-refactor-because P2.T2 (phase 2)
+
+voices.ts is a 25-line pure module written once; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t3 created=2026-10-06T17:08:31+00:00 phase=2 -->
+### no-refactor-p2-t3 · discovery · no-refactor-because P2.T3 (phase 2)
+
+createTts was restructured while adding the ranked list (speak shared by say and preview); no leftover duplication.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t4 created=2026-10-06T17:08:31+00:00 phase=2 -->
+### no-refactor-p2-t4 · discovery · no-refactor-because P2.T4 (phase 2)
+
+a settings field and two one-line app calls; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t5 created=2026-10-06T17:08:31+00:00 phase=2 -->
+### no-refactor-p2-t5 · discovery · no-refactor-because P2.T5 (phase 2)
+
+the panel additions are one block; the no-voice reason was moved under the picker after the screenshot, which was the cleanup.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t6 created=2026-10-06T17:08:31+00:00 phase=2 -->
+### no-refactor-p2-t6 · discovery · no-refactor-because P2.T6 (phase 2)
+
+matrix, docs and capture only; no code to clean.
