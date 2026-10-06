@@ -412,3 +412,42 @@ ffa42cd: in-place push and oldest due computed once per category; existing build
 ### p3-r13-resolved · finding [fixed] · resolves p3-r13: Summary accuracy and chars/s skewed by escaped ships and activeMs-0 records (phase 3)
 
 8402713: accuracy over non-escaped records; chars/s over non-escaped records with activeMs > 0; definitions in a doc comment; seen red.
+
+<!-- fr:journal kind=decision scope=plan id=p4-esc-on-document created=2026-10-06T05:58:03+00:00 phase=4 -->
+### p4-esc-on-document · decision · Esc is heard on the document, not the hidden input (phase 4)
+
+createKeyboard listens for Escape on the document so the pause and settings Esc works while a panel
+control (the cap field) holds focus and the keyboard is disabled.
+
+<!-- fr:journal kind=decision scope=plan id=p4-app-seams created=2026-10-06T05:58:03+00:00 phase=4 -->
+### p4-app-seams · decision · app.ts takes injectable deps and exposes state/world/settled (phase 4)
+
+startApp takes raf, makeRenderer, stores, settings, now and seed so jsdom tests run it without a canvas.
+The between-wave panel has a data-slot=recap element and the settings panel takes ttsUnavailable, as seams
+for phase 5 (recap cards, TTS). In dev, main.ts exposes the app as window.__typist for the browser check.
+
+<!-- fr:journal kind=discovery scope=plan id=p4-no-idle-world created=2026-10-06T05:58:03+00:00 phase=4 -->
+### p4-no-idle-world · discovery · The title, mode and category screens show an empty canvas (phase 4)
+
+No World exists outside a session, so those panels sit over the plain background; after a session the last
+frame stays behind the mode panel. Acceptable for now; an idle attract World would be a polish item.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p4-t1 created=2026-10-06T05:58:03+00:00 phase=4 -->
+### no-refactor-p4-t1 · discovery · no-refactor-because P4.T1 (phase 4)
+
+Small additive change to one module; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p4-t2 created=2026-10-06T05:58:03+00:00 phase=4 -->
+### no-refactor-p4-t2 · discovery · no-refactor-because P4.T2 (phase 4)
+
+One new self-contained module written once; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p4-t3 created=2026-10-06T05:58:03+00:00 phase=4 -->
+### no-refactor-p4-t3 · discovery · no-refactor-because P4.T3 (phase 4)
+
+Two thin modules (File to parseList, import.meta.glob); nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p4-t4 created=2026-10-06T05:58:03+00:00 phase=4 -->
+### no-refactor-p4-t4 · discovery · no-refactor-because P4.T4 (phase 4)
+
+Panels share dom.ts helpers from the start; nothing to clean.
