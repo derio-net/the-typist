@@ -1,0 +1,43 @@
+schema_version: 7
+run: 2026-10-06-feat-ux-flight-and-pacing
+step: review-phase
+item: phase/1
+outcome: done
+journal:
+  - {kind: finding, id: p1-r1, phase: 1, review_scope: in, title: "The observe-before-spawn test passes even with the order swapped (every speed is clamped to 8)", body: "tests/engine/world.test.ts, pace-driven speeds (R4). The reviewer's mutation (observe after spawnChildren) kept all tests green. Use a fast pace so the speed is unclamped, and assert it differs from the speed at the pre-observe pace."}
+  - {kind: finding, id: p1-r2, phase: 1, review_scope: in, title: "Nothing tests that budgets use requiredLength", body: "world.ts:241,263. Swapping to text.length kept the engine tests green. Add punctuated-mothership and unclamped-stack cases."}
+  - {kind: finding, id: p1-r3, phase: 1, review_scope: in, title: "At very fast paces, rule 4 feedback lifts a light stack behind the HUD", body: "world.ts:340-347. At 0.05-0.08 s/char a stack spawned with its top hull at y 3-31 at up to 140 px/s."}
+  - {kind: finding, id: p1-r4, phase: 1, review_scope: in, title: "The adaptive-pace row is missing the tests/ui/app.test.ts level", body: "The only save/load-across-sessions test lives there."}
+  - {kind: finding, id: p1-r5, phase: 1, review_scope: in, title: "The high-wreck R2 case is the rise-0 floor, so the world-level test never exercises the solve", body: "it.each([120,300,520]): label 120 as the floor case, and assert kick > 0 for 300 and 520."}
+  - kind: discovery
+    id: p1-tdd-order
+    phase: 1
+    title: "The phase 1 executor wrote the T2–T6 code before its tests"
+    body: "Disclosed by the executor. The reviewer's mutation tests found two surviving mutants (p1-r1, p1-r2), and both are now fixed with tests verified to fail under the mutation."
+  - kind: review
+    id: p1-review-1
+    phase: 1
+    title: "Phase 1 review (8170c9f..78b7b4b): 5 findings, all in scope, all fixed"
+    body: |
+      The reviewer was an independent general-purpose agent on opus. It checked R1–R5 against the spec, ran the suite (523/523) and the build, and ran 7 mutation tests on a copy; 2 mutants survived (p1-r1, p1-r2). It confirmed the discrete-step kick solve by simulating tick() for wrecks at 120, 300, 520, the entry y and a tall stack, and drove the UI itself with 13 fresh shots covering every stack-flight state and interaction plus the limits.
+      It raised p1-r1 (Important) and p1-r2 to p1-r5 (Minor), all in scope. The fixes are b0d8221 (r1, r2, r5; the r1 and r2 tests verified to fail under the mutation), d863b5c (r3: rule 4 caps the speed before lifting the stack; the spec is updated in 377b4c3) and b62a92c (r4, with reports regenerated in 377b4c3). After the fixes the suite has 529/529 passing (scratchpad/p1-fix-suite.log), and the build passes.
+      Declined to judge: the 8 px/s floor is spec tuning; tall 6+ band stacks are plan 2's R13 fallback; quitting mid-record is not saved by spec; well-typed corrupt pace values are accepted; R6–R10 belong to later phases.
+resolves:
+  - {id: p1-r1, state: fixed, body: "b0d8221: a fast pace with an unclamped speed asserts the post-observe speed; it fails with observe moved after spawnChildren."}
+  - {id: p1-r2, state: fixed, body: "b0d8221: a punctuated mothership and an unclamped stack assert requiredLength budgets; they fail under text.length."}
+  - {id: p1-r3, state: fixed, body: "d863b5c: rule 4 caps the shared speed to the room before lifting, and lifts only when the stack is too tall at minSpeed. The test at spc 0.05 from wrecks at 450 and at the entry y fails before the fix. The spec is updated (377b4c3)."}
+  - {id: p1-r4, state: fixed, body: "b62a92c adds the app.test.ts level; reports regenerated and fr acceptance check passes (377b4c3)."}
+  - {id: p1-r5, state: fixed, body: "b0d8221: 120 is labelled as the floor case, and kick > 0 is asserted for 300 and 520."}
+evidence:
+  review: p1-review-1
+  reviewer: a2cdae52aa70a7b17
+  model: claude-opus-5-5
+visual:
+  - row: stack-flight
+    shots:
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p1-review-shots/high-wreck-apex.png, shows: [stack-apex-at-hud-from-high-wreck, longest-sentence-highest, forms-ship-lowest]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p1-review-shots/low-wreck-apex.png, shows: [stack-apex-at-hud-from-low-wreck, longest-sentence-highest, forms-ship-lowest]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p1-review-shots/no-forms-apex.png, shows: [record-without-forms]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p1-review-shots/no-examples-apex.png, shows: [record-without-examples]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p1-review-shots/seq-3-mid-kick.png, shows: [destroy-mothership-stack-flies-to-top]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p1-review-shots/seq-4-apex.png, shows: [destroy-mothership-stack-flies-to-top]}
