@@ -684,3 +684,39 @@ edf4ca5: theme-token scroll-shadow fades, scrollbar-gutter stable, a thin styled
 ### p5-r8-resolved · finding [fixed] · resolves p5-r8: Music audible flag desynced on late superseded play() rejection (phase 5)
 
 edf4ca5: a generation counter ignores superseded rejections; the stub test fails without the fix.
+
+<!-- fr:journal kind=decision scope=plan id=p6-sweep-no-hits created=2026-10-06T06:45:59+00:00 phase=6 -->
+### p6-sweep-no-hits · decision · Identifier sweep found nothing to replace (phase 6)
+
+The sweep regex over tracked files (excluding wordlist.raw.txt, package-lock.json and
+docs/superpowers/runs/**) hit only two lines, both describing the patterns themselves
+(docs/superpowers/plans/2026-10-06-vocab-typer-plan2/06.yaml:68 and
+docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md:300, using the
+placeholder form /Users/<name>). No file was replaced. docs/superpowers/runs/** has
+0 hits for the regex, so there is nothing for the operator to review there. A wider
+grep (operator name, email, gmail, ~/.ssh key names, /home/) also found nothing.
+Git history is untouched.
+
+<!-- fr:journal kind=decision scope=plan id=p6-matrix-ui-level created=2026-10-06T06:45:59+00:00 phase=6 -->
+### p6-matrix-ui-level · decision · Playwright smoke recorded under the ui level (phase 6)
+
+The matrix schema allows only unit/api/int/ui, so the Playwright smoke
+(tests/e2e/smoke.spec.ts) is cited under `ui`. Nine plan-2 rows moved to skipped via
+`fr acceptance set-status --id ... --status skipped --notes ...`; all 15 rows are
+now skipped, none ci. list-loading, learning-aids and degraded-states keep
+verify: post-merge. `fr acceptance check` exits 0.
+
+<!-- fr:journal kind=discovery scope=plan id=p6-smoke-ship-lock-order created=2026-10-06T06:45:59+00:00 phase=6 -->
+### p6-smoke-ship-lock-order · discovery · Ambiguous escort prefixes need the lower ship typed first (phase 6)
+
+On a shared first character the engine locks the ship with the largest y. In the
+fixture the escorts "Die Börse schloss…" and "Die Börsen in Asien…" share the prefix
+"Die Börse", so the smoke types the lower one (Börsen in Asien) first. Wrong keys
+only count as typos once a ship is locked, so the smoke types a lock character and
+then 20 wrong keys to push the Record past the 10% Hard threshold. The smoke does
+not use window.__typist (dev only) and reads IndexedDB cards via getAllKeys.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p6-t1 created=2026-10-06T06:45:59+00:00 phase=6 -->
+### no-refactor-p6-t1 · discovery · no-refactor-because P6.T1 (phase 6)
+
+Task adds a config and one new spec; no existing code to clean.
