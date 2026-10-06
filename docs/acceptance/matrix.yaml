@@ -187,8 +187,9 @@ rows:
       - the-typist:tests/platform/audio.test.ts
       - the-typist:tests/platform/settings.test.ts
       - the-typist:tests/ui/app.test.ts
-    status: not-implemented
-    notes: ''
+    status: skipped
+    notes: Verified by vitest unit tests and the Playwright smoke; the suite runs in
+      the Pages workflow on main, not on PRs, so the row is not ci.
   - id: play-feel
     capability: Gameplay
     acceptance: The player ship fires from its front guns and drifts toward its target,
