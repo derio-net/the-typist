@@ -31,6 +31,7 @@ const RULES = `
 .panel button:disabled { opacity: 0.45; cursor: not-allowed; }
 .panel ul { margin: 8px 0; padding-left: 18px; }
 .panel ul.errors { font: var(--f-ship); color: var(--c-typo-flash); max-height: 40vh; overflow: auto; }
+.panel ul.errors li { white-space: pre-wrap; }
 .panel .warn { color: var(--c-pending); }
 .panel .grades { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 12px 0; text-align: center; }
 .panel .grades b { display: block; font: var(--f-banner); color: var(--c-typed); }

@@ -1,4 +1,5 @@
 import type { VocabList } from '../../schema';
+import { isPlayable } from '../../session/build';
 import { button, h, mountPanel, type Panel } from '../dom';
 
 export interface TitleProps {
@@ -14,7 +15,7 @@ export interface TitleHandlers {
 
 export function titlePanel(root: HTMLElement, props: TitleProps, handlers: TitleHandlers): Panel {
   const item = (list: VocabList) =>
-    button(`${list.list.title} (${list.records.length})`, () => handlers.onChoose(list), { 'data-list': list.list.id });
+    button(`${list.list.title} (${list.records.filter(isPlayable).length})`, () => handlers.onChoose(list), { 'data-list': list.list.id });
   const file = h('input', { type: 'file', accept: '.yaml,.yml', hidden: true, 'data-testid': 'list-file', 'aria-label': 'list file' });
   file.addEventListener('change', () => {
     const f = file.files?.[0];

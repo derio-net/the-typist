@@ -22,9 +22,17 @@ export function settingsPanel(root: HTMLElement, props: SettingsProps, handlers:
     return h('label', {}, box, label, disabled && h('span', { class: 'muted' }, ` (${disabled})`));
   };
   const cap = h('input', { type: 'number', min: String(NEW_CAP_MIN), max: String(NEW_CAP_MAX), value: String(s.newCap), 'data-setting': 'newCap', 'aria-label': 'new records per day' });
+  let shown = s.newCap;
   cap.addEventListener('change', () => {
-    const stored = handlers.onChange({ newCap: cap.valueAsNumber });
-    if (stored) cap.value = String(stored.newCap);
+    const typed = cap.valueAsNumber;
+    // an empty or non-numeric field keeps the previous value
+    if (!Number.isFinite(typed)) {
+      cap.value = String(shown);
+      return;
+    }
+    const stored = handlers.onChange({ newCap: typed });
+    if (stored) shown = stored.newCap;
+    cap.value = String(shown);
   });
   return mountPanel(
     root, 'settings', 'Settings',

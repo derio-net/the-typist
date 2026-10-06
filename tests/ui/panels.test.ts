@@ -184,3 +184,45 @@ describe('style', () => {
     }
   });
 });
+
+describe('panel review fixes', () => {
+  it('title counts playable records, not all records (p4-r8)', () => {
+    const l = list('a', 'Alpha');
+    const mixed: VocabList = { ...l, records: [...l.records, { ...l.records[0], id: 'noun-raw', status: 'raw' }] };
+    const p = titlePanel(root, { bundled: [mixed], loaded: [] }, { onChoose: vi.fn(), onLoadFile: vi.fn(), onSettings: vi.fn() });
+    expect(buttons(p.el)).toContain('Alpha (2)');
+  });
+
+  it('an empty or non-numeric cap keeps the previous value and restores the field (p4-r6)', () => {
+    const onChange = vi.fn((patch) => ({ ...DEFAULT_SETTINGS, ...patch }));
+    const p = settingsPanel(root, { settings: DEFAULT_SETTINGS }, { onChange, onClose: vi.fn() });
+    const cap = p.el.querySelector<HTMLInputElement>('input[type=number]')!;
+    cap.value = '';
+    cap.dispatchEvent(new Event('change'));
+    expect(onChange).not.toHaveBeenCalled();
+    expect(cap.value).toBe('10');
+    cap.value = '30';
+    cap.dispatchEvent(new Event('change'));
+    expect(onChange).toHaveBeenLastCalledWith({ newCap: 30 });
+    cap.value = '';
+    cap.dispatchEvent(new Event('change'));
+    expect(cap.value).toBe('30');
+  });
+
+  it('a mounted panel focuses its primary button, else its first control (p4-r7)', () => {
+    const pause = pausePanel(root, {}, { onResume: vi.fn(), onSettings: vi.fn(), onQuit: vi.fn() });
+    expect(document.activeElement).toBe(pause.el.querySelector('[data-action=resume]'));
+    pause.close();
+    const title = titlePanel(root, { bundled: [list('a', 'Alpha')], loaded: [] }, { onChoose: vi.fn(), onLoadFile: vi.fn(), onSettings: vi.fn() });
+    expect(document.activeElement).toBe(title.el.querySelector('button'));
+    title.close();
+    const st = settingsPanel(root, { settings: DEFAULT_SETTINGS }, { onChange: vi.fn(), onClose: vi.fn() });
+    expect(st.el.contains(document.activeElement)).toBe(true);
+  });
+
+  it('load errors keep each message whole', () => {
+    const p = loadErrorsPanel(root, { fileName: 'x', errors: ['a\nb'] }, { onClose: vi.fn() });
+    expect(p.el.querySelectorAll('li')).toHaveLength(1);
+    expect(p.el.querySelector('li')!.textContent).toBe('a\nb');
+  });
+});

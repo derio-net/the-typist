@@ -33,5 +33,8 @@ export function mountPanel(root: HTMLElement, name: string, title: string, ...bo
   const card = h('div', { class: 'panel', role: 'dialog', 'aria-label': title, 'data-panel': name }, h('h2', {}, title), ...body);
   const overlay = h('div', { class: 'panel-overlay', 'data-panel-overlay': name }, card);
   root.append(overlay);
+  // the keyboard is off while a panel is open: put focus on the primary control so Enter works
+  const first = card.querySelector<HTMLElement>('button.primary') ?? card.querySelector<HTMLElement>('button:not(:disabled), input:not([hidden]):not(:disabled)');
+  first?.focus();
   return { el: card, close: () => overlay.remove() };
 }
