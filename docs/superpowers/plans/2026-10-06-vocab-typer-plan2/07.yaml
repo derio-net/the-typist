@@ -28,6 +28,7 @@ state:
       note: publish-pages.sh run; Pages build_type=workflow; run 37428556789 deployed,
         site 200
   completion:
-    at: null
-    note: null
+    at: '2026-10-06T15:37:11+00:00'
+    note: 'Verified 2026-10-06: repo public, Pages live at https://derio-net.github.io/the-typist/
+      (HTTP 200)'
     observed_prs: []
