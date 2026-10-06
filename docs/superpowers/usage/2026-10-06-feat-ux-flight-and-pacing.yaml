@@ -1,0 +1,37 @@
+schema_version: 1
+run: 2026-10-06-feat-ux-flight-and-pacing
+captures:
+- host: h-2d9540f2
+  harness: claude-code
+  mode: devcontainer
+  captured_at: '2026-10-06T16:20:58+00:00'
+  at:
+  - resolve:brainstorm
+  sessions:
+  - session: 2bf630d7-2f45-41fc-bcd7-74d8fb4b1552
+    role: main
+    models:
+      claude-opus-5-5:
+        input: 82
+        cache_write: 122032
+        cache_read: 3951036
+        output: 32943
+        usd: null
+        usd_source: none
+    activity:
+      implementation:
+        usd: null
+        turns: 4
+      other:
+        usd: null
+        turns: 11
+      paperwork:
+        usd: null
+        turns: 25
+    steps:
+      (outside run):
+        usd: null
+        turns: 17
+      brainstorm:
+        usd: null
+        turns: 23

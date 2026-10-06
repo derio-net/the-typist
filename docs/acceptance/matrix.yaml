@@ -244,6 +244,39 @@ rows:
     status: skipped
     notes: Verified by vitest unit tests (typing engine, typeable, keyboard). The suite
       runs in the Pages workflow on pushes to main, not on PRs, so the row is not ci.
+  - id: stack-flight
+    capability: Gameplay
+    acceptance: A destroyed mothership's children fly up to just below the HUD in bands,
+      the forms ship lowest and the sentences above it longest-first, and they never
+      overlap the HUD.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R1
+    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R2
+    levels: {}
+    status: not-implemented
+    notes: ''
+    visual:
+      states:
+      - stack-apex-at-hud-from-high-wreck
+      - stack-apex-at-hud-from-low-wreck
+      - forms-ship-lowest
+      - longest-sentence-highest
+      - record-without-forms
+      - record-without-examples
+      interactions:
+      - destroy-mothership-stack-flies-to-top
+  - id: adaptive-pace
+    capability: Gameplay
+    acceptance: Ship speed follows the player's measured typing rate, calibrated over
+      the first 50 letters and remembered between sessions, so that every ship of a
+      stack can be typed with 1.5x slack; waves do not speed ships up.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R3
+    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R4
+    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R5
+    levels: {}
+    status: not-implemented
+    notes: ''
   - id: srs-sessions
     capability: Learning
     acceptance: Study sessions serve due plus capped new Records in category waves,
@@ -297,6 +330,54 @@ rows:
       - recap-card
       interactions:
       - toggle-aid-persists-after-reload
+  - id: speech-on-attack
+    capability: Learning
+    acceptance: A ship's German text is spoken once, when the player first attacks it,
+      not when it is destroyed.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R6
+    levels: {}
+    status: not-implemented
+    notes: ''
+  - id: voice-choice
+    capability: Learning
+    acceptance: The game speaks with the best German voice available, and the player
+      can pick and test another voice in Settings, with a hint on installing better
+      ones.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R7
+    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R8
+    levels: {}
+    status: not-implemented
+    notes: ''
+    visual:
+      states:
+      - voice-picker-automatic-first-ranked
+      - voice-install-hint
+      - no-german-voice-picker-disabled
+      interactions:
+      - pick-voice-and-test
+  - id: progress-portability
+    capability: Learning
+    acceptance: Progress is protected from browser cleanup where the browser allows,
+      Settings says whether it is, and the player can export progress to a file and
+      import it in another browser, with invalid files rejected without changes.
+    origin:
+    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R9
+    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R10
+    levels: {}
+    status: not-implemented
+    notes: ''
+    visual:
+      states:
+      - storage-line-protected
+      - storage-line-may-be-cleared
+      - storage-line-memory
+      - import-success-message
+      - import-invalid-file-error
+      interactions:
+      - export-progress-download
+      - import-progress-file
   - id: structure-skill
     capability: Authoring
     acceptance: A raw word list can be turned into a valid raw-status Record list by
