@@ -1,5 +1,6 @@
 import { WORLD, type World, type WorldEvent, type WorldShip } from '../engine/world';
 import { drawShip, effects, fonts, labels, muzzles, palette, sizes, type MeasureFont, type ShipBox } from './theme';
+import { starField } from './stars';
 import { canvasSize } from './canvas-size';
 import { flashLevel, splitText } from './feedback';
 import { currentSprites, drawCentred, drawReticle, type SpriteName } from './sprites';
@@ -20,13 +21,17 @@ export interface Renderer {
   /** Feed events from `tick` / `typeChar` so effects can be spawned. */
   push(events: WorldEvent[], now: number): void;
   draw(world: World, now: number): void;
+  /** Removes the window and device-pixel-ratio listeners. */
+  dispose(): void;
 }
 
-/** `logicalWidth` is the world's width (see `pickWidth`); the canvas is fitted to the window and sharp at any DPR. */
-export function createRenderer(canvas: HTMLCanvasElement, logicalWidth: number = WORLD.width): Renderer {
+/** `initialWidth` is the world's width (see `pickWidth`); the canvas is fitted to the window and sharp at any DPR. */
+export function createRenderer(canvas: HTMLCanvasElement, initialWidth: number = WORLD.width): Renderer {
   const ctx = canvas.getContext('2d')!;
+  let logicalWidth = initialWidth;
   /** Backing pixels per logical pixel: fit scale x device pixel ratio. */
   let pixelScale = 1;
+  let stars = starField(logicalWidth, WORLD.height);
   const resize = () => {
     const fit = canvasSize(window.innerWidth, window.innerHeight, window.devicePixelRatio || 1, logicalWidth, WORLD.height);
     canvas.width = fit.backing.width;
@@ -35,13 +40,23 @@ export function createRenderer(canvas: HTMLCanvasElement, logicalWidth: number =
     canvas.style.height = `${fit.css.height}px`;
     pixelScale = fit.backing.width / logicalWidth;
   };
+  document.body.style.background = palette.background;
   resize();
   window.addEventListener('resize', resize);
 
-  const stars = Array.from({ length: sizes.starCount }, (_, i) => ({
-    x: (i * sizes.starSeedX) % logicalWidth,
-    y: (i * sizes.starSeedY) % WORLD.height,
-  }));
+  // a change of device pixel ratio alone (moving between screens, browser zoom) fires no resize event
+  let dpr: MediaQueryList | undefined;
+  const onDprChange = () => {
+    dpr?.removeEventListener('change', onDprChange);
+    resize();
+    watchDpr();
+  };
+  function watchDpr() {
+    dpr = window.matchMedia?.(`(resolution: ${window.devicePixelRatio || 1}dppx)`);
+    dpr?.addEventListener('change', onDprChange);
+  }
+  watchDpr();
+
   const lastPos = new Map<string, { x: number; y: number; kind: ShipKind }>();
   let bullets: Bullet[] = [];
   let explosions: Explosion[] = [];
@@ -109,19 +124,20 @@ export function createRenderer(canvas: HTMLCanvasElement, logicalWidth: number =
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'left';
     const parts = splitText({ text: ship.text, pos: typing?.pos ?? 0, pending: typing?.pending ?? '' });
-    let left = box.x + sizes.shipPaddingX;
-    for (const [run, colour] of [[parts.typed, palette.typed], [parts.pending, palette.pending], [parts.rest, palette.text]] as const) {
-      ctx.fillStyle = colour;
-      ctx.fillText(run, left, ship.y);
-      left += ctx.measureText(run).width;
-    }
+    const runs = [[parts.typed, palette.typed], [parts.pending, palette.pending], [parts.rest, palette.text]] as const;
     const level = flashLevel(typoAt.get(ship.id), now);
-    if (level > 0) {
-      ctx.globalAlpha = level;
-      ctx.fillStyle = palette.typoFlash;
-      ctx.fillText(ship.text, box.x + sizes.shipPaddingX, ship.y);
-      ctx.globalAlpha = 1;
+    // base text, then the typo tint over the very same runs
+    for (const [alpha, tint] of [[1, undefined], [level, palette.typoFlash]] as const) {
+      if (alpha <= 0) continue;
+      ctx.globalAlpha = alpha;
+      let left = box.x + sizes.shipPaddingX;
+      for (const [run, colour] of runs) {
+        ctx.fillStyle = tint ?? colour;
+        ctx.fillText(run, left, ship.y);
+        left += ctx.measureText(run).width;
+      }
     }
+    ctx.globalAlpha = 1;
 
     // gloss and translation go on the hull below the strip, the grammar chip above it
     ctx.textAlign = 'center';
@@ -137,6 +153,10 @@ export function createRenderer(canvas: HTMLCanvasElement, logicalWidth: number =
 
   return {
     measure,
+    dispose() {
+      window.removeEventListener('resize', resize);
+      dpr?.removeEventListener('change', onDprChange);
+    },
     push(events, now) {
       for (const ev of events) {
         const p = 'shipId' in ev ? lastPos.get(ev.shipId) : undefined;
@@ -161,6 +181,12 @@ export function createRenderer(canvas: HTMLCanvasElement, logicalWidth: number =
       }
     },
     draw(world, now) {
+      if (world.width !== logicalWidth) {
+        // a later wave can have another width: refit the canvas and respread the stars
+        logicalWidth = world.width;
+        stars = starField(logicalWidth, WORLD.height);
+        resize();
+      }
       ctx.setTransform(pixelScale, 0, 0, pixelScale, 0, 0);
       ctx.fillStyle = palette.background;
       ctx.fillRect(0, 0, world.width, WORLD.height);

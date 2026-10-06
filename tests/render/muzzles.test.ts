@@ -10,3 +10,11 @@ describe('muzzles', () => {
     expect(muzzles(300, 2)).toEqual(muzzles(300, 0));
   });
 });
+
+describe('muzzle fit', () => {
+  it('sits at the top of the player sprite (the cannon tips), not inside it', async () => {
+    const { sizes } = await import('../../src/layout/metrics');
+    const top = sizes.playerSpriteOffsetY - sizes.playerSpriteHeight; // sprite top relative to the player line
+    expect(Math.abs(theme.muzzle.dy - top)).toBeLessThanOrEqual(3);
+  });
+});

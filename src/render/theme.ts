@@ -14,7 +14,7 @@ export const palette = {
   text: '#e8ecf8',
   typed: '#5df2a0',
   /** ASCII prefix typed towards a digraph (the `o` of `oe`). */
-  pending: '#9fd8ff',
+  pending: '#ffb347',
   /** Tint of a locked ship's hull and text right after a typo. */
   typoFlash: '#ff5d6c',
   gloss: '#ffd970',
@@ -69,10 +69,11 @@ export const labels = {
 } as const;
 
 /**
- * Where the player sprite's twin cannons are, relative to its x and to `WORLD.playerY`:
- * fitted to the sprite (cannon tips at +-25 of 180 source px, near the top of its 213 px).
+ * Where the player sprite's twin cannon tips are, relative to its x and to `WORLD.playerY`: the cannons
+ * sit +-25 of 180 source px from the centre, at the very top of the sprite, whose top edge is
+ * `playerSpriteOffsetY - playerSpriteHeight` (-56) above the player line.
  */
-export const muzzle = { dx: 7.5, dy: -23 } as const;
+export const muzzle = { dx: 7.5, dy: -55 } as const;
 
 /** Start of the next bullet: the left gun on even shots, the right gun on odd ones (`y` is relative to the player line). */
 export function muzzles(playerX: number, shotIndex: number): { x: number; y: number } {
