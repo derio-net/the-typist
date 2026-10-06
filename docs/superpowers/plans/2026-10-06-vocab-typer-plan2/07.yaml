@@ -23,9 +23,10 @@ state:
       ticked_at: '2026-10-06T15:36:50+00:00'
       note: Operator accepted published history; repo is PUBLIC
     P7.T1.S2:
-      state: ' '
-      ticked_at: null
-      note: null
+      state: x
+      ticked_at: '2026-10-06T15:36:56+00:00'
+      note: publish-pages.sh run; Pages build_type=workflow; run 37428556789 deployed,
+        site 200
   completion:
     at: null
     note: null
