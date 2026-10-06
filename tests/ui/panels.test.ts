@@ -130,14 +130,33 @@ describe('panels (R5, R8, R10)', () => {
       expect(first).toContain(e.en);
     }
     expect(cards[1].textContent).toContain('legte an, hat angelegt');
-    expect(p.el.querySelector('[data-slot=recap]')!.textContent).not.toBe('Wave cleared');
+    expect(p.el.querySelector('[data-slot=recap]')!.textContent).not.toBe('No words to review');
   });
 
   it('recap shows "wave cleared" only when there is nothing to recap (recap off or no Again/Hard)', () => {
     const none = betweenWavePanel(root, { wave: 0, more: true, lives: 2, score: 9, weak: [], recap: [] }, { onContinue: vi.fn() });
     const slot = none.el.querySelector('[data-slot=recap]')!;
-    expect(slot.textContent).toBe('Wave cleared');
+    expect(slot.textContent).toBe('No words to review');
+    expect(none.el.textContent!.match(/wave \d+ cleared|wave cleared/gi)).toHaveLength(1);
     expect(slot.querySelector('[data-card]')).toBeNull();
+  });
+
+  it('a disabled TTS toggle is shown unchecked, the stored preference untouched (p5-r5)', () => {
+    const onChange = vi.fn();
+    const p = settingsPanel(root, { settings: DEFAULT_SETTINGS, ttsUnavailable: 'no German voice' }, { onChange, onClose: vi.fn() });
+    const box = p.el.querySelector<HTMLInputElement>('[data-setting="aids.tts"]')!;
+    expect(box.disabled).toBe(true);
+    expect(box.checked).toBe(false);
+    expect(onChange).not.toHaveBeenCalled();
+    expect(DEFAULT_SETTINGS.aids.tts).toBe(true);
+  });
+
+  it('the recap slot has an overflow cue and a stable scrollbar, from theme tokens (p5-r7)', () => {
+    injectStyle(document);
+    const css = document.getElementById('typist-style')!.textContent!;
+    expect(css).toMatch(/\[data-slot=recap\][^}]*scrollbar-gutter: stable/);
+    expect(css).toMatch(/\[data-slot=recap\][^}]*no-repeat local[^}]*no-repeat scroll/);
+    expect(css).toMatch(/\[data-slot=recap\][^}]*padding-bottom/);
   });
 
   it('recap cards put list strings in as text, never as markup', () => {

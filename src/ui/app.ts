@@ -107,6 +107,10 @@ export async function startApp(deps: AppDeps): Promise<App> {
     audio.setOptions({ sfx, music });
   };
   syncAudio();
+  // a German voice may arrive after the settings panel opened: re-render it so the toggle enables
+  const offTts = tts.onChange(() => {
+    if (state === 'settings') openSettings(settingsReturn);
+  });
 
   const setState = (s: AppState) => {
     state = s;
@@ -114,7 +118,10 @@ export async function startApp(deps: AppDeps): Promise<App> {
     syncAudio();
     // music runs only while playing: every other state, a pause included, silences it
     if (s === 'play') void audio.startMusic();
-    else audio.pauseMusic();
+    else {
+      audio.pauseMusic();
+      tts.stop();
+    }
   };
   const show = (s: AppState, make?: () => Panel) => {
     panel?.close();
@@ -135,8 +142,9 @@ export async function startApp(deps: AppDeps): Promise<App> {
     const prev = world;
     world = next;
     renderer.push(next.events, at);
-    react(next.events, prev);
+    // grading first: a sound or speech failure must never cost a grade
     controller?.onWorldEvents(next.events, next);
+    react(next.events, prev);
   }
 
   /** Sound and speech for a step's events; the destroyed ship is looked up in the World before the step. */
@@ -359,6 +367,8 @@ export async function startApp(deps: AppDeps): Promise<App> {
       caf(frameId);
       unsubscribe?.();
       keyboard.dispose();
+      offTts();
+      tts.stop();
       doc.removeEventListener('keydown', unlock, true);
       doc.removeEventListener('pointerdown', unlock, true);
       audio.pauseMusic();

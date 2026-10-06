@@ -38,7 +38,15 @@ const RULES = `
 .panel input[type=number] { width: 5em; font: var(--f-hud); color: var(--c-text); background: var(--c-plate);
   border: 1px solid var(--c-ship-stroke-escort); border-radius: 4px; padding: 4px 6px; }
 .panel label { display: flex; gap: 8px; align-items: center; }
-[data-slot=recap] { max-height: 45vh; overflow: auto; }
+/* Scrolling cue: shadows at the clipped edges (background-attachment: local hides them at the ends), and a visible scrollbar */
+[data-slot=recap] { max-height: 45vh; overflow-y: auto; scrollbar-gutter: stable; padding-bottom: 4px; scrollbar-width: thin; scrollbar-color: var(--c-typed) var(--c-plate);
+  background:
+    linear-gradient(var(--c-plate) 30%, transparent) top / 100% 24px no-repeat local,
+    linear-gradient(transparent, var(--c-plate) 70%) bottom / 100% 24px no-repeat local,
+    linear-gradient(var(--c-ship-stroke-escort), transparent) top / 100% 8px no-repeat scroll,
+    linear-gradient(transparent, var(--c-ship-stroke-escort)) bottom / 100% 8px no-repeat scroll; }
+[data-slot=recap]::-webkit-scrollbar { width: 8px; }
+[data-slot=recap]::-webkit-scrollbar-thumb { background: var(--c-typed); border-radius: 4px; }
 .recap-card { margin: 8px 0; padding: 8px 10px; border: 1px solid var(--c-ship-stroke-escort); border-radius: 4px; background: var(--c-plate); }
 .recap-card h3 { margin: 0; font: var(--f-hud); color: var(--c-typed); }
 .recap-card p { margin: 4px 0; }

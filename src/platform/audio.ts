@@ -35,6 +35,7 @@ export function createAudio(deps: AudioDeps = {}): Audio {
   let opts: AudioOptions = { sfx: true, music: true };
   let wanted = false;
   let audible = false;
+  let generation = 0;
   let el: MusicEl | undefined;
   let probe: Promise<void> | undefined;
 
@@ -43,9 +44,14 @@ export function createAudio(deps: AudioDeps = {}): Audio {
     const should = wanted && opts.music;
     if (should && !audible) {
       audible = true;
-      Promise.resolve(el.play()).catch(() => (audible = false));
+      const mine = ++generation;
+      // a rejection only counts if no later play/pause has superseded this one
+      Promise.resolve(el.play()).catch(() => {
+        if (mine === generation) audible = false;
+      });
     } else if (!should && audible) {
       audible = false;
+      generation += 1;
       el.pause();
     }
   };
@@ -83,7 +89,12 @@ export function createAudio(deps: AudioDeps = {}): Audio {
 
   return {
     unlock() {
-      if (ctx || !Ctor) return;
+      if (ctx) {
+        // a suspended or interrupted context (tab hidden, iOS interruption) needs a fresh gesture to resume
+        if (ctx.state !== 'running') void ctx.resume?.();
+        return;
+      }
+      if (!Ctor) return;
       try {
         ctx = new Ctor();
         void ctx.resume?.();

@@ -105,4 +105,37 @@ describe('tts (R6, R10)', () => {
     tts.say('eins');
     expect(f.calls).toEqual(['cancel', 'speak']);
   });
+
+  it('stop cancels speech without speaking (p5-r1)', async () => {
+    const f = fakeSynth([DE]);
+    const tts = createTts({ synth: f.synth, Utterance: Utt as never });
+    await tts.ready;
+    tts.stop();
+    expect(f.calls).toEqual(['cancel']);
+  });
+
+  it('a throwing synth never escapes say or stop (p5-r3)', async () => {
+    const f = fakeSynth([DE]);
+    f.synth.cancel = () => { throw new Error('boom'); };
+    const tts = createTts({ synth: f.synth, Utterance: Utt as never });
+    await tts.ready;
+    expect(() => tts.say('x')).not.toThrow();
+    expect(() => tts.stop()).not.toThrow();
+  });
+
+  it('keeps listening after giving up: a later German voice upgrades it and notifies (p5-r4)', async () => {
+    const f = fakeSynth([]);
+    const tts = createTts({ synth: f.synth, Utterance: Utt as never });
+    const seen: boolean[] = [];
+    tts.onChange((s) => seen.push(s.available));
+    vi.advanceTimersByTime(1600);
+    await tts.ready;
+    expect(tts.status().available).toBe(false);
+    f.setVoices([DE]);
+    expect(tts.status()).toEqual({ available: true });
+    expect(seen).toContain(false);
+    expect(seen.at(-1)).toBe(true);
+    tts.say('Haus');
+    expect(f.spoken[0].voice).toBe(DE);
+  });
 });

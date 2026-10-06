@@ -44,12 +44,19 @@ let ttsOn: boolean[];
 let ttsStatus: { available: boolean; reason?: string };
 let audioOpts: { sfx: boolean; music: boolean }[];
 let unlocks: number;
+let stops: string[];
+let ttsListeners: ((s: { available: boolean; reason?: string }) => void)[];
 
 const fakeTts = (): Tts => ({
   status: () => ttsStatus,
   ready: Promise.resolve(ttsStatus),
   setEnabled: (on) => void ttsOn.push(on),
   say: (t) => void said.push(t),
+  stop: () => void stops.push('stop'),
+  onChange: (cb) => {
+    ttsListeners.push(cb);
+    return () => undefined;
+  },
 });
 const fakeAudio = (): Audio => ({
   unlock: () => void (unlocks += 1),
@@ -122,6 +129,8 @@ beforeEach(async () => {
   ttsOn = [];
   audioOpts = [];
   unlocks = 0;
+  stops = [];
+  ttsListeners = [];
   ttsStatus = { available: true };
   await boot();
 });
@@ -572,6 +581,56 @@ describe('learning aids and audio (R6, R7, R10)', () => {
     for (let i = 0; i < 400 && app.state() === 'play'; i++) run(1000);
     await app.settled();
     expect(app.state()).toBe('between-wave');
-    expect(root.querySelector('[data-slot=recap]')!.textContent).toBe('Wave cleared');
+    expect(root.querySelector('[data-slot=recap]')!.textContent).toBe('No words to review');
+  });
+
+  it('speech stops on pause, quit and dispose (p5-r1)', async () => {
+    await startStudy();
+    stops.length = 0;
+    esc();
+    expect(stops.length).toBeGreaterThan(0);
+    stops.length = 0;
+    click('Quit to menu');
+    await app.settled();
+    expect(stops.length).toBeGreaterThan(0);
+    stops.length = 0;
+    app.dispose();
+    expect(stops.length).toBeGreaterThan(0);
+  });
+
+  it('a speech failure does not skip grading (p5-r3)', async () => {
+    app.dispose();
+    const orig = fakeTts;
+    const bad = (): Tts => ({ ...orig(), say: () => { throw new Error('speech down'); } });
+    app = await startApp({
+      root, bundled: [fixtureList()], stores: { cards, persistent }, settings: createSettings(storage),
+      now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: () => fakeRenderer(), seed: 7,
+      tts: bad(), audio: fakeAudio(),
+    });
+    await startStudy();
+    typeUntil(() => app.state() !== 'play');
+    await app.settled();
+    expect(Object.keys(await cards.all('fixture-two')).length).toBe(2);
+  });
+
+  it('when a German voice arrives while settings is open, the toggle enables (p5-r4)', async () => {
+    app.dispose();
+    ttsStatus = { available: false, reason: 'no German voice installed on this device' };
+    await boot();
+    click('Settings');
+    const box = () => root.querySelector<HTMLInputElement>('[data-setting="aids.tts"]')!;
+    expect(box().disabled).toBe(true);
+    ttsStatus = { available: true };
+    ttsListeners.forEach((cb) => cb(ttsStatus));
+    expect(box().disabled).toBe(false);
+    expect(box().checked).toBe(true);
+  });
+
+  it('grading happens before sound and speech (p5-r3)', async () => {
+    const order: string[] = [];
+    said.push = ((t: string) => (order.push('say'), said.length)) as never;
+    await startStudy();
+    typeUntil(() => order.length > 0, 2000);
+    expect(order[0]).toBe('say');
   });
 });

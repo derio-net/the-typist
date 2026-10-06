@@ -17,7 +17,8 @@ export function settingsPanel(root: HTMLElement, props: SettingsProps, handlers:
   const s = props.settings;
   const toggle = (label: string, key: string, on: boolean, patch: (v: boolean) => SettingsPatch, disabled?: string) => {
     const box = h('input', { type: 'checkbox', 'data-setting': key, checked: on, disabled: disabled !== undefined });
-    box.checked = on;
+    // an unavailable aid shows off, but the stored preference is left alone
+    box.checked = on && disabled === undefined;
     box.addEventListener('change', () => handlers.onChange(patch(box.checked)));
     return h('label', {}, box, label, disabled && h('span', { class: 'muted' }, ` (${disabled})`));
   };

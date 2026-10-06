@@ -20,6 +20,10 @@ export interface Tts {
   setEnabled(on: boolean): void;
   /** Cancels whatever is being said, then speaks `text` in German. */
   say(text: string): void;
+  /** Cancels whatever is being said. */
+  stop(): void;
+  /** Called when availability changes (a German voice arriving late); returns an unsubscribe. */
+  onChange(cb: (s: TtsStatus) => void): () => void;
 }
 
 export interface TtsDeps {
@@ -38,46 +42,62 @@ export function createTts(deps: TtsDeps = {}): Tts {
   let enabled = true;
   let voice: { lang: string } | undefined;
   let current: TtsStatus = { available: false };
+  let settled = false;
+  const listeners = new Set<(s: TtsStatus) => void>();
+  let resolveReady!: (s: TtsStatus) => void;
+  const ready = new Promise<TtsStatus>((r) => (resolveReady = r));
 
-  const settle = (s: TtsStatus) => (current = s);
-  const find = () => synth?.getVoices().find((v) => v.lang.toLowerCase().startsWith('de'));
+  const set = (s: TtsStatus) => {
+    const changed = s.available !== current.available || s.reason !== current.reason;
+    current = s;
+    if (!settled) {
+      settled = true;
+      resolveReady(s);
+    }
+    if (changed) listeners.forEach((cb) => cb(s));
+  };
+  const find = () => {
+    voice = synth?.getVoices().find((v) => v.lang.toLowerCase().startsWith('de'));
+    return voice !== undefined;
+  };
+  const evaluate = () => set(find() ? { available: true } : { available: false, reason: NO_VOICE_REASON });
 
-  const ready = new Promise<TtsStatus>((resolve) => {
-    if (!synth || !Utt) {
-      resolve(settle({ available: false, reason: NO_SYNTH_REASON }));
-      return;
-    }
-    const found = () => {
-      voice = find();
-      return voice !== undefined;
-    };
-    if (found()) {
-      resolve(settle({ available: true }));
-      return;
-    }
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    const finish = (s: TtsStatus) => {
-      clearTimeout(timer);
-      synth.removeEventListener?.('voiceschanged', onChange);
-      resolve(settle(s));
-    };
-    // the first voiceschanged settles it: either a German voice is there or none is coming
-    const onChange = () => finish(found() ? { available: true } : { available: false, reason: NO_VOICE_REASON });
-    synth.addEventListener('voiceschanged', onChange);
-    timer = setTimeout(() => finish(found() ? { available: true } : { available: false, reason: NO_VOICE_REASON }), deps.timeoutMs ?? VOICE_WAIT_MS);
-  });
+  if (!synth || !Utt) set({ available: false, reason: NO_SYNTH_REASON });
+  else if (find()) set({ available: true });
+  else {
+    // voices may still arrive after we give up: keep listening, and upgrade when a German one shows up
+    synth.addEventListener('voiceschanged', evaluate);
+    setTimeout(() => {
+      if (!settled) evaluate();
+    }, deps.timeoutMs ?? VOICE_WAIT_MS);
+  }
 
   return {
     status: () => current,
     ready,
+    onChange(cb) {
+      listeners.add(cb);
+      return () => void listeners.delete(cb);
+    },
     setEnabled: (on) => void (enabled = on),
     say(text) {
       if (!enabled || !current.available || !synth || !Utt || !voice) return;
-      const u = new Utt(text);
-      u.voice = voice;
-      u.lang = voice.lang;
-      synth.cancel();
-      synth.speak(u as never);
+      try {
+        const u = new Utt(text);
+        u.voice = voice;
+        u.lang = voice.lang;
+        synth.cancel();
+        synth.speak(u as never);
+      } catch {
+        /* speech must never break the game */
+      }
+    },
+    stop() {
+      try {
+        synth?.cancel();
+      } catch {
+        /* nothing to stop */
+      }
     },
   };
 }

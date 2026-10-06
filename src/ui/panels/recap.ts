@@ -2,7 +2,7 @@ import type { VocabRecord } from '../../schema/record';
 import { displayForm, formsText } from '../../schema/display';
 import { h } from '../dom';
 
-export const WAVE_CLEARED = 'Wave cleared';
+export const NOTHING_TO_REVIEW = 'No words to review';
 
 /** One recap card: the display form, gloss, forms and every sentence with its translation. All text, never markup. */
 export function recapCard(r: VocabRecord): HTMLElement {
@@ -16,5 +16,5 @@ export function recapCard(r: VocabRecord): HTMLElement {
 
 /** The content of the between-wave panel's recap slot: a card per weak record, or just "Wave cleared". */
 export function recapContent(records: readonly VocabRecord[]): (HTMLElement | string)[] {
-  return records.length === 0 ? [WAVE_CLEARED] : records.map(recapCard);
+  return records.length === 0 ? [NOTHING_TO_REVIEW] : records.map(recapCard);
 }

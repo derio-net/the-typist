@@ -11,8 +11,10 @@ function setup(head: { ok: boolean; type?: string } | 'throw' = { ok: false }) {
     destination = {};
     constructor() {
       contexts += 1;
+      Ctx.last = this;
     }
     resume = vi.fn(async () => undefined);
+    static last: Ctx;
     createGain() {
       return { gain: { value: 0, setValueAtTime: vi.fn(), exponentialRampToValueAtTime: vi.fn(), linearRampToValueAtTime: vi.fn() }, connect: vi.fn() };
     }
@@ -36,7 +38,7 @@ function setup(head: { ok: boolean; type?: string } | 'throw' = { ok: false }) {
     return el as never;
   });
   const audio = createAudio({ AudioContext: Ctx as never, fetch: fetchFn as never, makeAudio, musicUrl: '/m.mp3' });
-  return { audio, oscillators, contexts: () => contexts, fetchFn, els, makeAudio };
+  return { audio, Ctx, oscillators, contexts: () => contexts, fetchFn, els, makeAudio };
 }
 
 describe('audio (R7)', () => {
@@ -109,5 +111,44 @@ describe('audio (R7)', () => {
     s.audio.setOptions({ sfx: true, music: false });
     expect(el.pause).toHaveBeenCalledTimes(2);
     expect(s.makeAudio).toHaveBeenCalledTimes(1);
+  });
+
+  it('resumes a suspended context on the next gesture (p5-r2)', () => {
+    const s = setup();
+    s.audio.unlock();
+    const ctx = s.Ctx.last as unknown as { state: string; resume: ReturnType<typeof vi.fn> };
+    ctx.resume.mockClear();
+    ctx.state = 'suspended';
+    s.audio.unlock();
+    expect(ctx.resume).toHaveBeenCalledTimes(1);
+    ctx.state = 'running';
+    s.audio.unlock();
+    expect(ctx.resume).toHaveBeenCalledTimes(1);
+    expect(s.contexts()).toBe(1);
+  });
+
+  it('a superseded play() that rejects late leaves the state consistent (p5-r8)', async () => {
+    const s = setup({ ok: true });
+    let rejectFirst!: (e: Error) => void;
+    await s.audio.startMusic();
+    const el = s.els[0];
+    // replace the first play with one we reject by hand
+    el.play.mockReset();
+    el.play.mockImplementationOnce(() => new Promise((_, rej) => (rejectFirst = rej)));
+    s.audio.pauseMusic();
+    s.audio.setOptions({ sfx: true, music: true });
+    await s.audio.startMusic(); // play #1 (pending)
+    s.audio.pauseMusic(); // superseded
+    await s.audio.startMusic(); // play #2
+    expect(el.play).toHaveBeenCalledTimes(2);
+    rejectFirst(new Error('AbortError'));
+    await Promise.resolve();
+    await Promise.resolve();
+    const pauses = el.pause.mock.calls.length;
+    s.audio.pauseMusic(); // play #2 is audible, so this must really pause
+    expect(el.pause).toHaveBeenCalledTimes(pauses + 1);
+    // still able to start again: the flag was not clobbered
+    await s.audio.startMusic();
+    expect(el.play).toHaveBeenCalledTimes(3);
   });
 });
