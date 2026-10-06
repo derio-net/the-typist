@@ -346,3 +346,8 @@ game-audio reworded to a bundled CC0 track, with the ux-flight spec added as an 
 ### p3-r11-resolved · finding [out-of-scope] · resolves p3-r11: The bundled-music test resolves paths against the cwd (phase 3)
 
 Tagged out by the reviewer, but this follow-up wrote the test. The paths now resolve via import.meta.url, verified with --root from /tmp; the operator is told in the PR.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r8-resolved created=2026-10-06T19:01:55+00:00 phase=3 state=open resolves=p3-r8 out_of_scope=true -->
+### p3-r8-resolved · finding [out-of-scope] · resolves p3-r8: readS sits inside the 1.5x slack; a fast typist's stack may lose tension (phase 3)
+
+Operator's tuning call: the operator chose 3 s per ship; flagged for the post-merge play-test.
