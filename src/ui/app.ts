@@ -4,7 +4,7 @@ import { createKeyboard, type Keyboard } from '../platform/keyboard';
 import { createSettings, type SettingsStore } from '../platform/settings';
 import { loadFile } from '../content/picker';
 import { bundledLists } from '../content/bundled';
-import { createRenderer, type Renderer } from '../render/renderer';
+import { createRenderer, type Renderer, type RendererOptions } from '../render/renderer';
 import { pickWidth } from '../render/canvas-size';
 import { createController, type Controller, type SessionMode } from '../session/controller';
 import { buildFreePlay, buildStudy, isPlayable, seededRng, type Built } from '../session/build';
@@ -29,7 +29,7 @@ export interface AppDeps {
   /** Frame scheduler; defaults to `requestAnimationFrame`. */
   raf?: (cb: (t: number) => void) => number;
   caf?: (id: number) => void;
-  makeRenderer?: (canvas: HTMLCanvasElement, width: number) => Renderer;
+  makeRenderer?: (canvas: HTMLCanvasElement, width: number, opts?: RendererOptions) => Renderer;
   /** Seeds the shuffles and the Worlds; defaults to a random seed per session. */
   seed?: number;
   /** Max milliseconds of one frame fed to the World (a stalled tab must not warp the game). */
@@ -61,15 +61,17 @@ export async function startApp(deps: AppDeps): Promise<App> {
   const canvas = h('canvas');
   const input = h('input', { autocomplete: 'off', 'aria-label': 'typing input', style: 'position:absolute;opacity:0;left:0;top:0;width:1px;height:1px' });
   root.append(canvas, input);
-  const width = () => pickWidth(window.innerWidth, window.innerHeight);
-  const renderer = (deps.makeRenderer ?? createRenderer)(canvas, width());
+  let banner: Panel | undefined;
+  /** The storage banner sits in the page flow above the canvas, so the canvas fits what is left of the window. */
+  const availableHeight = () => Math.max(1, window.innerHeight - (banner?.el.offsetHeight ?? 0));
+  const width = () => pickWidth(window.innerWidth, availableHeight());
+  const renderer = (deps.makeRenderer ?? createRenderer)(canvas, width(), { availableHeight });
 
   let state: AppState = 'title';
   let world: World | undefined;
   let controller: Controller | undefined;
   let unsubscribe: (() => void) | undefined;
   let panel: Panel | undefined;
-  let banner: Panel | undefined;
   let pending: Promise<void> = Promise.resolve();
   let lastNow = 0;
   let frameId = 0;
@@ -78,7 +80,9 @@ export async function startApp(deps: AppDeps): Promise<App> {
   let list: VocabList | undefined;
 
   const warn = () => {
-    if (!banner) banner = bannerPanel(root, { message: STORAGE_WARNING });
+    if (banner) return;
+    banner = bannerPanel(root, { message: STORAGE_WARNING });
+    renderer.refit();
   };
   if (!stores.persistent || !settings.persistent) warn();
 
@@ -93,6 +97,11 @@ export async function startApp(deps: AppDeps): Promise<App> {
   };
   const show = (s: AppState, make?: () => Panel) => {
     panel?.close();
+    // between sessions no World stays on screen
+    if (s === 'title' || s === 'mode' || s === 'category') {
+      world = undefined;
+      renderer.clear();
+    }
     panel = make?.();
     setState(s);
   };
@@ -184,20 +193,21 @@ export async function startApp(deps: AppDeps): Promise<App> {
   }
 
   function begin(l: VocabList, mode: SessionMode, built: Built) {
-    const { aids } = settings.get();
     unsubscribe?.();
+    renderer.reset();
     controller = createController({
       waves: built.waves!,
       store: stores.cards,
       listId: l.list.id,
       mode,
       now,
-      worldOptions: {
+      // evaluated as each wave starts: the window and the aid settings may have changed since the last one
+      worldOptions: () => ({
         width: width(),
         measure: renderer.measure,
-        aids: { chip: aids.chip, translation: aids.translation },
+        aids: { chip: settings.get().aids.chip, translation: settings.get().aids.translation },
         seed: deps.seed ?? (Math.random() * 2 ** 31) | 0,
-      },
+      }),
     });
     unsubscribe = controller.subscribe((e) => {
       if (e.type === 'storage-error') warn();
@@ -218,6 +228,7 @@ export async function startApp(deps: AppDeps): Promise<App> {
   function continueFromWave() {
     const next = controller?.nextWave();
     if (next) {
+      renderer.reset();
       world = next;
       show('play');
     } else {
@@ -275,7 +286,7 @@ export async function startApp(deps: AppDeps): Promise<App> {
     if (world) {
       if (state === 'play' && prev !== undefined && world.status === 'playing') step(advance(world, Math.min(t - prev, maxFrameMs)), t);
       renderer.draw(world, t);
-    }
+    } else renderer.clear();
     prev = t;
     if (!disposed) frameId = raf(frame);
   };

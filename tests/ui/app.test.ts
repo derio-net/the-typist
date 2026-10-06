@@ -2,10 +2,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { parseList, type VocabList } from '../../src/schema';
+import { pickWidth } from '../../src/render/canvas-size';
 import { createSettings } from '../../src/platform/settings';
 import { createMemoryStore, localDay } from '../../src/srs/store';
 import { schedule } from '../../src/srs/scheduler';
-import type { Renderer } from '../../src/render/renderer';
+import type { Renderer, RendererOptions } from '../../src/render/renderer';
 import { startApp, STORAGE_WARNING, type App } from '../../src/ui/app';
 
 const twoText = readFileSync('tests/fixtures/lists/two-records.yaml', 'utf8');
@@ -30,11 +31,20 @@ let clock: number;
 let draws: number;
 let cards: ReturnType<typeof createMemoryStore>;
 let persistent: boolean;
+let pushes: unknown[][];
+let counts: { reset: number; clear: number; refit: number };
+let rendererOpts: RendererOptions | undefined;
 let storage: Storage;
 const NOW = new Date('2026-10-06T09:00:00');
 
 const fakeRenderer = (): Renderer => ({
-  measure: (t) => t.length * 8, push: () => undefined, draw: () => void (draws += 1), dispose: () => undefined,
+  measure: (t) => t.length * 8,
+  push: (events) => void pushes.push(events),
+  draw: () => void (draws += 1),
+  reset: () => void (counts.reset += 1),
+  clear: () => void (counts.clear += 1),
+  refit: () => void (counts.refit += 1),
+  dispose: () => undefined,
 });
 
 /** Runs frames for `ms` of fake time at 16 ms each. */
@@ -49,7 +59,7 @@ function run(ms: number) {
 async function boot() {
   app = await startApp({
     root, bundled: [fixtureList()], stores: { cards, persistent }, settings: createSettings(storage),
-    now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: () => fakeRenderer(), seed: 7,
+    now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: (_c, _w, o) => ((rendererOpts = o), fakeRenderer()), seed: 7,
   });
 }
 const click = (text: string) => {
@@ -76,6 +86,9 @@ beforeEach(async () => {
   frames = [];
   clock = 0;
   draws = 0;
+  pushes = [];
+  counts = { reset: 0, clear: 0, refit: 0 };
+  rendererOpts = undefined;
   cards = createMemoryStore();
   persistent = true;
   storage = fakeStorage();
@@ -230,4 +243,164 @@ describe('app state machine (R4, R5, R10)', () => {
   });
 });
 
-vi.setConfig({ testTimeout: 30_000 });
+
+/** A list of `n` playable records, so a study session has several waves (6 Records per wave). */
+function bigList(n: number): VocabList {
+  const base = fixtureList();
+  const records = Array.from({ length: n }, (_, i) => ({ ...base.records[i % 2], id: `${base.records[i % 2].id}-${i}` }));
+  return { ...base, list: { ...base.list, id: 'big', title: 'Big list' }, records };
+}
+
+/** Types the locked (else the first) ship one character at a time until the wave ends or the session leaves play. */
+function typeUntil(stop: () => boolean, limit = 20000) {
+  for (let i = 0; i < limit && !stop(); i++) {
+    const w = app.world();
+    if (app.state() !== 'play' || !w || w.status !== 'playing') return;
+    const ship = w.typing.ships.find((t) => t.id === w.typing.lock) ?? w.typing.ships[0];
+    if (!ship || ship.pos >= ship.required) {
+      run(16);
+      continue;
+    }
+    const ch = ship.text[ship.pos];
+    input().dispatchEvent(new InputEvent('input', { data: ch, inputType: 'insertText', bubbles: true }));
+    run(16);
+  }
+}
+
+async function bootBig(n: number) {
+  app.dispose();
+  app = await startApp({
+    root, bundled: [bigList(n)], stores: { cards, persistent }, settings: createSettings(storage),
+    now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: (_c, _w, o) => ((rendererOpts = o), fakeRenderer()), seed: 7,
+  });
+}
+
+describe('review fixes (p4-r1..r10)', () => {
+  it('the next wave takes the window size and aid settings of that moment (p4-r1, p4-r5)', async () => {
+    await bootBig(7);
+    click('Big list');
+    await app.settled();
+    click('Study');
+    await app.settled();
+    const first = app.world()!;
+    expect(first.width).toBe(pickWidth(window.innerWidth, window.innerHeight));
+    esc();
+    click('Settings');
+    const chip = root.querySelector<HTMLInputElement>('[data-setting="aids.chip"]')!;
+    chip.checked = false;
+    chip.dispatchEvent(new Event('change'));
+    click('Close');
+    esc();
+    expect(app.state()).toBe('play');
+    const [w0, h0] = [window.innerWidth, window.innerHeight];
+    Object.assign(window, { innerWidth: 1280, innerHeight: 400 });
+    typeUntil(() => app.state() === 'between-wave');
+    expect(app.state()).toBe('between-wave');
+    click('Next wave');
+    const next = app.world()!;
+    Object.assign(window, { innerWidth: w0, innerHeight: h0 });
+    expect(next.wave).toBe(1);
+    expect(next.width).toBe(pickWidth(1280, 400));
+    expect(next.width).not.toBe(first.width);
+    expect(next.aids.chip).toBe(false);
+    expect(first.aids.chip).toBe(true);
+  });
+
+  it('the renderer is reset when each wave and each session starts (p4-r4)', async () => {
+    await bootBig(7);
+    click('Big list');
+    await app.settled();
+    click('Study');
+    await app.settled();
+    expect(counts.reset).toBe(1);
+    typeUntil(() => app.state() === 'between-wave');
+    click('Next wave');
+    expect(counts.reset).toBe(2);
+  });
+
+  it('no finished World stays under the menus, and the canvas is cleared (p4-r3)', async () => {
+    await startStudy();
+    esc();
+    click('Quit to menu');
+    await app.settled();
+    expect(app.state()).toBe('summary');
+    expect(app.world()).toBeDefined(); // the summary sits over the last frame
+    click('Continue');
+    await app.settled();
+    expect(panelName()).toBe('mode');
+    expect(app.world()).toBeUndefined();
+    const cleared = counts.clear;
+    const drawn = draws;
+    run(64);
+    expect(draws).toBe(drawn);
+    expect(counts.clear).toBeGreaterThan(cleared);
+    click('Back');
+    expect(app.world()).toBeUndefined();
+  });
+
+  it('the banner is in the layout: the canvas fits the height left under it (p4-r2)', async () => {
+    app.dispose();
+    persistent = false;
+    await boot();
+    const banner = root.querySelector<HTMLElement>('.banner')!;
+    expect(root.firstElementChild).toBe(banner); // above the canvas, in the flow
+    Object.defineProperty(banner, 'offsetHeight', { value: 30, configurable: true });
+    expect(rendererOpts!.availableHeight!()).toBe(window.innerHeight - 30);
+    expect(counts.refit).toBeGreaterThan(0);
+    const css = document.getElementById('typist-style')!.textContent!;
+    expect(css).not.toMatch(/\.banner \{[^}]*position: fixed/);
+  });
+
+  it('a storage error arriving mid-session shows the banner (p4-r10)', async () => {
+    const failing = { ...cards, putGraded: () => Promise.reject(new Error('disk full')) };
+    app.dispose();
+    app = await startApp({
+      root, bundled: [fixtureList()], stores: { cards: failing as typeof cards, persistent: true }, settings: createSettings(storage),
+      now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: () => fakeRenderer(), seed: 7,
+    });
+    expect(root.querySelector('.banner')).toBeNull();
+    await startStudy();
+    for (let i = 0; i < 400 && app.state() === 'play'; i++) run(1000);
+    await app.settled();
+    expect(root.querySelector('.banner')?.textContent).toBe(STORAGE_WARNING);
+  });
+
+  it('after a quit, a new session runs one frame loop and one keyboard handler (p4-r10)', async () => {
+    await startStudy();
+    esc();
+    click('Quit to menu');
+    await app.settled();
+    click('Continue');
+    await app.settled();
+    click('Free play');
+    await app.settled();
+    expect(app.state()).toBe('play');
+    run(200);
+    expect(frames).toHaveLength(1); // one scheduled callback: one loop
+    pushes.length = 0;
+    run(16);
+    expect(pushes).toHaveLength(1);
+    pushes.length = 0;
+    const w = app.world()!;
+    const ship = w.typing.ships[0];
+    if (ship) {
+      input().dispatchEvent(new InputEvent('input', { data: ship.text[0], inputType: 'insertText', bubbles: true }));
+      expect(pushes).toHaveLength(1); // one handler: the keystroke made one step
+    }
+  });
+
+  it('every advance and typeChar step reaches the renderer and controller once (p4-r10)', async () => {
+    await startStudy();
+    run(16); // the first frame only sets the clock
+    pushes.length = 0;
+    run(16 * 30);
+    expect(pushes).toHaveLength(30); // one step per frame
+    expect(new Set(pushes).size).toBe(30); // no events array handed over twice
+    // an escape resolves a Record once, however many frames follow
+    for (let i = 0; i < 100 && app.state() === 'play'; i++) run(1000);
+    await app.settled();
+    const graded = Object.keys(await cards.all('fixture-two'));
+    expect(graded.length).toBeLessThanOrEqual(2);
+    expect(new Set(graded).size).toBe(graded.length);
+  });
+});

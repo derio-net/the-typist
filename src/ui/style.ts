@@ -38,7 +38,8 @@ const RULES = `
 .panel input[type=number] { width: 5em; font: var(--f-hud); color: var(--c-text); background: var(--c-plate);
   border: 1px solid var(--c-ship-stroke-escort); border-radius: 4px; padding: 4px 6px; }
 .panel label { display: flex; gap: 8px; align-items: center; }
-.banner { position: fixed; top: 0; left: 0; right: 0; z-index: 20; padding: 6px 12px; text-align: center;
+/* in the flow, above the canvas: it never covers the HUD */
+.banner { position: relative; z-index: 20; padding: 6px 12px; text-align: center;
   background: var(--c-pending); color: var(--c-background); font: var(--f-chip); }
 `;
 
