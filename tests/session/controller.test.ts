@@ -202,4 +202,15 @@ describe('session controller (R1-R4)', () => {
     expect(events.some((e) => e.type === 'between-wave')).toBe(true);
     expect(Object.keys(await store.all('L')).sort()).toEqual(parsed.list.records.map((r) => r.id).sort());
   });
+
+  it('evaluates a worldOptions function when each wave starts (p4-r1)', () => {
+    let width = 700;
+    const c = createController({
+      waves: [[rec('a')], [rec('b')]], store: createMemoryStore(), listId: 'L', mode: 'study', now: () => now,
+      worldOptions: () => ({ width }),
+    });
+    expect(c.start().width).toBe(700);
+    width = 1000;
+    expect(c.nextWave()!.width).toBe(1000);
+  });
 });

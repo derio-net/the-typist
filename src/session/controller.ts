@@ -50,8 +50,8 @@ export interface ControllerOptions {
   store: CardStore;
   listId: string;
   mode: SessionMode;
-  /** Passed to every `createWorld`; `wave`, `lives` and `score` are managed here (`lives` seeds the first wave). */
-  worldOptions?: WorldOptions;
+  /** Passed to every `createWorld` (a function is evaluated as each wave starts, so width and aids follow the window and settings); `wave`, `lives` and `score` are managed here (`lives` seeds the first wave). */
+  worldOptions?: WorldOptions | (() => WorldOptions);
   now: () => Date;
 }
 
@@ -81,7 +81,10 @@ export function createController(opts: ControllerOptions): Controller {
   const gradedIds = new Set<string>();
   let wave = -1;
   let weak: string[] = [];
-  let state: WorldState = { lives: opts.worldOptions?.lives ?? 3, score: opts.worldOptions?.score ?? 0 };
+  const worldOptions = (): WorldOptions =>
+    (typeof opts.worldOptions === 'function' ? opts.worldOptions() : opts.worldOptions) ?? {};
+  const initial = worldOptions();
+  let state: WorldState = { lives: initial.lives ?? 3, score: initial.score ?? 0 };
   let started = false;
   let ended = false;
   let writeErrors = 0;
@@ -143,7 +146,7 @@ export function createController(opts: ControllerOptions): Controller {
   };
 
   const makeWorld = () =>
-    createWorld(opts.waves[wave], { ...opts.worldOptions, wave, lives: state.lives, score: state.score });
+    createWorld(opts.waves[wave], { ...worldOptions(), wave, lives: state.lives, score: state.score });
 
   return {
     start() {
