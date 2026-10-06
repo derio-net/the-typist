@@ -1,0 +1,53 @@
+schema_version: 7
+run: 2026-10-05-feat-vocab-typer-plan2
+step: implement-phase
+item: phase/5
+outcome: done
+ticks: [P5.T1.S1, P5.T1.S2, P5.T2.S1, P5.T2.S2, P5.T3.S1, P5.T3.S2, P5.T4.S1, P5.T4.S2, P5.T5.S1]
+refactor:
+  P5.T1: "Tests only: phase 4 already evaluated worldOptions at wave start, so no code changed."
+  P5.T2: "One new small module (recap.ts) written once; nothing to clean."
+  P5.T3: "One new self-contained module wired through a single react() helper; nothing to clean."
+  P5.T4: "One new self-contained module whose effect table lives in theme.ts; nothing to clean."
+journal:
+  - kind: decision
+    id: p5-react-helper
+    phase: 5
+    title: Sound and speech are driven from one react() in app.ts, looking the destroyed ship up in the World before the step
+    body: |
+      The destroyed event carries only a shipId, and the ship is gone from the World the step returns, so
+      react() reads kind and text from the previous World. TTS is told the setting (setEnabled) before each say.
+  - kind: decision
+    id: p5-music-probe
+    phase: 5
+    title: The music probe treats a text/html 200 as no file
+    body: |
+      Vite's dev server answers a missing file with its index.html at status 200, so HEAD ok is not enough;
+      audio.ts also requires a non-html content-type. The effect table lives in theme.ts as sounds.
+  - kind: discovery
+    id: p5-hard-needs-many-typos
+    phase: 5
+    title: A Hard grade needs a typo rate above 10 percent of the whole Record
+    body: |
+      Two typos per ship was still Good (about 4 percent). The capture types one wrong key every fourth character.
+  - kind: discovery
+    id: p5-tts-status-at-open
+    phase: 5
+    title: The settings panel reads the TTS status when it opens
+    body: |
+      If voices arrive while settings is already open, the toggle stays as rendered; it is correct the next
+      time the panel opens (voices settle within 1500 ms of page load).
+resolves: []
+evidence: {tests: /Users/derio/.cache/fr/worktrees/the-typist/p5-suite.log}
+visual:
+  - row: learning-aids
+    script: /Users/derio/.cache/fr/worktrees/the-typist/shots/scratch/p5capture.js
+    shots:
+      - {path: /Users/derio/.cache/fr/worktrees/the-typist/shots/p5/settings-four-toggles.png, shows: [settings-four-toggles]}
+      - {path: /Users/derio/.cache/fr/worktrees/the-typist/shots/p5/sentence-ship-chip-and-translation.png, shows: [sentence-ship-chip-and-translation]}
+      - {path: /Users/derio/.cache/fr/worktrees/the-typist/shots/p5/recap-card.png, shows: [recap-card]}
+      - {path: /Users/derio/.cache/fr/worktrees/the-typist/shots/p5/toggle-aid-persists-after-reload.png, shows: [toggle-aid-persists-after-reload]}
+  - row: degraded-states
+    script: /Users/derio/.cache/fr/worktrees/the-typist/shots/scratch/p5capture.js
+    shots:
+      - {path: /Users/derio/.cache/fr/worktrees/the-typist/shots/p5/tts-toggle-disabled-note.png, shows: [tts-toggle-disabled-note]}
