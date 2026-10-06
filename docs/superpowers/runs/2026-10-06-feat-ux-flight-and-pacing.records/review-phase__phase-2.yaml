@@ -1,0 +1,32 @@
+schema_version: 7
+run: 2026-10-06-feat-ux-flight-and-pacing
+step: review-phase
+item: phase/2
+outcome: done
+journal:
+  - {kind: finding, id: p2-r1, phase: 2, review_scope: in, title: "Voice select has no width constraint; long (real Edge) names push Test off the panel; select unstyled", body: "src/ui/panels/settings.ts:50,67. At 1000/1280px Test wraps and spills; at 390px Test sits at x=483, off-screen."}
+  - {kind: finding, id: p2-r2, phase: 2, review_scope: in, title: "The 'saved voice gone shows Automatic' test also passes a blank select", body: "tests/ui/panels.test.ts:223 asserts value===''; the mutant pick.value = s.voice ?? '' survives."}
+  - {kind: finding, id: p2-r3, phase: 2, review_scope: in, title: "Quality ranking reads only name", body: "src/platform/voices.ts:8,12-17. Apple premium/enhanced voiceURIs carry the marker even when the name is localized."}
+  - kind: review
+    id: p2-review-1
+    phase: 2
+    title: "Phase 2 review (311a9f8^..c0a016b): 3 findings, all in scope, all fixed"
+    body: |
+      The reviewer was an independent general-purpose agent on opus. It checked R6–R8, ran the suite (550/550) and the build, and ran 17 mutants on a copy; 16 were killed. It checked the real-browser concerns: Chrome's late voiceschanged, voiceURI stability across a reload, Safari's fallback timeout, the open-panel refresh, Test while unavailable, and the speech cut-off, which R6 allows. It drove the UI itself and took 13 fresh shots, covering all four voice-choice names plus the limits.
+      Findings: p2-r1 (Important), p2-r2 and p2-r3 (Minor), all in scope. The fixes are 496dedf (r1: voiceLabel, styled and width-constrained select, wrapping row; re-captured at 1280 and 390 px with no horizontal scroll), 8559446 (r2; the mutant now killed) and 04dcb07 (r3). After the fixes the suite passes 553/553 (scratchpad/p2-fix-suite.log), and the build passes.
+      Declined to judge: speech over the between-wave panel (predates phase 2); the reason shown twice (an R8 design choice); duplicate voiceURIs (speculative); focus reset on re-render (the spec asks for the refresh); the chunk-size warning.
+resolves:
+  - {id: p2-r1, state: fixed, body: "496dedf: voiceLabel drops a redundant (lang) suffix; the .panel select is styled with min-width 0 / max-width 100% / flex 1; the voice row wraps and Test is nowrap. The tests failed first. Shots at 1280 and 390 px show no overflow."}
+  - {id: p2-r2, state: fixed, body: "8559446: asserts selectedIndex 0 and the option text 'Automatic (best available)'; the mutant now fails."}
+  - {id: p2-r3, state: fixed, body: "04dcb07: the quality marker is also matched against voiceURI; the test failed first."}
+evidence:
+  review: p2-review-1
+  reviewer: a5bef66b8a574bf78
+  model: claude-opus-5-5
+visual:
+  - row: voice-choice
+    shots:
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p2-review-shots/r1-automatic-first.png, shows: [voice-picker-automatic-first-ranked, voice-install-hint]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p2-review-shots/r2-ranked-expanded.png, shows: [voice-picker-automatic-first-ranked, voice-install-hint]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p2-review-shots/r3-picked-petra-tested.png, shows: [pick-voice-and-test]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p2-review-shots/r9-no-german-voice-disabled.png, shows: [no-german-voice-picker-disabled]}
