@@ -2,18 +2,36 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { loadFile, loadText } from '../../src/content/picker';
+import { parseList } from '../../src/schema';
 
 const fixture = (name: string) => new File([readFileSync(`tests/fixtures/lists/${name}`)], name, { type: 'text/yaml' });
 
 describe('picker', () => {
-  it('rejects an invalid list with one line per error', async () => {
+  it('rejects an invalid list with one entry per error, unsplit (p4-r9)', async () => {
     const res = await loadFile(fixture('invalid.yaml'));
+    const direct = parseList(readFileSync('tests/fixtures/lists/invalid.yaml', 'utf8'));
+    expect(res.ok).toBe(false);
+    if (!res.ok && !direct.ok) expect(res.errors).toEqual(direct.errors);
+  });
+
+  it('gives a YAML syntax error as one clean message, with no dangling colon (p4-r9)', () => {
+    const res = loadText('{ this: is: [not yaml');
     expect(res.ok).toBe(false);
     if (!res.ok) {
-      expect(res.errors.length).toBeGreaterThan(0);
-      for (const e of res.errors) expect(e).not.toContain('\n');
+      expect(res.errors).toHaveLength(1);
+      expect(res.errors[0]).toMatch(/^invalid YAML: .*line 1, column 22$/);
     }
   });
+
+  it.each([['empty', ''], ['plain text', 'just text'], ['a sequence', '- a\n- b'], ['binary-ish', '\u0000\u0001\u0002binary']])(
+    'says "not a YAML list file" for %s input (p4-r9)', (_n, text) => {
+      const res = loadText(text);
+      expect(res.ok).toBe(false);
+      if (!res.ok) {
+        expect(res.errors).toHaveLength(1);
+        expect(res.errors[0]).toMatch(/^not a YAML list file/);
+      }
+    });
 
   it('accepts a valid list and counts its playable records', async () => {
     const res = await loadFile(fixture('two-records.yaml'));

@@ -3,10 +3,16 @@ import { isPlayable } from '../session/build';
 
 export type LoadResult = { ok: true; list: VocabList; playable: number } | { ok: false; errors: string[] };
 
+/** Makes a parser message readable: no dangling colon after a YAML position, a plain verdict for a non-list document. */
+function tidy(message: string): string {
+  if (message.startsWith('Invalid input: expected object')) return 'not a YAML list file: the top level must be a mapping with `list` and `records`';
+  return message.replace(/(line \d+, column \d+):$/, '$1');
+}
+
 /** Validates YAML text as a list: every error on its own line, none when it is valid. */
 export function loadText(text: string): LoadResult {
   const res = parseList(text);
-  if (!res.ok) return { ok: false, errors: res.errors.flatMap((e) => e.split('\n')).filter((l) => l.trim() !== '') };
+  if (!res.ok) return { ok: false, errors: res.errors.map(tidy) };
   return { ok: true, list: res.list, playable: res.list.records.filter(isPlayable).length };
 }
 
