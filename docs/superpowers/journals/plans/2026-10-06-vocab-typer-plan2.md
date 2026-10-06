@@ -103,3 +103,56 @@ Reworded: index is the position of the record or category, per `where`.
 ### p1-r6-resolved · finding [fixed] · resolves p1-r6: Leftover consecutive blank lines in src/render/theme.ts (phase 1)
 
 Collapsed.
+
+<!-- fr:journal kind=decision scope=plan id=p2-placestack-direct created=2026-10-06T05:22:24+00:00 phase=2 -->
+### p2-placestack-direct · decision · placeStack written as a pure function straight away (P2.T4.S2 and S3 together) (phase 2)
+
+The placement rewrite was written directly as the pure `placeStack` in world.ts, so the
+S3 refactor needed no separate step. Rule order is documented on the function: spacing,
+centred on the wreck, HUD apex clearance, reaction distance wins, reduced-kick fallback.
+
+<!-- fr:journal kind=decision scope=plan id=p2-feedback-module created=2026-10-06T05:22:24+00:00 phase=2 -->
+### p2-feedback-module · decision · flashLevel and splitText live in src/render/feedback.ts, canvasSize and pickWidth in src/render/canvas-size.ts (phase 2)
+
+Pure helpers in their own render modules so tests import them without a canvas. `theme`
+also gained a `theme` aggregate export and `muzzle`/`muzzles`; the typo flash tokens are
+`palette.typoFlash`, `palette.pending`, `effects.typoFlashMs` and `effects.typoFlashAlpha`.
+
+<!-- fr:journal kind=discovery scope=plan id=p2-browser-check-clock created=2026-10-06T05:22:24+00:00 phase=2 -->
+### p2-browser-check-clock · discovery · Capturing sub-120 ms effects needs a faked clock (phase 2)
+
+Bullets live 120 ms and typo flashes 260 ms, too short for a real screenshot. The capture
+script installs Playwright's fake clock and steps it with runFor, so each shot is
+deterministic. The mothership x is random (the fixture seed is random), so the script
+reads states, not positions. index.html got a margin:0 / overflow:hidden style so a
+600 px window has no horizontal scroll (measured scrollWidth 600 = innerWidth 600).
+
+<!-- fr:journal kind=discovery scope=plan id=p2-dev-port created=2026-10-06T05:22:24+00:00 phase=2 -->
+### p2-dev-port · discovery · Dev server came up on 5174, not 5173 (phase 2)
+
+Port 5173 was taken, so the browser check ran against http://localhost:5174/the-typist/.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t1 created=2026-10-06T05:22:24+00:00 phase=2 -->
+### no-refactor-p2-t1 · discovery · no-refactor-because P2.T1 (phase 2)
+
+Field plumbing (score, width, aids) and keepInside taking the width; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t2 created=2026-10-06T05:22:24+00:00 phase=2 -->
+### no-refactor-p2-t2 · discovery · no-refactor-because P2.T2 (phase 2)
+
+One loop added to finish(); nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t3 created=2026-10-06T05:22:24+00:00 phase=2 -->
+### no-refactor-p2-t3 · discovery · no-refactor-because P2.T3 (phase 2)
+
+Small additive state and helper; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t5 created=2026-10-06T05:22:24+00:00 phase=2 -->
+### no-refactor-p2-t5 · discovery · no-refactor-because P2.T5 (phase 2)
+
+Two pure helpers and token additions; nothing to clean.
+
+<!-- fr:journal kind=discovery scope=plan id=no-refactor-p2-t6 created=2026-10-06T05:22:24+00:00 phase=2 -->
+### no-refactor-p2-t6 · discovery · no-refactor-because P2.T6 (phase 2)
+
+Two pure helpers and a resize hook; nothing to clean.
