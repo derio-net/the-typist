@@ -660,17 +660,17 @@ describe('kick to the top (R2)', () => {
 describe('pace-driven speeds (R4)', () => {
   const pace = { spc: 0.5, chars: 100 };
 
-  it('a mothership descends at distance / (1.5 x (chars x spc + 0.6))', () => {
+  it('a mothership descends at distance / (1.5 x (chars x spc + 3)): 3 s to read and retarget each ship', () => {
     const w = createWorld([boerse], { pace });
     const m = w.ships[0];
     const chars = requiredLength(m.text);
     expect(m.speed).toBeCloseTo(
-      Math.min(WORLD.maxSpeed, Math.max(WORLD.minSpeed, (WORLD.playerY - m.y) / (1.5 * (chars * 0.5 + 0.6)))), 9,
+      Math.min(WORLD.maxSpeed, Math.max(WORLD.minSpeed, (WORLD.playerY - m.y) / (1.5 * (chars * 0.5 + 3)))), 9,
     );
   });
 
   it('budgetSpeed sums the ships below and clamps to 8..140', () => {
-    expect(budgetSpeed(300, [8, 10], pace)).toBeCloseTo(300 / (1.5 * (8 * 0.5 + 0.6 + 10 * 0.5 + 0.6)), 9);
+    expect(budgetSpeed(300, [8, 10], pace)).toBeCloseTo(300 / (1.5 * (8 * 0.5 + 3 + 10 * 0.5 + 3)), 9);
     expect(budgetSpeed(1, [50], pace)).toBe(WORLD.minSpeed);
     expect(budgetSpeed(1e6, [1], pace)).toBe(WORLD.maxSpeed);
   });

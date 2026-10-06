@@ -16,8 +16,8 @@ export const WORLD = {
   lives: 3,
   /** Time budget of a ship is this many times its estimated typing time... */
   slack: 1.5,
-  /** ...plus this many seconds per ship to retarget (find it, lock on). */
-  retargetS: 0.6,
+  /** ...plus this many seconds per ship to read it and retarget (find it, lock on). */
+  readS: 3,
   /** Descent speed bounds, px/s. */
   minSpeed: 8,
   maxSpeed: 140,
@@ -171,7 +171,7 @@ function random(state: number): [number, number] {
  * every ship still below it: `chars` lists the required characters of this ship and the ones under it, in order.
  */
 export function budgetSpeed(distance: number, chars: readonly number[], pace: Pace): number {
-  const budget = WORLD.slack * chars.reduce((a, c) => a + c * pace.spc + WORLD.retargetS, 0);
+  const budget = WORLD.slack * chars.reduce((a, c) => a + c * pace.spc + WORLD.readS, 0);
   return Math.min(WORLD.maxSpeed, Math.max(WORLD.minSpeed, distance / budget));
 }
 
