@@ -1,0 +1,131 @@
+schema_version: 2
+phase:
+  number: 3
+  title: Protected and portable progress (R9–R10)
+  tag: agentic
+  depends_on:
+  - 2
+  tracking_issue: null
+  acceptance:
+  - progress-portability
+  tier: standard
+  files:
+  - src/srs/**
+  - src/platform/**
+  - src/ui/**
+  - tests/srs/**
+  - tests/platform/**
+  - tests/ui/**
+  - tests/e2e/**
+  - docs/acceptance/**
+  - CLAUDE.md
+  estimate_lines: 650
+tasks:
+- number: 1
+  title: Progress file format and merge rules (R10)
+  steps:
+  - id: P3.T1.S1
+    text: |-
+      RED: `tests/srs/portable.test.ts`: - `serialize` writes `format`, `version` 1, `exportedAt`, cards with ISO dates, newCounts and pace. - `parse` revives the dates, and rejects a wrong format or version, missing fields or bad dates with a readable reason. - `mergeCard` keeps the imported card when the local one is missing or its `last_review` is older (a missing `last_review` is the oldest); ties keep the local card. - Counts take the max. - The pace is taken when the imported one has more `chars`.
+  - id: P3.T1.S2
+    text: |-
+      GREEN: add `src/srs/portable.ts` with a strict zod schema.
+- number: 2
+  title: Store export and import (R10)
+  steps:
+  - id: P3.T2.S1
+    text: |-
+      RED: in `tests/srs/store.test.ts`, for both the IndexedDB (fake-indexeddb) and memory stores: - `exportAll` returns every list's cards and the `['new', …]` counts. - `importAll` applies the merge rules and reports imported and replaced counts. - A failure mid-import leaves nothing written (one transaction).
+  - id: P3.T2.S2
+    text: |-
+      GREEN: add `exportAll` and `importAll` to `CardStore`. In IndexedDB, read with cursors, and import over `cards` and `meta` in one readwrite transaction that awaits nothing outside IndexedDB.
+- number: 3
+  title: Persistent storage request and status (R9)
+  steps:
+  - id: P3.T3.S1
+    text: |-
+      RED: in `app.test.ts`, with IndexedDB stores, `navigator.storage.persist` is called once at startup, and not with memory stores. The Settings panel shows the protected, may-be-cleared or memory line accordingly, including when `persisted()` is already true.
+  - id: P3.T3.S2
+    text: |-
+      GREEN: inject a `storage` manager into `AppDeps` (default `navigator.storage`, guarded), keep the status, and pass it to `settingsPanel`.
+- number: 4
+  title: Export and Import in Settings (R10)
+  steps:
+  - id: P3.T4.S1
+    text: |-
+      RED: in `panels.test.ts` and `app.test.ts`: - Export and Import appear only when Settings is opened from the title, never from pause. - Export produces a Blob named `typist-progress-<yyyy-mm-dd>.json`. - Importing a valid file merges, saves the pace after the transaction, and shows the count message. - An invalid file shows the reason and changes neither the stores nor the pace.
+  - id: P3.T4.S2
+    text: |-
+      GREEN: add the panel controls (a hidden file input and a download link) and the app wiring through `portable.ts` and the store.
+- number: 5
+  title: E2E round trip
+  steps:
+  - id: P3.T5.S1
+    text: |-
+      Extend `tests/e2e/smoke.spec.ts`, keeping `--mute-audio` and the stubbed `speechSynthesis`: - After the existing run, open Settings from the title, click Export, and save the download (`page.waitForEvent('download')`). - Clear the `cards` and `meta` stores in a readwrite transaction from the page (not `deleteDatabase`). - Import the saved file through the file input, and assert that both Records' cards exist again. Run `npm run e2e` and see it pass.
+- number: 6
+  title: Visual check and acceptance
+  steps:
+  - id: P3.T6.S1
+    text: |-
+      Capture the Settings states named by row `progress-portability`'s `visual` (three storage lines, the import success message, the invalid-file error) through a hermetic browser run (`--mute-audio`, stubbed `speechSynthesis`). Open each screenshot and check it.
+  - id: P3.T6.S2
+    text: |-
+      Update the matrix: `progress-portability` gets unit and e2e levels and status `skipped`. Regenerate the reports, run `fr acceptance check`, and mention export and import in `CLAUDE.md`'s srs line.
+  - id: P3.T6.S3
+    text: |-
+      Run the full suite `npm test`, `npm run build` and `npm run e2e` after the last code commit. All must be green.
+state:
+  steps:
+    P3.T1.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T1.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T2.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T2.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T3.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T3.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T4.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T4.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T5.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T6.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T6.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T6.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+  completion:
+    at: null
+    note: null
+    observed_prs: []

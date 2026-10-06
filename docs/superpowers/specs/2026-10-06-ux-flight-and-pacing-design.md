@@ -280,3 +280,4 @@ Post-merge, operator-driven, on https://derio-net.github.io/the-typist/:
 
 | Plan | Repo | File | Depends on |
 |------|------|------|------------|
+| 2026-10-06-ux-flight-and-pacing | `derio-net/the-typist` | `2026-10-06-ux-flight-and-pacing` | — |

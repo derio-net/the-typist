@@ -1,0 +1,193 @@
+schema_version: 2
+phase:
+  number: 1
+  title: Flight and pacing — stack order, kick to the top, typing-rate speeds (R1–R5)
+  tag: agentic
+  depends_on: []
+  tracking_issue: null
+  acceptance:
+  - stack-flight
+  - adaptive-pace
+  skeleton: true
+  tier: standard
+  files:
+  - src/engine/**
+  - src/session/**
+  - src/platform/pace-store.ts
+  - src/ui/app.ts
+  - src/dev/**
+  - tests/engine/**
+  - tests/session/**
+  - tests/platform/pace-store.test.ts
+  - tests/ui/app.test.ts
+  - docs/acceptance/**
+  - CLAUDE.md
+  estimate_lines: 750
+tasks:
+- number: 1
+  title: Smoke — the suite runs green and the pace module exists
+  steps:
+  - id: P1.T1.S1
+    text: |-
+      Run `npm ci`, then the full suite `npm test` on the untouched branch, and note the pass count as the baseline. It must be green.
+  - id: P1.T1.S2
+    text: |-
+      RED: `tests/engine/pace.test.ts` asserts `createPace()` returns `{ spc: 0.5, chars: 0 }` and `createPace({ spc: 0.3, chars: 80 })` returns that estimate. Run it and see it fail (the module is missing).
+  - id: P1.T1.S3
+    text: |-
+      GREEN: add `src/engine/pace.ts` exporting `Pace` and `createPace(saved?)`. Run the test and see it pass.
+- number: 2
+  title: Typing-rate estimate (R3)
+  steps:
+  - id: P1.T2.S1
+    text: |-
+      RED: in `pace.test.ts`, test `observe(p, c, ms)`: - Fresh: one 10-character sample at 1 s gives `a = 10/20`, so spc = 0.3 and chars = 10. - Calibration: successive samples up to 50 characters equal the cumulative average with a 10-character prior of 0.5. - After 50 characters: `a = c/(50+c)`. - Clamp: samples below 0.05 or above 5 s/char clamp. - `c = 0` leaves the estimate unchanged.
+  - id: P1.T2.S2
+    text: |-
+      GREEN: implement `observe` per the spec's pace.ts design.
+  - id: P1.T2.S3
+    text: |-
+      REFACTOR: name the constants (`PRIOR_CHARS = 10`, `WINDOW = 50`, the clamp bounds) and keep the module pure, with no imports outside the engine.
+- number: 3
+  title: Stack order (R1)
+  steps:
+  - id: P1.T3.S1
+    text: |-
+      RED: in `tests/engine/world.test.ts`, destroying a mothership whose Record has forms and examples of lengths 20, 45 and 30 spawns children whose y order, top to bottom, is the 45, 30 and 20 sentences, then forms. Also test equal lengths in example order, a Record without forms, and a Record without examples (only forms).
+  - id: P1.T3.S2
+    text: |-
+      GREEN: `spawnChildren` builds the children as the stably sorted sentences (`text.length` descending) followed by forms.
+- number: 4
+  title: Kick to the top with a rise-0 floor (R2)
+  steps:
+  - id: P1.T4.S1
+    text: |-
+      RED, with apexes asserted by running `tick()` until every child's `vy + speed >= 0`: - For wrecks at y = 120, 300 and 520, the top band's hull top (`y - above`) at the apex is in [minY, minY + 4]. - A wreck right under the HUD (the mothership's entry y) spawns the stack with its top hull at or below minY, and the kick is 0 when that already puts it at the HUD. - The reaction-distance fallback still holds for a tall stack near the player line. - Bands keep `bandGap` and never cross during the flight.
+  - id: P1.T4.S2
+    text: |-
+      GREEN: in `placeStack`, add rule 3 (the rise-0 floor) with rule 4 winning. Solve the kick by bisection on the discrete rise `kick·dt·Σ dⁱ − v·n·dt`, maximised over whole steps n, where d = e^(−dt/kickDecayS). Remove `WORLD.burstKick`. `placeStack` takes the speed it needs.
+  - id: P1.T4.S3
+    text: |-
+      Rewrite or retire the existing tests that pin the old kick: `world.test.ts` around line 512 (`vy > −burstKick`) and lines 533–545 (`kick == burstKick`, the fixed-rise apex). Update the doc comment on `placeStack` to list the new rules.
+- number: 5
+  title: Pace-driven speeds (R4)
+  steps:
+  - id: P1.T5.S1
+    text: |-
+      RED, in world tests: - A mothership with `requiredLength` 8 at pace spc 0.5 descends at distance ÷ (1.5 × (8×0.5 + 0.6)). - A stack's shared speed is the bottom-up minimum from R4, with distances from the apex. - The clamps: 8 and 140 px/s. - The wave number changes nothing. - The World's `pace` after destroying a mothership already includes its sample when the children's speed is computed (compare against a pace observed by hand).
+  - id: P1.T5.S2
+    text: |-
+      GREEN: - Add `WorldOptions.pace` and World `pace`. - Add `WORLD.slack` 1.5, `retargetS` 0.6, `minSpeed` 8 and `maxSpeed` 140. - Remove `baseSpeed`, `speedPerWave`, `referenceLength` and `shipSpeed`'s wave argument (or `shipSpeed` itself). - In `typeChar`, observe the destroyed ship's `expectedChars` and `destroyedAt − lockAt` first, then spawn children. - Budgets use `requiredLength` from `typing.ts`.
+  - id: P1.T5.S3
+    text: |-
+      Rewrite the old speed tests: `world.test.ts` lines 66–77 (`shipSpeed` by length and wave) and 278–281 (the `baseSpeed` bound). Fix every other caller TypeScript reports (`npm run build` type-checks `src/` and `tests/`).
+  - id: P1.T5.S4
+    text: |-
+      REFACTOR: put the budget computation in one helper used by both the mothership and the stack.
+- number: 6
+  title: Pace carried and remembered (R5)
+  steps:
+  - id: P1.T6.S1
+    text: |-
+      RED: - `tests/platform/pace-store.test.ts`: `savePace` then `loadPace` round-trips under `typist.pace`. Corrupt JSON, wrong types or a throwing storage return `undefined`. - `controller.test.ts`: the `pace` option seeds wave 0, and wave 1 starts from wave 0's final pace even when `worldOptions()` returns a different `pace`. - `app.test.ts`: a `resolved` event saves the World's pace, and a new session's first World starts from the saved pace (one read per session).
+  - id: P1.T6.S2
+    text: |-
+      GREEN: - Add `src/platform/pace-store.ts`. - `WorldState` gains `pace`, and the controller carries it and overrides `worldOptions().pace`. - `app.ts` passes `loadPace()` once per session and calls `savePace(world.pace)` on `resolved`. - Inject the storage through `AppDeps` (or reuse the settings storage) so tests stay hermetic.
+- number: 7
+  title: Visual check and acceptance
+  steps:
+  - id: P1.T7.S1
+    text: |-
+      Capture the release states named by row `stack-flight`'s `visual` through the dev fixture page (`?dev=fixture`), running the browser with `--mute-audio` and a stubbed `speechSynthesis`. The states are: a high wreck and a low wreck at the apex, forms lowest, longest sentence highest, no forms, and no examples. Save the shots to a git-ignored scratch dir, then open each one and check it.
+  - id: P1.T7.S2
+    text: |-
+      Update `docs/acceptance/matrix.yaml`: - `stack-flight` and `adaptive-pace` get unit levels (`tests/engine/world.test.ts`, `tests/engine/pace.test.ts`, `tests/session/controller.test.ts`, `tests/platform/pace-store.test.ts`) and status `skipped`. The note says the suite runs only on pushes to main. - `play-feel`'s notes say its kick part is superseded by this spec's R2. Regenerate with `fr acceptance report --deterministic`, then run `fr acceptance check`.
+  - id: P1.T7.S3
+    text: |-
+      Run the full suite `npm test` and `npm run build` after the last code commit. Both must be green.
+state:
+  steps:
+    P1.T1.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T1.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T1.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T2.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T2.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T2.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T3.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T3.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T4.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T4.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T4.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T5.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T5.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T5.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T5.S4:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T6.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T6.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T7.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T7.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T7.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+  completion:
+    at: null
+    note: null
+    observed_prs: []

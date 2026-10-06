@@ -1,0 +1,6 @@
+schema_version: 2
+plan: 2026-10-06-ux-flight-and-pacing
+spec: 2026-10-06-ux-flight-and-pacing-design.md
+target_repo: derio-net/the-typist
+fr_version: '>=4.20.0,<6.0.0'
+created: '2026-10-06'
