@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
 
 const FIXTURE = 'tests/fixtures/lists/two-records.yaml';
@@ -65,4 +66,59 @@ test('load a list, free-play it, and persist both Records', async ({ page }) => 
       }),
   );
   expect(keys).toEqual(expect.arrayContaining([['fixture-two', 'noun-boerse'], ['fixture-two', 'verb-anlegen']]));
+
+  // R10: export, wipe the stores, import, and the cards are back (Settings is on the title: leave the mode panel)
+  await page.locator('[data-panel=mode] [data-action=back]').click();
+  await page.locator('[data-action=settings]').click();
+  const [download] = await Promise.all([page.waitForEvent('download'), page.locator('[data-action=export-progress]').click()]);
+  expect(download.suggestedFilename()).toMatch(/^typist-progress-\d{4}-\d{2}-\d{2}\.json$/);
+  const saved = await download.path();
+  const exported = JSON.parse(readFileSync(saved, 'utf8'));
+  expect(exported.cards.map((c: { recordId: string }) => c.recordId).sort()).toEqual(['noun-boerse', 'verb-anlegen']);
+
+  // clear in a readwrite transaction: deleteDatabase would block on the app's open connection
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve, reject) => {
+        const open = indexedDB.open('typist');
+        open.onerror = () => reject(open.error);
+        open.onsuccess = () => {
+          const tx = open.result.transaction(['cards', 'meta'], 'readwrite');
+          tx.objectStore('cards').clear();
+          tx.objectStore('meta').clear();
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        };
+      }),
+  );
+  const count = () =>
+    page.evaluate(
+      () =>
+        new Promise<number>((resolve, reject) => {
+          const open = indexedDB.open('typist');
+          open.onerror = () => reject(open.error);
+          open.onsuccess = () => {
+            const req = open.result.transaction('cards', 'readonly').objectStore('cards').count();
+            req.onsuccess = () => resolve(req.result);
+            req.onerror = () => reject(req.error);
+          };
+        }),
+  );
+  expect(await count()).toBe(0);
+
+  await page.locator('[data-testid=progress-file]').setInputFiles(saved);
+  await expect(page.locator('[data-slot=transfer-status]')).toHaveText(/Imported 2 cards/);
+  const back = await page.evaluate(
+    () =>
+      new Promise<unknown[]>((resolve, reject) => {
+        const open = indexedDB.open('typist');
+        open.onerror = () => reject(open.error);
+        open.onsuccess = () => {
+          const req = open.result.transaction('cards', 'readonly').objectStore('cards').getAllKeys();
+          req.onsuccess = () => resolve(req.result as unknown[]);
+          req.onerror = () => reject(req.error);
+        };
+      }),
+  );
+  expect(back).toEqual(expect.arrayContaining([['fixture-two', 'noun-boerse'], ['fixture-two', 'verb-anlegen']]));
 });
