@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createRenderer } from '../../src/render/renderer';
-import { createWorld } from '../../src/engine/world';
+import { advance, createWorld } from '../../src/engine/world';
 import { palette } from '../../src/render/theme';
 import { parseList } from '../../src/schema';
 import { readFileSync } from 'node:fs';
@@ -76,5 +76,51 @@ describe('renderer lifecycle', () => {
     expect(win.mql).toHaveLength(2);
     expect(win.mql[1].media).toContain('3dppx');
     expect(win.mql[0].listeners.size).toBe(0);
+  });
+});
+
+describe('renderer reset, clear and available height (p4-r2, p4-r3, p4-r4)', () => {
+  const recordingCtx = (calls: string[]) =>
+    new Proxy({ measureText: () => ({ width: 10 }) } as Record<string, unknown>, {
+      get: (t, k: string) => (k in t ? t[k] : (...a: unknown[]) => void calls.push(`${k}${a.length ? ':' + a.slice(0, 1) : ''}`)),
+      set: (t, k: string, v) => ((t[k] = v), true),
+    });
+
+  it('reset forgets explosions, so a destroyed ship from a past wave is not drawn', () => {
+    const calls: string[] = [];
+    canvas.getContext = () => recordingCtx(calls);
+    const r = make();
+    const w = advance(createWorld(res.list.records, { width: 720, seed: 1 }), 5000);
+    expect(w.ships.length).toBeGreaterThan(0);
+    r.draw(w, 0);
+    r.push([{ type: 'destroyed', shipId: w.ships[0].id, recordId: w.ships[0].recordId, expectedChars: 3, typos: 0, lockAt: 0, destroyedAt: 1 } as never], 10);
+    calls.length = 0;
+    r.draw(w, 20);
+    expect(calls.some((c) => c.startsWith('arc'))).toBe(true);
+    r.reset();
+    calls.length = 0;
+    r.draw(w, 30);
+    expect(calls.some((c) => c.startsWith('arc'))).toBe(false);
+  });
+
+  it('clear paints only the background and stars, no HUD or ships', () => {
+    const calls: string[] = [];
+    canvas.getContext = () => recordingCtx(calls);
+    const r = make();
+    calls.length = 0;
+    r.clear();
+    expect(calls.some((c) => c.startsWith('fillRect'))).toBe(true);
+    expect(calls.some((c) => c.startsWith('fillText'))).toBe(false);
+  });
+
+  it('fits the canvas to the available height, and refit re-reads it', () => {
+    let avail = 900;
+    const r = createRenderer(canvas as unknown as HTMLCanvasElement, 720, { availableHeight: () => avail });
+    const full = canvas.height;
+    expect(full).toBe(Math.round(Math.min(600 / 720, 900 / 640) * 640 * 2));
+    avail = 300;
+    r.refit();
+    expect(canvas.height).toBeLessThan(full);
+    expect(canvas.height / 2).toBeLessThanOrEqual(300);
   });
 });

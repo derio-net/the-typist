@@ -21,19 +21,30 @@ export interface Renderer {
   /** Feed events from `tick` / `typeChar` so effects can be spawned. */
   push(events: WorldEvent[], now: number): void;
   draw(world: World, now: number): void;
+  /** Drops every transient effect (bullets, explosions, debris, flashes): call when a wave or session starts. */
+  reset(): void;
+  /** Paints the background and stars only, for when no World is on screen. */
+  clear(): void;
+  /** Re-fits the canvas to the window, after the space available to it changed. */
+  refit(): void;
   /** Removes the window and device-pixel-ratio listeners. */
   dispose(): void;
 }
 
 /** `initialWidth` is the world's width (see `pickWidth`); the canvas is fitted to the window and sharp at any DPR. */
-export function createRenderer(canvas: HTMLCanvasElement, initialWidth: number = WORLD.width): Renderer {
+export interface RendererOptions {
+  /** CSS pixels of height the canvas may use; defaults to the window's (a banner above it takes some). */
+  availableHeight?: () => number;
+}
+
+export function createRenderer(canvas: HTMLCanvasElement, initialWidth: number = WORLD.width, opts: RendererOptions = {}): Renderer {
   const ctx = canvas.getContext('2d')!;
   let logicalWidth = initialWidth;
   /** Backing pixels per logical pixel: fit scale x device pixel ratio. */
   let pixelScale = 1;
   let stars = starField(logicalWidth, WORLD.height);
   const resize = () => {
-    const fit = canvasSize(window.innerWidth, window.innerHeight, window.devicePixelRatio || 1, logicalWidth, WORLD.height);
+    const fit = canvasSize(window.innerWidth, opts.availableHeight?.() ?? window.innerHeight, window.devicePixelRatio || 1, logicalWidth, WORLD.height);
     canvas.width = fit.backing.width;
     canvas.height = fit.backing.height;
     canvas.style.width = `${fit.css.width}px`;
@@ -151,8 +162,26 @@ export function createRenderer(canvas: HTMLCanvasElement, initialWidth: number =
     ctx.shadowBlur = 0;
   }
 
+  function paintBackground(width: number) {
+    ctx.setTransform(pixelScale, 0, 0, pixelScale, 0, 0);
+    ctx.fillStyle = palette.background;
+    ctx.fillRect(0, 0, width, WORLD.height);
+    ctx.fillStyle = palette.star;
+    for (const s of stars) ctx.fillRect(s.x, s.y, sizes.starSize, sizes.starSize);
+  }
+
   return {
     measure,
+    reset() {
+      bullets = [];
+      explosions = [];
+      debris = [];
+      lastPos.clear();
+      typoAt.clear();
+      shots = 0;
+    },
+    clear: () => paintBackground(logicalWidth),
+    refit: resize,
     dispose() {
       window.removeEventListener('resize', resize);
       dpr?.removeEventListener('change', onDprChange);
@@ -187,11 +216,7 @@ export function createRenderer(canvas: HTMLCanvasElement, initialWidth: number =
         stars = starField(logicalWidth, WORLD.height);
         resize();
       }
-      ctx.setTransform(pixelScale, 0, 0, pixelScale, 0, 0);
-      ctx.fillStyle = palette.background;
-      ctx.fillRect(0, 0, world.width, WORLD.height);
-      ctx.fillStyle = palette.star;
-      for (const s of stars) ctx.fillRect(s.x, s.y, sizes.starSize, sizes.starSize);
+      paintBackground(world.width);
 
       for (const s of world.ships) lastPos.set(s.id, { x: s.x, y: s.y, kind: s.kind });
       const sprites = currentSprites();
