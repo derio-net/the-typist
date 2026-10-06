@@ -196,3 +196,6 @@ Testing names unit tests for game-over grading, the builders' ordering and cap, 
 ### sr-13-resolved · finding [fixed] · resolves sr-13: Three spec-journal decision bodies are truncated
 
 Restored the full text of ux-pass-is-issue-2, issues-in-scope and design-defaults in the spec journal from the brainstorm record's intended content.
+
+<!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-06-vocab-typer-plan2-p2 created=2026-10-06T03:47:26+00:00 -->
+### phase-split-2026-10-06-vocab-typer-plan2-p2 · decision · ask: play feel from issue #2 (R11-R13) is independently reviewable
