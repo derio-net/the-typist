@@ -361,3 +361,8 @@ CC0 imposes no attribution; CREDITS.md names the author as he asked. An in-game 
 ### p3-r8-resolved-2 · finding [deferred → #11] · resolves p3-r8: readS sits inside the 1.5x slack; a fast typist's stack may lose tension
 
 Filed at closeout as #11.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r10-resolved-2 created=2026-10-06T19:29:48+00:00 state=open resolves=p3-r10 tracked_by=#12 -->
+### p3-r10-resolved-2 · finding [deferred → #12] · resolves p3-r10: Music credit lives only in CREDITS.md, not in the game UI
+
+Filed at closeout as #12.
