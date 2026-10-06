@@ -67,8 +67,9 @@ rows:
       - the-typist:tests/ui/app.test.ts
       ui:
       - the-typist:tests/e2e/smoke.spec.ts
-    status: not-implemented
-    notes: ''
+    status: skipped
+    notes: Verified by vitest unit tests and the Playwright smoke; the suite runs in
+      the Pages workflow on main, not on PRs, so the row is not ci.
     verify: post-merge
     visual:
       states:
