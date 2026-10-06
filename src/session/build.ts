@@ -68,12 +68,17 @@ export function buildStudy(
   const byCategory = new Map<string, VocabRecord[]>();
   for (const r of picked) {
     const id = r.categories?.[0] ?? '';
-    byCategory.set(id, [...(byCategory.get(id) ?? []), r]);
+    const group = byCategory.get(id);
+    if (group) group.push(r);
+    else byCategory.set(id, [r]);
   }
-  const overdue = (id: string) => Math.min(...(byCategory.get(id) ?? []).map((r) => dueAt(r) ?? Infinity));
+  // each category's oldest due date, once (Infinity when it holds only new records)
+  const oldest = new Map(
+    [...byCategory].map(([id, rs]) => [id, Math.min(...rs.map((r) => dueAt(r) ?? Infinity))] as const),
+  );
   const order = new Map((list.categories ?? []).map((c) => [c.id, c.order]));
   const ids = [...byCategory.keys()].sort((a, b) => {
-    const [oa, ob] = [overdue(a), overdue(b)];
+    const [oa, ob] = [oldest.get(a) ?? Infinity, oldest.get(b) ?? Infinity];
     if (oa !== ob) return oa === Infinity ? 1 : ob === Infinity ? -1 : oa - ob;
     return (order.get(a) ?? Infinity) - (order.get(b) ?? Infinity);
   });
