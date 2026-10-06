@@ -1,10 +1,11 @@
 // @vitest-environment jsdom
 import { beforeEach, describe, expect, it } from 'vitest';
-import { createKeyboard } from '../../src/platform/keyboard';
+import { createKeyboard, type Keyboard } from '../../src/platform/keyboard';
 
 let input: HTMLInputElement;
 let out: string[];
-let stop: () => void;
+let kb: Keyboard;
+let escapes: number;
 
 function typeInput(data: string, inputType = 'insertText', isComposing = false) {
   input.value += data;
@@ -16,8 +17,9 @@ beforeEach(() => {
   input = document.createElement('input');
   document.body.append(input);
   out = [];
-  stop?.();
-  stop = createKeyboard(input, (c) => out.push(c));
+  kb?.dispose();
+  escapes = 0;
+  kb = createKeyboard(input, (c) => out.push(c), { onEscape: () => (escapes += 1) });
 });
 
 describe('createKeyboard', () => {
@@ -99,11 +101,58 @@ describe('createKeyboard', () => {
     await new Promise((r) => setTimeout(r, 0));
     expect(document.activeElement).toBe(input);
     input.blur();
-    stop();
+    kb.dispose();
     await new Promise((r) => setTimeout(r, 0));
     expect(document.activeElement).not.toBe(input);
-    stop();
+    kb.dispose();
     typeInput('z');
+    expect(out).toEqual([]);
+  });
+});
+
+describe('createKeyboard suspension and Esc (R5)', () => {
+  it('emits nothing while disabled, and nothing is lost on re-enable', () => {
+    kb.setEnabled(false);
+    typeInput('a');
+    expect(out).toEqual([]);
+    kb.setEnabled(true);
+    typeInput('b');
+    expect(out).toEqual(['b']);
+  });
+
+  it('does not reclaim focus while disabled, and refocuses on enable', async () => {
+    const num = document.createElement('input');
+    num.type = 'number';
+    document.body.append(num);
+    input.focus();
+    kb.setEnabled(false);
+    num.focus();
+    await new Promise((r) => setTimeout(r, 10));
+    expect(document.activeElement).toBe(num);
+    kb.setEnabled(true);
+    expect(document.activeElement).toBe(input);
+  });
+
+  it('reclaims focus on blur while enabled', async () => {
+    input.focus();
+    input.blur();
+    await new Promise((r) => setTimeout(r, 10));
+    expect(document.activeElement).toBe(input);
+  });
+
+  it('calls onEscape on Esc in both states, and not for other keys', () => {
+    input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    kb.setEnabled(false);
+    input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    document.body.dispatchEvent(new KeyboardEvent('keydown', { key: 'a', bubbles: true }));
+    expect(escapes).toBe(2);
+  });
+
+  it('stops listening after dispose', () => {
+    kb.dispose();
+    input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    typeInput('x');
+    expect(escapes).toBe(0);
     expect(out).toEqual([]);
   });
 });

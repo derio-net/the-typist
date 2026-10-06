@@ -8,8 +8,22 @@ const DEAD_MARKS = new Set(['¨', '´', '`', '^', '~']);
  * the input (writing `value` mid-composition cancels the IME in Chromium).
  * Returns a disposer.
  */
-export function createKeyboard(input: HTMLInputElement, onChar: (c: string) => void): () => void {
+export interface Keyboard {
+  dispose(): void;
+  /**
+   * While disabled the keyboard emits no characters and does not reclaim focus, so panel controls keep
+   * theirs. Enabling refocuses the input. Esc is reported in both states.
+   */
+  setEnabled(on: boolean): void;
+}
+
+export interface KeyboardOptions {
+  onEscape?: () => void;
+}
+
+export function createKeyboard(input: HTMLInputElement, onChar: (c: string) => void, opts: KeyboardOptions = {}): Keyboard {
   let disposed = false;
+  let enabled = true;
   /** `compositionend.data` awaiting a possible WebKit echo as a plain input event. */
   let lastComposed = '';
 
@@ -22,6 +36,7 @@ export function createKeyboard(input: HTMLInputElement, onChar: (c: string) => v
     if (ev.isComposing || ev.inputType === 'insertCompositionText' || ev.inputType === 'insertFromComposition') return;
     const read = ev.data ?? input.value;
     input.value = '';
+    if (!enabled) return;
     const echo = lastComposed !== '' && read === lastComposed;
     lastComposed = '';
     if (echo) return;
@@ -32,15 +47,19 @@ export function createKeyboard(input: HTMLInputElement, onChar: (c: string) => v
     const data = (e as CompositionEvent).data ?? '';
     input.value = '';
     lastComposed = data;
-    emit(data);
+    if (enabled) emit(data);
   };
   const onKeyDown = () => {
     lastComposed = '';
   };
+  // on the document, so Esc also works while a panel control holds focus
+  const onDocKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') opts.onEscape?.();
+  };
   const onBlur = () => {
     // Firefox ignores a synchronous focus() inside blur.
     setTimeout(() => {
-      if (!disposed) input.focus();
+      if (!disposed && enabled) input.focus();
     }, 0);
   };
 
@@ -48,11 +67,20 @@ export function createKeyboard(input: HTMLInputElement, onChar: (c: string) => v
   input.addEventListener('compositionend', onCompositionEnd);
   input.addEventListener('keydown', onKeyDown);
   input.addEventListener('blur', onBlur);
-  return () => {
-    disposed = true;
-    input.removeEventListener('input', onInput);
-    input.removeEventListener('compositionend', onCompositionEnd);
-    input.removeEventListener('keydown', onKeyDown);
-    input.removeEventListener('blur', onBlur);
+  document.addEventListener('keydown', onDocKeyDown);
+  return {
+    setEnabled(on) {
+      enabled = on;
+      lastComposed = '';
+      if (on && !disposed) input.focus();
+    },
+    dispose() {
+      disposed = true;
+      document.removeEventListener('keydown', onDocKeyDown);
+      input.removeEventListener('input', onInput);
+      input.removeEventListener('compositionend', onCompositionEnd);
+      input.removeEventListener('keydown', onKeyDown);
+      input.removeEventListener('blur', onBlur);
+    },
   };
 }
