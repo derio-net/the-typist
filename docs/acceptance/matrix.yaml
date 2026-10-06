@@ -26,7 +26,7 @@
 # the last row of the same capability, and appends to the end of this file only
 # for a new capability — so keep `rows:` as the LAST top-level key.
 
-schema_version: 3
+schema_version: 4
 org: derio-net
 repo: the-typist
 rows:
@@ -71,7 +71,7 @@ rows:
       app) and the Playwright smoke (loads a list through the file input and plays it).
       The suite runs in the Pages workflow on pushes to main, not on PRs, so the row
       is not ci.
-    verify: post-merge
+    verify: live
     visual:
       states:
       - load-list-picker
@@ -145,7 +145,7 @@ rows:
     notes: Verified by vitest unit tests (store fallback, TTS availability, app banners).
       The suite runs in the Pages workflow on pushes to main, not on PRs, so the row
       is not ci.
-    verify: post-merge
+    verify: live
     visual:
       states:
       - empty-study-offers-free-play
@@ -297,7 +297,7 @@ rows:
     levels: {}
     status: not-implemented
     notes: ''
-    verify: post-merge
+    verify: live
   - id: srs-sessions
     capability: Learning
     acceptance: Study sessions serve due plus capped new Records in category waves,
@@ -343,7 +343,7 @@ rows:
     notes: Verified by vitest unit tests (settings, TTS, panels, app) and the Playwright
       smoke (recap card after a Hard Record). The suite runs in the Pages workflow on
       pushes to main, not on PRs, so the row is not ci.
-    verify: post-merge
+    verify: live
     visual:
       states:
       - settings-four-toggles

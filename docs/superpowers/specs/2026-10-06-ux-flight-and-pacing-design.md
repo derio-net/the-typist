@@ -94,7 +94,11 @@ src/ui/panels/settings.ts  voice picker, Test, hint, storage line, Export/Import
   3. a rise-0 floor: the top band's hull top at or below `WORLD.minY`, since
      a wreck just under the HUD would otherwise put a centred stack above it,
      where no kick can bring it down;
-  4. reaction distance, which wins over 3, as before.
+  4. reaction distance. With pace-driven speeds, lifting the stack raises
+     its own speed budget, which can push it behind the HUD at very fast
+     paces (review p1-r3). So rule 4 first caps the shared speed to what the
+     room below the stack allows. It lifts the stack, winning over rule 3,
+     only when the stack is too tall even at `minSpeed`.
 - The kick is then solved, not fixed. It is the kick whose apex puts the top
   band's hull top at `WORLD.minY`, within 4 px and never above it. The solve
   uses the World's discrete integrator, not the continuous formula. `tick()`
