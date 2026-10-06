@@ -3,7 +3,7 @@ run: 2026-10-06-feat-ux-flight-and-pacing
 workflow: fr-goal@1
 branch: feat/ux-flight-and-pacing
 started: '2026-10-06T16:09:06+00:00'
-cursor: plan
+cursor: plan-review
 steps:
   brainstorm:
     state: done
@@ -30,8 +30,10 @@ steps:
           reviewer: ac2149e51ab2dbab8
           findings: sr-1,sr-2,sr-3,sr-4,sr-5,sr-6,sr-7,sr-8,sr-9,sr-10
   plan:
-    state: running
-    at: '2026-10-06T16:28:40+00:00'
+    state: done
+    at: '2026-10-06T16:31:07+00:00'
+    emitted:
+      plan: docs/superpowers/plans/2026-10-06-ux-flight-and-pacing
     units:
       step/plan:
         attempts:
@@ -39,6 +41,8 @@ steps:
           harness: claude-code
           model: claude-opus-5-5
           session: 2bf630d7-2f45-41fc-bcd7-74d8fb4b1552
+          returned: '2026-10-06T16:31:07+00:00'
+          outcome: done
   plan-review:
     state: pending
   implement:
