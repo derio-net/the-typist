@@ -1,0 +1,123 @@
+schema_version: 2
+phase:
+  number: 5
+  title: Learning aids and audio
+  tag: agentic
+  depends_on:
+  - 4
+  tracking_issue: null
+  acceptance:
+  - learning-aids
+  - game-audio
+  - degraded-states
+  tier: standard
+  files:
+  - src/platform/**
+  - src/ui/**
+  - src/render/**
+  - tests/platform/**
+  - tests/ui/**
+  estimate_lines: 750
+tasks:
+- number: 1
+  title: Chip and translation follow their toggles (R6)
+  steps:
+  - id: P5.T1.S1
+    text: |-
+      RED: in `tests/ui/app.test.ts`, with the chip setting off, the next wave's World is created with `aids.chip === false`; with the translation setting off, `aids.translation === false`. Toggling mid-wave applies from the next wave.
+  - id: P5.T1.S2
+    text: |-
+      GREEN: wire the settings into the World options in `app.ts`. Green.
+- number: 2
+  title: Recap cards between waves (R6)
+  steps:
+  - id: P5.T2.S1
+    text: |-
+      RED: `tests/ui/panels.test.ts`:
+      - The between-wave panel, given records graded Hard and Again, renders one card each, showing the display form, gloss, forms text and every sentence with its translation.
+      - With the recap setting off, or no Again/Hard, it shows "wave cleared" only.
+  - id: P5.T2.S2
+    text: |-
+      GREEN: add `src/ui/panels/recap.ts`, using `displayForm`/`formsText` from `src/schema/display.ts`. Green.
+- number: 3
+  title: German TTS on destruction, interrupting (R6, R10)
+  steps:
+  - id: P5.T3.S1
+    text: |-
+      RED: `tests/platform/tts.test.ts` with a stubbed `speechSynthesis`:
+      - Voice selection picks the first voice whose `lang` starts with `de`.
+      - With no German voice after `voiceschanged` or a 1500 ms timeout, it reports `available: false` with a reason.
+      - `say(text)` calls `cancel()` and then `speak()` with a `de` utterance, so a second `say` while the first is speaking cancels it.
+      - With TTS off, nothing is spoken.
+
+      In `tests/ui/app.test.ts`, a `destroyed` event for the mothership, forms and escort ships each says that ship's full text. The settings panel shows the TTS toggle disabled with the reason when no voice exists.
+  - id: P5.T3.S2
+    text: |-
+      GREEN: implement `src/platform/tts.ts`, wire it into `app.ts` on `destroyed`, and add the disabled state in the settings panel. Green.
+- number: 4
+  title: Sound effects and optional music (R7)
+  steps:
+  - id: P5.T4.S1
+    text: |-
+      RED: `tests/platform/audio.test.ts` with a stub `AudioContext` and stub `fetch`:
+      - No context exists before `unlock()` (first keydown or click).
+      - After unlocking, `play('hit')` creates an oscillator from the effect table, and each of `hit typo explode-small explode-big escape wave-clear mothership-enter` has an entry.
+      - With SFX off, `play` is a no-op.
+      - `HEAD music-game.mp3` returning 404 means no audio element and no error; a 200 creates a looping `<audio>` that plays during play, pauses on pause, and respects the music toggle.
+
+      In `tests/ui/app.test.ts`, World events map to effects: `hit` → hit, `typo` → typo, mothership `destroyed` → explode-big, other ships → explode-small, `escaped` → escape, `wave-complete` → wave-clear, mothership `spawned` → mothership-enter.
+  - id: P5.T4.S2
+    text: |-
+      GREEN: implement `src/platform/audio.ts`, with its effect parameter table placed next to the theme tunables, and wire it into `app.ts`. Green.
+- number: 5
+  title: Browser check of aids and settings
+  steps:
+  - id: P5.T5.S1
+    text: |-
+      In the browser on `npm run dev`, capture screenshots into a git-ignored dir the host sees, and open each one:
+      - `learning-aids`: `settings-four-toggles`, `sentence-ship-chip-and-translation` and `recap-card` (type badly to get Hard); the interaction `toggle-aid-persists-after-reload`;
+      - `degraded-states`: `tts-toggle-disabled-note` (stub `speechSynthesis.getVoices` to return no `de` voice).
+
+      Fill the step record's `visual:` section. Run the full suite after the last code commit, logged to a host-visible file.
+state:
+  steps:
+    P5.T1.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P5.T1.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P5.T2.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P5.T2.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P5.T3.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P5.T3.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P5.T4.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P5.T4.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P5.T5.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+  completion:
+    at: null
+    note: null
+    observed_prs: []

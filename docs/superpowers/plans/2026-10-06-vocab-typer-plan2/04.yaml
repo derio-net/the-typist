@@ -1,0 +1,174 @@
+schema_version: 2
+phase:
+  number: 4
+  title: Screens, settings, list loading and degraded states
+  tag: agentic
+  depends_on:
+  - 3
+  tracking_issue: null
+  acceptance:
+  - session-screens
+  - list-loading
+  - degraded-states
+  tier: standard
+  files:
+  - src/ui/**
+  - src/content/**
+  - src/platform/**
+  - src/main.ts
+  - src/render/**
+  - index.html
+  - tests/ui/**
+  - tests/content/**
+  - tests/platform/**
+  - tests/fixtures/lists/**
+  estimate_lines: 1300
+tasks:
+- number: 1
+  title: Keyboard can be suspended and reports Esc (R5)
+  steps:
+  - id: P4.T1.S1
+    text: |-
+      RED: `tests/platform/keyboard.test.ts` (jsdom):
+      - After `kb.setEnabled(false)`, typing into the hidden input emits nothing.
+      - Focusing a sibling `<input type=number>` keeps focus (no refocus on blur).
+      - `setEnabled(true)` refocuses the hidden input.
+      - Esc keydown calls `onEscape` in both states.
+      - The plan-1 composition cases stay green.
+  - id: P4.T1.S2
+    text: |-
+      GREEN: `createKeyboard(input, onChar, {onEscape})` returns `{dispose, setEnabled}`. Update the call site in `src/dev/fixture.ts`. Green.
+- number: 2
+  title: Settings store (R5, R6, R7, R10)
+  steps:
+  - id: P4.T2.S1
+    text: |-
+      RED: `tests/platform/settings.test.ts`:
+      - defaults: `{aids: {chip, translation, tts, recap: true}, sfx: true, music: true, newCap: 10}`;
+      - set and get round-trip through `localStorage` key `typist.settings`;
+      - `newCap` is clamped to 1–50;
+      - a corrupt JSON value falls back to the defaults;
+      - with `localStorage` stubbed to throw, the store works in memory and reports `persistent: false`.
+  - id: P4.T2.S2
+    text: |-
+      GREEN: implement `src/platform/settings.ts`. Green.
+- number: 3
+  title: Bundled lists and the file picker loader (R8)
+  steps:
+  - id: P4.T3.S1
+    text: |-
+      RED: `tests/content/picker.test.ts`:
+      - `loadFile(file)` on `tests/fixtures/lists/invalid.yaml` returns `{ok:false, errors}`, one line per error.
+      - On `two-records.yaml` it returns `{ok:true, list}`.
+      - On non-YAML text it returns `{ok:false}` with a parse message.
+      - A valid list whose records are all `raw` returns `ok` with `playable: 0`.
+
+      `tests/content/bundled.test.ts`: `bundledLists()` includes `de-b2-1000`.
+  - id: P4.T3.S2
+    text: |-
+      GREEN: implement `src/content/picker.ts` (File → text → `parseList`) and `src/content/bundled.ts` (`import.meta.glob('/lists/*.yaml', {eager:true})` through the existing list plugin). Green.
+- number: 4
+  title: Panels as DOM over the canvas (R5, R8, R10)
+  steps:
+  - id: P4.T4.S1
+    text: |-
+      RED: `tests/ui/panels.test.ts` (jsdom). Each panel is a function `(root, props, handlers) → {el, close}`:
+      - the title panel lists the bundled lists, the session-loaded lists and a "Load list…" button wired to a hidden `<input type=file accept=".yaml,.yml">`;
+      - the mode panel shows "N due · M new", and Study and Free play;
+      - the mode panel with `empty: 'nothing-due'` shows "Nothing due — free play?";
+      - with `playable: 0` it shows "no enriched records to play";
+      - the category picker lists categories with playable counts;
+      - the load-errors panel lists every error line;
+      - the pause panel has Resume, Settings and Quit to menu;
+      - the summary panel shows grade counts, accuracy, chars/s and score;
+      - the settings panel has four aid toggles, SFX, music and the new-cap field;
+      - the banner panel shows the storage warning.
+  - id: P4.T4.S2
+    text: |-
+      GREEN: implement `src/ui/panels/*.ts` and `src/ui/style.ts`. The style module generates CSS custom properties from `theme.ts` palette and font tokens and injects one stylesheet, so no colours live outside theme. Green.
+- number: 5
+  title: App state machine and boot (R4, R5, R10)
+  steps:
+  - id: P4.T5.S1
+    text: |-
+      RED: `tests/ui/app.test.ts` (jsdom, with a fake rAF and clock and memory stores):
+      - boot shows the title panel;
+      - choosing a list goes to mode, and Study starts play (panel closed, keyboard enabled);
+      - Esc opens pause (keyboard disabled), and while paused `advance` is not called, so world time is unchanged across 2 s of frames;
+      - Esc or Resume continues;
+      - Settings from pause opens settings, and its cap field keeps focus while typing digits;
+      - closing settings returns to pause;
+      - Quit goes to the summary, then mode;
+      - with storage stubbed to throw, the banner is visible;
+      - a study session that is `nothing-due` offers free play.
+  - id: P4.T5.S2
+    text: |-
+      GREEN: implement `src/ui/app.ts`, wiring keyboard, renderer, World, controller, stores and settings. It creates the World per wave with `pickWidth` and the aid settings. `src/main.ts` boots `app.ts`, and `?dev=fixture` stays a dev-only branch. Green, and `npm run build` green.
+  - id: P4.T5.S3
+    text: |-
+      REFACTOR: keep `app.ts` to wiring and transitions; panel markup lives in the panels. All green.
+- number: 6
+  title: Browser check of the screens
+  steps:
+  - id: P4.T6.S1
+    text: |-
+      Run `npm run dev` and open `/the-typist/`. Capture screenshots into a git-ignored dir the host sees, and open each one:
+      - `session-screens`: the states `title-and-list-screen`, `mode-choice-with-due-and-new-counts`, `category-picker`, `pause-panel`, `between-wave-panel` and `session-summary`; the interactions `esc-pause-then-resume-keeps-typing-focus`, `study-session-runs-to-summary` and `session-ends-at-zero-lives` (let ships escape).
+      - `list-loading`: the states `load-list-picker` and `invalid-list-errors` (load `tests/fixtures/lists/invalid.yaml`); the interaction `load-valid-list-and-play` (`two-records.yaml`).
+      - `degraded-states`: `empty-study-offers-free-play` (seed IDB with nothing due and the cap used) and `storage-warning-banner` (a context with storage blocked).
+
+      Fill the step record's `visual:` section. Run the full suite after the last code commit, logged to a host-visible file.
+state:
+  steps:
+    P4.T1.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P4.T1.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P4.T2.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P4.T2.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P4.T3.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P4.T3.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P4.T4.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P4.T4.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P4.T5.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P4.T5.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P4.T5.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+    P4.T6.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+  completion:
+    at: null
+    note: null
+    observed_prs: []

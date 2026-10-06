@@ -1,0 +1,163 @@
+schema_version: 2
+phase:
+  number: 1
+  title: Foundations — single-pass validation, typing edge cases, engine/render split,
+    seed follow-ups
+  tag: agentic
+  depends_on: []
+  tracking_issue: null
+  acceptance:
+  - list-errors-one-pass
+  - typing-edge-cases
+  skeleton: true
+  tier: standard
+  files:
+  - src/layout/**
+  - src/engine/**
+  - src/render/**
+  - src/schema/**
+  - tools/sprites/slice.ts
+  - tests/**
+  - lists/de-b2-1000.yaml
+  - package.json
+  - package-lock.json
+  estimate_lines: 650
+tasks:
+- number: 1
+  title: Smoke — the workspace builds and the trivial test passes
+  steps:
+  - id: P1.T1.S1
+    text: |-
+      In the workspace, install dependencies with `npm ci`. Then run `npx vitest run tests/smoke.test.ts` (expected: 1 passed), `npm test` (expected: the whole plan-1 suite green) and `npm run build` (expected: exit 0, `dist/` written). Record the counts in the step record. If anything is red, stop and report: every later phase relies on this baseline.
+- number: 2
+  title: Engine no longer imports the renderer (R16, issue
+  steps:
+  - id: P1.T2.S1
+    text: |-
+      RED: `tests/engine/boundary.test.ts` reads every `src/engine/**/*.ts` file (node fs, glob) and asserts that no `import … from` specifier resolves into `src/render/`. It fails today on `src/engine/world.ts:3`.
+  - id: P1.T2.S2
+    text: |-
+      GREEN: create `src/layout/metrics.ts` holding `sizes`, `charWidths`, `MeasureFont`, `ShipKindName`, `hullSprite`, `HullExtent`, `hullExtent`, `SpriteInfo` and `SpriteName`, all moved from `src/render/theme.ts` and `src/render/sprites.ts`. Move `src/render/sprite-atlas.json` to `src/layout/sprite-atlas.json` with `git mv`. `theme.ts` and `sprites.ts` re-export what the renderer uses. `world.ts` imports from `../layout/metrics`. In `tools/sprites/slice.ts`, set `ATLAS = 'src/layout/sprite-atlas.json'` and update its doc comment. Update the path assertions in `tests/tools/slice.test.ts` and `tests/render/theme-purity.test.ts` if they name the old path. Boundary test green, and `npm test` and `npm run build` green.
+  - id: P1.T2.S3
+    text: |-
+      REFACTOR: check that no other module still imports the atlas from `src/render`, and that `theme.ts` keeps only visual tokens plus the re-exports. All green.
+- number: 3
+  title: Pending digraph accepts the exact letter; closing quotes are pre-typed (R14,
+    issue
+  steps:
+  - id: P1.T3.S1
+    text: |-
+      RED: cases in `tests/engine/typing.test.ts`:
+      - `matchChar('ö', 'o', 'ö')` is `advance`, and so is `matchChar('ä', 'a', 'ä')`.
+      - A ship whose text is `Er sagte ‘ja’.` completes after `Er sagte ‘ja`, because the closing `’` and `.` are pre-typed.
+      - A ship whose text is `(siehe oben)` completes after `(siehe oben`.
+      - A mid-sentence `’` still has to be typed.
+  - id: P1.T3.S2
+    text: |-
+      GREEN: in `src/engine/typing.ts`, `matchChar` checks `expected === typed` before the pending-digraph branch, and `PRETYPED` gains `‘`, `’` and `)`. Green.
+- number: 4
+  title: Accented loanword letters are typeable (R15, issue
+  steps:
+  - id: P1.T4.S1
+    text: |-
+      RED:
+      - In `tests/schema/typeable.test.ts`, `Café`, `Crème brûlée`, `Señor`, `Façade`, `naïv` and the capitals `É`, `À` and `Ç` pass the typeability check, and a letter outside the table (e.g. `ø`) still fails.
+      - In `tests/engine/typing.test.ts`, expected `é` accepts `é` and `e`, expected `É` accepts `É` and `E`, and `x` is a typo.
+  - id: P1.T4.S2
+    text: |-
+      GREEN: in `src/schema/typeable.ts`, add an exported `ACCENTS` table mapping `é è ê ë à â á î ï ô ó û ù ç ñ` and their capitals to their base letters. The typeability check maps accented letters through it before applying the allowed-character regex. `matchChar` treats `ACCENTS[expected] === typed` as `advance`. Green.
+  - id: P1.T4.S3
+    text: |-
+      REFACTOR: keep `EQUIVALENCES` (punctuation and subscript) and `ACCENTS` as separate, documented tables, and give the engine one helper that consults both. All green.
+- number: 5
+  title: Validation reports record and list errors in one pass (R9, issue
+  steps:
+  - id: P1.T5.S1
+    text: |-
+      RED: `tests/schema/parse-list.test.ts` cases:
+      - A list with one malformed record (missing `gloss`), a duplicate record id among the valid records, a duplicate category id and an undeclared category returns all four errors from one `parseList` call. The errors keep the `records[i] (id): message` shape.
+      - A header with `rules: {noun_examples: 4}` still rejects an enriched noun with 3 examples.
+      - A header that fails to parse reports its error, and its records are still checked against the default minimums.
+  - id: P1.T5.S2
+    text: |-
+      GREEN: restructure `src/schema/index.ts` and `src/schema/list.ts`:
+      1. Parse the top level loosely: the header, `categories`, and `records` as an unknown array.
+      2. Validate the header and the categories.
+      3. Validate each record against `RecordBase` with `checkEnriched(r, rules)`, using the header's rules, or the defaults if the header failed.
+      4. Run the list-level checks (unique record ids, unique category ids, declared categories, categorised records) over the parsed records and categories.
+
+      Return `{ok:false, errors}` when any error exists. Existing schema, CLI (`tests/tools/validate.test.ts`) and plugin (`tests/tools/vite-plugin.test.ts`) tests stay green unchanged.
+  - id: P1.T5.S3
+    text: |-
+      REFACTOR: keep the strictness of the `.strict()` objects (`tests/schema/strictness.test.ts` green), and remove the old list-level `superRefine` if it is now redundant. All green.
+- number: 6
+  title: Seed follow-ups (R17, issue
+  steps:
+  - id: P1.T6.S1
+    text: |-
+      RED: change `tests/seed.test.ts` to assert `['enriched','reviewed'].includes(r.status)`, and add a case that `noun-burnout` has a non-empty `source_note`. The new case fails.
+  - id: P1.T6.S2
+    text: |-
+      GREEN: in `lists/de-b2-1000.yaml`, give `noun-burnout` (keep its id) a `source_note` recording that the source had `der Burnout` and that Duden prefers `das Burn-out`, plus whichever gender and spelling the record keeps, and why. Keep the record's examples consistent with the gender it keeps. Run `npm run typist -- validate lists/de-b2-1000.yaml` (expected: no errors) and `npm test` (green). Commit, and finish the phase with the full suite run after the last code commit, logged to a host-visible file.
+state:
+  steps:
+    P1.T1.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T2.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T2.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T2.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T3.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T3.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T4.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T4.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T4.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T5.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T5.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T5.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T6.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P1.T6.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+  completion:
+    at: null
+    note: null
+    observed_prs: []

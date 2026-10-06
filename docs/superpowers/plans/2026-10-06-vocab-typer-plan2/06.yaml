@@ -1,0 +1,138 @@
+schema_version: 2
+phase:
+  number: 6
+  title: Ship it — Playwright smoke, Pages workflow, identifier sweep, matrix and
+    docs
+  tag: agentic
+  depends_on:
+  - 5
+  tracking_issue: null
+  acceptance:
+  - list-loading
+  tier: standard
+  files:
+  - tests/e2e/**
+  - tests/fixtures/**
+  - playwright.config.ts
+  - package.json
+  - package-lock.json
+  - .github/workflows/pages.yml
+  - scripts/publish-pages.sh
+  - .gitignore
+  - docs/acceptance/**
+  - CLAUDE.md
+  - docs/**
+  - .claude/**
+  - tools/**
+  - lists/**
+  estimate_lines: 500
+tasks:
+- number: 1
+  title: Playwright smoke (R19)
+  steps:
+  - id: P6.T1.S1
+    text: |-
+      Set up Playwright:
+      - Install it with `npm i -D @playwright/test` and `npx playwright install chromium`.
+      - Add `playwright.config.ts`: `testDir: tests/e2e`; `webServer: {command: 'npm run build && npx vite preview --port 4173 --strictPort', url: 'http://localhost:4173/the-typist/'}`; `use.baseURL` set to that URL.
+      - Add the `e2e` script, `playwright test`.
+      - Add `test-results/` and `playwright-report/` to `.gitignore`.
+  - id: P6.T1.S2
+    text: |-
+      RED→GREEN: `tests/e2e/smoke.spec.ts` follows these steps:
+      1. Open the app and load `tests/fixtures/lists/two-records.yaml` with `setInputFiles` on the "Load list…" input.
+      2. Choose Free play, then the fixture's category.
+      3. Type the mothership, forms and escorts with `page.keyboard.type`, using an `ae`/`oe` fallback on one umlaut and enough wrong keys on one Record to exceed 10% typos.
+      4. Assert the between-wave panel shows that Record's recap card, then continue and assert the summary.
+      5. Assert via `page.evaluate` over IndexedDB `typist`/`cards` that keys exist for both Records.
+
+      Run `npm run e2e` until it passes.
+- number: 2
+  title: Pages workflow (R18)
+  steps:
+  - id: P6.T2.S1
+    text: |-
+      Write `.github/workflows/pages.yml`:
+      - Trigger on push to `main` and on `workflow_dispatch`.
+      - Permissions: `pages: write`, `id-token: write`, `contents: read`.
+      - Concurrency group `pages`.
+      - Build job: checkout, setup-node 22 with npm cache, `npm ci`, `npm test`, `npm run build`, `npx playwright install --with-deps chromium`, `npm run e2e`, then `actions/upload-pages-artifact` with `path: dist`.
+      - Deploy job: `actions/deploy-pages` in environment `github-pages`.
+
+      Validate the YAML with `npx --yes yaml-lint .github/workflows/pages.yml` or a node `yaml` parse.
+- number: 3
+  title: Identifier sweep before publication (R18)
+  steps:
+  - id: P6.T3.S1
+    text: |-
+      Search every tracked file (`git ls-files`, excluding `wordlist.raw.txt`) for personal identifiers: `/Users/<name>`, `~/.ssh/<anything>`, home-directory project paths such as `Docs/projects/`, email addresses, and private key file names. Use `git grep -nE '/Users/|\.ssh/|Docs/projects|@[a-z0-9-]+\.[a-z]{2,}'`. Replace each hit with a placeholder (`$PROJECTS/…`, `~/…`, `<you@example.com>`). Keep infrastructure strings the repo already defines (repo name, org, `/the-typist/` base path). List every replaced file and pattern in the step record. Leave git history untouched, and say so in the record.
+- number: 4
+  title: Operator publish script (R18)
+  steps:
+  - id: P6.T4.S1
+    text: |-
+      Write `scripts/publish-pages.sh` (tracked, `set -euo pipefail`, idempotent) for the OPERATOR to run; do not run it yourself. It does the following:
+      1. Print the current visibility and ask for a typed `yes` before changing it.
+      2. `gh repo edit derio-net/the-typist --visibility public --accept-visibility-change-consequences` (skipped if already public).
+      3. Enable Pages with `gh api -X POST repos/derio-net/the-typist/pages -f build_type=workflow`, or `PUT` when Pages already exists.
+      4. Print the verification: `gh api repos/derio-net/the-typist/pages --jq .html_url`.
+
+      Check it with `bash -n scripts/publish-pages.sh`.
+- number: 5
+  title: Acceptance matrix brought up to date
+  steps:
+  - id: P6.T5.S1
+    text: |-
+      In `docs/acceptance/matrix.yaml`:
+      - Replace every `the-typist:docs/superpowers/specs/2026-10-05-vocab-typer-design.md` origin with `the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md`.
+      - Add plan-2 spec origins: `srs-sessions` gets `#R1 #R2 #R3`, `learning-aids` `#R6`, `degraded-states` `#R10`, `list-loading` `#R8 #R18`.
+      - For each row this plan built (srs-sessions, learning-aids, degraded-states, list-loading, session-screens, game-audio, play-feel, typing-edge-cases, list-errors-one-pass), add its unit and e2e test refs under `levels` and move `status` to `skipped` with `fr acceptance set-status <id> skipped --reason "<why>"`. The suite runs in the Pages workflow on main, not on PRs, so no row is `ci`.
+      - Keep `verify: post-merge` on `list-loading` (hosted site).
+
+      Then run `fr acceptance report --deterministic` and `fr acceptance check` (expected: exit 0, no stale-ref warnings).
+- number: 6
+  title: CLAUDE.md describes the finished game (R20)
+  steps:
+  - id: P6.T6.S1
+    text: |-
+      Update `CLAUDE.md`:
+      - Project status: plan 1 and plan 2 delivered, with the spec paths under `docs/superpowers/implemented/` and this plan's spec.
+      - Commands: `npm run e2e`.
+      - Architecture: `src/layout`, `src/srs`, `src/session`, `src/content`, `src/ui`, the `src/platform` additions (settings, tts, audio), the Pages workflow and `scripts/publish-pages.sh`.
+      - Remove the "Plan 2 is still to come" line.
+
+      Run the full suite (`npm test`, `npm run build`, `npm run e2e`) after the last commit, logged to a host-visible file.
+state:
+  steps:
+    P6.T1.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P6.T1.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P6.T2.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P6.T3.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P6.T4.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P6.T5.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P6.T6.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+  completion:
+    at: null
+    note: null
+    observed_prs: []

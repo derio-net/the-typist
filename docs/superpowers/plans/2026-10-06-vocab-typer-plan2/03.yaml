@@ -1,0 +1,149 @@
+schema_version: 2
+phase:
+  number: 3
+  title: Learning loop core — grading, FSRS, stores, sessions, controller
+  tag: agentic
+  depends_on:
+  - 2
+  tracking_issue: null
+  acceptance:
+  - srs-sessions
+  tier: standard
+  files:
+  - src/srs/**
+  - src/session/**
+  - tests/srs/**
+  - tests/session/**
+  - package.json
+  - package-lock.json
+  estimate_lines: 950
+tasks:
+- number: 1
+  title: Grade from Record stats (R1)
+  steps:
+  - id: P3.T1.S1
+    text: |-
+      RED: `tests/srs/grade.test.ts`, table-driven over `RecordStats` → `Again|Hard|Good|Easy`:
+      - escaped with 0 typos → Again;
+      - typos/expected 0.11 → Hard;
+      - exactly 0.10 → Good;
+      - 0 typos at exactly 2.5 cps → Good;
+      - 0 typos at 2.6 cps → Easy;
+      - 1 typo at 4 cps → Good;
+      - `activeMs` 0 with chars > 0 counts as fast.
+  - id: P3.T1.S2
+    text: |-
+      GREEN: implement `src/srs/grade.ts` (`grade(stats): Grade`, pure), where cps = expectedChars ÷ (activeMs/1000). Green.
+- number: 2
+  title: FSRS scheduler wrapper (R1)
+  steps:
+  - id: P3.T2.S1
+    text: |-
+      RED: `tests/srs/scheduler.test.ts`:
+      - Scheduling `undefined` with Good at a fixed `now` returns a card due after `now`, with `reps` 1.
+      - Again on that card yields an earlier due date than Easy.
+      - Grades map to the ts-fsrs `Rating` 1–4.
+  - id: P3.T2.S2
+    text: |-
+      GREEN: `npm i ts-fsrs`. In `src/srs/scheduler.ts`, `schedule(card | undefined, grade, now)` uses `fsrs()` with default parameters and `createEmptyCard(now)` for a new card. Green.
+- number: 3
+  title: Card and meta stores with in-memory fallback (R1, R3, R10)
+  steps:
+  - id: P3.T3.S1
+    text: |-
+      RED: `tests/srs/store.test.ts` runs one shared contract over both implementations (`npm i -D fake-indexeddb`, using `fake-indexeddb/auto` for the IDB one):
+      - `get`/`put` of a card under `listId:recordId`;
+      - `all(listId)`;
+      - counters: `seen` +1 per grade, `typos` summed, `escapes` +1 when stats escaped;
+      - `newCount(listId, day)` and `bumpNew(listId, day)` on `meta` key `new:<listId>:<yyyy-mm-dd>`.
+
+      `openStores()` returns `{cards, persistent: true}` with IDB available, and `{…memory, persistent: false}` when `indexedDB.open` throws or the probe's write and read fail.
+  - id: P3.T3.S2
+    text: |-
+      GREEN: implement the `CardStore` interface in `src/srs/store.ts`, with `createIdbStore()` (database `typist`, object stores `cards` and `meta`), `createMemoryStore()`, `openStores()` with its probe, and `localDay(now)` (local yyyy-mm-dd). Green.
+- number: 4
+  title: Study and free-play builders (R2, R3)
+  steps:
+  - id: P3.T4.S1
+    text: |-
+      RED: `tests/session/build.test.ts` with an in-test list fixture (3 categories, raw and enriched records) and fixed rng and now:
+      - study takes due cards plus never-graded records in list order up to `cap − newCountToday`;
+      - categories are ordered by their most overdue card, and categories with only new records come last, in `order`;
+      - waves have at most 6 records, shuffled within each wave and deterministic for a seed;
+      - raw records are excluded;
+      - an uncategorised list chunks in record order;
+      - free play takes every playable record whose `categories` include the chosen one (a non-primary member included), shuffled, in waves of ≤6;
+      - free play on an uncategorised list is the whole list in order;
+      - a list with zero playable records gives `{empty: 'no-playable'}`;
+      - a study session with nothing due and the cap used up gives `{empty: 'nothing-due'}`.
+  - id: P3.T4.S2
+    text: |-
+      GREEN: implement `src/session/build.ts`, exporting `buildStudy(list, cards, newCountToday, cap, now, rng)` and `buildFreePlay(list, categoryId, rng)`, both returning `{waves: VocabRecord[][]}` or `{empty}`. Green.
+- number: 5
+  title: Session controller (R1–R4)
+  steps:
+  - id: P3.T5.S1
+    text: |-
+      RED: `tests/session/controller.test.ts` drives a controller over stub waves, feeding it World events (or real `createWorld` with a stub clock):
+      - each `resolved` grades once and writes the store (`schedule` called, and `bumpNew` on a first grade in study and in free play alike);
+      - lives and score carry into the next wave's `createWorld` options;
+      - `wave-complete` emits `between-wave` with that wave's Again/Hard record ids, including after the last wave, then `summary`;
+      - `game-over` grades the escaped on-screen record Again and ends with `summary`;
+      - `quit()` ends with `summary` and leaves on-screen records ungraded;
+      - the summary carries counts per grade, accuracy, chars/s and score.
+  - id: P3.T5.S2
+    text: |-
+      GREEN: implement `src/session/controller.ts`, `createController({waves, store, listId, mode, worldOptions, now})`, with `start()`, `onWorldEvents(events)`, `nextWave()`, `quit()` and a listener for `between-wave` and `summary`. Pure TS with no DOM. Green.
+  - id: P3.T5.S3
+    text: |-
+      REFACTOR: make the controller own only session state; the World stays unaware of SRS. All green. Run the full suite after the last code commit, logged to a host-visible file.
+state:
+  steps:
+    P3.T1.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T1.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T2.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T2.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T3.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T3.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T4.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T4.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T5.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T5.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P3.T5.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+  completion:
+    at: null
+    note: null
+    observed_prs: []

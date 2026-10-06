@@ -1,0 +1,161 @@
+schema_version: 2
+phase:
+  number: 2
+  title: Play feel — player ship, typo feedback, sharp and fitted canvas, World options
+  tag: agentic
+  depends_on:
+  - 1
+  tracking_issue: null
+  acceptance:
+  - play-feel
+  tier: standard
+  files:
+  - src/engine/**
+  - src/layout/**
+  - src/render/**
+  - src/dev/**
+  - tests/engine/**
+  - tests/render/**
+  estimate_lines: 750
+tasks:
+- number: 1
+  title: WorldOptions gains score, width and aids
+  steps:
+  - id: P2.T1.S1
+    text: |-
+      RED: `tests/engine/world.test.ts` cases:
+      - `createWorld(recs, {score: 120})` starts at score 120.
+      - With `{width: 720}`, motherships enter within [hull half-width, 720 − half-width] and children bounce off x = 720.
+      - With `{aids: {chip: false, translation: false}}`, escorts carry no `chip` or `translation`, and their `w` is no wider than the bare text width.
+      - Defaults: width 960, both aids on.
+  - id: P2.T1.S2
+    text: |-
+      GREEN: `WorldOptions` gains `score`, `width` and `aids`. The World stores `width` and uses it wherever it uses `WORLD.width` (entry range, `keepInside`, edge bounces). `spawnChildren` attaches `chip` and `translation` only when their aid is on. Green.
+- number: 2
+  title: Game over grades on-screen Records with an escaped ship (R4 support)
+  steps:
+  - id: P2.T2.S1
+    text: |-
+      RED: a World with lives 1, where one Record's escort escapes while its sibling is still open, ends `game-over`. Before the `game-over` event, that Record is `resolved` with `escaped: true`. A second on-screen Record with no escape emits no `resolved`.
+  - id: P2.T2.S2
+    text: |-
+      GREEN: in `finish()`, on reaching 0 lives, emit `resolved` for every Record that has `stats.escaped` and open ships > 0, then emit `game-over`. Green.
+- number: 3
+  title: Player ship drifts to its target and fires from the front guns (R11, issue
+  steps:
+  - id: P2.T3.S1
+    text: |-
+      RED:
+      - The World has `playerX`, starting at `width/2`. With a ship locked at x = 100, each 1 s of steps moves `playerX` toward 100 by at most `WORLD.playerDriftVx` (22 px), without overshooting. With no lock it doesn't move. It is clamped to [0, width].
+      - A pure `muzzles(playerX, shotIndex)` helper in `src/render` returns the left gun for even shots and the right gun for odd shots, offset by the `theme.muzzle` token.
+  - id: P2.T3.S2
+    text: |-
+      GREEN: add `WORLD.playerDriftVx = WORLD.burstMaxVx` and World `playerX` state advanced in `tick`. Add a `muzzle: {dx, dy}` token to `theme.ts`, fitted to the player sprite's twin cannons at its top. The renderer draws the player at `world.playerX` and starts bullets at `muzzles(...)`. Green.
+- number: 4
+  title: Released rows clear the HUD and keep a gap (R13, issue
+  steps:
+  - id: P2.T4.S1
+    text: |-
+      RED: placement cases in `tests/engine/world.test.ts` (seeded):
+      - Integrating the kick to its apex, the first row's hull top (y − above, using `shipBounds`) stays ≥ `WORLD.minY`, even for a mothership destroyed right under the HUD.
+      - Consecutive rows' `shipBounds` are separated by at least `bandGap` (chip and translation rows included).
+      - A tall stack where the reaction-distance clamp and the HUD clamp conflict keeps the reaction distance and reduces the kick velocity so the apex still clears `minY` (the kick never goes below 0).
+  - id: P2.T4.S2
+    text: |-
+      GREEN: rewrite the placement in `spawnChildren` to these rules: band spacing from `shipBounds` heights plus `bandGap`; the apex hull-top constraint; the reaction-distance clamp wins; the reduced-kick fallback stored per child as its `vy`. Green, and the existing world tests stay green.
+  - id: P2.T4.S3
+    text: |-
+      REFACTOR: give the stack math its own pure function (`placeStack`) with doc comments that state the rule order. All green.
+- number: 5
+  title: Typo flash and pending-digraph prefix on the locked ship (R12, issue
+  steps:
+  - id: P2.T5.S1
+    text: |-
+      RED, in `tests/render/`, pure helpers:
+      - `flashLevel(typoAt, now)` is 1 at the typo and decays to 0 after `theme.effects.typoFlashMs`.
+      - `splitText(ship)` returns `{typed, pending, rest}`. With text `Börse`, typed `B` and pending `o` it gives `{typed:'B', pending:'o', rest:'rse'}`, and with nothing pending `pending` is `''`.
+  - id: P2.T5.S2
+    text: |-
+      GREEN: implement both helpers, add the `palette.typoFlash` and `palette.pending` tokens, and draw them in `renderer.ts`. The renderer records `typo` events per ship id, tints the hull and text by `flashLevel`, and draws `pending` after the typed prefix in the pending colour. Green.
+- number: 6
+  title: Sharp at any DPR, fitted to the window (R13, issue
+  steps:
+  - id: P2.T6.S1
+    text: |-
+      RED: a pure `canvasSize(cssW, cssH, dpr, logicalW, logicalH)` returns the backing-store size (logical × scale × dpr) and the CSS size that fits the window at the logical aspect ratio. Cases: dpr 2 doubles the backing store, and a 600 px-wide window with logical 720×640 gives CSS width 600 with no overflow. A pure `pickWidth(winW, winH)` returns the window aspect × 640, clamped to 720–1280.
+  - id: P2.T6.S2
+    text: |-
+      GREEN: the renderer sizes its canvas through `canvasSize` on creation and on `resize`, then calls `ctx.setTransform(scale×dpr, …)` once per frame. `src/dev/fixture.ts` passes `pickWidth(innerWidth, innerHeight)` as the World width. Green.
+  - id: P2.T6.S3
+    text: |-
+      Browser check on `npm run dev` → `/the-typist/?dev=fixture`, with screenshots in a git-ignored dir the host sees, each one opened. Capture every `play-feel` visual state:
+      - `bullets-leave-front-guns`;
+      - `player-tracks-locked-ship`;
+      - `typo-flash-on-locked-ship`;
+      - `pending-digraph-prefix-shown` (type `o` of `oe`);
+      - `narrow-window-fit-no-horizontal-scroll` (a viewport 600 px wide at DPR 2);
+      - `released-ships-clear-of-hud`.
+
+      Also capture the interaction `lock-then-player-drifts-to-target`. Fill the step record's `visual:` section. Run the full suite after the last code commit, logged to a host-visible file.
+state:
+  steps:
+    P2.T1.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P2.T1.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P2.T2.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P2.T2.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P2.T3.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P2.T3.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P2.T4.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P2.T4.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P2.T4.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+    P2.T5.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P2.T5.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P2.T6.S1:
+      state: ' '
+      ticked_at: null
+      note: null
+    P2.T6.S2:
+      state: ' '
+      ticked_at: null
+      note: null
+    P2.T6.S3:
+      state: ' '
+      ticked_at: null
+      note: null
+  completion:
+    at: null
+    note: null
+    observed_prs: []
