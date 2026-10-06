@@ -211,3 +211,6 @@ Restored the full text of ux-pass-is-issue-2, issues-in-scope and design-default
 
 <!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-06-vocab-typer-plan2-p6 created=2026-10-06T03:47:36+00:00 -->
 ### phase-split-2026-10-06-vocab-typer-plan2-p6 · decision · ask: hosting, smoke test and docs (R18-R20)
+
+<!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-06-vocab-typer-plan2-p6-1 created=2026-10-06T04:54:44+00:00 -->
+### phase-split-2026-10-06-vocab-typer-plan2-p6-1 · decision · review-size: hosting, Playwright smoke, identifier sweep and docs (R18-R20) are a distinct diff from phase 4's UI, which shares the list-loading row for the picker
