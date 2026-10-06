@@ -62,7 +62,7 @@ tasks:
   steps:
   - id: P3.T5.S1
     text: |-
-      Extend `tests/e2e/smoke.spec.ts`, keeping `--mute-audio` and the stubbed `speechSynthesis`: - After the existing run, open Settings from the title, click Export, and save the download (`page.waitForEvent('download')`). - Clear the `cards` and `meta` stores in a readwrite transaction from the page (not `deleteDatabase`). - Import the saved file through the file input, and assert that both Records' cards exist again. Run `npm run e2e` and see it pass.
+      Extend `tests/e2e/smoke.spec.ts`, keeping `--mute-audio` and the stubbed `speechSynthesis`: - After the existing run, open Settings from the title, trigger Export, and save the download (`page.waitForEvent('download')`). - Clear the `cards` and `meta` stores in a readwrite transaction from the page (not `deleteDatabase`). - Import the saved file through the file input, and assert that both Records' cards exist again. Run `npm run e2e` and see it pass.
 - number: 6
   title: Visual check and acceptance
   steps:

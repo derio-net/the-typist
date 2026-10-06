@@ -74,7 +74,7 @@ tasks:
   steps:
   - id: P1.T5.S1
     text: |-
-      RED, in world tests: - A mothership with `requiredLength` 8 at pace spc 0.5 descends at distance ÷ (1.5 × (8×0.5 + 0.6)). - A stack's shared speed is the bottom-up minimum from R4, with distances from the apex. - The clamps: 8 and 140 px/s. - The wave number changes nothing. - The World's `pace` after destroying a mothership already includes its sample when the children's speed is computed (compare against a pace observed by hand).
+      RED, in world tests: - A mothership with `requiredLength` 8 at pace spc 0.5 descends at distance ÷ (1.5 × (8×0.5 + 0.6)). - A stack's shared speed is the bottom-up minimum from R4, with distances from the apex. - The clamps: 8 and 140 px/s. - The wave number changes nothing. - The World's `pace` after destroying a mothership already includes its sample when the children's speed is computed (compare against an independently computed `observe`).
   - id: P1.T5.S2
     text: |-
       GREEN: - Add `WorldOptions.pace` and World `pace`. - Add `WORLD.slack` 1.5, `retargetS` 0.6, `minSpeed` 8 and `maxSpeed` 140. - Remove `baseSpeed`, `speedPerWave`, `referenceLength` and `shipSpeed`'s wave argument (or `shipSpeed` itself). - In `typeChar`, observe the destroyed ship's `expectedChars` and `destroyedAt − lockAt` first, then spawn children. - Budgets use `requiredLength` from `typing.ts`.
