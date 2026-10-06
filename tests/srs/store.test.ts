@@ -38,6 +38,27 @@ describe.each(impls)('CardStore contract: %s', (_n, make) => {
     const got = await s.get('L', 'a');
     expect([got?.seen, got?.typos, got?.escapes]).toEqual([3, 3, 1]);
   });
+  it('keys with colons do not collide and all() is exact per list', async () => {
+    const s = make();
+    const one = withGrade(undefined, createEmptyCard(now), stats());
+    const two = withGrade(one, createEmptyCard(now), stats({ typos: 3 }));
+    await s.put('a', 'b:c', one);
+    await s.put('a:b', 'c', two);
+    expect((await s.get('a', 'b:c'))?.seen).toBe(1);
+    expect((await s.get('a:b', 'c'))?.seen).toBe(2);
+    expect(Object.keys(await s.all('a'))).toEqual(['b:c']);
+    expect(Object.keys(await s.all('a:b'))).toEqual(['c']);
+    await s.bumpNew('a', 'b:2026-10-06');
+    expect(await s.newCount('a:b', '2026-10-06')).toBe(0);
+  });
+  it('putGraded writes the card and bumps the day count together, only when new', async () => {
+    const s = make();
+    const st = withGrade(undefined, createEmptyCard(now), stats());
+    await s.putGraded('L', 'a', st, '2026-10-06', true);
+    await s.putGraded('L', 'a', st, '2026-10-06', false);
+    expect(await s.get('L', 'a')).toEqual(st);
+    expect(await s.newCount('L', '2026-10-06')).toBe(1);
+  });
   it('new counts are per list and day', async () => {
     const s = make();
     expect(await s.newCount('L', '2026-10-06')).toBe(0);
@@ -54,19 +75,33 @@ describe('openStores', () => {
   afterEach(() => vi.restoreAllMocks());
 
   it('is persistent when IndexedDB works', async () => {
-    const s = await openStores(new IDBFactory());
-    expect(s.persistent).toBe(true);
+    expect((await openStores({ factory: new IDBFactory() })).persistent).toBe(true);
   });
   it('falls back to memory when indexedDB.open throws', async () => {
     const factory = { open: () => { throw new Error('denied'); } } as unknown as IDBFactory;
-    const s = await openStores(factory);
+    const s = await openStores({ factory });
     expect(s.persistent).toBe(false);
     await s.cards.bumpNew('L', 'd');
     expect(await s.cards.newCount('L', 'd')).toBe(1);
   });
+  it('falls back to memory when open never settles (timeout)', async () => {
+    const factory = { open: () => ({}) } as unknown as IDBFactory;
+    const s = await openStores({ factory, timeoutMs: 20 });
+    expect(s.persistent).toBe(false);
+  });
+  it('falls back to memory when the open request errors asynchronously', async () => {
+    const factory = {
+      open: () => {
+        const req = {} as IDBOpenDBRequest;
+        setTimeout(() => (req.onerror as () => void)(), 0);
+        return req;
+      },
+    } as unknown as IDBFactory;
+    expect((await openStores({ factory, timeoutMs: 1000 })).persistent).toBe(false);
+  });
   it('falls back to memory when the probe write fails', async () => {
     vi.spyOn(IDBObjectStore.prototype, 'put').mockImplementation(() => { throw new Error('quota'); });
-    expect((await openStores(new IDBFactory())).persistent).toBe(false);
+    expect((await openStores({ factory: new IDBFactory() })).persistent).toBe(false);
   });
   it('falls back to memory when the probe reads back something else', async () => {
     vi.spyOn(IDBObjectStore.prototype, 'get').mockImplementation(() => {
@@ -74,10 +109,14 @@ describe('openStores', () => {
       queueMicrotask(() => (req.onsuccess as () => void)());
       return req;
     });
-    expect((await openStores(new IDBFactory())).persistent).toBe(false);
+    expect((await openStores({ factory: new IDBFactory() })).persistent).toBe(false);
   });
   it('is not persistent without IndexedDB', async () => {
-    expect((await openStores(null)).persistent).toBe(false);
+    expect((await openStores({ factory: null })).persistent).toBe(false);
+  });
+  it('falls back to memory when reading globalThis.indexedDB throws', async () => {
+    vi.spyOn(globalThis, 'indexedDB', 'get').mockImplementation(() => { throw new Error('SecurityError'); });
+    expect((await openStores()).persistent).toBe(false);
   });
 });
 
