@@ -3,7 +3,7 @@ run: 2026-10-05-feat-vocab-typer-plan2
 workflow: fr-goal@1
 branch: feat/vocab-typer-plan2
 started: '2026-10-05T21:27:24+00:00'
-cursor: journal-check
+cursor: deliver
 steps:
   brainstorm:
     state: done
@@ -239,7 +239,10 @@ steps:
           visual: none
           findings: p6-r1,p6-r2,p6-r3,p6-r4,p6-r5,p6-r6,p6-r7,p6-r8,p6-r9,p6-r10,p6-r11,p6-r12
   journal-check:
-    state: pending
+    state: done
+    at: '2026-10-06T06:56:24+00:00'
+    exit: 0
+    stdout: ''
   deliver:
     state: pending
 driver: standalone
