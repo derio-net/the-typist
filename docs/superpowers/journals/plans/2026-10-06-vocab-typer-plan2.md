@@ -277,3 +277,138 @@ Written once as a shared contract over both stores; nothing to clean.
 ### no-refactor-p3-t4 · discovery · no-refactor-because P3.T4 (phase 3)
 
 Pure builders sharing helpers from the start; nothing to clean.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r1 created=2026-10-06T05:43:56+00:00 phase=3 state=open review_scope=in -->
+### p3-r1 · finding [open] (reviewer: in scope) · Controller had no guard against duplicate resolved events; a test codified double grading (phase 3)
+
+Controller had no guard against duplicate resolved events; a test codified double grading
+
+<!-- fr:journal kind=finding scope=plan id=p3-r2 created=2026-10-06T05:43:56+00:00 phase=3 state=open review_scope=in -->
+### p3-r2 · finding [open] (reviewer: in scope) · openStores hangs forever if indexedDB.open never settles (phase 3)
+
+openStores hangs forever if indexedDB.open never settles
+
+<!-- fr:journal kind=finding scope=plan id=p3-r3 created=2026-10-06T05:43:56+00:00 phase=3 state=open review_scope=in -->
+### p3-r3 · finding [open] (reviewer: in scope) · Store write failures swallowed silently (phase 3)
+
+Store write failures swallowed silently
+
+<!-- fr:journal kind=finding scope=plan id=p3-r4 created=2026-10-06T05:43:56+00:00 phase=3 state=open review_scope=in -->
+### p3-r4 · finding [open] (reviewer: in scope) · Store keys collide when ids contain ':'; all() leaks other lists' cards (phase 3)
+
+Store keys collide when ids contain ':'; all() leaks other lists' cards
+
+<!-- fr:journal kind=finding scope=plan id=p3-r5 created=2026-10-06T05:43:56+00:00 phase=3 state=open review_scope=in -->
+### p3-r5 · finding [open] (reviewer: in scope) · Summary emitted before queued grade writes land (phase 3)
+
+Summary emitted before queued grade writes land
+
+<!-- fr:journal kind=finding scope=plan id=p3-r6 created=2026-10-06T05:43:56+00:00 phase=3 state=open review_scope=in -->
+### p3-r6 · finding [open] (reviewer: in scope) · now read at write time, not resolve time (phase 3)
+
+now read at write time, not resolve time
+
+<!-- fr:journal kind=finding scope=plan id=p3-r7 created=2026-10-06T05:43:56+00:00 phase=3 state=open review_scope=in -->
+### p3-r7 · finding [open] (reviewer: in scope) · put and bumpNew in separate transactions (phase 3)
+
+put and bumpNew in separate transactions
+
+<!-- fr:journal kind=finding scope=plan id=p3-r8 created=2026-10-06T05:43:56+00:00 phase=3 state=open review_scope=in -->
+### p3-r8 · finding [open] (reviewer: in scope) · Real-World controller test dropped advance() events (phase 3)
+
+Real-World controller test dropped advance() events
+
+<!-- fr:journal kind=finding scope=plan id=p3-r9 created=2026-10-06T05:43:56+00:00 phase=3 state=open review_scope=in -->
+### p3-r9 · finding [open] (reviewer: in scope) · ControllerOptions.mode unused (phase 3)
+
+ControllerOptions.mode unused
+
+<!-- fr:journal kind=finding scope=plan id=p3-r10 created=2026-10-06T05:43:56+00:00 phase=3 state=open review_scope=in -->
+### p3-r10 · finding [open] (reviewer: in scope) · start() unguarded: empty waves crash, re-start keeps stale counts (phase 3)
+
+start() unguarded: empty waves crash, re-start keeps stale counts
+
+<!-- fr:journal kind=finding scope=plan id=p3-r11 created=2026-10-06T05:43:56+00:00 phase=3 state=open review_scope=in -->
+### p3-r11 · finding [open] (reviewer: in scope) · buildStudy copied arrays per push and recomputed overdue in the comparator (phase 3)
+
+buildStudy copied arrays per push and recomputed overdue in the comparator
+
+<!-- fr:journal kind=finding scope=plan id=p3-r12 created=2026-10-06T05:43:56+00:00 phase=3 state=open review_scope=in -->
+### p3-r12 · finding [open] (reviewer: in scope) · openStores read globalThis.indexedDB outside its try (phase 3)
+
+openStores read globalThis.indexedDB outside its try
+
+<!-- fr:journal kind=finding scope=plan id=p3-r13 created=2026-10-06T05:43:56+00:00 phase=3 state=open review_scope=in -->
+### p3-r13 · finding [open] (reviewer: in scope) · Summary accuracy and chars/s skewed by escaped ships and activeMs-0 records (phase 3)
+
+Summary accuracy and chars/s skewed by escaped ships and activeMs-0 records
+
+<!-- fr:journal kind=review scope=plan id=p3-review created=2026-10-06T05:43:56+00:00 phase=3 -->
+### p3-review · review · phase 3 code review: 3 important and 10 minor findings, all fixed (phase 3)
+
+Independent reviewer read fd3fb02..224b933 (R1-R4, R10 storage fallback) and ran npm test. Important: p3-r1 duplicate grading, p3-r2 open hang, p3-r3 silent write failures; Minor p3-r4..p3-r13. All in scope and fixed in 9f02190, 8402713 and ffa42cd, with red-first tests where testable; the suite (387 tests) and the build are green.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r1-resolved created=2026-10-06T05:43:56+00:00 phase=3 state=fixed resolves=p3-r1 -->
+### p3-r1-resolved · finding [fixed] · resolves p3-r1: Controller had no guard against duplicate resolved events; a test codified double grading (phase 3)
+
+8402713: per-session Set of graded ids; the test is rewritten (a repeat gives seen 1, reps 1) plus a pre-seeded-card-is-not-new test; seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r2-resolved created=2026-10-06T05:43:56+00:00 phase=3 state=fixed resolves=p3-r2 -->
+### p3-r2-resolved · finding [fixed] · resolves p3-r2: openStores hangs forever if indexedDB.open never settles (phase 3)
+
+9f02190: open+probe raced against a 2000 ms timeout (injectable) with memory fallback; tests for a never-settling open and an async onerror.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r3-resolved created=2026-10-06T05:43:56+00:00 phase=3 state=fixed resolves=p3-r3 -->
+### p3-r3-resolved · finding [fixed] · resolves p3-r3: Store write failures swallowed silently (phase 3)
+
+8402713: the queue continues; the controller counts writeErrors, emits storage-error once, and the summary carries writeErrors; test with a rejecting store, seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r4-resolved created=2026-10-06T05:43:56+00:00 phase=3 state=fixed resolves=p3-r4 -->
+### p3-r4-resolved · finding [fixed] · resolves p3-r4: Store keys collide when ids contain ':'; all() leaks other lists' cards (phase 3)
+
+9f02190: IDB array keys [l,r] and ['new',l,day], all() via IDBKeyRange.bound; memory store keys on JSON of the same arrays; contract test on both stores, seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r5-resolved created=2026-10-06T05:43:56+00:00 phase=3 state=fixed resolves=p3-r5 -->
+### p3-r5-resolved · finding [fixed] · resolves p3-r5: Summary emitted before queued grade writes land (phase 3)
+
+8402713: the summary emit is chained onto the write queue; a test reads the store inside the summary listener, seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r6-resolved created=2026-10-06T05:43:56+00:00 phase=3 state=fixed resolves=p3-r6 -->
+### p3-r6-resolved · finding [fixed] · resolves p3-r6: now read at write time, not resolve time (phase 3)
+
+8402713: now captured in onResolved and passed to the write; midnight test seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r7-resolved created=2026-10-06T05:43:56+00:00 phase=3 state=fixed resolves=p3-r7 -->
+### p3-r7-resolved · finding [fixed] · resolves p3-r7: put and bumpNew in separate transactions (phase 3)
+
+9f02190/8402713: putGraded writes the card and the meta bump in one readwrite transaction (both stores); contract test seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r8-resolved created=2026-10-06T05:43:56+00:00 phase=3 state=fixed resolves=p3-r8 -->
+### p3-r8-resolved · finding [fixed] · resolves p3-r8: Real-World controller test dropped advance() events (phase 3)
+
+8402713: every advance/typeChar step's events are fed to the controller (it was green before the change).
+
+<!-- fr:journal kind=finding scope=plan id=p3-r9-resolved created=2026-10-06T05:43:56+00:00 phase=3 state=fixed resolves=p3-r9 -->
+### p3-r9-resolved · finding [fixed] · resolves p3-r9: ControllerOptions.mode unused (phase 3)
+
+8402713: mode labels the summary (summary.mode), asserted in the study test.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r10-resolved created=2026-10-06T05:43:56+00:00 phase=3 state=fixed resolves=p3-r10 -->
+### p3-r10-resolved · finding [fixed] · resolves p3-r10: start() unguarded: empty waves crash, re-start keeps stale counts (phase 3)
+
+8402713: start() throws on no waves, on a second call and after the session ended; seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r11-resolved created=2026-10-06T05:43:56+00:00 phase=3 state=fixed resolves=p3-r11 -->
+### p3-r11-resolved · finding [fixed] · resolves p3-r11: buildStudy copied arrays per push and recomputed overdue in the comparator (phase 3)
+
+ffa42cd: in-place push and oldest due computed once per category; existing build tests green before and after.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r12-resolved created=2026-10-06T05:43:56+00:00 phase=3 state=fixed resolves=p3-r12 -->
+### p3-r12-resolved · finding [fixed] · resolves p3-r12: openStores read globalThis.indexedDB outside its try (phase 3)
+
+9f02190: read inside the try; a throwing-getter test falls back to memory, seen red.
+
+<!-- fr:journal kind=finding scope=plan id=p3-r13-resolved created=2026-10-06T05:43:56+00:00 phase=3 state=fixed resolves=p3-r13 -->
+### p3-r13-resolved · finding [fixed] · resolves p3-r13: Summary accuracy and chars/s skewed by escaped ships and activeMs-0 records (phase 3)
+
+8402713: accuracy over non-escaped records; chars/s over non-escaped records with activeMs > 0; definitions in a doc comment; seen red.
