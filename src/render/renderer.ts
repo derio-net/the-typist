@@ -1,9 +1,9 @@
 import { WORLD, type World, type WorldEvent, type WorldShip } from '../engine/world';
-import { drawShip, effects, fonts, labels, palette, sizes, type MeasureFont, type ShipBox } from './theme';
+import { drawShip, effects, fonts, labels, muzzles, palette, sizes, type MeasureFont, type ShipBox } from './theme';
 import { currentSprites, drawCentred, drawReticle, type SpriteName } from './sprites';
 import type { ShipKind } from '../engine/world';
 
-interface Bullet { shipId: string; fromX: number; at: number; lastX: number; lastY: number }
+interface Bullet { shipId: string; fromX: number; fromY: number; at: number; lastX: number; lastY: number }
 interface Explosion { x: number; y: number; at: number; kind: ShipKind }
 interface Debris { x: number; y: number; vx: number; vy: number; spin: number; at: number; sprite: SpriteName }
 
@@ -33,7 +33,9 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
   let bullets: Bullet[] = [];
   let explosions: Explosion[] = [];
   let debris: Debris[] = [];
-  const playerX = WORLD.width / 2;
+  /** Where the player is now (the world's `playerX` as of the last `draw`), and how many shots were fired. */
+  let playerX = WORLD.width / 2;
+  let shots = 0;
 
   /** Pixel width of `text` in the given font; ship text includes the strip's padding. */
   const measure = (text: string, font: MeasureFont = 'ship'): number => {
@@ -107,7 +109,10 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
     push(events, now) {
       for (const ev of events) {
         const p = 'shipId' in ev ? lastPos.get(ev.shipId) : undefined;
-        if (ev.type === 'hit' && p) bullets.push({ shipId: ev.shipId, fromX: playerX, at: now, lastX: p.x, lastY: p.y });
+        if (ev.type === 'hit' && p) {
+          const gun = muzzles(playerX, shots++);
+          bullets.push({ shipId: ev.shipId, fromX: gun.x, fromY: WORLD.playerY + gun.y, at: now, lastX: p.x, lastY: p.y });
+        }
         if (ev.type === 'destroyed' && p) {
           explosions.push({ x: p.x, y: p.y, at: now, kind: p.kind });
           for (let i = 0; i < sizes.debrisCount; i++) {
@@ -133,6 +138,7 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
       const byId = new Map(world.ships.map((s) => [s.id, s]));
 
       // player
+      playerX = world.playerX;
       if (sprites) {
         drawCentred(ctx, sprites.player, playerX, WORLD.playerY + sizes.playerSpriteOffsetY - sizes.playerSpriteHeight / 2, sizes.playerSpriteHeight);
       } else {
@@ -160,10 +166,10 @@ export function createRenderer(canvas: HTMLCanvasElement): Renderer {
         const ty = target?.y ?? b.lastY;
         const t = (now - b.at) / effects.bulletMs;
         const bx = b.fromX + (tx - b.fromX) * t;
-        const by = WORLD.playerY + (ty - WORLD.playerY) * t;
+        const by = b.fromY + (ty - b.fromY) * t;
         if (sprites) {
           ctx.globalCompositeOperation = 'lighter';
-          drawCentred(ctx, sprites.bullet, bx, by, sizes.bulletSpriteHeight, Math.atan2(ty - WORLD.playerY, tx - b.fromX) + Math.PI / 2);
+          drawCentred(ctx, sprites.bullet, bx, by, sizes.bulletSpriteHeight, Math.atan2(ty - b.fromY, tx - b.fromX) + Math.PI / 2);
           ctx.globalCompositeOperation = 'source-over';
         } else {
           ctx.beginPath();

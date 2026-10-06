@@ -61,6 +61,17 @@ export const labels = {
   gameOver: 'Game over',
 } as const;
 
+/**
+ * Where the player sprite's twin cannons are, relative to its x and to `WORLD.playerY`:
+ * fitted to the sprite (cannon tips at +-25 of 180 source px, near the top of its 213 px).
+ */
+export const muzzle = { dx: 7.5, dy: -23 } as const;
+
+/** Start of the next bullet: the left gun on even shots, the right gun on odd ones (`y` is relative to the player line). */
+export function muzzles(playerX: number, shotIndex: number): { x: number; y: number } {
+  return { x: playerX + (shotIndex % 2 === 0 ? -muzzle.dx : muzzle.dx), y: muzzle.dy };
+}
+
 export interface ShipBox {
   /** Top-left corner and size. */
   x: number;
@@ -98,3 +109,6 @@ export function drawShip(ctx: CanvasRenderingContext2D, kind: ShipKindName, box:
   ctx.fill();
   ctx.stroke();
 }
+
+/** Every token in one object. */
+export const theme = { palette, fonts, effects, labels, sizes, muzzle } as const;

@@ -422,3 +422,42 @@ describe('game over grades on-screen records with an escaped ship (P2.T2)', () =
     expect(w.status).toBe('game-over');
   });
 });
+
+describe('player ship drifts toward its locked target (P2.T3)', () => {
+  const at = (w: World, x: number): World => ({ ...w, ships: w.ships.map((s) => ({ ...s, x })) });
+  const seconds = (w: World, n: number) => {
+    for (let i = 0; i < n * 60; i++) w = tick(w);
+    return w;
+  };
+
+  it('drift speed is the burst top speed', () => {
+    expect(WORLD.playerDriftVx).toBe(WORLD.burstMaxVx);
+  });
+
+  it('starts centred and stays put without a lock', () => {
+    const w = createWorld([boerse], { width: 720 });
+    expect(w.playerX).toBe(360);
+    expect(seconds(w, 3).playerX).toBe(360);
+  });
+
+  it('moves toward the locked ship by at most the drift speed, never overshooting', () => {
+    let w = at(createWorld([boerse]), 100);
+    w = typeChar(w, w.ships[0].text[0]);
+    expect(w.typing.lock).not.toBeNull();
+    const start = w.playerX;
+    const after = seconds(w, 1);
+    expect(start - after.playerX).toBeGreaterThan(0);
+    expect(start - after.playerX).toBeLessThanOrEqual(WORLD.playerDriftVx + 1e-6);
+    expect(seconds(w, 2).playerX).toBeLessThan(after.playerX);
+    // a very near target is reached exactly, not overshot
+    const near = at({ ...w }, w.playerX - 0.1);
+    expect(tick(near).playerX).toBeCloseTo(w.playerX - 0.1, 9);
+  });
+
+  it('is clamped to the canvas', () => {
+    let w = at(createWorld([boerse]), -500);
+    w = typeChar(w, w.ships[0].text[0]);
+    w = { ...w, playerX: 0 };
+    expect(tick(w).playerX).toBeGreaterThanOrEqual(0);
+  });
+});

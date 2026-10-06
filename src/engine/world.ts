@@ -7,6 +7,7 @@ import {
 
 /** Fixed simulation step: 60 Hz. */
 export const STEP_MS = 1000 / 60;
+const BURST_MAX_VX = 22;
 export const WORLD = {
   width: 960,
   height: 640,
@@ -25,10 +26,12 @@ export const WORLD = {
   entryGap: 4,
   /** Break-up: each child slides sideways at a random speed in this range (px/s)... */
   burstMinVx: 8,
-  burstMaxVx: 22,
+  burstMaxVx: BURST_MAX_VX,
   /** ...after one shared upward kick (px/s) that decays with this time constant (s). */
   burstKick: 220,
   kickDecayS: 0.45,
+  /** Sideways speed (px/s) of the player ship toward the ship it has locked: as fast as the fastest burst child (`burstMaxVx`). */
+  playerDriftVx: BURST_MAX_VX,
   /** Vertical gap between the children's bands. */
   bandGap: 6,
 } as const;
@@ -118,6 +121,8 @@ export interface World {
   events: WorldEvent[];
   measure: Measure;
   minReactionS: number;
+  /** Player ship x: drifts toward the locked ship. */
+  playerX: number;
   /** Logical canvas width (the height is fixed): ships stay inside [0, width]. */
   width: number;
   /** Which learning aids escorts carry. */
@@ -189,6 +194,7 @@ export function createWorld(records: VocabRecord[], opts: WorldOptions = {}): Wo
     measure,
     minReactionS: opts.minReactionS ?? WORLD.minReactionS,
     width: opts.width ?? WORLD.width,
+    playerX: (opts.width ?? WORLD.width) / 2,
     aids: { chip: opts.aids?.chip ?? true, translation: opts.aids?.translation ?? true },
     rng: opts.seed ?? 1,
     queue: records.map((r) => r.id),
@@ -311,6 +317,12 @@ export function tick(world: World): World {
     const vy = s.vy * decay;
     return keepInside(w.width, { ...s, x: s.x + s.vx * dt, vy, y: s.y + (s.speed + vy) * dt });
   });
+  const target = w.typing.lock ? w.ships.find((s) => s.id === w.typing.lock) : undefined;
+  if (target) {
+    const reach = WORLD.playerDriftVx * dt;
+    const gap = target.x - w.playerX;
+    w.playerX = Math.min(w.width, Math.max(0, w.playerX + Math.sign(gap) * Math.min(Math.abs(gap), reach)));
+  }
   const ys: Record<string, number> = {};
   for (const s of w.ships) ys[s.id] = s.y;
   w.typing = setPositions(w.typing, ys);
