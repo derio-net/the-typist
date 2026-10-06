@@ -9,6 +9,7 @@ import { schedule } from '../../src/srs/scheduler';
 import type { Renderer, RendererOptions } from '../../src/render/renderer';
 import type { Tts } from '../../src/platform/tts';
 import type { Audio, EffectName } from '../../src/platform/audio';
+import { PACE_KEY } from '../../src/platform/pace-store';
 import { startApp, STORAGE_WARNING, type App } from '../../src/ui/app';
 
 const twoText = readFileSync('tests/fixtures/lists/two-records.yaml', 'utf8');
@@ -45,6 +46,9 @@ let ttsStatus: { available: boolean; reason?: string };
 let audioOpts: { sfx: boolean; music: boolean }[];
 let unlocks: number;
 let stops: string[];
+let voiceSets: (string | null)[];
+let ttsVoices: { uri: string; name: string; lang: string }[];
+let previews: string[];
 let ttsListeners: ((s: { available: boolean; reason?: string }) => void)[];
 
 const fakeTts = (): Tts => ({
@@ -52,6 +56,9 @@ const fakeTts = (): Tts => ({
   ready: Promise.resolve(ttsStatus),
   setEnabled: (on) => void ttsOn.push(on),
   say: (t) => void said.push(t),
+  preview: (t) => void previews.push(t),
+  voices: () => ttsVoices,
+  setVoice: (u) => void voiceSets.push(u),
   stop: () => void stops.push('stop'),
   onChange: (cb) => {
     ttsListeners.push(cb);
@@ -88,7 +95,7 @@ function run(ms: number) {
 
 async function boot() {
   app = await startApp({
-    root, bundled: [fixtureList()], stores: { cards, persistent }, settings: createSettings(storage),
+    root, bundled: [fixtureList()], stores: { cards, persistent }, settings: createSettings(storage), paceStorage: storage,
     now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: (_c, _w, o) => ((rendererOpts = o), fakeRenderer()), seed: 7,
     tts: fakeTts(), audio: fakeAudio(),
   });
@@ -124,6 +131,9 @@ beforeEach(async () => {
   persistent = true;
   storage = fakeStorage();
   said = [];
+  voiceSets = [];
+  previews = [];
+  ttsVoices = [{ uri: 'u:anna', name: 'Anna', lang: 'de-DE' }, { uri: 'u:eddy', name: 'Eddy', lang: 'de-DE' }];
   played = [];
   music = [];
   ttsOn = [];
@@ -310,7 +320,7 @@ function typeUntil(stop: () => boolean, limit = 20000) {
 async function bootBig(n: number) {
   app.dispose();
   app = await startApp({
-    root, bundled: [bigList(n)], stores: { cards, persistent }, settings: createSettings(storage),
+    root, bundled: [bigList(n)], stores: { cards, persistent }, settings: createSettings(storage), paceStorage: storage,
     now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: (_c, _w, o) => ((rendererOpts = o), fakeRenderer()), seed: 7,
     tts: fakeTts(), audio: fakeAudio(),
   });
@@ -396,7 +406,7 @@ describe('review fixes (p4-r1..r10)', () => {
     const failing = { ...cards, putGraded: () => Promise.reject(new Error('disk full')) };
     app.dispose();
     app = await startApp({
-      root, bundled: [fixtureList()], stores: { cards: failing as typeof cards, persistent: true }, settings: createSettings(storage),
+      root, bundled: [fixtureList()], stores: { cards: failing as typeof cards, persistent: true }, settings: createSettings(storage), paceStorage: storage,
       now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: () => fakeRenderer(), seed: 7,
     });
     expect(root.querySelector('.banner')).toBeNull();
@@ -474,16 +484,108 @@ describe('learning aids and audio (R6, R7, R10)', () => {
     expect(shipTexts(app.world()!).every((s) => s.t === undefined)).toBe(true);
   });
 
-  it('every destroyed ship speaks its full text, interrupting through say', async () => {
+  it('saves the World pace when a Record resolves, and the next session starts from it (R5)', async () => {
+    await startStudy();
+    expect(storage.getItem(PACE_KEY)).toBeNull();
+    typeUntil(() => storage.getItem(PACE_KEY) !== null || app.state() !== 'play');
+    const saved = JSON.parse(storage.getItem(PACE_KEY)!);
+    expect(saved.chars).toBeGreaterThan(0);
+    expect(saved).toEqual({ spc: app.world()!.pace.spc, chars: app.world()!.pace.chars });
+    app.dispose();
+    const reads: string[] = [];
+    const spy: Storage = { ...storage, getItem: (k) => (reads.push(k), storage.getItem(k)) } as Storage;
+    app = await startApp({
+      root, bundled: [fixtureList()], stores: { cards, persistent }, settings: createSettings(storage), paceStorage: spy,
+      now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: (_c, _w, o) => ((rendererOpts = o), fakeRenderer()), seed: 7,
+      tts: fakeTts(), audio: fakeAudio(),
+    });
+    click('Two-record');
+    await app.settled();
+    click('Study');
+    await app.settled();
+    expect(app.world()!.pace).toEqual(saved);
+    expect(reads.filter((k) => k === PACE_KEY)).toHaveLength(1);
+  });
+
+  it('a ship is spoken once, when it is locked, not when it is destroyed (R6)', async () => {
+    await startStudy();
+    typeUntil(() => app.state() !== 'play' || (app.world()?.results && Object.keys(app.world()!.results).length === 2) === true);
+    const events = pushes.flat() as { type: string; shipId?: string }[];
+    const locks = events.filter((e) => e.type === 'lock');
+    const destroyed = events.filter((e) => e.type === 'destroyed');
+    expect(destroyed.length).toBeGreaterThan(2);
+    expect(new Set(locks.map((e) => e.shipId)).size).toBe(locks.length);
+    expect(said).toHaveLength(locks.length);
+    // every destroyed ship was locked first (a one-keystroke ship locks and dies in one step), so none is spoken twice or missed
+    expect(locks.length).toBeGreaterThanOrEqual(destroyed.length);
+    const l = fixtureList();
+    for (const r of l.records) for (const e of r.examples ?? []) expect(said).toContain(e.de);
+    expect(said).toContain('die Börsen');
+    expect(said).toContain('die Börse');
+  });
+
+  it('speech starts at the first keystroke on a ship, before it is destroyed (R6)', async () => {
+    await startStudy();
+    expect(said).toHaveLength(0);
+    const w = app.world()!;
+    const ship = w.typing.ships[0];
+    const text = w.ships.find((s) => s.id === ship.id)!.text;
+    input().dispatchEvent(new InputEvent('input', { data: text[0], inputType: 'insertText', bubbles: true }));
+    run(16);
+    expect(said).toEqual([text]);
+    const more = app.world()!.typing.ships.find((t) => t.id === ship.id)!;
+    expect(more.pos).toBeGreaterThan(0);
+    expect(more.pos).toBeLessThan(more.required);
+    input().dispatchEvent(new InputEvent('input', { data: text[1], inputType: 'insertText', bubbles: true }));
+    run(16);
+    expect(said).toEqual([text]);
+  });
+
+  it('a ship locked and destroyed by one keystroke is still spoken, once (R6)', async () => {
+    app.dispose();
+    const l = fixtureList();
+    for (const r of l.records) for (const e of r.examples ?? []) e.de = 'A.'; // "A." needs one keystroke: the full stop is pre-typed
+    app = await startApp({
+      root, bundled: [l], stores: { cards, persistent }, settings: createSettings(storage), paceStorage: storage,
+      now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: () => fakeRenderer(), seed: 7,
+      tts: fakeTts(), audio: fakeAudio(),
+    });
     await startStudy();
     typeUntil(() => app.state() !== 'play' || (app.world()?.results && Object.keys(app.world()!.results).length === 2) === true);
     const destroyed = pushes.flat().filter((e) => (e as { type: string }).type === 'destroyed').length;
     expect(destroyed).toBeGreaterThan(2);
+    expect(said.filter((t) => t === 'A.').length).toBeGreaterThanOrEqual(2);
     expect(said).toHaveLength(destroyed);
-    const l = fixtureList();
-    for (const r of l.records) for (const e of r.examples ?? []) expect(said).toContain(e.de); // escorts
-    expect(said).toContain('die Börsen'); // a forms ship
-    expect(said).toContain('die Börse'); // a mothership
+  });
+
+  it('applies the saved voice at startup and after a settings change (R8)', async () => {
+    app.dispose();
+    storage.setItem('typist.settings', JSON.stringify({ voice: 'u:eddy' }));
+    voiceSets = [];
+    await boot();
+    expect(voiceSets).toEqual(['u:eddy']);
+    esc();
+    click('Settings');
+    const pick = root.querySelector<HTMLSelectElement>('[data-setting="voice"]')!;
+    expect(pick.value).toBe('u:eddy');
+    pick.value = 'u:anna';
+    pick.dispatchEvent(new Event('change'));
+    expect(voiceSets.at(-1)).toBe('u:anna');
+    pick.value = '';
+    pick.dispatchEvent(new Event('change'));
+    expect(voiceSets.at(-1)).toBeNull();
+  });
+
+  it('the Test button previews the sample sentence, and the voice list refreshes when it changes (R8)', async () => {
+    click('Settings');
+    click('Test voice');
+    expect(previews).toEqual(['Guten Tag! So klingt diese Stimme.']);
+    const options = () => [...root.querySelectorAll<HTMLOptionElement>('[data-setting="voice"] option')].map((o) => o.textContent);
+    expect(options()).toHaveLength(3);
+    ttsVoices = [{ uri: 'u:g', name: 'Google Deutsch', lang: 'de-DE' }, ...ttsVoices];
+    ttsListeners.forEach((cb) => cb(ttsStatus));
+    expect(options()).toHaveLength(4);
+    expect(options()[1]).toContain('Google Deutsch');
   });
 
   it('TTS is told the setting before each utterance; off means the toggle is passed on', async () => {
@@ -598,12 +700,12 @@ describe('learning aids and audio (R6, R7, R10)', () => {
     expect(stops.length).toBeGreaterThan(0);
   });
 
-  it('a speech failure does not skip grading (p5-r3)', async () => {
+  it('a speech failure on lock does not skip grading or break the loop (p5-r3, R6)', async () => {
     app.dispose();
     const orig = fakeTts;
     const bad = (): Tts => ({ ...orig(), say: () => { throw new Error('speech down'); } });
     app = await startApp({
-      root, bundled: [fixtureList()], stores: { cards, persistent }, settings: createSettings(storage),
+      root, bundled: [fixtureList()], stores: { cards, persistent }, settings: createSettings(storage), paceStorage: storage,
       now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: () => fakeRenderer(), seed: 7,
       tts: bad(), audio: fakeAudio(),
     });
@@ -625,12 +727,235 @@ describe('learning aids and audio (R6, R7, R10)', () => {
     expect(box().disabled).toBe(false);
     expect(box().checked).toBe(true);
   });
+});
 
-  it('grading happens before sound and speech (p5-r3)', async () => {
-    const order: string[] = [];
-    said.push = ((t: string) => (order.push('say'), said.length)) as never;
+describe('storage protection and portable progress (R9, R10)', () => {
+  type Mgr = { persist?: () => Promise<boolean>; persisted?: () => Promise<boolean> };
+  let downloads: { name: string; blob: Blob }[];
+  const progressFile = (o: object, name = 'p.json') => new File([JSON.stringify(o)], name, { type: 'application/json' });
+
+  async function bootWith(extra: { storage?: Mgr; cards?: typeof cards } = {}) {
+    app.dispose();
+    app = await startApp({
+      root, bundled: [fixtureList()], stores: { cards: extra.cards ?? cards, persistent }, settings: createSettings(storage), paceStorage: storage,
+      now: () => NOW, raf: (cb) => frames.push(cb), caf: () => undefined, makeRenderer: () => fakeRenderer(), seed: 7,
+      tts: fakeTts(), audio: fakeAudio(), storage: extra.storage, download: (name, blob) => void downloads.push({ name, blob }),
+    });
+    await app.settled();
+  }
+  const storageLine = () => root.querySelector('[data-slot="storage-line"]')?.textContent ?? null;
+  const status = () => root.querySelector<HTMLElement>('[data-slot="transfer-status"]')!;
+  const choose = (f: File) => {
+    const input = root.querySelector<HTMLInputElement>('input[type="file"][data-testid="progress-file"]')!;
+    Object.defineProperty(input, 'files', { value: [f], configurable: true });
+    input.dispatchEvent(new Event('change'));
+  };
+  const stored = (reviewed: string, seen: number) => ({
+    card: { due: NOW.toISOString(), stability: 1, difficulty: 5, elapsed_days: 0, scheduled_days: 0, learning_steps: 0, reps: 1, lapses: 0, state: 1, last_review: reviewed },
+    seen, typos: 0, escapes: 0,
+  });
+  const validFile = (over: object = {}) => ({
+    format: 'the-typist-progress', version: 1, exportedAt: NOW.toISOString(),
+    cards: [{ listId: 'fixture-two', recordId: 'noun-boerse', stored: stored('2026-10-05T00:00:00.000Z', 3) }],
+    newCounts: [{ listId: 'fixture-two', day: '2026-10-06', count: 2 }],
+    pace: { spc: 0.4, chars: 500 },
+    ...over,
+  });
+
+  beforeEach(() => {
+    downloads = [];
+  });
+
+  it('asks for persistent storage once at startup, with IndexedDB stores (R9)', async () => {
+    const persist = vi.fn(async () => true);
+    await bootWith({ storage: { persist, persisted: async () => false } });
+    expect(persist).toHaveBeenCalledTimes(1);
+    click('Settings');
+    expect(storageLine()).toBe('Progress is protected from browser cleanup.');
+  });
+  it('does not ask with memory stores, and says progress will not be saved (R9)', async () => {
+    persistent = false;
+    const persist = vi.fn(async () => true);
+    await bootWith({ storage: { persist, persisted: async () => true } });
+    expect(persist).not.toHaveBeenCalled();
+    click('Settings');
+    expect(storageLine()).toBe("Progress and settings won't be saved: browser storage is unavailable.");
+  });
+  it('says the browser may clear progress when persist is refused (R9)', async () => {
+    await bootWith({ storage: { persist: async () => false, persisted: async () => false } });
+    click('Settings');
+    expect(storageLine()).toBe('The browser may clear progress if the site goes unused.');
+  });
+  it('says protected when persisted() is already true (R9)', async () => {
+    await bootWith({ storage: { persist: async () => false, persisted: async () => true } });
+    click('Settings');
+    expect(storageLine()).toBe('Progress is protected from browser cleanup.');
+  });
+  it('copes with a browser without the storage API (R9)', async () => {
+    await bootWith({ storage: {} });
+    click('Settings');
+    expect(storageLine()).toBe('The browser may clear progress if the site goes unused.');
+  });
+  it('when persist() throws, persisted() is still tried (p3-r5)', async () => {
+    await bootWith({ storage: { persist: () => Promise.reject(new Error('nope')), persisted: async () => true } });
+    click('Settings');
+    expect(storageLine()).toBe('Progress is protected from browser cleanup.');
+  });
+  it('a rejecting persist() does not break startup (R9)', async () => {
+    await bootWith({ storage: { persist: () => Promise.reject(new Error('nope')) } });
+    expect(app.state()).toBe('title');
+  });
+
+  it('Export and Import are offered from the title and absent from pause (R10)', async () => {
+    click('Settings');
+    expect(root.querySelector('[data-action="export-progress"]')).not.toBeNull();
+    expect(root.querySelector('[data-action="import-progress"]')).not.toBeNull();
+    click('Close');
     await startStudy();
-    typeUntil(() => order.length > 0, 2000);
-    expect(order[0]).toBe('say');
+    esc();
+    click('Settings');
+    expect(panelName()).toBe('settings');
+    expect(root.querySelector('[data-action="export-progress"]')).toBeNull();
+    expect(root.querySelector('[data-action="import-progress"]')).toBeNull();
+    expect(root.querySelector('input[type="file"]')).toBeNull();
+  });
+
+  it('Export downloads typist-progress-<yyyy-mm-dd>.json with cards, counts and pace (R10)', async () => {
+    await cards.put('fixture-two', 'noun-boerse', { card: schedule(undefined, 'Good', NOW), seen: 1, typos: 0, escapes: 0 });
+    await cards.bumpNew('fixture-two', '2026-10-06');
+    storage.setItem(PACE_KEY, JSON.stringify({ spc: 0.4, chars: 500 }));
+    await bootWith();
+    click('Settings');
+    click('Export progress');
+    await vi.waitFor(() => expect(downloads.length).toBe(1));
+    expect(downloads[0].name).toBe('typist-progress-2026-10-06.json');
+    const file = JSON.parse(await downloads[0].blob.text());
+    expect(file.format).toBe('the-typist-progress');
+    expect(file.cards.map((c: { recordId: string }) => c.recordId)).toEqual(['noun-boerse']);
+    expect(file.newCounts).toEqual([{ listId: 'fixture-two', day: '2026-10-06', count: 1 }]);
+    expect(file.pace).toEqual({ spc: 0.4, chars: 500 });
+    await vi.waitFor(() => expect(status().textContent).toMatch(/Exported 1 card\b/));
+  });
+
+  it('importing a valid file merges it, saves the pace after the commit and says how many cards (R10)', async () => {
+    storage.setItem(PACE_KEY, JSON.stringify({ spc: 1, chars: 10 }));
+    let release!: () => void;
+    const gate = new Promise<void>((r) => (release = r));
+    const gated = { ...cards, importAll: async (d: Parameters<typeof cards.importAll>[0]) => { await gate; return cards.importAll(d); } } as typeof cards;
+    await bootWith({ cards: gated });
+    click('Settings');
+    choose(progressFile(validFile()));
+    await Promise.resolve();
+    // the transaction has not committed: the estimate must still be the old one
+    expect(JSON.parse(storage.getItem(PACE_KEY)!)).toEqual({ spc: 1, chars: 10 });
+    release();
+    await vi.waitFor(() => expect(status().textContent).toMatch(/Imported 1 card\b/));
+    expect(status().dataset.state).toBe('ok');
+    expect((await cards.get('fixture-two', 'noun-boerse'))?.seen).toBe(3);
+    expect(await cards.newCount('fixture-two', '2026-10-06')).toBe(2);
+    expect(JSON.parse(storage.getItem(PACE_KEY)!)).toEqual({ spc: 0.4, chars: 500 });
+  });
+
+  it('keeps the local pace when the imported one has seen fewer characters (R10)', async () => {
+    storage.setItem(PACE_KEY, JSON.stringify({ spc: 1, chars: 900 }));
+    click('Settings');
+    choose(progressFile(validFile()));
+    await vi.waitFor(() => expect(status().dataset.state).toBe('ok'));
+    expect(JSON.parse(storage.getItem(PACE_KEY)!)).toEqual({ spc: 1, chars: 900 });
+  });
+
+  it('a failed import transaction changes neither the stores nor the pace, and says so (R10)', async () => {
+    storage.setItem(PACE_KEY, JSON.stringify({ spc: 1, chars: 10 }));
+    const failing = { ...cards, importAll: () => Promise.reject(new Error('quota')) } as typeof cards;
+    await bootWith({ cards: failing });
+    click('Settings');
+    choose(progressFile(validFile()));
+    await vi.waitFor(() => expect(status().dataset.state).toBe('error'));
+    expect(status().textContent).toMatch(/nothing was changed/i);
+    expect(await cards.get('fixture-two', 'noun-boerse')).toBeUndefined();
+    expect(JSON.parse(storage.getItem(PACE_KEY)!)).toEqual({ spc: 1, chars: 10 });
+  });
+
+  it.each([
+    ['not JSON', () => new File(['{nope'], 'x.json')],
+    ['a wrong version', () => progressFile(validFile({ version: 9 }))],
+    ['a bad date', () => progressFile(validFile({ exportedAt: 'never' }))],
+  ])('an invalid file (%s) shows why and changes nothing (R10)', async (_n, make) => {
+    storage.setItem(PACE_KEY, JSON.stringify({ spc: 1, chars: 10 }));
+    const spy = vi.spyOn(cards, 'importAll');
+    click('Settings');
+    choose(make());
+    await vi.waitFor(() => expect(status().dataset.state).toBe('error'));
+    expect(status().textContent).toMatch(/^Not imported: .+/);
+    expect(spy).not.toHaveBeenCalled();
+    expect(await cards.all('fixture-two')).toEqual({});
+    expect(JSON.parse(storage.getItem(PACE_KEY)!)).toEqual({ spc: 1, chars: 10 });
+  });
+
+  it('export then import round-trips into an empty store (R10)', async () => {
+    await cards.put('fixture-two', 'noun-boerse', { card: schedule(undefined, 'Good', NOW), seen: 4, typos: 1, escapes: 0 });
+    await bootWith();
+    click('Settings');
+    click('Export progress');
+    await vi.waitFor(() => expect(downloads.length).toBe(1));
+    const text = await downloads[0].blob.text();
+    const fresh = createMemoryStore();
+    await bootWith({ cards: fresh });
+    click('Settings');
+    choose(new File([text], 'p.json'));
+    await vi.waitFor(() => expect(status().dataset.state).toBe('ok'));
+    expect(await fresh.get('fixture-two', 'noun-boerse')).toEqual(await cards.get('fixture-two', 'noun-boerse'));
+  });
+
+  describe('a transfer in flight', () => {
+    const gatedStore = () => {
+      let release!: () => void;
+      const gate = new Promise<void>((r) => (release = r));
+      const store = { ...cards, importAll: async (d: Parameters<typeof cards.importAll>[0]) => { await gate; return cards.importAll(d); } } as typeof cards;
+      return { store, release };
+    };
+    it('shows Importing… and disables Export and Import until it finishes (p3-r3)', async () => {
+      const { store, release } = gatedStore();
+      await bootWith({ cards: store });
+      click('Settings');
+      choose(progressFile(validFile()));
+      await vi.waitFor(() => expect(status().textContent).toBe('Importing…'));
+      expect(root.querySelector<HTMLButtonElement>('[data-action="export-progress"]')!.disabled).toBe(true);
+      expect(root.querySelector<HTMLButtonElement>('[data-action="import-progress"]')!.disabled).toBe(true);
+      release();
+      await vi.waitFor(() => expect(status().dataset.state).toBe('ok'));
+      expect(root.querySelector<HTMLButtonElement>('[data-action="export-progress"]')!.disabled).toBe(false);
+    });
+    it('a Settings re-render mid-import keeps the busy text and then shows the result (p3-r2)', async () => {
+      const { store, release } = gatedStore();
+      await bootWith({ cards: store });
+      click('Settings');
+      choose(progressFile(validFile()));
+      await vi.waitFor(() => expect(status().textContent).toBe('Importing…'));
+      ttsListeners.forEach((cb) => cb(ttsStatus)); // re-renders the open panel
+      expect(status().textContent).toBe('Importing…');
+      release();
+      await vi.waitFor(() => expect(status().textContent).toMatch(/Imported 1 card\b/));
+    });
+    it('a result that arrives while the panel was re-rendered is still shown (p3-r2)', async () => {
+      await bootWith();
+      click('Settings');
+      choose(progressFile(validFile({ version: 5 })));
+      await vi.waitFor(() => expect(status().dataset.state).toBe('error'));
+      ttsListeners.forEach((cb) => cb(ttsStatus));
+      expect(status().dataset.state).toBe('error');
+      expect(status().textContent).toMatch(/^Not imported/);
+    });
+    it('rejects a file over 50 MB before reading it (p3-r3)', async () => {
+      const spy = vi.spyOn(cards, 'importAll');
+      click('Settings');
+      const big = progressFile(validFile());
+      Object.defineProperty(big, 'size', { value: 51 * 1024 * 1024 });
+      const read = vi.spyOn(big, 'text');
+      choose(big);
+      await vi.waitFor(() => expect(status().textContent).toMatch(/Not imported: .*too large/));
+      expect(read).not.toHaveBeenCalled();
+      expect(spy).not.toHaveBeenCalled();
+    });
   });
 });

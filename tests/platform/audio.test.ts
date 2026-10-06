@@ -152,3 +152,20 @@ describe('audio (R7)', () => {
     expect(el.play).toHaveBeenCalledTimes(3);
   });
 });
+
+describe('bundled music', () => {
+  it('ships a track at MUSIC_PATH, credited in CREDITS.md', async () => {
+    const { existsSync, readFileSync, statSync } = await import('node:fs');
+    const { MUSIC_PATH } = await import('../../src/platform/audio');
+    // resolved from this file, not the cwd, so a run with another --root checks this tree (p3-r11)
+    const file = new URL(`../../public/${MUSIC_PATH}`, import.meta.url);
+    expect(existsSync(file)).toBe(true);
+    // a real track, kept small enough for the Pages bundle
+    expect(statSync(file).size).toBeGreaterThan(100_000);
+    expect(statSync(file).size).toBeLessThan(2_500_000);
+    const credits = readFileSync(new URL('../../CREDITS.md', import.meta.url), 'utf8');
+    expect(credits).toContain(MUSIC_PATH);
+    expect(credits).toContain('Alex McCulloch');
+    expect(credits).toContain('CC0');
+  });
+});

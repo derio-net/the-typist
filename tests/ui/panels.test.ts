@@ -7,6 +7,7 @@ import type { Summary } from '../../src/session/controller';
 import {
   bannerPanel, betweenWavePanel, categoryPanel, loadErrorsPanel, modePanel, pausePanel, settingsPanel, summaryPanel, titlePanel,
 } from '../../src/ui/panels';
+import { voiceLabel } from '../../src/ui/panels/settings';
 import { injectStyle, themeVariables } from '../../src/ui/style';
 import { palette } from '../../src/render/theme';
 
@@ -203,6 +204,140 @@ describe('panels (R5, R8, R10)', () => {
     const p = settingsPanel(root, { settings: DEFAULT_SETTINGS, ttsUnavailable: 'no German voice' }, { onChange: vi.fn(), onClose: vi.fn() });
     expect(p.el.querySelector<HTMLInputElement>('[data-setting="aids.tts"]')!.disabled).toBe(true);
     expect(p.el.textContent).toContain('no German voice');
+  });
+
+  it('settings lists Automatic first, then the ranked voices, with the saved one selected (R8)', () => {
+    const voices = [{ uri: 'u:a', name: 'Anna', lang: 'de-DE' }, { uri: 'u:m', name: 'Max', lang: 'de-AT' }];
+    const onChange = vi.fn();
+    const p = settingsPanel(root, { settings: { ...DEFAULT_SETTINGS, voice: 'u:m' }, voices }, { onChange, onClose: vi.fn(), onTestVoice: vi.fn() });
+    const sel = p.el.querySelector<HTMLSelectElement>('select[data-setting="voice"]')!;
+    expect([...sel.options].map((o) => o.textContent)).toEqual(['Automatic (best available)', 'Anna (de-DE)', 'Max (de-AT)']);
+    expect(sel.value).toBe('u:m');
+    sel.value = 'u:a';
+    sel.dispatchEvent(new Event('change'));
+    expect(onChange).toHaveBeenLastCalledWith({ voice: 'u:a' });
+    sel.value = '';
+    sel.dispatchEvent(new Event('change'));
+    expect(onChange).toHaveBeenLastCalledWith({ voice: null });
+  });
+
+  it('a saved voice that is gone shows Automatic (R8)', () => {
+    const p = settingsPanel(root, { settings: { ...DEFAULT_SETTINGS, voice: 'u:gone' }, voices: [{ uri: 'u:a', name: 'Anna', lang: 'de-DE' }] }, { onChange: vi.fn(), onClose: vi.fn(), onTestVoice: vi.fn() });
+    const sel = p.el.querySelector<HTMLSelectElement>('[data-setting="voice"]')!;
+    expect(sel.selectedIndex).toBe(0);
+    expect(sel.selectedOptions[0].textContent).toBe('Automatic (best available)');
+  });
+
+  it('voice labels drop the locale suffix when the name already carries it (p2-r1)', () => {
+    expect(voiceLabel({ uri: 'u', name: 'Anna', lang: 'de-DE' })).toBe('Anna (de-DE)');
+    expect(voiceLabel({ uri: 'u', name: 'Eddy (Deutsch (Deutschland))', lang: 'de-DE' })).toBe('Eddy (Deutsch (Deutschland))');
+    expect(voiceLabel({ uri: 'u', name: 'Microsoft Katja Online (Natural) - German (Germany)', lang: 'de-DE' })).toBe('Microsoft Katja Online (Natural) - German (Germany)');
+    expect(voiceLabel({ uri: 'u', name: 'Google Deutsch de-DE', lang: 'de-DE' })).toBe('Google Deutsch de-DE');
+  });
+
+  it('the voice select is styled and may shrink, and the row wraps (p2-r1)', () => {
+    injectStyle(document);
+    const css = document.getElementById('typist-style')!.textContent!;
+    expect(css).toMatch(/\.panel select[^}]*min-width: 0[^}]*max-width: 100%/);
+    expect(css).toMatch(/\[data-slot=voice-row\][^}]*flex-wrap: wrap/);
+  });
+
+  it('the Test button hands the sample sentence to the preview handler (R8)', () => {
+    const onTestVoice = vi.fn();
+    const p = settingsPanel(root, { settings: DEFAULT_SETTINGS, voices: [{ uri: 'u:a', name: 'Anna', lang: 'de-DE' }] }, { onChange: vi.fn(), onClose: vi.fn(), onTestVoice });
+    p.el.querySelector<HTMLButtonElement>('[data-action="test-voice"]')!.click();
+    expect(onTestVoice).toHaveBeenCalledWith('Guten Tag! So klingt diese Stimme.');
+  });
+
+  it('the hint names macOS, Windows and Chrome/Edge (R8)', () => {
+    const p = settingsPanel(root, { settings: DEFAULT_SETTINGS, voices: [] }, { onChange: vi.fn(), onClose: vi.fn(), onTestVoice: vi.fn() });
+    const hint = p.el.querySelector('[data-slot="voice-hint"]')!.textContent!;
+    expect(hint).toMatch(/macOS/);
+    expect(hint).toMatch(/Windows/);
+    expect(hint).toMatch(/Chrome/);
+    expect(hint).toMatch(/Edge/);
+  });
+
+  it('with no German voice the picker and Test are disabled and the reason is shown (R8)', () => {
+    const onTestVoice = vi.fn();
+    const p = settingsPanel(root, { settings: DEFAULT_SETTINGS, voices: [], ttsUnavailable: 'no German voice installed on this device' }, { onChange: vi.fn(), onClose: vi.fn(), onTestVoice });
+    expect(p.el.querySelector<HTMLSelectElement>('[data-setting="voice"]')!.disabled).toBe(true);
+    const test = p.el.querySelector<HTMLButtonElement>('[data-action="test-voice"]')!;
+    expect(test.disabled).toBe(true);
+    test.click();
+    expect(onTestVoice).not.toHaveBeenCalled();
+    expect(p.el.textContent).toContain('no German voice installed');
+  });
+
+  describe('storage line and progress transfer (R9, R10)', () => {
+    const mount = (props: Partial<Parameters<typeof settingsPanel>[1]> = {}, handlers: Partial<Parameters<typeof settingsPanel>[2]> = {}) =>
+      settingsPanel(root, { settings: DEFAULT_SETTINGS, ...props }, { onChange: vi.fn(), onClose: vi.fn(), ...handlers });
+    const line = (el: HTMLElement) => el.querySelector('[data-slot="storage-line"]');
+
+    it('shows the protected, may-be-cleared and memory lines', () => {
+      expect(line(mount({ storage: 'protected' }).el)?.textContent).toBe('Progress is protected from browser cleanup.');
+      root.innerHTML = '';
+      expect(line(mount({ storage: 'may-be-cleared' }).el)?.textContent).toBe('The browser may clear progress if the site goes unused.');
+      root.innerHTML = '';
+      expect(line(mount({ storage: 'memory' }).el)?.textContent).toBe("Progress and settings won't be saved: browser storage is unavailable.");
+    });
+    it('shows no line while the status is unknown', () => {
+      expect(line(mount().el)).toBeNull();
+    });
+    it('offers Export and Import only when portable', () => {
+      const without = mount();
+      expect(without.el.querySelector('[data-action="export-progress"]')).toBeNull();
+      expect(without.el.querySelector('[data-action="import-progress"]')).toBeNull();
+      expect(without.el.querySelector('input[type="file"]')).toBeNull();
+      root.innerHTML = '';
+      const withIt = mount({ portable: true });
+      expect(withIt.el.querySelector('[data-action="export-progress"]')?.textContent).toBe('Export progress');
+      expect(withIt.el.querySelector('[data-action="import-progress"]')?.textContent).toBe('Import progress');
+      expect(withIt.el.querySelector('input[type="file"]')).not.toBeNull();
+    });
+    it('Export calls its handler', () => {
+      const onExport = vi.fn();
+      const p = mount({ portable: true }, { onExport });
+      p.el.querySelector<HTMLButtonElement>('[data-action="export-progress"]')!.click();
+      expect(onExport).toHaveBeenCalledTimes(1);
+    });
+    it('shows the result it is given, as ok or error (p3-r2)', () => {
+      const ok = mount({ portable: true, transfer: { result: { ok: true, message: 'Imported 2 cards.' } } });
+      expect(ok.el.querySelector<HTMLElement>('[data-slot="transfer-status"]')?.textContent).toBe('Imported 2 cards.');
+      expect(ok.el.querySelector<HTMLElement>('[data-slot="transfer-status"]')?.dataset.state).toBe('ok');
+      root.innerHTML = '';
+      const bad = mount({ portable: true, transfer: { result: { ok: false, message: 'Not imported: bad file' } } });
+      expect(bad.el.querySelector<HTMLElement>('[data-slot="transfer-status"]')?.dataset.state).toBe('error');
+    });
+    it('while a transfer runs it shows the busy text and disables Export and Import (p3-r3)', () => {
+      const onExport = vi.fn();
+      const p = mount({ portable: true, transfer: { busy: 'Importing…' } }, { onExport });
+      expect(p.el.querySelector('[data-slot="transfer-status"]')?.textContent).toBe('Importing…');
+      const ex = p.el.querySelector<HTMLButtonElement>('[data-action="export-progress"]')!;
+      const im = p.el.querySelector<HTMLButtonElement>('[data-action="import-progress"]')!;
+      expect([ex.disabled, im.disabled]).toEqual([true, true]);
+      ex.click();
+      expect(onExport).not.toHaveBeenCalled();
+    });
+    it('choosing a file passes it to Import; choosing the same file again fires again (p3-r6)', () => {
+      const onImport = vi.fn();
+      const p = mount({ portable: true }, { onImport });
+      const input = p.el.querySelector<HTMLInputElement>('input[type="file"]')!;
+      const file = new File(['{}'], 'good.json');
+      // a real input keeps `value` until reset: model it, since jsdom cannot set files from a script
+      let value = '';
+      Object.defineProperty(input, 'value', { get: () => value, set: (v: string) => (value = v), configurable: true });
+      Object.defineProperty(input, 'files', { value: [file], configurable: true });
+      const pick = () => {
+        value = 'C:\\fakepath\\good.json';
+        input.dispatchEvent(new Event('change'));
+      };
+      pick();
+      expect(value).toBe('');
+      pick();
+      expect(onImport).toHaveBeenCalledTimes(2);
+      expect(onImport).toHaveBeenCalledWith(file);
+    });
   });
 
   it('banner shows the storage warning and closes', () => {

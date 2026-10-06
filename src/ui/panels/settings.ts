@@ -1,16 +1,61 @@
 import type { Settings, SettingsPatch } from '../../platform/settings';
 import { NEW_CAP_MAX, NEW_CAP_MIN } from '../../platform/settings';
+import type { TtsVoice } from '../../platform/tts';
 import { button, h, mountPanel, type Panel } from '../dom';
 
 export interface SettingsProps {
   settings: Settings;
   /** Why the TTS toggle is disabled, when it is (no German voice). */
   ttsUnavailable?: string;
+  /** The German voices, best first. */
+  voices?: TtsVoice[];
+  /** Whether progress is protected from browser cleanup; absent until the browser has answered. */
+  storage?: StorageStatus;
+  /** Offer Export and Import: only from the title, where no live World holds a pace that would overwrite an import. */
+  portable?: boolean;
+  /** The transfer in flight or its last result; the app owns it, so a re-render keeps it. */
+  transfer?: TransferState;
 }
+
+export interface TransferState {
+  /** Shown while an import or export runs; the buttons are disabled. */
+  busy?: string;
+  result?: TransferResult;
+}
+
+export type StorageStatus = 'protected' | 'may-be-cleared' | 'memory';
+export const STORAGE_LINES: Record<StorageStatus, string> = {
+  protected: 'Progress is protected from browser cleanup.',
+  'may-be-cleared': 'The browser may clear progress if the site goes unused.',
+  memory: "Progress and settings won't be saved: browser storage is unavailable.",
+};
+
+export interface TransferResult {
+  ok: boolean;
+  message: string;
+}
+
+/** "Name (de-DE)", unless the name already carries its locale or a parenthesised language. */
+export function voiceLabel(v: TtsVoice): string {
+  const carries = v.name.toLowerCase().includes(v.lang.toLowerCase()) || /\)\s*$/.test(v.name);
+  return carries ? v.name : `${v.name} (${v.lang})`;
+}
+
+export const VOICE_SAMPLE = 'Guten Tag! So klingt diese Stimme.';
+export const VOICE_HINT =
+  'For a better voice: on macOS, System Settings › Accessibility › Spoken Content › System voice › Manage Voices…, add a German Premium or Enhanced voice, then reload. ' +
+  'On Windows, Settings › Time & language › Speech › Add voices › Deutsch. ' +
+  'Chrome offers "Google Deutsch"; Edge offers natural "Online" voices.';
 export interface SettingsHandlers {
   /** May return the stored (clamped) settings, which the panel shows. */
   onChange(patch: SettingsPatch): Settings | void;
   onClose(): void;
+  /** Speaks `text` in the selected voice, even when the TTS aid is off. */
+  onTestVoice?(text: string): void;
+  /** Downloads the progress file. */
+  onExport?(): void;
+  /** Reads a progress file the player chose. */
+  onImport?(file: File): void;
 }
 
 export function settingsPanel(root: HTMLElement, props: SettingsProps, handlers: SettingsHandlers): Panel {
@@ -35,6 +80,31 @@ export function settingsPanel(root: HTMLElement, props: SettingsProps, handlers:
     if (stored) shown = stored.newCap;
     cap.value = String(shown);
   });
+  const off = props.ttsUnavailable !== undefined;
+  const pick = h('select', { 'data-setting': 'voice', 'aria-label': 'speech voice', disabled: off });
+  const voices = props.voices ?? [];
+  pick.append(h('option', { value: '' }, 'Automatic (best available)'));
+  for (const v of voices) pick.append(h('option', { value: v.uri }, voiceLabel(v)));
+  pick.value = voices.some((v) => v.uri === s.voice) ? (s.voice as string) : '';
+  pick.addEventListener('change', () => handlers.onChange({ voice: pick.value === '' ? null : pick.value }));
+  const test = button('Test voice', () => handlers.onTestVoice?.(VOICE_SAMPLE), { 'data-action': 'test-voice', disabled: off });
+  const t = props.transfer;
+  const status = h('p', { class: 'muted', 'data-slot': 'transfer-status', 'aria-live': 'polite', 'data-state': t?.busy ? 'busy' : t?.result ? (t.result.ok ? 'ok' : 'error') : undefined }, t?.busy ?? t?.result?.message);
+  const picker = h('input', { type: 'file', accept: '.json,application/json', hidden: true, 'data-testid': 'progress-file', 'aria-label': 'progress file' });
+  picker.addEventListener('change', () => {
+    const file = picker.files?.[0];
+    if (!file) return;
+    handlers.onImport?.(file);
+    picker.value = ''; // the same file can be chosen again
+  });
+  const transfer = props.portable
+    ? h('div', { 'data-slot': 'transfer' },
+        h('div', { 'data-slot': 'transfer-row' },
+          button('Export progress', () => handlers.onExport?.(), { 'data-action': 'export-progress', disabled: t?.busy !== undefined }),
+          button('Import progress', () => picker.click(), { 'data-action': 'import-progress', disabled: t?.busy !== undefined }),
+          picker),
+        status)
+    : undefined;
   return mountPanel(
     root, 'settings', 'Settings',
     h('div', { class: 'stack' },
@@ -44,7 +114,12 @@ export function settingsPanel(root: HTMLElement, props: SettingsProps, handlers:
       toggle('Recap cards', 'aids.recap', s.aids.recap, (v) => ({ aids: { recap: v } })),
       toggle('Sound effects', 'sfx', s.sfx, (v) => ({ sfx: v })),
       toggle('Music', 'music', s.music, (v) => ({ music: v })),
-      h('label', {}, 'New records per day', cap)),
+      h('label', {}, 'New records per day', cap),
+      h('div', { 'data-slot': 'voice-row' }, h('span', {}, 'Voice'), pick, test),
+      off && h('p', { class: 'muted' }, `Voice choice unavailable: ${props.ttsUnavailable}`),
+      h('p', { class: 'muted', 'data-slot': 'voice-hint' }, VOICE_HINT),
+      props.storage && h('p', { class: 'muted', 'data-slot': 'storage-line' }, STORAGE_LINES[props.storage]),
+      transfer),
     h('div', { class: 'stack' }, button('Close', handlers.onClose, { 'data-action': 'close' })),
   );
 }

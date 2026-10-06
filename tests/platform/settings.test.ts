@@ -26,6 +26,7 @@ describe('settings store (R5, R6, R7, R10)', () => {
       sfx: true,
       music: true,
       newCap: 10,
+      voice: null,
     });
     expect(DEFAULT_SETTINGS.newCap).toBe(10);
   });
@@ -71,5 +72,20 @@ describe('settings store (R5, R6, R7, R10)', () => {
     const s = createSettings(storage);
     s.get().aids.chip = false;
     expect(s.get().aids.chip).toBe(true);
+  });
+
+  it('voice defaults to null and merges a string or null, ignoring other types (R8)', () => {
+    const a = createSettings(storage);
+    expect(a.get().voice).toBeNull();
+    a.set({ voice: 'u:anna' });
+    expect(createSettings(storage).get().voice).toBe('u:anna');
+    a.set({ voice: 42 as never });
+    a.set({ voice: undefined });
+    expect(a.get().voice).toBe('u:anna');
+    storage.setItem(SETTINGS_KEY, JSON.stringify({ voice: { x: 1 } }));
+    expect(createSettings(storage).get().voice).toBeNull();
+    a.set({ voice: null });
+    expect(a.get().voice).toBeNull();
+    expect(createSettings(storage).get().voice).toBeNull();
   });
 });

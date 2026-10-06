@@ -1,0 +1,54 @@
+import { describe, expect, it } from 'vitest';
+import { rankGermanVoices } from '../../src/platform/voices';
+
+const v = (name: string, lang = 'de-DE') => ({ name, voiceURI: `uri:${name}`, lang });
+const names = (xs: { name: string }[]) => xs.map((x) => x.name);
+
+describe('rankGermanVoices (R7)', () => {
+  it('drops non-German voices', () => {
+    expect(names(rankGermanVoices([v('Sam', 'en-US'), v('Anna'), v('Thomas', 'fr-FR')]))).toEqual(['Anna']);
+  });
+
+  it('ranks quality markers, then Google Deutsch, then the adult Eloquence voices, then others, then the novelty voices', () => {
+    const all = [v('Eddy'), v('Anna'), v('Yannick'), v('Google Deutsch'), v('Flo'), v('Katja Online (Natural)'), v('Markus Premium'), v('Petra Enhanced'), v('Conrad Neural'), v('Grandma'), v('Reed'), v('Rocko'), v('Sandy'), v('Shelley'), v('Grandpa')];
+    const r = names(rankGermanVoices(all));
+    const at = (n: string) => r.indexOf(n);
+    for (const q of ['Katja Online (Natural)', 'Markus Premium', 'Petra Enhanced', 'Conrad Neural']) expect(at(q)).toBeLessThan(at('Google Deutsch'));
+    for (const e of ['Eddy', 'Flo', 'Reed', 'Sandy', 'Shelley']) {
+      expect(at('Google Deutsch')).toBeLessThan(at(e));
+      expect(at(e)).toBeLessThan(at('Anna'));
+      expect(at(e)).toBeLessThan(at('Yannick'));
+    }
+    for (const n of ['Grandma', 'Grandpa', 'Rocko']) {
+      expect(at('Anna')).toBeLessThan(at(n));
+      expect(at('Yannick')).toBeLessThan(at(n));
+    }
+    expect(r.slice(0, 4).sort()).toEqual(['Conrad Neural', 'Katja Online (Natural)', 'Markus Premium', 'Petra Enhanced']);
+  });
+
+  it('puts de-DE before de-AT and de-CH within a rank, then by name', () => {
+    const r = rankGermanVoices([v('Zed', 'de-CH'), v('Max', 'de-AT'), v('Yves', 'de-DE'), v('Ada', 'de-DE')]);
+    expect(names(r)).toEqual(['Ada', 'Yves', 'Max', 'Zed']);
+  });
+
+  it('ranks Eddy first in the stock macOS set: the compact Anna mangles German (operator, PR #10)', () => {
+    const mac = [v('Eddy (Deutsch (Deutschland))'), v('Flo (Deutsch (Deutschland))'), v('Grandma (Deutsch (Deutschland))'), v('Anna'), v('Reed (Deutsch (Deutschland))'), v('Sandy (Deutsch (Deutschland))'), v('Shelley (Deutsch (Deutschland))'), v('Rocko (Deutsch (Deutschland))'), v('Grandpa (Deutsch (Deutschland))'), v('Alex', 'en-US')];
+    expect(rankGermanVoices(mac)[0].name).toBe('Eddy (Deutsch (Deutschland))');
+    expect(names(rankGermanVoices(mac)).slice(-3).map((n) => n.split(' ')[0]).sort()).toEqual(['Grandma', 'Grandpa', 'Rocko']);
+  });
+
+  it('does not mutate its input', () => {
+    const input = [v('Eddy'), v('Anna')];
+    rankGermanVoices(input);
+    expect(names(input)).toEqual(['Eddy', 'Anna']);
+  });
+
+  it('reads the quality marker from the voiceURI too, so a localized name still ranks first (p2-r3)', () => {
+    const apple = { name: 'Anna (Deutsch)', voiceURI: 'com.apple.voice.premium.de-DE.Anna', lang: 'de-DE' };
+    const enh = { name: 'Zeta (Deutsch)', voiceURI: 'com.apple.voice.enhanced.de-DE.Zeta', lang: 'de-DE' };
+    const plain = { name: 'Aaron', voiceURI: 'com.apple.voice.compact.de-DE.Aaron', lang: 'de-DE' };
+    const r = rankGermanVoices([plain, v('Google Deutsch'), enh, apple]);
+    expect(names(r.slice(0, 2)).sort()).toEqual(['Anna (Deutsch)', 'Zeta (Deutsch)']);
+    expect(names(r).slice(2)).toEqual(['Google Deutsch', 'Aaron']);
+  });
+});

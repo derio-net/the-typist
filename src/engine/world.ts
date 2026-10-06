@@ -1,8 +1,9 @@
 import { displayForm, formsText } from '../schema/display';
 import { RECOGNISED_TAGS, type VocabRecord } from '../schema/record';
 import { charWidths, hullExtent, sizes, type MeasureFont } from '../layout/metrics';
+import { createPace, observe, type Pace } from './pace';
 import {
-  addShip, createTyping, removeShip, setPositions, step, type TypingEvent, type TypingState,
+  addShip, createTyping, removeShip, requiredLength, setPositions, step, type TypingEvent, type TypingState,
 } from './typing';
 
 /** Fixed simulation step: 60 Hz. */
@@ -13,11 +14,13 @@ export const WORLD = {
   height: 640,
   playerY: 590,
   lives: 3,
-  /** Descent speed (px/s) of a short ship on wave 0. */
-  baseSpeed: 20,
-  speedPerWave: 0.2,
-  /** Texts up to this many characters descend at full speed; longer ones slow with the square root of their length. */
-  referenceLength: 12,
+  /** Time budget of a ship is this many times its estimated typing time... */
+  slack: 1.5,
+  /** ...plus this many seconds per ship to read it and retarget (find it, lock on). */
+  readS: 3,
+  /** Descent speed bounds, px/s. */
+  minSpeed: 8,
+  maxSpeed: 140,
   /** Children spawn at least this many seconds of descent above the player line. */
   minReactionS: 3,
   /** Bottom of the HUD (score, wave): ship centres stay below it. */
@@ -27,8 +30,7 @@ export const WORLD = {
   /** Break-up: each child slides sideways at a random speed in this range (px/s)... */
   burstMinVx: 8,
   burstMaxVx: BURST_MAX_VX,
-  /** ...after one shared upward kick (px/s) that decays with this time constant (s). */
-  burstKick: 220,
+  /** ...after one shared upward kick (solved per release) that decays with this time constant (s). */
   kickDecayS: 0.45,
   /** Sideways speed (px/s) of the player ship toward the ship it has locked: as fast as the fastest burst child (`burstMaxVx`). */
   playerDriftVx: BURST_MAX_VX,
@@ -129,6 +131,8 @@ export interface World {
   aids: Aids;
   /** Seeded PRNG state: all randomness in the world comes from here. */
   rng: number;
+  /** The typist's measured rate; sets the speed of every ship that spawns. */
+  pace: Pace;
   /** Records whose mothership has not entered yet, in order. */
   queue: string[];
 }
@@ -149,6 +153,8 @@ export interface WorldOptions {
   minReactionS?: number;
   /** PRNG seed; the same seed gives the same game. */
   seed?: number;
+  /** Starting typing-rate estimate (carried between waves and sessions); a fresh calibration when absent. */
+  pace?: Pace;
 }
 
 /** mulberry32: pure, returns a value in [0, 1) and the next state. */
@@ -160,22 +166,25 @@ function random(state: number): [number, number] {
   return [((t ^ (t >>> 14)) >>> 0) / 4294967296, next];
 }
 
-export function shipSpeed(length: number, wave: number): number {
-  // sqrt: long sentences fall slower, but not so slowly that they stall on screen
-  const factor = Math.sqrt(Math.max(1, length / WORLD.referenceLength));
-  return (WORLD.baseSpeed * (1 + WORLD.speedPerWave * wave)) / factor;
+/**
+ * Descent speed (px/s) that gives a ship `distance` px to cover in `slack` times the time the typist needs for it and
+ * every ship still below it: `chars` lists the required characters of this ship and the ones under it, in order.
+ */
+export function budgetSpeed(distance: number, chars: readonly number[], pace: Pace): number {
+  const budget = WORLD.slack * chars.reduce((a, c) => a + c * pace.spc + WORLD.readS, 0);
+  return Math.min(WORLD.maxSpeed, Math.max(WORLD.minSpeed, distance / budget));
 }
 
 
 function makeShip(
-  m: Measure, id: string, recordId: string, kind: ShipKind, text: string, x: number, y: number, wave: number,
+  m: Measure, id: string, recordId: string, kind: ShipKind, text: string, x: number, y: number,
   extra: Partial<WorldShip> = {},
 ): WorldShip {
   // gloss, chip and translation are printed on the hull itself, so they only widen the box when longer than it
   const ext = hullExtent(kind);
   const rows = [extra.label && m(extra.label, 'gloss'), extra.chip && m(extra.chip, 'chip'), extra.translation && m(extra.translation, 'translation')];
   const w = Math.max(m(text) + 2 * ext.side, ...rows.map((r) => r || 0));
-  return { id, recordId, kind, text, x, y, speed: shipSpeed(text.length, wave), vx: 0, vy: 0, w, above: ext.above, below: ext.below, ...extra };
+  return { id, recordId, kind, text, x, y, speed: 0, vx: 0, vy: 0, w, above: ext.above, below: ext.below, ...extra };
 }
 
 /** A new wave: the first record's mothership enters; the rest wait in the queue (one record on screen at a time). */
@@ -197,6 +206,7 @@ export function createWorld(records: VocabRecord[], opts: WorldOptions = {}): Wo
     playerX: (opts.width ?? WORLD.width) / 2,
     aids: { chip: opts.aids?.chip ?? true, translation: opts.aids?.translation ?? true },
     rng: opts.seed ?? 1,
+    pace: createPace(opts.pace),
     queue: records.map((r) => r.id),
   };
   enterNext(w);
@@ -219,7 +229,7 @@ function enterNext(w: Draft) {
   if (id === undefined) return;
   w.queue = w.queue.slice(1);
   const r = w.records[id].record;
-  const m = makeShip(w.measure, `${r.id}:m`, r.id, 'mothership', displayForm(r), 0, 0, w.wave, {
+  const m = makeShip(w.measure, `${r.id}:m`, r.id, 'mothership', displayForm(r), 0, 0, {
     label: r.gloss.join('; '),
   });
   let u: number;
@@ -227,25 +237,32 @@ function enterNext(w: Draft) {
   const lo = m.w / 2;
   const hi = w.width - m.w / 2;
   // enters with its whole hull below the HUD
-  spawn(w, { ...m, x: lo > hi ? w.width / 2 : lo + u * (hi - lo), y: WORLD.minY + WORLD.entryGap + m.above });
+  const y = WORLD.minY + WORLD.entryGap + m.above;
+  const speed = budgetSpeed(WORLD.playerY - y, [requiredLength(m.text)], w.pace);
+  spawn(w, { ...m, speed, x: lo > hi ? w.width / 2 : lo + u * (hi - lo), y });
 }
 
 function spawnChildren(w: Draft, m: WorldShip) {
   const record = w.records[m.recordId].record;
   const forms = formsText(record);
-  const children: WorldShip[] = [];
-  if (forms !== null) children.push(makeShip(w.measure, `${record.id}:f`, record.id, 'forms', forms, m.x, m.y, w.wave));
-  (record.examples ?? []).forEach((e, k) => {
-    const chip = e.tags.filter((t) => (RECOGNISED_TAGS as readonly string[]).includes(t)).join(', ');
-    children.push(makeShip(w.measure, `${record.id}:e${k}`, record.id, 'escort', e.de, m.x, m.y, w.wave, {
-      ...(w.aids.translation ? { translation: e.en } : {}),
-      ...(w.aids.chip && chip ? { chip } : {}),
-    }));
-  });
+  // Sentences by length, longest first (a stable sort keeps example order on ties), then the forms ship at the bottom.
+  const examples = (record.examples ?? []).map((e, k) => ({ e, k }));
+  const children: WorldShip[] = examples
+    .sort((a, b) => b.e.de.length - a.e.de.length)
+    .map(({ e, k }) => {
+      const chip = e.tags.filter((t) => (RECOGNISED_TAGS as readonly string[]).includes(t)).join(', ');
+      return makeShip(w.measure, `${record.id}:e${k}`, record.id, 'escort', e.de, m.x, m.y, {
+        ...(w.aids.translation ? { translation: e.en } : {}),
+        ...(w.aids.chip && chip ? { chip } : {}),
+      });
+    });
+  if (forms !== null) children.push(makeShip(w.measure, `${record.id}:f`, record.id, 'forms', forms, m.x, m.y));
   if (children.length === 0) return;
   // One shared speed and kick, so the bands move as one and never cross.
-  const speed = Math.min(...children.map((c) => c.speed));
-  const { ys, kick } = placeStack({ rows: children, wreckY: m.y, speed, minReactionS: w.minReactionS });
+  const { ys, kick, speed } = placeStack({
+    rows: children.map((c) => ({ above: c.above, below: c.below, chars: requiredLength(c.text) })),
+    wreckY: m.y, pace: w.pace, minReactionS: w.minReactionS,
+  });
   children.forEach((child, k) => {
     let u: number;
     let side: number;
@@ -256,36 +273,80 @@ function spawnChildren(w: Draft, m: WorldShip) {
   });
 }
 
-export interface StackRow { above: number; below: number }
+export interface StackRow { above: number; below: number; /** Required characters of the ship. */ chars: number }
+
+/** Rise (px) of a ship kicked up at `kick` px/s while descending at `speed`: the maximum over whole `tick()` steps. */
+export function kickApex(kick: number, speed: number): number {
+  const dt = STEP_MS / 1000;
+  const d = Math.exp(-dt / WORLD.kickDecayS);
+  let sum = 0;
+  let pow = 1;
+  let best = 0;
+  for (let n = 1; n < 2000; n++) {
+    pow *= d;
+    sum += pow;
+    if (kick * pow <= speed) break; // the net step is downward from here on
+    best = Math.max(best, kick * dt * sum - speed * n * dt);
+  }
+  return best;
+}
+
+/** The kick (px/s) whose apex rise is `rise` (px), within a micro-pixel and never above it. */
+function solveKick(rise: number, speed: number): number {
+  if (rise <= 0) return 0;
+  let lo = 0;
+  let hi = 1e5;
+  for (let i = 0; i < 80; i++) {
+    const mid = (lo + hi) / 2;
+    if (kickApex(mid, speed) <= rise) lo = mid;
+    else hi = mid;
+  }
+  return lo;
+}
 
 /**
  * Places a released stack of rows (top to bottom) around a destroyed mothership at `wreckY`.
- * Returns each row's centre y and the shared upward kick speed (px/s, >= 0). Rules, in order:
+ * Returns each row's centre y, the upward kick speed (px/s, >= 0) and the shared descent speed. Rules, in order:
  *
  * 1. Spacing: consecutive rows' boxes (`above` + `below` around the centre) are `WORLD.bandGap` apart.
  * 2. Position: the stack is centred on the wreck.
- * 3. HUD: the first row's hull top, at the apex of the full kick (`burstKick * kickDecayS` of travel),
- *    stays at or below `WORLD.minY`; the whole stack shifts down to make it so.
- * 4. Reaction distance: the last row stays `minReactionS` seconds of descent above the player line.
- *    This wins over rule 3: the stack moves up again if needed.
- * 5. Fallback: when 4 undid 3, the kick is reduced (never below 0) so the apex still clears the HUD.
+ * 3. Rise-0 floor: the first row's hull top is at or below `WORLD.minY`, so a wreck right under the HUD
+ *    does not put the stack where no kick could bring it down.
+ * 4. Reaction distance: the last row stays `minReactionS` seconds of descent above the player line. The shared speed
+ *    is capped to meet it; only a stack too tall even at `WORLD.minSpeed` moves up again, and then this wins over 3.
+ * 5. Kick: solved so that the apex of the flight puts the first row's hull top at `WORLD.minY` (never above it);
+ *    it is 0 when the stack already sits at the HUD, or above it after rule 4.
+ *
+ * The shared speed is the minimum, over each row, of `budgetSpeed` from the row's apex position and the rows
+ * below it; the rise is free extra time, so distances are taken at the apex.
  */
 export function placeStack(
-  p: { rows: StackRow[]; wreckY: number; speed: number; minReactionS: number },
-): { ys: number[]; kick: number } {
+  p: { rows: StackRow[]; wreckY: number; pace: Pace; minReactionS: number },
+): { ys: number[]; kick: number; speed: number } {
   const { rows } = p;
-  if (rows.length === 0) return { ys: [], kick: WORLD.burstKick };
+  if (rows.length === 0) return { ys: [], kick: 0, speed: WORLD.minSpeed };
   const first = rows[0];
   const offsets = [0];
   for (let k = 1; k < rows.length; k++) offsets.push(offsets[k - 1] + rows[k - 1].below + WORLD.bandGap + rows[k].above);
   const stack = rows.reduce((a, r) => a + r.above + r.below, 0) + WORLD.bandGap * (rows.length - 1);
-  const rise = WORLD.burstKick * WORLD.kickDecayS;
-  let y = p.wreckY - stack / 2 + first.above;
-  y = Math.max(y, WORLD.minY + first.above + rise);
-  y = Math.min(y, WORLD.playerY - p.speed * p.minReactionS - offsets[offsets.length - 1]);
-  const room = Math.max(0, y - first.above - WORLD.minY);
-  const kick = Math.min(WORLD.burstKick, room / WORLD.kickDecayS);
-  return { ys: offsets.map((o) => y + o), kick };
+  const lastOffset = offsets[offsets.length - 1];
+  const riseFor = (y: number) => Math.max(0, y - first.above - WORLD.minY);
+  const speedAt = (y: number) => {
+    const rise = riseFor(y);
+    return Math.min(...rows.map((_, i) => budgetSpeed(
+      WORLD.playerY - (y + offsets[i] - rise), rows.slice(i).map((r) => r.chars), p.pace,
+    )));
+  };
+  let y = Math.max(p.wreckY - stack / 2 + first.above, WORLD.minY + first.above);
+  // Rule 4 slows the stack before it lifts it: the last row keeps `minReactionS` seconds of descent when the speed
+  // is capped to what the room allows. Only when even the slowest speed leaves too little room (the stack is
+  // genuinely too tall) does the stack move up, above the HUD if need be.
+  let speed = Math.min(speedAt(y), (WORLD.playerY - y - lastOffset) / p.minReactionS);
+  if (speed < WORLD.minSpeed) {
+    y = Math.min(y, WORLD.playerY - WORLD.minSpeed * p.minReactionS - lastOffset);
+    speed = WORLD.minSpeed;
+  }
+  return { ys: offsets.map((o) => y + o), kick: solveKick(riseFor(y), speed), speed };
 }
 
 /** Marks one of the record's ships as done; resolves the record when it was the last. */
@@ -394,6 +455,8 @@ export function typeChar(world: World, char: string): World {
     } else if (ev.type === 'destroyed') {
       const ship = w.ships.find((s) => s.id === ev.shipId)!;
       w.ships = w.ships.filter((s) => s.id !== ev.shipId);
+      // the sample counts before anything this event triggers, so the children's speed already reflects it
+      w.pace = observe(w.pace, ev.expectedChars, ev.destroyedAt - ev.lockAt);
       const accuracy = ev.expectedChars / (ev.expectedChars + ev.typos);
       w.score += Math.round(ev.expectedChars * 10 * accuracy);
       if (ship.kind === 'mothership') spawnChildren(w, ship);

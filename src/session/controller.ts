@@ -1,4 +1,6 @@
+import { createPace } from '../engine/pace';
 import { createWorld, type RecordStats, type World, type WorldEvent, type WorldOptions } from '../engine/world';
+import type { Pace } from '../engine/pace';
 import type { VocabRecord } from '../schema/record';
 import { grade, type Grade } from '../srs/grade';
 import { schedule } from '../srs/scheduler';
@@ -7,7 +9,7 @@ import { localDay, withGrade, type CardStore } from '../srs/store';
 export type SessionMode = 'study' | 'free-play';
 
 /** What the controller needs of the World between waves: the values that carry over. */
-export type WorldState = Pick<World, 'lives' | 'score'>;
+export type WorldState = Pick<World, 'lives' | 'score' | 'pace'>;
 
 export interface Summary {
   mode: SessionMode;
@@ -50,8 +52,10 @@ export interface ControllerOptions {
   store: CardStore;
   listId: string;
   mode: SessionMode;
-  /** Passed to every `createWorld` (a function is evaluated as each wave starts, so width and aids follow the window and settings); `wave`, `lives` and `score` are managed here (`lives` seeds the first wave). */
+  /** Passed to every `createWorld` (a function is evaluated as each wave starts, so width and aids follow the window and settings); `wave`, `lives`, `score` and `pace` are managed here (`lives` and `pace` seed the first wave). */
   worldOptions?: WorldOptions | (() => WorldOptions);
+  /** The typing-rate estimate the session starts from (the saved one); a fresh calibration when absent. */
+  pace?: Pace;
   now: () => Date;
 }
 
@@ -84,7 +88,7 @@ export function createController(opts: ControllerOptions): Controller {
   const worldOptions = (): WorldOptions =>
     (typeof opts.worldOptions === 'function' ? opts.worldOptions() : opts.worldOptions) ?? {};
   const initial = worldOptions();
-  let state: WorldState = { lives: initial.lives ?? 3, score: initial.score ?? 0 };
+  let state: WorldState = { lives: initial.lives ?? 3, score: initial.score ?? 0, pace: opts.pace ?? createPace() };
   let started = false;
   let ended = false;
   let writeErrors = 0;
@@ -146,7 +150,7 @@ export function createController(opts: ControllerOptions): Controller {
   };
 
   const makeWorld = () =>
-    createWorld(opts.waves[wave], { ...worldOptions(), wave, lives: state.lives, score: state.score });
+    createWorld(opts.waves[wave], { ...worldOptions(), wave, lives: state.lives, score: state.score, pace: state.pace });
 
   return {
     start() {
@@ -159,11 +163,11 @@ export function createController(opts: ControllerOptions): Controller {
     },
     onWorldEvents(events, next) {
       if (ended) return;
-      state = { lives: next.lives, score: next.score };
+      state = { lives: next.lives, score: next.score, pace: next.pace };
       for (const e of events) {
         if (e.type === 'resolved') onResolved(e.recordId, e.stats);
         else if (e.type === 'wave-complete') {
-          emit({ type: 'between-wave', wave, weak, more: wave + 1 < opts.waves.length, ...state });
+          emit({ type: 'between-wave', wave, weak, more: wave + 1 < opts.waves.length, lives: state.lives, score: state.score });
         } else if (e.type === 'game-over') {
           finish('game-over');
           return;
@@ -182,7 +186,7 @@ export function createController(opts: ControllerOptions): Controller {
     },
     quit(next) {
       if (ended) return;
-      if (next) state = { lives: next.lives, score: next.score };
+      if (next) state = { lives: next.lives, score: next.score, pace: next.pace };
       finish('quit');
     },
     subscribe(l) {

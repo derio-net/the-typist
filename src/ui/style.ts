@@ -37,6 +37,13 @@ const RULES = `
 .panel .grades b { display: block; font: var(--f-banner); color: var(--c-typed); }
 .panel input[type=number] { width: 5em; font: var(--f-hud); color: var(--c-text); background: var(--c-plate);
   border: 1px solid var(--c-ship-stroke-escort); border-radius: 4px; padding: 4px 6px; }
+.panel select { min-width: 0; max-width: 100%; font: var(--f-hud); color: var(--c-text); background: var(--c-plate);
+  border: 1px solid var(--c-ship-stroke-escort); border-radius: 4px; padding: 4px 6px; }
+.panel [data-slot=voice-row] { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.panel [data-slot=voice-row] select { flex: 1 1 12em; }
+.panel [data-slot=transfer-row] { display: flex; flex-wrap: wrap; gap: 8px; }
+.panel [data-slot=transfer-status][data-state=error] { color: var(--c-typo-flash); opacity: 1; }
+.panel [data-slot=voice-row] button { white-space: nowrap; }
 .panel label { display: flex; gap: 8px; align-items: center; }
 /* Scrolling cue: shadows at the clipped edges (background-attachment: local hides them at the ends), and a visible scrollbar */
 [data-slot=recap] { max-height: 45vh; overflow-y: auto; scrollbar-gutter: stable; padding-bottom: 4px; scrollbar-width: thin; scrollbar-color: var(--c-typed) var(--c-plate);

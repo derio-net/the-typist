@@ -1,0 +1,138 @@
+schema_version: 2
+phase:
+  number: 2
+  title: Speech on attack and a better voice (R6–R8)
+  tag: agentic
+  depends_on:
+  - 1
+  tracking_issue: null
+  acceptance:
+  - speech-on-attack
+  - voice-choice
+  tier: standard
+  files:
+  - src/platform/tts.ts
+  - src/platform/voices.ts
+  - src/platform/settings.ts
+  - src/ui/**
+  - tests/platform/**
+  - tests/ui/**
+  - docs/acceptance/**
+  - CLAUDE.md
+  estimate_lines: 550
+tasks:
+- number: 1
+  title: Speak on lock (R6)
+  steps:
+  - id: P2.T1.S1
+    text: |-
+      RED: in `tests/ui/app.test.ts`: - The first correct keystroke at a ship calls `tts.say` with that ship's text once. - Further keystrokes and its destruction add no calls. - A one-keystroke ship (locked and destroyed in one step) is still spoken. Replace the old tests: lines 477–487 (speech on every destroyed ship), and lines 629–635 (grading before speech) with a test that a throwing `tts.say` on lock does not break the game loop.
+  - id: P2.T1.S2
+    text: |-
+      GREEN: `reactTo` handles `lock` by looking the ship up in `prev` and speaking it; `destroyed` plays sound only.
+- number: 2
+  title: German voice ranking (R7)
+  steps:
+  - id: P2.T2.S1
+    text: |-
+      RED: `tests/platform/voices.test.ts` checks `rankGermanVoices`: - It drops non-German voices. - Order: Premium, Enhanced, Natural, Neural and Online before Google Deutsch, before others (Anna), before the novelty names (Eddy, Flo, Grandma, Grandpa, Reed, Rocko, Sandy, Shelley). - `de-DE` comes before `de-AT`/`de-CH` within a rank, then by name. - The Mac set from the spec ranks Anna first.
+  - id: P2.T2.S2
+    text: |-
+      GREEN: add `src/platform/voices.ts`.
+- number: 3
+  title: TTS voice selection (R7, R8)
+  steps:
+  - id: P2.T3.S1
+    text: |-
+      RED: in `tests/platform/tts.test.ts`: - `voices()` is ranked. - The default is the top voice. - `setVoice(uri)` selects it, and an unknown uri or null falls back to the top voice. - `preview` speaks while disabled. - A late `voiceschanged` that adds `Google Deutsch` or a Premium voice re-ranks, moves the automatic choice and fires `onChange`, even when a German voice was present from the start.
+  - id: P2.T3.S2
+    text: |-
+      GREEN: widen `SynthLike` to `{ name, voiceURI, lang }`, always subscribe to `voiceschanged`, and add `voices()`, `setVoice` and `preview`.
+- number: 4
+  title: Saved voice applied (R8)
+  steps:
+  - id: P2.T4.S1
+    text: |-
+      RED: - `settings.test.ts`: `voice` defaults to null; the merge accepts a string or null and ignores other types. - `app.test.ts`: the saved voice is applied via `tts.setVoice` at startup and after a settings change.
+  - id: P2.T4.S2
+    text: |-
+      GREEN: add `voice: string | null` to Settings, and wire `setVoice` in `app.ts`.
+- number: 5
+  title: Settings voice picker, Test and hint (R8)
+  steps:
+  - id: P2.T5.S1
+    text: |-
+      RED: in `tests/ui/panels.test.ts`: - `<select data-setting="voice">` lists 'Automatic (best available)' first, then the ranked voices, with the saved one selected. - Changing it calls `onChange({ voice })`. - `data-action="test-voice"` calls a preview handler with the sample sentence. - The hint text names macOS, Windows and Chrome/Edge. - With `ttsUnavailable` set, the select and Test are disabled and the reason is shown. - The panel refreshes when the voice list changes (an open panel re-renders on `tts.onChange`).
+  - id: P2.T5.S2
+    text: |-
+      GREEN: extend `settingsPanel` props and handlers (`voices`, `onTestVoice`), and wire them in `app.ts`.
+- number: 6
+  title: Visual check and acceptance
+  steps:
+  - id: P2.T6.S1
+    text: |-
+      Capture the Settings panel states named by row `voice-choice`'s `visual`, with `--mute-audio` and a stubbed `speechSynthesis` that returns a fixed voice set, plus an empty set for the no-voice state. Open each screenshot and check it.
+  - id: P2.T6.S2
+    text: |-
+      Update the matrix: - `speech-on-attack` and `voice-choice` get unit levels and status `skipped`. - `learning-aids` and `degraded-states` get notes, and `learning-aids` the origins of this spec's R6–R8, since its TTS trigger and voice choice changed. Regenerate the reports, run `fr acceptance check`, and update the TTS line in `CLAUDE.md`.
+  - id: P2.T6.S3
+    text: |-
+      Run the full suite `npm test` and `npm run build` after the last code commit. Both must be green.
+state:
+  steps:
+    P2.T1.S1:
+      state: x
+      ticked_at: '2026-10-06T17:08:31+00:00'
+      note: null
+    P2.T1.S2:
+      state: x
+      ticked_at: '2026-10-06T17:08:31+00:00'
+      note: null
+    P2.T2.S1:
+      state: x
+      ticked_at: '2026-10-06T17:08:31+00:00'
+      note: null
+    P2.T2.S2:
+      state: x
+      ticked_at: '2026-10-06T17:08:31+00:00'
+      note: null
+    P2.T3.S1:
+      state: x
+      ticked_at: '2026-10-06T17:08:31+00:00'
+      note: null
+    P2.T3.S2:
+      state: x
+      ticked_at: '2026-10-06T17:08:31+00:00'
+      note: null
+    P2.T4.S1:
+      state: x
+      ticked_at: '2026-10-06T17:08:31+00:00'
+      note: null
+    P2.T4.S2:
+      state: x
+      ticked_at: '2026-10-06T17:08:31+00:00'
+      note: null
+    P2.T5.S1:
+      state: x
+      ticked_at: '2026-10-06T17:08:31+00:00'
+      note: null
+    P2.T5.S2:
+      state: x
+      ticked_at: '2026-10-06T17:08:31+00:00'
+      note: null
+    P2.T6.S1:
+      state: x
+      ticked_at: '2026-10-06T17:08:31+00:00'
+      note: null
+    P2.T6.S2:
+      state: x
+      ticked_at: '2026-10-06T17:08:31+00:00'
+      note: null
+    P2.T6.S3:
+      state: x
+      ticked_at: '2026-10-06T17:08:31+00:00'
+      note: null
+  completion:
+    at: '2026-10-06T17:08:31+00:00'
+    note: null
+    observed_prs: []
