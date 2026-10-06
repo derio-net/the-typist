@@ -202,3 +202,6 @@ Restored the full text of ux-pass-is-issue-2, issues-in-scope and design-default
 
 <!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-06-vocab-typer-plan2-p3 created=2026-10-06T03:47:28+00:00 -->
 ### phase-split-2026-10-06-vocab-typer-plan2-p3 · decision · ask: the learning loop core (R1-R4) is pure TS reviewable on its own
+
+<!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-06-vocab-typer-plan2-p4 created=2026-10-06T03:47:31+00:00 -->
+### phase-split-2026-10-06-vocab-typer-plan2-p4 · decision · ask: screens, list loading and degraded states (R5, R8, R10)
