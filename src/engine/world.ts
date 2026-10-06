@@ -312,8 +312,8 @@ function solveKick(rise: number, speed: number): number {
  * 2. Position: the stack is centred on the wreck.
  * 3. Rise-0 floor: the first row's hull top is at or below `WORLD.minY`, so a wreck right under the HUD
  *    does not put the stack where no kick could bring it down.
- * 4. Reaction distance: the last row stays `minReactionS` seconds of descent above the player line.
- *    This wins over rule 3: the stack moves up again if needed.
+ * 4. Reaction distance: the last row stays `minReactionS` seconds of descent above the player line. The shared speed
+ *    is capped to meet it; only a stack too tall even at `WORLD.minSpeed` moves up again, and then this wins over 3.
  * 5. Kick: solved so that the apex of the flight puts the first row's hull top at `WORLD.minY` (never above it);
  *    it is 0 when the stack already sits at the HUD, or above it after rule 4.
  *
@@ -338,13 +338,14 @@ export function placeStack(
     )));
   };
   let y = Math.max(p.wreckY - stack / 2 + first.above, WORLD.minY + first.above);
-  // the speed depends on where the stack sits and the reaction distance on the speed: iterate to the fixed point
-  for (let i = 0; i < 40; i++) {
-    const bound = WORLD.playerY - speedAt(y) * p.minReactionS - lastOffset;
-    if (y <= bound) break;
-    y = bound;
+  // Rule 4 slows the stack before it lifts it: the last row keeps `minReactionS` seconds of descent when the speed
+  // is capped to what the room allows. Only when even the slowest speed leaves too little room (the stack is
+  // genuinely too tall) does the stack move up, above the HUD if need be.
+  let speed = Math.min(speedAt(y), (WORLD.playerY - y - lastOffset) / p.minReactionS);
+  if (speed < WORLD.minSpeed) {
+    y = Math.min(y, WORLD.playerY - WORLD.minSpeed * p.minReactionS - lastOffset);
+    speed = WORLD.minSpeed;
   }
-  const speed = speedAt(y);
   return { ys: offsets.map((o) => y + o), kick: solveKick(riseFor(y), speed), speed };
 }
 

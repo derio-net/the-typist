@@ -549,6 +549,21 @@ describe('placeStack', () => {
     expect(placeStack({ ...base, minReactionS: 1000 }).kick).toBe(0);
   });
 
+  it.each([450, WORLD.minY + WORLD.entryGap + 20])('a light stack at a very fast pace spawns below the HUD and peaks at it (p1-r3, wreck %i)', (wreckY) => {
+    const light = [{ above: 18, below: 18, chars: 12 }, { above: 18, below: 18, chars: 9 }, { above: 18, below: 18, chars: 6 }];
+    for (const spc of [0.05, 0.06, 0.08]) {
+      const fast = { spc, chars: 200 };
+      const { ys, kick, speed } = placeStack({ rows: light, wreckY, pace: fast, minReactionS: 3 });
+      expect(ys[0] - 18).toBeGreaterThanOrEqual(WORLD.minY - 1e-6);
+      expect(ys[2] + speed * 3).toBeLessThanOrEqual(WORLD.playerY + 1e-6); // the reaction distance still holds
+      if (kick > 0) {
+        const top = ys[0] - 18 - kickApex(kick, speed);
+        expect(top).toBeGreaterThanOrEqual(WORLD.minY - 1e-6);
+        expect(top).toBeLessThanOrEqual(WORLD.minY + 4);
+      }
+    }
+  });
+
   it('takes the speed from the apex distances, bottom-up', () => {
     const { ys, kick, speed } = placeStack(base);
     const rise = kickApex(kick, speed);
