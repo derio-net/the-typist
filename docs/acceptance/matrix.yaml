@@ -1,6 +1,6 @@
 # Acceptance matrix — the registry of business-level acceptance tests and
-# where each is verified. Rendered by `fr acceptance report`; no CI is configured,
-# so `fr acceptance check` runs locally and no row is `ci`.
+# where each is verified. Rendered by `fr acceptance report`; the suite runs in the Pages workflow on
+# pushes to main (not on PRs), so no row is `ci`.
 #
 # Row schema:
 #   id:         kebab-case, stable
@@ -46,9 +46,8 @@ rows:
       - the-typist:tests/schema/strictness.test.ts
       - the-typist:tests/tools/validate.test.ts
     status: skipped
-    notes: Built in plan 1 (phases 1, 5); unit tests run locally via npm test, no CI
-      configured. Build-time half of R11 (vite plugin) covered; runtime file-picker
-      half is plan 2.
+    notes: Built in plan 1 (phases 1, 5); unit tests run locally via npm test, The suite runs in the Pages workflow on pushes to main, not on PRs. Build-time half of R11 (vite plugin) covered; runtime file-picker
+      half is the list-loading row.
   - id: list-loading
     capability: Lists
     acceptance: Repo lists are validated at build and playable on the hosted site, and
@@ -102,7 +101,7 @@ rows:
       - the-typist:tests/engine/world.test.ts
     status: skipped
     notes: Built in plan 1 phase 3 (+ operator-directed motion and sprites); World tests
-      run locally; visual states captured headlessly in phase 3 review. No CI configured.
+      run locally; visual states captured headlessly in phase 3 review. The suite runs in the Pages workflow on pushes to main, not on PRs.
     visual:
       states:
       - mothership-with-gloss
@@ -259,8 +258,10 @@ rows:
       ui:
       - the-typist:tests/e2e/smoke.spec.ts
     status: skipped
-    notes: Verified by vitest unit tests and the Playwright smoke; the suite runs in
-      the Pages workflow on main, not on PRs, so the row is not ci.
+    notes: Verified by vitest unit tests (grading, scheduler, store, wave building,
+      controller) and the Playwright smoke (free play to summary, cards persisted).
+      The suite runs in the Pages workflow on pushes to main, not on PRs, so the row
+      is not ci.
   - id: learning-aids
     capability: Learning
     acceptance: Grammar chips, sentence translations, German TTS and post-wave recap
@@ -299,7 +300,7 @@ rows:
       - the-typist:tests/tools/parse-lines.test.ts
     status: skipped
     notes: Built in plan 1 phase 2; parser tests run locally; skill exercised on the
-      full seed in phase 5. No CI configured.
+      full seed in phase 5. The suite runs in the Pages workflow on pushes to main, not on PRs.
   - id: enrich-skill
     capability: Authoring
     acceptance: The enrich skill turns raw Records into enriched ones that pass validation,
@@ -311,7 +312,7 @@ rows:
       - the-typist:tests/tools/organise.test.ts
     status: skipped
     notes: Built in plan 1 phase 4; organise helper tests run locally; skill exercised
-      on all 968 seed records in phases 5-6. No CI configured.
+      on all 968 seed records in phases 5-6. The suite runs in the Pages workflow on pushes to main, not on PRs.
   - id: seed-list
     capability: Content
     acceptance: The game ships a validated, fully enriched list of the 1000 German B2
@@ -323,4 +324,4 @@ rows:
       - the-typist:tests/seed.test.ts
     status: skipped
     notes: 'lists/de-b2-1000.yaml: 968 enriched records covering all 1000 source lines
-      in 20 categories; seed test runs locally. No CI configured.'
+      in 20 categories; seed test runs locally. The suite runs in the Pages workflow on pushes to main, not on PRs.'
