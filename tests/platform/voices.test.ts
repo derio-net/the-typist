@@ -9,13 +9,20 @@ describe('rankGermanVoices (R7)', () => {
     expect(names(rankGermanVoices([v('Sam', 'en-US'), v('Anna'), v('Thomas', 'fr-FR')]))).toEqual(['Anna']);
   });
 
-  it('ranks quality markers, then Google Deutsch, then others, then novelty voices', () => {
+  it('ranks quality markers, then Google Deutsch, then the adult Eloquence voices, then others, then the novelty voices', () => {
     const all = [v('Eddy'), v('Anna'), v('Yannick'), v('Google Deutsch'), v('Flo'), v('Katja Online (Natural)'), v('Markus Premium'), v('Petra Enhanced'), v('Conrad Neural'), v('Grandma'), v('Reed'), v('Rocko'), v('Sandy'), v('Shelley'), v('Grandpa')];
     const r = names(rankGermanVoices(all));
     const at = (n: string) => r.indexOf(n);
     for (const q of ['Katja Online (Natural)', 'Markus Premium', 'Petra Enhanced', 'Conrad Neural']) expect(at(q)).toBeLessThan(at('Google Deutsch'));
-    expect(at('Google Deutsch')).toBeLessThan(at('Anna'));
-    for (const n of ['Eddy', 'Flo', 'Grandma', 'Grandpa', 'Reed', 'Rocko', 'Sandy', 'Shelley']) expect(at('Yannick')).toBeLessThan(at(n));
+    for (const e of ['Eddy', 'Flo', 'Reed', 'Sandy', 'Shelley']) {
+      expect(at('Google Deutsch')).toBeLessThan(at(e));
+      expect(at(e)).toBeLessThan(at('Anna'));
+      expect(at(e)).toBeLessThan(at('Yannick'));
+    }
+    for (const n of ['Grandma', 'Grandpa', 'Rocko']) {
+      expect(at('Anna')).toBeLessThan(at(n));
+      expect(at('Yannick')).toBeLessThan(at(n));
+    }
     expect(r.slice(0, 4).sort()).toEqual(['Conrad Neural', 'Katja Online (Natural)', 'Markus Premium', 'Petra Enhanced']);
   });
 
@@ -24,9 +31,10 @@ describe('rankGermanVoices (R7)', () => {
     expect(names(r)).toEqual(['Ada', 'Yves', 'Max', 'Zed']);
   });
 
-  it('ranks Anna first in the macOS set', () => {
+  it('ranks Eddy first in the stock macOS set: the compact Anna mangles German (operator, PR #10)', () => {
     const mac = [v('Eddy (Deutsch (Deutschland))'), v('Flo (Deutsch (Deutschland))'), v('Grandma (Deutsch (Deutschland))'), v('Anna'), v('Reed (Deutsch (Deutschland))'), v('Sandy (Deutsch (Deutschland))'), v('Shelley (Deutsch (Deutschland))'), v('Rocko (Deutsch (Deutschland))'), v('Grandpa (Deutsch (Deutschland))'), v('Alex', 'en-US')];
-    expect(rankGermanVoices(mac)[0].name).toBe('Anna');
+    expect(rankGermanVoices(mac)[0].name).toBe('Eddy (Deutsch (Deutschland))');
+    expect(names(rankGermanVoices(mac)).slice(-3).map((n) => n.split(' ')[0]).sort()).toEqual(['Grandma', 'Grandpa', 'Rocko']);
   });
 
   it('does not mutate its input', () => {
