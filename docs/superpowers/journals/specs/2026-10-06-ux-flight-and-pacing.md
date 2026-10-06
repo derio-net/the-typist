@@ -144,3 +144,8 @@ The E2E clears the cards and meta stores in a readwrite transaction and imports 
 ### sr-10-resolved · finding [fixed] · resolves sr-10: The supersession note omits plan 1's parts and the matrix rows to update
 
 The Goal lists the superseded plan-1 and plan-2 parts and the matrix rows to update; a post-merge row covers the Test Plan.
+
+<!-- fr:journal kind=decision scope=spec id=phase-split-2026-10-06-ux-flight-and-pacing-p2 created=2026-10-06T16:30:50+00:00 -->
+### phase-split-2026-10-06-ux-flight-and-pacing-p2 · decision · ask: speech on attack and a better voice (R6–R8) is its own ask, reviewable apart from the engine
+
+Operator asked separately for TTS timing and about the voice.
