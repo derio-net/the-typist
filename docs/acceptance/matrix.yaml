@@ -122,10 +122,13 @@ rows:
       unit:
       - the-typist:tests/engine/typing.test.ts
       - the-typist:tests/platform/keyboard.test.ts
+      ui:
+      - the-typist:tests/e2e/smoke.spec.ts
     status: skipped
-    notes: Built in plan 1 phase 3; engine and keyboard (jsdom composition) tests run
-      locally; real dead-key composition verified via CDP IME in headless Chrome. No
-      CI configured.
+    notes: Built in plan 1 phase 3; engine and keyboard (jsdom composition) unit tests,
+      plus the Playwright smoke (typing with the oe fallback and typos); real dead-key
+      composition verified via CDP IME in headless Chrome. The suite runs in the Pages
+      workflow on pushes to main, not on PRs, so the row is not ci.
   - id: degraded-states
     capability: Gameplay
     acceptance: The game stays playable when nothing is due, when browser storage is
