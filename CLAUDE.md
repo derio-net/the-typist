@@ -39,7 +39,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **`src/platform/`:**
   - `keyboard.ts`: a hidden input with IME composition handling, so macOS dead keys work.
   - `settings.ts`: aid, audio and recap toggles, persisted in localStorage.
-  - `tts.ts`: German speech synthesis, with a degraded state when no voice exists.
+  - `tts.ts`: German speech synthesis, spoken when a ship is locked, with a ranked voice list (`voices.ts`), a saved voice choice and a degraded state when no voice exists.
   - `audio.ts`: sound effects and looping music.
 - **`src/render/` also holds** `canvas-size.ts` (sharp, narrow-window-safe playfield sizing), `feedback.ts` (typo flash, pending digraph prefix, muzzle effects) and `stars.ts` (the backdrop).
 - **`src/layout/`:** playfield metrics and the sprite atlas.
