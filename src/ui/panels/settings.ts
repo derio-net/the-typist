@@ -11,6 +11,12 @@ export interface SettingsProps {
   voices?: TtsVoice[];
 }
 
+/** "Name (de-DE)", unless the name already carries its locale or a parenthesised language. */
+export function voiceLabel(v: TtsVoice): string {
+  const carries = v.name.toLowerCase().includes(v.lang.toLowerCase()) || /\)\s*$/.test(v.name);
+  return carries ? v.name : `${v.name} (${v.lang})`;
+}
+
 export const VOICE_SAMPLE = 'Guten Tag! So klingt diese Stimme.';
 export const VOICE_HINT =
   'For a better voice: on macOS, System Settings › Accessibility › Spoken Content › System voice › Manage Voices…, add a German Premium or Enhanced voice, then reload. ' +
@@ -50,7 +56,7 @@ export function settingsPanel(root: HTMLElement, props: SettingsProps, handlers:
   const pick = h('select', { 'data-setting': 'voice', 'aria-label': 'speech voice', disabled: off });
   const voices = props.voices ?? [];
   pick.append(h('option', { value: '' }, 'Automatic (best available)'));
-  for (const v of voices) pick.append(h('option', { value: v.uri }, `${v.name} (${v.lang})`));
+  for (const v of voices) pick.append(h('option', { value: v.uri }, voiceLabel(v)));
   pick.value = voices.some((v) => v.uri === s.voice) ? (s.voice as string) : '';
   pick.addEventListener('change', () => handlers.onChange({ voice: pick.value === '' ? null : pick.value }));
   const test = button('Test voice', () => handlers.onTestVoice?.(VOICE_SAMPLE), { 'data-action': 'test-voice', disabled: off });
@@ -64,7 +70,7 @@ export function settingsPanel(root: HTMLElement, props: SettingsProps, handlers:
       toggle('Sound effects', 'sfx', s.sfx, (v) => ({ sfx: v })),
       toggle('Music', 'music', s.music, (v) => ({ music: v })),
       h('label', {}, 'New records per day', cap),
-      h('label', {}, 'Voice ', pick, ' ', test),
+      h('div', { 'data-slot': 'voice-row' }, h('span', {}, 'Voice'), pick, test),
       off && h('p', { class: 'muted' }, `Voice choice unavailable: ${props.ttsUnavailable}`),
       h('p', { class: 'muted', 'data-slot': 'voice-hint' }, VOICE_HINT)),
     h('div', { class: 'stack' }, button('Close', handlers.onClose, { 'data-action': 'close' })),

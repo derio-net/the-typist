@@ -7,6 +7,7 @@ import type { Summary } from '../../src/session/controller';
 import {
   bannerPanel, betweenWavePanel, categoryPanel, loadErrorsPanel, modePanel, pausePanel, settingsPanel, summaryPanel, titlePanel,
 } from '../../src/ui/panels';
+import { voiceLabel } from '../../src/ui/panels/settings';
 import { injectStyle, themeVariables } from '../../src/ui/style';
 import { palette } from '../../src/render/theme';
 
@@ -223,6 +224,20 @@ describe('panels (R5, R8, R10)', () => {
   it('a saved voice that is gone shows Automatic (R8)', () => {
     const p = settingsPanel(root, { settings: { ...DEFAULT_SETTINGS, voice: 'u:gone' }, voices: [{ uri: 'u:a', name: 'Anna', lang: 'de-DE' }] }, { onChange: vi.fn(), onClose: vi.fn(), onTestVoice: vi.fn() });
     expect(p.el.querySelector<HTMLSelectElement>('[data-setting="voice"]')!.value).toBe('');
+  });
+
+  it('voice labels drop the locale suffix when the name already carries it (p2-r1)', () => {
+    expect(voiceLabel({ uri: 'u', name: 'Anna', lang: 'de-DE' })).toBe('Anna (de-DE)');
+    expect(voiceLabel({ uri: 'u', name: 'Eddy (Deutsch (Deutschland))', lang: 'de-DE' })).toBe('Eddy (Deutsch (Deutschland))');
+    expect(voiceLabel({ uri: 'u', name: 'Microsoft Katja Online (Natural) - German (Germany)', lang: 'de-DE' })).toBe('Microsoft Katja Online (Natural) - German (Germany)');
+    expect(voiceLabel({ uri: 'u', name: 'Google Deutsch de-DE', lang: 'de-DE' })).toBe('Google Deutsch de-DE');
+  });
+
+  it('the voice select is styled and may shrink, and the row wraps (p2-r1)', () => {
+    injectStyle(document);
+    const css = document.getElementById('typist-style')!.textContent!;
+    expect(css).toMatch(/\.panel select[^}]*min-width: 0[^}]*max-width: 100%/);
+    expect(css).toMatch(/\[data-slot=voice-row\][^}]*flex-wrap: wrap/);
   });
 
   it('the Test button hands the sample sentence to the preview handler (R8)', () => {
