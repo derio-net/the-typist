@@ -187,10 +187,11 @@ rows:
   - id: game-audio
     capability: Gameplay
     acceptance: Play has sound effects for hits, typos, explosions, escapes, cleared
-      waves and entering motherships, plus looping music when a track is supplied, each
-      switchable and remembered.
+      waves and entering motherships, plus a bundled looping music track (CC0, credited),
+      each switchable and remembered.
     origin:
     - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R7
+    - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md
     levels:
       unit:
       - the-typist:tests/platform/audio.test.ts
@@ -291,7 +292,7 @@ rows:
   - id: live-session-check
     capability: Gameplay
     acceptance: On the published site, a played session shows the new stack flight and
-      order, speech on attack, typing-matched speed, a non-novelty voice, and progress
+      order, speech on attack, typing-matched speed, a non-character voice, and progress
       and pace surviving a reload and moving between browsers by export and import.
     origin:
     - the-typist:docs/superpowers/specs/2026-10-06-ux-flight-and-pacing-design.md#R1
