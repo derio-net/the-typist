@@ -315,3 +315,8 @@ ab932fa: the e2e asserts Date instances and counter values in IndexedDB after th
 ### operator-feedback-pr10 · discovery · Operator play-test of PR #10: motherships too fast, no music, compact Anna mangles German (phase 3)
 
 Operator chose: 3 s reading time per ship; the CC0 'Space Shooter (Loop)' track by Alex McCulloch; Eddy tolerable, so the adult Eloquence voices rank above Anna. Commits 5649813, fbec3b7, 241c893, 56e7ad6, plus a tts fixture fix.
+
+<!-- fr:journal kind=review scope=plan id=p3-review-2 created=2026-10-06T18:59:15+00:00 phase=3 -->
+### p3-review-2 · review · Follow-up review of the operator-feedback commits (5649813^..56e7ad6): 4 minor findings (phase 3)
+
+An independent general-purpose reviewer on opus. All three changes are correct and pinned: the mutations readS back to 0.6, the Eloquence/other rank swap and the missing mp3 each fail tests. It checked the pace tables, the music file (82 s, 128 kbps, no edge silence, served and looped by audio.ts), the silent e2e, and the ranking on Windows, Android and iOS. Findings: p3-r9 (in); p3-r8, p3-r10 and p3-r11 (out).
