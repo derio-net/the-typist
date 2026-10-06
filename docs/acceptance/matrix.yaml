@@ -207,8 +207,9 @@ rows:
       - the-typist:tests/render/renderer.test.ts
       - the-typist:tests/render/stars.test.ts
       - the-typist:tests/engine/world.test.ts
-    status: not-implemented
-    notes: ''
+    status: skipped
+    notes: Verified by vitest unit tests and the Playwright smoke; the suite runs in
+      the Pages workflow on main, not on PRs, so the row is not ci.
     visual:
       states:
       - bullets-leave-front-guns
