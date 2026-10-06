@@ -2,6 +2,7 @@ import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 import { createEmptyCard } from 'ts-fsrs';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { parseProgress, serializeProgress } from '../../src/srs/portable';
 import { createIdbStore, createMemoryStore, localDay, openStores, withGrade, type CardStore, type StoredCard } from '../../src/srs/store';
 
 const now = new Date('2026-10-06T10:00:00Z');
@@ -153,6 +154,22 @@ describe.each(impls)('CardStore contract: %s', (_n, make) => {
       expect(await s.get('L', 'a')).toEqual(local);
       expect(await s.get('L', 'new1')).toBeUndefined();
       expect(await s.newCount('L', 'd1')).toBe(1);
+    });
+
+    it('a file with duplicate entries imports identically in every store (p3-r4)', async () => {
+      const s = make();
+      const e = (seen: number, reviewed: string) => ({ listId: 'L', recordId: 'a', stored: graded(reviewed, seen) });
+      const text = JSON.stringify({
+        ...JSON.parse(serializeProgress({ cards: [], newCounts: [] }, now)),
+        cards: [e(1, '2026-10-01T00:00:00.000Z'), e(2, '2026-10-03T00:00:00.000Z'), e(3, '2026-10-02T00:00:00.000Z')].map((c) =>
+          JSON.parse(serializeProgress({ cards: [c], newCounts: [] }, now)).cards[0]),
+        newCounts: [{ listId: 'L', day: 'd', count: 2 }, { listId: 'L', day: 'd', count: 4 }],
+      });
+      const parsed = parseProgress(text, now);
+      if (!parsed.ok) throw new Error(parsed.reason);
+      expect(await s.importAll(parsed.data)).toEqual({ imported: 1, replaced: 0 });
+      expect((await s.get('L', 'a'))?.seen).toBe(2);
+      expect(await s.newCount('L', 'd')).toBe(4);
     });
 
     it('export then import into another store reproduces the cards', async () => {

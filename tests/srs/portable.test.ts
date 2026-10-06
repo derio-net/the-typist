@@ -27,7 +27,7 @@ describe('serialize / parse', () => {
     expect(f.pace).toEqual({ spc: 0.5, chars: 80 });
   });
   it('round-trips, reviving the dates', () => {
-    const res = parseProgress(serializeProgress(data(), at));
+    const res = parseProgress(serializeProgress(data(), at), at);
     expect(res.ok).toBe(true);
     if (!res.ok) return;
     expect(res.data).toEqual(data());
@@ -37,19 +37,19 @@ describe('serialize / parse', () => {
   it('keeps a card with no last_review', () => {
     const d = data();
     d.cards[0].stored = card();
-    const res = parseProgress(serializeProgress(d, at));
+    const res = parseProgress(serializeProgress(d, at), at);
     expect(res.ok && res.data.cards[0].stored.card.last_review).toBeUndefined();
   });
   it('pace is optional', () => {
     const d = data();
     delete d.pace;
-    const res = parseProgress(serializeProgress(d, at));
+    const res = parseProgress(serializeProgress(d, at), at);
     expect(res.ok && res.data.pace).toBeUndefined();
   });
   const bad = (mut: (f: any) => void) => {
     const f = JSON.parse(serializeProgress(data(), at));
     mut(f);
-    return parseProgress(JSON.stringify(f));
+    return parseProgress(JSON.stringify(f), at);
   };
   it.each([
     ['not JSON', () => parseProgress('{nope'), /JSON/],
@@ -59,11 +59,59 @@ describe('serialize / parse', () => {
     ['bad date', () => bad((f) => (f.cards[0].stored.card.due = 'yesterday')), /date/i],
     ['bad count', () => bad((f) => (f.newCounts[0].count = -1)), /newCounts/],
     ['unknown key', () => bad((f) => (f.extra = 1)), /extra|unrecognized/i],
+    ['negative stability', () => bad((f) => (f.cards[0].stored.card.stability = -5)), /stability/],
+    ['negative difficulty', () => bad((f) => (f.cards[0].stored.card.difficulty = -1)), /difficulty/],
+    ['fractional reps', () => bad((f) => (f.cards[0].stored.card.reps = 1.5)), /reps/],
+    ['negative lapses', () => bad((f) => (f.cards[0].stored.card.lapses = -1)), /lapses/],
+    ['state out of range', () => bad((f) => (f.cards[0].stored.card.state = 9)), /state/],
+    ['a last_review in the future', () => bad((f) => (f.cards[0].stored.card.last_review = '2027-02-01T00:00:00.000Z')), /last_review|future/],
+    ['an exportedAt in the future', () => bad((f) => (f.exportedAt = '2027-02-01T00:00:00.000Z')), /exportedAt|future/],
+    ['an extra key on a card', () => bad((f) => (f.cards[0].stored.card.extra = 1)), /extra|unrecognized/i],
+    ['an extra key on stored', () => bad((f) => (f.cards[0].stored.extra = 1)), /extra|unrecognized/i],
     ['bad pace', () => bad((f) => (f.pace = { spc: 0, chars: 1 })), /pace/],
   ])('rejects %s with a readable reason', (_n, run, reason) => {
     const res = run();
     expect(res.ok).toBe(false);
     if (!res.ok) expect(res.reason).toMatch(reason);
+  });
+});
+
+describe('parse: real data and tolerance', () => {
+  it('accepts a never-graded empty card (stability 0, difficulty 0, state New)', () => {
+    const d = data();
+    d.cards[0].stored = card();
+    expect(parseProgress(serializeProgress(d, at), at).ok).toBe(true);
+  });
+  it('accepts a last_review up to a day after exportedAt (clock skew)', () => {
+    const d = data();
+    d.cards[0].stored = card('2026-10-07T09:00:00Z');
+    expect(parseProgress(serializeProgress(d, at), at).ok).toBe(true);
+  });
+});
+
+describe('parse: duplicates (p3-r4)', () => {
+  const file = (cards: unknown[], newCounts: unknown[]) =>
+    JSON.stringify({ ...JSON.parse(serializeProgress(data(), at)), cards, newCounts });
+  const entry = (listId: string, recordId: string, seen: number, reviewed?: string) => {
+    const e = JSON.parse(serializeProgress({ cards: [{ listId, recordId, stored: card(reviewed, seen) }], newCounts: [] }, at)).cards[0];
+    return e;
+  };
+  it('keeps the latest last_review per card, ties keeping the first', () => {
+    const res = parseProgress(
+      file([entry('L', 'a', 1, '2026-10-01T00:00:00Z'), entry('L', 'a', 2, '2026-10-03T00:00:00Z'), entry('L', 'a', 3, '2026-10-02T00:00:00Z'),
+        entry('L', 'b', 4, '2026-10-01T00:00:00Z'), entry('L', 'b', 5, '2026-10-01T00:00:00Z'), entry('L', 'c', 6), entry('L', 'c', 7, '2026-10-01T00:00:00Z')], []),
+      at,
+    );
+    expect(res.ok).toBe(true);
+    if (!res.ok) return;
+    expect(res.data.cards.map((c) => [c.recordId, c.stored.seen])).toEqual([['a', 2], ['b', 4], ['c', 7]]);
+  });
+  it('takes the max count per list and day', () => {
+    const res = parseProgress(
+      file([], [{ listId: 'L', day: 'd', count: 2 }, { listId: 'L', day: 'd', count: 5 }, { listId: 'L', day: 'd', count: 3 }, { listId: 'M', day: 'd', count: 1 }]),
+      at,
+    );
+    expect(res.ok && res.data.newCounts).toEqual([{ listId: 'L', day: 'd', count: 5 }, { listId: 'M', day: 'd', count: 1 }]);
   });
 });
 

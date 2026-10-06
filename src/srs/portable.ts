@@ -27,13 +27,14 @@ const num = z.number().finite();
 
 const CardSchema = z.strictObject({
   due: isoDate,
-  stability: num,
-  difficulty: num,
-  elapsed_days: num,
-  scheduled_days: num,
-  learning_steps: num,
-  reps: num,
-  lapses: num,
+  // a never-graded card has stability 0 and difficulty 0
+  stability: num.min(0),
+  difficulty: num.min(0),
+  elapsed_days: num.min(0),
+  scheduled_days: num.min(0),
+  learning_steps: z.number().int().min(0),
+  reps: z.number().int().min(0),
+  lapses: z.number().int().min(0),
   state: z.number().int().min(0).max(3),
   last_review: isoDate.optional(),
 });
@@ -57,6 +58,8 @@ const File = z.strictObject({
   newCounts: z.array(z.strictObject({ listId: z.string().min(1), day: z.string().min(1), count: z.number().int().min(0) })),
   pace: z.strictObject({ spc: num.positive(), chars: num.min(0) }).optional(),
 });
+
+const DAY = 24 * 3600 * 1000;
 
 export type ParseResult = { ok: true; data: ProgressData } | { ok: false; reason: string };
 
@@ -82,7 +85,7 @@ export function serializeProgress(data: ProgressData, exportedAt: Date): string 
 }
 
 /** Validates the whole file before anything is written; the reason is readable. */
-export function parseProgress(text: string): ParseResult {
+export function parseProgress(text: string, now: Date = new Date()): ParseResult {
   let raw: unknown;
   try {
     raw = JSON.parse(text);
@@ -92,11 +95,41 @@ export function parseProgress(text: string): ParseResult {
   const res = File.safeParse(raw);
   if (!res.success) {
     const i = res.error.issues[0];
-    const where = i.path.length ? `${i.path.slice(0, 3).join('.')}: ` : '';
+    const where = i.path.length ? `${i.path.join('.')}: ` : '';
     return { ok: false, reason: `${where}${i.message}` };
   }
-  const { cards, newCounts, pace } = res.data;
-  return { ok: true, data: { cards: cards as ProgressData['cards'], newCounts, ...(pace ? { pace } : {}) } };
+  const { cards, newCounts, pace, exportedAt } = res.data;
+  // a future date would make a card win every later merge
+  if (exportedAt.getTime() > now.getTime() + DAY) return { ok: false, reason: 'exportedAt: the file claims to be from the future' };
+  for (const c of cards) {
+    const at = c.stored.card.last_review;
+    if (at && at.getTime() > exportedAt.getTime() + DAY) {
+      return { ok: false, reason: `cards.${c.listId}/${c.recordId}: last_review is in the future` };
+    }
+  }
+  return { ok: true, data: { cards: dedupeCards(cards as ProgressData['cards']), newCounts: dedupeCounts(newCounts), ...(pace ? { pace } : {}) } };
+}
+
+/** One entry per card: the latest last_review wins, ties keep the first. */
+function dedupeCards(cards: ProgressData['cards']): ProgressData['cards'] {
+  const by = new Map<string, ProgressData['cards'][number]>();
+  for (const c of cards) {
+    const k = JSON.stringify([c.listId, c.recordId]);
+    const prev = by.get(k);
+    if (!prev || reviewedAt(c.stored) > reviewedAt(prev.stored)) by.set(k, prev ? { ...c } : c);
+  }
+  return [...by.values()];
+}
+
+/** One entry per list and day: the largest count. */
+function dedupeCounts(counts: ProgressData['newCounts']): ProgressData['newCounts'] {
+  const by = new Map<string, ProgressData['newCounts'][number]>();
+  for (const c of counts) {
+    const k = JSON.stringify([c.listId, c.day]);
+    const prev = by.get(k);
+    if (!prev || c.count > prev.count) by.set(k, c);
+  }
+  return [...by.values()];
 }
 
 const reviewedAt = (c: StoredCard) => c.card.last_review?.getTime() ?? Number.NEGATIVE_INFINITY;

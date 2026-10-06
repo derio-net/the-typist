@@ -394,7 +394,7 @@ export async function startApp(deps: AppDeps): Promise<App> {
     } catch {
       return { ok: false, message: 'Not imported: the file could not be read.' };
     }
-    const parsed = parseProgress(text);
+    const parsed = parseProgress(text, now());
     if (!parsed.ok) return { ok: false, message: `Not imported: ${parsed.reason}` };
     let report;
     try {
