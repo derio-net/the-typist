@@ -55,8 +55,8 @@ rows:
     origin:
     - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R11
     - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R12
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R8
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R18
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R8
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R18
     levels:
       unit:
       - the-typist:tests/content/bundled.test.ts
@@ -83,7 +83,7 @@ rows:
     acceptance: An invalid list reports all its record-level and list-level errors together,
       so its author can fix everything in one pass.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R9
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R9
     levels:
       unit:
       - the-typist:tests/schema/parse-list.test.ts
@@ -135,7 +135,7 @@ rows:
       unavailable, or when no German voice exists, telling the player what is limited.
     origin:
     - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R13
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R10
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R10
     levels:
       unit:
       - the-typist:tests/srs/store.test.ts
@@ -157,8 +157,8 @@ rows:
       with shared lives, can pause and resume without losing typing speed, and ends
       on a summary of their grades.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R4
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R5
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R4
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R5
     levels:
       unit:
       - the-typist:tests/ui/panels.test.ts
@@ -188,7 +188,7 @@ rows:
       waves and entering motherships, plus looping music when a track is supplied, each
       switchable and remembered.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R7
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R7
     levels:
       unit:
       - the-typist:tests/platform/audio.test.ts
@@ -203,9 +203,9 @@ rows:
       typos and pending ae/oe/ue/ss prefixes are visible on the locked ship, and the
       playfield stays sharp, fits narrow windows and never hides the HUD.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R11
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R12
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R13
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R11
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R12
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R13
     levels:
       unit:
       - the-typist:tests/render/feedback.test.ts
@@ -234,8 +234,8 @@ rows:
       brackets at a sentence end need not be typed, and loanwords with accented letters
       are typeable with the accent or its base letter.
     origin:
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R14
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R15
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R14
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R15
     levels:
       unit:
       - the-typist:tests/engine/typing.test.ts
@@ -253,9 +253,9 @@ rows:
     - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R7
     - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R8
     - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R9
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R1
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R2
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R3
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R1
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R2
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R3
     levels:
       unit:
       - the-typist:tests/srs/grade.test.ts
@@ -276,7 +276,7 @@ rows:
       cards are each available and individually switchable, and the choice persists.
     origin:
     - the-typist:docs/superpowers/implemented/specs/2026-10-05-vocab-typer-design.md#R10
-    - the-typist:docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md#R6
+    - the-typist:docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md#R6
     levels:
       unit:
       - the-typist:tests/platform/tts.test.ts

@@ -11,7 +11,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Plan 2** delivered the learning loop and shipping:
   - FSRS study and free-play sessions, aids (chips, translations, TTS, recap cards), menus, settings, audio and play feel;
   - file-picker list loading, degraded-state handling, a Playwright smoke test, and the GitHub Pages deploy.
-  - Design: `docs/superpowers/specs/2026-10-06-vocab-typer-plan2-design.md` (R1–R20).
+  - Design: `docs/superpowers/implemented/specs/2026-10-06-vocab-typer-plan2-design.md` (R1–R20).
 - Publishing is operator-run: `scripts/publish-pages.sh` makes the repo public and enables Pages. Nothing else does.
 
 ## Commands
