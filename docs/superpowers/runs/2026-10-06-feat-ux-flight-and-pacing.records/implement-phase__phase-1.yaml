@@ -35,3 +35,6 @@ visual:
       - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p1-shots/low-wreck.png, shows: [stack-apex-at-hud-from-low-wreck, forms-ship-lowest, longest-sentence-highest]}
       - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p1-shots/no-forms.png, shows: [record-without-forms, longest-sentence-highest]}
       - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p1-shots/no-examples.png, shows: [record-without-examples]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p1-shots/seq-1-before-last-key.png, shows: [destroy-mothership-stack-flies-to-top]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p1-shots/seq-2-mid-kick.png, shows: [destroy-mothership-stack-flies-to-top]}
+      - {path: /Users/derio/.claude-tmp/claude-501/-Users-derio-Docs-projects-DERIO-NET-the-typist/2bf630d7-2f45-41fc-bcd7-74d8fb4b1552/scratchpad/p1-shots/seq-3-apex.png, shows: [destroy-mothership-stack-flies-to-top]}
