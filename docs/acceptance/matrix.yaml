@@ -347,10 +347,7 @@ rows:
       ui:
       - the-typist:tests/e2e/smoke.spec.ts
     status: walk-owed
-    notes: The TTS trigger (at lock) and the voice choice changed in the ux-flight-and-pacing
-      spec (rows speech-on-attack, voice-choice). Verified by vitest unit tests (settings,
-      TTS, panels, app) and the Playwright smoke (recap card after a Hard Record). The suite runs in the Pages workflow on
-      pushes to main, not on PRs, so the row is not ci.
+    notes: tracked by derio-net/the-typist#16
     verify: live
     visual:
       states:
@@ -359,6 +356,8 @@ rows:
       - recap-card
       interactions:
       - toggle-aid-persists-after-reload
+    issues:
+    - derio-net/the-typist#16
   - id: speech-on-attack
     capability: Learning
     acceptance: A ship's German text is spoken once, when the player first attacks it,
