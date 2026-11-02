@@ -298,9 +298,20 @@ rows:
     - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R1
     - the-typist:docs/superpowers/implemented/specs/2026-10-06-ux-flight-and-pacing-design.md#R10
     levels: {}
-    status: walk-owed
-    notes: post-merge walk owed (gate backfill)
+    status: walked
+    notes: walked by the operator on the published site, 2026-11-02 (all six checks
+      passed)
     verify: live
+    walks:
+    - strategy: live
+      harness: human
+      model: none
+      outcome: pass
+      at: '2026-11-02T21:27:20Z'
+      evidence: 'Operator walk 2026-11-02 on the published site (derio-net.github.io/the-typist):
+        new stack flight and order shown; speech on attack; typing-matched speed; non-character
+        voice; progress and pace survive a reload; progress and pace move between browsers
+        by export and import. All six passed.'
   - id: srs-sessions
     capability: Learning
     acceptance: Study sessions serve due plus capped new Records in category waves,
